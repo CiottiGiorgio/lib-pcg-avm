@@ -5,6 +5,10 @@
             "name": "bounded_rand_uint32",
             "args": [
                 {
+                    "type": "uint64",
+                    "name": "seed"
+                },
+                {
                     "type": "uint32",
                     "name": "lower_bound"
                 },
@@ -25,6 +29,10 @@
             "name": "bounded_rand_uint16",
             "args": [
                 {
+                    "type": "uint64",
+                    "name": "seed"
+                },
+                {
                     "type": "uint16",
                     "name": "lower_bound"
                 },
@@ -44,6 +52,10 @@
         {
             "name": "bounded_rand_uint8",
             "args": [
+                {
+                    "type": "uint64",
+                    "name": "seed"
+                },
                 {
                     "type": "uint8",
                     "name": "lower_bound"

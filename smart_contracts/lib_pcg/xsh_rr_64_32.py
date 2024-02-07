@@ -126,6 +126,14 @@ def __pcg_random(state_slot_index) -> pt.Expr:
     )
 
 
+# NOTE: It _may_ be possible to split a 32bit pseudo random integer in 2 (or 4, depending on the required bit_size)
+#  to obtain more than one smaller number instead of performing two __pcg_step.
+#  This could dramatically improve the efficiency of the algorithm when operating at smaller bit_size.
+#  However, I can't guarantee that this does not yield a statistically worse sequence.
+#  Furthermore, the algorithm to advance multiple steps at once becomes complex.
+#  To improve performance it doesn't make sense to reduce the size of the state because ultimately it still
+#  would rely on the same uint64 opcodes.
+
 # If upper_bound is set, it's never included in the range.
 # If upper_bound is not set, the highest value (2^32-1) is included in the range.
 @pt.Subroutine(pt.TealType.bytes)

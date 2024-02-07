@@ -30,6 +30,7 @@ def delete() -> pt.Expr:
 
 @app.external
 def bounded_rand_uint32(
+    seed: pt.abi.Uint64,
     lower_bound: pt.abi.Uint32,
     upper_bound: pt.abi.Uint32,
     length: pt.abi.Uint16,
@@ -39,7 +40,7 @@ def bounded_rand_uint32(
     rng_handle = pt.ScratchVar(pt.TealType.uint64)
 
     return pt.Seq(
-        pcg_init(rng_handle.index(), pt.Int(42)),
+        pcg_init(rng_handle.index(), seed.get()),
 
         output.decode(pcg_random(rng_handle.index(), pt.Int(32), lower_bound.get(), upper_bound.get(), length.get()))
     )
@@ -47,6 +48,7 @@ def bounded_rand_uint32(
 
 @app.external
 def bounded_rand_uint16(
+    seed: pt.abi.Uint64,
     lower_bound: pt.abi.Uint16,
     upper_bound: pt.abi.Uint16,
     length: pt.abi.Uint16,
@@ -56,7 +58,7 @@ def bounded_rand_uint16(
     rng_handle = pt.ScratchVar(pt.TealType.uint64)
 
     return pt.Seq(
-        pcg_init(rng_handle.index(), pt.Int(42)),
+        pcg_init(rng_handle.index(), seed.get()),
 
         output.decode(pcg_random(rng_handle.index(), pt.Int(16), lower_bound.get(), upper_bound.get(), length.get()))
     )
@@ -64,6 +66,7 @@ def bounded_rand_uint16(
 
 @app.external
 def bounded_rand_uint8(
+    seed: pt.abi.Uint64,
     lower_bound: pt.abi.Uint8,
     upper_bound: pt.abi.Uint8,
     length: pt.abi.Uint16,
@@ -73,7 +76,7 @@ def bounded_rand_uint8(
     rng_handle = pt.ScratchVar(pt.TealType.uint64)
 
     return pt.Seq(
-        pcg_init(rng_handle.index(), pt.Int(42)),
+        pcg_init(rng_handle.index(), seed.get()),
 
         output.decode(pcg_random(rng_handle.index(), pt.Int(8), lower_bound.get(), upper_bound.get(), length.get()))
     )
