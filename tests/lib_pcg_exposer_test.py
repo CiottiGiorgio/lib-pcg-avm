@@ -46,7 +46,7 @@ demo_budget_test_vector = [
     (50, 6),
     (150, 17),
     (200, 22),
-    (254, 28),
+    (254, 30),
     # For the current iteration of contracts, 254 is the max amount of numbers possible due to
     #  log size constraints.
 ]
@@ -118,22 +118,21 @@ def test_random_uint16_unbounded(lib_pcg_exposer_client: LibPcgExposerClient) ->
     result = lib_pcg_exposer_client.bounded_rand_uint16(lower_bound=0, upper_bound=0, length=6)
 
     assert result.return_value == [
-        3270867926, 1795671209,
-        1924641435, 1143034755,
-        4121910957, 1757328946,
+        31702, 50345, 45723,
+        21379, 24237, 46642,
     ]
 
 
 def test_random_uint16_lower_bounded(lib_pcg_exposer_client: LibPcgExposerClient) -> None:
-    composer = lib_pcg_exposer_client.compose().bounded_rand_uint32(lower_bound=2**16-2, upper_bound=0, length=4)
+    composer = lib_pcg_exposer_client.compose().bounded_rand_uint16(lower_bound=2**16-2, upper_bound=0, length=4)
     result = composer.atc.simulate(
         composer.app_client.algod_client,
         SimulateRequest(txn_groups=[], extra_opcode_budget=320_000)
     )
 
     assert result.abi_results[0].return_value == [
-        2**32-2, 2**32-1,
-        2**32-1, 2**32-1,
+        2**16-2, 2**16-1,
+        2**16-1, 2**16-1,
     ]
 
 

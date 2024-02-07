@@ -129,19 +129,31 @@ def __pcg_random(state_slot_index) -> pt.Expr:
 # If upper_bound is set, it's never included in the range.
 # If upper_bound is not set, the highest value (2^32-1) is included in the range.
 @pt.Subroutine(pt.TealType.bytes)
-def pcg_random(state_slot_index, lower_bound, upper_bound, length) -> pt.Expr:
+def pcg_random(state_slot_index, bit_size, lower_bound, upper_bound, length) -> pt.Expr:
     result_length = pt.abi.make(pt.abi.Uint16)
+    byte_size = pt.ScratchVar(pt.TealType.uint64)
 
-    shifted_bound = pt.ScratchVar(pt.TealType.uint64)
+    absolute_bound = pt.ScratchVar(pt.TealType.uint64)
     threshold = pt.ScratchVar(pt.TealType.uint64)
     result = pt.ScratchVar(pt.TealType.bytes)
 
     i = pt.ScratchVar(pt.TealType.uint64)
-    r = pt.abi.make(pt.abi.Uint32)
+    candidate_bounded = pt.abi.make(pt.abi.Uint32)
+
+    def __truncate_to_size(_n, _byte_size) -> pt.Expr:
+        return pt.Extract(
+            pt.Itob(_n),
+            # 32bit == Extract(..., 8-4, 4); 16bit == Extract(..., 8-2, 2); 8bit == Extract(..., 8-1, 1)
+            pt.Int(8) - _byte_size,
+            _byte_size
+        )
 
     return pt.Seq(
         result_length.set(length),  # This is also used because it's an assert on "length" value.
         result.store(result_length.encode()),
+        pt.Assert(pt.Or(bit_size == pt.Int(8), bit_size == pt.Int(16), bit_size == pt.Int(32))),
+        # num_bits -> num_bytes == num_bits / 8 == num_bits / 2^3 == num_bits >> 3
+        byte_size.store(pt.ShiftRight(bit_size, pt.Int(3))),
 
         pt.If(pt.And(lower_bound == pt.Int(0), upper_bound == pt.Int(0)))
         .Then(pt.Seq(
@@ -152,32 +164,30 @@ def pcg_random(state_slot_index, lower_bound, upper_bound, length) -> pt.Expr:
             ).Do(pt.Seq(
                 result.store(pt.Concat(
                     result.load(),
-                    pt.Extract(pt.Itob(__pcg_random(state_slot_index)), pt.Int(4), pt.Int(4))
+                    __truncate_to_size(__pcg_random(state_slot_index), byte_size.load()),
                 ))
             ))
         ))
         .Else(pt.Seq(
             pt.If(upper_bound != pt.Int(0)).Then(pt.Seq(
                 pt.Assert(upper_bound > pt.Int(1)),
-                pt.Assert(upper_bound < pt.Int(2**32)),
+                pt.Assert(upper_bound < pt.Exp(pt.Int(2), bit_size)),
                 # The difference in bounds must be at least 2 because otherwise, the user is just asking
                 #  for a list of "lower_bound".
                 pt.Assert(lower_bound < upper_bound - pt.Int(1)),
 
-                shifted_bound.store(upper_bound - lower_bound),
+                absolute_bound.store(upper_bound - lower_bound),
             )).Else(pt.Seq(
                 # upper_bound == 0 means unbounded.
-                # Must include 2^32-1 which means that lower_bound must be less than that.
+                # Must include 2^bit_size-1 which means that lower_bound must be less than that.
                 # Otherwise, we would be in the nonsensical situation where the user is asking for a list
-                #  of "2^32-1".
-                pt.Assert(lower_bound < pt.Int(2**32-1)),
+                #  of "2^bit_size-1".
+                pt.Assert(lower_bound < pt.Exp(pt.Int(2), bit_size) - pt.Int(1)),
 
-                # At this point, this should be 2^32 - lower_bound == -lower_bound == lower_bound's two's complement.
-                # But, we can afford to write 2^32 as a native uint64 so that's what we'll do.
-                shifted_bound.store(pt.Int(2**32) - lower_bound),
+                absolute_bound.store(pt.Exp(pt.Int(2), bit_size) - lower_bound),
             )),
 
-            threshold.store(mask_to_uint32(__twos_complement(shifted_bound.load())) % (shifted_bound.load())),
+            threshold.store(mask_to_uint32(__twos_complement(absolute_bound.load())) % (absolute_bound.load())),
 
             pt.For(
                 i.store(pt.Int(0)),
@@ -185,11 +195,16 @@ def pcg_random(state_slot_index, lower_bound, upper_bound, length) -> pt.Expr:
                 i.store(i.load() + pt.Int(1))
             ).Do(pt.Seq(
                 pt.While(pt.Int(1)).Do(pt.Seq(
-                    r.set(__pcg_random(state_slot_index)),
-                    pt.If(r.get() >= threshold.load()).Then(pt.Seq(
-                        r.set((r.get() % shifted_bound.load()) + lower_bound),
-                        result.store(pt.Concat(result.load(), r.encode())),
-                        pt.Break()
+                    candidate_bounded.set(__pcg_random(state_slot_index)),
+                    pt.If(candidate_bounded.get() >= threshold.load()).Then(pt.Seq(
+                        result.store(pt.Concat(
+                            result.load(),
+                            __truncate_to_size(
+                                (candidate_bounded.get() % absolute_bound.load()) + lower_bound,
+                                byte_size.load()
+                            ),
+                        )),
+                        pt.Break(),
                     ))
                 ))
             )),

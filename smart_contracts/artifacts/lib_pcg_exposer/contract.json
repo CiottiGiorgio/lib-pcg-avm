@@ -45,11 +45,11 @@
             "name": "bounded_rand_uint8",
             "args": [
                 {
-                    "type": "uint16",
+                    "type": "uint8",
                     "name": "lower_bound"
                 },
                 {
-                    "type": "uint16",
+                    "type": "uint8",
                     "name": "upper_bound"
                 },
                 {
@@ -58,7 +58,7 @@
                 }
             ],
             "returns": {
-                "type": "uint16[]"
+                "type": "uint8[]"
             }
         }
     ],
