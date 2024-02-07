@@ -15,7 +15,7 @@ def mask_to_uint32(uint64):
 
 @pt.Subroutine(pt.TealType.uint64)
 def __pcg_output(state) -> pt.Expr:
-    return pt.Return(__pcg_rotation(
+    return __pcg_rotation(
         # This needs to be uint32. We can't guarantee that at this point, so we cast it explicitly.
         mask_to_uint32(
             pt.ShiftRight(
@@ -33,42 +33,38 @@ def __pcg_output(state) -> pt.Expr:
             state,
             pt.Int(59)
         ),
-    ))
+    )
 
 
 @pt.Subroutine(pt.TealType.uint64)
 def __pcg_rotation(value, rot) -> pt.Expr:
-    return pt.Return(
-        # This needs to be uint32. Luckily, "value" is already uint32 and a right shift will maintain that invariant.
-        pt.BitwiseOr(
-            pt.ShiftRight(
+    # This needs to be uint32. Luckily, "value" is already uint32 and a right shift will maintain that invariant.
+    return pt.BitwiseOr(
+        pt.ShiftRight(
+            value,
+            rot
+        ),
+        # This needs to be uint32. Therefore, we mask out the higher bits because we can't guarantee
+        #  that invariant with a left shift of "rot" two's complement.
+        mask_to_uint32(
+            pt.ShiftLeft(
                 value,
-                rot
+                pt.BitwiseAnd(
+                    __twos_complement(rot),
+                    pt.Int(31)
+                )
             ),
-            # This needs to be uint32. Therefore, we mask out the higher bits because we can't guarantee
-            #  that invariant with a left shift of "rot" two's complement.
-            mask_to_uint32(
-                pt.ShiftLeft(
-                    value,
-                    pt.BitwiseAnd(
-                        __twos_complement(rot),
-                        pt.Int(31)
-                    )
-                ),
-            )
         )
     )
 
 
 @pt.Subroutine(pt.TealType.uint64)
 def __twos_complement(number) -> pt.Expr:
-    return pt.Return(
-        InlineAssembly(
-            "addw; swap; pop;",
-            pt.BitwiseNot(number),
-            pt.Int(1),
-            type=pt.TealType.uint64
-        )
+    return InlineAssembly(
+        "addw; swap; pop;",
+        pt.BitwiseNot(number),
+        pt.Int(1),
+        type=pt.TealType.uint64
     )
 
 
@@ -101,15 +97,11 @@ def __pcg_step(state_slot_index) -> pt.Expr:
     return pt.ScratchStore(
         None,
         InlineAssembly(
-            "addw; swap; pop;",
-            InlineAssembly(
-                "mulw; swap; pop;",
-                pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index),
-                PCG_DEFAULT_MULTIPLIER,
-                type=pt.TealType.uint64
-            ),
+            "mulw; uncover 2; addw; uncover 3; swap;",
             PCG_DEFAULT_INCREMENT,
-            type=pt.TealType.uint64
+            PCG_DEFAULT_MULTIPLIER,
+            pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index),
+            type=pt.TealType.anytype
         ),
         state_slot_index
     )

@@ -158,12 +158,11 @@ retsub
 pcgstep_4:
 proto 1 0
 frame_dig -1
+pushint 1442695040888963407 // 1442695040888963407
+pushint 6364136223846793005 // 6364136223846793005
 frame_dig -1
 loads
-pushint 6364136223846793005 // 6364136223846793005
-mulw; swap; pop;
-pushint 1442695040888963407 // 1442695040888963407
-addw; swap; pop;
+mulw; uncover 2; addw; uncover 3; swap;
 stores
 retsub
 
