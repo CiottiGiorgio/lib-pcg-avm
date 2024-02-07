@@ -133,7 +133,7 @@ proto 1 1
 frame_dig -1
 ~
 intc_1 // 1
-addw; swap; pop;
+addw; swap;
 retsub
 
 // pcg_init
