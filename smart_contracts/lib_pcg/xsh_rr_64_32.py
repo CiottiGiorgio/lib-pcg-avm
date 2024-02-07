@@ -182,9 +182,9 @@ def pcg_random(state_slot_index, bit_size, lower_bound, upper_bound, length) -> 
                 # Must include 2^bit_size-1 which means that lower_bound must be less than that.
                 # Otherwise, we would be in the nonsensical situation where the user is asking for a list
                 #  of "2^bit_size-1".
-                pt.Assert(lower_bound < pt.Exp(pt.Int(2), bit_size) - pt.Int(1)),
+                pt.Assert(lower_bound < pt.ShiftLeft(pt.Int(1), bit_size) - pt.Int(1)),
 
-                absolute_bound.store(pt.Exp(pt.Int(2), bit_size) - lower_bound),
+                absolute_bound.store(pt.ShiftLeft(pt.Int(1), bit_size) - lower_bound),
             )),
 
             threshold.store(mask_to_uint32(__twos_complement(absolute_bound.load())) % (absolute_bound.load())),

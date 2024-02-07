@@ -222,16 +222,16 @@ intc_0 // 0
 !=
 bnz pcgrandom_6_l9
 frame_dig -3
-pushint 2 // 2
+intc_1 // 1
 frame_dig -4
-exp
+shl
 intc_1 // 1
 -
 <
 assert
-pushint 2 // 2
+intc_1 // 1
 frame_dig -4
-exp
+shl
 frame_dig -3
 -
 store 2
