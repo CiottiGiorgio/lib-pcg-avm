@@ -1,0 +1,66 @@
+{
+    "name": "lib_pcg_exposer",
+    "methods": [
+        {
+            "name": "bounded_rand_uint32",
+            "args": [
+                {
+                    "type": "uint32",
+                    "name": "lower_bound"
+                },
+                {
+                    "type": "uint32",
+                    "name": "upper_bound"
+                },
+                {
+                    "type": "uint16",
+                    "name": "length"
+                }
+            ],
+            "returns": {
+                "type": "uint32[]"
+            }
+        },
+        {
+            "name": "bounded_rand_uint16",
+            "args": [
+                {
+                    "type": "uint16",
+                    "name": "lower_bound"
+                },
+                {
+                    "type": "uint16",
+                    "name": "upper_bound"
+                },
+                {
+                    "type": "uint16",
+                    "name": "length"
+                }
+            ],
+            "returns": {
+                "type": "uint16[]"
+            }
+        },
+        {
+            "name": "bounded_rand_uint8",
+            "args": [
+                {
+                    "type": "uint16",
+                    "name": "lower_bound"
+                },
+                {
+                    "type": "uint16",
+                    "name": "upper_bound"
+                },
+                {
+                    "type": "uint16",
+                    "name": "length"
+                }
+            ],
+            "returns": {
+                "type": "uint16[]"
+            }
+        }
+    ],
+    "networks": {}
+}

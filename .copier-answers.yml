@@ -1,0 +1,19 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 1.12.0
+_src_path: gh:algorandfoundation/algokit-beaker-default-template
+algod_port: 4001
+algod_server: http://localhost
+algod_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+author_email: giorgio.ciotti@algorand.foundation
+author_name: Giorgio Ciotti
+contract_name: lib_pcg_exposer
+deployment_language: python
+ide_vscode: true
+indexer_port: 8980
+indexer_server: http://localhost
+indexer_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+preset_name: starter
+project_name: lib-pcg
+use_python_black: true
+use_python_pytest: true
+

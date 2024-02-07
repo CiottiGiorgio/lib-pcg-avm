@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "lib-pcg"
+version = "0.1.0"
+description = "Algorand smart contracts"
+authors = ["Giorgio Ciotti <giorgio.ciotti@algorand.foundation>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+beaker-pyteal = "^1.1.1"
+algokit-utils = "^2.2.0"
+python-dotenv = "^1.0.0"
+
+[tool.poetry.group.dev.dependencies]
+setuptools = "^69.0.2" # Adding explicitly to work around pyteal https://github.com/algorand/pyteal/issues/712
+black = {extras = ["d"], version = "*"}
+pytest = "*"
+pytest-cov = "*"
+pip-audit = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.pytest.ini_options]
+pythonpath = ["smart_contracts", "tests"]
