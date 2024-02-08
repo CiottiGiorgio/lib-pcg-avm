@@ -96,23 +96,15 @@ def pcg_init(state_slot_index, initial_state) -> pt.Expr:
 
 @pt.Subroutine(pt.TealType.none)
 def __pcg_step(state_slot_index) -> pt.Expr:
-
     # Equivalent to state = state * multiplier + increment
     # Considering that both operations could overflow and therefore the highest bits are discarded
-    return pt.ScratchStore(
-        None,
-        InlineAssembly(
-            "addw; swap; pop;",
-            InlineAssembly(
-                "mulw; swap; pop;",
-                pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index),
-                PCG_DEFAULT_MULTIPLIER,
-                type=pt.TealType.uint64
-            ),
-            PCG_DEFAULT_INCREMENT,
-            type=pt.TealType.uint64
-        ),
-        state_slot_index
+    return InlineAssembly(
+        "mulw; uncover 2; addw; cover 2; popn 2; stores;",
+        state_slot_index,
+        PCG_DEFAULT_INCREMENT,
+        PCG_DEFAULT_MULTIPLIER,
+        pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index),
+        type=pt.TealType.none
     )
 
 
