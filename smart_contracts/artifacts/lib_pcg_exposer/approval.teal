@@ -27,7 +27,7 @@ intc_0 // 0
 !=
 &&
 assert
-callsub boundedranduint8caster_14
+callsub boundedranduint8caster_12
 intc_1 // 1
 return
 main_l6:
@@ -39,7 +39,7 @@ intc_0 // 0
 !=
 &&
 assert
-callsub boundedranduint16caster_13
+callsub boundedranduint16caster_11
 intc_1 // 1
 return
 main_l7:
@@ -51,7 +51,7 @@ intc_0 // 0
 !=
 &&
 assert
-callsub boundedranduint32caster_12
+callsub boundedranduint32caster_10
 intc_1 // 1
 return
 main_l8:
@@ -73,7 +73,7 @@ txn ApplicationID
 intc_0 // 0
 !=
 assert
-callsub delete_8
+callsub delete_6
 intc_1 // 1
 return
 main_l13:
@@ -81,7 +81,7 @@ txn ApplicationID
 intc_0 // 0
 !=
 assert
-callsub update_7
+callsub update_5
 intc_1 // 1
 return
 main_l14:
@@ -92,43 +92,8 @@ assert
 intc_1 // 1
 return
 
-// __pcg_output
-pcgoutput_0:
-proto 1 1
-frame_dig -1
-pushint 18 // 18
-shr
-frame_dig -1
-^
-pushint 27 // 27
-shr
-intc_3 // 4294967295
-&
-frame_dig -1
-pushint 59 // 59
-shr
-callsub pcgrotation_1
-retsub
-
-// __pcg_rotation
-pcgrotation_1:
-proto 2 1
-frame_dig -2
-frame_dig -1
-shr
-frame_dig -2
-frame_dig -1
-callsub twoscomplement_2
-pushint 31 // 31
-&
-shl
-intc_3 // 4294967295
-&
-|
-retsub
-
 // __twos_complement
-twoscomplement_2:
+twoscomplement_0:
 proto 1 1
 frame_dig -1
 ~
@@ -137,13 +102,13 @@ addw; swap; pop;
 retsub
 
 // pcg_init
-pcginit_3:
+pcginit_1:
 proto 2 0
 frame_dig -2
 intc_0 // 0
 stores
 frame_dig -2
-callsub pcgstep_4
+callsub pcgstep_2
 frame_dig -2
 frame_dig -2
 loads
@@ -151,11 +116,11 @@ frame_dig -1
 +
 stores
 frame_dig -2
-callsub pcgstep_4
+callsub pcgstep_2
 retsub
 
 // __pcg_step
-pcgstep_4:
+pcgstep_2:
 proto 1 0
 frame_dig -1
 frame_dig -1
@@ -168,19 +133,43 @@ stores
 retsub
 
 // __pcg_random
-pcgrandom_5:
+pcgrandom_3:
 proto 1 1
 frame_dig -1
 loads
 store 6
 frame_dig -1
-callsub pcgstep_4
+callsub pcgstep_2
 load 6
-callsub pcgoutput_0
+pushint 18 // 18
+shr
+load 6
+^
+pushint 27 // 27
+shr
+intc_3 // 4294967295
+&
+store 7
+load 6
+pushint 59 // 59
+shr
+store 8
+load 7
+load 8
+shr
+load 7
+load 8
+callsub twoscomplement_0
+pushint 31 // 31
+&
+shl
+intc_3 // 4294967295
+&
+|
 retsub
 
 // pcg_random
-pcgrandom_6:
+pcgrandom_4:
 proto 5 1
 intc_0 // 0
 dup
@@ -217,11 +206,11 @@ frame_dig -2
 intc_0 // 0
 ==
 &&
-bnz pcgrandom_6_l10
+bnz pcgrandom_4_l10
 frame_dig -2
 intc_0 // 0
 !=
-bnz pcgrandom_6_l9
+bnz pcgrandom_4_l9
 frame_dig -3
 intc_1 // 1
 frame_dig -4
@@ -236,9 +225,9 @@ shl
 frame_dig -3
 -
 store 2
-pcgrandom_6_l3:
+pcgrandom_4_l3:
 load 2
-callsub twoscomplement_2
+callsub twoscomplement_0
 intc_3 // 4294967295
 &
 load 2
@@ -246,23 +235,23 @@ load 2
 store 3
 intc_0 // 0
 store 5
-pcgrandom_6_l4:
+pcgrandom_4_l4:
 load 5
 frame_dig -1
 <
-bz pcgrandom_6_l13
-pcgrandom_6_l5:
+bz pcgrandom_4_l13
+pcgrandom_4_l5:
 intc_1 // 1
-bnz pcgrandom_6_l7
-pcgrandom_6_l6:
+bnz pcgrandom_4_l7
+pcgrandom_4_l6:
 load 5
 intc_1 // 1
 +
 store 5
-b pcgrandom_6_l4
-pcgrandom_6_l7:
+b pcgrandom_4_l4
+pcgrandom_4_l7:
 frame_dig -5
-callsub pcgrandom_5
+callsub pcgrandom_3
 frame_bury 1
 frame_dig 1
 pushint 4294967296 // 4294967296
@@ -271,7 +260,7 @@ assert
 frame_dig 1
 load 3
 >=
-bz pcgrandom_6_l5
+bz pcgrandom_4_l5
 load 4
 frame_dig 1
 load 2
@@ -286,8 +275,8 @@ load 1
 extract3
 concat
 store 4
-b pcgrandom_6_l6
-pcgrandom_6_l9:
+b pcgrandom_4_l6
+pcgrandom_4_l9:
 frame_dig -2
 intc_1 // 1
 >
@@ -308,18 +297,18 @@ frame_dig -2
 frame_dig -3
 -
 store 2
-b pcgrandom_6_l3
-pcgrandom_6_l10:
+b pcgrandom_4_l3
+pcgrandom_4_l10:
 intc_0 // 0
 store 5
-pcgrandom_6_l11:
+pcgrandom_4_l11:
 load 5
 frame_dig -1
 <
-bz pcgrandom_6_l13
+bz pcgrandom_4_l13
 load 4
 frame_dig -5
-callsub pcgrandom_5
+callsub pcgrandom_3
 itob
 intc_2 // 8
 load 1
@@ -332,14 +321,14 @@ load 5
 intc_1 // 1
 +
 store 5
-b pcgrandom_6_l11
-pcgrandom_6_l13:
+b pcgrandom_4_l11
+pcgrandom_4_l13:
 load 4
 frame_bury 0
 retsub
 
 // update
-update_7:
+update_5:
 proto 0 0
 txn Sender
 global CreatorAddress
@@ -352,7 +341,7 @@ assert
 retsub
 
 // delete
-delete_8:
+delete_6:
 proto 0 0
 txn Sender
 global CreatorAddress
@@ -365,55 +354,55 @@ assert
 retsub
 
 // bounded_rand_uint32
-boundedranduint32_9:
+boundedranduint32_7:
 proto 4 1
 bytec_0 // ""
 intc_0 // 0
 frame_dig -4
-callsub pcginit_3
+callsub pcginit_1
 intc_0 // 0
 pushint 32 // 32
 frame_dig -3
 frame_dig -2
 frame_dig -1
-callsub pcgrandom_6
+callsub pcgrandom_4
 frame_bury 0
 retsub
 
 // bounded_rand_uint16
-boundedranduint16_10:
+boundedranduint16_8:
 proto 4 1
 bytec_0 // ""
-pushint 7 // 7
+pushint 9 // 9
 frame_dig -4
-callsub pcginit_3
-pushint 7 // 7
+callsub pcginit_1
+pushint 9 // 9
 pushint 16 // 16
 frame_dig -3
 frame_dig -2
 frame_dig -1
-callsub pcgrandom_6
+callsub pcgrandom_4
 frame_bury 0
 retsub
 
 // bounded_rand_uint8
-boundedranduint8_11:
+boundedranduint8_9:
 proto 4 1
 bytec_0 // ""
-intc_2 // 8
+pushint 10 // 10
 frame_dig -4
-callsub pcginit_3
-intc_2 // 8
+callsub pcginit_1
+pushint 10 // 10
 intc_2 // 8
 frame_dig -3
 frame_dig -2
 frame_dig -1
-callsub pcgrandom_6
+callsub pcgrandom_4
 frame_bury 0
 retsub
 
 // bounded_rand_uint32_caster
-boundedranduint32caster_12:
+boundedranduint32caster_10:
 proto 0 0
 bytec_0 // ""
 intc_0 // 0
@@ -437,7 +426,7 @@ frame_dig 1
 frame_dig 2
 frame_dig 3
 frame_dig 4
-callsub boundedranduint32_9
+callsub boundedranduint32_7
 frame_bury 0
 bytec_1 // 0x151f7c75
 frame_dig 0
@@ -446,7 +435,7 @@ log
 retsub
 
 // bounded_rand_uint16_caster
-boundedranduint16caster_13:
+boundedranduint16caster_11:
 proto 0 0
 bytec_0 // ""
 intc_0 // 0
@@ -470,7 +459,7 @@ frame_dig 1
 frame_dig 2
 frame_dig 3
 frame_dig 4
-callsub boundedranduint16_10
+callsub boundedranduint16_8
 frame_bury 0
 bytec_1 // 0x151f7c75
 frame_dig 0
@@ -479,7 +468,7 @@ log
 retsub
 
 // bounded_rand_uint8_caster
-boundedranduint8caster_14:
+boundedranduint8caster_12:
 proto 0 0
 bytec_0 // ""
 intc_0 // 0
@@ -503,7 +492,7 @@ frame_dig 1
 frame_dig 2
 frame_dig 3
 frame_dig 4
-callsub boundedranduint8_11
+callsub boundedranduint8_9
 frame_bury 0
 bytec_1 // 0x151f7c75
 frame_dig 0

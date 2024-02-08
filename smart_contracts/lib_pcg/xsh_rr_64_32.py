@@ -13,49 +13,53 @@ def mask_to_uint32(uint64):
     )
 
 
-@pt.Subroutine(pt.TealType.uint64)
+# Because __pcg_rotation is inlined into this function, if we were to write the arguments
+#  as full pt.Expr that would be inlined inside that function each time the arguments are called.
+# Instead, we manually cache them into slots so that inside __pcg_rotation loading an argument
+#  is just a load opcode.
 def __pcg_output(state) -> pt.Expr:
-    return pt.Return(__pcg_rotation(
+    arg1 = pt.ScratchVar(pt.TealType.uint64)
+    arg2 = pt.ScratchVar(pt.TealType.uint64)
+
+    return pt.Seq(
         # This needs to be uint32. We can't guarantee that at this point, so we cast it explicitly.
-        mask_to_uint32(
-            pt.ShiftRight(
-                pt.BitwiseXor(
-                    pt.ShiftRight(
-                        state,
-                        pt.Int(18)
-                    ),
-                    state
-                ),
-                pt.Int(27)
-            ),
-        ),
-        pt.ShiftRight(
-            state,
-            pt.Int(59)
-        ),
-    ))
-
-
-@pt.Subroutine(pt.TealType.uint64)
-def __pcg_rotation(value, rot) -> pt.Expr:
-    return pt.Return(
-        # This needs to be uint32. Luckily, "value" is already uint32 and a right shift will maintain that invariant.
-        pt.BitwiseOr(
-            pt.ShiftRight(
-                value,
-                rot
-            ),
-            # This needs to be uint32. Therefore, we mask out the higher bits because we can't guarantee
-            #  that invariant with a left shift of "rot" two's complement.
+        arg1.store(
             mask_to_uint32(
-                pt.ShiftLeft(
-                    value,
-                    pt.BitwiseAnd(
-                        __twos_complement(rot),
-                        pt.Int(31)
-                    )
+                pt.ShiftRight(
+                    pt.BitwiseXor(
+                        pt.ShiftRight(
+                            state,
+                            pt.Int(18)
+                        ),
+                        state
+                    ),
+                    pt.Int(27)
                 ),
             )
+        ),
+        arg2.store(pt.ShiftRight(state, pt.Int(59))),
+
+        __pcg_rotation(arg1.load(), arg2.load())
+    )
+
+
+def __pcg_rotation(value, rot) -> pt.Expr:
+    # This needs to be uint32. Luckily, "value" is already uint32 and a right shift will maintain that invariant.
+    return pt.BitwiseOr(
+        pt.ShiftRight(
+            value,
+            rot
+        ),
+        # This needs to be uint32. Therefore, we mask out the higher bits because we can't guarantee
+        #  that invariant with a left shift of "rot" two's complement.
+        mask_to_uint32(
+            pt.ShiftLeft(
+                value,
+                pt.BitwiseAnd(
+                    __twos_complement(rot),
+                    pt.Int(31)
+                )
+            ),
         )
     )
 
