@@ -138,14 +138,16 @@ def pcg_random(state_slot_index, bit_size, lower_bound, upper_bound, length) -> 
     threshold = pt.ScratchVar(pt.TealType.uint64)
     result = pt.ScratchVar(pt.TealType.bytes)
 
+    truncate_cached_start = pt.ScratchVar(pt.TealType.uint64)
+
     i = pt.ScratchVar(pt.TealType.uint64)
     candidate_bounded = pt.ScratchVar(pt.TealType.uint64)
 
-    def __truncate_to_size(_n, _byte_size) -> pt.Expr:
+    def __truncate_to_size(_n, _start, _byte_size) -> pt.Expr:
         return pt.Extract(
             pt.Itob(_n),
             # 32bit == Extract(..., 8-4, 4); 16bit == Extract(..., 8-2, 2); 8bit == Extract(..., 8-1, 1)
-            pt.Int(8) - _byte_size,
+            _start,
             _byte_size
         )
 
@@ -155,6 +157,7 @@ def pcg_random(state_slot_index, bit_size, lower_bound, upper_bound, length) -> 
         pt.Assert(pt.Or(bit_size == pt.Int(8), bit_size == pt.Int(16), bit_size == pt.Int(32))),
         # num_bits -> num_bytes == num_bits / 8 == num_bits / 2^3 == num_bits >> 3
         byte_size.store(pt.ShiftRight(bit_size, pt.Int(3))),
+        truncate_cached_start.store(pt.Int(8) - byte_size.load()),
 
         pt.If(pt.And(lower_bound == pt.Int(0), upper_bound == pt.Int(0)))
         .Then(pt.Seq(
@@ -165,7 +168,7 @@ def pcg_random(state_slot_index, bit_size, lower_bound, upper_bound, length) -> 
             ).Do(pt.Seq(
                 result.store(pt.Concat(
                     result.load(),
-                    __truncate_to_size(__pcg_random(state_slot_index), byte_size.load()),
+                    __truncate_to_size(__pcg_random(state_slot_index), truncate_cached_start.load(), byte_size.load()),
                 ))
             ))
         ))
@@ -196,13 +199,14 @@ def pcg_random(state_slot_index, bit_size, lower_bound, upper_bound, length) -> 
                 i.store(i.load() + pt.Int(1))
             ).Do(pt.Seq(
                 candidate_bounded.store(__pcg_random(state_slot_index)),
-                pt.While(candidate_bounded.load() < threshold.load()).Do(pt.Seq(
-                    candidate_bounded.store(__pcg_random(state_slot_index)),
-                )),
+                pt.While(candidate_bounded.load() < threshold.load()).Do(
+                    candidate_bounded.store(__pcg_random(state_slot_index))
+                ),
                 result.store(pt.Concat(
                     result.load(),
                     __truncate_to_size(
                         (candidate_bounded.load() % absolute_bound.load()) + lower_bound,
+                        truncate_cached_start.load(),
                         byte_size.load()
                     ),
                 )),
