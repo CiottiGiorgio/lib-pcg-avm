@@ -95,6 +95,12 @@ def __bit_size_to_method(
     return result
 
 
+# This simple test ensures that the code size of this library doesn't grow unexpectedly if we
+#  start taking subroutine inlining and opcode assembly opportunities.
+def test_library_size(lib_pcg_exposer_client: LibPcgExposerClient):
+    assert len(lib_pcg_exposer_client.app_client.approval.teal.split("\n")) < 500
+
+
 @pytest.mark.parametrize("bit_size,expected_max_opup_calls", zip(BIT_SIZES, UNBOUNDED_MAX_OPUP_CALLS))
 def test_unbounded_maximal_cost(
     lib_pcg_exposer_client: LibPcgExposerClient,
