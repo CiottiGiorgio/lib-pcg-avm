@@ -94,7 +94,6 @@ def pcg_init(state_slot_index, initial_state) -> pt.Expr:
     )
 
 
-@pt.Subroutine(pt.TealType.none)
 def __pcg_step(state_slot_index) -> pt.Expr:
     # Equivalent to state = state * multiplier + increment
     # Considering that both operations could overflow and therefore the highest bits are discarded
