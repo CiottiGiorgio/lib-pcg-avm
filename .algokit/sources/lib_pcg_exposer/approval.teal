@@ -270,9 +270,9 @@ intc_1 // 1
 >
 assert
 frame_dig -2
-pushint 2 // 2
+intc_1 // 1
 frame_dig -4
-exp
+shl
 <
 assert
 frame_dig -3

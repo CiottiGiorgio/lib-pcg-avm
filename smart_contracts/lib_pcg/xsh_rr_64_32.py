@@ -172,7 +172,7 @@ def pcg_random(state_slot_index, bit_size, lower_bound, upper_bound, length) -> 
         .Else(pt.Seq(
             pt.If(upper_bound != pt.Int(0)).Then(pt.Seq(
                 pt.Assert(upper_bound > pt.Int(1)),
-                pt.Assert(upper_bound < pt.Exp(pt.Int(2), bit_size)),
+                pt.Assert(upper_bound < pt.ShiftLeft(pt.Int(1), bit_size)),
                 # The difference in bounds must be at least 2 because otherwise, the user is just asking
                 #  for a list of "lower_bound".
                 pt.Assert(lower_bound < upper_bound - pt.Int(1)),
