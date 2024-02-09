@@ -118,7 +118,8 @@ pushint 1442695040888963407 // 1442695040888963407
 pushint 6364136223846793005 // 6364136223846793005
 frame_dig -1
 loads
-mulw; uncover 2; addw; cover 2; popn 2; stores;
+mulw; bury 1; addw; bury 1;
+stores
 retsub
 
 // __pcg_random
