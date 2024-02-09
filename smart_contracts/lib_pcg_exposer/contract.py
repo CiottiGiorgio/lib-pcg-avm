@@ -1,11 +1,18 @@
+from feature_gates import FeatureGates
+FeatureGates.set_sourcemap_enabled(True)
+
 import beaker
 import pyteal as pt
 from algokit_utils import DELETABLE_TEMPLATE_NAME, UPDATABLE_TEMPLATE_NAME
+from beaker import BuildOptions
 
 from smart_contracts.lib_pcg.xsh_rr_64_32 import pcg_init, pcg_random
 
 
-app = beaker.Application("lib_pcg_exposer")
+app = beaker.Application(
+    "lib_pcg_exposer",
+    # build_options=BuildOptions(with_sourcemaps=True, annotate_teal=True)
+)
 
 
 STATE_SLOT = pt.ScratchVar(pt.TealType.uint64)

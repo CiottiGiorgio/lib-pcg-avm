@@ -139,7 +139,7 @@ def pcg_random(state_slot_index, bit_size, lower_bound, upper_bound, length) -> 
     result = pt.ScratchVar(pt.TealType.bytes)
 
     i = pt.ScratchVar(pt.TealType.uint64)
-    candidate_bounded = pt.abi.make(pt.abi.Uint32)
+    candidate_bounded = pt.ScratchVar(pt.TealType.uint64)
 
     def __truncate_to_size(_n, _byte_size) -> pt.Expr:
         return pt.Extract(
@@ -195,19 +195,17 @@ def pcg_random(state_slot_index, bit_size, lower_bound, upper_bound, length) -> 
                 i.load() < length,
                 i.store(i.load() + pt.Int(1))
             ).Do(pt.Seq(
-                pt.While(pt.Int(1)).Do(pt.Seq(
-                    candidate_bounded.set(__pcg_random(state_slot_index)),
-                    pt.If(candidate_bounded.get() >= threshold.load()).Then(pt.Seq(
-                        result.store(pt.Concat(
-                            result.load(),
-                            __truncate_to_size(
-                                (candidate_bounded.get() % absolute_bound.load()) + lower_bound,
-                                byte_size.load()
-                            ),
-                        )),
-                        pt.Break(),
-                    ))
-                ))
+                candidate_bounded.store(__pcg_random(state_slot_index)),
+                pt.While(candidate_bounded.load() < threshold.load()).Do(pt.Seq(
+                    candidate_bounded.store(__pcg_random(state_slot_index)),
+                )),
+                result.store(pt.Concat(
+                    result.load(),
+                    __truncate_to_size(
+                        (candidate_bounded.load() % absolute_bound.load()) + lower_bound,
+                        byte_size.load()
+                    ),
+                )),
             )),
         )),
 
