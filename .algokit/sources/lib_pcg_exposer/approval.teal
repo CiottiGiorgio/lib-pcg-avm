@@ -150,7 +150,7 @@ load 9
 load 10
 ~
 intc_1 // 1
-addw; swap; pop;
+addw; bury 1;
 pushint 31 // 31
 &
 shl
@@ -223,7 +223,7 @@ pcgrandom_3_l3:
 load 2
 ~
 intc_1 // 1
-addw; swap; pop;
+addw; bury 1;
 intc_2 // 4294967295
 &
 load 2

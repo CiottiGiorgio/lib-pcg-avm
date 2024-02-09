@@ -66,7 +66,7 @@ def __pcg_rotation(value, rot) -> pt.Expr:
 
 def __twos_complement(number) -> pt.Expr:
     return InlineAssembly(
-        "addw; swap; pop;",
+        "addw; bury 1;",
         pt.BitwiseNot(number),
         pt.Int(1),
         type=pt.TealType.uint64
