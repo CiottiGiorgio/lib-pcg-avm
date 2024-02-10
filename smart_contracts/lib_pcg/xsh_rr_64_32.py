@@ -148,7 +148,6 @@ def pcg_random(state_slot_index, bit_size, lower_bound, upper_bound, length) -> 
     def __truncate_to_size(_n, _start, _byte_size) -> pt.Expr:
         return pt.Extract(
             pt.Itob(_n),
-            # 32bit == Extract(..., 8-4, 4); 16bit == Extract(..., 8-2, 2); 8bit == Extract(..., 8-1, 1)
             _start,
             _byte_size
         )
@@ -159,6 +158,7 @@ def pcg_random(state_slot_index, bit_size, lower_bound, upper_bound, length) -> 
         pt.Assert(pt.Or(bit_size == pt.Int(8), bit_size == pt.Int(16), bit_size == pt.Int(32))),
         # num_bits -> num_bytes == num_bits / 8 == num_bits / 2^3 == num_bits >> 3
         byte_size.store(pt.ShiftRight(bit_size, pt.Int(3))),
+        # 32bit == Extract(..., 8-4, 4); 16bit == Extract(..., 8-2, 2); 8bit == Extract(..., 8-1, 1)
         truncate_cached_start.store(pt.Int(8) - byte_size.load()),
 
         pt.If(pt.And(lower_bound == pt.Int(0), upper_bound == pt.Int(0)))
