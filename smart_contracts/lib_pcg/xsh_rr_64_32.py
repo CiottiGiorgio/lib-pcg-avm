@@ -56,7 +56,7 @@ def __pcg_rotation(value, rot) -> pt.Expr:
             pt.ShiftLeft(
                 value,
                 pt.BitwiseAnd(
-                    __twos_complement(rot),
+                    __64bit_twos_complement(rot),
                     pt.Int(31)
                 )
             ),
@@ -64,7 +64,17 @@ def __pcg_rotation(value, rot) -> pt.Expr:
     )
 
 
-def __twos_complement(number) -> pt.Expr:
+def __32bit_twos_complement(value) -> pt.Expr:
+    return pt.BitwiseAnd(
+        pt.Int(int.from_bytes(b"\x00\x00\x00\x00\xFF\xFF\xFF\xFF")),
+        pt.Add(
+            pt.BitwiseNot(value),
+            pt.Int(1)
+        )
+    )
+
+
+def __64bit_twos_complement(number) -> pt.Expr:
     return InlineAssembly(
         "\n".join(["addw", "bury 1"]),
         pt.BitwiseNot(number),
@@ -193,7 +203,7 @@ def pcg_random(state_slot_index, bit_size, lower_bound, upper_bound, length) -> 
                 absolute_bound.store(pt.ShiftLeft(pt.Int(1), bit_size) - lower_bound),
             )),
 
-            threshold.store(mask_to_uint32(__twos_complement(absolute_bound.load())) % (absolute_bound.load())),
+            threshold.store(__32bit_twos_complement(absolute_bound.load()) % (absolute_bound.load())),
 
             pt.For(
                 i.store(pt.Int(0)),
