@@ -66,7 +66,7 @@ def __pcg_rotation(value, rot) -> pt.Expr:
 
 def __twos_complement(number) -> pt.Expr:
     return InlineAssembly(
-        "addw; bury 1;",
+        "\n".join(["addw", "bury 1"]),
         pt.BitwiseNot(number),
         pt.Int(1),
         type=pt.TealType.uint64
@@ -100,7 +100,7 @@ def __pcg_step(state_slot_index) -> pt.Expr:
     return pt.ScratchStore(
         None,
         InlineAssembly(
-            "mulw; bury 1; addw; bury 1;",
+            "\n".join(["mulw", "bury 1", "addw", "bury 1"]),
             PCG_DEFAULT_INCREMENT,
             PCG_DEFAULT_MULTIPLIER,
             pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index),
