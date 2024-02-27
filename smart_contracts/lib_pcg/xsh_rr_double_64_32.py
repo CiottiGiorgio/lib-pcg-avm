@@ -4,20 +4,19 @@ from smart_contracts.lib_pcg.xsh_rr_64_32 import __pcg32_init, __pcg32_step, __p
 
 PCG_DEFAULT_MULTIPLIER = pt.Int(6364136223846793005)
 PCG_DEFAULT_INCREMENT = pt.Int(1442695040888963407)
+PCG_SECONDARY_DEFAULT_INCREMENT = pt.Int(1442695040888963409)
 
 
 @pt.Subroutine(pt.TealType.none)
-def pcg64_init(state1_slot_index, state2_slot_index, incr2_slot_index, initial_state1, initial_state2) -> pt.Expr:
+def pcg64_init(state1_slot_index, state2_slot_index, initial_state1, initial_state2) -> pt.Expr:
     return pt.Seq(
-        pt.ScratchStore(None, PCG_DEFAULT_INCREMENT + pt.Int(2), incr2_slot_index),
-
         __pcg32_init(state1_slot_index, initial_state1, PCG_DEFAULT_INCREMENT),
-        __pcg32_init(state2_slot_index, initial_state2, pt.ScratchLoad(None, pt.TealType.uint64, incr2_slot_index)),
+        __pcg32_init(state2_slot_index, initial_state2, PCG_SECONDARY_DEFAULT_INCREMENT),
     )
 
 
 @pt.Subroutine(pt.TealType.uint64)
-def __pcg64_random(state1_slot_index, state2_slot_index, incr2_slot_index) -> pt.Expr:
+def __pcg64_random(state1_slot_index, state2_slot_index) -> pt.Expr:
     old_state1 = pt.ScratchVar(pt.TealType.uint64)
     old_state2 = pt.ScratchVar(pt.TealType.uint64)
     return pt.Seq(
@@ -36,7 +35,7 @@ def __pcg64_random(state1_slot_index, state2_slot_index, incr2_slot_index) -> pt
         __pcg32_step(
             state2_slot_index,
             pt.ShiftLeft(
-                pt.ScratchLoad(None, pt.TealType.uint64, incr2_slot_index),
+                PCG_SECONDARY_DEFAULT_INCREMENT,
                 pt.ScratchLoad(None, pt.TealType.uint64, state1_slot_index) == pt.Int(0)
             )
         ),
@@ -49,7 +48,7 @@ def __pcg64_random(state1_slot_index, state2_slot_index, incr2_slot_index) -> pt
 
 
 @pt.Subroutine(pt.TealType.bytes)
-def pcg64_random(state1_slot_index, state2_slot_index, incr2_slot_index, lower_bound, upper_bound, length) -> pt.Expr:
+def pcg64_random(state1_slot_index, state2_slot_index, lower_bound, upper_bound, length) -> pt.Expr:
     result_length = pt.abi.make(pt.abi.Uint16)
 
     absolute_bound = pt.ScratchVar(pt.TealType.uint64)
@@ -72,7 +71,7 @@ def pcg64_random(state1_slot_index, state2_slot_index, incr2_slot_index, lower_b
             ).Do(pt.Seq(
                 result.store(pt.Concat(
                     result.load(),
-                    pt.Itob(__pcg64_random(state1_slot_index, state2_slot_index, incr2_slot_index))
+                    pt.Itob(__pcg64_random(state1_slot_index, state2_slot_index))
                 ))
             ))
         ))
@@ -106,9 +105,9 @@ def pcg64_random(state1_slot_index, state2_slot_index, incr2_slot_index, lower_b
                 i.load() < length,
                 i.store(i.load() + pt.Int(1))
             ).Do(pt.Seq(
-                candidate_bounded.store(__pcg64_random(state1_slot_index, state2_slot_index, incr2_slot_index)),
+                candidate_bounded.store(__pcg64_random(state1_slot_index, state2_slot_index)),
                 pt.While(candidate_bounded.load() < threshold.load()).Do(
-                    candidate_bounded.store(__pcg64_random(state1_slot_index, state2_slot_index, incr2_slot_index)),
+                    candidate_bounded.store(__pcg64_random(state1_slot_index, state2_slot_index)),
                 ),
                 result.store(pt.Concat(
                     result.load(),

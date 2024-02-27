@@ -44,13 +44,11 @@ def bounded_rand_uint64(
 ) -> pt.Expr:
     rng_handle_state1 = pt.ScratchVar(pt.TealType.uint64)
     rng_handle_state2 = pt.ScratchVar(pt.TealType.uint64)
-    rng_handle_incr2 = pt.ScratchVar(pt.TealType.uint64)
 
     return pt.Seq(
         pcg64_init(
             rng_handle_state1.index(),
             rng_handle_state2.index(),
-            rng_handle_incr2.index(),
             pt.Btoi(pt.Substring(seed.get(), pt.Int(0), pt.Int(8))),
             pt.Btoi(pt.Substring(seed.get(), pt.Int(8), pt.Int(16))),
         ),
@@ -58,7 +56,6 @@ def bounded_rand_uint64(
         output.decode(pcg64_random(
             rng_handle_state1.index(),
             rng_handle_state2.index(),
-            rng_handle_incr2.index(),
             lower_bound.get(),
             upper_bound.get(),
             length.get(),
