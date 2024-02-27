@@ -235,11 +235,11 @@ frame_dig -3
 -
 store 2
 pcg32random_2_l3:
-intc 4 // 4294967295
 load 2
 ~
 intc_1 // 1
 +
+intc 4 // 4294967295
 &
 load 2
 %

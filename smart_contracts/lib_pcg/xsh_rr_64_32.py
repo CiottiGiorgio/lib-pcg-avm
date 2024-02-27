@@ -64,14 +64,11 @@ def __pcg32_rotation(value, rot) -> pt.Expr:
     )
 
 
+# The value==0 case (and that case only) would still trigger a native carry (and therefore a contract panic).
+# We can get away with doing this because this function is exclusively used to negate absolute_bound which,
+#  by construction, can never be 0.
 def __32bit_twos_complement(value) -> pt.Expr:
-    return pt.BitwiseAnd(
-        pt.Int(int.from_bytes(b"\x00\x00\x00\x00\xFF\xFF\xFF\xFF")),
-        pt.Add(
-            pt.BitwiseNot(value),
-            pt.Int(1)
-        )
-    )
+    return __mask_to_uint32(pt.BitwiseNot(value) + pt.Int(1))
 
 
 def __64bit_twos_complement(number) -> pt.Expr:

@@ -243,7 +243,7 @@ shl
 intc 4 // 4294967295
 &
 |
-+
+|
 retsub
 
 // pcg64_random
