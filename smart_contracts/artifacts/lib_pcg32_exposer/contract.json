@@ -1,5 +1,5 @@
 {
-    "name": "lib_pcg_exposer",
+    "name": "lib_pcg32_exposer",
     "methods": [
         {
             "name": "bounded_rand_uint32",

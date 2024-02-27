@@ -6,17 +6,13 @@ import pyteal as pt
 from algokit_utils import DELETABLE_TEMPLATE_NAME, UPDATABLE_TEMPLATE_NAME
 from beaker import BuildOptions
 
-from smart_contracts.lib_pcg.xsh_rr_64_32 import pcg_init, pcg_random
+from smart_contracts.lib_pcg.xsh_rr_64_32 import pcg32_init, pcg32_random
 
 
 app = beaker.Application(
-    "lib_pcg_exposer",
+    "lib_pcg32_exposer",
     # build_options=BuildOptions(with_sourcemaps=True, annotate_teal=True)
 )
-
-
-STATE_SLOT = pt.ScratchVar(pt.TealType.uint64)
-INCREMENT_SLOT = pt.ScratchVar(pt.TealType.uint64)
 
 
 @app.update(authorize=beaker.Authorize.only_creator(), bare=True)
@@ -47,9 +43,9 @@ def bounded_rand_uint32(
     rng_handle = pt.ScratchVar(pt.TealType.uint64)
 
     return pt.Seq(
-        pcg_init(rng_handle.index(), seed.get()),
+        pcg32_init(rng_handle.index(), seed.get()),
 
-        output.decode(pcg_random(rng_handle.index(), pt.Int(32), lower_bound.get(), upper_bound.get(), length.get()))
+        output.decode(pcg32_random(rng_handle.index(), pt.Int(32), lower_bound.get(), upper_bound.get(), length.get()))
     )
 
 
@@ -65,9 +61,9 @@ def bounded_rand_uint16(
     rng_handle = pt.ScratchVar(pt.TealType.uint64)
 
     return pt.Seq(
-        pcg_init(rng_handle.index(), seed.get()),
+        pcg32_init(rng_handle.index(), seed.get()),
 
-        output.decode(pcg_random(rng_handle.index(), pt.Int(16), lower_bound.get(), upper_bound.get(), length.get()))
+        output.decode(pcg32_random(rng_handle.index(), pt.Int(16), lower_bound.get(), upper_bound.get(), length.get()))
     )
 
 
@@ -83,7 +79,7 @@ def bounded_rand_uint8(
     rng_handle = pt.ScratchVar(pt.TealType.uint64)
 
     return pt.Seq(
-        pcg_init(rng_handle.index(), seed.get()),
+        pcg32_init(rng_handle.index(), seed.get()),
 
-        output.decode(pcg_random(rng_handle.index(), pt.Int(8), lower_bound.get(), upper_bound.get(), length.get()))
+        output.decode(pcg32_random(rng_handle.index(), pt.Int(8), lower_bound.get(), upper_bound.get(), length.get()))
     )

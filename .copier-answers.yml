@@ -6,7 +6,7 @@ algod_server: http://localhost
 algod_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 author_email: giorgio.ciotti@algorand.foundation
 author_name: Giorgio Ciotti
-contract_name: lib_pcg_exposer
+contract_name: lib_pcg32_exposer
 deployment_language: python
 ide_vscode: true
 indexer_port: 8980

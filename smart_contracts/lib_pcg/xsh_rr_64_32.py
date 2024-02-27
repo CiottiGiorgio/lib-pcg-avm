@@ -6,7 +6,7 @@ PCG_DEFAULT_MULTIPLIER = pt.Int(6364136223846793005)
 PCG_DEFAULT_INCREMENT = pt.Int(1442695040888963407)
 
 
-def mask_to_uint32(uint64):
+def __mask_to_uint32(uint64):
     return pt.BitwiseAnd(
         uint64,
         pt.Int(int.from_bytes(b"\x00\x00\x00\x00\xFF\xFF\xFF\xFF"))
@@ -17,14 +17,14 @@ def mask_to_uint32(uint64):
 #  as full pt.Expr that would be inlined inside that function each time the arguments are called.
 # Instead, we manually cache them into slots so that inside __pcg_rotation loading an argument
 #  is just a load opcode.
-def __pcg_output(state) -> pt.Expr:
+def __pcg32_output(state) -> pt.Expr:
     arg1 = pt.ScratchVar(pt.TealType.uint64)
     arg2 = pt.ScratchVar(pt.TealType.uint64)
 
     return pt.Seq(
         # This needs to be uint32. We can't guarantee that at this point, so we cast it explicitly.
         arg1.store(
-            mask_to_uint32(
+            __mask_to_uint32(
                 pt.ShiftRight(
                     pt.BitwiseXor(
                         pt.ShiftRight(
@@ -39,11 +39,11 @@ def __pcg_output(state) -> pt.Expr:
         ),
         arg2.store(pt.ShiftRight(state, pt.Int(59))),
 
-        __pcg_rotation(arg1.load(), arg2.load())
+        __pcg32_rotation(arg1.load(), arg2.load())
     )
 
 
-def __pcg_rotation(value, rot) -> pt.Expr:
+def __pcg32_rotation(value, rot) -> pt.Expr:
     # This needs to be uint32. Luckily, "value" is already uint32 and a right shift will maintain that invariant.
     return pt.BitwiseOr(
         pt.ShiftRight(
@@ -52,7 +52,7 @@ def __pcg_rotation(value, rot) -> pt.Expr:
         ),
         # This needs to be uint32. Therefore, we mask out the higher bits because we can't guarantee
         #  that invariant with a left shift of "rot" two's complement.
-        mask_to_uint32(
+        __mask_to_uint32(
             pt.ShiftLeft(
                 value,
                 pt.BitwiseAnd(
@@ -83,35 +83,40 @@ def __64bit_twos_complement(number) -> pt.Expr:
     )
 
 
-@pt.Subroutine(pt.TealType.none)
-def pcg_init(state_slot_index, initial_state) -> pt.Expr:
+def __pcg32_init(state_slot_index, initial_state, incr) -> pt.Expr:
     return pt.Seq(
         pt.ScratchStore(None, pt.Int(0), state_slot_index),
 
-        __pcg_step(state_slot_index),
+        __pcg32_step(state_slot_index, incr),
 
         pt.ScratchStore(
             None,
-            pt.ScratchLoad(
-                None,
-                pt.TealType.uint64,
-                state_slot_index
-            ) + initial_state,
+            InlineAssembly(
+                "\n".join(["addw", "bury 1"]),
+                pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index),
+                initial_state,
+                type=pt.TealType.uint64
+            ),
             state_slot_index
         ),
 
-        __pcg_step(state_slot_index)
+        __pcg32_step(state_slot_index, incr)
     )
 
 
-def __pcg_step(state_slot_index) -> pt.Expr:
+@pt.Subroutine(pt.TealType.none)
+def pcg32_init(state_slot_index, initial_state) -> pt.Expr:
+    return __pcg32_init(state_slot_index, initial_state, PCG_DEFAULT_INCREMENT)
+
+
+def __pcg32_step(state_slot_index, incr) -> pt.Expr:
     # Equivalent to state = state * multiplier + increment
     # Considering that both operations could overflow and therefore the highest bits are discarded
     return pt.ScratchStore(
         None,
         InlineAssembly(
             "\n".join(["mulw", "bury 1", "addw", "bury 1"]),
-            PCG_DEFAULT_INCREMENT,
+            incr,
             PCG_DEFAULT_MULTIPLIER,
             pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index),
             type=pt.TealType.none
@@ -121,13 +126,13 @@ def __pcg_step(state_slot_index) -> pt.Expr:
 
 
 @pt.Subroutine(pt.TealType.uint64)
-def __pcg_random(state_slot_index) -> pt.Expr:
+def __pcg32_random(state_slot_index) -> pt.Expr:
     old_state = pt.ScratchVar(pt.TealType.uint64)
 
     return pt.Seq(
         old_state.store(pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index)),
-        __pcg_step(state_slot_index),
-        pt.Return(__pcg_output(old_state.load()))
+        __pcg32_step(state_slot_index, PCG_DEFAULT_INCREMENT),
+        pt.Return(__pcg32_output(old_state.load()))
     )
 
 
@@ -142,7 +147,7 @@ def __pcg_random(state_slot_index) -> pt.Expr:
 # If upper_bound is set, it's never included in the range.
 # If upper_bound is not set, the highest value (2^32-1) is included in the range.
 @pt.Subroutine(pt.TealType.bytes)
-def pcg_random(state_slot_index, bit_size, lower_bound, upper_bound, length) -> pt.Expr:
+def pcg32_random(state_slot_index, bit_size, lower_bound, upper_bound, length) -> pt.Expr:
     result_length = pt.abi.make(pt.abi.Uint16)
     byte_size = pt.ScratchVar(pt.TealType.uint64)
 
@@ -180,7 +185,7 @@ def pcg_random(state_slot_index, bit_size, lower_bound, upper_bound, length) -> 
             ).Do(pt.Seq(
                 result.store(pt.Concat(
                     result.load(),
-                    __truncate_to_size(__pcg_random(state_slot_index), truncate_cached_start.load(), byte_size.load()),
+                    __truncate_to_size(__pcg32_random(state_slot_index), truncate_cached_start.load(), byte_size.load()),
                 ))
             ))
         ))
@@ -203,16 +208,16 @@ def pcg_random(state_slot_index, bit_size, lower_bound, upper_bound, length) -> 
                 absolute_bound.store(pt.ShiftLeft(pt.Int(1), bit_size) - lower_bound),
             )),
 
-            threshold.store(__32bit_twos_complement(absolute_bound.load()) % (absolute_bound.load())),
+            threshold.store(__32bit_twos_complement(absolute_bound.load()) % absolute_bound.load()),
 
             pt.For(
                 i.store(pt.Int(0)),
                 i.load() < length,
                 i.store(i.load() + pt.Int(1))
             ).Do(pt.Seq(
-                candidate_bounded.store(__pcg_random(state_slot_index)),
+                candidate_bounded.store(__pcg32_random(state_slot_index)),
                 pt.While(candidate_bounded.load() < threshold.load()).Do(
-                    candidate_bounded.store(__pcg_random(state_slot_index))
+                    candidate_bounded.store(__pcg32_random(state_slot_index))
                 ),
                 result.store(pt.Concat(
                     result.load(),

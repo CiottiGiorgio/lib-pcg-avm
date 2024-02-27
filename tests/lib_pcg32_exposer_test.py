@@ -5,19 +5,19 @@ from algokit_utils.config import config
 from algosdk.v2client.algod import AlgodClient
 from algosdk.v2client.indexer import IndexerClient
 
-from smart_contracts.artifacts.lib_pcg_exposer.client import LibPcgExposerClient, SimulateOptions
+from smart_contracts.artifacts.lib_pcg32_exposer.client import LibPcg32ExposerClient, SimulateOptions
 
 
 @pytest.fixture(scope="session")
-def lib_pcg_exposer_client(
+def lib_pcg32_exposer_client(
     algod_client: AlgodClient, indexer_client: IndexerClient
-) -> LibPcgExposerClient:
+) -> LibPcg32ExposerClient:
     config.configure(
         debug=True,
         # trace_all=True,
     )
 
-    client = LibPcgExposerClient(
+    client = LibPcg32ExposerClient(
         algod_client,
         creator=get_localnet_default_account(algod_client),
         indexer_client=indexer_client,
@@ -61,7 +61,7 @@ UPPER_LOWER_BOUNDED_SEQUENCE = [
 
 
 def __bit_size_to_method(
-    lib_pcg_exposer_client: LibPcgExposerClient,
+    lib_pcg32_exposer_client: LibPcg32ExposerClient,
     bit_size: int,
     lower_bound: int,
     upper_bound: int,
@@ -69,21 +69,21 @@ def __bit_size_to_method(
 ):
     match bit_size:
         case 8:
-            result = lib_pcg_exposer_client.compose().bounded_rand_uint8(
+            result = lib_pcg32_exposer_client.compose().bounded_rand_uint8(
                 seed=RNG_SEED,
                 lower_bound=lower_bound,
                 upper_bound=upper_bound,
                 length=length
             ).simulate(SimulateOptions(extra_opcode_budget=320_000))
         case 16:
-            result = lib_pcg_exposer_client.compose().bounded_rand_uint16(
+            result = lib_pcg32_exposer_client.compose().bounded_rand_uint16(
                 seed=RNG_SEED,
                 lower_bound=lower_bound,
                 upper_bound=upper_bound,
                 length=length
             ).simulate(SimulateOptions(extra_opcode_budget=320_000))
         case 32:
-            result = lib_pcg_exposer_client.compose().bounded_rand_uint32(
+            result = lib_pcg32_exposer_client.compose().bounded_rand_uint32(
                 seed=RNG_SEED,
                 lower_bound=lower_bound,
                 upper_bound=upper_bound,
@@ -97,20 +97,20 @@ def __bit_size_to_method(
 
 # This simple test ensures that the code size of this library doesn't grow unexpectedly if we
 #  start taking subroutine inlining and opcode assembly opportunities.
-def test_library_size(lib_pcg_exposer_client: LibPcgExposerClient):
-    assert len(lib_pcg_exposer_client.app_client.approval.teal.split("\n")) < 510
+def test_library_size(lib_pcg32_exposer_client: LibPcg32ExposerClient):
+    assert len(lib_pcg32_exposer_client.app_client.approval.teal.split("\n")) < 510
 
 
 @pytest.mark.parametrize("bit_size,expected_max_opup_calls", zip(BIT_SIZES, UNBOUNDED_MAX_OPUP_CALLS))
 def test_unbounded_maximal_cost(
-    lib_pcg_exposer_client: LibPcgExposerClient,
+    lib_pcg32_exposer_client: LibPcg32ExposerClient,
     bit_size: int,
     expected_max_opup_calls: int
 ) -> None:
     expected_maximal_sequence_length = (1024 - 4 - 2) // (bit_size >> 3)
 
     result = __bit_size_to_method(
-        lib_pcg_exposer_client,
+        lib_pcg32_exposer_client,
         bit_size,
         0,
         0,
@@ -123,14 +123,14 @@ def test_unbounded_maximal_cost(
 
 @pytest.mark.parametrize("bit_size,expected_max_opup_calls", zip(BIT_SIZES, BOUNDED_MAX_OPUP_CALLS))
 def test_bounded_maximal_cost(
-    lib_pcg_exposer_client: LibPcgExposerClient,
+    lib_pcg32_exposer_client: LibPcg32ExposerClient,
     bit_size: int,
     expected_max_opup_calls: int
 ) -> None:
     expected_maximal_sequence_length = (1024 - 4 - 2) // (bit_size >> 3)
 
     result = __bit_size_to_method(
-        lib_pcg_exposer_client,
+        lib_pcg32_exposer_client,
         bit_size,
         1,
         2**bit_size-1,
@@ -143,12 +143,12 @@ def test_bounded_maximal_cost(
 
 @pytest.mark.parametrize("bit_size,expected_sequence", zip(BIT_SIZES, UNBOUNDED_SEQUENCE))
 def test_unbounded_sequence(
-    lib_pcg_exposer_client: LibPcgExposerClient,
+    lib_pcg32_exposer_client: LibPcg32ExposerClient,
     bit_size: int,
     expected_sequence: [int]
 ) -> None:
     result = __bit_size_to_method(
-        lib_pcg_exposer_client,
+        lib_pcg32_exposer_client,
         bit_size,
         0,
         0,
@@ -160,12 +160,12 @@ def test_unbounded_sequence(
 
 @pytest.mark.parametrize("bit_size,expected_sequence", zip(BIT_SIZES, LOWER_BOUNDED_SEQUENCE))
 def test_lower_bounded_sequence(
-    lib_pcg_exposer_client: LibPcgExposerClient,
+    lib_pcg32_exposer_client: LibPcg32ExposerClient,
     bit_size: int,
     expected_sequence: [int]
 ) -> None:
     result = __bit_size_to_method(
-        lib_pcg_exposer_client,
+        lib_pcg32_exposer_client,
         bit_size,
         2**(bit_size-1)-1,
         0,
@@ -177,12 +177,12 @@ def test_lower_bounded_sequence(
 
 @pytest.mark.parametrize("bit_size,expected_sequence", zip(BIT_SIZES, UPPER_BOUNDED_SEQUENCE))
 def test_upper_bounded_sequence(
-    lib_pcg_exposer_client: LibPcgExposerClient,
+    lib_pcg32_exposer_client: LibPcg32ExposerClient,
     bit_size: int,
     expected_sequence: [int]
 ) -> None:
     result = __bit_size_to_method(
-        lib_pcg_exposer_client,
+        lib_pcg32_exposer_client,
         bit_size,
         0,
         2**(bit_size-1)+1,
@@ -194,12 +194,12 @@ def test_upper_bounded_sequence(
 
 @pytest.mark.parametrize("bit_size,expected_sequence", zip(BIT_SIZES, UPPER_LOWER_BOUNDED_SEQUENCE))
 def test_upper_lower_bounded_sequence(
-    lib_pcg_exposer_client: LibPcgExposerClient,
+    lib_pcg32_exposer_client: LibPcg32ExposerClient,
     bit_size: int,
     expected_sequence: [int]
 ) -> None:
     result = __bit_size_to_method(
-        lib_pcg_exposer_client,
+        lib_pcg32_exposer_client,
         bit_size,
         2**(bit_size >> 2),
         2**((bit_size >> 2) * 3),

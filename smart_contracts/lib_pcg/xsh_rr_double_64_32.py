@@ -1,0 +1,117 @@
+import pyteal as pt
+
+from smart_contracts.lib_pcg.xsh_rr_64_32 import __pcg32_init, __pcg32_step, __pcg32_output, __64bit_twos_complement
+
+PCG_DEFAULT_MULTIPLIER = pt.Int(6364136223846793005)
+PCG_DEFAULT_INCREMENT = pt.Int(1442695040888963407)
+
+
+@pt.Subroutine(pt.TealType.none)
+def pcg64_init(state1_slot_index, state2_slot_index, incr2_slot_index, initial_state1, initial_state2) -> pt.Expr:
+    return pt.Seq(
+        pt.ScratchStore(None, PCG_DEFAULT_INCREMENT + pt.Int(2), incr2_slot_index),
+
+        __pcg32_init(state1_slot_index, initial_state1, PCG_DEFAULT_INCREMENT),
+        __pcg32_init(state2_slot_index, initial_state2, pt.ScratchLoad(None, pt.TealType.uint64, incr2_slot_index)),
+    )
+
+
+@pt.Subroutine(pt.TealType.uint64)
+def __pcg64_random(state1_slot_index, state2_slot_index, incr2_slot_index) -> pt.Expr:
+    old_state1 = pt.ScratchVar(pt.TealType.uint64)
+    old_state2 = pt.ScratchVar(pt.TealType.uint64)
+    return pt.Seq(
+        old_state1.store(pt.ScratchLoad(None, pt.TealType.uint64, state1_slot_index)),
+        old_state2.store(pt.ScratchLoad(None, pt.TealType.uint64, state2_slot_index)),
+
+        __pcg32_step(state1_slot_index, PCG_DEFAULT_INCREMENT),
+        pt.If(pt.ScratchLoad(None, pt.TealType.uint64, state1_slot_index) != pt.Int(0)).Then(
+            __pcg32_step(state2_slot_index, pt.ScratchLoad(None, pt.TealType.uint64, incr2_slot_index))
+        ).Else(
+            __pcg32_step(
+                state2_slot_index,
+                pt.ShiftLeft(
+                    pt.ScratchLoad(None, pt.TealType.uint64, incr2_slot_index),
+                    pt.Int(1)
+                )
+            )
+        ),
+
+        pt.Return(pt.BitwiseOr(
+            pt.ShiftLeft(__pcg32_output(old_state1.load()), pt.Int(32)),
+            __pcg32_output(old_state2.load())
+        ))
+    )
+
+
+@pt.Subroutine(pt.TealType.bytes)
+def pcg64_random(state1_slot_index, state2_slot_index, incr2_slot_index, lower_bound, upper_bound, length) -> pt.Expr:
+    result_length = pt.abi.make(pt.abi.Uint16)
+
+    absolute_bound = pt.ScratchVar(pt.TealType.uint64)
+    threshold = pt.ScratchVar(pt.TealType.uint64)
+    result = pt.ScratchVar(pt.TealType.bytes)
+
+    i = pt.ScratchVar(pt.TealType.uint64)
+    candidate_bounded = pt.ScratchVar(pt.TealType.uint64)
+
+    return pt.Seq(
+        result_length.set(length),  # This is also used because it's an assert on "length" value.
+        result.store(result_length.encode()),
+
+        pt.If(pt.And(lower_bound == pt.Int(0), upper_bound == pt.Int(0)))
+        .Then(pt.Seq(
+            pt.For(
+                i.store(pt.Int(0)),
+                i.load() < length,
+                i.store(i.load() + pt.Int(1))
+            ).Do(pt.Seq(
+                result.store(pt.Concat(
+                    result.load(),
+                    pt.Itob(__pcg64_random(state1_slot_index, state2_slot_index, incr2_slot_index))
+                ))
+            ))
+        ))
+        .Else(pt.Seq(
+            pt.If(upper_bound != pt.Int(0)).Then(pt.Seq(
+                pt.Assert(upper_bound > pt.Int(1)),
+                pt.Assert(lower_bound < upper_bound - pt.Int(1)),
+
+                absolute_bound.store(upper_bound - lower_bound),
+            )).Else(pt.Seq(
+                pt.Assert(lower_bound < pt.Int(2**64 - 1)),
+
+                # Here we would like to write 2**64 - lower_bound. Problem is that 2 ** 64 is unrepresentable
+                #  with a single uint64.
+                # We will write this operation with bigint math and optimize it later.
+                # At this point it's guaranteed that lower_bound != 0.
+                absolute_bound.store(
+                    pt.Btoi(
+                        pt.BytesMinus(
+                            pt.Bytes(b"\x01\x00\x00\x00\x00\x00\x00\x00\x00"),
+                            pt.Itob(lower_bound)
+                        )
+                    )
+                ),
+            )),
+
+            threshold.store(__64bit_twos_complement(absolute_bound.load()) % absolute_bound.load()),
+
+            pt.For(
+                i.store(pt.Int(0)),
+                i.load() < length,
+                i.store(i.load() + pt.Int(1))
+            ).Do(pt.Seq(
+                candidate_bounded.store(__pcg64_random(state1_slot_index, state2_slot_index, incr2_slot_index)),
+                pt.While(candidate_bounded.load() < threshold.load()).Do(
+                    candidate_bounded.store(__pcg64_random(state1_slot_index, state2_slot_index, incr2_slot_index)),
+                ),
+                result.store(pt.Concat(
+                    result.load(),
+                    pt.Itob((candidate_bounded.load() % absolute_bound.load()) + lower_bound)
+                )),
+            )),
+        )),
+
+        pt.Return(result.load())
+    )
