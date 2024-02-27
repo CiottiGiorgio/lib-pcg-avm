@@ -151,15 +151,13 @@ bury 1
 addw
 bury 1
 stores
-frame_dig -3
-loads
-intc_0 // 0
-!=
-bnz pcg64random_1_l2
 frame_dig -2
 frame_dig -1
 loads
-intc_1 // 1
+frame_dig -3
+loads
+intc_0 // 0
+==
 shl
 intc_2 // 6364136223846793005
 frame_dig -2
@@ -169,20 +167,6 @@ bury 1
 addw
 bury 1
 stores
-b pcg64random_1_l3
-pcg64random_1_l2:
-frame_dig -2
-frame_dig -1
-loads
-intc_2 // 6364136223846793005
-frame_dig -2
-loads
-mulw
-bury 1
-addw
-bury 1
-stores
-pcg64random_1_l3:
 load 8
 pushint 18 // 18
 shr

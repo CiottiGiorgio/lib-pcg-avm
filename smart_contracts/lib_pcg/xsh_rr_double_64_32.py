@@ -25,15 +25,19 @@ def __pcg64_random(state1_slot_index, state2_slot_index, incr2_slot_index) -> pt
         old_state2.store(pt.ScratchLoad(None, pt.TealType.uint64, state2_slot_index)),
 
         __pcg32_step(state1_slot_index, PCG_DEFAULT_INCREMENT),
-        pt.If(pt.ScratchLoad(None, pt.TealType.uint64, state1_slot_index) != pt.Int(0)).Then(
-            __pcg32_step(state2_slot_index, pt.ScratchLoad(None, pt.TealType.uint64, incr2_slot_index))
-        ).Else(
-            __pcg32_step(
-                state2_slot_index,
-                pt.ShiftLeft(
-                    pt.ScratchLoad(None, pt.TealType.uint64, incr2_slot_index),
-                    pt.Int(1)
-                )
+
+        # We want to do the "carry" on the second generator if the first reached 0.
+        # This is kind of an arbitrary way of composing two 2^64 period generators into a single 2^128 period.
+        # The paper has more details on chapter 3.4.3
+        # We want that the next increment is multiplied by 2. We do this in a branchless way.
+        # "* 2" == "<< 1". We use the boolean result of comparing the first state with 0 as the input for the shift.
+        # Since __pcg32_step is inlined, this should result in a reduction in code size
+        #  (because we don't write explicitly both cases).
+        __pcg32_step(
+            state2_slot_index,
+            pt.ShiftLeft(
+                pt.ScratchLoad(None, pt.TealType.uint64, incr2_slot_index),
+                pt.ScratchLoad(None, pt.TealType.uint64, state1_slot_index) == pt.Int(0)
             )
         ),
 
