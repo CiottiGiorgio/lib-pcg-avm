@@ -45,6 +45,13 @@ audit-teal = { commands = [
   # 🚨 IMPORTANT 🚨: For strict TEAL validation, remove --exclude statements. The default starter contract is not for production. Ensure thorough testing and adherence to best practices in smart contract development. This is not a replacement for a professional audit.
   'algokit task analyze smart_contracts/artifacts --recursive --force --exclude rekey-to --exclude is-updatable --exclude missing-fee-check --exclude is-deletable --exclude can-close-asset --exclude can-close-account --exclude unprotected-deletable --exclude unprotected-updatable',
 ], description = 'Audit TEAL files' }
+publish = { commands = [
+  'algokit project run lint-check',
+  'algokit project run build',
+  'algokit project run test',
+  'poetry build',
+  'poetry publish'
+], description = 'Publish to PyPI'}
 
 # Commands intented for CI only, prefixed with `ci-` by convention
 ci-teal-diff = { commands = [
