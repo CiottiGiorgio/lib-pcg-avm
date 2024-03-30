@@ -23,8 +23,8 @@ def pcg64_init(initial_state1: UInt64, initial_state2: UInt64) -> tuple[UInt64, 
 
 @subroutine
 def __pcg64_random(state1: UInt64, state2: UInt64) -> tuple[UInt64, UInt64, UInt64]:
-    new_state1, high_prn = __pcg32_random(state1)
-    if new_state1 != 0:
+    state1, high_prn = __pcg32_random(state1)
+    if state1 != 0:
         new_state2 = __pcg32_step(state2, UInt64(PCG_SECONDARY_DEFAULT_INCREMENT))
     else:
         new_state2 = __pcg32_step(state2, UInt64(PCG_SECONDARY_DEFAULT_INCREMENT) << 1)
@@ -36,7 +36,7 @@ def __pcg64_random(state1: UInt64, state2: UInt64) -> tuple[UInt64, UInt64, UInt
     #     UInt64(PCG_SECONDARY_DEFAULT_INCREMENT) << (state1 == 0)
     # )
 
-    return new_state1, new_state2, high_prn << 32 | __pcg32_output(state2)
+    return state1, new_state2, high_prn << 32 | __pcg32_output(state2)
 
 
 @subroutine
