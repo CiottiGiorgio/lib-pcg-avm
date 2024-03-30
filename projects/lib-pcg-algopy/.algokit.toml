@@ -32,10 +32,14 @@ audit = { commands = [
   'poetry export --without=dev -o requirements.txt',
   'poetry run pip-audit -r requirements.txt',
 ], description = 'Audit with pip-audit' }
-lint = { commands = [
+lint-check = { commands = [
   'poetry run black --check .',
   'poetry run ruff .',
   'poetry run mypy',
+], description = 'Perform linting checks' }
+lint = { commands = [
+  'poetry run black .',
+  'poetry run ruff . --fix',
 ], description = 'Perform linting' }
 audit-teal = { commands = [
   # 🚨 IMPORTANT 🚨: For strict TEAL validation, remove --exclude statements. The default starter contract is not for production. Ensure thorough testing and adherence to best practices in smart contract development. This is not a replacement for a professional audit.
