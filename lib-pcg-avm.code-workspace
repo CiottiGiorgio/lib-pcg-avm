@@ -6,6 +6,9 @@
     },
     {
       "path": "projects/lib-pcg-algopy"
+    },
+    {
+      "path": "projects/lib-pcg-pyteal"
     }
   ],
   "settings": {
