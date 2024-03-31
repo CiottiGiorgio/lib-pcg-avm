@@ -1,4 +1,4 @@
-# lib-pcg-algopy
+# lib-pcg-avm
 
 Welcome to your new AlgoKit project!
 

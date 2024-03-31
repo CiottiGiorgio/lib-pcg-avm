@@ -1,0 +1,30 @@
+{
+    "name": "lib_pcg64_exposer",
+    "methods": [
+        {
+            "name": "bounded_rand_uint64",
+            "args": [
+                {
+                    "type": "byte[16]",
+                    "name": "seed"
+                },
+                {
+                    "type": "uint64",
+                    "name": "lower_bound"
+                },
+                {
+                    "type": "uint64",
+                    "name": "upper_bound"
+                },
+                {
+                    "type": "uint16",
+                    "name": "length"
+                }
+            ],
+            "returns": {
+                "type": "uint64[]"
+            }
+        }
+    ],
+    "networks": {}
+}
