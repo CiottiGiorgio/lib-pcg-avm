@@ -1,0 +1,37 @@
+{
+  "name": "LibPcg64TsExposer",
+  "desc": "",
+  "methods": [
+    {
+      "name": "boundedRandUInt64",
+      "args": [
+        {
+          "name": "seed",
+          "type": "byte[16]"
+        },
+        {
+          "name": "lowerBound",
+          "type": "uint64"
+        },
+        {
+          "name": "upperBound",
+          "type": "uint64"
+        },
+        {
+          "name": "length",
+          "type": "uint64"
+        }
+      ],
+      "returns": {
+        "type": "uint64[]"
+      }
+    },
+    {
+      "name": "createApplication",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    }
+  ]
+}

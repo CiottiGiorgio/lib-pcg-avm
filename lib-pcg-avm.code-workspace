@@ -9,6 +9,9 @@
     },
     {
       "path": "projects/lib-pcg-pyteal"
+    },
+    {
+      "path": "projects/lib-pcg-ts"
     }
   ],
   "settings": {

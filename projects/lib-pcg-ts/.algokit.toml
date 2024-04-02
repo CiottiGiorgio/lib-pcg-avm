@@ -1,0 +1,15 @@
+[algokit]
+min_version = "v2.0.0"
+
+[project]
+type = 'contract'
+name = 'lib-pcg-ts'
+artifacts = 'contracts/artifacts'
+
+[project.run]
+build = { commands = [ 
+  'npm run build',
+], description = 'Build all smart contracts in the project' }
+test = { commands = [
+  'npm run test',
+], description = 'Run smart contract tests' }

@@ -1,0 +1,13 @@
+{
+  "name": "LibPcg64Ts",
+  "desc": "",
+  "methods": [
+    {
+      "name": "createApplication",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    }
+  ]
+}

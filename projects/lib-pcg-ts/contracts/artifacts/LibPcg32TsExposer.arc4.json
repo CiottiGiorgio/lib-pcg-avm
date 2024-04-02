@@ -1,0 +1,85 @@
+{
+  "name": "LibPcg32TsExposer",
+  "desc": "",
+  "methods": [
+    {
+      "name": "boundedRandUInt32",
+      "args": [
+        {
+          "name": "seed",
+          "type": "uint64"
+        },
+        {
+          "name": "lowerBound",
+          "type": "uint64"
+        },
+        {
+          "name": "upperBound",
+          "type": "uint64"
+        },
+        {
+          "name": "length",
+          "type": "uint64"
+        }
+      ],
+      "returns": {
+        "type": "uint32[]"
+      }
+    },
+    {
+      "name": "boundedRandUInt16",
+      "args": [
+        {
+          "name": "seed",
+          "type": "uint64"
+        },
+        {
+          "name": "lowerBound",
+          "type": "uint64"
+        },
+        {
+          "name": "upperBound",
+          "type": "uint64"
+        },
+        {
+          "name": "length",
+          "type": "uint64"
+        }
+      ],
+      "returns": {
+        "type": "uint16[]"
+      }
+    },
+    {
+      "name": "boundedRandUInt8",
+      "args": [
+        {
+          "name": "seed",
+          "type": "uint64"
+        },
+        {
+          "name": "lowerBound",
+          "type": "uint64"
+        },
+        {
+          "name": "upperBound",
+          "type": "uint64"
+        },
+        {
+          "name": "length",
+          "type": "uint64"
+        }
+      ],
+      "returns": {
+        "type": "uint8[]"
+      }
+    },
+    {
+      "name": "createApplication",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    }
+  ]
+}
