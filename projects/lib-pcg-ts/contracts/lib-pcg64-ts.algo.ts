@@ -65,7 +65,7 @@ export class LibPcg64Ts extends LibPcg32Ts {
             break;
           }
         }
-        result.push(n);
+        result.push((n % absoluteBound) + lowerBound);
       }
     }
 

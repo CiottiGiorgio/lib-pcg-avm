@@ -825,9 +825,13 @@ pcg64Random:
 
 *while_1_end:
 	// contracts/lib-pcg64-ts.algo.ts:68
-	// result.push(n)
+	// result.push((n % absoluteBound) + lowerBound)
 	frame_dig 0 // result: uint64[]
 	frame_dig 4 // n: uint64
+	frame_dig 1 // absoluteBound: uint64
+	%
+	frame_dig -2 // lowerBound: uint64
+	+
 	itob
 	concat
 	frame_bury 0 // result: uint64[]

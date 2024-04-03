@@ -5,7 +5,7 @@ from algopy import Global, Txn, arc4, op
 from lib_pcg.xsh_rr_double_64_32 import pcg64_init, pcg64_random
 
 
-class LibPcg64Exposer(arc4.ARC4Contract):
+class LibPcg64ExposerAlgopy(arc4.ARC4Contract):
     @arc4.abimethod
     def bounded_rand_uint64(
         self,

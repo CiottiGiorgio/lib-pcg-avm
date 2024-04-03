@@ -3,7 +3,7 @@ from algopy import Global, Txn, UInt64, arc4
 from lib_pcg.xsh_rr_64_32 import pcg32_init, pcg32_random
 
 
-class LibPcg32Exposer(arc4.ARC4Contract):
+class LibPcg32ExposerAlgopy(arc4.ARC4Contract):
     @arc4.abimethod
     def bounded_rand_uint32(
         self,

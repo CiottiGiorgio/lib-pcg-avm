@@ -16,8 +16,6 @@ setuptools = "^69.0.2" # Adding explicitly to work around pyteal https://github.
 black = {extras = ["d"], version = "*"}
 ruff = "^0.1.6"
 mypy = "*"
-pytest = "*"
-pytest-cov = "*"
 pip-audit = "*"
 pre-commit = "*"
 

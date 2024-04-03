@@ -7,8 +7,7 @@ from algokit_utils import DELETABLE_TEMPLATE_NAME, UPDATABLE_TEMPLATE_NAME
 from lib_pcg.xsh_rr_double_64_32 import pcg64_init, pcg64_random
 
 app = beaker.Application(
-    "lib_pcg64_exposer",
-    # build_options=BuildOptions(with_sourcemaps=True, annotate_teal=True)
+    "lib_pcg64_exposer_pyteal",
 )
 
 

@@ -25,9 +25,6 @@ environment_secrets = []
 build = { commands = [
   'poetry run python -m smart_contracts build',
 ], description = 'Build all smart contracts in the project' }
-test = { commands = [
-  'poetry run pytest',
-], description = 'Run smart contract tests' }
 audit = { commands = [
   'poetry export --without=dev -o requirements.txt',
   'poetry run pip-audit -r requirements.txt',

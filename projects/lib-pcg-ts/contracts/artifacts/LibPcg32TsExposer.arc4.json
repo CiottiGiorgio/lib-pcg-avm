@@ -10,11 +10,11 @@
           "type": "uint64"
         },
         {
-          "name": "lowerBound",
+          "name": "lower_bound",
           "type": "uint64"
         },
         {
-          "name": "upperBound",
+          "name": "upper_bound",
           "type": "uint64"
         },
         {
@@ -34,11 +34,11 @@
           "type": "uint64"
         },
         {
-          "name": "lowerBound",
+          "name": "lower_bound",
           "type": "uint64"
         },
         {
-          "name": "upperBound",
+          "name": "upper_bound",
           "type": "uint64"
         },
         {
@@ -58,11 +58,11 @@
           "type": "uint64"
         },
         {
-          "name": "lowerBound",
+          "name": "lower_bound",
           "type": "uint64"
         },
         {
-          "name": "upperBound",
+          "name": "upper_bound",
           "type": "uint64"
         },
         {

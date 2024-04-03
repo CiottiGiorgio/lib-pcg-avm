@@ -1,0 +1,526 @@
+#pragma version 10
+
+smart_contracts.lib_pcg64_exposer.contract.LibPcg64Exposer.approval_program:
+    // smart_contracts/lib_pcg64_exposer/contract.py:8
+    // class LibPcg64Exposer(arc4.ARC4Contract):
+    txn NumAppArgs
+    bz main_bare_routing@5
+    method "bounded_rand_uint64(byte[16],uint64,uint64,uint16)uint64[]"
+    txna ApplicationArgs 0
+    match main_bounded_rand_uint64_route@2
+    err // reject transaction
+
+main_bounded_rand_uint64_route@2:
+    // smart_contracts/lib_pcg64_exposer/contract.py:9
+    // @arc4.abimethod
+    txn OnCompletion
+    !
+    assert // OnCompletion is NoOp
+    txn ApplicationID
+    assert // is not creating
+    // smart_contracts/lib_pcg64_exposer/contract.py:8
+    // class LibPcg64Exposer(arc4.ARC4Contract):
+    txna ApplicationArgs 1
+    txna ApplicationArgs 2
+    txna ApplicationArgs 3
+    txna ApplicationArgs 4
+    // smart_contracts/lib_pcg64_exposer/contract.py:9
+    // @arc4.abimethod
+    callsub bounded_rand_uint64
+    byte 0x151f7c75
+    swap
+    concat
+    log
+    int 1
+    return
+
+main_bare_routing@5:
+    // smart_contracts/lib_pcg64_exposer/contract.py:8
+    // class LibPcg64Exposer(arc4.ARC4Contract):
+    int 0
+    int 4
+    txn OnCompletion
+    match main_create@6 main_update@7
+    err // reject transaction
+
+main_create@6:
+    // smart_contracts/lib_pcg64_exposer/contract.py:8
+    // class LibPcg64Exposer(arc4.ARC4Contract):
+    txn ApplicationID
+    !
+    assert // is creating
+    int 1
+    return
+
+main_update@7:
+    // smart_contracts/lib_pcg64_exposer/contract.py:27
+    // @arc4.baremethod(allow_actions=["UpdateApplication"])
+    txn ApplicationID
+    assert // is not creating
+    // smart_contracts/lib_pcg64_exposer/contract.py:27-28
+    // @arc4.baremethod(allow_actions=["UpdateApplication"])
+    // def update(self) -> None:
+    callsub update
+    int 1
+    return
+
+
+// smart_contracts.lib_pcg64_exposer.contract.LibPcg64Exposer.bounded_rand_uint64(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
+bounded_rand_uint64:
+    // smart_contracts/lib_pcg64_exposer/contract.py:9-16
+    // @arc4.abimethod
+    // def bounded_rand_uint64(
+    //     self,
+    //     seed: arc4.StaticArray[arc4.Byte, Literal[16]],
+    //     lower_bound: arc4.UInt64,
+    //     upper_bound: arc4.UInt64,
+    //     length: arc4.UInt16,
+    // ) -> arc4.DynamicArray[arc4.UInt64]:
+    proto 4 1
+    // smart_contracts/lib_pcg64_exposer/contract.py:18
+    // op.extract_uint64(seed.bytes, 0), op.extract_uint64(seed.bytes, 8)
+    frame_dig -4
+    int 0
+    extract_uint64
+    frame_dig -4
+    int 8
+    extract_uint64
+    // smart_contracts/lib_pcg64_exposer/contract.py:17-19
+    // state1, state2 = pcg64_init(
+    //     op.extract_uint64(seed.bytes, 0), op.extract_uint64(seed.bytes, 8)
+    // )
+    callsub pcg64_init
+    swap
+    // smart_contracts/lib_pcg64_exposer/contract.py:23
+    // state1, state2, lower_bound.native, upper_bound.native, length.native
+    frame_dig -3
+    btoi
+    frame_dig -2
+    btoi
+    frame_dig -1
+    btoi
+    // smart_contracts/lib_pcg64_exposer/contract.py:22-24
+    // pcg64_random(
+    //     state1, state2, lower_bound.native, upper_bound.native, length.native
+    // )[2]
+    uncover 3
+    cover 4
+    callsub pcg64_random
+    cover 2
+    popn 2
+    // smart_contracts/lib_pcg64_exposer/contract.py:21-25
+    // return arc4.DynamicArray[arc4.UInt64].from_bytes(
+    //     pcg64_random(
+    //         state1, state2, lower_bound.native, upper_bound.native, length.native
+    //     )[2]
+    // )
+    retsub
+
+
+// lib_pcg.xsh_rr_double_64_32.pcg64_init(initial_state1: uint64, initial_state2: uint64) -> uint64, uint64:
+pcg64_init:
+    // lib_pcg/xsh_rr_double_64_32.py:16-17
+    // @subroutine
+    // def pcg64_init(initial_state1: UInt64, initial_state2: UInt64) -> tuple[UInt64, UInt64]:
+    proto 2 2
+    // lib_pcg/xsh_rr_double_64_32.py:19
+    // __pcg32_init(initial_state1, UInt64(PCG_DEFAULT_INCREMENT)),
+    frame_dig -2
+    int 1442695040888963407
+    callsub __pcg32_init
+    // lib_pcg/xsh_rr_double_64_32.py:20
+    // __pcg32_init(initial_state2, UInt64(PCG_SECONDARY_DEFAULT_INCREMENT)),
+    frame_dig -1
+    int 1442695040888963409
+    callsub __pcg32_init
+    // lib_pcg/xsh_rr_double_64_32.py:18-21
+    // return (
+    //     __pcg32_init(initial_state1, UInt64(PCG_DEFAULT_INCREMENT)),
+    //     __pcg32_init(initial_state2, UInt64(PCG_SECONDARY_DEFAULT_INCREMENT)),
+    // )
+    retsub
+
+
+// lib_pcg.xsh_rr_64_32.__pcg32_init(initial_state: uint64, incr: uint64) -> uint64:
+__pcg32_init:
+    // lib_pcg/xsh_rr_64_32.py:67-68
+    // @subroutine
+    // def __pcg32_init(initial_state: PCG32_STATE, incr: UInt64) -> PCG32_STATE:
+    proto 2 1
+    // lib_pcg/xsh_rr_64_32.py:69
+    // state = __pcg32_step(UInt64(0), incr)
+    int 0
+    frame_dig -1
+    callsub __pcg32_step
+    // lib_pcg/xsh_rr_64_32.py:70
+    // _high_addw, state = op.addw(state, initial_state)
+    frame_dig -2
+    addw
+    bury 1
+    // lib_pcg/xsh_rr_64_32.py:72
+    // return __pcg32_step(state, incr)
+    frame_dig -1
+    callsub __pcg32_step
+    retsub
+
+
+// lib_pcg.xsh_rr_64_32.__pcg32_step(state: uint64, incr: uint64) -> uint64:
+__pcg32_step:
+    // lib_pcg/xsh_rr_64_32.py:75-76
+    // @subroutine
+    // def __pcg32_step(state: PCG32_STATE, incr: UInt64) -> PCG32_STATE:
+    proto 2 1
+    // lib_pcg/xsh_rr_64_32.py:77
+    // _high_mul, low_mul = op.mulw(state, PCG_DEFAULT_MULTIPLIER)
+    frame_dig -2
+    int 6364136223846793005
+    mulw
+    bury 1
+    // lib_pcg/xsh_rr_64_32.py:78
+    // _high_add, low_add = op.addw(low_mul, incr)
+    frame_dig -1
+    addw
+    bury 1
+    // lib_pcg/xsh_rr_64_32.py:80
+    // return low_add
+    retsub
+
+
+// lib_pcg.xsh_rr_double_64_32.pcg64_random(state1: uint64, state2: uint64, lower_bound: uint64, upper_bound: uint64, length: uint64) -> uint64, uint64, bytes:
+pcg64_random:
+    // lib_pcg/xsh_rr_double_64_32.py:42-49
+    // @subroutine
+    // def pcg64_random(
+    //     state1: UInt64,
+    //     state2: UInt64,
+    //     lower_bound: UInt64,
+    //     upper_bound: UInt64,
+    //     length: UInt64,
+    // ) -> tuple[UInt64, UInt64, Bytes]:
+    proto 5 3
+    byte ""
+    dupn 3
+    // lib_pcg/xsh_rr_double_64_32.py:52
+    // assert length < 2**16
+    frame_dig -1
+    int 65536
+    <
+    assert
+    // lib_pcg/xsh_rr_double_64_32.py:53
+    // result += arc4.UInt16(length).bytes
+    frame_dig -1
+    itob
+    extract 6 2
+    // lib_pcg/xsh_rr_double_64_32.py:55
+    // if lower_bound == 0 and upper_bound == 0:
+    frame_dig -3
+    bnz pcg64_random_else_body@8
+    frame_dig -2
+    bnz pcg64_random_else_body@8
+    // lib_pcg/xsh_rr_double_64_32.py:56
+    // for i in urange(length):  # noqa: B007
+    int 0
+    frame_bury 2
+
+pcg64_random_for_header@3:
+    // lib_pcg/xsh_rr_double_64_32.py:56
+    // for i in urange(length):  # noqa: B007
+    frame_dig 2
+    frame_dig -1
+    <
+    bz pcg64_random_after_if_else@22
+    // lib_pcg/xsh_rr_double_64_32.py:57
+    // state1, state2, n = __pcg64_random(state1, state2)
+    frame_dig -5
+    frame_dig -4
+    callsub __pcg64_random
+    cover 2
+    frame_bury -4
+    frame_bury -5
+    // lib_pcg/xsh_rr_double_64_32.py:59
+    // result += op.itob(n)
+    itob
+    frame_dig 4
+    swap
+    concat
+    frame_bury 4
+    // lib_pcg/xsh_rr_double_64_32.py:56
+    // for i in urange(length):  # noqa: B007
+    frame_dig 2
+    int 1
+    +
+    frame_bury 2
+    b pcg64_random_for_header@3
+
+pcg64_random_else_body@8:
+    // lib_pcg/xsh_rr_double_64_32.py:61
+    // if upper_bound != 0:
+    frame_dig -2
+    bz pcg64_random_else_body@10
+    // lib_pcg/xsh_rr_double_64_32.py:62
+    // assert upper_bound > 1
+    frame_dig -2
+    int 1
+    >
+    assert
+    // lib_pcg/xsh_rr_double_64_32.py:63
+    // assert lower_bound < upper_bound - 1
+    frame_dig -2
+    int 1
+    -
+    frame_dig -3
+    >
+    assert
+    // lib_pcg/xsh_rr_double_64_32.py:65
+    // absolute_bound = upper_bound - lower_bound
+    frame_dig -2
+    frame_dig -3
+    -
+    frame_bury 0
+    b pcg64_random_after_if_else@11
+
+pcg64_random_else_body@10:
+    // lib_pcg/xsh_rr_double_64_32.py:67
+    // assert lower_bound < (2**64) - 1
+    frame_dig -3
+    int 18446744073709551615
+    <
+    assert
+    // lib_pcg/xsh_rr_double_64_32.py:69
+    // absolute_bound = op.btoi((BigUInt(2**64) - BigUInt(lower_bound)).bytes)
+    frame_dig -3
+    itob
+    byte 0x010000000000000000
+    swap
+    b-
+    btoi
+    frame_bury 0
+
+pcg64_random_after_if_else@11:
+    // lib_pcg/xsh_rr_double_64_32.py:71
+    // threshold = __twos(absolute_bound) % absolute_bound
+    frame_dig 0
+    dup
+    callsub __twos
+    swap
+    %
+    frame_bury 3
+    // lib_pcg/xsh_rr_double_64_32.py:73
+    // for i in urange(length):  # noqa: B007
+    int 0
+    frame_bury 2
+
+pcg64_random_for_header@12:
+    // lib_pcg/xsh_rr_double_64_32.py:73
+    // for i in urange(length):  # noqa: B007
+    frame_dig 2
+    frame_dig -1
+    <
+    bz pcg64_random_after_for@21
+
+pcg64_random_while_top@14:
+    // lib_pcg/xsh_rr_double_64_32.py:75
+    // state1, state2, candidate = __pcg64_random(state1, state2)
+    frame_dig -5
+    frame_dig -4
+    callsub __pcg64_random
+    dup
+    cover 3
+    frame_bury 1
+    frame_bury -4
+    frame_bury -5
+    // lib_pcg/xsh_rr_double_64_32.py:76
+    // if candidate >= threshold:
+    frame_dig 3
+    >=
+    bz pcg64_random_while_top@14
+    // lib_pcg/xsh_rr_double_64_32.py:78
+    // result += op.itob((candidate % absolute_bound) + lower_bound)
+    frame_dig 1
+    frame_dig 0
+    %
+    frame_dig -3
+    +
+    itob
+    frame_dig 4
+    swap
+    concat
+    frame_bury 4
+    // lib_pcg/xsh_rr_double_64_32.py:73
+    // for i in urange(length):  # noqa: B007
+    frame_dig 2
+    int 1
+    +
+    frame_bury 2
+    b pcg64_random_for_header@12
+
+pcg64_random_after_for@21:
+
+pcg64_random_after_if_else@22:
+    // lib_pcg/xsh_rr_double_64_32.py:80
+    // return state1, state2, result
+    frame_dig -5
+    frame_dig -4
+    frame_dig 4
+    frame_bury 2
+    frame_bury 1
+    frame_bury 0
+    retsub
+
+
+// lib_pcg.xsh_rr_double_64_32.__pcg64_random(state1: uint64, state2: uint64) -> uint64, uint64, uint64:
+__pcg64_random:
+    // lib_pcg/xsh_rr_double_64_32.py:24-25
+    // @subroutine
+    // def __pcg64_random(state1: UInt64, state2: UInt64) -> tuple[UInt64, UInt64, UInt64]:
+    proto 2 3
+    // lib_pcg/xsh_rr_double_64_32.py:26
+    // state1, high_prn = __pcg32_random(state1)
+    frame_dig -2
+    callsub __pcg32_random
+    swap
+    dup
+    frame_bury -2
+    // lib_pcg/xsh_rr_double_64_32.py:27
+    // if state1 != 0:
+    bz __pcg64_random_else_body@2
+    // lib_pcg/xsh_rr_double_64_32.py:28
+    // new_state2 = __pcg32_step(state2, UInt64(PCG_SECONDARY_DEFAULT_INCREMENT))
+    frame_dig -1
+    int 1442695040888963409
+    callsub __pcg32_step
+    b __pcg64_random_after_if_else@3
+
+__pcg64_random_else_body@2:
+    // lib_pcg/xsh_rr_double_64_32.py:30
+    // new_state2 = __pcg32_step(state2, UInt64(PCG_SECONDARY_DEFAULT_INCREMENT) << 1)
+    frame_dig -1
+    int 2885390081777926818
+    callsub __pcg32_step
+
+__pcg64_random_after_if_else@3:
+    // lib_pcg/xsh_rr_double_64_32.py:39
+    // return state1, new_state2, high_prn << 32 | __pcg32_output(state2)
+    frame_dig 0
+    int 32
+    shl
+    frame_dig -1
+    callsub __pcg32_output
+    |
+    frame_dig -2
+    cover 2
+    uncover 3
+    retsub
+
+
+// lib_pcg.xsh_rr_64_32.__pcg32_random(state: uint64) -> uint64, uint64:
+__pcg32_random:
+    // lib_pcg/xsh_rr_64_32.py:83-84
+    // @subroutine
+    // def __pcg32_random(state: PCG32_STATE) -> tuple[PCG32_STATE, UInt64]:
+    proto 1 2
+    // lib_pcg/xsh_rr_64_32.py:85
+    // return __pcg32_step(state, UInt64(PCG_DEFAULT_INCREMENT)), __pcg32_output(state)
+    frame_dig -1
+    int 1442695040888963407
+    callsub __pcg32_step
+    frame_dig -1
+    callsub __pcg32_output
+    retsub
+
+
+// lib_pcg.xsh_rr_64_32.__pcg32_output(value: uint64) -> uint64:
+__pcg32_output:
+    // lib_pcg/xsh_rr_64_32.py:88-89
+    // @subroutine
+    // def __pcg32_output(value: UInt64) -> UInt64:
+    proto 1 1
+    // lib_pcg/xsh_rr_64_32.py:91
+    // __mask_to_32bits(((value >> 18) ^ value) >> 27), value >> 59
+    frame_dig -1
+    int 18
+    shr
+    frame_dig -1
+    ^
+    int 27
+    shr
+    callsub __mask_to_32bits
+    frame_dig -1
+    int 59
+    shr
+    // lib_pcg/xsh_rr_64_32.py:90-92
+    // return __pcg32_rotation(
+    //     __mask_to_32bits(((value >> 18) ^ value) >> 27), value >> 59
+    // )
+    callsub __pcg32_rotation
+    retsub
+
+
+// lib_pcg.xsh_rr_64_32.__mask_to_32bits(value: uint64) -> uint64:
+__mask_to_32bits:
+    // lib_pcg/xsh_rr_64_32.py:107-108
+    // @subroutine
+    // def __mask_to_32bits(value: UInt64) -> UInt64:
+    proto 1 1
+    // lib_pcg/xsh_rr_64_32.py:109
+    // return value & ((2**32) - 1)
+    frame_dig -1
+    int 4294967295
+    &
+    retsub
+
+
+// lib_pcg.xsh_rr_64_32.__pcg32_rotation(value: uint64, rot: uint64) -> uint64:
+__pcg32_rotation:
+    // lib_pcg/xsh_rr_64_32.py:95-96
+    // @subroutine
+    // def __pcg32_rotation(value: UInt64, rot: UInt64) -> UInt64:
+    proto 2 1
+    // lib_pcg/xsh_rr_64_32.py:97
+    // return (value >> rot) | __mask_to_32bits(value << (__twos(rot) & 31))
+    frame_dig -2
+    frame_dig -1
+    shr
+    frame_dig -1
+    callsub __twos
+    int 31
+    &
+    frame_dig -2
+    swap
+    shl
+    callsub __mask_to_32bits
+    |
+    retsub
+
+
+// lib_pcg.xsh_rr_64_32.__twos(value: uint64) -> uint64:
+__twos:
+    // lib_pcg/xsh_rr_64_32.py:100-101
+    // @subroutine
+    // def __twos(value: UInt64) -> UInt64:
+    proto 1 1
+    // lib_pcg/xsh_rr_64_32.py:102
+    // addw_high, addw_low = op.addw(~value, 1)
+    frame_dig -1
+    ~
+    int 1
+    addw
+    bury 1
+    // lib_pcg/xsh_rr_64_32.py:104
+    // return addw_low
+    retsub
+
+
+// smart_contracts.lib_pcg64_exposer.contract.LibPcg64Exposer.update() -> void:
+update:
+    // smart_contracts/lib_pcg64_exposer/contract.py:27-28
+    // @arc4.baremethod(allow_actions=["UpdateApplication"])
+    // def update(self) -> None:
+    proto 0 0
+    // smart_contracts/lib_pcg64_exposer/contract.py:29
+    // assert Txn.sender == Global.creator_address
+    txn Sender
+    global CreatorAddress
+    ==
+    assert
+    retsub

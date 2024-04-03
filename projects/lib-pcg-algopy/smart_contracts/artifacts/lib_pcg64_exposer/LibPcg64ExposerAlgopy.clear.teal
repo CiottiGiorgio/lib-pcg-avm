@@ -1,0 +1,7 @@
+#pragma version 10
+
+smart_contracts.lib_pcg64_exposer.contract.LibPcg64ExposerAlgopy.clear_state_program:
+    // smart_contracts/lib_pcg64_exposer/contract.py:8
+    // class LibPcg64ExposerAlgopy(arc4.ARC4Contract):
+    int 1
+    return

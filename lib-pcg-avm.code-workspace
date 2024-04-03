@@ -12,6 +12,9 @@
     },
     {
       "path": "projects/lib-pcg-ts"
+    },
+    {
+      "path": "projects/common_tests"
     }
   ],
   "settings": {

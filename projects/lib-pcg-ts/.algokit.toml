@@ -10,6 +10,9 @@ artifacts = 'contracts/artifacts'
 build = { commands = [ 
   'npm run build',
 ], description = 'Build all smart contracts in the project' }
-test = { commands = [
-  'npm run test',
-], description = 'Run smart contract tests' }
+lint-check = { commands = [
+  'npm run lint',
+], description = 'Perform linting checks' }
+lint = { commands = [
+  'npm run fix',
+], description = 'Perform linting' }
