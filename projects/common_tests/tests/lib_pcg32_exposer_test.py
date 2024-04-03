@@ -10,10 +10,71 @@ from smart_contracts.artifacts.lib_pcg32_exposer_algopy import (
     LibPcg32ExposerAlgopyClient,
     SimulateOptions,
 )
+from smart_contracts.artifacts.lib_pcg32_exposer_pyteal import (
+    LibPcg32ExposerPytealClient,
+)
+from smart_contracts.artifacts.lib_pcg32_ts_exposer import (
+    CreateApplicationArgs as CreateApplicationArgsTs,
+)
+from smart_contracts.artifacts.lib_pcg32_ts_exposer import (
+    DeployCreate as DeployCreateTs,
+)
+from smart_contracts.artifacts.lib_pcg32_ts_exposer import (
+    LibPcg32TsExposerClient,
+)
+
+
+def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
+    match metafunc.config.getoption("language"):
+        case "algopy":
+            if "lib_pcg32_client" in metafunc.fixturenames:
+                metafunc.parametrize(
+                    "lib_pcg32_client", ["lib_pcg32_exposer_algopy_client"]
+                )
+            if "expected_library_size" in metafunc.fixturenames:
+                metafunc.parametrize("expected_library_size", [700])
+            if "max_unbounded_opup_calls" in metafunc.fixturenames:
+                metafunc.parametrize(
+                    "bit_size,max_unbounded_opup_calls", zip(BIT_SIZES, [120, 60, 30])
+                )
+            if "max_bounded_opup_calls" in metafunc.fixturenames:
+                metafunc.parametrize(
+                    "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [135, 68, 34])
+                )
+        case "pyteal":
+            if "lib_pcg32_client" in metafunc.fixturenames:
+                metafunc.parametrize(
+                    "lib_pcg32_client", ["lib_pcg32_exposer_pyteal_client"]
+                )
+            if "expected_library_size" in metafunc.fixturenames:
+                metafunc.parametrize("expected_library_size", [510])
+            if "max_unbounded_opup_calls" in metafunc.fixturenames:
+                metafunc.parametrize(
+                    "bit_size,max_unbounded_opup_calls", zip(BIT_SIZES, [91, 46, 23])
+                )
+            if "max_bounded_opup_calls" in metafunc.fixturenames:
+                metafunc.parametrize(
+                    "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [105, 53, 27])
+                )
+        case "ts":
+            if "lib_pcg32_client" in metafunc.fixturenames:
+                metafunc.parametrize(
+                    "lib_pcg32_client", ["lib_pcg32_ts_exposer_client"]
+                )
+            if "expected_library_size" in metafunc.fixturenames:
+                metafunc.parametrize("expected_library_size", [800])
+            if "max_unbounded_opup_calls" in metafunc.fixturenames:
+                metafunc.parametrize(
+                    "bit_size,max_unbounded_opup_calls", zip(BIT_SIZES, [151, 76, 38])
+                )
+            if "max_bounded_opup_calls" in metafunc.fixturenames:
+                metafunc.parametrize(
+                    "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [170, 85, 43])
+                )
 
 
 @pytest.fixture(scope="session")
-def lib_pcg_exposer_client(
+def lib_pcg32_exposer_algopy_client(
     algod_client: AlgodClient, indexer_client: IndexerClient
 ) -> LibPcg32ExposerAlgopyClient:
     config.configure(
@@ -34,11 +95,56 @@ def lib_pcg_exposer_client(
     return client
 
 
+@pytest.fixture(scope="session")
+def lib_pcg32_exposer_pyteal_client(
+    algod_client: AlgodClient, indexer_client: IndexerClient
+) -> LibPcg32ExposerPytealClient:
+    config.configure(
+        debug=True,
+        # trace_all=True,
+    )
+
+    client = LibPcg32ExposerPytealClient(
+        algod_client,
+        creator=get_localnet_default_account(algod_client),
+        indexer_client=indexer_client,
+    )
+
+    client.deploy(
+        on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
+        on_update=algokit_utils.OnUpdate.UpdateApp,
+        allow_update=True,
+        allow_delete=True,
+    )
+    return client
+
+
+@pytest.fixture(scope="session")
+def lib_pcg32_ts_exposer_client(
+    algod_client: AlgodClient, indexer_client: IndexerClient
+) -> LibPcg32TsExposerClient:
+    config.configure(
+        debug=True,
+        # trace_all=True,
+    )
+
+    client = LibPcg32TsExposerClient(
+        algod_client,
+        creator=get_localnet_default_account(algod_client),
+        indexer_client=indexer_client,
+    )
+
+    client.deploy(
+        on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
+        on_update=algokit_utils.OnUpdate.AppendApp,
+        create_args=DeployCreateTs(args=CreateApplicationArgsTs()),
+    )
+    return client
+
+
 RNG_SEED = 42
 
 BIT_SIZES = [8, 16, 32]
-UNBOUNDED_MAX_OPUP_CALLS = [120, 60, 30]
-BOUNDED_MAX_OPUP_CALLS = [135, 68, 34]
 # These sequences are generated using the reference C implementation.
 UNBOUNDED_SEQUENCE = (
     [
@@ -1275,7 +1381,11 @@ UPPER_LOWER_BOUNDED_SEQUENCE = (
 
 
 def __bit_size_to_method(
-    lib_pcg_exposer_client: LibPcg32ExposerAlgopyClient,
+    lib_pcg_exposer_client: (
+        LibPcg32ExposerAlgopyClient
+        | LibPcg32ExposerPytealClient
+        | LibPcg32TsExposerClient
+    ),
     bit_size: int,
     lower_bound: int,
     upper_bound: int,
@@ -1323,43 +1433,44 @@ def __bit_size_to_method(
 
 # This simple test ensures that the code size of this library doesn't grow unexpectedly if we
 #  start taking subroutine inlining and opcode assembly opportunities.
-def test_library_size(lib_pcg_exposer_client: LibPcg32ExposerAlgopyClient):
-    assert len(lib_pcg_exposer_client.app_client.approval.teal.split("\n")) < 700
+def test_library_size(
+    lib_pcg32_client: str, expected_library_size: int, request: pytest.FixtureRequest
+):
+    client = request.getfixturevalue(lib_pcg32_client)
+    assert len(client.app_client.approval.teal.split("\n")) < expected_library_size
 
 
-@pytest.mark.parametrize(
-    "bit_size,expected_max_opup_calls", zip(BIT_SIZES, UNBOUNDED_MAX_OPUP_CALLS)
-)
 def test_unbounded_maximal_cost(
-    lib_pcg_exposer_client: LibPcg32ExposerAlgopyClient,
+    lib_pcg32_client: str,
     bit_size: int,
-    expected_max_opup_calls: int,
+    max_unbounded_opup_calls: int,
+    request: pytest.FixtureRequest,
 ) -> None:
     expected_maximal_sequence_length = (1024 - 4 - 2) // (bit_size >> 3)
 
+    client = request.getfixturevalue(lib_pcg32_client)
     result = __bit_size_to_method(
-        lib_pcg_exposer_client, bit_size, 0, 0, expected_maximal_sequence_length
+        client, bit_size, 0, 0, expected_maximal_sequence_length
     )
 
     assert result.abi_results[0].return_value
     assert (
         result.simulate_response["txn-groups"][0]["app-budget-consumed"]
-        < 700 * expected_max_opup_calls
+        < 700 * max_unbounded_opup_calls
     )
 
 
-@pytest.mark.parametrize(
-    "bit_size,expected_max_opup_calls", zip(BIT_SIZES, BOUNDED_MAX_OPUP_CALLS)
-)
 def test_bounded_maximal_cost(
-    lib_pcg_exposer_client: LibPcg32ExposerAlgopyClient,
+    lib_pcg32_client: str,
     bit_size: int,
-    expected_max_opup_calls: int,
+    max_bounded_opup_calls: int,
+    request: pytest.FixtureRequest,
 ) -> None:
     expected_maximal_sequence_length = (1024 - 4 - 2) // (bit_size >> 3)
 
+    client = request.getfixturevalue(lib_pcg32_client)
     result = __bit_size_to_method(
-        lib_pcg_exposer_client,
+        client,
         bit_size,
         1,
         2**bit_size - 1,
@@ -1369,7 +1480,7 @@ def test_bounded_maximal_cost(
     assert result.abi_results[0].return_value
     assert (
         result.simulate_response["txn-groups"][0]["app-budget-consumed"]
-        < 700 * expected_max_opup_calls
+        < 700 * max_bounded_opup_calls
     )
 
 
@@ -1377,11 +1488,13 @@ def test_bounded_maximal_cost(
     "bit_size,expected_sequence", zip(BIT_SIZES, UNBOUNDED_SEQUENCE)
 )
 def test_unbounded_sequence(
-    lib_pcg_exposer_client: LibPcg32ExposerAlgopyClient,
+    lib_pcg32_client: str,
     bit_size: int,
     expected_sequence: [int],
+    request: pytest.FixtureRequest,
 ) -> None:
-    result = __bit_size_to_method(lib_pcg_exposer_client, bit_size, 0, 0, 100)
+    client = request.getfixturevalue(lib_pcg32_client)
+    result = __bit_size_to_method(client, bit_size, 0, 0, 100)
 
     assert result.abi_results[0].return_value == expected_sequence
 
@@ -1390,13 +1503,13 @@ def test_unbounded_sequence(
     "bit_size,expected_sequence", zip(BIT_SIZES, LOWER_BOUNDED_SEQUENCE)
 )
 def test_lower_bounded_sequence(
-    lib_pcg_exposer_client: LibPcg32ExposerAlgopyClient,
+    lib_pcg32_client: str,
     bit_size: int,
     expected_sequence: [int],
+    request: pytest.FixtureRequest,
 ) -> None:
-    result = __bit_size_to_method(
-        lib_pcg_exposer_client, bit_size, 2 ** (bit_size - 1) - 1, 0, 100
-    )
+    client = request.getfixturevalue(lib_pcg32_client)
+    result = __bit_size_to_method(client, bit_size, 2 ** (bit_size - 1) - 1, 0, 100)
 
     assert result.abi_results[0].return_value == expected_sequence
 
@@ -1405,13 +1518,13 @@ def test_lower_bounded_sequence(
     "bit_size,expected_sequence", zip(BIT_SIZES, UPPER_BOUNDED_SEQUENCE)
 )
 def test_upper_bounded_sequence(
-    lib_pcg_exposer_client: LibPcg32ExposerAlgopyClient,
+    lib_pcg32_client: str,
     bit_size: int,
     expected_sequence: [int],
+    request: pytest.FixtureRequest,
 ) -> None:
-    result = __bit_size_to_method(
-        lib_pcg_exposer_client, bit_size, 0, 2 ** (bit_size - 1) + 1, 100
-    )
+    client = request.getfixturevalue(lib_pcg32_client)
+    result = __bit_size_to_method(client, bit_size, 0, 2 ** (bit_size - 1) + 1, 100)
 
     assert result.abi_results[0].return_value == expected_sequence
 
@@ -1420,12 +1533,14 @@ def test_upper_bounded_sequence(
     "bit_size,expected_sequence", zip(BIT_SIZES, UPPER_LOWER_BOUNDED_SEQUENCE)
 )
 def test_upper_lower_bounded_sequence(
-    lib_pcg_exposer_client: LibPcg32ExposerAlgopyClient,
+    lib_pcg32_client: str,
     bit_size: int,
     expected_sequence: [int],
+    request: pytest.FixtureRequest,
 ) -> None:
+    client = request.getfixturevalue(lib_pcg32_client)
     result = __bit_size_to_method(
-        lib_pcg_exposer_client,
+        client,
         bit_size,
         2 ** (bit_size >> 2),
         2 ** ((bit_size >> 2) * 3),

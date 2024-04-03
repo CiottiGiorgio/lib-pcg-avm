@@ -388,9 +388,10 @@ pcg32Random:
 
 *if1_end:
 	// contracts/lib-pcg32-ts.algo.ts:81
-	// threshold = this.__twosComplement(absoluteBound) % absoluteBound
+	// threshold = this.__maskToUint32(this.__twosComplement(absoluteBound)) % absoluteBound
 	frame_dig 1 // absoluteBound: uint64
 	callsub __twosComplement
+	callsub __maskToUint32
 	frame_dig 1 // absoluteBound: uint64
 	%
 	frame_bury 2 // threshold: uint64

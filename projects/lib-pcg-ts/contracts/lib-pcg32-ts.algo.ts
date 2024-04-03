@@ -78,7 +78,7 @@ export class LibPcg32Ts extends Contract {
         absoluteBound = (1 << bitSize) - lowerBound;
       }
 
-      threshold = this.__twosComplement(absoluteBound) % absoluteBound;
+      threshold = this.__maskToUint32(this.__twosComplement(absoluteBound)) % absoluteBound;
 
       for (let i = 0; i < length; i = i + 1) {
         let prn: [uint64, uint64];

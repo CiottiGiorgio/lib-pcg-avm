@@ -3,7 +3,7 @@
   "desc": "",
   "methods": [
     {
-      "name": "boundedRandUInt32",
+      "name": "bounded_rand_uint32",
       "args": [
         {
           "name": "seed",
@@ -27,7 +27,7 @@
       }
     },
     {
-      "name": "boundedRandUInt16",
+      "name": "bounded_rand_uint16",
       "args": [
         {
           "name": "seed",
@@ -51,7 +51,7 @@
       }
     },
     {
-      "name": "boundedRandUInt8",
+      "name": "bounded_rand_uint8",
       "args": [
         {
           "name": "seed",
