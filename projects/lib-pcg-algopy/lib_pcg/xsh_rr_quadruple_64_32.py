@@ -19,10 +19,16 @@ def pcg128_init(seed: Bytes) -> tuple[UInt64, UInt64, UInt64, UInt64]:
     assert seed.length == 32
 
     return (
-        __pcg32_init(seed[:8], UInt64(PCG_DEFAULT_INCREMENT)),
-        __pcg32_init(seed[8:16], UInt64(PCG_SECONDARY_DEFAULT_INCREMENT)),
-        __pcg32_init(seed[16:24], UInt64(PCG_TERTIARY_DEFAULT_INCREMENT)),
-        __pcg32_init(seed[24:32], UInt64(PCG_QUATERNARY_DEFAULT_INCREMENT)),
+        __pcg32_init(op.extract_uint64(seed, 0), UInt64(PCG_DEFAULT_INCREMENT)),
+        __pcg32_init(
+            op.extract_uint64(seed, 8), UInt64(PCG_SECONDARY_DEFAULT_INCREMENT)
+        ),
+        __pcg32_init(
+            op.extract_uint64(seed, 16), UInt64(PCG_TERTIARY_DEFAULT_INCREMENT)
+        ),
+        __pcg32_init(
+            op.extract_uint64(seed, 24), UInt64(PCG_QUATERNARY_DEFAULT_INCREMENT)
+        ),
     )
 
 

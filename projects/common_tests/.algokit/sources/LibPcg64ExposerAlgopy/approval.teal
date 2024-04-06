@@ -119,21 +119,21 @@ bounded_rand_uint64:
 
 // lib_pcg.xsh_rr_double_64_32.pcg64_init(initial_state1: uint64, initial_state2: uint64) -> uint64, uint64:
 pcg64_init:
-    // lib_pcg/xsh_rr_double_64_32.py:16-17
+    // lib_pcg/xsh_rr_double_64_32.py:13-14
     // @subroutine
     // def pcg64_init(initial_state1: UInt64, initial_state2: UInt64) -> tuple[UInt64, UInt64]:
     proto 2 2
-    // lib_pcg/xsh_rr_double_64_32.py:19
+    // lib_pcg/xsh_rr_double_64_32.py:16
     // __pcg32_init(initial_state1, UInt64(PCG_DEFAULT_INCREMENT)),
     frame_dig -2
     int 1442695040888963407
     callsub __pcg32_init
-    // lib_pcg/xsh_rr_double_64_32.py:20
+    // lib_pcg/xsh_rr_double_64_32.py:17
     // __pcg32_init(initial_state2, UInt64(PCG_SECONDARY_DEFAULT_INCREMENT)),
     frame_dig -1
     int 1442695040888963409
     callsub __pcg32_init
-    // lib_pcg/xsh_rr_double_64_32.py:18-21
+    // lib_pcg/xsh_rr_double_64_32.py:15-18
     // return (
     //     __pcg32_init(initial_state1, UInt64(PCG_DEFAULT_INCREMENT)),
     //     __pcg32_init(initial_state2, UInt64(PCG_SECONDARY_DEFAULT_INCREMENT)),
@@ -143,21 +143,21 @@ pcg64_init:
 
 // lib_pcg.xsh_rr_64_32.__pcg32_init(initial_state: uint64, incr: uint64) -> uint64:
 __pcg32_init:
-    // lib_pcg/xsh_rr_64_32.py:67-68
+    // lib_pcg/xsh_rr_64_32.py:65-66
     // @subroutine
     // def __pcg32_init(initial_state: PCG32_STATE, incr: UInt64) -> PCG32_STATE:
     proto 2 1
-    // lib_pcg/xsh_rr_64_32.py:69
+    // lib_pcg/xsh_rr_64_32.py:67
     // state = __pcg32_step(UInt64(0), incr)
     int 0
     frame_dig -1
     callsub __pcg32_step
-    // lib_pcg/xsh_rr_64_32.py:70
+    // lib_pcg/xsh_rr_64_32.py:68
     // _high_addw, state = op.addw(state, initial_state)
     frame_dig -2
     addw
     bury 1
-    // lib_pcg/xsh_rr_64_32.py:72
+    // lib_pcg/xsh_rr_64_32.py:70
     // return __pcg32_step(state, incr)
     frame_dig -1
     callsub __pcg32_step
@@ -166,29 +166,29 @@ __pcg32_init:
 
 // lib_pcg.xsh_rr_64_32.__pcg32_step(state: uint64, incr: uint64) -> uint64:
 __pcg32_step:
-    // lib_pcg/xsh_rr_64_32.py:75-76
+    // lib_pcg/xsh_rr_64_32.py:73-74
     // @subroutine
     // def __pcg32_step(state: PCG32_STATE, incr: UInt64) -> PCG32_STATE:
     proto 2 1
-    // lib_pcg/xsh_rr_64_32.py:77
+    // lib_pcg/xsh_rr_64_32.py:75
     // _high_mul, low_mul = op.mulw(state, PCG_DEFAULT_MULTIPLIER)
     frame_dig -2
     int 6364136223846793005
     mulw
     bury 1
-    // lib_pcg/xsh_rr_64_32.py:78
+    // lib_pcg/xsh_rr_64_32.py:76
     // _high_add, low_add = op.addw(low_mul, incr)
     frame_dig -1
     addw
     bury 1
-    // lib_pcg/xsh_rr_64_32.py:80
+    // lib_pcg/xsh_rr_64_32.py:78
     // return low_add
     retsub
 
 
 // lib_pcg.xsh_rr_double_64_32.pcg64_random(state1: uint64, state2: uint64, lower_bound: uint64, upper_bound: uint64, length: uint64) -> uint64, uint64, bytes:
 pcg64_random:
-    // lib_pcg/xsh_rr_double_64_32.py:42-49
+    // lib_pcg/xsh_rr_double_64_32.py:40-47
     // @subroutine
     // def pcg64_random(
     //     state1: UInt64,
@@ -200,36 +200,36 @@ pcg64_random:
     proto 5 3
     byte ""
     dupn 3
-    // lib_pcg/xsh_rr_double_64_32.py:52
+    // lib_pcg/xsh_rr_double_64_32.py:50
     // assert length < 2**16
     frame_dig -1
     int 65536
     <
     assert
-    // lib_pcg/xsh_rr_double_64_32.py:53
+    // lib_pcg/xsh_rr_double_64_32.py:51
     // result += arc4.UInt16(length).bytes
     frame_dig -1
     itob
     extract 6 2
-    // lib_pcg/xsh_rr_double_64_32.py:55
+    // lib_pcg/xsh_rr_double_64_32.py:53
     // if lower_bound == 0 and upper_bound == 0:
     frame_dig -3
     bnz pcg64_random_else_body@8
     frame_dig -2
     bnz pcg64_random_else_body@8
-    // lib_pcg/xsh_rr_double_64_32.py:56
+    // lib_pcg/xsh_rr_double_64_32.py:54
     // for i in urange(length):  # noqa: B007
     int 0
     frame_bury 2
 
 pcg64_random_for_header@3:
-    // lib_pcg/xsh_rr_double_64_32.py:56
+    // lib_pcg/xsh_rr_double_64_32.py:54
     // for i in urange(length):  # noqa: B007
     frame_dig 2
     frame_dig -1
     <
     bz pcg64_random_after_if_else@22
-    // lib_pcg/xsh_rr_double_64_32.py:57
+    // lib_pcg/xsh_rr_double_64_32.py:55
     // state1, state2, n = __pcg64_random(state1, state2)
     frame_dig -5
     frame_dig -4
@@ -237,14 +237,14 @@ pcg64_random_for_header@3:
     cover 2
     frame_bury -4
     frame_bury -5
-    // lib_pcg/xsh_rr_double_64_32.py:59
+    // lib_pcg/xsh_rr_double_64_32.py:57
     // result += op.itob(n)
     itob
     frame_dig 4
     swap
     concat
     frame_bury 4
-    // lib_pcg/xsh_rr_double_64_32.py:56
+    // lib_pcg/xsh_rr_double_64_32.py:54
     // for i in urange(length):  # noqa: B007
     frame_dig 2
     int 1
@@ -253,17 +253,17 @@ pcg64_random_for_header@3:
     b pcg64_random_for_header@3
 
 pcg64_random_else_body@8:
-    // lib_pcg/xsh_rr_double_64_32.py:61
+    // lib_pcg/xsh_rr_double_64_32.py:59
     // if upper_bound != 0:
     frame_dig -2
     bz pcg64_random_else_body@10
-    // lib_pcg/xsh_rr_double_64_32.py:62
+    // lib_pcg/xsh_rr_double_64_32.py:60
     // assert upper_bound > 1
     frame_dig -2
     int 1
     >
     assert
-    // lib_pcg/xsh_rr_double_64_32.py:63
+    // lib_pcg/xsh_rr_double_64_32.py:61
     // assert lower_bound < upper_bound - 1
     frame_dig -2
     int 1
@@ -271,7 +271,7 @@ pcg64_random_else_body@8:
     frame_dig -3
     >
     assert
-    // lib_pcg/xsh_rr_double_64_32.py:65
+    // lib_pcg/xsh_rr_double_64_32.py:63
     // absolute_bound = upper_bound - lower_bound
     frame_dig -2
     frame_dig -3
@@ -280,13 +280,13 @@ pcg64_random_else_body@8:
     b pcg64_random_after_if_else@11
 
 pcg64_random_else_body@10:
-    // lib_pcg/xsh_rr_double_64_32.py:67
+    // lib_pcg/xsh_rr_double_64_32.py:65
     // assert lower_bound < (2**64) - 1
     frame_dig -3
     int 18446744073709551615
     <
     assert
-    // lib_pcg/xsh_rr_double_64_32.py:69
+    // lib_pcg/xsh_rr_double_64_32.py:67
     // absolute_bound = op.btoi((BigUInt(2**64) - BigUInt(lower_bound)).bytes)
     frame_dig -3
     itob
@@ -297,21 +297,21 @@ pcg64_random_else_body@10:
     frame_bury 0
 
 pcg64_random_after_if_else@11:
-    // lib_pcg/xsh_rr_double_64_32.py:71
-    // threshold = __twos(absolute_bound) % absolute_bound
+    // lib_pcg/xsh_rr_double_64_32.py:69
+    // threshold = __uint64_twos(absolute_bound) % absolute_bound
     frame_dig 0
     dup
-    callsub __twos
+    callsub __uint64_twos
     swap
     %
     frame_bury 3
-    // lib_pcg/xsh_rr_double_64_32.py:73
+    // lib_pcg/xsh_rr_double_64_32.py:71
     // for i in urange(length):  # noqa: B007
     int 0
     frame_bury 2
 
 pcg64_random_for_header@12:
-    // lib_pcg/xsh_rr_double_64_32.py:73
+    // lib_pcg/xsh_rr_double_64_32.py:71
     // for i in urange(length):  # noqa: B007
     frame_dig 2
     frame_dig -1
@@ -319,7 +319,7 @@ pcg64_random_for_header@12:
     bz pcg64_random_after_for@21
 
 pcg64_random_while_top@14:
-    // lib_pcg/xsh_rr_double_64_32.py:75
+    // lib_pcg/xsh_rr_double_64_32.py:73
     // state1, state2, candidate = __pcg64_random(state1, state2)
     frame_dig -5
     frame_dig -4
@@ -329,12 +329,12 @@ pcg64_random_while_top@14:
     frame_bury 1
     frame_bury -4
     frame_bury -5
-    // lib_pcg/xsh_rr_double_64_32.py:76
+    // lib_pcg/xsh_rr_double_64_32.py:74
     // if candidate >= threshold:
     frame_dig 3
     >=
     bz pcg64_random_while_top@14
-    // lib_pcg/xsh_rr_double_64_32.py:78
+    // lib_pcg/xsh_rr_double_64_32.py:76
     // result += op.itob((candidate % absolute_bound) + lower_bound)
     frame_dig 1
     frame_dig 0
@@ -346,7 +346,7 @@ pcg64_random_while_top@14:
     swap
     concat
     frame_bury 4
-    // lib_pcg/xsh_rr_double_64_32.py:73
+    // lib_pcg/xsh_rr_double_64_32.py:71
     // for i in urange(length):  # noqa: B007
     frame_dig 2
     int 1
@@ -357,7 +357,7 @@ pcg64_random_while_top@14:
 pcg64_random_after_for@21:
 
 pcg64_random_after_if_else@22:
-    // lib_pcg/xsh_rr_double_64_32.py:80
+    // lib_pcg/xsh_rr_double_64_32.py:78
     // return state1, state2, result
     frame_dig -5
     frame_dig -4
@@ -370,56 +370,64 @@ pcg64_random_after_if_else@22:
 
 // lib_pcg.xsh_rr_double_64_32.__pcg64_random(state1: uint64, state2: uint64) -> uint64, uint64, uint64:
 __pcg64_random:
-    // lib_pcg/xsh_rr_double_64_32.py:24-25
+    // lib_pcg/xsh_rr_double_64_32.py:21-22
     // @subroutine
     // def __pcg64_random(state1: UInt64, state2: UInt64) -> tuple[UInt64, UInt64, UInt64]:
     proto 2 3
-    // lib_pcg/xsh_rr_double_64_32.py:26
-    // state1, high_prn = __pcg32_random(state1)
+    // lib_pcg/xsh_rr_double_64_32.py:23
+    // new_state1, high_prn = __pcg32_random(state1)
     frame_dig -2
     callsub __pcg32_random
     swap
     dup
-    frame_bury -2
-    // lib_pcg/xsh_rr_double_64_32.py:27
-    // if state1 != 0:
-    bz __pcg64_random_else_body@2
-    // lib_pcg/xsh_rr_double_64_32.py:28
-    // new_state2 = __pcg32_step(state2, UInt64(PCG_SECONDARY_DEFAULT_INCREMENT))
-    frame_dig -1
+    // lib_pcg/xsh_rr_double_64_32.py:26
+    // UInt64(0) if new_state1 != 0 else UInt64(1)
+    bz __pcg64_random_ternary_false@2
+    int 0
+    b __pcg64_random_ternary_merge@3
+
+__pcg64_random_ternary_false@2:
+    // lib_pcg/xsh_rr_double_64_32.py:26
+    // UInt64(0) if new_state1 != 0 else UInt64(1)
+    int 1
+
+__pcg64_random_ternary_merge@3:
+    // lib_pcg/xsh_rr_double_64_32.py:25
+    // cond_incr = PCG_SECONDARY_DEFAULT_INCREMENT << (
     int 1442695040888963409
-    callsub __pcg32_step
-    b __pcg64_random_after_if_else@3
-
-__pcg64_random_else_body@2:
-    // lib_pcg/xsh_rr_double_64_32.py:30
-    // new_state2 = __pcg32_step(state2, UInt64(PCG_SECONDARY_DEFAULT_INCREMENT) << 1)
+    // lib_pcg/xsh_rr_double_64_32.py:25-27
+    // cond_incr = PCG_SECONDARY_DEFAULT_INCREMENT << (
+    //     UInt64(0) if new_state1 != 0 else UInt64(1)
+    // )
+    swap
+    shl
+    // lib_pcg/xsh_rr_double_64_32.py:28
+    // new_state2 = __pcg32_step(state2, cond_incr)
     frame_dig -1
-    int 2885390081777926818
+    swap
     callsub __pcg32_step
-
-__pcg64_random_after_if_else@3:
-    // lib_pcg/xsh_rr_double_64_32.py:39
-    // return state1, new_state2, high_prn << 32 | __pcg32_output(state2)
+    // lib_pcg/xsh_rr_double_64_32.py:37
+    // return new_state1, new_state2, high_prn << 32 | __pcg32_output(state2)
     frame_dig 0
     int 32
     shl
     frame_dig -1
     callsub __pcg32_output
     |
-    frame_dig -2
+    frame_dig 1
     cover 2
-    uncover 3
+    uncover 4
+    uncover 4
     retsub
 
 
 // lib_pcg.xsh_rr_64_32.__pcg32_random(state: uint64) -> uint64, uint64:
 __pcg32_random:
-    // lib_pcg/xsh_rr_64_32.py:83-84
+    // lib_pcg/xsh_rr_64_32.py:81-82
     // @subroutine
     // def __pcg32_random(state: PCG32_STATE) -> tuple[PCG32_STATE, UInt64]:
     proto 1 2
-    // lib_pcg/xsh_rr_64_32.py:85
+    // lib_pcg/xsh_rr_64_32.py:83
     // return __pcg32_step(state, UInt64(PCG_DEFAULT_INCREMENT)), __pcg32_output(state)
     frame_dig -1
     int 1442695040888963407
@@ -431,11 +439,11 @@ __pcg32_random:
 
 // lib_pcg.xsh_rr_64_32.__pcg32_output(value: uint64) -> uint64:
 __pcg32_output:
-    // lib_pcg/xsh_rr_64_32.py:88-89
+    // lib_pcg/xsh_rr_64_32.py:86-87
     // @subroutine
     // def __pcg32_output(value: UInt64) -> UInt64:
     proto 1 1
-    // lib_pcg/xsh_rr_64_32.py:91
+    // lib_pcg/xsh_rr_64_32.py:89
     // __mask_to_32bits(((value >> 18) ^ value) >> 27), value >> 59
     frame_dig -1
     int 18
@@ -448,7 +456,7 @@ __pcg32_output:
     frame_dig -1
     int 59
     shr
-    // lib_pcg/xsh_rr_64_32.py:90-92
+    // lib_pcg/xsh_rr_64_32.py:88-90
     // return __pcg32_rotation(
     //     __mask_to_32bits(((value >> 18) ^ value) >> 27), value >> 59
     // )
@@ -458,11 +466,11 @@ __pcg32_output:
 
 // lib_pcg.xsh_rr_64_32.__mask_to_32bits(value: uint64) -> uint64:
 __mask_to_32bits:
-    // lib_pcg/xsh_rr_64_32.py:107-108
+    // lib_pcg/xsh_rr_64_32.py:105-106
     // @subroutine
     // def __mask_to_32bits(value: UInt64) -> UInt64:
     proto 1 1
-    // lib_pcg/xsh_rr_64_32.py:109
+    // lib_pcg/xsh_rr_64_32.py:107
     // return value & ((2**32) - 1)
     frame_dig -1
     int 4294967295
@@ -472,17 +480,17 @@ __mask_to_32bits:
 
 // lib_pcg.xsh_rr_64_32.__pcg32_rotation(value: uint64, rot: uint64) -> uint64:
 __pcg32_rotation:
-    // lib_pcg/xsh_rr_64_32.py:95-96
+    // lib_pcg/xsh_rr_64_32.py:93-94
     // @subroutine
     // def __pcg32_rotation(value: UInt64, rot: UInt64) -> UInt64:
     proto 2 1
-    // lib_pcg/xsh_rr_64_32.py:97
-    // return (value >> rot) | __mask_to_32bits(value << (__twos(rot) & 31))
+    // lib_pcg/xsh_rr_64_32.py:95
+    // return (value >> rot) | __mask_to_32bits(value << (__uint64_twos(rot) & 31))
     frame_dig -2
     frame_dig -1
     shr
     frame_dig -1
-    callsub __twos
+    callsub __uint64_twos
     int 31
     &
     frame_dig -2
@@ -493,20 +501,20 @@ __pcg32_rotation:
     retsub
 
 
-// lib_pcg.xsh_rr_64_32.__twos(value: uint64) -> uint64:
-__twos:
-    // lib_pcg/xsh_rr_64_32.py:100-101
+// lib_pcg.xsh_rr_64_32.__uint64_twos(value: uint64) -> uint64:
+__uint64_twos:
+    // lib_pcg/xsh_rr_64_32.py:98-99
     // @subroutine
-    // def __twos(value: UInt64) -> UInt64:
+    // def __uint64_twos(value: UInt64) -> UInt64:
     proto 1 1
-    // lib_pcg/xsh_rr_64_32.py:102
+    // lib_pcg/xsh_rr_64_32.py:100
     // addw_high, addw_low = op.addw(~value, 1)
     frame_dig -1
     ~
     int 1
     addw
     bury 1
-    // lib_pcg/xsh_rr_64_32.py:104
+    // lib_pcg/xsh_rr_64_32.py:102
     // return addw_low
     retsub
 
