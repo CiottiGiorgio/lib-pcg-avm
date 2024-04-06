@@ -385,10 +385,10 @@ pcg32_random_else_body@15:
 
 pcg32_random_after_if_else@16:
     // lib_pcg/xsh_rr_64_32.py:51
-    // threshold = __mask_to_32bits(__twos(absolute_bound)) % absolute_bound
+    // threshold = __mask_to_32bits(__uint64_twos(absolute_bound)) % absolute_bound
     frame_dig 0
     dup
-    callsub __twos
+    callsub __uint64_twos
     callsub __mask_to_32bits
     swap
     %
@@ -525,12 +525,12 @@ __pcg32_rotation:
     // def __pcg32_rotation(value: UInt64, rot: UInt64) -> UInt64:
     proto 2 1
     // lib_pcg/xsh_rr_64_32.py:97
-    // return (value >> rot) | __mask_to_32bits(value << (__twos(rot) & 31))
+    // return (value >> rot) | __mask_to_32bits(value << (__uint64_twos(rot) & 31))
     frame_dig -2
     frame_dig -1
     shr
     frame_dig -1
-    callsub __twos
+    callsub __uint64_twos
     int 31
     &
     frame_dig -2
@@ -541,11 +541,11 @@ __pcg32_rotation:
     retsub
 
 
-// lib_pcg.xsh_rr_64_32.__twos(value: uint64) -> uint64:
-__twos:
+// lib_pcg.xsh_rr_64_32.__uint64_twos(value: uint64) -> uint64:
+__uint64_twos:
     // lib_pcg/xsh_rr_64_32.py:100-101
     // @subroutine
-    // def __twos(value: UInt64) -> UInt64:
+    // def __uint64_twos(value: UInt64) -> UInt64:
     proto 1 1
     // lib_pcg/xsh_rr_64_32.py:102
     // addw_high, addw_low = op.addw(~value, 1)

@@ -5,7 +5,7 @@ from lib_pcg.xsh_rr_64_32 import (
     __pcg32_output,
     __pcg32_random,
     __pcg32_step,
-    __twos,
+    __uint64_twos,
 )
 
 PCG_DEFAULT_MULTIPLIER = 6364136223846793005
@@ -23,20 +23,19 @@ def pcg64_init(initial_state1: UInt64, initial_state2: UInt64) -> tuple[UInt64, 
 
 @subroutine
 def __pcg64_random(state1: UInt64, state2: UInt64) -> tuple[UInt64, UInt64, UInt64]:
-    state1, high_prn = __pcg32_random(state1)
-    if state1 != 0:
-        new_state2 = __pcg32_step(state2, UInt64(PCG_SECONDARY_DEFAULT_INCREMENT))
-    else:
-        new_state2 = __pcg32_step(state2, UInt64(PCG_SECONDARY_DEFAULT_INCREMENT) << 1)
+    new_state1, high_prn = __pcg32_random(state1)
+
+    cond_incr = PCG_SECONDARY_DEFAULT_INCREMENT << (UInt64(0) if new_state1 != 0 else UInt64(1))
+    new_state2 = __pcg32_step(state2, cond_incr)
 
     # TODO
     # This is what we would like to write. Unfortunately PuyaPy does not yet support upcasting bool to uint64.
     # new_state2 = __pcg32_step(
-    #     new_state1,
+    #     state2,
     #     UInt64(PCG_SECONDARY_DEFAULT_INCREMENT) << (state1 == 0)
     # )
 
-    return state1, new_state2, high_prn << 32 | __pcg32_output(state2)
+    return new_state1, new_state2, high_prn << 32 | __pcg32_output(state2)
 
 
 @subroutine
@@ -68,7 +67,7 @@ def pcg64_random(
 
             absolute_bound = op.btoi((BigUInt(2**64) - BigUInt(lower_bound)).bytes)
 
-        threshold = __twos(absolute_bound) % absolute_bound
+        threshold = __uint64_twos(absolute_bound) % absolute_bound
 
         for i in urange(length):  # noqa: B007
             while True:

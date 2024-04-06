@@ -48,7 +48,7 @@ def pcg32_random(
 
             absolute_bound = (1 << bit_size) - lower_bound
 
-        threshold = __mask_to_32bits(__twos(absolute_bound)) % absolute_bound
+        threshold = __mask_to_32bits(__uint64_twos(absolute_bound)) % absolute_bound
 
         for i in urange(length):  # noqa: B007
             while True:
@@ -94,11 +94,11 @@ def __pcg32_output(value: UInt64) -> UInt64:
 
 @subroutine
 def __pcg32_rotation(value: UInt64, rot: UInt64) -> UInt64:
-    return (value >> rot) | __mask_to_32bits(value << (__twos(rot) & 31))
+    return (value >> rot) | __mask_to_32bits(value << (__uint64_twos(rot) & 31))
 
 
 @subroutine
-def __twos(value: UInt64) -> UInt64:
+def __uint64_twos(value: UInt64) -> UInt64:
     addw_high, addw_low = op.addw(~value, 1)
 
     return addw_low
