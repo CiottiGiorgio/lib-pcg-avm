@@ -2,9 +2,7 @@ from typing import TypeAlias
 
 from algopy import Bytes, UInt64, arc4, op, subroutine, urange
 
-PCG_DEFAULT_MULTIPLIER = 6364136223846793005
-PCG_DEFAULT_INCREMENT = 1442695040888963407
-
+from lib_pcg.consts import PCG_DEFAULT_INCREMENT, PCG_DEFAULT_MULTIPLIER
 
 PCG32_STATE: TypeAlias = UInt64
 

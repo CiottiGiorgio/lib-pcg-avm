@@ -1,17 +1,17 @@
 from algopy import BigUInt, Bytes, UInt64, arc4, op, subroutine, urange
 
+from lib_pcg.consts import (
+    PCG_DEFAULT_INCREMENT,
+    PCG_QUATERNARY_DEFAULT_INCREMENT,
+    PCG_SECONDARY_DEFAULT_INCREMENT,
+    PCG_TERTIARY_DEFAULT_INCREMENT,
+)
 from lib_pcg.xsh_rr_64_32 import (
     __pcg32_init,
     __pcg32_output,
     __pcg32_random,
     __pcg32_step,
 )
-
-PCG_DEFAULT_MULTIPLIER = 6364136223846793005
-PCG_DEFAULT_INCREMENT = 1442695040888963407
-PCG_SECONDARY_DEFAULT_INCREMENT = 1442695040888963409
-PCG_TERTIARY_DEFAULT_INCREMENT = 1442695040888963411
-PCG_QUATERNARY_DEFAULT_INCREMENT = 1442695040888963413
 
 
 @subroutine
@@ -32,13 +32,19 @@ def __pcg128_random(
 ) -> tuple[UInt64, UInt64, UInt64, UInt64, BigUInt]:
     new_state1, rn1 = __pcg32_random(state[0])
 
-    cond_incr = PCG_SECONDARY_DEFAULT_INCREMENT << (UInt64(0) if new_state1 != 0 else UInt64(1))
+    cond_incr = PCG_SECONDARY_DEFAULT_INCREMENT << (
+        UInt64(0) if new_state1 != 0 else UInt64(1)
+    )
     new_state2 = __pcg32_step(state[1], cond_incr)
 
-    cond_incr = PCG_TERTIARY_DEFAULT_INCREMENT << (UInt64(0) if new_state2 != 0 else UInt64(1))
+    cond_incr = PCG_TERTIARY_DEFAULT_INCREMENT << (
+        UInt64(0) if new_state2 != 0 else UInt64(1)
+    )
     new_state3 = __pcg32_step(state[2], cond_incr)
 
-    cond_incr = PCG_QUATERNARY_DEFAULT_INCREMENT << (UInt64(0) if new_state3 != 0 else UInt64(1))
+    cond_incr = PCG_QUATERNARY_DEFAULT_INCREMENT << (
+        UInt64(0) if new_state3 != 0 else UInt64(1)
+    )
     new_state4 = __pcg32_step(state[3], cond_incr)
 
     return (

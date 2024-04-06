@@ -1,5 +1,6 @@
 from algopy import BigUInt, Bytes, UInt64, arc4, op, subroutine, urange
 
+from lib_pcg.consts import PCG_DEFAULT_INCREMENT, PCG_SECONDARY_DEFAULT_INCREMENT
 from lib_pcg.xsh_rr_64_32 import (
     __pcg32_init,
     __pcg32_output,
@@ -7,10 +8,6 @@ from lib_pcg.xsh_rr_64_32 import (
     __pcg32_step,
     __uint64_twos,
 )
-
-PCG_DEFAULT_MULTIPLIER = 6364136223846793005
-PCG_DEFAULT_INCREMENT = 1442695040888963407
-PCG_SECONDARY_DEFAULT_INCREMENT = 1442695040888963409
 
 
 @subroutine
@@ -25,7 +22,9 @@ def pcg64_init(initial_state1: UInt64, initial_state2: UInt64) -> tuple[UInt64, 
 def __pcg64_random(state1: UInt64, state2: UInt64) -> tuple[UInt64, UInt64, UInt64]:
     new_state1, high_prn = __pcg32_random(state1)
 
-    cond_incr = PCG_SECONDARY_DEFAULT_INCREMENT << (UInt64(0) if new_state1 != 0 else UInt64(1))
+    cond_incr = PCG_SECONDARY_DEFAULT_INCREMENT << (
+        UInt64(0) if new_state1 != 0 else UInt64(1)
+    )
     new_state2 = __pcg32_step(state2, cond_incr)
 
     # TODO
