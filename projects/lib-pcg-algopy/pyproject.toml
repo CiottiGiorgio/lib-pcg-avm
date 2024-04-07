@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lib-pcg-algopy"
-version = "0.2.0"
+version = "0.2.1"
 description = "PCG library implemented using Algorand Python"
 authors = ["CiottiGiorgio <giorgio.ciotti@algorand.foundation>"]
 readme = "README.md"
@@ -42,7 +42,7 @@ suppress-none-returning = true
 pythonpath = ["smart_contracts", "tests"]
 
 [tool.mypy]
-files = "smart_contracts/"
+files = ["smart_contracts/", "lib_pcg/"]
 python_version = "3.12"
 disallow_any_generics = true
 disallow_subclassing_any = true
