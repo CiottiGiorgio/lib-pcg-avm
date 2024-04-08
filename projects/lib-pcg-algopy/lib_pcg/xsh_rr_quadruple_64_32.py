@@ -110,22 +110,16 @@ def pcg128_random(
 
             result += n.bytes
     else:
-        # We write the bound condition on the length of the underlying bytes because
-        #  it's important that it doesn't just exceed in value but in length.
-        # BigUInt arithmetic will pad with 0 the shortest string potentially increasing
-        #  the length of our results beyond 16 bytes.
-        assert lower_bound.bytes.length <= 16
-        assert upper_bound.bytes.length <= 16
-
         if upper_bound != 0:
             assert upper_bound > BigUInt(1)
+            assert upper_bound < BigUInt(2**128)
             assert lower_bound < upper_bound - BigUInt(1)
 
             absolute_bound = upper_bound - lower_bound
         else:
-            assert lower_bound < BigUInt(2**256 - 1)
+            assert lower_bound < BigUInt(2**128 - 1)
 
-            absolute_bound = BigUInt(2**256) - lower_bound
+            absolute_bound = BigUInt(2**128) - lower_bound
 
         threshold = __pcg128_twos(absolute_bound) % absolute_bound
 
@@ -136,6 +130,6 @@ def pcg128_random(
                 )
                 if candidate >= threshold:
                     break
-            result += ((candidate % absolute_bound) + lower_bound).bytes
+            result += arc4.UInt128((candidate % absolute_bound) + lower_bound).bytes
 
     return state1, state2, state3, state4, result
