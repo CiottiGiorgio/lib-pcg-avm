@@ -233,7 +233,7 @@ pcg128_random:
     // ) -> tuple[UInt64, UInt64, UInt64, UInt64, Bytes]:
     proto 7 5
     int 0
-    dup
+    dupn 2
     byte ""
     dupn 4
     // lib_pcg/xsh_rr_quadruple_64_32.py:101
@@ -261,19 +261,19 @@ pcg128_random:
     // for i in urange(length):  # noqa: B007
     int 0
     frame_dig -4
-    frame_bury 6
+    frame_bury 7
     frame_dig -5
-    frame_bury 5
+    frame_bury 6
     frame_dig -6
-    frame_bury 4
+    frame_bury 5
     frame_dig -7
+    frame_bury 4
     frame_bury 3
-    frame_bury 2
 
 pcg128_random_for_header@3:
     // lib_pcg/xsh_rr_quadruple_64_32.py:106
     // for i in urange(length):  # noqa: B007
-    frame_dig 2
+    frame_dig 3
     frame_dig -1
     <
     bz pcg128_random_after_if_else@22
@@ -281,44 +281,62 @@ pcg128_random_for_header@3:
     // state1, state2, state3, state4, n = __pcg128_random(
     //     (state1, state2, state3, state4)
     // )
-    frame_dig 3
     frame_dig 4
     frame_dig 5
     frame_dig 6
+    frame_dig 7
     callsub __pcg128_random
     cover 4
+    frame_bury 7
     frame_bury 6
     frame_bury 5
     frame_bury 4
-    frame_bury 3
     // lib_pcg/xsh_rr_quadruple_64_32.py:111
     // result += n.bytes
-    frame_dig 7
+    frame_dig 8
     swap
     concat
-    frame_bury 7
+    frame_bury 8
     // lib_pcg/xsh_rr_quadruple_64_32.py:106
     // for i in urange(length):  # noqa: B007
-    frame_dig 2
+    frame_dig 3
     int 1
     +
-    frame_bury 2
+    frame_bury 3
     b pcg128_random_for_header@3
 
 pcg128_random_else_body@8:
-    // lib_pcg/xsh_rr_quadruple_64_32.py:113
+    // lib_pcg/xsh_rr_quadruple_64_32.py:113-117
+    // # We write the bound condition on the length of the underlying bytes because
+    // #  it's important that it doesn't just exceed in value but in length.
+    // # BigUInt arithmetic will pad with 0 the shortest string potentially increasing
+    // #  the length of our results beyond 16 bytes.
+    // assert lower_bound.bytes.length <= 16
+    frame_dig -3
+    len
+    int 16
+    <=
+    assert
+    // lib_pcg/xsh_rr_quadruple_64_32.py:118
+    // assert upper_bound.bytes.length <= 16
+    frame_dig -2
+    len
+    int 16
+    <=
+    assert
+    // lib_pcg/xsh_rr_quadruple_64_32.py:120
     // if upper_bound != 0:
     frame_dig -2
     byte 0x
     b!=
     bz pcg128_random_else_body@10
-    // lib_pcg/xsh_rr_quadruple_64_32.py:114
+    // lib_pcg/xsh_rr_quadruple_64_32.py:121
     // assert upper_bound > BigUInt(1)
     frame_dig -2
     byte 0x01
     b>
     assert
-    // lib_pcg/xsh_rr_quadruple_64_32.py:115
+    // lib_pcg/xsh_rr_quadruple_64_32.py:122
     // assert lower_bound < upper_bound - BigUInt(1)
     frame_dig -2
     byte 0x01
@@ -326,101 +344,109 @@ pcg128_random_else_body@8:
     frame_dig -3
     b>
     assert
-    // lib_pcg/xsh_rr_quadruple_64_32.py:117
+    // lib_pcg/xsh_rr_quadruple_64_32.py:124
     // absolute_bound = upper_bound - lower_bound
     frame_dig -2
     frame_dig -3
     b-
+    frame_bury 0
     b pcg128_random_after_if_else@11
 
 pcg128_random_else_body@10:
-    // lib_pcg/xsh_rr_quadruple_64_32.py:119
+    // lib_pcg/xsh_rr_quadruple_64_32.py:126
     // assert lower_bound < BigUInt(2**256 - 1)
     frame_dig -3
     byte 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     b<
     assert
-    // lib_pcg/xsh_rr_quadruple_64_32.py:121
+    // lib_pcg/xsh_rr_quadruple_64_32.py:128
     // absolute_bound = BigUInt(2**256) - lower_bound
     byte 0x010000000000000000000000000000000000000000000000000000000000000000
     frame_dig -3
     b-
+    frame_bury 0
 
 pcg128_random_after_if_else@11:
-    // lib_pcg/xsh_rr_quadruple_64_32.py:123
+    // lib_pcg/xsh_rr_quadruple_64_32.py:130
     // threshold = __pcg128_twos(absolute_bound) % absolute_bound
+    frame_dig 0
     dup
     callsub __pcg128_twos
     swap
     b%
-    frame_bury 1
-    // lib_pcg/xsh_rr_quadruple_64_32.py:125
+    frame_bury 2
+    // lib_pcg/xsh_rr_quadruple_64_32.py:132
     // for i in urange(length):  # noqa: B007
     int 0
     frame_dig -4
-    frame_bury 6
+    frame_bury 7
     frame_dig -5
-    frame_bury 5
+    frame_bury 6
     frame_dig -6
-    frame_bury 4
+    frame_bury 5
     frame_dig -7
+    frame_bury 4
     frame_bury 3
-    frame_bury 2
 
 pcg128_random_for_header@12:
-    // lib_pcg/xsh_rr_quadruple_64_32.py:125
+    // lib_pcg/xsh_rr_quadruple_64_32.py:132
     // for i in urange(length):  # noqa: B007
-    frame_dig 2
+    frame_dig 3
     frame_dig -1
     <
     bz pcg128_random_after_for@21
 
 pcg128_random_while_top@14:
-    // lib_pcg/xsh_rr_quadruple_64_32.py:127-129
+    // lib_pcg/xsh_rr_quadruple_64_32.py:134-136
     // state1, state2, state3, state4, candidate = __pcg128_random(
     //     (state1, state2, state3, state4)
     // )
-    frame_dig 3
     frame_dig 4
     frame_dig 5
     frame_dig 6
+    frame_dig 7
     callsub __pcg128_random
     dup
     cover 5
-    frame_bury 0
+    frame_bury 1
+    frame_bury 7
     frame_bury 6
     frame_bury 5
     frame_bury 4
-    frame_bury 3
-    // lib_pcg/xsh_rr_quadruple_64_32.py:130
+    // lib_pcg/xsh_rr_quadruple_64_32.py:137
     // if candidate >= threshold:
-    frame_dig 1
+    frame_dig 2
     b>=
     bz pcg128_random_while_top@14
-    // lib_pcg/xsh_rr_quadruple_64_32.py:132
-    // result += candidate.bytes
-    frame_dig 7
+    // lib_pcg/xsh_rr_quadruple_64_32.py:139
+    // result += ((candidate % absolute_bound) + lower_bound).bytes
+    frame_dig 1
     frame_dig 0
+    b%
+    frame_dig -3
+    b+
+    frame_dig 8
+    swap
     concat
-    frame_bury 7
-    // lib_pcg/xsh_rr_quadruple_64_32.py:125
+    frame_bury 8
+    // lib_pcg/xsh_rr_quadruple_64_32.py:132
     // for i in urange(length):  # noqa: B007
-    frame_dig 2
+    frame_dig 3
     int 1
     +
-    frame_bury 2
+    frame_bury 3
     b pcg128_random_for_header@12
 
 pcg128_random_after_for@21:
 
 pcg128_random_after_if_else@22:
-    // lib_pcg/xsh_rr_quadruple_64_32.py:134
+    // lib_pcg/xsh_rr_quadruple_64_32.py:141
     // return state1, state2, state3, state4, result
-    frame_dig 3
     frame_dig 4
     frame_dig 5
     frame_dig 6
     frame_dig 7
+    frame_dig 8
     frame_bury 4
     frame_bury 3
     frame_bury 2
