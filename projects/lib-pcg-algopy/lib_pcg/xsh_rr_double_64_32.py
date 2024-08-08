@@ -22,17 +22,9 @@ def pcg64_init(initial_state1: UInt64, initial_state2: UInt64) -> tuple[UInt64, 
 def __pcg64_random(state1: UInt64, state2: UInt64) -> tuple[UInt64, UInt64, UInt64]:
     new_state1, high_prn = __pcg32_random(state1)
 
-    cond_incr = PCG_SECONDARY_DEFAULT_INCREMENT << (
-        UInt64(0) if new_state1 != 0 else UInt64(1)
+    new_state2 = __pcg32_step(
+        state2, UInt64(PCG_SECONDARY_DEFAULT_INCREMENT) << (state1 == 0)
     )
-    new_state2 = __pcg32_step(state2, cond_incr)
-
-    # TODO
-    # This is what we would like to write. Unfortunately PuyaPy does not yet support upcasting bool to uint64.
-    # new_state2 = __pcg32_step(
-    #     state2,
-    #     UInt64(PCG_SECONDARY_DEFAULT_INCREMENT) << (state1 == 0)
-    # )
 
     return new_state1, new_state2, high_prn << 32 | __pcg32_output(state2)
 

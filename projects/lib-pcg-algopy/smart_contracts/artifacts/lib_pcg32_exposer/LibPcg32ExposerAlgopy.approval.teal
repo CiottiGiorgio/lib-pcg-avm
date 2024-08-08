@@ -291,9 +291,9 @@ pcg32_random_bool_merge@5:
     // lib_pcg/xsh_rr_64_32.py:28
     // if lower_bound == 0 and upper_bound == 0:
     frame_dig -3
-    bnz pcg32_random_else_body@13
+    bnz pcg32_random_else_body@12
     frame_dig -2
-    bnz pcg32_random_else_body@13
+    bnz pcg32_random_else_body@12
     // lib_pcg/xsh_rr_64_32.py:29
     // for i in urange(length):  # noqa: B007
     int 0
@@ -305,7 +305,7 @@ pcg32_random_for_header@8:
     frame_dig 3
     frame_dig -1
     <
-    bz pcg32_random_after_if_else@27
+    bz pcg32_random_after_if_else@25
     // lib_pcg/xsh_rr_64_32.py:30
     // state, n = __pcg32_random(state)
     frame_dig -5
@@ -330,11 +330,11 @@ pcg32_random_for_header@8:
     frame_bury 3
     b pcg32_random_for_header@8
 
-pcg32_random_else_body@13:
+pcg32_random_else_body@12:
     // lib_pcg/xsh_rr_64_32.py:34
     // if upper_bound != 0:
     frame_dig -2
-    bz pcg32_random_else_body@15
+    bz pcg32_random_else_body@14
     // lib_pcg/xsh_rr_64_32.py:35
     // assert upper_bound > 1
     frame_dig -2
@@ -363,9 +363,9 @@ pcg32_random_else_body@13:
     frame_dig -3
     -
     frame_bury 0
-    b pcg32_random_after_if_else@16
+    b pcg32_random_after_if_else@15
 
-pcg32_random_else_body@15:
+pcg32_random_else_body@14:
     // lib_pcg/xsh_rr_64_32.py:41
     // assert lower_bound < ((1 << bit_size) - 1)
     int 1
@@ -383,7 +383,7 @@ pcg32_random_else_body@15:
     -
     frame_bury 0
 
-pcg32_random_after_if_else@16:
+pcg32_random_after_if_else@15:
     // lib_pcg/xsh_rr_64_32.py:45
     // threshold = __mask_to_32bits(__uint64_twos(absolute_bound)) % absolute_bound
     frame_dig 0
@@ -398,15 +398,15 @@ pcg32_random_after_if_else@16:
     int 0
     frame_bury 3
 
-pcg32_random_for_header@17:
+pcg32_random_for_header@16:
     // lib_pcg/xsh_rr_64_32.py:47
     // for i in urange(length):  # noqa: B007
     frame_dig 3
     frame_dig -1
     <
-    bz pcg32_random_after_for@26
+    bz pcg32_random_after_for@24
 
-pcg32_random_while_top@19:
+pcg32_random_while_top@18:
     // lib_pcg/xsh_rr_64_32.py:49
     // state, candidate = __pcg32_random(state)
     frame_dig -5
@@ -419,7 +419,7 @@ pcg32_random_while_top@19:
     // if candidate >= threshold:
     frame_dig 4
     >=
-    bz pcg32_random_while_top@19
+    bz pcg32_random_while_top@18
     // lib_pcg/xsh_rr_64_32.py:53
     // op.itob((candidate % absolute_bound) + lower_bound),
     frame_dig 2
@@ -447,11 +447,11 @@ pcg32_random_while_top@19:
     int 1
     +
     frame_bury 3
-    b pcg32_random_for_header@17
+    b pcg32_random_for_header@16
 
-pcg32_random_after_for@26:
+pcg32_random_after_for@24:
 
-pcg32_random_after_if_else@27:
+pcg32_random_after_if_else@25:
     // lib_pcg/xsh_rr_64_32.py:58
     // return state, result
     frame_dig -5

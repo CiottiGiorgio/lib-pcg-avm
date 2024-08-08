@@ -38,20 +38,17 @@ def __pcg128_random(
 ) -> tuple[UInt64, UInt64, UInt64, UInt64, BigUInt]:
     new_state1, rn1 = __pcg32_random(state[0])
 
-    cond_incr = PCG_SECONDARY_DEFAULT_INCREMENT << (
-        UInt64(0) if new_state1 != 0 else UInt64(1)
+    new_state2 = __pcg32_step(
+        state[1], UInt64(PCG_SECONDARY_DEFAULT_INCREMENT) << (new_state1 == 0)
     )
-    new_state2 = __pcg32_step(state[1], cond_incr)
 
-    cond_incr = PCG_TERTIARY_DEFAULT_INCREMENT << (
-        UInt64(0) if new_state2 != 0 else UInt64(1)
+    new_state3 = __pcg32_step(
+        state[2], UInt64(PCG_TERTIARY_DEFAULT_INCREMENT) << (new_state2 == 0)
     )
-    new_state3 = __pcg32_step(state[2], cond_incr)
 
-    cond_incr = PCG_QUATERNARY_DEFAULT_INCREMENT << (
-        UInt64(0) if new_state3 != 0 else UInt64(1)
+    new_state4 = __pcg32_step(
+        state[3], UInt64(PCG_QUATERNARY_DEFAULT_INCREMENT) << (new_state3 == 0)
     )
-    new_state4 = __pcg32_step(state[3], cond_incr)
 
     return (
         new_state1,
@@ -81,12 +78,19 @@ def __pcg128_twos(value: BigUInt) -> BigUInt:
         )
     ) + BigUInt(1)
 
-    return wide_value_compl & BigUInt.from_bytes(
-        b"\x00\x00\x00\x00\x00\x00\x00\x00"
+    return BigUInt.from_bytes(
+        wide_value_compl.bytes
+        & b"\x00\x00\x00\x00\x00\x00\x00\x00"
         + b"\x00\x00\x00\x00\x00\x00\x00\x00"
         + b"\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF"
         + b"\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF"
     )
+    # return wide_value_compl & BigUInt.from_bytes(
+    #     b"\x00\x00\x00\x00\x00\x00\x00\x00"
+    #     + b"\x00\x00\x00\x00\x00\x00\x00\x00"
+    #     + b"\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF"
+    #     + b"\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF"
+    # )
 
 
 @subroutine

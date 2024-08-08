@@ -29,7 +29,7 @@ __twosComplement:
 	byte 0x
 	dupn 3
 
-	// contracts/lib-pcg32-ts.algo.ts:6
+	// contracts\lib-pcg32-ts.algo.ts:6
 	// addwResult = addw(~value, 1)
 	frame_dig -1 // value: uint64
 	~
@@ -38,7 +38,7 @@ __twosComplement:
 	frame_bury 2 // addwResult low: uint64
 	frame_bury 3 // addwResult high: uint64
 
-	// contracts/lib-pcg32-ts.algo.ts:7
+	// contracts\lib-pcg32-ts.algo.ts:7
 	// return addwResult.low;
 	frame_dig 2 // addwResult low: uint64
 
@@ -53,7 +53,7 @@ __twosComplement:
 __maskToUint32:
 	proto 1 1
 
-	// contracts/lib-pcg32-ts.algo.ts:11
+	// contracts\lib-pcg32-ts.algo.ts:11
 	// return value & 4294967295;
 	frame_dig -1 // value: uint64
 	int 4294967295
@@ -68,7 +68,7 @@ __pcg32Step:
 	byte 0x
 	dupn 7
 
-	// contracts/lib-pcg32-ts.algo.ts:15
+	// contracts\lib-pcg32-ts.algo.ts:15
 	// mulwResult = mulw(state, 6364136223846793005)
 	frame_dig -1 // state: uint64
 	int 6364136223846793005
@@ -76,7 +76,7 @@ __pcg32Step:
 	frame_bury 2 // mulwResult low: uint64
 	frame_bury 3 // mulwResult high: uint64
 
-	// contracts/lib-pcg32-ts.algo.ts:16
+	// contracts\lib-pcg32-ts.algo.ts:16
 	// addwResult = addw(mulwResult.low, incr)
 	frame_dig 2 // mulwResult low: uint64
 	frame_dig -2 // incr: uint64
@@ -84,7 +84,7 @@ __pcg32Step:
 	frame_bury 6 // addwResult low: uint64
 	frame_bury 7 // addwResult high: uint64
 
-	// contracts/lib-pcg32-ts.algo.ts:18
+	// contracts\lib-pcg32-ts.algo.ts:18
 	// return addwResult.low;
 	frame_dig 6 // addwResult low: uint64
 
@@ -99,7 +99,7 @@ __pcg32Step:
 __pcg32Rotation:
 	proto 2 1
 
-	// contracts/lib-pcg32-ts.algo.ts:22
+	// contracts\lib-pcg32-ts.algo.ts:22
 	// return (value >> rot) | this.__maskToUint32(value << (this.__twosComplement(rot) & 31));
 	frame_dig -1 // value: uint64
 	frame_dig -2 // rot: uint64
@@ -118,7 +118,7 @@ __pcg32Rotation:
 __pcg32Output:
 	proto 1 1
 
-	// contracts/lib-pcg32-ts.algo.ts:26
+	// contracts\lib-pcg32-ts.algo.ts:26
 	// return this.__pcg32Rotation(this.__maskToUint32(((state >> 18) ^ state) >> 27), state >> 59);
 	frame_dig -1 // state: uint64
 	int 59
@@ -138,7 +138,7 @@ __pcg32Output:
 __pcg32Random:
 	proto 1 1
 
-	// contracts/lib-pcg32-ts.algo.ts:30
+	// contracts\lib-pcg32-ts.algo.ts:30
 	// return [this.__pcg32Step(state, 1442695040888963407), this.__pcg32Output(state)];
 	int 1442695040888963407
 	frame_dig -1 // state: uint64
@@ -158,14 +158,14 @@ __pcg32Init:
 	byte 0x
 	dupn 4
 
-	// contracts/lib-pcg32-ts.algo.ts:34
+	// contracts\lib-pcg32-ts.algo.ts:34
 	// state = this.__pcg32Step(0, incr)
 	frame_dig -2 // incr: uint64
 	int 0
 	callsub __pcg32Step
 	frame_bury 0 // state: uint64
 
-	// contracts/lib-pcg32-ts.algo.ts:35
+	// contracts\lib-pcg32-ts.algo.ts:35
 	// addwResult = addw(state, initialState)
 	frame_dig 0 // state: uint64
 	frame_dig -1 // initialState: uint64
@@ -173,7 +173,7 @@ __pcg32Init:
 	frame_bury 3 // addwResult low: uint64
 	frame_bury 4 // addwResult high: uint64
 
-	// contracts/lib-pcg32-ts.algo.ts:37
+	// contracts\lib-pcg32-ts.algo.ts:37
 	// return this.__pcg32Step(addwResult.low, incr);
 	frame_dig -2 // incr: uint64
 	frame_dig 3 // addwResult low: uint64
@@ -190,7 +190,7 @@ __pcg32Init:
 pcg32Init:
 	proto 1 1
 
-	// contracts/lib-pcg32-ts.algo.ts:41
+	// contracts\lib-pcg32-ts.algo.ts:41
 	// return this.__pcg32Init(initialState, 1442695040888963407);
 	int 1442695040888963407
 	frame_dig -1 // initialState: uint64
@@ -205,19 +205,19 @@ pcg32Random:
 	byte 0x
 	dupn 8
 
-	// contracts/lib-pcg32-ts.algo.ts:51
+	// contracts\lib-pcg32-ts.algo.ts:51
 	// result: bytes = ''
 	byte 0x // ""
 	frame_bury 0 // result: bytes
 
-	// contracts/lib-pcg32-ts.algo.ts:55
+	// contracts\lib-pcg32-ts.algo.ts:55
 	// assert(length < 65536)
 	frame_dig -5 // length: uint64
 	int 65536
 	<
 	assert
 
-	// contracts/lib-pcg32-ts.algo.ts:57
+	// contracts\lib-pcg32-ts.algo.ts:57
 	// assert(bitSize === 8 || bitSize === 16 || bitSize === 32)
 	frame_dig -2 // bitSize: uint64
 	int 8
@@ -240,14 +240,14 @@ pcg32Random:
 *skip_or1:
 	assert
 
-	// contracts/lib-pcg32-ts.algo.ts:58
+	// contracts\lib-pcg32-ts.algo.ts:58
 	// byteSize = bitSize >> 3
 	frame_dig -2 // bitSize: uint64
 	int 3
 	shr
 	frame_bury 3 // byteSize: uint64
 
-	// contracts/lib-pcg32-ts.algo.ts:59
+	// contracts\lib-pcg32-ts.algo.ts:59
 	// truncateStartCached = 8 - byteSize
 	int 8
 	frame_dig 3 // byteSize: uint64
@@ -255,7 +255,7 @@ pcg32Random:
 	frame_bury 4 // truncateStartCached: uint64
 
 	// *if0_condition
-	// contracts/lib-pcg32-ts.algo.ts:61
+	// contracts\lib-pcg32-ts.algo.ts:61
 	// lowerBound === 0 && upperBound === 0
 	frame_dig -3 // lowerBound: uint64
 	int 0
@@ -271,33 +271,33 @@ pcg32Random:
 	bz *if0_else
 
 	// *if0_consequent
-	// contracts/lib-pcg32-ts.algo.ts:62
+	// contracts\lib-pcg32-ts.algo.ts:62
 	// for (let i = 0; i < length; i = i + 1)
 	int 0
 	frame_bury 5 // i: uint64
 
 *for_0:
-	// contracts/lib-pcg32-ts.algo.ts:62
+	// contracts\lib-pcg32-ts.algo.ts:62
 	// i < length
 	frame_dig 5 // i: uint64
 	frame_dig -5 // length: uint64
 	<
 	bz *for_0_end
 
-	// contracts/lib-pcg32-ts.algo.ts:63
+	// contracts\lib-pcg32-ts.algo.ts:63
 	// prn = this.__pcg32Random(state)
 	frame_dig -1 // state: uint64
 	callsub __pcg32Random
 	frame_bury 6 // prn: (uint64,uint64)
 
-	// contracts/lib-pcg32-ts.algo.ts:64
+	// contracts\lib-pcg32-ts.algo.ts:64
 	// state = prn[0]
 	frame_dig 6 // prn: (uint64,uint64)
 	extract 0 8
 	btoi
 	frame_bury -1 // state: uint64
 
-	// contracts/lib-pcg32-ts.algo.ts:65
+	// contracts\lib-pcg32-ts.algo.ts:65
 	// result += extract3(itob(prn[1]), truncateStartCached, byteSize)
 	frame_dig 0 // result: bytes
 	frame_dig 6 // prn: (uint64,uint64)
@@ -311,7 +311,7 @@ pcg32Random:
 	frame_bury 0 // result: bytes
 
 *for_0_continue:
-	// contracts/lib-pcg32-ts.algo.ts:62
+	// contracts\lib-pcg32-ts.algo.ts:62
 	// i = i + 1
 	frame_dig 5 // i: uint64
 	int 1
@@ -324,7 +324,7 @@ pcg32Random:
 
 *if0_else:
 	// *if1_condition
-	// contracts/lib-pcg32-ts.algo.ts:68
+	// contracts\lib-pcg32-ts.algo.ts:68
 	// upperBound !== 0
 	frame_dig -4 // upperBound: uint64
 	int 0
@@ -332,14 +332,14 @@ pcg32Random:
 	bz *if1_else
 
 	// *if1_consequent
-	// contracts/lib-pcg32-ts.algo.ts:69
+	// contracts\lib-pcg32-ts.algo.ts:69
 	// assert(upperBound > 1)
 	frame_dig -4 // upperBound: uint64
 	int 1
 	>
 	assert
 
-	// contracts/lib-pcg32-ts.algo.ts:70
+	// contracts\lib-pcg32-ts.algo.ts:70
 	// assert(upperBound < 1 << bitSize)
 	frame_dig -4 // upperBound: uint64
 	int 1
@@ -348,7 +348,7 @@ pcg32Random:
 	<
 	assert
 
-	// contracts/lib-pcg32-ts.algo.ts:72
+	// contracts\lib-pcg32-ts.algo.ts:72
 	// assert(lowerBound < upperBound - 1)
 	frame_dig -3 // lowerBound: uint64
 	frame_dig -4 // upperBound: uint64
@@ -357,7 +357,7 @@ pcg32Random:
 	<
 	assert
 
-	// contracts/lib-pcg32-ts.algo.ts:74
+	// contracts\lib-pcg32-ts.algo.ts:74
 	// absoluteBound = upperBound - lowerBound
 	frame_dig -4 // upperBound: uint64
 	frame_dig -3 // lowerBound: uint64
@@ -366,7 +366,7 @@ pcg32Random:
 	b *if1_end
 
 *if1_else:
-	// contracts/lib-pcg32-ts.algo.ts:76
+	// contracts\lib-pcg32-ts.algo.ts:76
 	// assert(lowerBound < (1 << bitSize) - 1)
 	frame_dig -3 // lowerBound: uint64
 	int 1
@@ -377,7 +377,7 @@ pcg32Random:
 	<
 	assert
 
-	// contracts/lib-pcg32-ts.algo.ts:78
+	// contracts\lib-pcg32-ts.algo.ts:78
 	// absoluteBound = (1 << bitSize) - lowerBound
 	int 1
 	frame_dig -2 // bitSize: uint64
@@ -387,7 +387,7 @@ pcg32Random:
 	frame_bury 1 // absoluteBound: uint64
 
 *if1_end:
-	// contracts/lib-pcg32-ts.algo.ts:81
+	// contracts\lib-pcg32-ts.algo.ts:81
 	// threshold = this.__maskToUint32(this.__twosComplement(absoluteBound)) % absoluteBound
 	frame_dig 1 // absoluteBound: uint64
 	callsub __twosComplement
@@ -396,13 +396,13 @@ pcg32Random:
 	%
 	frame_bury 2 // threshold: uint64
 
-	// contracts/lib-pcg32-ts.algo.ts:83
+	// contracts\lib-pcg32-ts.algo.ts:83
 	// for (let i = 0; i < length; i = i + 1)
 	int 0
 	frame_bury 7 // i: uint64
 
 *for_1:
-	// contracts/lib-pcg32-ts.algo.ts:83
+	// contracts\lib-pcg32-ts.algo.ts:83
 	// i < length
 	frame_dig 7 // i: uint64
 	frame_dig -5 // length: uint64
@@ -412,18 +412,18 @@ pcg32Random:
 *while_0:
 
 *while_0_continue:
-	// contracts/lib-pcg32-ts.algo.ts:86
+	// contracts\lib-pcg32-ts.algo.ts:86
 	// true
 	int 1
 	bz *while_0_end
 
-	// contracts/lib-pcg32-ts.algo.ts:87
+	// contracts\lib-pcg32-ts.algo.ts:87
 	// prn = this.__pcg32Random(state)
 	frame_dig -1 // state: uint64
 	callsub __pcg32Random
 	frame_bury 8 // prn: [uint64, uint64]
 
-	// contracts/lib-pcg32-ts.algo.ts:88
+	// contracts\lib-pcg32-ts.algo.ts:88
 	// state = prn[0]
 	frame_dig 8 // prn: [uint64, uint64]
 	extract 0 8
@@ -431,7 +431,7 @@ pcg32Random:
 	frame_bury -1 // state: uint64
 
 	// *if2_condition
-	// contracts/lib-pcg32-ts.algo.ts:89
+	// contracts\lib-pcg32-ts.algo.ts:89
 	// prn[1] >= threshold
 	frame_dig 8 // prn: [uint64, uint64]
 	extract 8 8
@@ -447,7 +447,7 @@ pcg32Random:
 	b *while_0
 
 *while_0_end:
-	// contracts/lib-pcg32-ts.algo.ts:94
+	// contracts\lib-pcg32-ts.algo.ts:94
 	// result += extract3(itob((prn[1] % absoluteBound) + lowerBound), truncateStartCached, byteSize)
 	frame_dig 0 // result: bytes
 	frame_dig 8 // prn: [uint64, uint64]
@@ -465,7 +465,7 @@ pcg32Random:
 	frame_bury 0 // result: bytes
 
 *for_1_continue:
-	// contracts/lib-pcg32-ts.algo.ts:83
+	// contracts\lib-pcg32-ts.algo.ts:83
 	// i = i + 1
 	frame_dig 7 // i: uint64
 	int 1
@@ -476,7 +476,7 @@ pcg32Random:
 *for_1_end:
 
 *if0_end:
-	// contracts/lib-pcg32-ts.algo.ts:98
+	// contracts\lib-pcg32-ts.algo.ts:98
 	// return [state, result];
 	byte 0x // initial head
 	byte 0x // initial tail
@@ -510,7 +510,7 @@ __pcg64Random:
 	byte 0x
 	dup
 
-	// contracts/lib-pcg64-ts.algo.ts:6
+	// contracts\lib-pcg64-ts.algo.ts:6
 	// prn1 = this.__pcg32Random(state[0])
 	frame_dig -1 // state: [uint64, uint64]
 	extract 0 8
@@ -519,7 +519,7 @@ __pcg64Random:
 	frame_bury 0 // prn1: (uint64,uint64)
 
 	// *if3_condition
-	// contracts/lib-pcg64-ts.algo.ts:8
+	// contracts\lib-pcg64-ts.algo.ts:8
 	// prn1[0] === 0
 	frame_dig 0 // prn1: (uint64,uint64)
 	extract 0 8
@@ -529,7 +529,7 @@ __pcg64Random:
 	bz *if3_else
 
 	// *if3_consequent
-	// contracts/lib-pcg64-ts.algo.ts:9
+	// contracts\lib-pcg64-ts.algo.ts:9
 	// prn2 = this.__pcg32Step(state[1], 1442695040888963409 << 1)
 	int 1442695040888963409
 	int 1
@@ -542,7 +542,7 @@ __pcg64Random:
 	b *if3_end
 
 *if3_else:
-	// contracts/lib-pcg64-ts.algo.ts:11
+	// contracts\lib-pcg64-ts.algo.ts:11
 	// prn2 = this.__pcg32Step(state[1], 1442695040888963409)
 	int 1442695040888963409
 	frame_dig -1 // state: [uint64, uint64]
@@ -552,7 +552,7 @@ __pcg64Random:
 	frame_bury 1 // prn2: uint64
 
 *if3_end:
-	// contracts/lib-pcg64-ts.algo.ts:14
+	// contracts\lib-pcg64-ts.algo.ts:14
 	// return [[prn1[0], prn2], (prn1[1] << 32) | this.__pcg32Output(state[1])];
 	frame_dig 0 // prn1: (uint64,uint64)
 	extract 0 8
@@ -585,7 +585,7 @@ __pcg64Random:
 pcg64Init:
 	proto 1 1
 
-	// contracts/lib-pcg64-ts.algo.ts:18
+	// contracts\lib-pcg64-ts.algo.ts:18
 	// return [this.__pcg32Init(state[0], 1442695040888963407), this.__pcg32Init(state[1], 1442695040888963409)];
 	int 1442695040888963407
 	frame_dig -1 // state: [uint64, uint64]
@@ -610,25 +610,25 @@ pcg64Random:
 	byte 0x
 	dupn 8
 
-	// contracts/lib-pcg64-ts.algo.ts:27
+	// contracts\lib-pcg64-ts.algo.ts:27
 	// result: uint64[] = []
 	byte 0x
 	frame_bury 0 // result: uint64[]
 
-	// contracts/lib-pcg64-ts.algo.ts:31
+	// contracts\lib-pcg64-ts.algo.ts:31
 	// assert(length < 65536)
 	frame_dig -4 // length: uint64
 	int 65536
 	<
 	assert
 
-	// contracts/lib-pcg64-ts.algo.ts:35
+	// contracts\lib-pcg64-ts.algo.ts:35
 	// newState = state
 	frame_dig -1 // state: [uint64, uint64]
 	frame_bury 3 // newState: [uint64, uint64]
 
 	// *if4_condition
-	// contracts/lib-pcg64-ts.algo.ts:37
+	// contracts\lib-pcg64-ts.algo.ts:37
 	// lowerBound === 0 && upperBound === 0
 	frame_dig -2 // lowerBound: uint64
 	int 0
@@ -644,39 +644,39 @@ pcg64Random:
 	bz *if4_else
 
 	// *if4_consequent
-	// contracts/lib-pcg64-ts.algo.ts:38
+	// contracts\lib-pcg64-ts.algo.ts:38
 	// for (let i = 0; i < length; i = i + 1)
 	int 0
 	frame_bury 5 // i: uint64
 
 *for_2:
-	// contracts/lib-pcg64-ts.algo.ts:38
+	// contracts\lib-pcg64-ts.algo.ts:38
 	// i < length
 	frame_dig 5 // i: uint64
 	frame_dig -4 // length: uint64
 	<
 	bz *for_2_end
 
-	// contracts/lib-pcg64-ts.algo.ts:39
+	// contracts\lib-pcg64-ts.algo.ts:39
 	// temp = this.__pcg64Random(newState)
 	frame_dig 3 // newState: [uint64, uint64]
 	callsub __pcg64Random
 	frame_bury 6 // temp: ((uint64,uint64),uint64)
 
-	// contracts/lib-pcg64-ts.algo.ts:40
+	// contracts\lib-pcg64-ts.algo.ts:40
 	// newState = temp[0]
 	frame_dig 6 // temp: ((uint64,uint64),uint64)
 	extract 0 16
 	frame_bury 3 // newState: [uint64, uint64]
 
-	// contracts/lib-pcg64-ts.algo.ts:41
+	// contracts\lib-pcg64-ts.algo.ts:41
 	// n = temp[1]
 	frame_dig 6 // temp: ((uint64,uint64),uint64)
 	extract 16 8
 	btoi
 	frame_bury 4 // n: uint64
 
-	// contracts/lib-pcg64-ts.algo.ts:42
+	// contracts\lib-pcg64-ts.algo.ts:42
 	// result.push(n)
 	frame_dig 0 // result: uint64[]
 	frame_dig 4 // n: uint64
@@ -685,7 +685,7 @@ pcg64Random:
 	frame_bury 0 // result: uint64[]
 
 *for_2_continue:
-	// contracts/lib-pcg64-ts.algo.ts:38
+	// contracts\lib-pcg64-ts.algo.ts:38
 	// i = i + 1
 	frame_dig 5 // i: uint64
 	int 1
@@ -698,7 +698,7 @@ pcg64Random:
 
 *if4_else:
 	// *if5_condition
-	// contracts/lib-pcg64-ts.algo.ts:45
+	// contracts\lib-pcg64-ts.algo.ts:45
 	// upperBound !== 0
 	frame_dig -3 // upperBound: uint64
 	int 0
@@ -706,14 +706,14 @@ pcg64Random:
 	bz *if5_else
 
 	// *if5_consequent
-	// contracts/lib-pcg64-ts.algo.ts:46
+	// contracts\lib-pcg64-ts.algo.ts:46
 	// assert(upperBound > 1)
 	frame_dig -3 // upperBound: uint64
 	int 1
 	>
 	assert
 
-	// contracts/lib-pcg64-ts.algo.ts:47
+	// contracts\lib-pcg64-ts.algo.ts:47
 	// assert(lowerBound < upperBound - 1)
 	frame_dig -2 // lowerBound: uint64
 	frame_dig -3 // upperBound: uint64
@@ -722,7 +722,7 @@ pcg64Random:
 	<
 	assert
 
-	// contracts/lib-pcg64-ts.algo.ts:49
+	// contracts\lib-pcg64-ts.algo.ts:49
 	// absoluteBound = upperBound - lowerBound
 	frame_dig -3 // upperBound: uint64
 	frame_dig -2 // lowerBound: uint64
@@ -731,14 +731,14 @@ pcg64Random:
 	b *if5_end
 
 *if5_else:
-	// contracts/lib-pcg64-ts.algo.ts:51
+	// contracts\lib-pcg64-ts.algo.ts:51
 	// assert(lowerBound < 18446744073709551615)
 	frame_dig -2 // lowerBound: uint64
 	int 18446744073709551615
 	<
 	assert
 
-	// contracts/lib-pcg64-ts.algo.ts:53
+	// contracts\lib-pcg64-ts.algo.ts:53
 	// absoluteBound = ((18446744073709551616 as uint128) - (lowerBound as uint128)) as uint64
 	byte 0x00000000000000010000000000000000
 	frame_dig -2 // lowerBound: uint64
@@ -762,7 +762,7 @@ pcg64Random:
 	frame_bury 1 // absoluteBound: uint64
 
 *if5_end:
-	// contracts/lib-pcg64-ts.algo.ts:56
+	// contracts\lib-pcg64-ts.algo.ts:56
 	// threshold = this.__twosComplement(absoluteBound) % absoluteBound
 	frame_dig 1 // absoluteBound: uint64
 	callsub __twosComplement
@@ -770,13 +770,13 @@ pcg64Random:
 	%
 	frame_bury 2 // threshold: uint64
 
-	// contracts/lib-pcg64-ts.algo.ts:58
+	// contracts\lib-pcg64-ts.algo.ts:58
 	// for (let i = 0; i < length; i = i + 1)
 	int 0
 	frame_bury 7 // i: uint64
 
 *for_3:
-	// contracts/lib-pcg64-ts.algo.ts:58
+	// contracts\lib-pcg64-ts.algo.ts:58
 	// i < length
 	frame_dig 7 // i: uint64
 	frame_dig -4 // length: uint64
@@ -786,24 +786,24 @@ pcg64Random:
 *while_1:
 
 *while_1_continue:
-	// contracts/lib-pcg64-ts.algo.ts:60
+	// contracts\lib-pcg64-ts.algo.ts:60
 	// true
 	int 1
 	bz *while_1_end
 
-	// contracts/lib-pcg64-ts.algo.ts:61
+	// contracts\lib-pcg64-ts.algo.ts:61
 	// temp = this.__pcg64Random(newState)
 	frame_dig 3 // newState: [uint64, uint64]
 	callsub __pcg64Random
 	frame_bury 8 // temp: ((uint64,uint64),uint64)
 
-	// contracts/lib-pcg64-ts.algo.ts:62
+	// contracts\lib-pcg64-ts.algo.ts:62
 	// newState = temp[0]
 	frame_dig 8 // temp: ((uint64,uint64),uint64)
 	extract 0 16
 	frame_bury 3 // newState: [uint64, uint64]
 
-	// contracts/lib-pcg64-ts.algo.ts:63
+	// contracts\lib-pcg64-ts.algo.ts:63
 	// n = temp[1]
 	frame_dig 8 // temp: ((uint64,uint64),uint64)
 	extract 16 8
@@ -811,7 +811,7 @@ pcg64Random:
 	frame_bury 4 // n: uint64
 
 	// *if6_condition
-	// contracts/lib-pcg64-ts.algo.ts:64
+	// contracts\lib-pcg64-ts.algo.ts:64
 	// n >= threshold
 	frame_dig 4 // n: uint64
 	frame_dig 2 // threshold: uint64
@@ -825,7 +825,7 @@ pcg64Random:
 	b *while_1
 
 *while_1_end:
-	// contracts/lib-pcg64-ts.algo.ts:68
+	// contracts\lib-pcg64-ts.algo.ts:68
 	// result.push((n % absoluteBound) + lowerBound)
 	frame_dig 0 // result: uint64[]
 	frame_dig 4 // n: uint64
@@ -838,7 +838,7 @@ pcg64Random:
 	frame_bury 0 // result: uint64[]
 
 *for_3_continue:
-	// contracts/lib-pcg64-ts.algo.ts:58
+	// contracts\lib-pcg64-ts.algo.ts:58
 	// i = i + 1
 	frame_dig 7 // i: uint64
 	int 1
@@ -849,7 +849,7 @@ pcg64Random:
 *for_3_end:
 
 *if4_end:
-	// contracts/lib-pcg64-ts.algo.ts:72
+	// contracts\lib-pcg64-ts.algo.ts:72
 	// return [newState, result];
 	byte 0x // initial head
 	byte 0x // initial tail
@@ -923,7 +923,7 @@ bounded_rand_uint64:
 	// Push empty bytes after the frame pointer to reserve space for local variables
 	byte 0x
 
-	// contracts/lib-pcg64-ts-exposer.algo.ts:6
+	// contracts\lib-pcg64-ts-exposer.algo.ts:6
 	// rngState = this.pcg64Init([extractUint64(seed, 0), extractUint64(seed, 8)])
 	frame_dig -1 // seed: bytes<16>
 	int 0
@@ -937,7 +937,7 @@ bounded_rand_uint64:
 	callsub pcg64Init
 	frame_bury 0 // rngState: (uint64,uint64)
 
-	// contracts/lib-pcg64-ts-exposer.algo.ts:8
+	// contracts\lib-pcg64-ts-exposer.algo.ts:8
 	// return this.pcg64Random(rngState, lower_bound, upper_bound, length)[1];
 	frame_dig -4 // length: uint64
 	frame_dig -3 // upper_bound: uint64
