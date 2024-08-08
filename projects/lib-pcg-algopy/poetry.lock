@@ -1064,24 +1064,6 @@ files = [
 ]
 
 [[package]]
-name = "networkx"
-version = "3.3"
-description = "Python package for creating and manipulating graphs and networks"
-optional = false
-python-versions = ">=3.10"
-files = [
-    {file = "networkx-3.3-py3-none-any.whl", hash = "sha256:28575580c6ebdaf4505b22c6256a2b9de86b316dc63ba9e93abde3d78dfdbcf2"},
-    {file = "networkx-3.3.tar.gz", hash = "sha256:0c127d8b2f4865f59ae9cb8aafcd60b5c70f3241ebd66f7defad7c4ab90126c9"},
-]
-
-[package.extras]
-default = ["matplotlib (>=3.6)", "numpy (>=1.23)", "pandas (>=1.4)", "scipy (>=1.9,!=1.11.0,!=1.11.1)"]
-developer = ["changelist (==0.5)", "mypy (>=1.1)", "pre-commit (>=3.2)", "rtoml"]
-doc = ["myst-nb (>=1.0)", "numpydoc (>=1.7)", "pillow (>=9.4)", "pydata-sphinx-theme (>=0.14)", "sphinx (>=7)", "sphinx-gallery (>=0.14)", "texext (>=0.6.7)"]
-extra = ["lxml (>=4.6)", "pydot (>=2.0)", "pygraphviz (>=1.12)", "sympy (>=1.10)"]
-test = ["pytest (>=7.2)", "pytest-cov (>=4.0)"]
-
-[[package]]
 name = "nodeenv"
 version = "1.9.1"
 description = "Node.js virtual environment builder"
@@ -1239,24 +1221,24 @@ virtualenv = ">=20.10.0"
 
 [[package]]
 name = "puyapy"
-version = "1.0.1"
+version = "2.2.0"
 description = "An optimising compiler for Algorand Python"
 optional = false
 python-versions = "<4.0,>=3.12"
 files = [
-    {file = "puyapy-1.0.1-py3-none-any.whl", hash = "sha256:afef6d685d8aa4d19e97baed91a1e013913ee216f3f19ac00490f2e2c96032d5"},
+    {file = "puyapy-2.2.0-py3-none-any.whl", hash = "sha256:62bfd71bdbd67609cff2a75797671f32dec0eaae3a200045f2fe2f863181f93d"},
 ]
 
 [package.dependencies]
 attrs = ">=23.2.0,<24.0.0"
+colorama = {version = ">=0.4.6,<0.5.0", markers = "sys_platform == \"win32\""}
 docstring-parser = ">=0.14.1"
 immutabledict = ">=4.2.0,<5.0.0"
 mypy_extensions = ">=1.0.0,<2.0.0"
-networkx = ">=3.1,<4.0"
 packaging = ">=24.0,<25.0"
 pycryptodomex = ">=3.6.0,<4"
 structlog = ">=24.1.0,<25.0.0"
-typing-extensions = ">=4.10.0,<5.0.0"
+typing-extensions = ">=4.11.0,<5.0.0"
 
 [[package]]
 name = "py-algorand-sdk"
@@ -1857,4 +1839,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "52663354fb6f6ae75d20801ad511ddd000b2316f91a50ba2415ad61328ba3872"
+content-hash = "c169cc52ea41fdf01e59b1f3f3413e0e059b17a9fab0aba269d87bb48655ccb3"
