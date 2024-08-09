@@ -18,7 +18,7 @@ class LibPcg128ExposerAlgopy(arc4.ARC4Contract):
 
         return arc4.DynamicArray[arc4.UInt128].from_bytes(
             pcg128_random(state, lower_bound.native, upper_bound.native, length.native)[
-                4
+                1
             ]
         )
 

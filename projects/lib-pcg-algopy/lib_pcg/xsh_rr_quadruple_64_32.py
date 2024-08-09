@@ -1,3 +1,5 @@
+from typing import TypeAlias
+
 from algopy import BigUInt, Bytes, UInt64, arc4, op, subroutine, urange
 
 from lib_pcg.consts import (
@@ -13,9 +15,11 @@ from lib_pcg.xsh_rr_64_32 import (
     __pcg32_step,
 )
 
+PCG128STATE: TypeAlias = tuple[UInt64, UInt64, UInt64, UInt64]
+
 
 @subroutine
-def pcg128_init(seed: Bytes) -> tuple[UInt64, UInt64, UInt64, UInt64]:
+def pcg128_init(seed: Bytes) -> PCG128STATE:
     assert seed.length == 32
 
     return (
@@ -33,9 +37,7 @@ def pcg128_init(seed: Bytes) -> tuple[UInt64, UInt64, UInt64, UInt64]:
 
 
 @subroutine
-def __pcg128_random(
-    state: tuple[UInt64, UInt64, UInt64, UInt64]
-) -> tuple[UInt64, UInt64, UInt64, UInt64, BigUInt]:
+def __pcg128_random(state: PCG128STATE) -> tuple[PCG128STATE, BigUInt]:
     new_state1, rn1 = __pcg32_random(state[0])
 
     new_state2 = __pcg32_step(
@@ -51,10 +53,7 @@ def __pcg128_random(
     )
 
     return (
-        new_state1,
-        new_state2,
-        new_state3,
-        new_state4,
+        (new_state1, new_state2, new_state3, new_state4),
         BigUInt.from_bytes(
             op.itob(rn1 << 32 | __pcg32_output(state[1]))
             + op.itob(__pcg32_output(state[2]) << 32 | __pcg32_output(state[3]))
@@ -95,22 +94,19 @@ def __pcg128_twos(value: BigUInt) -> BigUInt:
 
 @subroutine
 def pcg128_random(
-    state: tuple[UInt64, UInt64, UInt64, UInt64],
+    state: PCG128STATE,
     lower_bound: BigUInt,
     upper_bound: BigUInt,
     length: UInt64,
-) -> tuple[UInt64, UInt64, UInt64, UInt64, Bytes]:
+) -> tuple[PCG128STATE, Bytes]:
     result = Bytes()
 
     assert length < 2**16
     result += arc4.UInt16(length).bytes
 
-    state1, state2, state3, state4 = state
     if lower_bound == 0 and upper_bound == 0:
         for i in urange(length):  # noqa: B007
-            state1, state2, state3, state4, n = __pcg128_random(
-                (state1, state2, state3, state4)
-            )
+            state, n = __pcg128_random(state)
 
             result += n.bytes
     else:
@@ -129,11 +125,9 @@ def pcg128_random(
 
         for i in urange(length):  # noqa: B007
             while True:
-                state1, state2, state3, state4, candidate = __pcg128_random(
-                    (state1, state2, state3, state4)
-                )
+                state, candidate = __pcg128_random(state)
                 if candidate >= threshold:
                     break
             result += arc4.UInt128((candidate % absolute_bound) + lower_bound).bytes
 
-    return state1, state2, state3, state4, result
+    return state, result

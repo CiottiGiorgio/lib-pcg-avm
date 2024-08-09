@@ -14,14 +14,14 @@ class LibPcg64ExposerAlgopy(arc4.ARC4Contract):
         upper_bound: arc4.UInt64,
         length: arc4.UInt16,
     ) -> arc4.DynamicArray[arc4.UInt64]:
-        state1, state2 = pcg64_init(
-            op.extract_uint64(seed.bytes, 0), op.extract_uint64(seed.bytes, 8)
+        state = pcg64_init(
+            (op.extract_uint64(seed.bytes, 0), op.extract_uint64(seed.bytes, 8))
         )
 
         return arc4.DynamicArray[arc4.UInt64].from_bytes(
-            pcg64_random(
-                state1, state2, lower_bound.native, upper_bound.native, length.native
-            )[2]
+            pcg64_random(state, lower_bound.native, upper_bound.native, length.native)[
+                1
+            ]
         )
 
     @arc4.baremethod(allow_actions=["UpdateApplication"])

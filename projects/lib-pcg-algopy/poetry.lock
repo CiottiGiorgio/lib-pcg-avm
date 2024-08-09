@@ -1224,21 +1224,26 @@ name = "puyapy"
 version = "2.2.0"
 description = "An optimising compiler for Algorand Python"
 optional = false
-python-versions = "<4.0,>=3.12"
-files = [
-    {file = "puyapy-2.2.0-py3-none-any.whl", hash = "sha256:62bfd71bdbd67609cff2a75797671f32dec0eaae3a200045f2fe2f863181f93d"},
-]
+python-versions = "^3.12"
+files = []
+develop = false
 
 [package.dependencies]
-attrs = ">=23.2.0,<24.0.0"
-colorama = {version = ">=0.4.6,<0.5.0", markers = "sys_platform == \"win32\""}
+attrs = "^23.2.0"
+colorama = {version = "^0.4.6", markers = "sys_platform == \"win32\""}
 docstring-parser = ">=0.14.1"
-immutabledict = ">=4.2.0,<5.0.0"
-mypy_extensions = ">=1.0.0,<2.0.0"
-packaging = ">=24.0,<25.0"
+immutabledict = "^4.2.0"
+mypy_extensions = "^1.0.0"
+packaging = "^24.0"
 pycryptodomex = ">=3.6.0,<4"
-structlog = ">=24.1.0,<25.0.0"
-typing-extensions = ">=4.11.0,<5.0.0"
+structlog = "^24.1.0"
+typing-extensions = "^4.11.0"
+
+[package.source]
+type = "git"
+url = "git@github.com:algorandfoundation/puya.git"
+reference = "HEAD"
+resolved_reference = "63b14b9ed2ad200f60e8874e4529ae53c140f1a0"
 
 [[package]]
 name = "py-algorand-sdk"
@@ -1839,4 +1844,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "c169cc52ea41fdf01e59b1f3f3413e0e059b17a9fab0aba269d87bb48655ccb3"
+content-hash = "3455dcaf890727ce698ad4963e2dc57722789f4621c5afc601d1ef22e2adf7c7"

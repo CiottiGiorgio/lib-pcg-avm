@@ -1,21 +1,25 @@
+from typing import TypeAlias
+
 from algopy import Bytes, UInt64, arc4, op, subroutine, urange
 
 from lib_pcg.consts import PCG_DEFAULT_INCREMENT, PCG_DEFAULT_MULTIPLIER
 
+PCG32STATE: TypeAlias = UInt64
+
 
 @subroutine
-def pcg32_init(initial_state: UInt64) -> UInt64:
+def pcg32_init(initial_state: PCG32STATE) -> PCG32STATE:
     return __pcg32_init(initial_state, UInt64(PCG_DEFAULT_INCREMENT))
 
 
 @subroutine
 def pcg32_random(
-    state: UInt64,
+    state: PCG32STATE,
     bit_size: UInt64,
     lower_bound: UInt64,
     upper_bound: UInt64,
     length: UInt64,
-) -> tuple[UInt64, Bytes]:
+) -> tuple[PCG32STATE, Bytes]:
     result = Bytes()
 
     assert length < 2**16
@@ -59,7 +63,7 @@ def pcg32_random(
 
 
 @subroutine
-def __pcg32_init(initial_state: UInt64, incr: UInt64) -> UInt64:
+def __pcg32_init(initial_state: PCG32STATE, incr: UInt64) -> PCG32STATE:
     state = __pcg32_step(UInt64(0), incr)
     _high_addw, state = op.addw(state, initial_state)
 
@@ -67,7 +71,7 @@ def __pcg32_init(initial_state: UInt64, incr: UInt64) -> UInt64:
 
 
 @subroutine
-def __pcg32_step(state: UInt64, incr: UInt64) -> UInt64:
+def __pcg32_step(state: PCG32STATE, incr: UInt64) -> PCG32STATE:
     _high_mul, low_mul = op.mulw(state, PCG_DEFAULT_MULTIPLIER)
     _high_add, low_add = op.addw(low_mul, incr)
 
@@ -75,12 +79,12 @@ def __pcg32_step(state: UInt64, incr: UInt64) -> UInt64:
 
 
 @subroutine
-def __pcg32_random(state: UInt64) -> tuple[UInt64, UInt64]:
+def __pcg32_random(state: PCG32STATE) -> tuple[PCG32STATE, UInt64]:
     return __pcg32_step(state, UInt64(PCG_DEFAULT_INCREMENT)), __pcg32_output(state)
 
 
 @subroutine
-def __pcg32_output(value: UInt64) -> UInt64:
+def __pcg32_output(value: PCG32STATE) -> UInt64:
     return __pcg32_rotation(
         __mask_to_32bits(((value >> 18) ^ value) >> 27), value >> 59
     )
