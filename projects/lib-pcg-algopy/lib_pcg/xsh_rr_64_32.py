@@ -8,8 +8,10 @@ PCG32STATE: TypeAlias = UInt64
 
 
 @subroutine
-def pcg32_init(initial_state: PCG32STATE) -> PCG32STATE:
-    return __pcg32_init(initial_state, UInt64(PCG_DEFAULT_INCREMENT))
+def pcg32_init(seed: Bytes) -> PCG32STATE:
+    assert seed.length == 8
+
+    return __pcg32_init(op.btoi(seed), UInt64(PCG_DEFAULT_INCREMENT))
 
 
 @subroutine

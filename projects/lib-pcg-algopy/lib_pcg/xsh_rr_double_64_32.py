@@ -15,10 +15,14 @@ PCG64STATE: TypeAlias = tuple[UInt64, UInt64]
 
 
 @subroutine
-def pcg64_init(state: PCG64STATE) -> PCG64STATE:
+def pcg64_init(seed: Bytes) -> PCG64STATE:
+    assert seed.length == 16
+
     return (
-        __pcg32_init(state[0], UInt64(PCG_DEFAULT_INCREMENT)),
-        __pcg32_init(state[1], UInt64(PCG_SECONDARY_DEFAULT_INCREMENT)),
+        __pcg32_init(op.extract_uint64(seed, 0), UInt64(PCG_DEFAULT_INCREMENT)),
+        __pcg32_init(
+            op.extract_uint64(seed, 8), UInt64(PCG_SECONDARY_DEFAULT_INCREMENT)
+        ),
     )
 
 

@@ -142,7 +142,7 @@ def lib_pcg32_ts_exposer_client(
     return client
 
 
-RNG_SEED = 42
+RNG_SEED = b"\x00\x00\x00\x00\x00\x00\x00\x2A"
 
 BIT_SIZES = [8, 16, 32]
 # These sequences are generated using the reference C implementation.
