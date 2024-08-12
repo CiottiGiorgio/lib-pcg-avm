@@ -19,7 +19,7 @@ ruff = "^0.1.6"
 mypy = "*"
 pip-audit = "*"
 pre-commit = "*"
-puyapy = {git = "git@github.com:algorandfoundation/puya.git"}
+puyapy = "^2.3.0"
 
 [build-system]
 requires = ["poetry-core"]

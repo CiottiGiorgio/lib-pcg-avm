@@ -77,19 +77,12 @@ def __pcg128_twos(value: BigUInt) -> BigUInt:
         )
     ) + BigUInt(1)
 
-    return BigUInt.from_bytes(
-        wide_value_compl.bytes
-        & b"\x00\x00\x00\x00\x00\x00\x00\x00"
+    return wide_value_compl & BigUInt.from_bytes(
+        b"\x00\x00\x00\x00\x00\x00\x00\x00"
         + b"\x00\x00\x00\x00\x00\x00\x00\x00"
         + b"\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF"
         + b"\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF"
     )
-    # return wide_value_compl & BigUInt.from_bytes(
-    #     b"\x00\x00\x00\x00\x00\x00\x00\x00"
-    #     + b"\x00\x00\x00\x00\x00\x00\x00\x00"
-    #     + b"\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF"
-    #     + b"\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF"
-    # )
 
 
 @subroutine
