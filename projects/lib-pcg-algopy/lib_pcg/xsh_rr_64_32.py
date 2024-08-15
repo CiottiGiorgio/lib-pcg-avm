@@ -17,36 +17,28 @@ def pcg32_init(seed: Bytes) -> PCG32STATE:
 @subroutine
 def pcg32_random(
     state: PCG32STATE,
-    bit_size: UInt64,
     lower_bound: UInt64,
     upper_bound: UInt64,
     length: UInt64,
-) -> tuple[PCG32STATE, Bytes]:
-    result = Bytes()
-
-    assert length < 2**16
-    result += arc4.UInt16(length).bytes
-
-    assert bit_size == 8 or bit_size == 16 or bit_size == 32
-    byte_size = bit_size >> 3
-    truncate_start_cached = 8 - byte_size
+) -> tuple[PCG32STATE, arc4.DynamicArray[arc4.UInt32]]:
+    result = arc4.DynamicArray[arc4.UInt32]()
 
     if lower_bound == 0 and upper_bound == 0:
         for i in urange(length):  # noqa: B007
             state, n = __pcg32_random(state)
 
-            result += op.extract(op.itob(n), truncate_start_cached, byte_size)
+            result.append(arc4.UInt32(n))
     else:
         if upper_bound != 0:
             assert upper_bound > 1
-            assert upper_bound < (1 << bit_size)
+            assert upper_bound < (1 << 32)
             assert lower_bound < (upper_bound - 1)
 
             absolute_bound = upper_bound - lower_bound
         else:
-            assert lower_bound < ((1 << bit_size) - 1)
+            assert lower_bound < ((1 << 32) - 1)
 
-            absolute_bound = (1 << bit_size) - lower_bound
+            absolute_bound = (1 << 32) - lower_bound
 
         threshold = __mask_to_32bits(__uint64_twos(absolute_bound)) % absolute_bound
 
@@ -55,13 +47,85 @@ def pcg32_random(
                 state, candidate = __pcg32_random(state)
                 if candidate >= threshold:
                     break
-            result += op.extract(
-                op.itob((candidate % absolute_bound) + lower_bound),
-                truncate_start_cached,
-                byte_size,
-            )
+            result.append(arc4.UInt32((candidate % absolute_bound) + lower_bound))
 
-    return state, result
+    return state, result.copy()
+
+
+@subroutine
+def pcg16_random(
+    state: PCG32STATE,
+    lower_bound: UInt64,
+    upper_bound: UInt64,
+    length: UInt64,
+) -> tuple[PCG32STATE, arc4.DynamicArray[arc4.UInt16]]:
+    result = arc4.DynamicArray[arc4.UInt16]()
+
+    if lower_bound == 0 and upper_bound == 0:
+        for i in urange(length):  # noqa: B007
+            state, n = __pcg32_random(state)
+
+            result.append(arc4.UInt16(__mask_to_16bits(n)))
+    else:
+        if upper_bound != 0:
+            assert upper_bound > 1
+            assert upper_bound < (1 << 16)
+            assert lower_bound < (upper_bound - 1)
+
+            absolute_bound = upper_bound - lower_bound
+        else:
+            assert lower_bound < ((1 << 16) - 1)
+
+            absolute_bound = (1 << 16) - lower_bound
+
+        threshold = __mask_to_32bits(__uint64_twos(absolute_bound)) % absolute_bound
+
+        for i in urange(length):  # noqa: B007
+            while True:
+                state, candidate = __pcg32_random(state)
+                if candidate >= threshold:
+                    break
+            result.append(arc4.UInt16((candidate % absolute_bound) + lower_bound))
+
+    return state, result.copy()
+
+
+@subroutine
+def pcg8_random(
+    state: PCG32STATE,
+    lower_bound: UInt64,
+    upper_bound: UInt64,
+    length: UInt64,
+) -> tuple[PCG32STATE, arc4.DynamicArray[arc4.UInt8]]:
+    result = arc4.DynamicArray[arc4.UInt8]()
+
+    if lower_bound == 0 and upper_bound == 0:
+        for i in urange(length):  # noqa: B007
+            state, n = __pcg32_random(state)
+
+            result.append(arc4.UInt8(__mask_to_8bits(n)))
+    else:
+        if upper_bound != 0:
+            assert upper_bound > 1
+            assert upper_bound < (1 << 8)
+            assert lower_bound < (upper_bound - 1)
+
+            absolute_bound = upper_bound - lower_bound
+        else:
+            assert lower_bound < ((1 << 8) - 1)
+
+            absolute_bound = (1 << 8) - lower_bound
+
+        threshold = __mask_to_32bits(__uint64_twos(absolute_bound)) % absolute_bound
+
+        for i in urange(length):  # noqa: B007
+            while True:
+                state, candidate = __pcg32_random(state)
+                if candidate >= threshold:
+                    break
+            result.append(arc4.UInt8((candidate % absolute_bound) + lower_bound))
+
+    return state, result.copy()
 
 
 @subroutine
@@ -99,11 +163,21 @@ def __pcg32_rotation(value: UInt64, rot: UInt64) -> UInt64:
 
 @subroutine
 def __uint64_twos(value: UInt64) -> UInt64:
-    addw_high, addw_low = op.addw(~value, 1)
+    _addw_high, addw_low = op.addw(~value, 1)
 
     return addw_low
 
 
 @subroutine
 def __mask_to_32bits(value: UInt64) -> UInt64:
-    return value & ((2**32) - 1)
+    return value & ((1 << 32) - 1)
+
+
+@subroutine
+def __mask_to_16bits(value: UInt64) -> UInt64:
+    return value & ((1 << 16) - 1)
+
+
+@subroutine
+def __mask_to_8bits(value: UInt64) -> UInt64:
+    return value & ((1 << 8) - 1)
