@@ -581,11 +581,10 @@ pcg16_random_for_header@3:
     swap
     frame_bury -4
     // lib_pcg/xsh_rr_64_32.py:68
-    // result.append(arc4.UInt16(__mask_to_16bits(n)))
+    // result.append(arc4.UInt16(n))
     frame_dig 4
     extract 2 0
     swap
-    callsub __mask_to_16bits
     itob
     extract 6 2
     concat
@@ -731,20 +730,6 @@ pcg16_random_after_if_else@20:
     retsub
 
 
-// lib_pcg.xsh_rr_64_32.__mask_to_16bits(value: uint64) -> uint64:
-__mask_to_16bits:
-    // lib_pcg/xsh_rr_64_32.py:176-177
-    // @subroutine
-    // def __mask_to_16bits(value: UInt64) -> UInt64:
-    proto 1 1
-    // lib_pcg/xsh_rr_64_32.py:178
-    // return value & ((1 << 16) - 1)
-    frame_dig -1
-    int 65535
-    &
-    retsub
-
-
 // smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgopy.bounded_rand_uint8(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
 bounded_rand_uint8:
     // smart_contracts/lib_pcg32_exposer/contract.py:41-48
@@ -821,11 +806,10 @@ pcg8_random_for_header@3:
     swap
     frame_bury -4
     // lib_pcg/xsh_rr_64_32.py:106
-    // result.append(arc4.UInt8(__mask_to_8bits(n)))
+    // result.append(arc4.UInt8(n))
     frame_dig 4
     extract 2 0
     swap
-    callsub __mask_to_8bits
     itob
     extract 7 1
     concat
@@ -964,20 +948,6 @@ pcg8_random_after_if_else@20:
     frame_dig 4
     frame_bury 1
     frame_bury 0
-    retsub
-
-
-// lib_pcg.xsh_rr_64_32.__mask_to_8bits(value: uint64) -> uint64:
-__mask_to_8bits:
-    // lib_pcg/xsh_rr_64_32.py:181-182
-    // @subroutine
-    // def __mask_to_8bits(value: UInt64) -> UInt64:
-    proto 1 1
-    // lib_pcg/xsh_rr_64_32.py:183
-    // return value & ((1 << 8) - 1)
-    frame_dig -1
-    int 255
-    &
     retsub
 
 

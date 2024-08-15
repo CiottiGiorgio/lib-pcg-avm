@@ -65,7 +65,7 @@ def pcg16_random(
         for i in urange(length):  # noqa: B007
             state, n = __pcg32_random(state)
 
-            result.append(arc4.UInt16(__mask_to_16bits(n)))
+            result.append(arc4.UInt16(n))
     else:
         if upper_bound != 0:
             assert upper_bound > 1
@@ -103,7 +103,7 @@ def pcg8_random(
         for i in urange(length):  # noqa: B007
             state, n = __pcg32_random(state)
 
-            result.append(arc4.UInt8(__mask_to_8bits(n)))
+            result.append(arc4.UInt8(n))
     else:
         if upper_bound != 0:
             assert upper_bound > 1
@@ -171,13 +171,3 @@ def __uint64_twos(value: UInt64) -> UInt64:
 @subroutine
 def __mask_to_32bits(value: UInt64) -> UInt64:
     return value & ((1 << 32) - 1)
-
-
-@subroutine
-def __mask_to_16bits(value: UInt64) -> UInt64:
-    return value & ((1 << 16) - 1)
-
-
-@subroutine
-def __mask_to_8bits(value: UInt64) -> UInt64:
-    return value & ((1 << 8) - 1)
