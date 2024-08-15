@@ -16,11 +16,11 @@ class LibPcg128ExposerAlgopy(arc4.ARC4Contract):
     ) -> arc4.DynamicArray[arc4.UInt128]:
         state = pcg128_init(seed.bytes)
 
-        return arc4.DynamicArray[arc4.UInt128].from_bytes(
-            pcg128_random(state, lower_bound.native, upper_bound.native, length.native)[
-                1
-            ]
+        state, sequence = pcg128_random(
+            state, lower_bound.native, upper_bound.native, length.native
         )
+
+        return sequence
 
     @arc4.baremethod(allow_actions=["UpdateApplication"])
     def update(self) -> None:

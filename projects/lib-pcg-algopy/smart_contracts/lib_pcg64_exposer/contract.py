@@ -16,11 +16,11 @@ class LibPcg64ExposerAlgopy(arc4.ARC4Contract):
     ) -> arc4.DynamicArray[arc4.UInt64]:
         state = pcg64_init(seed.bytes)
 
-        return arc4.DynamicArray[arc4.UInt64].from_bytes(
-            pcg64_random(state, lower_bound.native, upper_bound.native, length.native)[
-                1
-            ]
+        state, sequence = pcg64_random(
+            state, lower_bound.native, upper_bound.native, length.native
         )
+
+        return sequence
 
     @arc4.baremethod(allow_actions=["UpdateApplication"])
     def update(self) -> None:

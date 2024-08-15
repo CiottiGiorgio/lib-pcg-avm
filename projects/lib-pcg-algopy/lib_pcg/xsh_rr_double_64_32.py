@@ -43,17 +43,14 @@ def pcg64_random(
     lower_bound: UInt64,
     upper_bound: UInt64,
     length: UInt64,
-) -> tuple[PCG64STATE, Bytes]:
-    result = Bytes()
-
-    assert length < 2**16
-    result += arc4.UInt16(length).bytes
+) -> tuple[PCG64STATE, arc4.DynamicArray[arc4.UInt64]]:
+    result = arc4.DynamicArray[arc4.UInt64]()
 
     if lower_bound == 0 and upper_bound == 0:
         for i in urange(length):  # noqa: B007
             state, n = __pcg64_random(state)
 
-            result += op.itob(n)
+            result.append(arc4.UInt64(n))
     else:
         if upper_bound != 0:
             assert upper_bound > 1
@@ -61,9 +58,9 @@ def pcg64_random(
 
             absolute_bound = upper_bound - lower_bound
         else:
-            assert lower_bound < (2**64) - 1
+            assert lower_bound < (1 << 64) - 1
 
-            absolute_bound = op.btoi((BigUInt(2**64) - BigUInt(lower_bound)).bytes)
+            absolute_bound = op.btoi((BigUInt(1 << 64) - BigUInt(lower_bound)).bytes)
 
         threshold = __uint64_twos(absolute_bound) % absolute_bound
 
@@ -72,6 +69,6 @@ def pcg64_random(
                 state, candidate = __pcg64_random(state)
                 if candidate >= threshold:
                     break
-            result += op.itob((candidate % absolute_bound) + lower_bound)
+            result.append(arc4.UInt64((candidate % absolute_bound) + lower_bound))
 
-    return state, result
+    return state, result.copy()

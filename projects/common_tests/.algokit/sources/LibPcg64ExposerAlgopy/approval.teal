@@ -83,24 +83,24 @@ bounded_rand_uint64:
     callsub pcg64_init
     swap
     // smart_contracts/lib_pcg64_exposer/contract.py:20
-    // pcg64_random(state, lower_bound.native, upper_bound.native, length.native)[
+    // state, lower_bound.native, upper_bound.native, length.native
     frame_dig -3
     btoi
     frame_dig -2
     btoi
     frame_dig -1
     btoi
+    // smart_contracts/lib_pcg64_exposer/contract.py:19-21
+    // state, sequence = pcg64_random(
+    //     state, lower_bound.native, upper_bound.native, length.native
+    // )
     uncover 3
     cover 4
     callsub pcg64_random
     cover 2
     popn 2
-    // smart_contracts/lib_pcg64_exposer/contract.py:19-23
-    // return arc4.DynamicArray[arc4.UInt64].from_bytes(
-    //     pcg64_random(state, lower_bound.native, upper_bound.native, length.native)[
-    //         1
-    //     ]
-    // )
+    // smart_contracts/lib_pcg64_exposer/contract.py:23
+    // return sequence
     retsub
 
 
@@ -199,40 +199,32 @@ pcg64_random:
     //     lower_bound: UInt64,
     //     upper_bound: UInt64,
     //     length: UInt64,
-    // ) -> tuple[PCG64STATE, Bytes]:
+    // ) -> tuple[PCG64STATE, arc4.DynamicArray[arc4.UInt64]]:
     proto 5 3
     byte ""
     dupn 3
+    // lib_pcg/xsh_rr_double_64_32.py:47
+    // result = arc4.DynamicArray[arc4.UInt64]()
+    byte 0x0000
     // lib_pcg/xsh_rr_double_64_32.py:49
-    // assert length < 2**16
-    frame_dig -1
-    int 65536
-    <
-    assert
-    // lib_pcg/xsh_rr_double_64_32.py:50
-    // result += arc4.UInt16(length).bytes
-    frame_dig -1
-    itob
-    extract 6 2
-    // lib_pcg/xsh_rr_double_64_32.py:52
     // if lower_bound == 0 and upper_bound == 0:
     frame_dig -3
     bnz pcg64_random_else_body@7
     frame_dig -2
     bnz pcg64_random_else_body@7
-    // lib_pcg/xsh_rr_double_64_32.py:53
+    // lib_pcg/xsh_rr_double_64_32.py:50
     // for i in urange(length):  # noqa: B007
     int 0
     frame_bury 2
 
 pcg64_random_for_header@3:
-    // lib_pcg/xsh_rr_double_64_32.py:53
+    // lib_pcg/xsh_rr_double_64_32.py:50
     // for i in urange(length):  # noqa: B007
     frame_dig 2
     frame_dig -1
     <
     bz pcg64_random_after_if_else@20
-    // lib_pcg/xsh_rr_double_64_32.py:54
+    // lib_pcg/xsh_rr_double_64_32.py:51
     // state, n = __pcg64_random(state)
     frame_dig -5
     frame_dig -4
@@ -240,14 +232,23 @@ pcg64_random_for_header@3:
     cover 2
     frame_bury -4
     frame_bury -5
-    // lib_pcg/xsh_rr_double_64_32.py:56
-    // result += op.itob(n)
-    itob
+    // lib_pcg/xsh_rr_double_64_32.py:53
+    // result.append(arc4.UInt64(n))
     frame_dig 4
+    extract 2 0
+    swap
+    itob
+    concat
+    dup
+    len
+    int 8
+    /
+    itob
+    extract 6 2
     swap
     concat
     frame_bury 4
-    // lib_pcg/xsh_rr_double_64_32.py:53
+    // lib_pcg/xsh_rr_double_64_32.py:50
     // for i in urange(length):  # noqa: B007
     frame_dig 2
     int 1
@@ -256,17 +257,17 @@ pcg64_random_for_header@3:
     b pcg64_random_for_header@3
 
 pcg64_random_else_body@7:
-    // lib_pcg/xsh_rr_double_64_32.py:58
+    // lib_pcg/xsh_rr_double_64_32.py:55
     // if upper_bound != 0:
     frame_dig -2
     bz pcg64_random_else_body@9
-    // lib_pcg/xsh_rr_double_64_32.py:59
+    // lib_pcg/xsh_rr_double_64_32.py:56
     // assert upper_bound > 1
     frame_dig -2
     int 1
     >
     assert
-    // lib_pcg/xsh_rr_double_64_32.py:60
+    // lib_pcg/xsh_rr_double_64_32.py:57
     // assert lower_bound < upper_bound - 1
     frame_dig -2
     int 1
@@ -274,7 +275,7 @@ pcg64_random_else_body@7:
     frame_dig -3
     >
     assert
-    // lib_pcg/xsh_rr_double_64_32.py:62
+    // lib_pcg/xsh_rr_double_64_32.py:59
     // absolute_bound = upper_bound - lower_bound
     frame_dig -2
     frame_dig -3
@@ -283,14 +284,14 @@ pcg64_random_else_body@7:
     b pcg64_random_after_if_else@10
 
 pcg64_random_else_body@9:
-    // lib_pcg/xsh_rr_double_64_32.py:64
-    // assert lower_bound < (2**64) - 1
+    // lib_pcg/xsh_rr_double_64_32.py:61
+    // assert lower_bound < (1 << 64) - 1
     frame_dig -3
     int 18446744073709551615
     <
     assert
-    // lib_pcg/xsh_rr_double_64_32.py:66
-    // absolute_bound = op.btoi((BigUInt(2**64) - BigUInt(lower_bound)).bytes)
+    // lib_pcg/xsh_rr_double_64_32.py:63
+    // absolute_bound = op.btoi((BigUInt(1 << 64) - BigUInt(lower_bound)).bytes)
     frame_dig -3
     itob
     byte 0x010000000000000000
@@ -300,7 +301,7 @@ pcg64_random_else_body@9:
     frame_bury 0
 
 pcg64_random_after_if_else@10:
-    // lib_pcg/xsh_rr_double_64_32.py:68
+    // lib_pcg/xsh_rr_double_64_32.py:65
     // threshold = __uint64_twos(absolute_bound) % absolute_bound
     frame_dig 0
     dup
@@ -308,13 +309,13 @@ pcg64_random_after_if_else@10:
     swap
     %
     frame_bury 3
-    // lib_pcg/xsh_rr_double_64_32.py:70
+    // lib_pcg/xsh_rr_double_64_32.py:67
     // for i in urange(length):  # noqa: B007
     int 0
     frame_bury 2
 
 pcg64_random_for_header@11:
-    // lib_pcg/xsh_rr_double_64_32.py:70
+    // lib_pcg/xsh_rr_double_64_32.py:67
     // for i in urange(length):  # noqa: B007
     frame_dig 2
     frame_dig -1
@@ -322,7 +323,7 @@ pcg64_random_for_header@11:
     bz pcg64_random_after_for@19
 
 pcg64_random_while_top@13:
-    // lib_pcg/xsh_rr_double_64_32.py:72
+    // lib_pcg/xsh_rr_double_64_32.py:69
     // state, candidate = __pcg64_random(state)
     frame_dig -5
     frame_dig -4
@@ -332,24 +333,32 @@ pcg64_random_while_top@13:
     frame_bury 1
     frame_bury -4
     frame_bury -5
-    // lib_pcg/xsh_rr_double_64_32.py:73
+    // lib_pcg/xsh_rr_double_64_32.py:70
     // if candidate >= threshold:
     frame_dig 3
     >=
     bz pcg64_random_while_top@13
-    // lib_pcg/xsh_rr_double_64_32.py:75
-    // result += op.itob((candidate % absolute_bound) + lower_bound)
+    // lib_pcg/xsh_rr_double_64_32.py:72
+    // result.append(arc4.UInt64((candidate % absolute_bound) + lower_bound))
+    frame_dig 4
+    extract 2 0
     frame_dig 1
     frame_dig 0
     %
     frame_dig -3
     +
     itob
-    frame_dig 4
+    concat
+    dup
+    len
+    int 8
+    /
+    itob
+    extract 6 2
     swap
     concat
     frame_bury 4
-    // lib_pcg/xsh_rr_double_64_32.py:70
+    // lib_pcg/xsh_rr_double_64_32.py:67
     // for i in urange(length):  # noqa: B007
     frame_dig 2
     int 1
@@ -360,8 +369,8 @@ pcg64_random_while_top@13:
 pcg64_random_after_for@19:
 
 pcg64_random_after_if_else@20:
-    // lib_pcg/xsh_rr_double_64_32.py:77
-    // return state, result
+    // lib_pcg/xsh_rr_double_64_32.py:74
+    // return state, result.copy()
     frame_dig -5
     frame_dig -4
     frame_dig 4
