@@ -39,11 +39,9 @@ You can also take a look at the exposer contracts:
 ]
 
 ## Usage
-Due to internal details, the `8 / 16 / 32`-bit generators all use `pcg32_init()` for seeding the algorithms,
-but then you should use the respective `pcg8/16/32_random()` function to get your sequence.
-This will change in the future to prevent ambiguity.
+All generators all use `pcg<N>_init()` for seeding the algorithm.
 
-`64 / 128`-bit generators use their respective `pcg64/128_init()` function.
+To generate a sequence, use `pcg<N>_random()`.
 
 You can pass non-zero `lower_bound` and `upper_bound` arguments to `pcg<N>_random()` to get integers in a desired range.  
 Note that:

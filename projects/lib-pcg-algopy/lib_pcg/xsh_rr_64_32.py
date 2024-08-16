@@ -24,6 +24,26 @@ def pcg32_init(seed: Bytes) -> PCG32STATE:
 
 
 @subroutine
+def pcg16_init(seed: Bytes) -> PCG32STATE:
+    """
+    Proxy to the real function.
+
+    This is only used to prevent the ambiguity of calling pcg32_init with an 8 or 16 bit generator.
+    """
+    return pcg32_init(seed)
+
+
+@subroutine
+def pcg8_init(seed: Bytes) -> PCG32STATE:
+    """
+    Proxy to the real function.
+
+    This is only used to prevent the ambiguity of calling pcg32_init with an 8 or 16 bit generator.
+    """
+    return pcg32_init(seed)
+
+
+@subroutine
 def pcg32_random(
     state: PCG32STATE,
     lower_bound: UInt64,

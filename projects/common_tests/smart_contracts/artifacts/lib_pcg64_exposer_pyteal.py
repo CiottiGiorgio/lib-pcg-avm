@@ -120,7 +120,7 @@ def _as_dict(data: typing.Any, *, convert_all: bool = True) -> dict[str, typing.
     if not dataclasses.is_dataclass(data):
         raise TypeError(f"{data} must be a dataclass")
     if convert_all:
-        result = dataclasses.asdict(data) # type: ignore[call-overload]
+        result = dataclasses.asdict(data)
     else:
         result = {f.name: getattr(data, f.name) for f in dataclasses.fields(data)}
     return _filter_none(result)

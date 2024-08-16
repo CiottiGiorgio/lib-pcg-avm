@@ -2,7 +2,14 @@ from typing import Literal
 
 from algopy import Global, Txn, arc4
 
-from lib_pcg.xsh_rr_64_32 import pcg8_random, pcg16_random, pcg32_init, pcg32_random
+from lib_pcg.xsh_rr_64_32 import (
+    pcg8_init,
+    pcg8_random,
+    pcg16_init,
+    pcg16_random,
+    pcg32_init,
+    pcg32_random,
+)
 
 
 class LibPcg32ExposerAlgopy(arc4.ARC4Contract):
@@ -30,7 +37,7 @@ class LibPcg32ExposerAlgopy(arc4.ARC4Contract):
         upper_bound: arc4.UInt16,
         length: arc4.UInt16,
     ) -> arc4.DynamicArray[arc4.UInt16]:
-        state = pcg32_init(seed.bytes)
+        state = pcg16_init(seed.bytes)
 
         state, sequence = pcg16_random(
             state, lower_bound.native, upper_bound.native, length.native
@@ -46,7 +53,7 @@ class LibPcg32ExposerAlgopy(arc4.ARC4Contract):
         upper_bound: arc4.UInt8,
         length: arc4.UInt16,
     ) -> arc4.DynamicArray[arc4.UInt8]:
-        state = pcg32_init(seed.bytes)
+        state = pcg8_init(seed.bytes)
 
         state, sequence = pcg8_random(
             state, lower_bound.native, upper_bound.native, length.native
