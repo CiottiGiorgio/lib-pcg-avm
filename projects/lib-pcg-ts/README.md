@@ -1,25 +1,53 @@
-# TEALScript Project
+# PCG Random Number Generator, AVM Edition
 
-## Documentation
+## lib-pcg-ts
+This is the implementation of PCG in [TypeScript](https://tealscript.netlify.app/).
+For more general info on this library, see the [main page](../..).
 
-For TEALScript documentation, go to https://tealscript.algo.xyz
+## Getting Started
+Copy either the [pcg32](./contracts/lib-pcg32-ts.algo.ts) or the [pcg64](./contracts/lib-pcg64-ts.algo.ts)
+file in your own project’s contract folder.
+
+Have your contract extend from the library file like:
+```typescript
+export class YourContract extends LibPcg32Ts {
+  yourMethod(...): ... {
+    // Here you would acquire a safe randomness seed.
+    ...
+
+    // Seed the PRNG
+    const rngState = this.pcg32Init(seed);
+
+    // Generate a sequence
+    const sequence = castBytes<uint32[]>(this.pcg32Random(rngState, 32, lower_bound, upper_bound, length)[1]);
+
+    // The rest of your program
+    ...
+  }
+}
+```
+You can also take a look at the exposer contracts:
+[
+  [1](./contracts/lib-pcg32-ts-exposer.algo.ts),
+  [2](./contracts/lib-pcg64-ts-exposer.algo.ts)
+]
 
 ## Usage
+Due to internal details, the `8 / 16 / 32`-bit generators all use `this.pcg32Init()` for seeding the algorithms,
+but then you should use the respective `this.pcg8/16/32Random()` function to get your sequence.
+This will change in the future to prevent ambiguity.
 
-### Algokit
+`64`-bit generator uses the respective `this.pcg64Init()` function.
 
-This template assumes you have a local network running on your machine. The easiet way to setup a local network is with [algokit](https://github.com/algorandfoundation/algokit-cli). If you don't have Algokit or its dependencies installed locally you can open this repository in a GitHub codespace via https://codespaces.new and choosing this repo.
+You can pass non-zero `lowerBound` and `upperBound` arguments to `this.pcg<N>Random()` to get integers in a desired range.
+Note that:
+- `lowerBound` is always included in your range.
+- `upperBound` is always excluded by your range.
+- You can set them independently.
+- The range should be at least two elements wide.
 
-### Build Contract
-
-`npm run build` will compile the contract to TEAL and generate an ABI and appspec JSON in [./contracts/artifacts](./contracts/artifacts/) and a algokit TypeScript client in [./contracts/clients](./contracts/clients/).
-
-`npm run compile-contract` or `npm run generate-client` can be used to compile the contract or generate the contract seperately.
-
-### Run Tests
-
-`npm run test` will execute the tests defined in [./\_\_test\_\_](./__test__) 
-
-### Lint
-
-`npm run lint` will lint the contracts and tests with ESLint.
+## Feature Support
+- [ ] Package published on npm
+- [x] `8 / 16 / 32`-bit generator
+- [x] `64`-bit generator
+- [ ] `128`-bit generator
