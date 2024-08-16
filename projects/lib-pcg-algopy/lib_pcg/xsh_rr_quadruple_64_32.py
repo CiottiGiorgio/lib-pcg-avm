@@ -20,6 +20,15 @@ PCG128STATE: TypeAlias = tuple[UInt64, UInt64, UInt64, UInt64]
 
 @subroutine
 def pcg128_init(seed: Bytes) -> PCG128STATE:
+    """Quadruple PCG XSH RR 64/32 initialization function the 64-bit integer generator.
+
+    Args:
+        seed: initial entropy used to initialize the state.
+
+    Returns:
+        The initialized state.
+
+    """
     assert seed.length == 32
 
     return (
@@ -68,6 +77,22 @@ def pcg128_random(
     upper_bound: BigUInt,
     length: UInt64,
 ) -> tuple[PCG128STATE, arc4.DynamicArray[arc4.UInt128]]:
+    """Single PCG XSH RR 64/32 generator function for 128-bit pseudo-random big integers.
+
+    Args:
+        state: The state of the generator.
+        lower_bound: If set to non-zero, it's the lowest (included) possible big integer in the sequence.
+        upper_bound: If set to non-zero, it's the highest (not included) possible big integer in the sequence.
+            If set to zero, the highest possible integer is the highest big integer representable with 128 bits.
+        length: The length of the sequence.
+
+    upper_bound and lower_bound can be set independently of each other.
+    However, they should always be set such that the desired range includes at least two numbers.
+
+    Returns:
+        The state of the generator after generating the sequence and the generated sequence of 128-bit big integers.
+
+    """
     result = arc4.DynamicArray[arc4.UInt128]()
 
     if lower_bound == 0 and upper_bound == 0:

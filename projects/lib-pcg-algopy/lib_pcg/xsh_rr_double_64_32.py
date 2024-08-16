@@ -16,6 +16,15 @@ PCG64STATE: TypeAlias = tuple[UInt64, UInt64]
 
 @subroutine
 def pcg64_init(seed: Bytes) -> PCG64STATE:
+    """Double PCG XSH RR 64/32 initialization function the 64-bit integer generator.
+
+    Args:
+        seed: initial entropy used to initialize the state.
+
+    Returns:
+        The initialized state.
+
+    """
     assert seed.length == 16
 
     return (
@@ -44,6 +53,22 @@ def pcg64_random(
     upper_bound: UInt64,
     length: UInt64,
 ) -> tuple[PCG64STATE, arc4.DynamicArray[arc4.UInt64]]:
+    """Double PCG XSH RR 64/32 generator function for 64-bit pseudo-random unsigned integers.
+
+    Args:
+        state: The state of the generator.
+        lower_bound: If set to non-zero, it's the lowest (included) possible integer in the sequence.
+        upper_bound: If set to non-zero, it's the highest (not included) possible integer in the sequence.
+            If set to zero, the highest possible integer is the highest integer representable with 64 bits.
+        length: The length of the sequence.
+
+    upper_bound and lower_bound can be set independently of each other.
+    However, they should always be set such that the desired range includes at least two numbers.
+
+    Returns:
+        The state of the generator after generating the sequence and the generated sequence of 64-bit integers.
+
+    """
     result = arc4.DynamicArray[arc4.UInt64]()
 
     if lower_bound == 0 and upper_bound == 0:

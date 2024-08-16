@@ -9,6 +9,15 @@ PCG32STATE: TypeAlias = UInt64
 
 @subroutine
 def pcg32_init(seed: Bytes) -> PCG32STATE:
+    """Single PCG XSH RR 64/32 initialization function for all generators from 32-bits and below.
+
+    Args:
+        seed: initial entropy used to initialize the state.
+
+    Returns:
+        The initialized state.
+
+    """
     assert seed.length == 8
 
     return __pcg32_init(op.btoi(seed), UInt64(PCG_DEFAULT_INCREMENT))
@@ -21,6 +30,22 @@ def pcg32_random(
     upper_bound: UInt64,
     length: UInt64,
 ) -> tuple[PCG32STATE, arc4.DynamicArray[arc4.UInt32]]:
+    """Single PCG XSH RR 64/32 generator function for 32-bit pseudo-random unsigned integers.
+
+    Args:
+        state: The state of the generator.
+        lower_bound: If set to non-zero, it's the lowest (included) possible integer in the sequence.
+        upper_bound: If set to non-zero, it's the highest (not included) possible integer in the sequence.
+            If set to zero, the highest possible integer is the highest integer representable with 32 bits.
+        length: The length of the sequence.
+
+    upper_bound and lower_bound can be set independently of each other.
+    However, they should always be set such that the desired range includes at least two numbers.
+
+    Returns:
+        The state of the generator after generating the sequence and the generated sequence of 32-bit integers.
+
+    """
     result = arc4.DynamicArray[arc4.UInt32]()
 
     if lower_bound == 0 and upper_bound == 0:
@@ -59,6 +84,22 @@ def pcg16_random(
     upper_bound: UInt64,
     length: UInt64,
 ) -> tuple[PCG32STATE, arc4.DynamicArray[arc4.UInt16]]:
+    """Single PCG XSH RR 64/32 generator for 16-bit pseudo-random unsigned integers.
+
+    Args:
+        state: The state of the generator.
+        lower_bound: If set to non-zero, it's the lowest (included) possible integer in the sequence.
+        upper_bound: If set to non-zero, it's the highest (not included) possible integer in the sequence.
+            If set to zero, the highest possible integer is the highest integer representable with 16 bits.
+        length: The length of the sequence.
+
+    upper_bound and lower_bound can be set independently of each other.
+    However, they should always be set such that the desired range includes at least two numbers.
+
+    Returns:
+        The state of the generator after generating the sequence and the generated sequence of 16-bit integers.
+
+    """
     result = arc4.DynamicArray[arc4.UInt16]()
 
     if lower_bound == 0 and upper_bound == 0:
@@ -97,6 +138,22 @@ def pcg8_random(
     upper_bound: UInt64,
     length: UInt64,
 ) -> tuple[PCG32STATE, arc4.DynamicArray[arc4.UInt8]]:
+    """Single PCG XSH RR 64/32 generator for 8-bit pseudo-random unsigned integers.
+
+    Args:
+        state: The state of the generator.
+        lower_bound: If set to non-zero, it's the lowest (included) possible integer in the sequence.
+        upper_bound: If set to non-zero, it's the highest (not included) possible integer in the sequence.
+            If set to zero, the highest possible integer is the highest integer representable with 8 bits.
+        length: The length of the sequence.
+
+    upper_bound and lower_bound can be set independently of each other.
+    However, they should always be set such that the desired range includes at least two numbers.
+
+    Returns:
+        The state of the generator after generating the sequence and the generated sequence of 8-bit integers.
+
+    """
     result = arc4.DynamicArray[arc4.UInt8]()
 
     if lower_bound == 0 and upper_bound == 0:
