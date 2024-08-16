@@ -2,6 +2,7 @@
 
 ## common_tests
 This [AlgoKit](http://algokit.io) subproject implements the common tests for all included implementations of PCG for the AVM.
+For more general info on this library, see the [main page](../..).
 
 This testing suite guarantees that:
 - The generated sequences are equal to the expected sequences from the reference implementation.

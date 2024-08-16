@@ -1,7 +1,7 @@
 # PCG Random Number Generator, AVM Edition
 
 ## lib-pcg-pyteal
-This is the implementation of PCG in [PyTeal](https://pyteal.readthedocs.io/en/stable/).
+This [AlgoKit](http://algokit.io) subproject implements PCG in [PyTeal](https://pyteal.readthedocs.io/en/stable/).
 For more general info on this library, see the [main page](../..).
 
 ## Getting Started

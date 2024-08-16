@@ -1,7 +1,7 @@
 # PCG Random Number Generator, AVM Edition
 
 ## lib-pcg-algopy
-This is the implementation of PCG in [Algorand Python](https://github.com/algorandfoundation/puya).
+This [AlgoKit](http://algokit.io) subproject implements PCG in [Algorand Python](https://github.com/algorandfoundation/puya).
 For more general info on this library, see the [main page](../..).
 
 ## Getting Started
