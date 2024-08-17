@@ -2,7 +2,7 @@ from typing import Literal
 
 from algopy import Global, Txn, arc4
 
-from lib_pcg.xsh_rr_double_64_32 import pcg64_init, pcg64_random
+from lib_pcg import pcg64_init, pcg64_random
 
 
 class LibPcg64ExposerAlgopy(arc4.ARC4Contract):

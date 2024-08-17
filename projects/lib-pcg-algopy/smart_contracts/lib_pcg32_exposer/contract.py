@@ -2,7 +2,7 @@ from typing import Literal
 
 from algopy import Global, Txn, arc4
 
-from lib_pcg.xsh_rr_64_32 import (
+from lib_pcg import (
     pcg8_init,
     pcg8_random,
     pcg16_init,

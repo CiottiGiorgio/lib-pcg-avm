@@ -14,7 +14,7 @@ poetry add lib-pcg-algopy
 The typical use case of using the library to generate a sequence of pseudo-random numbers looks like:
 ```python
 from algopy import arc4
-from lib_pcg.xsh_rr_64_32 import pcg32_init, pcg32_random
+from lib_pcg import pcg32_init, pcg32_random
 
 class YourContract(arc4.ARC4Contract):
   @arc4.abimethod
