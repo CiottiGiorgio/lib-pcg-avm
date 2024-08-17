@@ -1,4 +1,4 @@
-name: Validate lib-pcg-algopy
+name: Validate lib-pcg-avm
 
 on:
   workflow_call:
