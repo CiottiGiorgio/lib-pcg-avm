@@ -37,27 +37,27 @@ def build(output_dir: Path, contract_path: Path) -> Path:
     if app_spec_file_name is None:
         raise Exception("Could not generate typed client, .arc32.json file not found")
 
-    generate_result = subprocess.run(
-        [
-            "algokit",
-            "generate",
-            "client",
-            output_dir / app_spec_file_name,
-            "--output",
-            output_dir / f"client.{deployment_extension}",
-        ],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        text=True,
-    )
-    if generate_result.returncode:
-        if "No such command" in generate_result.stdout:
-            raise Exception(
-                "Could not generate typed client, requires AlgoKit 1.1 or "
-                "later. Please update AlgoKit"
-            )
-        else:
-            raise Exception(
-                f"Could not generate typed client:\n{generate_result.stdout}"
-            )
+    # generate_result = subprocess.run(
+    #     [
+    #         "algokit",
+    #         "generate",
+    #         "client",
+    #         output_dir / app_spec_file_name,
+    #         "--output",
+    #         output_dir / f"client.{deployment_extension}",
+    #     ],
+    #     stdout=subprocess.PIPE,
+    #     stderr=subprocess.STDOUT,
+    #     text=True,
+    # )
+    # if generate_result.returncode:
+    #     if "No such command" in generate_result.stdout:
+    #         raise Exception(
+    #             "Could not generate typed client, requires AlgoKit 1.1 or "
+    #             "later. Please update AlgoKit"
+    #         )
+    #     else:
+    #         raise Exception(
+    #             f"Could not generate typed client:\n{generate_result.stdout}"
+    #         )
     return output_dir / app_spec_file_name
