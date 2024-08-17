@@ -8,7 +8,7 @@ For more general info on this library, see the [main page](../..).
 Install `lib-pcg-algopy` in your project.
 Using poetry, this looks like:
 ```bash
-poetry install lib-pcg-algopy
+poetry add lib-pcg-algopy
 ```
 
 The typical use case of using the library to generate a sequence of pseudo-random numbers looks like:
