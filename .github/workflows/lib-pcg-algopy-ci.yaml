@@ -2,6 +2,7 @@ name: Validate lib-pcg-algopy
 
 on:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
   validate:
