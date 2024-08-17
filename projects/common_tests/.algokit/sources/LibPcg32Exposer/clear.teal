@@ -1,7 +1,0 @@
-#pragma version 10
-
-smart_contracts.lib_pcg32_exposer.contract.LibPcg32Exposer.clear_state_program:
-    // smart_contracts/lib_pcg32_exposer/contract.py:6
-    // class LibPcg32Exposer(arc4.ARC4Contract):
-    int 1
-    return

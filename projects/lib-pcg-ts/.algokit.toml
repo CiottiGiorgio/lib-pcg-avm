@@ -7,12 +7,19 @@ name = 'lib-pcg-ts'
 artifacts = 'contracts/artifacts'
 
 [project.run]
-build = { commands = [ 
+build = { commands = [
   'npm run build',
 ], description = 'Build all smart contracts in the project' }
-lint-check = { commands = [
-  'npm run lint',
-], description = 'Perform linting checks' }
 lint = { commands = [
   'npm run fix',
+], description = 'Perform linting' }
+
+
+# Commands intented for CI only, prefixed with `ci-` by convention
+ci-teal-diff = { commands = [
+  'git add -N ./contracts/artifacts',
+  'git diff --exit-code --minimal ./contracts/artifacts',
+], description = 'Check TEAL files for differences' }
+ci-lint = { commands = [
+  'npm run lint'
 ], description = 'Perform linting' }

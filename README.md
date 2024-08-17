@@ -64,4 +64,4 @@ algokit project run build
 ```
 
 ## Testing
-See [common_tests](./projects/common_tests/README.md).
+See [unified_tests](./projects/unified_tests/README.md).

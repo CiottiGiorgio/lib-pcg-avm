@@ -39,7 +39,7 @@ jobs:
         run: algokit project run audit
 
       - name: Lint and format python dependencies
-        run: algokit project run lint
+        run: algokit project run ci-lint
 
       - name: Run tests
         shell: bash
