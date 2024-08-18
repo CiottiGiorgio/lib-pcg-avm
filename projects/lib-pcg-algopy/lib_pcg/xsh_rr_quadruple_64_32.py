@@ -33,15 +33,9 @@ def pcg128_init(seed: Bytes) -> PCG128STATE:
 
     return (
         __pcg32_init(op.extract_uint64(seed, 0), UInt64(PCG_FIRST_INCREMENT)),
-        __pcg32_init(
-            op.extract_uint64(seed, 8), UInt64(PCG_SECOND_INCREMENT)
-        ),
-        __pcg32_init(
-            op.extract_uint64(seed, 16), UInt64(PCG_THIRD_INCREMENT)
-        ),
-        __pcg32_init(
-            op.extract_uint64(seed, 24), UInt64(PCG_FOURTH_INCREMENT)
-        ),
+        __pcg32_init(op.extract_uint64(seed, 8), UInt64(PCG_SECOND_INCREMENT)),
+        __pcg32_init(op.extract_uint64(seed, 16), UInt64(PCG_THIRD_INCREMENT)),
+        __pcg32_init(op.extract_uint64(seed, 24), UInt64(PCG_FOURTH_INCREMENT)),
     )
 
 

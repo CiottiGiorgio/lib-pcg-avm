@@ -29,9 +29,7 @@ def pcg64_init(seed: Bytes) -> PCG64STATE:
 
     return (
         __pcg32_init(op.extract_uint64(seed, 0), UInt64(PCG_FIRST_INCREMENT)),
-        __pcg32_init(
-            op.extract_uint64(seed, 8), UInt64(PCG_SECOND_INCREMENT)
-        ),
+        __pcg32_init(op.extract_uint64(seed, 8), UInt64(PCG_SECOND_INCREMENT)),
     )
 
 
@@ -39,9 +37,7 @@ def pcg64_init(seed: Bytes) -> PCG64STATE:
 def __pcg64_random(state: PCG64STATE) -> tuple[PCG64STATE, UInt64]:
     new_state1, high_prn = __pcg32_random(state[0])
 
-    new_state2 = __pcg32_step(
-        state[1], UInt64(PCG_SECOND_INCREMENT) << (state[0] == 0)
-    )
+    new_state2 = __pcg32_step(state[1], UInt64(PCG_SECOND_INCREMENT) << (state[0] == 0))
 
     return (new_state1, new_state2), high_prn << 32 | __pcg32_output(state[1])
 
