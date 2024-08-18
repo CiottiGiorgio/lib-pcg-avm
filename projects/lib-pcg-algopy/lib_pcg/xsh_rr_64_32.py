@@ -2,7 +2,7 @@ from typing import TypeAlias
 
 from algopy import Bytes, UInt64, arc4, op, subroutine, urange
 
-from lib_pcg.consts import PCG_DEFAULT_INCREMENT, PCG_DEFAULT_MULTIPLIER
+from lib_pcg.consts import PCG_FIRST_INCREMENT, PCG_MULTIPLIER
 
 PCG32STATE: TypeAlias = UInt64
 
@@ -20,7 +20,7 @@ def pcg32_init(seed: Bytes) -> PCG32STATE:
     """
     assert seed.length == 8
 
-    return __pcg32_init(op.btoi(seed), UInt64(PCG_DEFAULT_INCREMENT))
+    return __pcg32_init(op.btoi(seed), UInt64(PCG_FIRST_INCREMENT))
 
 
 @subroutine
@@ -215,7 +215,7 @@ def __pcg32_init(initial_state: PCG32STATE, incr: UInt64) -> PCG32STATE:
 
 @subroutine
 def __pcg32_step(state: PCG32STATE, incr: UInt64) -> PCG32STATE:
-    _high_mul, low_mul = op.mulw(state, PCG_DEFAULT_MULTIPLIER)
+    _high_mul, low_mul = op.mulw(state, PCG_MULTIPLIER)
     _high_add, low_add = op.addw(low_mul, incr)
 
     return low_add
@@ -223,7 +223,7 @@ def __pcg32_step(state: PCG32STATE, incr: UInt64) -> PCG32STATE:
 
 @subroutine
 def __pcg32_random(state: PCG32STATE) -> tuple[PCG32STATE, UInt64]:
-    return __pcg32_step(state, UInt64(PCG_DEFAULT_INCREMENT)), __pcg32_output(state)
+    return __pcg32_step(state, UInt64(PCG_FIRST_INCREMENT)), __pcg32_output(state)
 
 
 @subroutine

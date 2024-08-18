@@ -2,7 +2,7 @@ from typing import TypeAlias
 
 from algopy import BigUInt, Bytes, UInt64, arc4, op, subroutine, urange
 
-from lib_pcg.consts import PCG_DEFAULT_INCREMENT, PCG_SECONDARY_DEFAULT_INCREMENT
+from lib_pcg.consts import PCG_FIRST_INCREMENT, PCG_SECOND_INCREMENT
 from lib_pcg.xsh_rr_64_32 import (
     __pcg32_init,
     __pcg32_output,
@@ -28,9 +28,9 @@ def pcg64_init(seed: Bytes) -> PCG64STATE:
     assert seed.length == 16
 
     return (
-        __pcg32_init(op.extract_uint64(seed, 0), UInt64(PCG_DEFAULT_INCREMENT)),
+        __pcg32_init(op.extract_uint64(seed, 0), UInt64(PCG_FIRST_INCREMENT)),
         __pcg32_init(
-            op.extract_uint64(seed, 8), UInt64(PCG_SECONDARY_DEFAULT_INCREMENT)
+            op.extract_uint64(seed, 8), UInt64(PCG_SECOND_INCREMENT)
         ),
     )
 
@@ -40,7 +40,7 @@ def __pcg64_random(state: PCG64STATE) -> tuple[PCG64STATE, UInt64]:
     new_state1, high_prn = __pcg32_random(state[0])
 
     new_state2 = __pcg32_step(
-        state[1], UInt64(PCG_SECONDARY_DEFAULT_INCREMENT) << (state[0] == 0)
+        state[1], UInt64(PCG_SECOND_INCREMENT) << (state[0] == 0)
     )
 
     return (new_state1, new_state2), high_prn << 32 | __pcg32_output(state[1])

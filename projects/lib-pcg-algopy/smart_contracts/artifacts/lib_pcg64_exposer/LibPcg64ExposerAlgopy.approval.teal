@@ -118,28 +118,28 @@ pcg64_init:
     ==
     assert
     // lib_pcg/xsh_rr_double_64_32.py:31
-    // __pcg32_init(op.extract_uint64(seed, 0), UInt64(PCG_DEFAULT_INCREMENT)),
+    // __pcg32_init(op.extract_uint64(seed, 0), UInt64(PCG_FIRST_INCREMENT)),
     frame_dig -1
     int 0
     extract_uint64
     int 1442695040888963407
     callsub __pcg32_init
     // lib_pcg/xsh_rr_double_64_32.py:33
-    // op.extract_uint64(seed, 8), UInt64(PCG_SECONDARY_DEFAULT_INCREMENT)
+    // op.extract_uint64(seed, 8), UInt64(PCG_SECOND_INCREMENT)
     frame_dig -1
     int 8
     extract_uint64
     int 1442695040888963409
     // lib_pcg/xsh_rr_double_64_32.py:32-34
     // __pcg32_init(
-    //     op.extract_uint64(seed, 8), UInt64(PCG_SECONDARY_DEFAULT_INCREMENT)
+    //     op.extract_uint64(seed, 8), UInt64(PCG_SECOND_INCREMENT)
     // ),
     callsub __pcg32_init
     // lib_pcg/xsh_rr_double_64_32.py:30-35
     // return (
-    //     __pcg32_init(op.extract_uint64(seed, 0), UInt64(PCG_DEFAULT_INCREMENT)),
+    //     __pcg32_init(op.extract_uint64(seed, 0), UInt64(PCG_FIRST_INCREMENT)),
     //     __pcg32_init(
-    //         op.extract_uint64(seed, 8), UInt64(PCG_SECONDARY_DEFAULT_INCREMENT)
+    //         op.extract_uint64(seed, 8), UInt64(PCG_SECOND_INCREMENT)
     //     ),
     // )
     retsub
@@ -175,7 +175,7 @@ __pcg32_step:
     // def __pcg32_step(state: PCG32STATE, incr: UInt64) -> PCG32STATE:
     proto 2 1
     // lib_pcg/xsh_rr_64_32.py:218
-    // _high_mul, low_mul = op.mulw(state, PCG_DEFAULT_MULTIPLIER)
+    // _high_mul, low_mul = op.mulw(state, PCG_MULTIPLIER)
     frame_dig -2
     int 6364136223846793005
     mulw
@@ -391,7 +391,7 @@ __pcg64_random:
     frame_dig -2
     callsub __pcg32_random
     // lib_pcg/xsh_rr_double_64_32.py:43
-    // state[1], UInt64(PCG_SECONDARY_DEFAULT_INCREMENT) << (state[0] == 0)
+    // state[1], UInt64(PCG_SECOND_INCREMENT) << (state[0] == 0)
     frame_dig -2
     !
     int 1442695040888963409
@@ -399,7 +399,7 @@ __pcg64_random:
     shl
     // lib_pcg/xsh_rr_double_64_32.py:42-44
     // new_state2 = __pcg32_step(
-    //     state[1], UInt64(PCG_SECONDARY_DEFAULT_INCREMENT) << (state[0] == 0)
+    //     state[1], UInt64(PCG_SECOND_INCREMENT) << (state[0] == 0)
     // )
     frame_dig -1
     swap
@@ -422,7 +422,7 @@ __pcg32_random:
     // def __pcg32_random(state: PCG32STATE) -> tuple[PCG32STATE, UInt64]:
     proto 1 2
     // lib_pcg/xsh_rr_64_32.py:226
-    // return __pcg32_step(state, UInt64(PCG_DEFAULT_INCREMENT)), __pcg32_output(state)
+    // return __pcg32_step(state, UInt64(PCG_FIRST_INCREMENT)), __pcg32_output(state)
     frame_dig -1
     int 1442695040888963407
     callsub __pcg32_step

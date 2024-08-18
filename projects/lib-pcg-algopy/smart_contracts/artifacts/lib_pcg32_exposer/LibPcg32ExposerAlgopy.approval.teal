@@ -164,7 +164,7 @@ pcg32_init:
     ==
     assert
     // lib_pcg/xsh_rr_64_32.py:23
-    // return __pcg32_init(op.btoi(seed), UInt64(PCG_DEFAULT_INCREMENT))
+    // return __pcg32_init(op.btoi(seed), UInt64(PCG_FIRST_INCREMENT))
     frame_dig -1
     btoi
     int 1442695040888963407
@@ -202,7 +202,7 @@ __pcg32_step:
     // def __pcg32_step(state: PCG32STATE, incr: UInt64) -> PCG32STATE:
     proto 2 1
     // lib_pcg/xsh_rr_64_32.py:218
-    // _high_mul, low_mul = op.mulw(state, PCG_DEFAULT_MULTIPLIER)
+    // _high_mul, low_mul = op.mulw(state, PCG_MULTIPLIER)
     frame_dig -2
     int 6364136223846793005
     mulw
@@ -414,7 +414,7 @@ __pcg32_random:
     // def __pcg32_random(state: PCG32STATE) -> tuple[PCG32STATE, UInt64]:
     proto 1 2
     // lib_pcg/xsh_rr_64_32.py:226
-    // return __pcg32_step(state, UInt64(PCG_DEFAULT_INCREMENT)), __pcg32_output(state)
+    // return __pcg32_step(state, UInt64(PCG_FIRST_INCREMENT)), __pcg32_output(state)
     frame_dig -1
     int 1442695040888963407
     callsub __pcg32_step

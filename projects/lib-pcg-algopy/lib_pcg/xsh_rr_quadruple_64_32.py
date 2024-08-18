@@ -3,10 +3,10 @@ from typing import TypeAlias
 from algopy import BigUInt, Bytes, UInt64, arc4, op, subroutine, urange
 
 from lib_pcg.consts import (
-    PCG_DEFAULT_INCREMENT,
-    PCG_QUATERNARY_DEFAULT_INCREMENT,
-    PCG_SECONDARY_DEFAULT_INCREMENT,
-    PCG_TERTIARY_DEFAULT_INCREMENT,
+    PCG_FIRST_INCREMENT,
+    PCG_FOURTH_INCREMENT,
+    PCG_SECOND_INCREMENT,
+    PCG_THIRD_INCREMENT,
 )
 from lib_pcg.xsh_rr_64_32 import (
     __pcg32_init,
@@ -32,15 +32,15 @@ def pcg128_init(seed: Bytes) -> PCG128STATE:
     assert seed.length == 32
 
     return (
-        __pcg32_init(op.extract_uint64(seed, 0), UInt64(PCG_DEFAULT_INCREMENT)),
+        __pcg32_init(op.extract_uint64(seed, 0), UInt64(PCG_FIRST_INCREMENT)),
         __pcg32_init(
-            op.extract_uint64(seed, 8), UInt64(PCG_SECONDARY_DEFAULT_INCREMENT)
+            op.extract_uint64(seed, 8), UInt64(PCG_SECOND_INCREMENT)
         ),
         __pcg32_init(
-            op.extract_uint64(seed, 16), UInt64(PCG_TERTIARY_DEFAULT_INCREMENT)
+            op.extract_uint64(seed, 16), UInt64(PCG_THIRD_INCREMENT)
         ),
         __pcg32_init(
-            op.extract_uint64(seed, 24), UInt64(PCG_QUATERNARY_DEFAULT_INCREMENT)
+            op.extract_uint64(seed, 24), UInt64(PCG_FOURTH_INCREMENT)
         ),
     )
 
@@ -50,15 +50,15 @@ def __pcg128_random(state: PCG128STATE) -> tuple[PCG128STATE, BigUInt]:
     new_state1, rn1 = __pcg32_random(state[0])
 
     new_state2 = __pcg32_step(
-        state[1], UInt64(PCG_SECONDARY_DEFAULT_INCREMENT) << (new_state1 == 0)
+        state[1], UInt64(PCG_SECOND_INCREMENT) << (new_state1 == 0)
     )
 
     new_state3 = __pcg32_step(
-        state[2], UInt64(PCG_TERTIARY_DEFAULT_INCREMENT) << (new_state2 == 0)
+        state[2], UInt64(PCG_THIRD_INCREMENT) << (new_state2 == 0)
     )
 
     new_state4 = __pcg32_step(
-        state[3], UInt64(PCG_QUATERNARY_DEFAULT_INCREMENT) << (new_state3 == 0)
+        state[3], UInt64(PCG_FOURTH_INCREMENT) << (new_state3 == 0)
     )
 
     return (
