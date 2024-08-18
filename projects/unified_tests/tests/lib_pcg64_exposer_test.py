@@ -12,14 +12,14 @@ from smart_contracts.artifacts.lib_pcg64_exposer_algopy import (
 from smart_contracts.artifacts.lib_pcg64_exposer_pyteal import (
     LibPcg64ExposerPytealClient,
 )
-from smart_contracts.artifacts.lib_pcg64_ts_exposer import (
+from smart_contracts.artifacts.lib_pcg64_exposer_ts import (
     CreateApplicationArgs as CreateApplicationArgsTs,
 )
-from smart_contracts.artifacts.lib_pcg64_ts_exposer import (
+from smart_contracts.artifacts.lib_pcg64_exposer_ts import (
     DeployCreate as DeployCreateTs,
 )
-from smart_contracts.artifacts.lib_pcg64_ts_exposer import (
-    LibPcg64TsExposerClient,
+from smart_contracts.artifacts.lib_pcg64_exposer_ts import (
+    LibPcg64ExposerTsClient,
 )
 
 
@@ -50,10 +50,10 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
         case "ts":
             if "lib_pcg64_client" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "lib_pcg64_client", ["lib_pcg64_ts_exposer_client"]
+                    "lib_pcg64_client", ["lib_pcg64_exposer_ts_client"]
                 )
             if "expected_library_size" in metafunc.fixturenames:
-                metafunc.parametrize("expected_library_size", [1020])
+                metafunc.parametrize("expected_library_size", [1700])
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize("max_unbounded_opup_calls", [39])
             if "max_bounded_opup_calls" in metafunc.fixturenames:
@@ -107,15 +107,15 @@ def lib_pcg64_exposer_pyteal_client(
 
 
 @pytest.fixture(scope="session")
-def lib_pcg64_ts_exposer_client(
+def lib_pcg64_exposer_ts_client(
     algod_client: AlgodClient, indexer_client: IndexerClient
-) -> LibPcg64TsExposerClient:
+) -> LibPcg64ExposerTsClient:
     config.configure(
         debug=True,
         # trace_all=True,
     )
 
-    client = LibPcg64TsExposerClient(
+    client = LibPcg64ExposerTsClient(
         algod_client,
         creator=get_localnet_default_account(algod_client),
         indexer_client=indexer_client,

@@ -8,7 +8,7 @@ artifacts = 'contracts/artifacts'
 
 [project.run]
 build = { commands = [
-  'npm run build',
+  'npm run compile-contract',
 ], description = 'Build all smart contracts in the project' }
 lint = { commands = [
   'npm run fix',

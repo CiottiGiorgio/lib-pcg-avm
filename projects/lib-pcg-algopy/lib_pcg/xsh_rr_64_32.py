@@ -85,7 +85,7 @@ def pcg32_random(
 
             absolute_bound = (1 << 32) - lower_bound
 
-        threshold = __mask_to_32bits(__uint64_twos(absolute_bound)) % absolute_bound
+        threshold = __mask_to_uint32(__uint64_twos(absolute_bound)) % absolute_bound
 
         for i in urange(length):  # noqa: B007
             while True:
@@ -139,7 +139,7 @@ def pcg16_random(
 
             absolute_bound = (1 << 16) - lower_bound
 
-        threshold = __mask_to_32bits(__uint64_twos(absolute_bound)) % absolute_bound
+        threshold = __mask_to_uint32(__uint64_twos(absolute_bound)) % absolute_bound
 
         for i in urange(length):  # noqa: B007
             while True:
@@ -193,7 +193,7 @@ def pcg8_random(
 
             absolute_bound = (1 << 8) - lower_bound
 
-        threshold = __mask_to_32bits(__uint64_twos(absolute_bound)) % absolute_bound
+        threshold = __mask_to_uint32(__uint64_twos(absolute_bound)) % absolute_bound
 
         for i in urange(length):  # noqa: B007
             while True:
@@ -227,15 +227,15 @@ def __pcg32_random(state: PCG32STATE) -> tuple[PCG32STATE, UInt64]:
 
 
 @subroutine
-def __pcg32_output(value: PCG32STATE) -> UInt64:
+def __pcg32_output(state: PCG32STATE) -> UInt64:
     return __pcg32_rotation(
-        __mask_to_32bits(((value >> 18) ^ value) >> 27), value >> 59
+        __mask_to_uint32(((state >> 18) ^ state) >> 27), state >> 59
     )
 
 
 @subroutine
 def __pcg32_rotation(value: UInt64, rot: UInt64) -> UInt64:
-    return (value >> rot) | __mask_to_32bits(value << (__uint64_twos(rot) & 31))
+    return (value >> rot) | __mask_to_uint32(value << (__uint64_twos(rot) & 31))
 
 
 @subroutine
@@ -246,5 +246,5 @@ def __uint64_twos(value: UInt64) -> UInt64:
 
 
 @subroutine
-def __mask_to_32bits(value: UInt64) -> UInt64:
+def __mask_to_uint32(value: UInt64) -> UInt64:
     return value & ((1 << 32) - 1)

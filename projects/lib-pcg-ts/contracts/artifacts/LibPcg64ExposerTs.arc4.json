@@ -1,5 +1,5 @@
 {
-  "name": "LibPcg64TsExposer",
+  "name": "LibPcg64ExposerTs",
   "desc": "",
   "methods": [
     {
@@ -19,7 +19,7 @@
         },
         {
           "name": "length",
-          "type": "uint64"
+          "type": "uint16"
         }
       ],
       "returns": {

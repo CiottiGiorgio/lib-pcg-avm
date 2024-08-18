@@ -41,7 +41,7 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
         case "ts":
             if "lib_pcg128_client" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "lib_pcg128_client", ["lib_pcg128_ts_exposer_client"]
+                    "lib_pcg128_client", ["lib_pcg128_exposer_ts_client"]
                 )
             if "expected_library_size" in metafunc.fixturenames:
                 # FIXME

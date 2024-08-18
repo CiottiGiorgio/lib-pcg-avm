@@ -5,7 +5,7 @@ This [AlgoKit](http://algokit.io) subproject implements PCG in [TypeScript](http
 For more general info on this library, see the [main page](../..).
 
 ## Getting Started
-Copy either the [pcg32](./contracts/lib-pcg32-ts.algo.ts) or the [pcg64](./contracts/lib-pcg64-ts.algo.ts)
+Copy either the [pcg32](lib_pcg/lib-pcg32-ts.algo.ts) or the [pcg64](lib_pcg/lib-pcg64-ts.algo.ts)
 file in your own project’s contract folder.
 
 Have your contract extend from the library file like:
@@ -28,8 +28,8 @@ export class YourContract extends LibPcg32Ts {
 ```
 You can also take a look at the exposer contracts:
 [
-  [1](./contracts/lib-pcg32-ts-exposer.algo.ts),
-  [2](./contracts/lib-pcg64-ts-exposer.algo.ts)
+  [1](./contracts/lib-pcg32-exposer-ts.algo.ts),
+  [2](./contracts/lib-pcg64-exposer-ts.algo.ts)
 ]
 
 ## Usage

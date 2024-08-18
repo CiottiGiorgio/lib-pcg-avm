@@ -1,5 +1,5 @@
 {
-  "name": "LibPcg32TsExposer",
+  "name": "LibPcg32ExposerTs",
   "desc": "",
   "methods": [
     {
@@ -7,19 +7,19 @@
       "args": [
         {
           "name": "seed",
-          "type": "uint64"
+          "type": "byte[8]"
         },
         {
           "name": "lower_bound",
-          "type": "uint64"
+          "type": "uint32"
         },
         {
           "name": "upper_bound",
-          "type": "uint64"
+          "type": "uint32"
         },
         {
           "name": "length",
-          "type": "uint64"
+          "type": "uint16"
         }
       ],
       "returns": {
@@ -31,19 +31,19 @@
       "args": [
         {
           "name": "seed",
-          "type": "uint64"
+          "type": "byte[8]"
         },
         {
           "name": "lower_bound",
-          "type": "uint64"
+          "type": "uint16"
         },
         {
           "name": "upper_bound",
-          "type": "uint64"
+          "type": "uint16"
         },
         {
           "name": "length",
-          "type": "uint64"
+          "type": "uint16"
         }
       ],
       "returns": {
@@ -55,19 +55,19 @@
       "args": [
         {
           "name": "seed",
-          "type": "uint64"
+          "type": "byte[8]"
         },
         {
           "name": "lower_bound",
-          "type": "uint64"
+          "type": "uint8"
         },
         {
           "name": "upper_bound",
-          "type": "uint64"
+          "type": "uint8"
         },
         {
           "name": "length",
-          "type": "uint64"
+          "type": "uint16"
         }
       ],
       "returns": {
