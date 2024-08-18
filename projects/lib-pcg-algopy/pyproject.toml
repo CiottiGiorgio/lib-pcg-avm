@@ -38,9 +38,6 @@ unfixable = ["B", "RUF"]
 allow-star-arg-any = true
 suppress-none-returning = true
 
-[tool.pytest.ini_options]
-pythonpath = ["smart_contracts", "tests"]
-
 [tool.mypy]
 files = ["smart_contracts/", "lib_pcg/"]
 python_version = "3.12"
