@@ -5,8 +5,8 @@ This [AlgoKit](http://algokit.io) subproject implements PCG in [PyTeal](https://
 For more general info on this library, see the [main page](../..).
 
 ## Getting Started
-Copy either the [pcg32](./lib_pcg/xsh_rr_64_32.py) or the [pcg64](./lib_pcg/xsh_rr_double_64_32.py)
-file in your own project’s `lib_pcg` folder.
+Copy both the [pcg32](./lib_pcg/xsh_rr_64_32.py) and the [pcg64](./lib_pcg/xsh_rr_double_64_32.py)
+files in your own project’s `lib_pcg` folder.
 
 Import the library in your contracts like:
 ```python

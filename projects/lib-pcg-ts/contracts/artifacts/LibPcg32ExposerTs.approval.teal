@@ -1256,9 +1256,9 @@ bounded_rand_uint16:
 	dup
 
 	// contracts\lib-pcg32-exposer-ts.algo.ts:17
-	// state = this.pcg32Init(seed)
+	// state = this.pcg16Init(seed)
 	frame_dig -1 // seed: bytes<8>
-	callsub pcg32Init
+	callsub pcg16Init
 	frame_bury 0 // state: uint64
 
 	// contracts\lib-pcg32-exposer-ts.algo.ts:20
@@ -1376,9 +1376,9 @@ bounded_rand_uint8:
 	dup
 
 	// contracts\lib-pcg32-exposer-ts.algo.ts:28
-	// state = this.pcg32Init(seed)
+	// state = this.pcg8Init(seed)
 	frame_dig -1 // seed: bytes<8>
-	callsub pcg32Init
+	callsub pcg8Init
 	frame_bury 0 // state: uint64
 
 	// contracts\lib-pcg32-exposer-ts.algo.ts:31

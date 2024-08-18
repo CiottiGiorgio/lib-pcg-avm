@@ -5,12 +5,12 @@ This [AlgoKit](http://algokit.io) subproject implements PCG in [TypeScript](http
 For more general info on this library, see the [main page](../..).
 
 ## Getting Started
-Copy either the [pcg32](lib_pcg/lib-pcg32-ts.algo.ts) or the [pcg64](lib_pcg/lib-pcg64-ts.algo.ts)
-file in your own project’s contract folder.
+Copy both the [pcg32](lib_pcg/lib-pcg32-ts.algo.ts) and the [pcg64](lib_pcg/lib-pcg64-ts.algo.ts)
+files in your own project’s `lib_pcg` folder.
 
 Have your contract extend from the library file like:
 ```typescript
-export class YourContract extends LibPcg32Ts {
+export class YourContract extends LibPcg32 {
   yourMethod(...): ... {
     // Here you would acquire a safe randomness seed.
     ...
@@ -19,7 +19,9 @@ export class YourContract extends LibPcg32Ts {
     const rngState = this.pcg32Init(seed);
 
     // Generate a sequence
-    const sequence = castBytes<uint32[]>(this.pcg32Random(rngState, 32, lower_bound, upper_bound, length)[1]);
+    const result = this.pcg32Random(rngState, 32, lower_bound, upper_bound, length);
+    const newRngState = result[0];
+    const sequence = result[1];
 
     // The rest of your program
     ...
@@ -33,11 +35,9 @@ You can also take a look at the exposer contracts:
 ]
 
 ## Usage
-Due to internal details, the `8 / 16 / 32`-bit generators all use `this.pcg32Init()` for seeding the algorithms,
-but then you should use the respective `this.pcg8/16/32Random()` function to get your sequence.
-This will change in the future to prevent ambiguity.
+All generators all use `this.pcg<N>Init()` for seeding the algorithm.
 
-`64`-bit generator uses the respective `this.pcg64Init()` function.
+To generate a sequence, use `this.pcg<N>Random()`.
 
 You can pass non-zero `lowerBound` and `upperBound` arguments to `this.pcg<N>Random()` to get integers in a desired range.
 Note that:
