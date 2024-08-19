@@ -37,13 +37,6 @@ lint = { commands = [
   'poetry run black .',
   'poetry run ruff check . --fix',
 ], description = 'Perform linting' }
-publish = { commands = [
-  'algokit project run lint-check',
-  'algokit project run build',
-  'algokit project run test',
-  'poetry build',
-  'poetry publish'
-], description = 'Publish to PyPI'}
 
 # Commands intented for CI only, prefixed with `ci-` by convention
 ci-teal-diff = { commands = [
