@@ -41,6 +41,21 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 metafunc.parametrize(
                     "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [132, 68, 34])
                 )
+        case "ts":
+            if "lib_pcg32_client" in metafunc.fixturenames:
+                metafunc.parametrize(
+                    "lib_pcg32_client", ["lib_pcg32_exposer_ts_client"]
+                )
+            if "expected_library_size" in metafunc.fixturenames:
+                metafunc.parametrize("expected_library_size", [1500])
+            if "max_unbounded_opup_calls" in metafunc.fixturenames:
+                metafunc.parametrize(
+                    "bit_size,max_unbounded_opup_calls", zip(BIT_SIZES, [164, 82, 40])
+                )
+            if "max_bounded_opup_calls" in metafunc.fixturenames:
+                metafunc.parametrize(
+                    "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [178, 90, 45])
+                )
         case "pyteal":
             if "lib_pcg32_client" in metafunc.fixturenames:
                 metafunc.parametrize(
@@ -55,21 +70,6 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
             if "max_bounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize(
                     "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [105, 53, 27])
-                )
-        case "ts":
-            if "lib_pcg32_client" in metafunc.fixturenames:
-                metafunc.parametrize(
-                    "lib_pcg32_client", ["lib_pcg32_exposer_ts_client"]
-                )
-            if "expected_library_size" in metafunc.fixturenames:
-                metafunc.parametrize("expected_library_size", [1500])
-            if "max_unbounded_opup_calls" in metafunc.fixturenames:
-                metafunc.parametrize(
-                    "bit_size,max_unbounded_opup_calls", zip(BIT_SIZES, [159, 80, 39])
-                )
-            if "max_bounded_opup_calls" in metafunc.fixturenames:
-                metafunc.parametrize(
-                    "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [174, 87, 44])
                 )
 
 

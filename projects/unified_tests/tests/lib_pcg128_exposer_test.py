@@ -24,10 +24,10 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 metafunc.parametrize("max_unbounded_opup_calls", [27])
             if "max_bounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize("max_bounded_opup_calls", [31])
-        case "pyteal":
+        case "ts":
             if "lib_pcg128_client" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "lib_pcg128_client", ["lib_pcg128_exposer_pyteal_client"]
+                    "lib_pcg128_client", ["lib_pcg128_exposer_ts_client"]
                 )
             if "expected_library_size" in metafunc.fixturenames:
                 # FIXME
@@ -38,10 +38,10 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
             if "max_bounded_opup_calls" in metafunc.fixturenames:
                 # FIXME
                 metafunc.parametrize("max_bounded_opup_calls", [50])
-        case "ts":
+        case "pyteal":
             if "lib_pcg128_client" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "lib_pcg128_client", ["lib_pcg128_exposer_ts_client"]
+                    "lib_pcg128_client", ["lib_pcg128_exposer_pyteal_client"]
                 )
             if "expected_library_size" in metafunc.fixturenames:
                 # FIXME

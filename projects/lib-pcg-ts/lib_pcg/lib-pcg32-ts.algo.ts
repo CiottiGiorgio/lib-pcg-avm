@@ -22,12 +22,10 @@ export class LibPcg32 extends Contract {
     return addwResult.low;
   }
 
-  protected __pcg32Rotation(value: uint64, rot: uint64): uint64 {
-    return (value >> rot) | this.__maskToUint32(value << (this.__uint64Twos(rot) & 31));
-  }
-
   protected __pcg32Output(state: PCG32STATE): uint64 {
-    return this.__pcg32Rotation(this.__maskToUint32(((state >> 18) ^ state) >> 27), state >> 59);
+    const xorshifted = this.__maskToUint32(((state >> 18) ^ state) >> 27);
+    const rot = state >> 59;
+    return (xorshifted >> rot) | this.__maskToUint32(xorshifted << (this.__uint64Twos(rot) & 31));
   }
 
   protected __pcg32Random(state: PCG32STATE): [PCG32STATE, uint64] {
