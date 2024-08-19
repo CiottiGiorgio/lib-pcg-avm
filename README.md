@@ -4,7 +4,7 @@
 **lib-pcg-avm** is a library for pseudo-random number generation based on the PCG (Permuted Congruential Generator) family of algorithms.
 This library is implemented in three languages that compile down to AVM (Algorand Virtual Machine) bytecode:
 - [Algorand Python](./projects/lib-pcg-algopy/README.md)
-- [TypeScript](./projects/lib-pcg-ts/README.md)
+- [TEALScript](./projects/lib-pcg-ts/README.md)
 - [PyTeal](./projects/lib-pcg-pyteal/README.md)
 
 The reference implementation is the [PCG C Basic Implementation](https://github.com/imneme/pcg-c-basic).

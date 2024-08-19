@@ -1,7 +1,7 @@
 # PCG Random Number Generator, AVM Edition
 
 ## lib-pcg-ts
-This [AlgoKit](http://algokit.io) subproject implements PCG in [TypeScript](https://tealscript.netlify.app/).
+This [AlgoKit](http://algokit.io) subproject implements PCG in [TEALScript](https://tealscript.netlify.app/).
 For more general info on this library, see the [main page](../..).
 
 ## Getting Started
