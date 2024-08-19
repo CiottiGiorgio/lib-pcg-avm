@@ -271,19 +271,14 @@ def __pcg32_random(state: PCG32STATE) -> tuple[PCG32STATE, UInt64]:
     return __pcg32_step(state, UInt64(PCG_FIRST_INCREMENT)), __pcg32_output(state)
 
 
-# TODO: Try merging output and rotation into a single function and measure the effect on performance.
 @subroutine
 def __pcg32_output(state: PCG32STATE) -> UInt64:
     """PCG XSH RR 64/32 output k-to-1 permutation function."""
-    return __pcg32_rotation(
-        __mask_to_uint32(((state >> 18) ^ state) >> 27), state >> 59
+    xorshifted = __mask_to_uint32(((state >> 18) ^ state) >> 27)
+    rot = state >> 59
+    return (xorshifted >> rot) | __mask_to_uint32(
+        xorshifted << (__uint64_twos(rot) & 31)
     )
-
-
-@subroutine
-def __pcg32_rotation(value: UInt64, rot: UInt64) -> UInt64:
-    """PCG XSH RR 64/32 rotation function."""
-    return (value >> rot) | __mask_to_uint32(value << (__uint64_twos(rot) & 31))
 
 
 @subroutine

@@ -425,13 +425,12 @@ __pcg32_random:
 
 // lib_pcg.xsh_rr_64_32.__pcg32_output(state: uint64) -> uint64:
 __pcg32_output:
-    // lib_pcg/xsh_rr_64_32.py:274-276
-    // # TODO: Try merging output and rotation into a single function and measure the effect on performance.
+    // lib_pcg/xsh_rr_64_32.py:274-275
     // @subroutine
     // def __pcg32_output(state: PCG32STATE) -> UInt64:
     proto 1 1
-    // lib_pcg/xsh_rr_64_32.py:279
-    // __mask_to_uint32(((state >> 18) ^ state) >> 27), state >> 59
+    // lib_pcg/xsh_rr_64_32.py:277
+    // xorshifted = __mask_to_uint32(((state >> 18) ^ state) >> 27)
     frame_dig -1
     int 18
     shr
@@ -440,24 +439,38 @@ __pcg32_output:
     int 27
     shr
     callsub __mask_to_uint32
+    // lib_pcg/xsh_rr_64_32.py:278
+    // rot = state >> 59
     frame_dig -1
     int 59
     shr
-    // lib_pcg/xsh_rr_64_32.py:278-280
-    // return __pcg32_rotation(
-    //     __mask_to_uint32(((state >> 18) ^ state) >> 27), state >> 59
+    // lib_pcg/xsh_rr_64_32.py:279
+    // return (xorshifted >> rot) | __mask_to_uint32(
+    dup2
+    shr
+    cover 2
+    // lib_pcg/xsh_rr_64_32.py:280
+    // xorshifted << (__uint64_twos(rot) & 31)
+    callsub __uint64_twos
+    int 31
+    &
+    shl
+    // lib_pcg/xsh_rr_64_32.py:279-281
+    // return (xorshifted >> rot) | __mask_to_uint32(
+    //     xorshifted << (__uint64_twos(rot) & 31)
     // )
-    callsub __pcg32_rotation
+    callsub __mask_to_uint32
+    |
     retsub
 
 
 // lib_pcg.xsh_rr_64_32.__mask_to_uint32(value: uint64) -> uint64:
 __mask_to_uint32:
-    // lib_pcg/xsh_rr_64_32.py:297-298
+    // lib_pcg/xsh_rr_64_32.py:292-293
     // @subroutine
     // def __mask_to_uint32(value: UInt64) -> UInt64:
     proto 1 1
-    // lib_pcg/xsh_rr_64_32.py:300
+    // lib_pcg/xsh_rr_64_32.py:295
     // return value & ((1 << 32) - 1)
     frame_dig -1
     int 4294967295
@@ -465,43 +478,20 @@ __mask_to_uint32:
     retsub
 
 
-// lib_pcg.xsh_rr_64_32.__pcg32_rotation(value: uint64, rot: uint64) -> uint64:
-__pcg32_rotation:
-    // lib_pcg/xsh_rr_64_32.py:283-284
-    // @subroutine
-    // def __pcg32_rotation(value: UInt64, rot: UInt64) -> UInt64:
-    proto 2 1
-    // lib_pcg/xsh_rr_64_32.py:286
-    // return (value >> rot) | __mask_to_uint32(value << (__uint64_twos(rot) & 31))
-    frame_dig -2
-    frame_dig -1
-    shr
-    frame_dig -1
-    callsub __uint64_twos
-    int 31
-    &
-    frame_dig -2
-    swap
-    shl
-    callsub __mask_to_uint32
-    |
-    retsub
-
-
 // lib_pcg.xsh_rr_64_32.__uint64_twos(value: uint64) -> uint64:
 __uint64_twos:
-    // lib_pcg/xsh_rr_64_32.py:289-290
+    // lib_pcg/xsh_rr_64_32.py:284-285
     // @subroutine
     // def __uint64_twos(value: UInt64) -> UInt64:
     proto 1 1
-    // lib_pcg/xsh_rr_64_32.py:292
+    // lib_pcg/xsh_rr_64_32.py:287
     // _addw_high, addw_low = op.addw(~value, 1)
     frame_dig -1
     ~
     int 1
     addw
     bury 1
-    // lib_pcg/xsh_rr_64_32.py:294
+    // lib_pcg/xsh_rr_64_32.py:289
     // return addw_low
     retsub
 
