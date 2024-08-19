@@ -53,7 +53,9 @@ def pcg64_random(
     However, they should always be set such that the desired range includes at least two numbers.
 
     Returns:
-        The state of the generator after generating the sequence and the generated sequence of 64-bit integers.
+        A tuple of:
+        - The new state of the generator.
+        - A pseudo-random sequence of 64-bit uints.
 
     """
     result = arc4.DynamicArray[arc4.UInt64]()
@@ -88,6 +90,19 @@ def pcg64_random(
 
 @subroutine
 def __pcg64_random(state: PCG64STATE) -> tuple[PCG64STATE, UInt64]:
+    """Double PCG XSH RR 64/32 next number in the sequence.
+
+    We are concatenating two 32-bit generators in the way described by the PCG paper in chapter 4.3.4.
+
+    Args:
+        state: The state of the generator.
+
+    Returns:
+        A tuple of:
+        - The new state of the generator.
+        - A pseudo-random 64-bit uint.
+
+    """
     new_state1, high_prn = __pcg32_random(state[0])
 
     new_state2 = __pcg32_step(state[1], UInt64(PCG_SECOND_INCREMENT) << (state[0] == 0))

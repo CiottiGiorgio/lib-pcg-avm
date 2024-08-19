@@ -12,7 +12,7 @@ def pcg32_init(seed: Bytes) -> PCG32STATE:
     """Single PCG XSH RR 64/32 initialization function for all generators from 32-bits and below.
 
     Args:
-        seed: initial entropy used to initialize the state.
+        seed: Initial entropy used to initialize the state.
 
     Returns:
         The initialized state.
@@ -25,20 +25,20 @@ def pcg32_init(seed: Bytes) -> PCG32STATE:
 
 @subroutine
 def pcg16_init(seed: Bytes) -> PCG32STATE:
-    """
-    Proxy to the real function.
+    """Proxy to the real function.
 
     This is only used to prevent the ambiguity of calling pcg32_init with an 8 or 16 bit generator.
+
     """
     return pcg32_init(seed)
 
 
 @subroutine
 def pcg8_init(seed: Bytes) -> PCG32STATE:
-    """
-    Proxy to the real function.
+    """Proxy to the real function.
 
     This is only used to prevent the ambiguity of calling pcg32_init with an 8 or 16 bit generator.
+
     """
     return pcg32_init(seed)
 
@@ -63,7 +63,9 @@ def pcg32_random(
     However, they should always be set such that the desired range includes at least two numbers.
 
     Returns:
-        The state of the generator after generating the sequence and the generated sequence of 32-bit integers.
+        A tuple of:
+        - The new state of the generator.
+        - A pseudo-random sequence of 32-bit uints.
 
     """
     result = arc4.DynamicArray[arc4.UInt32]()
@@ -117,7 +119,9 @@ def pcg16_random(
     However, they should always be set such that the desired range includes at least two numbers.
 
     Returns:
-        The state of the generator after generating the sequence and the generated sequence of 16-bit integers.
+        A tuple of:
+        - The new state of the generator.
+        - A pseudo-random sequence of 16-bit uints.
 
     """
     result = arc4.DynamicArray[arc4.UInt16]()
@@ -171,7 +175,9 @@ def pcg8_random(
     However, they should always be set such that the desired range includes at least two numbers.
 
     Returns:
-        The state of the generator after generating the sequence and the generated sequence of 8-bit integers.
+        A tuple of:
+        - The new state of the generator.
+        - A pseudo-random sequence of 8-bit uints.
 
     """
     result = arc4.DynamicArray[arc4.UInt8]()
@@ -207,6 +213,20 @@ def pcg8_random(
 
 @subroutine
 def __pcg32_init(initial_state: PCG32STATE, incr: UInt64) -> PCG32STATE:
+    """PCG XSH RR 64/32 state initialization.
+
+    Notably, we perform a second step after initializing the generator because it primes it for
+     the first number that we are going to generate.
+    More details in __pcg32_random() subroutine.
+
+    Args:
+        initial_state: Initial entropy used to initialize the state.
+        incr: Constant used in the modulo addition.
+
+    Returns:
+        The properly initialized state of the generator.
+
+    """
     state = __pcg32_step(UInt64(0), incr)
     _high_addw, state = op.addw(state, initial_state)
 
@@ -215,6 +235,16 @@ def __pcg32_init(initial_state: PCG32STATE, incr: UInt64) -> PCG32STATE:
 
 @subroutine
 def __pcg32_step(state: PCG32STATE, incr: UInt64) -> PCG32STATE:
+    """PCG XSH RR 64/32 single step advance in the underlying LCG.
+
+    Args:
+        state: The state of the generator.
+        incr: Constant used in the modulo addition.
+
+    Returns:
+        The new state of the generator.
+
+    """
     _high_mul, low_mul = op.mulw(state, PCG_MULTIPLIER)
     _high_add, low_add = op.addw(low_mul, incr)
 
@@ -223,11 +253,28 @@ def __pcg32_step(state: PCG32STATE, incr: UInt64) -> PCG32STATE:
 
 @subroutine
 def __pcg32_random(state: PCG32STATE) -> tuple[PCG32STATE, UInt64]:
+    """PCG XSH RR 64/32 next number in the sequence.
+
+    Notably, the C reference implementation advanced the state _after_ passing it to the output function.
+    This is done because on traditional machines this would result in machine code that computes
+     the output and the step in parallel (instead of one depending on the result of the other).
+
+    Args:
+        state: The state of the generator.
+
+    Returns:
+        A tuple of:
+        - The new state of the generator.
+        - A pseudo-random 32-bit uint.
+
+    """
     return __pcg32_step(state, UInt64(PCG_FIRST_INCREMENT)), __pcg32_output(state)
 
 
+# TODO: Try merging output and rotation into a single function and measure the effect on performance.
 @subroutine
 def __pcg32_output(state: PCG32STATE) -> UInt64:
+    """PCG XSH RR 64/32 output k-to-1 permutation function."""
     return __pcg32_rotation(
         __mask_to_uint32(((state >> 18) ^ state) >> 27), state >> 59
     )
@@ -235,11 +282,13 @@ def __pcg32_output(state: PCG32STATE) -> UInt64:
 
 @subroutine
 def __pcg32_rotation(value: UInt64, rot: UInt64) -> UInt64:
+    """PCG XSH RR 64/32 rotation function."""
     return (value >> rot) | __mask_to_uint32(value << (__uint64_twos(rot) & 31))
 
 
 @subroutine
 def __uint64_twos(value: UInt64) -> UInt64:
+    """Performs the two's complement on a native uint64."""
     _addw_high, addw_low = op.addw(~value, 1)
 
     return addw_low
@@ -247,4 +296,5 @@ def __uint64_twos(value: UInt64) -> UInt64:
 
 @subroutine
 def __mask_to_uint32(value: UInt64) -> UInt64:
+    """Sets input's highest 32 bits to zero."""
     return value & ((1 << 32) - 1)

@@ -40,38 +40,13 @@ def pcg128_init(seed: Bytes) -> PCG128STATE:
 
 
 @subroutine
-def __pcg128_random(state: PCG128STATE) -> tuple[PCG128STATE, BigUInt]:
-    new_state1, rn1 = __pcg32_random(state[0])
-
-    new_state2 = __pcg32_step(
-        state[1], UInt64(PCG_SECOND_INCREMENT) << (new_state1 == 0)
-    )
-
-    new_state3 = __pcg32_step(
-        state[2], UInt64(PCG_THIRD_INCREMENT) << (new_state2 == 0)
-    )
-
-    new_state4 = __pcg32_step(
-        state[3], UInt64(PCG_FOURTH_INCREMENT) << (new_state3 == 0)
-    )
-
-    return (
-        (new_state1, new_state2, new_state3, new_state4),
-        BigUInt.from_bytes(
-            op.itob(rn1 << 32 | __pcg32_output(state[1]))
-            + op.itob(__pcg32_output(state[2]) << 32 | __pcg32_output(state[3]))
-        ),
-    )
-
-
-@subroutine
 def pcg128_random(
     state: PCG128STATE,
     lower_bound: BigUInt,
     upper_bound: BigUInt,
     length: UInt64,
 ) -> tuple[PCG128STATE, arc4.DynamicArray[arc4.UInt128]]:
-    """Single PCG XSH RR 64/32 generator function for 128-bit pseudo-random big integers.
+    """Quadruple PCG XSH RR 64/32 generator function for 128-bit pseudo-random big integers.
 
     Args:
         state: The state of the generator.
@@ -84,7 +59,9 @@ def pcg128_random(
     However, they should always be set such that the desired range includes at least two numbers.
 
     Returns:
-        The state of the generator after generating the sequence and the generated sequence of 128-bit big integers.
+        A tuple of:
+        - The new state of the generator.
+        - A pseudo-random sequence of 128-bit uints.
 
     """
     result = arc4.DynamicArray[arc4.UInt128]()
@@ -118,25 +95,65 @@ def pcg128_random(
     return state, result.copy()
 
 
-# There's no way to write a general uint512 two's complement because there's no way to get a larger number than
-#  an uint512 like we can do for uint64 with wide math.
-# Fortunately, we don't use uint512. This code works assuming that "value: BigUInt" is an uint256.
-# This code will prevent a native overflow and return a correctly masked uint256.
+@subroutine
+def __pcg128_random(state: PCG128STATE) -> tuple[PCG128STATE, BigUInt]:
+    """Quadruple PCG XSH RR 64/32 next number in the sequence.
+
+    We are concatenating two 32-bit generators in the way described by the PCG paper in chapter 4.3.4.
+
+    Args:
+        state: The state of the generator.
+
+    Returns:
+        A tuple of:
+        - The new state of the generator.
+        - A pseudo-random 128-bit uint.
+
+    """
+    new_state1, rn1 = __pcg32_random(state[0])
+
+    new_state2 = __pcg32_step(
+        state[1], UInt64(PCG_SECOND_INCREMENT) << (new_state1 == 0)
+    )
+
+    new_state3 = __pcg32_step(
+        state[2], UInt64(PCG_THIRD_INCREMENT) << (new_state2 == 0)
+    )
+
+    new_state4 = __pcg32_step(
+        state[3], UInt64(PCG_FOURTH_INCREMENT) << (new_state3 == 0)
+    )
+
+    return (
+        (new_state1, new_state2, new_state3, new_state4),
+        BigUInt.from_bytes(
+            op.itob(rn1 << 32 | __pcg32_output(state[1]))
+            + op.itob(__pcg32_output(state[2]) << 32 | __pcg32_output(state[3]))
+        ),
+    )
+
+
 @subroutine
 def __uint128_twos(value: BigUInt) -> BigUInt:
-    wide_value_compl = (
-        value
-        ^ BigUInt.from_bytes(
-            b"\x00\x00\x00\x00\x00\x00\x00\x00"
-            + b"\x00\x00\x00\x00\x00\x00\x00\x00"
-            + b"\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF"
-            + b"\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF"
-        )
-    ) + BigUInt(1)
+    """Performs the two's complement on a native BigUInt.
 
-    return wide_value_compl & BigUInt.from_bytes(
-        b"\x00\x00\x00\x00\x00\x00\x00\x00"
-        + b"\x00\x00\x00\x00\x00\x00\x00\x00"
-        + b"\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF"
-        + b"\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF"
-    )
+    We need to assume for correctness of this code that the input is a non-zero BigUInt.
+    In the event that the underlying representation is actually 256-bit long,
+     if value == 0 then we will trigger a native BigUInt overflow.
+
+    ~0 + 1 == ((1 << 256) - 1) + 1 == 1 << 256
+    which is unrepresentable as a BigUInt.
+
+    Fortunately, we only use this function to negate an absolute_bound which, by construction,
+     is always different from zero.
+
+    We mask the result back to 128-bit for correctness.
+
+    Args:
+        value: A BigUInt that is assumed to be a 128-bit BigUInt.
+
+    Returns:
+        The two's complement of the input value masked to 128-bit.
+
+    """
+    return (BigUInt.from_bytes(~value.bytes) + 1) & BigUInt((1 << 128) - 1)
