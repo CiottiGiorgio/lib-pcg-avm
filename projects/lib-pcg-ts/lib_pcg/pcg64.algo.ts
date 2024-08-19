@@ -1,4 +1,4 @@
-import { LibPcg32 } from './lib-pcg32-ts.algo';
+import { LibPcg32 } from './pcg32.algo';
 import { pcgFirstIncrement, pcgSecondIncrement } from './consts.algo';
 
 type PCG64STATE = [uint64, uint64];

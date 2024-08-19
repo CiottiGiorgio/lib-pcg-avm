@@ -4,7 +4,7 @@ import beaker
 import pyteal as pt
 from algokit_utils import DELETABLE_TEMPLATE_NAME, UPDATABLE_TEMPLATE_NAME
 
-from lib_pcg.xsh_rr_64_32 import pcg32_init, pcg32_random
+from lib_pcg.pcg32 import pcg32_init, pcg32_random
 
 app = beaker.Application(
     "lib_pcg32_exposer_pyteal",

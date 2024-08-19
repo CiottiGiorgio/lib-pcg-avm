@@ -1,4 +1,4 @@
-import { LibPcg64 } from '../lib_pcg/lib-pcg64-ts.algo';
+import { LibPcg64 } from '../lib_pcg/pcg64.algo';
 
 export class LibPcg64ExposerTs extends LibPcg64 {
   // eslint-disable-next-line camelcase

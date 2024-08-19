@@ -5,7 +5,7 @@ This [AlgoKit](http://algokit.io) subproject implements PCG in [TEALScript](http
 For more general info on this library, see the [main page](../..).
 
 ## Getting Started
-Copy both the [pcg32](lib_pcg/lib-pcg32-ts.algo.ts) and the [pcg64](lib_pcg/lib-pcg64-ts.algo.ts)
+Copy both the [pcg32](lib_pcg/pcg32.algo.ts) and the [pcg64](lib_pcg/pcg64.algo.ts)
 files in your own project’s `lib_pcg` folder.
 
 Have your contract extend from the library file like:

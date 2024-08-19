@@ -1,7 +1,7 @@
 import pyteal as pt
 
 from lib_pcg.consts import PCG_FIRST_INCREMENT, PCG_SECOND_INCREMENT
-from lib_pcg.xsh_rr_64_32 import (
+from lib_pcg.pcg32 import (
     __pcg32_init,
     __pcg32_output,
     __pcg32_step,

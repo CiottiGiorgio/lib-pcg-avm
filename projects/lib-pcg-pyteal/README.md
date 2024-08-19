@@ -5,40 +5,43 @@ This [AlgoKit](http://algokit.io) subproject implements PCG in [PyTeal](https://
 For more general info on this library, see the [main page](../..).
 
 ## Getting Started
-Copy both the [pcg32](./lib_pcg/xsh_rr_64_32.py) and the [pcg64](./lib_pcg/xsh_rr_double_64_32.py)
+Copy both the [pcg32](./lib_pcg/pcg32.py) and the [pcg64](./lib_pcg/pcg64.py)
 files in your own project’s `lib_pcg` folder.
 
 Import the library in your contracts like:
+
 ```python
 ...
-from lib_pcg.xsh_rr_64_32 import pcg32_init, pcg32_random
+from lib_pcg.pcg32 import pcg32_init, pcg32_random
+
 ...
+
 
 @app.external
 def your_method(
-    ...
+  ...
 ) -> ...:
-    # Here you would acquire a safe randomness seed.
-    ...
-    
-    # Create a ScratchVar that holds your PRNG state.
-    rng_handle = pt.ScratchVar(pt.TealType.uint64)
+  # Here you would acquire a safe randomness seed.
+  ...
 
-    return pt.Seq(
-        # Seed the PRNG
-        pcg32_init(rng_handle.index(), seed.get()),
-        
-        # Generate a sequence
-        output.decode(
-            pcg32_random(
-                rng_handle.index(),
-                pt.Int(32),
-                lower_bound.get(),
-                upper_bound.get(),
-                length.get(),
-            )
-        ),
-    )
+  # Create a ScratchVar that holds your PRNG state.
+  rng_handle = pt.ScratchVar(pt.TealType.uint64)
+
+  return pt.Seq(
+    # Seed the PRNG
+    pcg32_init(rng_handle.index(), seed.get()),
+
+    # Generate a sequence
+    output.decode(
+      pcg32_random(
+        rng_handle.index(),
+        pt.Int(32),
+        lower_bound.get(),
+        upper_bound.get(),
+        length.get(),
+      )
+    ),
+  )
 ```
 You can also take a look at the exposer contracts:
 [

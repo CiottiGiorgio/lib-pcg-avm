@@ -1,4 +1,4 @@
-from .xsh_rr_64_32 import (
+from .pcg32 import (
     pcg8_init,
     pcg8_random,
     pcg16_init,
@@ -6,8 +6,8 @@ from .xsh_rr_64_32 import (
     pcg32_init,
     pcg32_random,
 )
-from .xsh_rr_double_64_32 import pcg64_init, pcg64_random
-from .xsh_rr_quadruple_64_32 import pcg128_init, pcg128_random
+from .pcg64 import pcg64_init, pcg64_random
+from .pcg128 import pcg128_init, pcg128_random
 
 __all__ = [
     "pcg32_init",

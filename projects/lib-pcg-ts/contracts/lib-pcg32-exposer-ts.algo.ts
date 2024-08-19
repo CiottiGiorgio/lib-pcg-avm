@@ -1,4 +1,4 @@
-import { LibPcg32 } from '../lib_pcg/lib-pcg32-ts.algo';
+import { LibPcg32 } from '../lib_pcg/pcg32.algo';
 
 export class LibPcg32ExposerTs extends LibPcg32 {
   // eslint-disable-next-line camelcase
