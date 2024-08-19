@@ -1,3 +1,5 @@
+from typing import Literal
+
 import beaker
 import pyteal as pt
 from algokit_utils import DELETABLE_TEMPLATE_NAME, UPDATABLE_TEMPLATE_NAME
@@ -27,7 +29,7 @@ def delete() -> pt.Expr:
 
 @app.external
 def bounded_rand_uint32(
-    seed: pt.abi.Uint64,
+    seed: pt.abi.StaticBytes[Literal[8]],
     lower_bound: pt.abi.Uint32,
     upper_bound: pt.abi.Uint32,
     length: pt.abi.Uint16,
@@ -52,7 +54,7 @@ def bounded_rand_uint32(
 
 @app.external
 def bounded_rand_uint16(
-    seed: pt.abi.Uint64,
+    seed: pt.abi.StaticBytes[Literal[8]],
     lower_bound: pt.abi.Uint16,
     upper_bound: pt.abi.Uint16,
     length: pt.abi.Uint16,
@@ -77,7 +79,7 @@ def bounded_rand_uint16(
 
 @app.external
 def bounded_rand_uint8(
-    seed: pt.abi.Uint64,
+    seed: pt.abi.StaticBytes[Literal[8]],
     lower_bound: pt.abi.Uint8,
     upper_bound: pt.abi.Uint8,
     length: pt.abi.Uint16,

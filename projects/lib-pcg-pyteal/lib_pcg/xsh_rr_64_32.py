@@ -4,114 +4,22 @@ from beaker.lib.inline import InlineAssembly
 from lib_pcg.consts import PCG_FIRST_INCREMENT, PCG_MULTIPLIER
 
 
-def __mask_to_uint32(uint64: pt.Expr) -> pt.Expr:
-    return pt.BitwiseAnd(
-        uint64, pt.Int(int.from_bytes(b"\x00\x00\x00\x00\xFF\xFF\xFF\xFF", "big"))
-    )
-
-
-# Because __pcg_rotation is inlined into this function, if we were to write the arguments
-#  as full pt.Expr that would be inlined inside that function each time the arguments are called.
-# Instead, we manually cache them into slots so that inside __pcg_rotation loading an argument
-#  is just a load opcode.
-def __pcg32_output(state: pt.Expr) -> pt.Expr:
-    arg1 = pt.ScratchVar(pt.TealType.uint64)
-    arg2 = pt.ScratchVar(pt.TealType.uint64)
-
+@pt.Subroutine(pt.TealType.none)
+def pcg32_init(state_slot_index: pt.Expr, seed: pt.Expr) -> pt.Expr:
     return pt.Seq(
-        # This needs to be uint32. We can't guarantee that at this point, so we cast it explicitly.
-        arg1.store(
-            __mask_to_uint32(
-                pt.ShiftRight(
-                    pt.BitwiseXor(pt.ShiftRight(state, pt.Int(18)), state), pt.Int(27)
-                ),
-            )
-        ),
-        arg2.store(pt.ShiftRight(state, pt.Int(59))),
-        __pcg32_rotation(arg1.load(), arg2.load()),
-    )
-
-
-def __pcg32_rotation(value: pt.Expr, rot: pt.Expr) -> pt.Expr:
-    # This needs to be uint32. Luckily, "value" is already uint32 and a right shift will maintain that invariant.
-    return pt.BitwiseOr(
-        pt.ShiftRight(value, rot),
-        # This needs to be uint32. Therefore, we mask out the higher bits because we can't guarantee
-        #  that invariant with a left shift of "rot" two's complement.
-        __mask_to_uint32(
-            pt.ShiftLeft(
-                value, pt.BitwiseAnd(__64bit_twos_complement(rot), pt.Int(31))
-            ),
-        ),
-    )
-
-
-# The value==0 case (and that case only) would still trigger a native carry (and therefore a contract panic).
-# We can get away with doing this because this function is exclusively used to negate absolute_bound which,
-#  by construction, can never be 0.
-def __32bit_twos_complement(value: pt.Expr) -> pt.Expr:
-    return __mask_to_uint32(pt.BitwiseNot(value) + pt.Int(1))
-
-
-def __64bit_twos_complement(number: pt.Expr) -> pt.Expr:
-    return InlineAssembly(
-        "\n".join(["addw", "bury 1"]),
-        pt.BitwiseNot(number),
-        pt.Int(1),
-        type=pt.TealType.uint64,
-    )
-
-
-def __pcg32_init(
-    state_slot_index: pt.Expr, initial_state: pt.Expr, incr: pt.Expr
-) -> pt.Expr:
-    return pt.Seq(
-        pt.ScratchStore(None, pt.Int(0), state_slot_index),
-        __pcg32_step(state_slot_index, incr),
-        pt.ScratchStore(
-            None,
-            InlineAssembly(
-                "\n".join(["addw", "bury 1"]),
-                pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index),
-                initial_state,
-                type=pt.TealType.uint64,
-            ),
-            state_slot_index,
-        ),
-        __pcg32_step(state_slot_index, incr),
+        pt.Assert(pt.Len(seed) == pt.Int(8)),
+        __pcg32_init(state_slot_index, pt.Btoi(seed), PCG_FIRST_INCREMENT),
     )
 
 
 @pt.Subroutine(pt.TealType.none)
-def pcg32_init(state_slot_index: pt.Expr, initial_state: pt.Expr) -> pt.Expr:
-    return __pcg32_init(state_slot_index, initial_state, PCG_FIRST_INCREMENT)
+def pcg16_init(state_slot_index: pt.Expr, seed: pt.Expr) -> pt.Expr:
+    return pcg32_random(state_slot_index, seed)
 
 
-def __pcg32_step(state_slot_index: pt.Expr, incr: pt.Expr) -> pt.Expr:
-    # Equivalent to state = state * multiplier + increment
-    # Considering that both operations could overflow and therefore the highest bits are discarded
-    return pt.ScratchStore(
-        None,
-        InlineAssembly(
-            "\n".join(["mulw", "bury 1", "addw", "bury 1"]),
-            incr,
-            PCG_MULTIPLIER,
-            pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index),
-            type=pt.TealType.none,
-        ),
-        state_slot_index,
-    )
-
-
-@pt.Subroutine(pt.TealType.uint64)
-def __pcg32_random(state_slot_index: pt.Expr) -> pt.Expr:
-    old_state = pt.ScratchVar(pt.TealType.uint64)
-
-    return pt.Seq(
-        old_state.store(pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index)),
-        __pcg32_step(state_slot_index, PCG_FIRST_INCREMENT),
-        pt.Return(__pcg32_output(old_state.load())),
-    )
+@pt.Subroutine(pt.TealType.none)
+def pcg8_init(state_slot_index: pt.Expr, seed: pt.Expr) -> pt.Expr:
+    return pcg32_random(state_slot_index, seed)
 
 
 # NOTE: It _may_ be possible to split a 32bit pseudo random integer in 2 (or 4, depending on the required bit_size)
@@ -121,10 +29,6 @@ def __pcg32_random(state_slot_index: pt.Expr) -> pt.Expr:
 #  Furthermore, the algorithm to advance multiple steps at once becomes complex.
 #  To improve performance it doesn't make sense to reduce the size of the state because ultimately it still
 #  would rely on the same uint64 opcodes.
-
-
-# If upper_bound is set, it's never included in the range.
-# If upper_bound is not set, the highest value (2^32-1) is included in the range.
 @pt.Subroutine(pt.TealType.bytes)
 def pcg32_random(
     state_slot_index: pt.Expr,
@@ -211,8 +115,7 @@ def pcg32_random(
                     )
                 ),
                 threshold.store(
-                    __32bit_twos_complement(absolute_bound.load())
-                    % absolute_bound.load()
+                    __uint32_twos(absolute_bound.load()) % absolute_bound.load()
                 ),
                 pt.For(
                     i.store(pt.Int(0)), i.load() < length, i.store(i.load() + pt.Int(1))
@@ -239,3 +142,108 @@ def pcg32_random(
         ),
         pt.Return(result.load()),
     )
+
+
+def __pcg32_init(
+    state_slot_index: pt.Expr, initial_state: pt.Expr, incr: pt.Expr
+) -> pt.Expr:
+    return pt.Seq(
+        pt.ScratchStore(None, pt.Int(0), state_slot_index),
+        __pcg32_step(state_slot_index, incr),
+        pt.ScratchStore(
+            None,
+            InlineAssembly(
+                "\n".join(["addw", "bury 1"]),
+                pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index),
+                initial_state,
+                type=pt.TealType.uint64,
+            ),
+            state_slot_index,
+        ),
+        __pcg32_step(state_slot_index, incr),
+    )
+
+
+def __pcg32_step(state_slot_index: pt.Expr, incr: pt.Expr) -> pt.Expr:
+    # Equivalent to state = state * multiplier + increment
+    # Considering that both operations could overflow and therefore the highest bits are discarded
+    return pt.ScratchStore(
+        None,
+        InlineAssembly(
+            "\n".join(["mulw", "bury 1", "addw", "bury 1"]),
+            incr,
+            PCG_MULTIPLIER,
+            pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index),
+            type=pt.TealType.none,
+        ),
+        state_slot_index,
+    )
+
+
+@pt.Subroutine(pt.TealType.uint64)
+def __pcg32_random(state_slot_index: pt.Expr) -> pt.Expr:
+    old_state = pt.ScratchVar(pt.TealType.uint64)
+
+    return pt.Seq(
+        old_state.store(pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index)),
+        __pcg32_step(state_slot_index, PCG_FIRST_INCREMENT),
+        pt.Return(__pcg32_output(old_state.load())),
+    )
+
+
+# Because __pcg_rotation is inlined into this function, if we were to write the arguments
+#  as full pt.Expr that would be inlined inside that function each time the arguments are called.
+# Instead, we manually cache them into slots so that inside __pcg_rotation loading an argument
+#  is just a load opcode.
+def __pcg32_output(state: pt.Expr) -> pt.Expr:
+    arg1 = pt.ScratchVar(pt.TealType.uint64)
+    arg2 = pt.ScratchVar(pt.TealType.uint64)
+
+    return pt.Seq(
+        # This needs to be uint32. We can't guarantee that at this point, so we cast it explicitly.
+        arg1.store(
+            __mask_to_uint32(
+                pt.ShiftRight(
+                    pt.BitwiseXor(pt.ShiftRight(state, pt.Int(18)), state), pt.Int(27)
+                ),
+            )
+        ),
+        arg2.store(pt.ShiftRight(state, pt.Int(59))),
+        __pcg32_rotation(arg1.load(), arg2.load()),
+    )
+
+
+def __pcg32_rotation(value: pt.Expr, rot: pt.Expr) -> pt.Expr:
+    # This needs to be uint32. Luckily, "value" is already uint32 and a right shift will maintain that invariant.
+    return pt.BitwiseOr(
+        pt.ShiftRight(value, rot),
+        # This needs to be uint32. Therefore, we mask out the higher bits because we can't guarantee
+        #  that invariant with a left shift of "rot" two's complement.
+        __mask_to_uint32(
+            pt.ShiftLeft(value, pt.BitwiseAnd(__uint64_twos(rot), pt.Int(31))),
+        ),
+    )
+
+
+def __uint64_twos(number: pt.Expr) -> pt.Expr:
+    return InlineAssembly(
+        "\n".join(["addw", "bury 1"]),
+        pt.BitwiseNot(number),
+        pt.Int(1),
+        type=pt.TealType.uint64,
+    )
+
+
+def __mask_to_uint32(value: pt.Expr) -> pt.Expr:
+    """
+    Args:
+        value: pt.Int
+    """
+    return pt.BitwiseAnd(value, pt.Int((1 << 32) - 1))
+
+
+# The value==0 case (and that case only) would still trigger a native carry (and therefore a contract panic).
+# We can get away with doing this because this function is exclusively used to negate absolute_bound which,
+#  by construction, can never be 0.
+def __uint32_twos(value: pt.Expr) -> pt.Expr:
+    return __mask_to_uint32(pt.BitwiseNot(value) + pt.Int(1))

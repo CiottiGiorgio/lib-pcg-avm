@@ -34,15 +34,6 @@ def pcg64_init(seed: Bytes) -> PCG64STATE:
 
 
 @subroutine
-def __pcg64_random(state: PCG64STATE) -> tuple[PCG64STATE, UInt64]:
-    new_state1, high_prn = __pcg32_random(state[0])
-
-    new_state2 = __pcg32_step(state[1], UInt64(PCG_SECOND_INCREMENT) << (state[0] == 0))
-
-    return (new_state1, new_state2), high_prn << 32 | __pcg32_output(state[1])
-
-
-@subroutine
 def pcg64_random(
     state: PCG64STATE,
     lower_bound: UInt64,
@@ -93,3 +84,12 @@ def pcg64_random(
             result.append(arc4.UInt64((candidate % absolute_bound) + lower_bound))
 
     return state, result.copy()
+
+
+@subroutine
+def __pcg64_random(state: PCG64STATE) -> tuple[PCG64STATE, UInt64]:
+    new_state1, high_prn = __pcg32_random(state[0])
+
+    new_state2 = __pcg32_step(state[1], UInt64(PCG_SECOND_INCREMENT) << (state[0] == 0))
+
+    return (new_state1, new_state2), high_prn << 32 | __pcg32_output(state[1])

@@ -43,8 +43,7 @@ def bounded_rand_uint64(
         pcg64_init(
             rng_handle_state1.index(),
             rng_handle_state2.index(),
-            pt.ExtractUint64(seed.get(), pt.Int(0)),
-            pt.ExtractUint64(seed.get(), pt.Int(8)),
+            seed.get(),
         ),
         output.decode(
             pcg64_random(

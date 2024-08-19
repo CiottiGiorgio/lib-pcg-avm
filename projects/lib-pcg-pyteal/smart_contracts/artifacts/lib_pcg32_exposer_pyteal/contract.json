@@ -5,7 +5,7 @@
             "name": "bounded_rand_uint32",
             "args": [
                 {
-                    "type": "uint64",
+                    "type": "byte[8]",
                     "name": "seed"
                 },
                 {
@@ -29,7 +29,7 @@
             "name": "bounded_rand_uint16",
             "args": [
                 {
-                    "type": "uint64",
+                    "type": "byte[8]",
                     "name": "seed"
                 },
                 {
@@ -53,7 +53,7 @@
             "name": "bounded_rand_uint8",
             "args": [
                 {
-                    "type": "uint64",
+                    "type": "byte[8]",
                     "name": "seed"
                 },
                 {
