@@ -50,6 +50,8 @@ Note that:
 - You can set them independently.
 - The range should be at least two elements wide.
 
+When either bound is set to zero, that bound is not applied.
+
 ## Feature Support
 - [x] Package published on PyPI
 - [x] `8 / 16 / 32`-bit generator
