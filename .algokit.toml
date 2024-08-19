@@ -5,6 +5,10 @@ min_version = "v1.12.1"
 type = 'workspace'
 projects_root_path = 'projects'
 
+[generate.devcontainer]
+description = "Generate a default 'devcontainer.json' configuration that pre-installs algokit and launches Algorand sandbox as part of codespace container provisioning."
+path = ".algokit/generators/create-devcontainer"
+
 # FIXME: remove explicit order of subprojects when the related PR is merged.
 # AlgoKit CLI "algokit project run <name>" will execute all subproject's scripts that match <name> concurrently.
 # This is a problem for <name> == ci-teal-diff because they all try to acquire the git lock for that repo concurrently
