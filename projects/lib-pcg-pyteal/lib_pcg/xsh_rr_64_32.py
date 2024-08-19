@@ -1,8 +1,7 @@
 import pyteal as pt
 from beaker.lib.inline import InlineAssembly
 
-PCG_DEFAULT_MULTIPLIER = pt.Int(6364136223846793005)
-PCG_DEFAULT_INCREMENT = pt.Int(1442695040888963407)
+from lib_pcg.consts import PCG_FIRST_INCREMENT, PCG_MULTIPLIER
 
 
 def __mask_to_uint32(uint64: pt.Expr) -> pt.Expr:
@@ -85,7 +84,7 @@ def __pcg32_init(
 
 @pt.Subroutine(pt.TealType.none)
 def pcg32_init(state_slot_index: pt.Expr, initial_state: pt.Expr) -> pt.Expr:
-    return __pcg32_init(state_slot_index, initial_state, PCG_DEFAULT_INCREMENT)
+    return __pcg32_init(state_slot_index, initial_state, PCG_FIRST_INCREMENT)
 
 
 def __pcg32_step(state_slot_index: pt.Expr, incr: pt.Expr) -> pt.Expr:
@@ -96,7 +95,7 @@ def __pcg32_step(state_slot_index: pt.Expr, incr: pt.Expr) -> pt.Expr:
         InlineAssembly(
             "\n".join(["mulw", "bury 1", "addw", "bury 1"]),
             incr,
-            PCG_DEFAULT_MULTIPLIER,
+            PCG_MULTIPLIER,
             pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index),
             type=pt.TealType.none,
         ),
@@ -110,7 +109,7 @@ def __pcg32_random(state_slot_index: pt.Expr) -> pt.Expr:
 
     return pt.Seq(
         old_state.store(pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index)),
-        __pcg32_step(state_slot_index, PCG_DEFAULT_INCREMENT),
+        __pcg32_step(state_slot_index, PCG_FIRST_INCREMENT),
         pt.Return(__pcg32_output(old_state.load())),
     )
 

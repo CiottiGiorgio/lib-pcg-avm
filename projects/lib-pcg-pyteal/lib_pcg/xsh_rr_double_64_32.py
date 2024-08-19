@@ -1,15 +1,12 @@
 import pyteal as pt
 
+from lib_pcg.consts import PCG_FIRST_INCREMENT, PCG_SECOND_INCREMENT
 from lib_pcg.xsh_rr_64_32 import (
     __64bit_twos_complement,
     __pcg32_init,
     __pcg32_output,
     __pcg32_step,
 )
-
-PCG_DEFAULT_MULTIPLIER = pt.Int(6364136223846793005)
-PCG_DEFAULT_INCREMENT = pt.Int(1442695040888963407)
-PCG_SECONDARY_DEFAULT_INCREMENT = pt.Int(1442695040888963409)
 
 
 @pt.Subroutine(pt.TealType.none)
@@ -20,9 +17,9 @@ def pcg64_init(
     initial_state2: pt.Expr,
 ) -> pt.Expr:
     return pt.Seq(
-        __pcg32_init(state1_slot_index, initial_state1, PCG_DEFAULT_INCREMENT),
+        __pcg32_init(state1_slot_index, initial_state1, PCG_FIRST_INCREMENT),
         __pcg32_init(
-            state2_slot_index, initial_state2, PCG_SECONDARY_DEFAULT_INCREMENT
+            state2_slot_index, initial_state2, PCG_SECOND_INCREMENT
         ),
     )
 
@@ -34,7 +31,7 @@ def __pcg64_random(state1_slot_index: pt.Expr, state2_slot_index: pt.Expr) -> pt
     return pt.Seq(
         old_state1.store(pt.ScratchLoad(None, pt.TealType.uint64, state1_slot_index)),
         old_state2.store(pt.ScratchLoad(None, pt.TealType.uint64, state2_slot_index)),
-        __pcg32_step(state1_slot_index, PCG_DEFAULT_INCREMENT),
+        __pcg32_step(state1_slot_index, PCG_FIRST_INCREMENT),
         # We want to do the "carry" on the second generator if the first reached 0.
         # This is kind of an arbitrary way of composing two 2^64 period generators into a single 2^128 period.
         # The paper has more details on chapter 3.4.3
@@ -52,7 +49,7 @@ def __pcg64_random(state1_slot_index: pt.Expr, state2_slot_index: pt.Expr) -> pt
         __pcg32_step(
             state2_slot_index,
             pt.ShiftLeft(
-                PCG_SECONDARY_DEFAULT_INCREMENT,
+                PCG_SECOND_INCREMENT,
                 pt.ScratchLoad(None, pt.TealType.uint64, state1_slot_index)
                 == pt.Int(0),
             ),
