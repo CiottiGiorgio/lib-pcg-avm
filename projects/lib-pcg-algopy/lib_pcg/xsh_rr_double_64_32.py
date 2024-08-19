@@ -82,8 +82,10 @@ def pcg64_random(
             while True:
                 state, candidate = __pcg64_random(state)
                 if candidate >= threshold:
+                    result.append(
+                        arc4.UInt64((candidate % absolute_bound) + lower_bound)
+                    )
                     break
-            result.append(arc4.UInt64((candidate % absolute_bound) + lower_bound))
 
     return state, result.copy()
 

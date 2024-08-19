@@ -1877,33 +1877,39 @@
     ]
   },
   {
-    "teal": 456,
+    "teal": 458,
     "source": 37,
     "pc": [
       477,
-      478,
-      479
+      478
     ]
   },
   {
     "teal": 459,
     "source": 37,
     "pc": [
-      480,
-      481,
-      482
+      479,
+      480
     ]
   },
   {
-    "teal": 464,
+    "teal": 460,
     "source": 37,
     "pc": [
-      483,
+      481,
+      482,
+      483
+    ]
+  },
+  {
+    "teal": 461,
+    "source": 37,
+    "pc": [
       484
     ]
   },
   {
-    "teal": 465,
+    "teal": 462,
     "source": 37,
     "pc": [
       485,
@@ -1911,38 +1917,50 @@
     ]
   },
   {
-    "teal": 466,
+    "teal": 463,
     "source": 37,
     "pc": [
-      487,
+      487
+    ]
+  },
+  {
+    "teal": 464,
+    "source": 37,
+    "pc": [
       488,
       489
     ]
   },
   {
-    "teal": 467,
+    "teal": 465,
     "source": 37,
     "pc": [
       490
     ]
   },
   {
-    "teal": 468,
+    "teal": 466,
     "source": 37,
     "pc": [
-      491,
+      491
+    ]
+  },
+  {
+    "teal": 467,
+    "source": 37,
+    "pc": [
       492
     ]
   },
   {
-    "teal": 469,
+    "teal": 468,
     "source": 37,
     "pc": [
       493
     ]
   },
   {
-    "teal": 470,
+    "teal": 469,
     "source": 37,
     "pc": [
       494,
@@ -1950,38 +1968,33 @@
     ]
   },
   {
-    "teal": 471,
+    "teal": 470,
     "source": 37,
     "pc": [
       496
     ]
   },
   {
-    "teal": 472,
-    "source": 37,
-    "pc": [
-      497
-    ]
-  },
-  {
     "teal": 473,
     "source": 37,
+    "errorMessage": "((stepResult[1] % absoluteBound) + lowerBound) as uint32 overflowed 32 bits",
     "pc": [
-      498
+      497
     ]
   },
   {
     "teal": 474,
     "source": 37,
     "pc": [
-      499
+      498,
+      499,
+      500
     ]
   },
   {
     "teal": 475,
     "source": 37,
     "pc": [
-      500,
       501
     ]
   },
@@ -1989,19 +2002,12 @@
     "teal": 476,
     "source": 37,
     "pc": [
-      502
-    ]
-  },
-  {
-    "teal": 479,
-    "source": 37,
-    "errorMessage": "((stepResult[1] % absoluteBound) + lowerBound) as uint32 overflowed 32 bits",
-    "pc": [
+      502,
       503
     ]
   },
   {
-    "teal": 480,
+    "teal": 477,
     "source": 37,
     "pc": [
       504,
@@ -2010,16 +2016,10 @@
     ]
   },
   {
-    "teal": 481,
+    "teal": 480,
     "source": 37,
     "pc": [
-      507
-    ]
-  },
-  {
-    "teal": 482,
-    "source": 37,
-    "pc": [
+      507,
       508,
       509
     ]
@@ -3119,33 +3119,39 @@
     ]
   },
   {
-    "teal": 732,
+    "teal": 734,
     "source": 37,
     "pc": [
       751,
-      752,
-      753
+      752
     ]
   },
   {
     "teal": 735,
     "source": 37,
     "pc": [
-      754,
-      755,
-      756
+      753,
+      754
     ]
   },
   {
-    "teal": 740,
+    "teal": 736,
     "source": 37,
     "pc": [
-      757,
+      755,
+      756,
+      757
+    ]
+  },
+  {
+    "teal": 737,
+    "source": 37,
+    "pc": [
       758
     ]
   },
   {
-    "teal": 741,
+    "teal": 738,
     "source": 37,
     "pc": [
       759,
@@ -3153,38 +3159,50 @@
     ]
   },
   {
-    "teal": 742,
+    "teal": 739,
     "source": 37,
     "pc": [
-      761,
+      761
+    ]
+  },
+  {
+    "teal": 740,
+    "source": 37,
+    "pc": [
       762,
       763
     ]
   },
   {
-    "teal": 743,
+    "teal": 741,
     "source": 37,
     "pc": [
       764
     ]
   },
   {
-    "teal": 744,
+    "teal": 742,
     "source": 37,
     "pc": [
-      765,
+      765
+    ]
+  },
+  {
+    "teal": 743,
+    "source": 37,
+    "pc": [
       766
     ]
   },
   {
-    "teal": 745,
+    "teal": 744,
     "source": 37,
     "pc": [
       767
     ]
   },
   {
-    "teal": 746,
+    "teal": 745,
     "source": 37,
     "pc": [
       768,
@@ -3192,38 +3210,33 @@
     ]
   },
   {
-    "teal": 747,
+    "teal": 746,
     "source": 37,
     "pc": [
       770
     ]
   },
   {
-    "teal": 748,
-    "source": 37,
-    "pc": [
-      771
-    ]
-  },
-  {
     "teal": 749,
     "source": 37,
+    "errorMessage": "((stepResult[1] % absoluteBound) + lowerBound) as uint16 overflowed 16 bits",
     "pc": [
-      772
+      771
     ]
   },
   {
     "teal": 750,
     "source": 37,
     "pc": [
-      773
+      772,
+      773,
+      774
     ]
   },
   {
     "teal": 751,
     "source": 37,
     "pc": [
-      774,
       775
     ]
   },
@@ -3231,19 +3244,12 @@
     "teal": 752,
     "source": 37,
     "pc": [
-      776
-    ]
-  },
-  {
-    "teal": 755,
-    "source": 37,
-    "errorMessage": "((stepResult[1] % absoluteBound) + lowerBound) as uint16 overflowed 16 bits",
-    "pc": [
+      776,
       777
     ]
   },
   {
-    "teal": 756,
+    "teal": 753,
     "source": 37,
     "pc": [
       778,
@@ -3252,16 +3258,10 @@
     ]
   },
   {
-    "teal": 757,
+    "teal": 756,
     "source": 37,
     "pc": [
-      781
-    ]
-  },
-  {
-    "teal": 758,
-    "source": 37,
-    "pc": [
+      781,
       782,
       783
     ]
@@ -4357,33 +4357,39 @@
     ]
   },
   {
-    "teal": 1008,
+    "teal": 1010,
     "source": 37,
     "pc": [
       1021,
-      1022,
-      1023
+      1022
     ]
   },
   {
     "teal": 1011,
     "source": 37,
     "pc": [
-      1024,
-      1025,
-      1026
+      1023,
+      1024
     ]
   },
   {
-    "teal": 1016,
+    "teal": 1012,
     "source": 37,
     "pc": [
-      1027,
+      1025,
+      1026,
+      1027
+    ]
+  },
+  {
+    "teal": 1013,
+    "source": 37,
+    "pc": [
       1028
     ]
   },
   {
-    "teal": 1017,
+    "teal": 1014,
     "source": 37,
     "pc": [
       1029,
@@ -4391,69 +4397,76 @@
     ]
   },
   {
-    "teal": 1018,
+    "teal": 1015,
     "source": 37,
     "pc": [
-      1031,
+      1031
+    ]
+  },
+  {
+    "teal": 1016,
+    "source": 37,
+    "pc": [
       1032,
       1033
     ]
   },
   {
-    "teal": 1019,
+    "teal": 1017,
     "source": 37,
     "pc": [
       1034
     ]
   },
   {
-    "teal": 1020,
+    "teal": 1018,
     "source": 37,
     "pc": [
-      1035,
+      1035
+    ]
+  },
+  {
+    "teal": 1019,
+    "source": 37,
+    "pc": [
       1036
     ]
   },
   {
-    "teal": 1021,
+    "teal": 1020,
     "source": 37,
     "pc": [
       1037
     ]
   },
   {
+    "teal": 1021,
+    "source": 37,
+    "pc": [
+      1038
+    ]
+  },
+  {
     "teal": 1022,
     "source": 37,
     "pc": [
-      1038,
       1039
-    ]
-  },
-  {
-    "teal": 1023,
-    "source": 37,
-    "pc": [
-      1040
-    ]
-  },
-  {
-    "teal": 1024,
-    "source": 37,
-    "pc": [
-      1041
     ]
   },
   {
     "teal": 1025,
     "source": 37,
+    "errorMessage": "((stepResult[1] % absoluteBound) + lowerBound) as uint8 overflowed 8 bits",
     "pc": [
-      1042
+      1040
     ]
   },
   {
     "teal": 1026,
     "source": 37,
     "pc": [
+      1041,
+      1042,
       1043
     ]
   },
@@ -4468,19 +4481,12 @@
     "teal": 1028,
     "source": 37,
     "pc": [
-      1045
-    ]
-  },
-  {
-    "teal": 1031,
-    "source": 37,
-    "errorMessage": "((stepResult[1] % absoluteBound) + lowerBound) as uint8 overflowed 8 bits",
-    "pc": [
+      1045,
       1046
     ]
   },
   {
-    "teal": 1032,
+    "teal": 1029,
     "source": 37,
     "pc": [
       1047,
@@ -4489,16 +4495,10 @@
     ]
   },
   {
-    "teal": 1033,
+    "teal": 1032,
     "source": 37,
     "pc": [
-      1050
-    ]
-  },
-  {
-    "teal": 1034,
-    "source": 37,
-    "pc": [
+      1050,
       1051,
       1052
     ]

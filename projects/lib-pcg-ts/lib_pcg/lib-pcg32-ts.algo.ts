@@ -85,17 +85,15 @@ export class LibPcg32 extends Contract {
       threshold = this.__maskToUint32(this.__uint64Twos(absoluteBound)) % absoluteBound;
 
       for (let i = 0; i < length; i = i + 1) {
-        let stepResult: [PCG32STATE, uint64];
         // eslint-disable-next-line no-constant-condition
         while (true) {
-          stepResult = this.__pcg32Random(state);
+          const stepResult = this.__pcg32Random(state);
           state = stepResult[0];
           if (stepResult[1] >= threshold) {
+            result.push(((stepResult[1] % absoluteBound) + lowerBound) as uint32);
             break;
           }
         }
-
-        result.push(((stepResult[1] % absoluteBound) + lowerBound) as uint32);
       }
     }
 
@@ -134,17 +132,15 @@ export class LibPcg32 extends Contract {
       threshold = this.__maskToUint32(this.__uint64Twos(absoluteBound)) % absoluteBound;
 
       for (let i = 0; i < length; i = i + 1) {
-        let stepResult: [PCG32STATE, uint64];
         // eslint-disable-next-line no-constant-condition
         while (true) {
-          stepResult = this.__pcg32Random(state);
+          const stepResult = this.__pcg32Random(state);
           state = stepResult[0];
           if (stepResult[1] >= threshold) {
+            result.push(((stepResult[1] % absoluteBound) + lowerBound) as uint16);
             break;
           }
         }
-
-        result.push(((stepResult[1] % absoluteBound) + lowerBound) as uint16);
       }
     }
 
@@ -183,17 +179,15 @@ export class LibPcg32 extends Contract {
       threshold = this.__maskToUint32(this.__uint64Twos(absoluteBound)) % absoluteBound;
 
       for (let i = 0; i < length; i = i + 1) {
-        let stepResult: [PCG32STATE, uint64];
         // eslint-disable-next-line no-constant-condition
         while (true) {
-          stepResult = this.__pcg32Random(state);
+          const stepResult = this.__pcg32Random(state);
           state = stepResult[0];
           if (stepResult[1] >= threshold) {
+            result.push(((stepResult[1] % absoluteBound) + lowerBound) as uint8);
             break;
           }
         }
-
-        result.push(((stepResult[1] % absoluteBound) + lowerBound) as uint8);
       }
     }
 

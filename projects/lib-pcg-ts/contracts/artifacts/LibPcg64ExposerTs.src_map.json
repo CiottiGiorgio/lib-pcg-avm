@@ -1880,33 +1880,39 @@
     ]
   },
   {
-    "teal": 456,
+    "teal": 458,
     "source": 14,
     "pc": [
       480,
-      481,
-      482
+      481
     ]
   },
   {
     "teal": 459,
     "source": 14,
     "pc": [
-      483,
-      484,
-      485
+      482,
+      483
     ]
   },
   {
-    "teal": 464,
+    "teal": 460,
     "source": 14,
     "pc": [
-      486,
+      484,
+      485,
+      486
+    ]
+  },
+  {
+    "teal": 461,
+    "source": 14,
+    "pc": [
       487
     ]
   },
   {
-    "teal": 465,
+    "teal": 462,
     "source": 14,
     "pc": [
       488,
@@ -1914,38 +1920,50 @@
     ]
   },
   {
-    "teal": 466,
+    "teal": 463,
     "source": 14,
     "pc": [
-      490,
+      490
+    ]
+  },
+  {
+    "teal": 464,
+    "source": 14,
+    "pc": [
       491,
       492
     ]
   },
   {
-    "teal": 467,
+    "teal": 465,
     "source": 14,
     "pc": [
       493
     ]
   },
   {
-    "teal": 468,
+    "teal": 466,
     "source": 14,
     "pc": [
-      494,
+      494
+    ]
+  },
+  {
+    "teal": 467,
+    "source": 14,
+    "pc": [
       495
     ]
   },
   {
-    "teal": 469,
+    "teal": 468,
     "source": 14,
     "pc": [
       496
     ]
   },
   {
-    "teal": 470,
+    "teal": 469,
     "source": 14,
     "pc": [
       497,
@@ -1953,38 +1971,33 @@
     ]
   },
   {
-    "teal": 471,
+    "teal": 470,
     "source": 14,
     "pc": [
       499
     ]
   },
   {
-    "teal": 472,
-    "source": 14,
-    "pc": [
-      500
-    ]
-  },
-  {
     "teal": 473,
     "source": 14,
+    "errorMessage": "((stepResult[1] % absoluteBound) + lowerBound) as uint32 overflowed 32 bits",
     "pc": [
-      501
+      500
     ]
   },
   {
     "teal": 474,
     "source": 14,
     "pc": [
-      502
+      501,
+      502,
+      503
     ]
   },
   {
     "teal": 475,
     "source": 14,
     "pc": [
-      503,
       504
     ]
   },
@@ -1992,19 +2005,12 @@
     "teal": 476,
     "source": 14,
     "pc": [
-      505
-    ]
-  },
-  {
-    "teal": 479,
-    "source": 14,
-    "errorMessage": "((stepResult[1] % absoluteBound) + lowerBound) as uint32 overflowed 32 bits",
-    "pc": [
+      505,
       506
     ]
   },
   {
-    "teal": 480,
+    "teal": 477,
     "source": 14,
     "pc": [
       507,
@@ -2013,16 +2019,10 @@
     ]
   },
   {
-    "teal": 481,
+    "teal": 480,
     "source": 14,
     "pc": [
-      510
-    ]
-  },
-  {
-    "teal": 482,
-    "source": 14,
-    "pc": [
+      510,
       511,
       512
     ]
@@ -3118,33 +3118,39 @@
     ]
   },
   {
-    "teal": 732,
+    "teal": 734,
     "source": 14,
     "pc": [
       750,
-      751,
-      752
+      751
     ]
   },
   {
     "teal": 735,
     "source": 14,
     "pc": [
-      753,
-      754,
-      755
+      752,
+      753
     ]
   },
   {
-    "teal": 740,
+    "teal": 736,
     "source": 14,
     "pc": [
-      756,
+      754,
+      755,
+      756
+    ]
+  },
+  {
+    "teal": 737,
+    "source": 14,
+    "pc": [
       757
     ]
   },
   {
-    "teal": 741,
+    "teal": 738,
     "source": 14,
     "pc": [
       758,
@@ -3152,69 +3158,76 @@
     ]
   },
   {
-    "teal": 742,
+    "teal": 739,
     "source": 14,
     "pc": [
-      760,
+      760
+    ]
+  },
+  {
+    "teal": 740,
+    "source": 14,
+    "pc": [
       761,
       762
     ]
   },
   {
-    "teal": 743,
+    "teal": 741,
     "source": 14,
     "pc": [
       763
     ]
   },
   {
-    "teal": 744,
+    "teal": 742,
     "source": 14,
     "pc": [
-      764,
+      764
+    ]
+  },
+  {
+    "teal": 743,
+    "source": 14,
+    "pc": [
       765
     ]
   },
   {
-    "teal": 745,
+    "teal": 744,
     "source": 14,
     "pc": [
       766
     ]
   },
   {
+    "teal": 745,
+    "source": 14,
+    "pc": [
+      767
+    ]
+  },
+  {
     "teal": 746,
     "source": 14,
     "pc": [
-      767,
       768
-    ]
-  },
-  {
-    "teal": 747,
-    "source": 14,
-    "pc": [
-      769
-    ]
-  },
-  {
-    "teal": 748,
-    "source": 14,
-    "pc": [
-      770
     ]
   },
   {
     "teal": 749,
     "source": 14,
+    "errorMessage": "((stepResult[1] % absoluteBound) + lowerBound) as uint16 overflowed 16 bits",
     "pc": [
-      771
+      769
     ]
   },
   {
     "teal": 750,
     "source": 14,
     "pc": [
+      770,
+      771,
       772
     ]
   },
@@ -3229,19 +3242,12 @@
     "teal": 752,
     "source": 14,
     "pc": [
-      774
-    ]
-  },
-  {
-    "teal": 755,
-    "source": 14,
-    "errorMessage": "((stepResult[1] % absoluteBound) + lowerBound) as uint16 overflowed 16 bits",
-    "pc": [
+      774,
       775
     ]
   },
   {
-    "teal": 756,
+    "teal": 753,
     "source": 14,
     "pc": [
       776,
@@ -3250,16 +3256,10 @@
     ]
   },
   {
-    "teal": 757,
+    "teal": 756,
     "source": 14,
     "pc": [
-      779
-    ]
-  },
-  {
-    "teal": 758,
-    "source": 14,
-    "pc": [
+      779,
       780,
       781
     ]
@@ -4356,33 +4356,39 @@
     ]
   },
   {
-    "teal": 1008,
+    "teal": 1010,
     "source": 14,
     "pc": [
       1020,
-      1021,
-      1022
+      1021
     ]
   },
   {
     "teal": 1011,
     "source": 14,
     "pc": [
-      1023,
-      1024,
-      1025
+      1022,
+      1023
     ]
   },
   {
-    "teal": 1016,
+    "teal": 1012,
     "source": 14,
     "pc": [
-      1026,
+      1024,
+      1025,
+      1026
+    ]
+  },
+  {
+    "teal": 1013,
+    "source": 14,
+    "pc": [
       1027
     ]
   },
   {
-    "teal": 1017,
+    "teal": 1014,
     "source": 14,
     "pc": [
       1028,
@@ -4390,69 +4396,76 @@
     ]
   },
   {
-    "teal": 1018,
+    "teal": 1015,
     "source": 14,
     "pc": [
-      1030,
+      1030
+    ]
+  },
+  {
+    "teal": 1016,
+    "source": 14,
+    "pc": [
       1031,
       1032
     ]
   },
   {
-    "teal": 1019,
+    "teal": 1017,
     "source": 14,
     "pc": [
       1033
     ]
   },
   {
-    "teal": 1020,
+    "teal": 1018,
     "source": 14,
     "pc": [
-      1034,
+      1034
+    ]
+  },
+  {
+    "teal": 1019,
+    "source": 14,
+    "pc": [
       1035
     ]
   },
   {
-    "teal": 1021,
+    "teal": 1020,
     "source": 14,
     "pc": [
       1036
     ]
   },
   {
+    "teal": 1021,
+    "source": 14,
+    "pc": [
+      1037
+    ]
+  },
+  {
     "teal": 1022,
     "source": 14,
     "pc": [
-      1037,
       1038
-    ]
-  },
-  {
-    "teal": 1023,
-    "source": 14,
-    "pc": [
-      1039
-    ]
-  },
-  {
-    "teal": 1024,
-    "source": 14,
-    "pc": [
-      1040
     ]
   },
   {
     "teal": 1025,
     "source": 14,
+    "errorMessage": "((stepResult[1] % absoluteBound) + lowerBound) as uint8 overflowed 8 bits",
     "pc": [
-      1041
+      1039
     ]
   },
   {
     "teal": 1026,
     "source": 14,
     "pc": [
+      1040,
+      1041,
       1042
     ]
   },
@@ -4467,19 +4480,12 @@
     "teal": 1028,
     "source": 14,
     "pc": [
-      1044
-    ]
-  },
-  {
-    "teal": 1031,
-    "source": 14,
-    "errorMessage": "((stepResult[1] % absoluteBound) + lowerBound) as uint8 overflowed 8 bits",
-    "pc": [
+      1044,
       1045
     ]
   },
   {
-    "teal": 1032,
+    "teal": 1029,
     "source": 14,
     "pc": [
       1046,
@@ -4488,16 +4494,10 @@
     ]
   },
   {
-    "teal": 1033,
+    "teal": 1032,
     "source": 14,
     "pc": [
-      1049
-    ]
-  },
-  {
-    "teal": 1034,
-    "source": 14,
-    "pc": [
+      1049,
       1050,
       1051
     ]
@@ -6071,33 +6071,39 @@
     ]
   },
   {
-    "teal": 1396,
+    "teal": 1398,
     "source": 14,
     "pc": [
       1425,
-      1426,
-      1427
+      1426
     ]
   },
   {
     "teal": 1399,
     "source": 14,
     "pc": [
-      1428,
-      1429,
-      1430
+      1427,
+      1428
     ]
   },
   {
-    "teal": 1404,
+    "teal": 1400,
     "source": 14,
     "pc": [
-      1431,
+      1429,
+      1430,
+      1431
+    ]
+  },
+  {
+    "teal": 1401,
+    "source": 14,
+    "pc": [
       1432
     ]
   },
   {
-    "teal": 1405,
+    "teal": 1402,
     "source": 14,
     "pc": [
       1433,
@@ -6105,69 +6111,63 @@
     ]
   },
   {
-    "teal": 1406,
+    "teal": 1403,
     "source": 14,
     "pc": [
-      1435,
+      1435
+    ]
+  },
+  {
+    "teal": 1404,
+    "source": 14,
+    "pc": [
       1436,
       1437
     ]
   },
   {
-    "teal": 1407,
+    "teal": 1405,
     "source": 14,
     "pc": [
       1438
     ]
   },
   {
+    "teal": 1406,
+    "source": 14,
+    "pc": [
+      1439
+    ]
+  },
+  {
+    "teal": 1407,
+    "source": 14,
+    "pc": [
+      1440
+    ]
+  },
+  {
     "teal": 1408,
     "source": 14,
     "pc": [
-      1439,
-      1440
+      1441,
+      1442
     ]
   },
   {
     "teal": 1409,
     "source": 14,
     "pc": [
-      1441
-    ]
-  },
-  {
-    "teal": 1410,
-    "source": 14,
-    "pc": [
-      1442,
-      1443
-    ]
-  },
-  {
-    "teal": 1411,
-    "source": 14,
-    "pc": [
-      1444
+      1443,
+      1444,
+      1445
     ]
   },
   {
     "teal": 1412,
     "source": 14,
     "pc": [
-      1445
-    ]
-  },
-  {
-    "teal": 1413,
-    "source": 14,
-    "pc": [
-      1446
-    ]
-  },
-  {
-    "teal": 1414,
-    "source": 14,
-    "pc": [
+      1446,
       1447,
       1448
     ]

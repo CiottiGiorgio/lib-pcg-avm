@@ -59,16 +59,15 @@ export class LibPcg64 extends LibPcg32 {
       threshold = this.__uint64Twos(absoluteBound) % absoluteBound;
 
       for (let i = 0; i < length; i = i + 1) {
-        let stepResult: [PCG64STATE, uint64];
         // eslint-disable-next-line no-constant-condition
         while (true) {
-          stepResult = this.__pcg64Random(newState);
+          const stepResult = this.__pcg64Random(newState);
           newState = stepResult[0];
           if (stepResult[1] >= threshold) {
+            result.push((stepResult[1] % absoluteBound) + lowerBound);
             break;
           }
         }
-        result.push((stepResult[1] % absoluteBound) + lowerBound);
       }
     }
 

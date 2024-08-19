@@ -93,8 +93,10 @@ def pcg32_random(
             while True:
                 state, candidate = __pcg32_random(state)
                 if candidate >= threshold:
+                    result.append(
+                        arc4.UInt32((candidate % absolute_bound) + lower_bound)
+                    )
                     break
-            result.append(arc4.UInt32((candidate % absolute_bound) + lower_bound))
 
     return state, result.copy()
 
@@ -149,8 +151,10 @@ def pcg16_random(
             while True:
                 state, candidate = __pcg32_random(state)
                 if candidate >= threshold:
+                    result.append(
+                        arc4.UInt16((candidate % absolute_bound) + lower_bound)
+                    )
                     break
-            result.append(arc4.UInt16((candidate % absolute_bound) + lower_bound))
 
     return state, result.copy()
 
@@ -205,8 +209,10 @@ def pcg8_random(
             while True:
                 state, candidate = __pcg32_random(state)
                 if candidate >= threshold:
+                    result.append(
+                        arc4.UInt8((candidate % absolute_bound) + lower_bound)
+                    )
                     break
-            result.append(arc4.UInt8((candidate % absolute_bound) + lower_bound))
 
     return state, result.copy()
 
