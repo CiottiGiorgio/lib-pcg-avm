@@ -7,7 +7,6 @@ from lib_pcg.pcg32 import (
     __pcg32_init,
     __pcg32_output,
     __pcg32_step,
-    __pcg32_unbounded_random,
     __uint64_twos,
 )
 
@@ -62,7 +61,7 @@ def pcg64_random(
 
     if lower_bound == 0 and upper_bound == 0:
         for i in urange(length):  # noqa: B007
-            state, n = __pcg64_random(state)
+            state, n = __pcg64_unbounded_random(state)
 
             result.append(arc4.UInt64(n))
     else:
@@ -80,7 +79,7 @@ def pcg64_random(
 
         for i in urange(length):  # noqa: B007
             while True:
-                state, candidate = __pcg64_random(state)
+                state, candidate = __pcg64_unbounded_random(state)
                 if candidate >= threshold:
                     result.append(
                         arc4.UInt64((candidate % absolute_bound) + lower_bound)
@@ -91,7 +90,7 @@ def pcg64_random(
 
 
 @subroutine
-def __pcg64_random(state: PCG64STATE) -> tuple[PCG64STATE, UInt64]:
+def __pcg64_unbounded_random(state: PCG64STATE) -> tuple[PCG64STATE, UInt64]:
     """Double PCG XSH RR 64/32 next number in the sequence.
 
     We are concatenating two 32-bit generators in the way described by the PCG paper in chapter 4.3.4.
@@ -105,8 +104,11 @@ def __pcg64_random(state: PCG64STATE) -> tuple[PCG64STATE, UInt64]:
         - A pseudo-random 64-bit uint.
 
     """
-    new_state1, high_prn = __pcg32_unbounded_random(state[0])
+    new_state1 = __pcg32_step(state[0], UInt64(PCG_FIRST_INCREMENT))
+    new_state2 = __pcg32_step(
+        state[1], UInt64(PCG_SECOND_INCREMENT) << (new_state1 == 0)
+    )
 
-    new_state2 = __pcg32_step(state[1], UInt64(PCG_SECOND_INCREMENT) << (state[0] == 0))
-
-    return (new_state1, new_state2), high_prn << 32 | __pcg32_output(state[1])
+    return (new_state1, new_state2), __pcg32_output(state[0]) << 32 | __pcg32_output(
+        state[1]
+    )

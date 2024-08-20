@@ -12,7 +12,6 @@ from lib_pcg.pcg32 import (
     __pcg32_init,
     __pcg32_output,
     __pcg32_step,
-    __pcg32_unbounded_random,
 )
 
 PCG128STATE: TypeAlias = tuple[UInt64, UInt64, UInt64, UInt64]
@@ -68,7 +67,7 @@ def pcg128_random(
 
     if lower_bound == 0 and upper_bound == 0:
         for i in urange(length):  # noqa: B007
-            state, n = __pcg128_random(state)
+            state, n = __pcg128_unbounded_random(state)
 
             result.append(arc4.UInt128(n))
     else:
@@ -87,7 +86,7 @@ def pcg128_random(
 
         for i in urange(length):  # noqa: B007
             while True:
-                state, candidate = __pcg128_random(state)
+                state, candidate = __pcg128_unbounded_random(state)
                 if candidate >= threshold:
                     result.append(
                         arc4.UInt128((candidate % absolute_bound) + lower_bound)
@@ -98,7 +97,7 @@ def pcg128_random(
 
 
 @subroutine
-def __pcg128_random(state: PCG128STATE) -> tuple[PCG128STATE, BigUInt]:
+def __pcg128_unbounded_random(state: PCG128STATE) -> tuple[PCG128STATE, BigUInt]:
     """Quadruple PCG XSH RR 64/32 next number in the sequence.
 
     We are concatenating two 32-bit generators in the way described by the PCG paper in chapter 4.3.4.
@@ -112,7 +111,7 @@ def __pcg128_random(state: PCG128STATE) -> tuple[PCG128STATE, BigUInt]:
         - A pseudo-random 128-bit uint.
 
     """
-    new_state1, rn1 = __pcg32_unbounded_random(state[0])
+    new_state1 = __pcg32_step(state[0], UInt64(PCG_FIRST_INCREMENT))
 
     new_state2 = __pcg32_step(
         state[1], UInt64(PCG_SECOND_INCREMENT) << (new_state1 == 0)
@@ -129,7 +128,7 @@ def __pcg128_random(state: PCG128STATE) -> tuple[PCG128STATE, BigUInt]:
     return (
         (new_state1, new_state2, new_state3, new_state4),
         BigUInt.from_bytes(
-            op.itob(rn1 << 32 | __pcg32_output(state[1]))
+            op.itob(__pcg32_output(state[0]) << 32 | __pcg32_output(state[1]))
             + op.itob(__pcg32_output(state[2]) << 32 | __pcg32_output(state[3]))
         ),
     )

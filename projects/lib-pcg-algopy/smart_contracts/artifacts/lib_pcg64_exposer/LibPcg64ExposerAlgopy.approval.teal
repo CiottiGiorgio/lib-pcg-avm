@@ -106,32 +106,32 @@ bounded_rand_uint64:
 
 // lib_pcg.pcg64.pcg64_init(seed: bytes) -> uint64, uint64:
 pcg64_init:
-    // lib_pcg/pcg64.py:17-18
+    // lib_pcg/pcg64.py:16-17
     // @subroutine
     // def pcg64_init(seed: Bytes) -> PCG64STATE:
     proto 1 2
-    // lib_pcg/pcg64.py:28
+    // lib_pcg/pcg64.py:27
     // assert seed.length == 16
     frame_dig -1
     len
     int 16
     ==
     assert
-    // lib_pcg/pcg64.py:31
+    // lib_pcg/pcg64.py:30
     // __pcg32_init(op.extract_uint64(seed, 0), UInt64(PCG_FIRST_INCREMENT)),
     frame_dig -1
     int 0
     extract_uint64
     int 1442695040888963407
     callsub __pcg32_init
-    // lib_pcg/pcg64.py:32
+    // lib_pcg/pcg64.py:31
     // __pcg32_init(op.extract_uint64(seed, 8), UInt64(PCG_SECOND_INCREMENT)),
     frame_dig -1
     int 8
     extract_uint64
     int 1442695040888963409
     callsub __pcg32_init
-    // lib_pcg/pcg64.py:30-33
+    // lib_pcg/pcg64.py:29-32
     // return (
     //     __pcg32_init(op.extract_uint64(seed, 0), UInt64(PCG_FIRST_INCREMENT)),
     //     __pcg32_init(op.extract_uint64(seed, 8), UInt64(PCG_SECOND_INCREMENT)),
@@ -186,7 +186,7 @@ __pcg32_step:
 
 // lib_pcg.pcg64.pcg64_random(state.0: uint64, state.1: uint64, lower_bound: uint64, upper_bound: uint64, length: uint64) -> uint64, uint64, bytes:
 pcg64_random:
-    // lib_pcg/pcg64.py:36-42
+    // lib_pcg/pcg64.py:35-41
     // @subroutine
     // def pcg64_random(
     //     state: PCG64STATE,
@@ -197,36 +197,36 @@ pcg64_random:
     proto 5 3
     byte ""
     dupn 3
-    // lib_pcg/pcg64.py:61
+    // lib_pcg/pcg64.py:60
     // result = arc4.DynamicArray[arc4.UInt64]()
     byte 0x0000
-    // lib_pcg/pcg64.py:63
+    // lib_pcg/pcg64.py:62
     // if lower_bound == 0 and upper_bound == 0:
     frame_dig -3
     bnz pcg64_random_else_body@7
     frame_dig -2
     bnz pcg64_random_else_body@7
-    // lib_pcg/pcg64.py:64
+    // lib_pcg/pcg64.py:63
     // for i in urange(length):  # noqa: B007
     int 0
     frame_bury 2
 
 pcg64_random_for_header@3:
-    // lib_pcg/pcg64.py:64
+    // lib_pcg/pcg64.py:63
     // for i in urange(length):  # noqa: B007
     frame_dig 2
     frame_dig -1
     <
     bz pcg64_random_after_if_else@20
-    // lib_pcg/pcg64.py:65
-    // state, n = __pcg64_random(state)
+    // lib_pcg/pcg64.py:64
+    // state, n = __pcg64_unbounded_random(state)
     frame_dig -5
     frame_dig -4
-    callsub __pcg64_random
+    callsub __pcg64_unbounded_random
     cover 2
     frame_bury -4
     frame_bury -5
-    // lib_pcg/pcg64.py:67
+    // lib_pcg/pcg64.py:66
     // result.append(arc4.UInt64(n))
     frame_dig 4
     extract 2 0
@@ -242,7 +242,7 @@ pcg64_random_for_header@3:
     swap
     concat
     frame_bury 4
-    // lib_pcg/pcg64.py:64
+    // lib_pcg/pcg64.py:63
     // for i in urange(length):  # noqa: B007
     frame_dig 2
     int 1
@@ -251,17 +251,17 @@ pcg64_random_for_header@3:
     b pcg64_random_for_header@3
 
 pcg64_random_else_body@7:
-    // lib_pcg/pcg64.py:69
+    // lib_pcg/pcg64.py:68
     // if upper_bound != 0:
     frame_dig -2
     bz pcg64_random_else_body@9
-    // lib_pcg/pcg64.py:70
+    // lib_pcg/pcg64.py:69
     // assert upper_bound > 1
     frame_dig -2
     int 1
     >
     assert
-    // lib_pcg/pcg64.py:71
+    // lib_pcg/pcg64.py:70
     // assert lower_bound < upper_bound - 1
     frame_dig -2
     int 1
@@ -269,7 +269,7 @@ pcg64_random_else_body@7:
     frame_dig -3
     >
     assert
-    // lib_pcg/pcg64.py:73
+    // lib_pcg/pcg64.py:72
     // absolute_bound = upper_bound - lower_bound
     frame_dig -2
     frame_dig -3
@@ -278,13 +278,13 @@ pcg64_random_else_body@7:
     b pcg64_random_after_if_else@10
 
 pcg64_random_else_body@9:
-    // lib_pcg/pcg64.py:75
+    // lib_pcg/pcg64.py:74
     // assert lower_bound < (1 << 64) - 1
     frame_dig -3
     int 18446744073709551615
     <
     assert
-    // lib_pcg/pcg64.py:77
+    // lib_pcg/pcg64.py:76
     // absolute_bound = op.btoi((BigUInt(1 << 64) - BigUInt(lower_bound)).bytes)
     frame_dig -3
     itob
@@ -295,7 +295,7 @@ pcg64_random_else_body@9:
     frame_bury 0
 
 pcg64_random_after_if_else@10:
-    // lib_pcg/pcg64.py:79
+    // lib_pcg/pcg64.py:78
     // threshold = __uint64_twos(absolute_bound) % absolute_bound
     frame_dig 0
     dup
@@ -303,13 +303,13 @@ pcg64_random_after_if_else@10:
     swap
     %
     frame_bury 3
-    // lib_pcg/pcg64.py:81
+    // lib_pcg/pcg64.py:80
     // for i in urange(length):  # noqa: B007
     int 0
     frame_bury 2
 
 pcg64_random_for_header@11:
-    // lib_pcg/pcg64.py:81
+    // lib_pcg/pcg64.py:80
     // for i in urange(length):  # noqa: B007
     frame_dig 2
     frame_dig -1
@@ -317,28 +317,28 @@ pcg64_random_for_header@11:
     bz pcg64_random_after_for@19
 
 pcg64_random_while_top@13:
-    // lib_pcg/pcg64.py:83
-    // state, candidate = __pcg64_random(state)
+    // lib_pcg/pcg64.py:82
+    // state, candidate = __pcg64_unbounded_random(state)
     frame_dig -5
     frame_dig -4
-    callsub __pcg64_random
+    callsub __pcg64_unbounded_random
     dup
     cover 3
     frame_bury 1
     frame_bury -4
     frame_bury -5
-    // lib_pcg/pcg64.py:84
+    // lib_pcg/pcg64.py:83
     // if candidate >= threshold:
     frame_dig 3
     >=
     bz pcg64_random_while_top@13
-    // lib_pcg/pcg64.py:85-87
+    // lib_pcg/pcg64.py:84-86
     // result.append(
     //     arc4.UInt64((candidate % absolute_bound) + lower_bound)
     // )
     frame_dig 4
     extract 2 0
-    // lib_pcg/pcg64.py:86
+    // lib_pcg/pcg64.py:85
     // arc4.UInt64((candidate % absolute_bound) + lower_bound)
     frame_dig 1
     frame_dig 0
@@ -346,7 +346,7 @@ pcg64_random_while_top@13:
     frame_dig -3
     +
     itob
-    // lib_pcg/pcg64.py:85-87
+    // lib_pcg/pcg64.py:84-86
     // result.append(
     //     arc4.UInt64((candidate % absolute_bound) + lower_bound)
     // )
@@ -360,7 +360,7 @@ pcg64_random_while_top@13:
     swap
     concat
     frame_bury 4
-    // lib_pcg/pcg64.py:81
+    // lib_pcg/pcg64.py:80
     // for i in urange(length):  # noqa: B007
     frame_dig 2
     int 1
@@ -371,7 +371,7 @@ pcg64_random_while_top@13:
 pcg64_random_after_for@19:
 
 pcg64_random_after_if_else@20:
-    // lib_pcg/pcg64.py:90
+    // lib_pcg/pcg64.py:89
     // return state, result.copy()
     frame_dig -5
     frame_dig -4
@@ -382,50 +382,44 @@ pcg64_random_after_if_else@20:
     retsub
 
 
-// lib_pcg.pcg64.__pcg64_random(state.0: uint64, state.1: uint64) -> uint64, uint64, uint64:
-__pcg64_random:
-    // lib_pcg/pcg64.py:93-94
+// lib_pcg.pcg64.__pcg64_unbounded_random(state.0: uint64, state.1: uint64) -> uint64, uint64, uint64:
+__pcg64_unbounded_random:
+    // lib_pcg/pcg64.py:92-93
     // @subroutine
-    // def __pcg64_random(state: PCG64STATE) -> tuple[PCG64STATE, UInt64]:
+    // def __pcg64_unbounded_random(state: PCG64STATE) -> tuple[PCG64STATE, UInt64]:
     proto 2 3
-    // lib_pcg/pcg64.py:108
-    // new_state1, high_prn = __pcg32_unbounded_random(state[0])
+    // lib_pcg/pcg64.py:107
+    // new_state1 = __pcg32_step(state[0], UInt64(PCG_FIRST_INCREMENT))
     frame_dig -2
-    callsub __pcg32_unbounded_random
-    // lib_pcg/pcg64.py:110
-    // new_state2 = __pcg32_step(state[1], UInt64(PCG_SECOND_INCREMENT) << (state[0] == 0))
-    frame_dig -2
+    int 1442695040888963407
+    callsub __pcg32_step
+    // lib_pcg/pcg64.py:109
+    // state[1], UInt64(PCG_SECOND_INCREMENT) << (new_state1 == 0)
+    dup
     !
     int 1442695040888963409
     swap
     shl
+    // lib_pcg/pcg64.py:108-110
+    // new_state2 = __pcg32_step(
+    //     state[1], UInt64(PCG_SECOND_INCREMENT) << (new_state1 == 0)
+    // )
     frame_dig -1
     swap
     callsub __pcg32_step
-    swap
     // lib_pcg/pcg64.py:112
-    // return (new_state1, new_state2), high_prn << 32 | __pcg32_output(state[1])
+    // return (new_state1, new_state2), __pcg32_output(state[0]) << 32 | __pcg32_output(
+    frame_dig -2
+    callsub __pcg32_output
     int 32
     shl
+    // lib_pcg/pcg64.py:112-114
+    // return (new_state1, new_state2), __pcg32_output(state[0]) << 32 | __pcg32_output(
+    //     state[1]
+    // )
     frame_dig -1
     callsub __pcg32_output
     |
-    retsub
-
-
-// lib_pcg.pcg32.__pcg32_unbounded_random(state: uint64) -> uint64, uint64:
-__pcg32_unbounded_random:
-    // lib_pcg/pcg32.py:179-180
-    // @subroutine
-    // def __pcg32_unbounded_random(state: PCG32STATE) -> tuple[PCG32STATE, UInt64]:
-    proto 1 2
-    // lib_pcg/pcg32.py:196
-    // return __pcg32_step(state, UInt64(PCG_FIRST_INCREMENT)), __pcg32_output(state)
-    frame_dig -1
-    int 1442695040888963407
-    callsub __pcg32_step
-    frame_dig -1
-    callsub __pcg32_output
     retsub
 
 
