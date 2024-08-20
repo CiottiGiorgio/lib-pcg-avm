@@ -280,11 +280,16 @@ def __pcg32_random(state: PCG32STATE) -> tuple[PCG32STATE, UInt64]:
 @subroutine
 def __pcg32_output(state: PCG32STATE) -> UInt64:
     """PCG XSH RR 64/32 output k-to-1 permutation function."""
-    xorshifted = __mask_to_uint32(((state >> 18) ^ state) >> 27)
+    # Original body of the function with more abstraction:
+    # xorshifted = __mask_to_uint32(((state >> 18) ^ state) >> 27)
+    # rot = state >> 59
+    # return (xorshifted >> rot) | __mask_to_uint32(
+    #     xorshifted << (__uint64_twos(rot) & 31)
+    # )
+    xorshifted = (((state >> 18) ^ state) >> 27) & ((1 << 32) - 1)
     rot = state >> 59
-    return (xorshifted >> rot) | __mask_to_uint32(
-        xorshifted << (__uint64_twos(rot) & 31)
-    )
+    _high_twos_rot, low_twos_rot = op.addw(~rot, 1)
+    return (xorshifted >> rot) | ((xorshifted << (low_twos_rot & 31)) & ((1 << 32) - 1))
 
 
 @subroutine

@@ -552,8 +552,14 @@ __pcg32_output:
     // @subroutine
     // def __pcg32_output(state: PCG32STATE) -> UInt64:
     proto 1 1
-    // lib_pcg/pcg32.py:283
-    // xorshifted = __mask_to_uint32(((state >> 18) ^ state) >> 27)
+    // lib_pcg/pcg32.py:283-289
+    // # Original body of the function with more abstraction:
+    // # xorshifted = __mask_to_uint32(((state >> 18) ^ state) >> 27)
+    // # rot = state >> 59
+    // # return (xorshifted >> rot) | __mask_to_uint32(
+    // #     xorshifted << (__uint64_twos(rot) & 31)
+    // # )
+    // xorshifted = (((state >> 18) ^ state) >> 27) & ((1 << 32) - 1)
     frame_dig -1
     int 18
     shr
@@ -561,61 +567,32 @@ __pcg32_output:
     ^
     int 27
     shr
-    callsub __mask_to_uint32
-    // lib_pcg/pcg32.py:284
+    int 4294967295
+    &
+    // lib_pcg/pcg32.py:290
     // rot = state >> 59
     frame_dig -1
     int 59
     shr
-    // lib_pcg/pcg32.py:285
-    // return (xorshifted >> rot) | __mask_to_uint32(
-    dup2
-    shr
-    cover 2
-    // lib_pcg/pcg32.py:286
-    // xorshifted << (__uint64_twos(rot) & 31)
-    callsub __uint64_twos
-    int 31
-    &
-    shl
-    // lib_pcg/pcg32.py:285-287
-    // return (xorshifted >> rot) | __mask_to_uint32(
-    //     xorshifted << (__uint64_twos(rot) & 31)
-    // )
-    callsub __mask_to_uint32
-    |
-    retsub
-
-
-// lib_pcg.pcg32.__mask_to_uint32(value: uint64) -> uint64:
-__mask_to_uint32:
-    // lib_pcg/pcg32.py:298-299
-    // @subroutine
-    // def __mask_to_uint32(value: UInt64) -> UInt64:
-    proto 1 1
-    // lib_pcg/pcg32.py:301
-    // return value & ((1 << 32) - 1)
-    frame_dig -1
-    int 4294967295
-    &
-    retsub
-
-
-// lib_pcg.pcg32.__uint64_twos(value: uint64) -> uint64:
-__uint64_twos:
-    // lib_pcg/pcg32.py:290-291
-    // @subroutine
-    // def __uint64_twos(value: UInt64) -> UInt64:
-    proto 1 1
-    // lib_pcg/pcg32.py:293
-    // _addw_high, addw_low = op.addw(~value, 1)
-    frame_dig -1
+    // lib_pcg/pcg32.py:291
+    // _high_twos_rot, low_twos_rot = op.addw(~rot, 1)
+    dup
     ~
     int 1
     addw
     bury 1
-    // lib_pcg/pcg32.py:295
-    // return addw_low
+    // lib_pcg/pcg32.py:292
+    // return (xorshifted >> rot) | ((xorshifted << (low_twos_rot & 31)) & ((1 << 32) - 1))
+    dig 2
+    uncover 2
+    shr
+    cover 2
+    int 31
+    &
+    shl
+    int 4294967295
+    &
+    |
     retsub
 
 
