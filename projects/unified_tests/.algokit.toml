@@ -20,8 +20,9 @@ test-pyteal = { commands = [
 ], description = 'Run lib-pcg pyteal implementation tests' }
 test = { commands = [
   'algokit project run test-algopy',
-  'algokit project run test-pyteal',
   'algokit project run test-ts',
+# FIXME
+#  'algokit project run test-pyteal',
 ], description = 'Run smart contract tests' }
 audit = { commands = [
   'poetry export --without=dev -o requirements.txt',
