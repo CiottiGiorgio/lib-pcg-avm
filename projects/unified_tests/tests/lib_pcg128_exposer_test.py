@@ -9,6 +9,15 @@ from smart_contracts.artifacts.lib_pcg128_exposer_algopy import (
     LibPcg128ExposerAlgopyClient,
     SimulateOptions,
 )
+from smart_contracts.artifacts.lib_pcg128_exposer_ts import (
+    CreateApplicationArgs as CreateApplicationArgsTs,
+)
+from smart_contracts.artifacts.lib_pcg128_exposer_ts import (
+    DeployCreate as DeployCreateTs,
+)
+from smart_contracts.artifacts.lib_pcg128_exposer_ts import (
+    LibPcg128ExposerTsClient,
+)
 
 
 def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
@@ -30,13 +39,10 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                     "lib_pcg128_client", ["lib_pcg128_exposer_ts_client"]
                 )
             if "expected_library_size" in metafunc.fixturenames:
-                # FIXME
-                metafunc.parametrize("expected_library_size", [1000])
+                metafunc.parametrize("expected_library_size", [1800])
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
-                # FIXME
-                metafunc.parametrize("max_unbounded_opup_calls", [50])
+                metafunc.parametrize("max_unbounded_opup_calls", [44])
             if "max_bounded_opup_calls" in metafunc.fixturenames:
-                # FIXME
                 metafunc.parametrize("max_bounded_opup_calls", [50])
         case "pyteal":
             if "lib_pcg128_client" in metafunc.fixturenames:
@@ -72,6 +78,29 @@ def lib_pcg128_exposer_algopy_client(
     client.deploy(
         on_schema_break=algokit_utils.OnSchemaBreak.ReplaceApp,
         on_update=algokit_utils.OnUpdate.UpdateApp,
+    )
+    return client
+
+
+@pytest.fixture(scope="session")
+def lib_pcg128_exposer_ts_client(
+    algod_client: AlgodClient, indexer_client: IndexerClient
+) -> LibPcg128ExposerTsClient:
+    config.configure(
+        debug=True,
+        # trace_all=True,
+    )
+
+    client = LibPcg128ExposerTsClient(
+        algod_client,
+        creator=get_localnet_default_account(algod_client),
+        indexer_client=indexer_client,
+    )
+
+    client.deploy(
+        on_schema_break=algokit_utils.OnSchemaBreak.ReplaceApp,
+        on_update=algokit_utils.OnUpdate.UpdateApp,
+        create_args=DeployCreateTs(args=CreateApplicationArgsTs()),
     )
     return client
 

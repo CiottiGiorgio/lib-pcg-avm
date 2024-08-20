@@ -1,0 +1,37 @@
+{
+  "name": "LibPcg128ExposerTs",
+  "desc": "",
+  "methods": [
+    {
+      "name": "bounded_rand_uint128",
+      "args": [
+        {
+          "name": "seed",
+          "type": "byte[32]"
+        },
+        {
+          "name": "lower_bound",
+          "type": "uint128"
+        },
+        {
+          "name": "upper_bound",
+          "type": "uint128"
+        },
+        {
+          "name": "length",
+          "type": "uint16"
+        }
+      ],
+      "returns": {
+        "type": "uint128[]"
+      }
+    },
+    {
+      "name": "createApplication",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    }
+  ]
+}
