@@ -141,21 +141,21 @@ pcg64_init:
 
 // lib_pcg.pcg32.__pcg32_init(initial_state: uint64, incr: uint64) -> uint64:
 __pcg32_init:
-    // lib_pcg/pcg32.py:220-221
+    // lib_pcg/pcg32.py:139-140
     // @subroutine
     // def __pcg32_init(initial_state: PCG32STATE, incr: UInt64) -> PCG32STATE:
     proto 2 1
-    // lib_pcg/pcg32.py:236
+    // lib_pcg/pcg32.py:155
     // state = __pcg32_step(UInt64(0), incr)
     int 0
     frame_dig -1
     callsub __pcg32_step
-    // lib_pcg/pcg32.py:237
+    // lib_pcg/pcg32.py:156
     // _high_addw, state = op.addw(state, initial_state)
     frame_dig -2
     addw
     bury 1
-    // lib_pcg/pcg32.py:239
+    // lib_pcg/pcg32.py:158
     // return __pcg32_step(state, incr)
     frame_dig -1
     callsub __pcg32_step
@@ -164,22 +164,22 @@ __pcg32_init:
 
 // lib_pcg.pcg32.__pcg32_step(state: uint64, incr: uint64) -> uint64:
 __pcg32_step:
-    // lib_pcg/pcg32.py:242-243
+    // lib_pcg/pcg32.py:161-162
     // @subroutine
     // def __pcg32_step(state: PCG32STATE, incr: UInt64) -> PCG32STATE:
     proto 2 1
-    // lib_pcg/pcg32.py:254
+    // lib_pcg/pcg32.py:173
     // _high_mul, low_mul = op.mulw(state, PCG_MULTIPLIER)
     frame_dig -2
     int 6364136223846793005
     mulw
     bury 1
-    // lib_pcg/pcg32.py:255
+    // lib_pcg/pcg32.py:174
     // _high_add, low_add = op.addw(low_mul, incr)
     frame_dig -1
     addw
     bury 1
-    // lib_pcg/pcg32.py:257
+    // lib_pcg/pcg32.py:176
     // return low_add
     retsub
 
@@ -389,9 +389,9 @@ __pcg64_random:
     // def __pcg64_random(state: PCG64STATE) -> tuple[PCG64STATE, UInt64]:
     proto 2 3
     // lib_pcg/pcg64.py:108
-    // new_state1, high_prn = __pcg32_random(state[0])
+    // new_state1, high_prn = __pcg32_unbounded_random(state[0])
     frame_dig -2
-    callsub __pcg32_random
+    callsub __pcg32_unbounded_random
     // lib_pcg/pcg64.py:110
     // new_state2 = __pcg32_step(state[1], UInt64(PCG_SECOND_INCREMENT) << (state[0] == 0))
     frame_dig -2
@@ -413,13 +413,13 @@ __pcg64_random:
     retsub
 
 
-// lib_pcg.pcg32.__pcg32_random(state: uint64) -> uint64, uint64:
-__pcg32_random:
-    // lib_pcg/pcg32.py:260-261
+// lib_pcg.pcg32.__pcg32_unbounded_random(state: uint64) -> uint64, uint64:
+__pcg32_unbounded_random:
+    // lib_pcg/pcg32.py:179-180
     // @subroutine
-    // def __pcg32_random(state: PCG32STATE) -> tuple[PCG32STATE, UInt64]:
+    // def __pcg32_unbounded_random(state: PCG32STATE) -> tuple[PCG32STATE, UInt64]:
     proto 1 2
-    // lib_pcg/pcg32.py:277
+    // lib_pcg/pcg32.py:196
     // return __pcg32_step(state, UInt64(PCG_FIRST_INCREMENT)), __pcg32_output(state)
     frame_dig -1
     int 1442695040888963407
@@ -431,11 +431,11 @@ __pcg32_random:
 
 // lib_pcg.pcg32.__pcg32_output(state: uint64) -> uint64:
 __pcg32_output:
-    // lib_pcg/pcg32.py:280-281
+    // lib_pcg/pcg32.py:275-276
     // @subroutine
     // def __pcg32_output(state: PCG32STATE) -> UInt64:
     proto 1 1
-    // lib_pcg/pcg32.py:283-289
+    // lib_pcg/pcg32.py:278-284
     // # Original body of the function with more abstraction:
     // # xorshifted = __mask_to_uint32(((state >> 18) ^ state) >> 27)
     // # rot = state >> 59
@@ -452,19 +452,19 @@ __pcg32_output:
     shr
     int 4294967295
     &
-    // lib_pcg/pcg32.py:290
+    // lib_pcg/pcg32.py:285
     // rot = state >> 59
     frame_dig -1
     int 59
     shr
-    // lib_pcg/pcg32.py:291
+    // lib_pcg/pcg32.py:286
     // _high_twos_rot, low_twos_rot = op.addw(~rot, 1)
     dup
     ~
     int 1
     addw
     bury 1
-    // lib_pcg/pcg32.py:292
+    // lib_pcg/pcg32.py:287
     // return (xorshifted >> rot) | ((xorshifted << (low_twos_rot & 31)) & ((1 << 32) - 1))
     dig 2
     uncover 2
@@ -481,18 +481,18 @@ __pcg32_output:
 
 // lib_pcg.pcg32.__uint64_twos(value: uint64) -> uint64:
 __uint64_twos:
-    // lib_pcg/pcg32.py:295-296
+    // lib_pcg/pcg32.py:290-291
     // @subroutine
     // def __uint64_twos(value: UInt64) -> UInt64:
     proto 1 1
-    // lib_pcg/pcg32.py:298
+    // lib_pcg/pcg32.py:293
     // _addw_high, addw_low = op.addw(~value, 1)
     frame_dig -1
     ~
     int 1
     addw
     bury 1
-    // lib_pcg/pcg32.py:300
+    // lib_pcg/pcg32.py:295
     // return addw_low
     retsub
 

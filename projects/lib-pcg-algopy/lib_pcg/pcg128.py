@@ -11,8 +11,8 @@ from lib_pcg.consts import (
 from lib_pcg.pcg32 import (
     __pcg32_init,
     __pcg32_output,
-    __pcg32_random,
     __pcg32_step,
+    __pcg32_unbounded_random,
 )
 
 PCG128STATE: TypeAlias = tuple[UInt64, UInt64, UInt64, UInt64]
@@ -112,7 +112,7 @@ def __pcg128_random(state: PCG128STATE) -> tuple[PCG128STATE, BigUInt]:
         - A pseudo-random 128-bit uint.
 
     """
-    new_state1, rn1 = __pcg32_random(state[0])
+    new_state1, rn1 = __pcg32_unbounded_random(state[0])
 
     new_state2 = __pcg32_step(
         state[1], UInt64(PCG_SECOND_INCREMENT) << (new_state1 == 0)
