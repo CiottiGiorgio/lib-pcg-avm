@@ -16,10 +16,16 @@ from smart_contracts.artifacts.lib_pcg64_exposer_ts import (
     CreateApplicationArgs as CreateApplicationArgsTs,
 )
 from smart_contracts.artifacts.lib_pcg64_exposer_ts import (
+    Deploy as DeployTs,
+)
+from smart_contracts.artifacts.lib_pcg64_exposer_ts import (
     DeployCreate as DeployCreateTs,
 )
 from smart_contracts.artifacts.lib_pcg64_exposer_ts import (
     LibPcg64ExposerTsClient,
+)
+from smart_contracts.artifacts.lib_pcg64_exposer_ts import (
+    UpdateApplicationArgs as UpdateApplicationArgsTs,
 )
 
 
@@ -42,7 +48,7 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                     "lib_pcg64_client", ["lib_pcg64_exposer_ts_client"]
                 )
             if "expected_library_size" in metafunc.fixturenames:
-                metafunc.parametrize("expected_library_size", [1700])
+                metafunc.parametrize("expected_library_size", [2000])
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize("max_unbounded_opup_calls", [40])
             if "max_bounded_opup_calls" in metafunc.fixturenames:
@@ -125,6 +131,7 @@ def lib_pcg64_exposer_ts_client(
         on_schema_break=algokit_utils.OnSchemaBreak.ReplaceApp,
         on_update=algokit_utils.OnUpdate.AppendApp,
         create_args=DeployCreateTs(args=CreateApplicationArgsTs()),
+        update_args=DeployTs(args=UpdateApplicationArgsTs()),
     )
     return client
 

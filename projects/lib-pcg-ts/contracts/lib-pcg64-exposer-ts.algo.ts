@@ -10,4 +10,8 @@ export class LibPcg64ExposerTs extends LibPcg64 {
 
     return result[1];
   }
+
+  updateApplication() {
+    assert(globals.creatorAddress === this.txn.sender);
+  }
 }

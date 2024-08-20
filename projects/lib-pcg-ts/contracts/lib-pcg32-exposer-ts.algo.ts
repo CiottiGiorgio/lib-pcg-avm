@@ -33,4 +33,8 @@ export class LibPcg32ExposerTs extends LibPcg32 {
 
     return result[1];
   }
+
+  updateApplication() {
+    assert(globals.creatorAddress === this.txn.sender);
+  }
 }
