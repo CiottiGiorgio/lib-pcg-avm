@@ -10,7 +10,7 @@ packages = [{include = "lib_pcg"}]
 python = "^3.12"
 algokit-utils = "^2.2.0"
 python-dotenv = "^1.0.0"
-algorand-python = "^1.0.0"
+algorand-python = "^2.0.0"
 
 [tool.poetry.group.dev.dependencies]
 algokit-client-generator = "^1.1.3"
