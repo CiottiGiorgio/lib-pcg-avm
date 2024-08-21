@@ -1,8 +1,6 @@
 #pragma version 10
 
 smart_contracts.lib_pcg128_exposer.contract.LibPcg128ExposerAlgopy.approval_program:
-    // smart_contracts/lib_pcg128_exposer/contract.py:8
-    // class LibPcg128ExposerAlgopy(arc4.ARC4Contract):
     txn NumAppArgs
     bz main_bare_routing@5
     method "bounded_rand_uint128(byte[32],uint128,uint128,uint16)uint128[]"
@@ -11,21 +9,15 @@ smart_contracts.lib_pcg128_exposer.contract.LibPcg128ExposerAlgopy.approval_prog
     err // reject transaction
 
 main_bounded_rand_uint128_route@2:
-    // smart_contracts/lib_pcg128_exposer/contract.py:9
-    // @arc4.abimethod
     txn OnCompletion
     !
     assert // OnCompletion is NoOp
     txn ApplicationID
     assert // is not creating
-    // smart_contracts/lib_pcg128_exposer/contract.py:8
-    // class LibPcg128ExposerAlgopy(arc4.ARC4Contract):
     txna ApplicationArgs 1
     txna ApplicationArgs 2
     txna ApplicationArgs 3
     txna ApplicationArgs 4
-    // smart_contracts/lib_pcg128_exposer/contract.py:9
-    // @arc4.abimethod
     callsub bounded_rand_uint128
     byte 0x151f7c75
     swap
@@ -35,8 +27,6 @@ main_bounded_rand_uint128_route@2:
     return
 
 main_bare_routing@5:
-    // smart_contracts/lib_pcg128_exposer/contract.py:8
-    // class LibPcg128ExposerAlgopy(arc4.ARC4Contract):
     int 0
     int 4
     txn OnCompletion
@@ -44,8 +34,6 @@ main_bare_routing@5:
     err // reject transaction
 
 main_create@6:
-    // smart_contracts/lib_pcg128_exposer/contract.py:8
-    // class LibPcg128ExposerAlgopy(arc4.ARC4Contract):
     txn ApplicationID
     !
     assert // is creating
@@ -53,13 +41,8 @@ main_create@6:
     return
 
 main_update@7:
-    // smart_contracts/lib_pcg128_exposer/contract.py:25
-    // @arc4.baremethod(allow_actions=["UpdateApplication"])
     txn ApplicationID
     assert // is not creating
-    // smart_contracts/lib_pcg128_exposer/contract.py:25-26
-    // @arc4.baremethod(allow_actions=["UpdateApplication"])
-    // def update(self) -> None:
     callsub update
     int 1
     return
@@ -67,32 +50,15 @@ main_update@7:
 
 // smart_contracts.lib_pcg128_exposer.contract.LibPcg128ExposerAlgopy.bounded_rand_uint128(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
 bounded_rand_uint128:
-    // smart_contracts/lib_pcg128_exposer/contract.py:9-16
-    // @arc4.abimethod
-    // def bounded_rand_uint128(
-    //     self,
-    //     seed: arc4.StaticArray[arc4.Byte, Literal[32]],
-    //     lower_bound: arc4.UInt128,
-    //     upper_bound: arc4.UInt128,
-    //     length: arc4.UInt16,
-    // ) -> arc4.DynamicArray[arc4.UInt128]:
     proto 4 1
-    // smart_contracts/lib_pcg128_exposer/contract.py:17
-    // state = pcg128_init(seed.bytes)
     frame_dig -4
     callsub pcg128_init
     cover 3
     cover 2
     swap
-    // smart_contracts/lib_pcg128_exposer/contract.py:20
-    // state, lower_bound.native, upper_bound.native, length.native
     frame_dig -1
     btoi
     cover 2
-    // smart_contracts/lib_pcg128_exposer/contract.py:19-21
-    // state, sequence = pcg128_random(
-    //     state, lower_bound.native, upper_bound.native, length.native
-    // )
     swap
     uncover 3
     uncover 4
@@ -102,80 +68,49 @@ bounded_rand_uint128:
     callsub pcg128_random
     cover 4
     popn 4
-    // smart_contracts/lib_pcg128_exposer/contract.py:23
-    // return sequence
     retsub
 
 
 // lib_pcg.pcg128.pcg128_init(seed: bytes) -> uint64, uint64, uint64, uint64:
 pcg128_init:
-    // lib_pcg/pcg128.py:20-21
-    // @subroutine
-    // def pcg128_init(seed: Bytes) -> PCG128STATE:
     proto 1 4
-    // lib_pcg/pcg128.py:31
-    // assert seed.length == 32
     frame_dig -1
     len
     int 32
     ==
     assert
-    // lib_pcg/pcg128.py:34
-    // __pcg32_init(op.extract_uint64(seed, 0), UInt64(PCG_FIRST_INCREMENT)),
     frame_dig -1
     int 0
     extract_uint64
     int 1442695040888963407
     callsub __pcg32_init
-    // lib_pcg/pcg128.py:35
-    // __pcg32_init(op.extract_uint64(seed, 8), UInt64(PCG_SECOND_INCREMENT)),
     frame_dig -1
     int 8
     extract_uint64
     int 1442695040888963409
     callsub __pcg32_init
-    // lib_pcg/pcg128.py:36
-    // __pcg32_init(op.extract_uint64(seed, 16), UInt64(PCG_THIRD_INCREMENT)),
     frame_dig -1
     int 16
     extract_uint64
     int 1442695040888963411
     callsub __pcg32_init
-    // lib_pcg/pcg128.py:37
-    // __pcg32_init(op.extract_uint64(seed, 24), UInt64(PCG_FOURTH_INCREMENT)),
     frame_dig -1
     int 24
     extract_uint64
     int 1442695040888963413
     callsub __pcg32_init
-    // lib_pcg/pcg128.py:33-38
-    // return (
-    //     __pcg32_init(op.extract_uint64(seed, 0), UInt64(PCG_FIRST_INCREMENT)),
-    //     __pcg32_init(op.extract_uint64(seed, 8), UInt64(PCG_SECOND_INCREMENT)),
-    //     __pcg32_init(op.extract_uint64(seed, 16), UInt64(PCG_THIRD_INCREMENT)),
-    //     __pcg32_init(op.extract_uint64(seed, 24), UInt64(PCG_FOURTH_INCREMENT)),
-    // )
     retsub
 
 
 // lib_pcg.pcg32.__pcg32_init(initial_state: uint64, incr: uint64) -> uint64:
 __pcg32_init:
-    // lib_pcg/pcg32.py:139-140
-    // @subroutine
-    // def __pcg32_init(initial_state: PCG32STATE, incr: UInt64) -> PCG32STATE:
     proto 2 1
-    // lib_pcg/pcg32.py:155
-    // state = __pcg32_step(UInt64(0), incr)
     int 0
     frame_dig -1
     callsub __pcg32_step
-    // lib_pcg/pcg32.py:156
-    // _high_addw, state = op.addw(state, initial_state)
     frame_dig -2
     addw
     bury 1
-    // lib_pcg/pcg32.py:158
-    // return __pcg32_step(state, incr)
     frame_dig -1
     callsub __pcg32_step
     retsub
@@ -183,45 +118,24 @@ __pcg32_init:
 
 // lib_pcg.pcg32.__pcg32_step(state: uint64, incr: uint64) -> uint64:
 __pcg32_step:
-    // lib_pcg/pcg32.py:161-162
-    // @subroutine
-    // def __pcg32_step(state: PCG32STATE, incr: UInt64) -> PCG32STATE:
     proto 2 1
-    // lib_pcg/pcg32.py:173
-    // _high_mul, low_mul = op.mulw(state, PCG_MULTIPLIER)
     frame_dig -2
     int 6364136223846793005
     mulw
     bury 1
-    // lib_pcg/pcg32.py:174
-    // _high_add, low_add = op.addw(low_mul, incr)
     frame_dig -1
     addw
     bury 1
-    // lib_pcg/pcg32.py:176
-    // return low_add
     retsub
 
 
 // lib_pcg.pcg128.pcg128_random(state.0: uint64, state.1: uint64, state.2: uint64, state.3: uint64, lower_bound: bytes, upper_bound: bytes, length: uint64) -> uint64, uint64, uint64, uint64, bytes:
 pcg128_random:
-    // lib_pcg/pcg128.py:41-47
-    // @subroutine
-    // def pcg128_random(
-    //     state: PCG128STATE,
-    //     lower_bound: BigUInt,
-    //     upper_bound: BigUInt,
-    //     length: UInt64,
-    // ) -> tuple[PCG128STATE, arc4.DynamicArray[arc4.UInt128]]:
     proto 7 5
     int 0
     dupn 2
     byte ""
-    // lib_pcg/pcg128.py:66
-    // result = arc4.DynamicArray[arc4.UInt128]()
     byte 0x0000
-    // lib_pcg/pcg128.py:68
-    // if lower_bound == 0 and upper_bound == 0:
     frame_dig -3
     byte 0x
     b==
@@ -230,20 +144,14 @@ pcg128_random:
     byte 0x
     b==
     bz pcg128_random_else_body@7
-    // lib_pcg/pcg128.py:69
-    // for i in urange(length):  # noqa: B007
     int 0
     frame_bury 3
 
 pcg128_random_for_header@3:
-    // lib_pcg/pcg128.py:69
-    // for i in urange(length):  # noqa: B007
     frame_dig 3
     frame_dig -1
     <
     bz pcg128_random_after_if_else@20
-    // lib_pcg/pcg128.py:70
-    // state, n = __pcg128_unbounded_random(state)
     frame_dig -7
     frame_dig -6
     frame_dig -5
@@ -254,8 +162,6 @@ pcg128_random_for_header@3:
     frame_bury -5
     frame_bury -6
     frame_bury -7
-    // lib_pcg/pcg128.py:72
-    // result.append(arc4.UInt128(n))
     frame_dig 4
     extract 2 0
     swap
@@ -277,8 +183,6 @@ pcg128_random_for_header@3:
     swap
     concat
     frame_bury 4
-    // lib_pcg/pcg128.py:69
-    // for i in urange(length):  # noqa: B007
     frame_dig 3
     int 1
     +
@@ -286,34 +190,24 @@ pcg128_random_for_header@3:
     b pcg128_random_for_header@3
 
 pcg128_random_else_body@7:
-    // lib_pcg/pcg128.py:74
-    // if upper_bound != 0:
     frame_dig -2
     byte 0x
     b!=
     bz pcg128_random_else_body@9
-    // lib_pcg/pcg128.py:75
-    // assert upper_bound > BigUInt(1)
     frame_dig -2
     byte 0x01
     b>
     assert
-    // lib_pcg/pcg128.py:76
-    // assert upper_bound < BigUInt(1 << 128)
     frame_dig -2
     byte 0x0100000000000000000000000000000000
     b<
     assert
-    // lib_pcg/pcg128.py:77
-    // assert lower_bound < upper_bound - BigUInt(1)
     frame_dig -2
     byte 0x01
     b-
     frame_dig -3
     b>
     assert
-    // lib_pcg/pcg128.py:79
-    // absolute_bound = upper_bound - lower_bound
     frame_dig -2
     frame_dig -3
     b-
@@ -321,44 +215,32 @@ pcg128_random_else_body@7:
     b pcg128_random_after_if_else@10
 
 pcg128_random_else_body@9:
-    // lib_pcg/pcg128.py:81
-    // assert lower_bound < BigUInt(1 << 128 - 1)
     frame_dig -3
     byte 0x80000000000000000000000000000000
     b<
     assert
-    // lib_pcg/pcg128.py:83
-    // absolute_bound = BigUInt(1 << 128) - lower_bound
     byte 0x0100000000000000000000000000000000
     frame_dig -3
     b-
     frame_bury 0
 
 pcg128_random_after_if_else@10:
-    // lib_pcg/pcg128.py:85
-    // threshold = __uint128_twos(absolute_bound) % absolute_bound
     frame_dig 0
     dup
     callsub __uint128_twos
     swap
     b%
     frame_bury 2
-    // lib_pcg/pcg128.py:87
-    // for i in urange(length):  # noqa: B007
     int 0
     frame_bury 3
 
 pcg128_random_for_header@11:
-    // lib_pcg/pcg128.py:87
-    // for i in urange(length):  # noqa: B007
     frame_dig 3
     frame_dig -1
     <
     bz pcg128_random_after_for@19
 
 pcg128_random_while_top@13:
-    // lib_pcg/pcg128.py:89
-    // state, candidate = __pcg128_unbounded_random(state)
     frame_dig -7
     frame_dig -6
     frame_dig -5
@@ -371,19 +253,11 @@ pcg128_random_while_top@13:
     frame_bury -5
     frame_bury -6
     frame_bury -7
-    // lib_pcg/pcg128.py:90
-    // if candidate >= threshold:
     frame_dig 2
     b>=
     bz pcg128_random_while_top@13
-    // lib_pcg/pcg128.py:91-93
-    // result.append(
-    //     arc4.UInt128((candidate % absolute_bound) + lower_bound)
-    // )
     frame_dig 4
     extract 2 0
-    // lib_pcg/pcg128.py:92
-    // arc4.UInt128((candidate % absolute_bound) + lower_bound)
     frame_dig 1
     frame_dig 0
     b%
@@ -397,10 +271,6 @@ pcg128_random_while_top@13:
     int 16
     bzero
     b|
-    // lib_pcg/pcg128.py:91-93
-    // result.append(
-    //     arc4.UInt128((candidate % absolute_bound) + lower_bound)
-    // )
     concat
     dup
     len
@@ -411,8 +281,6 @@ pcg128_random_while_top@13:
     swap
     concat
     frame_bury 4
-    // lib_pcg/pcg128.py:87
-    // for i in urange(length):  # noqa: B007
     frame_dig 3
     int 1
     +
@@ -422,8 +290,6 @@ pcg128_random_while_top@13:
 pcg128_random_after_for@19:
 
 pcg128_random_after_if_else@20:
-    // lib_pcg/pcg128.py:96
-    // return state, result.copy()
     frame_dig -7
     frame_dig -6
     frame_dig -5
@@ -439,59 +305,34 @@ pcg128_random_after_if_else@20:
 
 // lib_pcg.pcg128.__pcg128_unbounded_random(state.0: uint64, state.1: uint64, state.2: uint64, state.3: uint64) -> uint64, uint64, uint64, uint64, bytes:
 __pcg128_unbounded_random:
-    // lib_pcg/pcg128.py:99-100
-    // @subroutine
-    // def __pcg128_unbounded_random(state: PCG128STATE) -> tuple[PCG128STATE, BigUInt]:
     proto 4 5
-    // lib_pcg/pcg128.py:114
-    // new_state1 = __pcg32_step(state[0], UInt64(PCG_FIRST_INCREMENT))
     frame_dig -4
     int 1442695040888963407
     callsub __pcg32_step
-    // lib_pcg/pcg128.py:117
-    // state[1], UInt64(PCG_SECOND_INCREMENT) << (new_state1 == 0)
     dup
     !
     int 1442695040888963409
     swap
     shl
-    // lib_pcg/pcg128.py:116-118
-    // new_state2 = __pcg32_step(
-    //     state[1], UInt64(PCG_SECOND_INCREMENT) << (new_state1 == 0)
-    // )
     frame_dig -3
     swap
     callsub __pcg32_step
-    // lib_pcg/pcg128.py:121
-    // state[2], UInt64(PCG_THIRD_INCREMENT) << (new_state2 == 0)
     dup
     !
     int 1442695040888963411
     swap
     shl
-    // lib_pcg/pcg128.py:120-122
-    // new_state3 = __pcg32_step(
-    //     state[2], UInt64(PCG_THIRD_INCREMENT) << (new_state2 == 0)
-    // )
     frame_dig -2
     swap
     callsub __pcg32_step
-    // lib_pcg/pcg128.py:125
-    // state[3], UInt64(PCG_FOURTH_INCREMENT) << (new_state3 == 0)
     dup
     !
     int 1442695040888963413
     swap
     shl
-    // lib_pcg/pcg128.py:124-126
-    // new_state4 = __pcg32_step(
-    //     state[3], UInt64(PCG_FOURTH_INCREMENT) << (new_state3 == 0)
-    // )
     frame_dig -1
     swap
     callsub __pcg32_step
-    // lib_pcg/pcg128.py:131
-    // op.itob(__pcg32_output(state[0]) << 32 | __pcg32_output(state[1]))
     frame_dig -4
     callsub __pcg32_output
     int 32
@@ -500,8 +341,6 @@ __pcg128_unbounded_random:
     callsub __pcg32_output
     |
     itob
-    // lib_pcg/pcg128.py:132
-    // + op.itob(__pcg32_output(state[2]) << 32 | __pcg32_output(state[3]))
     frame_dig -2
     callsub __pcg32_output
     int 32
@@ -510,35 +349,13 @@ __pcg128_unbounded_random:
     callsub __pcg32_output
     |
     itob
-    // lib_pcg/pcg128.py:131-132
-    // op.itob(__pcg32_output(state[0]) << 32 | __pcg32_output(state[1]))
-    // + op.itob(__pcg32_output(state[2]) << 32 | __pcg32_output(state[3]))
     concat
-    // lib_pcg/pcg128.py:128-134
-    // return (
-    //     (new_state1, new_state2, new_state3, new_state4),
-    //     BigUInt.from_bytes(
-    //         op.itob(__pcg32_output(state[0]) << 32 | __pcg32_output(state[1]))
-    //         + op.itob(__pcg32_output(state[2]) << 32 | __pcg32_output(state[3]))
-    //     ),
-    // )
     retsub
 
 
 // lib_pcg.pcg32.__pcg32_output(state: uint64) -> uint64:
 __pcg32_output:
-    // lib_pcg/pcg32.py:275-276
-    // @subroutine
-    // def __pcg32_output(state: PCG32STATE) -> UInt64:
     proto 1 1
-    // lib_pcg/pcg32.py:278-284
-    // # Original body of the function with more abstraction:
-    // # xorshifted = __mask_to_uint32(((state >> 18) ^ state) >> 27)
-    // # rot = state >> 59
-    // # return (xorshifted >> rot) | __mask_to_uint32(
-    // #     xorshifted << (__uint64_twos(rot) & 31)
-    // # )
-    // xorshifted = (((state >> 18) ^ state) >> 27) & ((1 << 32) - 1)
     frame_dig -1
     int 18
     shr
@@ -548,20 +365,14 @@ __pcg32_output:
     shr
     int 4294967295
     &
-    // lib_pcg/pcg32.py:285
-    // rot = state >> 59
     frame_dig -1
     int 59
     shr
-    // lib_pcg/pcg32.py:286
-    // _high_twos_rot, low_twos_rot = op.addw(~rot, 1)
     dup
     ~
     int 1
     addw
     bury 1
-    // lib_pcg/pcg32.py:287
-    // return (xorshifted >> rot) | ((xorshifted << (low_twos_rot & 31)) & ((1 << 32) - 1))
     dig 2
     uncover 2
     shr
@@ -577,12 +388,7 @@ __pcg32_output:
 
 // lib_pcg.pcg128.__uint128_twos(value: bytes) -> bytes:
 __uint128_twos:
-    // lib_pcg/pcg128.py:137-138
-    // @subroutine
-    // def __uint128_twos(value: BigUInt) -> BigUInt:
     proto 1 1
-    // lib_pcg/pcg128.py:160
-    // return (BigUInt.from_bytes(~value.bytes) + 1) & BigUInt((1 << 128) - 1)
     frame_dig -1
     b~
     byte 0x01
@@ -594,12 +400,7 @@ __uint128_twos:
 
 // smart_contracts.lib_pcg128_exposer.contract.LibPcg128ExposerAlgopy.update() -> void:
 update:
-    // smart_contracts/lib_pcg128_exposer/contract.py:25-26
-    // @arc4.baremethod(allow_actions=["UpdateApplication"])
-    // def update(self) -> None:
     proto 0 0
-    // smart_contracts/lib_pcg128_exposer/contract.py:27
-    // assert Txn.sender == Global.creator_address
     txn Sender
     global CreatorAddress
     ==

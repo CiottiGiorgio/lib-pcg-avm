@@ -25,6 +25,15 @@ def build(output_dir: Path, contract_path: Path) -> Path:
             contract_path.absolute(),
             f"--out-dir={output_dir}",
             "--output-arc32",
+            # Due to the debug symbols being generated in a way that is dependent on the OS,
+            #  we are disabling them for now.
+            # This has impacted a CI job making it fail for a very silly reason (forward vs. backward slashes).
+            # https://github.com/CiottiGiorgio/lib-pcg-avm/actions/runs/10480295020/job/29027639154
+            # FIXME: We probably want to have two sets of TEAL artifacts, one with debug symbols and one without.
+            #  The one without debug symbols, can be easily used to detect changes in TEAL in a more
+            #  reliable and less noisy way (both by CI and visually).
+            #  The one with debug symbols can be used for relating HLL code to TEAL visually.
+            "--debug-level=0",
         ],
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
