@@ -6,7 +6,10 @@ type PCG128STATE = [uint64, uint64, uint64, uint64];
 /* eslint-disable no-underscore-dangle, no-loss-of-precision, no-param-reassign */
 export class LibPcg128 extends LibPcg32 {
   protected __uint128Twos(value: uint128): uint128 {
-    return ((~rawBytes(value) as uint256) + Uint<256>('1')) as uint128;
+    return (
+      (((~rawBytes(value) as uint256) + Uint<256>('1')) as uint128) &
+      Uint<128>('340282366920938463463374607431768211455')
+    );
   }
 
   protected __pcg128Random(state: PCG128STATE): [PCG128STATE, uint128] {
