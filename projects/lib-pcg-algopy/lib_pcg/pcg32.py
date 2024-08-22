@@ -275,7 +275,7 @@ def __pcg32_bounded_sequence(
 @subroutine
 def __pcg32_output(state: PCG32STATE) -> UInt64:
     """PCG XSH RR 64/32 output k-to-1 permutation function."""
-    # Original body of the function with more abstraction:
+    # Original body of the function after inlining, but with more abstraction:
     # xorshifted = __mask_to_uint32(((state >> 18) ^ state) >> 27)
     # rot = state >> 59
     # return (xorshifted >> rot) | __mask_to_uint32(
@@ -285,6 +285,24 @@ def __pcg32_output(state: PCG32STATE) -> UInt64:
     rot = state >> 59
     _high_twos_rot, low_twos_rot = op.addw(~rot, 1)
     return (xorshifted >> rot) | ((xorshifted << (low_twos_rot & 31)) & ((1 << 32) - 1))
+
+
+# FIXME: When Algorand Python gets inlining support, we can remove the manual inlining in favor of
+#  the original functions with automatic inlining.
+#  This will make the code more readable and maintainable.
+# Original functions before manual inlining:
+# @subroutine
+# def __pcg32_output(state: PCG32STATE) -> UInt64:
+#     """PCG XSH RR 64/32 output k-to-1 permutation function."""
+#     return __pcg32_rotation(
+#         __mask_to_uint32(((state >> 18) ^ state) >> 27), state >> 59
+#     )
+#
+#
+# @subroutine
+# def __pcg32_rotation(value: UInt64, rot: UInt64) -> UInt64:
+#     """PCG XSH RR 64/32 rotation function."""
+#     return (value >> rot) | __mask_to_uint32(value << (__uint64_twos(rot) & 31))
 
 
 @subroutine
