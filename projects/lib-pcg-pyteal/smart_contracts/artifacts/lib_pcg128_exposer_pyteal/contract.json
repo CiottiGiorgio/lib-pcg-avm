@@ -1,0 +1,30 @@
+{
+    "name": "lib_pcg128_exposer_pyteal",
+    "methods": [
+        {
+            "name": "bounded_rand_uint128",
+            "args": [
+                {
+                    "type": "byte[32]",
+                    "name": "seed"
+                },
+                {
+                    "type": "byte[16]",
+                    "name": "lower_bound"
+                },
+                {
+                    "type": "byte[16]",
+                    "name": "upper_bound"
+                },
+                {
+                    "type": "uint16",
+                    "name": "length"
+                }
+            ],
+            "returns": {
+                "type": "byte[16][]"
+            }
+        }
+    ],
+    "networks": {}
+}

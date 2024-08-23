@@ -1,7 +1,11 @@
+from collections.abc import Callable
+from typing import Any
+
 import algokit_utils
 import pytest
 from algokit_utils import get_localnet_default_account
 from algokit_utils.config import config
+from algosdk.atomic_transaction_composer import SimulateAtomicTransactionResponse
 from algosdk.v2client.algod import AlgodClient
 from algosdk.v2client.indexer import IndexerClient
 
@@ -36,6 +40,30 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 metafunc.parametrize(
                     "lib_pcg128_client", ["lib_pcg128_exposer_algopy_client"]
                 )
+            if "get_random_sequence_method" in metafunc.fixturenames:
+
+                def get_random_sequence_method(
+                    client: LibPcg128ExposerAlgopyClient,
+                    seed: bytes,
+                    lower_bound: int,
+                    upper_bound: int,
+                    length: int,
+                ) -> SimulateAtomicTransactionResponse:
+                    return (
+                        client.compose()
+                        .bounded_rand_uint128(
+                            seed=seed,
+                            lower_bound=lower_bound,
+                            upper_bound=upper_bound,
+                            length=length,
+                        )
+                        .simulate(SimulateOptions(extra_opcode_budget=320_000))
+                    )
+
+                metafunc.parametrize(
+                    "get_random_sequence_method",
+                    [get_random_sequence_method],
+                )
             if "expected_library_size" in metafunc.fixturenames:
                 metafunc.parametrize("expected_library_size", [450])
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
@@ -47,6 +75,30 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 metafunc.parametrize(
                     "lib_pcg128_client", ["lib_pcg128_exposer_ts_client"]
                 )
+            if "get_random_sequence_method" in metafunc.fixturenames:
+
+                def get_random_sequence_method(
+                    client: LibPcg128ExposerTsClient,
+                    seed: bytes,
+                    lower_bound: int,
+                    upper_bound: int,
+                    length: int,
+                ) -> SimulateAtomicTransactionResponse:
+                    return (
+                        client.compose()
+                        .bounded_rand_uint128(
+                            seed=seed,
+                            lower_bound=lower_bound,
+                            upper_bound=upper_bound,
+                            length=length,
+                        )
+                        .simulate(SimulateOptions(extra_opcode_budget=320_000))
+                    )
+
+                metafunc.parametrize(
+                    "get_random_sequence_method",
+                    [get_random_sequence_method],
+                )
             if "expected_library_size" in metafunc.fixturenames:
                 metafunc.parametrize("expected_library_size", [2000])
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
@@ -57,6 +109,35 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
             if "lib_pcg128_client" in metafunc.fixturenames:
                 metafunc.parametrize(
                     "lib_pcg128_client", ["lib_pcg128_exposer_pyteal_client"]
+                )
+            if "get_random_sequence_method" in metafunc.fixturenames:
+
+                def get_random_sequence_method(
+                    client: LibPcg128ExposerPytealClient,
+                    seed: bytes,
+                    lower_bound: int,
+                    upper_bound: int,
+                    length: int,
+                ) -> SimulateAtomicTransactionResponse:
+                    result = (
+                        client.compose()
+                        .bounded_rand_uint128(
+                            seed=seed,
+                            lower_bound=lower_bound.to_bytes(16, "big"),
+                            upper_bound=upper_bound.to_bytes(16, "big"),
+                            length=length,
+                        )
+                        .simulate(SimulateOptions(extra_opcode_budget=320_000))
+                    )
+                    result.abi_results[0].return_value = [
+                        int.from_bytes(x, "big")
+                        for x in result.abi_results[0].return_value
+                    ]
+                    return result
+
+                metafunc.parametrize(
+                    "get_random_sequence_method",
+                    [get_random_sequence_method],
                 )
             if "expected_library_size" in metafunc.fixturenames:
                 metafunc.parametrize("expected_library_size", [650])
@@ -612,19 +693,13 @@ def test_library_size(
 
 def test_unbounded_maximal_cost(
     lib_pcg128_client: str,
+    get_random_sequence_method: Callable[[Any, bytes, int, int, int], Any],
     max_unbounded_opup_calls: int,
     request: pytest.FixtureRequest,
 ) -> None:
     client = request.getfixturevalue(lib_pcg128_client)
-    result = (
-        client.compose()
-        .bounded_rand_uint128(
-            seed=RNG_SEED,
-            lower_bound=0,
-            upper_bound=0,
-            length=EXPECTED_MAXIMAL_SEQUENCE_LENGTH,
-        )
-        .simulate(SimulateOptions(extra_opcode_budget=320_000))
+    result = get_random_sequence_method(
+        client, RNG_SEED, 0, 0, EXPECTED_MAXIMAL_SEQUENCE_LENGTH
     )
 
     assert result.abi_results[0].return_value
@@ -636,19 +711,13 @@ def test_unbounded_maximal_cost(
 
 def test_bounded_maximal_cost(
     lib_pcg128_client: str,
+    get_random_sequence_method: Callable[[Any, bytes, int, int, int], Any],
     max_bounded_opup_calls: int,
     request: pytest.FixtureRequest,
 ) -> None:
     client = request.getfixturevalue(lib_pcg128_client)
-    result = (
-        client.compose()
-        .bounded_rand_uint128(
-            seed=RNG_SEED,
-            lower_bound=1,
-            upper_bound=2**64 - 1,
-            length=EXPECTED_MAXIMAL_SEQUENCE_LENGTH,
-        )
-        .simulate(SimulateOptions(extra_opcode_budget=320_000))
+    result = get_random_sequence_method(
+        client, RNG_SEED, 1, 2**64 - 1, EXPECTED_MAXIMAL_SEQUENCE_LENGTH
     )
 
     assert result.abi_results[0].return_value
@@ -660,18 +729,12 @@ def test_bounded_maximal_cost(
 
 def test_unbounded_sequence(
     lib_pcg128_client: str,
+    get_random_sequence_method: Callable[[Any, bytes, int, int, int], Any],
     request: pytest.FixtureRequest,
 ) -> None:
     client = request.getfixturevalue(lib_pcg128_client)
-    result = (
-        client.compose()
-        .bounded_rand_uint128(
-            seed=RNG_SEED,
-            lower_bound=0,
-            upper_bound=0,
-            length=EXPECTED_MAXIMAL_SEQUENCE_LENGTH,
-        )
-        .simulate(SimulateOptions(extra_opcode_budget=320_000))
+    result = get_random_sequence_method(
+        client, RNG_SEED, 0, 0, EXPECTED_MAXIMAL_SEQUENCE_LENGTH
     )
 
     assert result.abi_results[0].return_value == UNBOUNDED_SEQUENCE
