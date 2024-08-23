@@ -49,6 +49,16 @@ You can also take a look at the exposer contracts:
   [2](./smart_contracts/lib_pcg64_exposer/contract.py)
 ]
 
+## Discontinuing the PyTeal Implementation
+When this project was started, PyTeal was the first language that this library was implemented in.
+This was due to the maturity of other languages at that time, and also the fact that PyTeal allows for intricate tricks
+over inlining and other optimizations.
+
+However, the PyTeal implementation will see less and less support in the future,
+as other languages mature more and become more popular.
+Right now, this implementation serves as a good soundness and performance benchmark and can be considered in maintenance mode.
+We will drop support entirely at some point.
+
 ## Usage
 Due to internal details, the `8 / 16 / 32`-bit generators all use `pcg32_init()` for seeding the algorithms,
 but then you should use the respective `pcg8/16/32_random()` function to get your sequence.
@@ -69,4 +79,7 @@ When either bound is set to zero, that bound is not applied.
 - [ ] Package published on PyPI
 - [x] `8 / 16 / 32`-bit generator
 - [x] `64`-bit generator
-- [ ] `128`-bit generator
+- [x] `128`-bit generator (kind of)
+
+Since PyTeal does not support `128`-bit integers, we use a `StaticBytes[Literal[16]]` in place of that.
+This makes the interface not compatible with all other implementations, but it's still subject to the same tests.

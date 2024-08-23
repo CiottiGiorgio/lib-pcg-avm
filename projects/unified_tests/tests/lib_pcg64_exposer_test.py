@@ -89,30 +89,6 @@ def lib_pcg64_exposer_algopy_client(
 
 
 @pytest.fixture(scope="session")
-def lib_pcg64_exposer_pyteal_client(
-    algod_client: AlgodClient, indexer_client: IndexerClient
-) -> LibPcg64ExposerPytealClient:
-    config.configure(
-        debug=True,
-        # trace_all=True,
-    )
-
-    client = LibPcg64ExposerPytealClient(
-        algod_client,
-        creator=get_localnet_default_account(algod_client),
-        indexer_client=indexer_client,
-    )
-
-    client.deploy(
-        on_schema_break=algokit_utils.OnSchemaBreak.ReplaceApp,
-        on_update=algokit_utils.OnUpdate.UpdateApp,
-        allow_update=True,
-        allow_delete=True,
-    )
-    return client
-
-
-@pytest.fixture(scope="session")
 def lib_pcg64_exposer_ts_client(
     algod_client: AlgodClient, indexer_client: IndexerClient
 ) -> LibPcg64ExposerTsClient:
@@ -132,6 +108,30 @@ def lib_pcg64_exposer_ts_client(
         on_update=algokit_utils.OnUpdate.AppendApp,
         create_args=DeployCreateTs(args=CreateApplicationArgsTs()),
         update_args=DeployTs(args=UpdateApplicationArgsTs()),
+    )
+    return client
+
+
+@pytest.fixture(scope="session")
+def lib_pcg64_exposer_pyteal_client(
+    algod_client: AlgodClient, indexer_client: IndexerClient
+) -> LibPcg64ExposerPytealClient:
+    config.configure(
+        debug=True,
+        # trace_all=True,
+    )
+
+    client = LibPcg64ExposerPytealClient(
+        algod_client,
+        creator=get_localnet_default_account(algod_client),
+        indexer_client=indexer_client,
+    )
+
+    client.deploy(
+        on_schema_break=algokit_utils.OnSchemaBreak.ReplaceApp,
+        on_update=algokit_utils.OnUpdate.UpdateApp,
+        allow_update=True,
+        allow_delete=True,
     )
     return client
 

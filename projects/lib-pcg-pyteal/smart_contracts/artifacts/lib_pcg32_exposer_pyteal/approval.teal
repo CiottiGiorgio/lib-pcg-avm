@@ -27,7 +27,7 @@ intc_0 // 0
 !=
 &&
 assert
-callsub boundedranduint8caster_10
+callsub boundedranduint8caster_15
 intc_1 // 1
 return
 main_l6:
@@ -39,7 +39,7 @@ intc_0 // 0
 !=
 &&
 assert
-callsub boundedranduint16caster_9
+callsub boundedranduint16caster_14
 intc_1 // 1
 return
 main_l7:
@@ -51,7 +51,7 @@ intc_0 // 0
 !=
 &&
 assert
-callsub boundedranduint32caster_8
+callsub boundedranduint32caster_13
 intc_1 // 1
 return
 main_l8:
@@ -73,7 +73,7 @@ txn ApplicationID
 intc_0 // 0
 !=
 assert
-callsub delete_4
+callsub delete_9
 intc_1 // 1
 return
 main_l13:
@@ -81,7 +81,7 @@ txn ApplicationID
 intc_0 // 0
 !=
 assert
-callsub update_3
+callsub update_8
 intc_1 // 1
 return
 main_l14:
@@ -133,8 +133,57 @@ bury 1
 stores
 retsub
 
+// pcg16_init
+pcg16init_1:
+proto 2 0
+frame_dig -2
+frame_dig -1
+callsub pcg32init_0
+retsub
+
+// pcg8_init
+pcg8init_2:
+proto 2 0
+frame_dig -2
+frame_dig -1
+callsub pcg32init_0
+retsub
+
 // pcg32_random
-pcg32random_1:
+pcg32random_3:
+proto 4 1
+frame_dig -4
+pushint 32 // 32
+frame_dig -3
+frame_dig -2
+frame_dig -1
+callsub pcg32boundedsequence_6
+retsub
+
+// pcg16_random
+pcg16random_4:
+proto 4 1
+frame_dig -4
+pushint 16 // 16
+frame_dig -3
+frame_dig -2
+frame_dig -1
+callsub pcg32boundedsequence_6
+retsub
+
+// pcg8_random
+pcg8random_5:
+proto 4 1
+frame_dig -4
+intc_2 // 8
+frame_dig -3
+frame_dig -2
+frame_dig -1
+callsub pcg32boundedsequence_6
+retsub
+
+// __pcg32_bounded_sequence
+pcg32boundedsequence_6:
 proto 5 1
 intc_0 // 0
 frame_dig -1
@@ -174,11 +223,11 @@ frame_dig -2
 intc_0 // 0
 ==
 &&
-bnz pcg32random_1_l10
+bnz pcg32boundedsequence_6_l10
 frame_dig -2
 intc_0 // 0
 !=
-bnz pcg32random_1_l9
+bnz pcg32boundedsequence_6_l9
 frame_dig -3
 intc_1 // 1
 frame_dig -4
@@ -193,7 +242,7 @@ shl
 frame_dig -3
 -
 store 2
-pcg32random_1_l3:
+pcg32boundedsequence_6_l3:
 load 2
 ~
 intc_1 // 1
@@ -205,19 +254,19 @@ load 2
 store 3
 intc_0 // 0
 store 6
-pcg32random_1_l4:
+pcg32boundedsequence_6_l4:
 load 6
 frame_dig -1
 <
-bz pcg32random_1_l13
+bz pcg32boundedsequence_6_l13
 frame_dig -5
-callsub pcg32random_2
+callsub pcg32unboundedrandom_7
 store 7
-pcg32random_1_l6:
+pcg32boundedsequence_6_l6:
 load 7
 load 3
 <
-bnz pcg32random_1_l8
+bnz pcg32boundedsequence_6_l8
 load 4
 load 7
 load 2
@@ -234,13 +283,13 @@ load 6
 intc_1 // 1
 +
 store 6
-b pcg32random_1_l4
-pcg32random_1_l8:
+b pcg32boundedsequence_6_l4
+pcg32boundedsequence_6_l8:
 frame_dig -5
-callsub pcg32random_2
+callsub pcg32unboundedrandom_7
 store 7
-b pcg32random_1_l6
-pcg32random_1_l9:
+b pcg32boundedsequence_6_l6
+pcg32boundedsequence_6_l9:
 frame_dig -2
 intc_1 // 1
 >
@@ -261,18 +310,18 @@ frame_dig -2
 frame_dig -3
 -
 store 2
-b pcg32random_1_l3
-pcg32random_1_l10:
+b pcg32boundedsequence_6_l3
+pcg32boundedsequence_6_l10:
 intc_0 // 0
 store 6
-pcg32random_1_l11:
+pcg32boundedsequence_6_l11:
 load 6
 frame_dig -1
 <
-bz pcg32random_1_l13
+bz pcg32boundedsequence_6_l13
 load 4
 frame_dig -5
-callsub pcg32random_2
+callsub pcg32unboundedrandom_7
 itob
 load 5
 load 1
@@ -283,14 +332,14 @@ load 6
 intc_1 // 1
 +
 store 6
-b pcg32random_1_l11
-pcg32random_1_l13:
+b pcg32boundedsequence_6_l11
+pcg32boundedsequence_6_l13:
 load 4
 frame_bury 0
 retsub
 
-// __pcg32_random
-pcg32random_2:
+// __pcg32_unbounded_random
+pcg32unboundedrandom_7:
 proto 1 1
 frame_dig -1
 loads
@@ -337,7 +386,7 @@ intc 5 // 4294967295
 retsub
 
 // update
-update_3:
+update_8:
 proto 0 0
 txn Sender
 global CreatorAddress
@@ -350,7 +399,7 @@ assert
 retsub
 
 // delete
-delete_4:
+delete_9:
 proto 0 0
 txn Sender
 global CreatorAddress
@@ -363,55 +412,52 @@ assert
 retsub
 
 // bounded_rand_uint32
-boundedranduint32_5:
+boundedranduint32_10:
 proto 4 1
 bytec_0 // ""
 intc_0 // 0
 frame_dig -4
 callsub pcg32init_0
 intc_0 // 0
-pushint 32 // 32
 frame_dig -3
 frame_dig -2
 frame_dig -1
-callsub pcg32random_1
+callsub pcg32random_3
 frame_bury 0
 retsub
 
 // bounded_rand_uint16
-boundedranduint16_6:
+boundedranduint16_11:
 proto 4 1
 bytec_0 // ""
 pushint 11 // 11
 frame_dig -4
-callsub pcg32init_0
+callsub pcg16init_1
 pushint 11 // 11
-pushint 16 // 16
 frame_dig -3
 frame_dig -2
 frame_dig -1
-callsub pcg32random_1
+callsub pcg16random_4
 frame_bury 0
 retsub
 
 // bounded_rand_uint8
-boundedranduint8_7:
+boundedranduint8_12:
 proto 4 1
 bytec_0 // ""
 pushint 12 // 12
 frame_dig -4
-callsub pcg32init_0
+callsub pcg8init_2
 pushint 12 // 12
-intc_2 // 8
 frame_dig -3
 frame_dig -2
 frame_dig -1
-callsub pcg32random_1
+callsub pcg8random_5
 frame_bury 0
 retsub
 
 // bounded_rand_uint32_caster
-boundedranduint32caster_8:
+boundedranduint32caster_13:
 proto 0 0
 bytec_0 // ""
 dup
@@ -435,7 +481,7 @@ frame_dig 1
 frame_dig 2
 frame_dig 3
 frame_dig 4
-callsub boundedranduint32_5
+callsub boundedranduint32_10
 frame_bury 0
 bytec_1 // 0x151f7c75
 frame_dig 0
@@ -444,7 +490,7 @@ log
 retsub
 
 // bounded_rand_uint16_caster
-boundedranduint16caster_9:
+boundedranduint16caster_14:
 proto 0 0
 bytec_0 // ""
 dup
@@ -468,7 +514,7 @@ frame_dig 1
 frame_dig 2
 frame_dig 3
 frame_dig 4
-callsub boundedranduint16_6
+callsub boundedranduint16_11
 frame_bury 0
 bytec_1 // 0x151f7c75
 frame_dig 0
@@ -477,7 +523,7 @@ log
 retsub
 
 // bounded_rand_uint8_caster
-boundedranduint8caster_10:
+boundedranduint8caster_15:
 proto 0 0
 bytec_0 // ""
 dup
@@ -501,7 +547,7 @@ frame_dig 1
 frame_dig 2
 frame_dig 3
 frame_dig 4
-callsub boundedranduint8_7
+callsub boundedranduint8_12
 frame_bury 0
 bytec_1 // 0x151f7c75
 frame_dig 0

@@ -4,7 +4,14 @@ import beaker
 import pyteal as pt
 from algokit_utils import DELETABLE_TEMPLATE_NAME, UPDATABLE_TEMPLATE_NAME
 
-from lib_pcg.pcg32 import pcg32_init, pcg32_random
+from lib_pcg.pcg32 import (
+    pcg8_init,
+    pcg8_random,
+    pcg16_init,
+    pcg16_random,
+    pcg32_init,
+    pcg32_random,
+)
 
 app = beaker.Application(
     "lib_pcg32_exposer_pyteal",
@@ -43,7 +50,6 @@ def bounded_rand_uint32(
         output.decode(
             pcg32_random(
                 rng_handle.index(),
-                pt.Int(32),
                 lower_bound.get(),
                 upper_bound.get(),
                 length.get(),
@@ -64,11 +70,10 @@ def bounded_rand_uint16(
     rng_handle = pt.ScratchVar(pt.TealType.uint64)
 
     return pt.Seq(
-        pcg32_init(rng_handle.index(), seed.get()),
+        pcg16_init(rng_handle.index(), seed.get()),
         output.decode(
-            pcg32_random(
+            pcg16_random(
                 rng_handle.index(),
-                pt.Int(16),
                 lower_bound.get(),
                 upper_bound.get(),
                 length.get(),
@@ -89,11 +94,10 @@ def bounded_rand_uint8(
     rng_handle = pt.ScratchVar(pt.TealType.uint64)
 
     return pt.Seq(
-        pcg32_init(rng_handle.index(), seed.get()),
+        pcg8_init(rng_handle.index(), seed.get()),
         output.decode(
-            pcg32_random(
+            pcg8_random(
                 rng_handle.index(),
-                pt.Int(8),
                 lower_bound.get(),
                 upper_bound.get(),
                 length.get(),

@@ -52,4 +52,4 @@ When either bound is set to zero, that bound is not applied.
 - [ ] Package published on npm
 - [x] `8 / 16 / 32`-bit generator
 - [x] `64`-bit generator
-- [ ] `128`-bit generator
+- [x] `128`-bit generator

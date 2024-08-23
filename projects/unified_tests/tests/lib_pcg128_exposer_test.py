@@ -9,6 +9,9 @@ from smart_contracts.artifacts.lib_pcg128_exposer_algopy import (
     LibPcg128ExposerAlgopyClient,
     SimulateOptions,
 )
+from smart_contracts.artifacts.lib_pcg128_exposer_pyteal import (
+    LibPcg128ExposerPytealClient,
+)
 from smart_contracts.artifacts.lib_pcg128_exposer_ts import (
     CreateApplicationArgs as CreateApplicationArgsTs,
 )
@@ -56,13 +59,10 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                     "lib_pcg128_client", ["lib_pcg128_exposer_pyteal_client"]
                 )
             if "expected_library_size" in metafunc.fixturenames:
-                # FIXME
-                metafunc.parametrize("expected_library_size", [1000])
+                metafunc.parametrize("expected_library_size", [650])
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
-                # FIXME
                 metafunc.parametrize("max_unbounded_opup_calls", [50])
             if "max_bounded_opup_calls" in metafunc.fixturenames:
-                # FIXME
                 metafunc.parametrize("max_bounded_opup_calls", [50])
 
 
@@ -108,6 +108,30 @@ def lib_pcg128_exposer_ts_client(
         on_update=algokit_utils.OnUpdate.UpdateApp,
         create_args=DeployCreateTs(args=CreateApplicationArgsTs()),
         update_args=DeployTs(args=UpdateApplicationArgsTs()),
+    )
+    return client
+
+
+@pytest.fixture(scope="session")
+def lib_pcg128_exposer_pyteal_client(
+    algod_client: AlgodClient, indexer_client: IndexerClient
+) -> LibPcg128ExposerPytealClient:
+    config.configure(
+        debug=True,
+        # trace_all=True,
+    )
+
+    client = LibPcg128ExposerPytealClient(
+        algod_client,
+        creator=get_localnet_default_account(algod_client),
+        indexer_client=indexer_client,
+    )
+
+    client.deploy(
+        on_schema_break=algokit_utils.OnSchemaBreak.ReplaceApp,
+        on_update=algokit_utils.OnUpdate.UpdateApp,
+        allow_update=True,
+        allow_delete=True,
     )
     return client
 

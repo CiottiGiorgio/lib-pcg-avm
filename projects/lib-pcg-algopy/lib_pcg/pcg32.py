@@ -159,44 +159,6 @@ def __pcg32_init(initial_state: PCG32STATE, incr: UInt64) -> PCG32STATE:
 
 
 @subroutine
-def __pcg32_step(state: PCG32STATE, incr: UInt64) -> PCG32STATE:
-    """PCG XSH RR 64/32 single step advance in the underlying LCG.
-
-    Args:
-        state: The state of the generator.
-        incr: Constant used in the modulo addition.
-
-    Returns:
-        The new state of the generator.
-
-    """
-    _high_mul, low_mul = op.mulw(state, PCG_MULTIPLIER)
-    _high_add, low_add = op.addw(low_mul, incr)
-
-    return low_add
-
-
-@subroutine
-def __pcg32_unbounded_random(state: PCG32STATE) -> tuple[PCG32STATE, UInt64]:
-    """PCG XSH RR 64/32 next number in the sequence.
-
-    Notably, the C reference implementation advanced the state _after_ passing it to the output function.
-    This is done because on traditional machines this would result in machine code that computes
-     the output and the step in parallel (instead of one depending on the result of the other).
-
-    Args:
-        state: The state of the generator.
-
-    Returns:
-        A tuple of:
-        - The new state of the generator.
-        - A pseudo-random sequence of <bit_size>-bit uints.
-
-    """
-    return __pcg32_step(state, UInt64(PCG_FIRST_INCREMENT)), __pcg32_output(state)
-
-
-@subroutine
 def __pcg32_bounded_sequence(
     state: PCG32STATE,
     bit_size: UInt64,
@@ -270,6 +232,44 @@ def __pcg32_bounded_sequence(
                     break
 
     return state, result
+
+
+@subroutine
+def __pcg32_unbounded_random(state: PCG32STATE) -> tuple[PCG32STATE, UInt64]:
+    """PCG XSH RR 64/32 next number in the sequence.
+
+    Notably, the C reference implementation advanced the state _after_ passing it to the output function.
+    This is done because on traditional machines this would result in machine code that computes
+     the output and the step in parallel (instead of one depending on the result of the other).
+
+    Args:
+        state: The state of the generator.
+
+    Returns:
+        A tuple of:
+        - The new state of the generator.
+        - A pseudo-random sequence of <bit_size>-bit uints.
+
+    """
+    return __pcg32_step(state, UInt64(PCG_FIRST_INCREMENT)), __pcg32_output(state)
+
+
+@subroutine
+def __pcg32_step(state: PCG32STATE, incr: UInt64) -> PCG32STATE:
+    """PCG XSH RR 64/32 single step advance in the underlying LCG.
+
+    Args:
+        state: The state of the generator.
+        incr: Constant used in the modulo addition.
+
+    Returns:
+        The new state of the generator.
+
+    """
+    _high_mul, low_mul = op.mulw(state, PCG_MULTIPLIER)
+    _high_add, low_add = op.addw(low_mul, incr)
+
+    return low_add
 
 
 @subroutine

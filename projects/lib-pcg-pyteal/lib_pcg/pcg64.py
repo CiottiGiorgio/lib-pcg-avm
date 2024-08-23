@@ -41,7 +41,7 @@ def pcg64_random(
     result = pt.ScratchVar(pt.TealType.bytes)
 
     i = pt.ScratchVar(pt.TealType.uint64)
-    candidate_bounded = pt.ScratchVar(pt.TealType.uint64)
+    candidate = pt.ScratchVar(pt.TealType.uint64)
 
     return pt.Seq(
         result_length.set(
@@ -59,7 +59,9 @@ def pcg64_random(
                             pt.Concat(
                                 result.load(),
                                 pt.Itob(
-                                    __pcg64_random(state1_slot_index, state2_slot_index)
+                                    __pcg64_unbounded_random(
+                                        state1_slot_index, state2_slot_index
+                                    )
                                 ),
                             )
                         )
@@ -101,19 +103,23 @@ def pcg64_random(
                     i.store(pt.Int(0)), i.load() < length, i.store(i.load() + pt.Int(1))
                 ).Do(
                     pt.Seq(
-                        candidate_bounded.store(
-                            __pcg64_random(state1_slot_index, state2_slot_index)
+                        candidate.store(
+                            __pcg64_unbounded_random(
+                                state1_slot_index, state2_slot_index
+                            )
                         ),
-                        pt.While(candidate_bounded.load() < threshold.load()).Do(
-                            candidate_bounded.store(
-                                __pcg64_random(state1_slot_index, state2_slot_index)
+                        pt.While(candidate.load() < threshold.load()).Do(
+                            candidate.store(
+                                __pcg64_unbounded_random(
+                                    state1_slot_index, state2_slot_index
+                                )
                             ),
                         ),
                         result.store(
                             pt.Concat(
                                 result.load(),
                                 pt.Itob(
-                                    (candidate_bounded.load() % absolute_bound.load())
+                                    (candidate.load() % absolute_bound.load())
                                     + lower_bound
                                 ),
                             )
@@ -127,9 +133,12 @@ def pcg64_random(
 
 
 @pt.Subroutine(pt.TealType.uint64)
-def __pcg64_random(state1_slot_index: pt.Expr, state2_slot_index: pt.Expr) -> pt.Expr:
+def __pcg64_unbounded_random(
+    state1_slot_index: pt.Expr, state2_slot_index: pt.Expr
+) -> pt.Expr:
     old_state1 = pt.ScratchVar(pt.TealType.uint64)
     old_state2 = pt.ScratchVar(pt.TealType.uint64)
+
     return pt.Seq(
         old_state1.store(pt.ScratchLoad(None, pt.TealType.uint64, state1_slot_index)),
         old_state2.store(pt.ScratchLoad(None, pt.TealType.uint64, state2_slot_index)),

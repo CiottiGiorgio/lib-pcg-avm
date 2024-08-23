@@ -6,6 +6,14 @@ from lib_pcg.consts import PCG_FIRST_INCREMENT, PCG_MULTIPLIER
 
 @pt.Subroutine(pt.TealType.none)
 def pcg32_init(state_slot_index: pt.Expr, seed: pt.Expr) -> pt.Expr:
+    """
+    Args:
+        state_slot_index: pt.Int
+        seed: pt.Bytes
+
+    Returns:
+        None
+    """
     return pt.Seq(
         pt.Assert(pt.Len(seed) == pt.Int(8)),
         __pcg32_init(state_slot_index, pt.Btoi(seed), PCG_FIRST_INCREMENT),
@@ -14,12 +22,123 @@ def pcg32_init(state_slot_index: pt.Expr, seed: pt.Expr) -> pt.Expr:
 
 @pt.Subroutine(pt.TealType.none)
 def pcg16_init(state_slot_index: pt.Expr, seed: pt.Expr) -> pt.Expr:
-    return pcg32_random(state_slot_index, seed)
+    """
+    Args:
+        state_slot_index: pt.Int
+        seed: pt.Bytes
+
+    Returns:
+        None
+    """
+    return pcg32_init(state_slot_index, seed)
 
 
 @pt.Subroutine(pt.TealType.none)
 def pcg8_init(state_slot_index: pt.Expr, seed: pt.Expr) -> pt.Expr:
-    return pcg32_random(state_slot_index, seed)
+    """
+    Args:
+        state_slot_index: pt.Int
+        seed: pt.Bytes
+
+    Returns:
+        None
+    """
+    return pcg32_init(state_slot_index, seed)
+
+
+@pt.Subroutine(pt.TealType.bytes)
+def pcg32_random(
+    state_slot_index: pt.Expr,
+    lower_bound: pt.Expr,
+    upper_bound: pt.Expr,
+    length: pt.Expr,
+) -> pt.Expr:
+    """
+    Args:
+        state_slot_index: pt.Int
+        lower_bound: pt.Int
+        upper_bound: pt.Int
+        length: pt.Int
+
+    Returns:
+        pt.Bytes
+    """
+    return __pcg32_bounded_sequence(
+        state_slot_index, pt.Int(32), lower_bound, upper_bound, length
+    )
+
+
+@pt.Subroutine(pt.TealType.bytes)
+def pcg16_random(
+    state_slot_index: pt.Expr,
+    lower_bound: pt.Expr,
+    upper_bound: pt.Expr,
+    length: pt.Expr,
+) -> pt.Expr:
+    """
+    Args:
+        state_slot_index: pt.Int
+        lower_bound: pt.Int
+        upper_bound: pt.Int
+        length: pt.Int
+
+    Returns:
+        pt.Bytes
+    """
+    return __pcg32_bounded_sequence(
+        state_slot_index, pt.Int(16), lower_bound, upper_bound, length
+    )
+
+
+@pt.Subroutine(pt.TealType.bytes)
+def pcg8_random(
+    state_slot_index: pt.Expr,
+    lower_bound: pt.Expr,
+    upper_bound: pt.Expr,
+    length: pt.Expr,
+) -> pt.Expr:
+    """
+    Args:
+        state_slot_index: pt.Int
+        lower_bound: pt.Int
+        upper_bound: pt.Int
+        length: pt.Int
+
+    Returns:
+        pt.Bytes
+    """
+    return __pcg32_bounded_sequence(
+        state_slot_index, pt.Int(8), lower_bound, upper_bound, length
+    )
+
+
+def __pcg32_init(
+    state_slot_index: pt.Expr, initial_state: pt.Expr, incr: pt.Expr
+) -> pt.Expr:
+    """
+    Args:
+        state_slot_index: pt.Int
+        initial_state: pt.Int
+        incr: pt.Int
+
+    Returns:
+        None
+    """
+    return pt.Seq(
+        pt.ScratchStore(None, pt.Int(0), state_slot_index),
+        __pcg32_step(state_slot_index, incr),
+        pt.ScratchStore(
+            None,
+            InlineAssembly(
+                "\n".join(["addw", "bury 1"]),
+                pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index),
+                initial_state,
+                type=pt.TealType.uint64,
+            ),
+            state_slot_index,
+        ),
+        __pcg32_step(state_slot_index, incr),
+    )
 
 
 # NOTE: It _may_ be possible to split a 32bit pseudo random integer in 2 (or 4, depending on the required bit_size)
@@ -30,13 +149,24 @@ def pcg8_init(state_slot_index: pt.Expr, seed: pt.Expr) -> pt.Expr:
 #  To improve performance it doesn't make sense to reduce the size of the state because ultimately it still
 #  would rely on the same uint64 opcodes.
 @pt.Subroutine(pt.TealType.bytes)
-def pcg32_random(
+def __pcg32_bounded_sequence(
     state_slot_index: pt.Expr,
     bit_size: pt.Expr,
     lower_bound: pt.Expr,
     upper_bound: pt.Expr,
     length: pt.Expr,
 ) -> pt.Expr:
+    """
+    Args:
+        state_slot_index: pt.Int
+        bit_size: pt.Int
+        lower_bound: pt.Int
+        upper_bound: pt.Int
+        length: pt.Int
+
+    Returns:
+        pt.Bytes
+    """
     result_length = pt.abi.make(pt.abi.Uint16)
     byte_size = pt.ScratchVar(pt.TealType.uint64)
 
@@ -47,7 +177,7 @@ def pcg32_random(
     truncate_cached_start = pt.ScratchVar(pt.TealType.uint64)
 
     i = pt.ScratchVar(pt.TealType.uint64)
-    candidate_bounded = pt.ScratchVar(pt.TealType.uint64)
+    candidate = pt.ScratchVar(pt.TealType.uint64)
 
     def __truncate_to_size(
         _n: pt.Expr, _start: pt.Expr, _byte_size: pt.Expr
@@ -77,7 +207,7 @@ def pcg32_random(
                             pt.Concat(
                                 result.load(),
                                 __truncate_to_size(
-                                    __pcg32_random(state_slot_index),
+                                    __pcg32_unbounded_random(state_slot_index),
                                     truncate_cached_start.load(),
                                     byte_size.load(),
                                 ),
@@ -121,15 +251,15 @@ def pcg32_random(
                     i.store(pt.Int(0)), i.load() < length, i.store(i.load() + pt.Int(1))
                 ).Do(
                     pt.Seq(
-                        candidate_bounded.store(__pcg32_random(state_slot_index)),
-                        pt.While(candidate_bounded.load() < threshold.load()).Do(
-                            candidate_bounded.store(__pcg32_random(state_slot_index))
+                        candidate.store(__pcg32_unbounded_random(state_slot_index)),
+                        pt.While(candidate.load() < threshold.load()).Do(
+                            candidate.store(__pcg32_unbounded_random(state_slot_index))
                         ),
                         result.store(
                             pt.Concat(
                                 result.load(),
                                 __truncate_to_size(
-                                    (candidate_bounded.load() % absolute_bound.load())
+                                    (candidate.load() % absolute_bound.load())
                                     + lower_bound,
                                     truncate_cached_start.load(),
                                     byte_size.load(),
@@ -144,27 +274,33 @@ def pcg32_random(
     )
 
 
-def __pcg32_init(
-    state_slot_index: pt.Expr, initial_state: pt.Expr, incr: pt.Expr
-) -> pt.Expr:
+@pt.Subroutine(pt.TealType.uint64)
+def __pcg32_unbounded_random(state_slot_index: pt.Expr) -> pt.Expr:
+    """
+    Args:
+        state_slot_index: pt.Int
+
+    Returns:
+        pt.Int
+    """
+    old_state = pt.ScratchVar(pt.TealType.uint64)
+
     return pt.Seq(
-        pt.ScratchStore(None, pt.Int(0), state_slot_index),
-        __pcg32_step(state_slot_index, incr),
-        pt.ScratchStore(
-            None,
-            InlineAssembly(
-                "\n".join(["addw", "bury 1"]),
-                pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index),
-                initial_state,
-                type=pt.TealType.uint64,
-            ),
-            state_slot_index,
-        ),
-        __pcg32_step(state_slot_index, incr),
+        old_state.store(pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index)),
+        __pcg32_step(state_slot_index, PCG_FIRST_INCREMENT),
+        pt.Return(__pcg32_output(old_state.load())),
     )
 
 
 def __pcg32_step(state_slot_index: pt.Expr, incr: pt.Expr) -> pt.Expr:
+    """
+    Args:
+        state_slot_index: pt.Int
+        incr: pt.Int
+
+    Returns:
+        None
+    """
     # Equivalent to state = state * multiplier + increment
     # Considering that both operations could overflow and therefore the highest bits are discarded
     return pt.ScratchStore(
@@ -180,22 +316,18 @@ def __pcg32_step(state_slot_index: pt.Expr, incr: pt.Expr) -> pt.Expr:
     )
 
 
-@pt.Subroutine(pt.TealType.uint64)
-def __pcg32_random(state_slot_index: pt.Expr) -> pt.Expr:
-    old_state = pt.ScratchVar(pt.TealType.uint64)
-
-    return pt.Seq(
-        old_state.store(pt.ScratchLoad(None, pt.TealType.uint64, state_slot_index)),
-        __pcg32_step(state_slot_index, PCG_FIRST_INCREMENT),
-        pt.Return(__pcg32_output(old_state.load())),
-    )
-
-
 # Because __pcg_rotation is inlined into this function, if we were to write the arguments
 #  as full pt.Expr that would be inlined inside that function each time the arguments are called.
 # Instead, we manually cache them into slots so that inside __pcg_rotation loading an argument
 #  is just a load opcode.
 def __pcg32_output(state: pt.Expr) -> pt.Expr:
+    """
+    Args:
+        state: pt.Int
+
+    Returns:
+        pt.Int
+    """
     arg1 = pt.ScratchVar(pt.TealType.uint64)
     arg2 = pt.ScratchVar(pt.TealType.uint64)
 
@@ -214,6 +346,14 @@ def __pcg32_output(state: pt.Expr) -> pt.Expr:
 
 
 def __pcg32_rotation(value: pt.Expr, rot: pt.Expr) -> pt.Expr:
+    """
+    Args:
+        value: pt.Int
+        rot: pt.Int
+
+    Returns:
+        pt.Int
+    """
     # This needs to be uint32. Luckily, "value" is already uint32 and a right shift will maintain that invariant.
     return pt.BitwiseOr(
         pt.ShiftRight(value, rot),
@@ -226,6 +366,13 @@ def __pcg32_rotation(value: pt.Expr, rot: pt.Expr) -> pt.Expr:
 
 
 def __uint64_twos(number: pt.Expr) -> pt.Expr:
+    """
+    Args:
+        number: pt.Int
+
+    Returns:
+        pt.Int
+    """
     return InlineAssembly(
         "\n".join(["addw", "bury 1"]),
         pt.BitwiseNot(number),
@@ -234,16 +381,26 @@ def __uint64_twos(number: pt.Expr) -> pt.Expr:
     )
 
 
-def __mask_to_uint32(value: pt.Expr) -> pt.Expr:
-    """
-    Args:
-        value: pt.Int
-    """
-    return pt.BitwiseAnd(value, pt.Int((1 << 32) - 1))
-
-
 # The value==0 case (and that case only) would still trigger a native carry (and therefore a contract panic).
 # We can get away with doing this because this function is exclusively used to negate absolute_bound which,
 #  by construction, can never be 0.
 def __uint32_twos(value: pt.Expr) -> pt.Expr:
+    """
+    Args:
+        value: pt.Int
+
+    Returns:
+        pt.Int
+    """
     return __mask_to_uint32(pt.BitwiseNot(value) + pt.Int(1))
+
+
+def __mask_to_uint32(value: pt.Expr) -> pt.Expr:
+    """
+    Args:
+        value: pt.Int
+
+    Returns:
+        pt.Int
+    """
+    return pt.BitwiseAnd(value, pt.Int((1 << 32) - 1))

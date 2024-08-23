@@ -188,7 +188,7 @@ frame_dig -1
 bz pcg64random_1_l13
 frame_dig -5
 frame_dig -4
-callsub pcg64random_2
+callsub pcg64unboundedrandom_2
 store 6
 pcg64random_1_l6:
 load 6
@@ -212,7 +212,7 @@ b pcg64random_1_l4
 pcg64random_1_l8:
 frame_dig -5
 frame_dig -4
-callsub pcg64random_2
+callsub pcg64unboundedrandom_2
 store 6
 b pcg64random_1_l6
 pcg64random_1_l9:
@@ -242,7 +242,7 @@ bz pcg64random_1_l13
 load 4
 frame_dig -5
 frame_dig -4
-callsub pcg64random_2
+callsub pcg64unboundedrandom_2
 itob
 concat
 store 4
@@ -256,8 +256,8 @@ load 4
 frame_bury 0
 retsub
 
-// __pcg64_random
-pcg64random_2:
+// __pcg64_unbounded_random
+pcg64unboundedrandom_2:
 proto 2 1
 frame_dig -2
 loads
