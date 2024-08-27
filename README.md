@@ -10,6 +10,8 @@ This library is implemented in three languages that compile down to AVM (Algoran
 The reference implementation is the [PCG C Basic Implementation](https://github.com/imneme/pcg-c-basic).
 The theory and analysis of PCG are covered in the excellent [PCG paper](https://www.pcg-random.org/paper.html).
 
+I also talked briefly about lib-pcg-avm and randomness in Algorand in this [Decipher 2024 short talk](https://youtu.be/zdrD_OrhfDw?si=fV_lpsPUhhyEM7_0).
+
 ## Disclaimer
 This library is not audited for soundness and safety. It’s also still a work in progress.
 All three implementations are subject to the same test suite.
