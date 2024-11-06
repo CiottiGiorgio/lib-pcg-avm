@@ -5,21 +5,21 @@ This [AlgoKit](http://algokit.io) subproject implements PCG in [TEALScript](http
 For more general info on this library, see the [main page](../..).
 
 ## Getting Started
-Copy both the [pcg32](lib_pcg/pcg32.algo.ts) and the [pcg64](lib_pcg/pcg64.algo.ts)
+Copy the [pcg32](lib_pcg/pcg32.algo.ts), [pcg64](lib_pcg/pcg64.algo.ts), and [pcg128](lib_pcg/pcg128.algo.ts)
 files in your own project’s `lib_pcg` folder.
 
-Have your contract extend from the library file like:
+In your contract, import `pcg<N>Init` and `pcg<N>Random` for your preferred size:
 ```typescript
-export class YourContract extends LibPcg32 {
+export class YourContract extends Contract {
   yourMethod(...): ... {
     // Here you would acquire a safe randomness seed.
     ...
 
     // Seed the PRNG
-    const rngState = this.pcg32Init(seed);
+    let rngState = pcg32Init(castBytes<bytes>(<your_randomness_seed>));
 
     // Generate a sequence
-    const result = this.pcg32Random(rngState, 32, lower_bound, upper_bound, length);
+    const result = pcg32Random(rngState, lower_bound, upper_bound, length);
     const newRngState = result[0];
     const sequence = result[1];
 
@@ -31,15 +31,16 @@ export class YourContract extends LibPcg32 {
 You can also take a look at the exposer contracts:
 [
   [1](./contracts/lib-pcg32-exposer-ts.algo.ts),
-  [2](./contracts/lib-pcg64-exposer-ts.algo.ts)
+  [2](./contracts/lib-pcg64-exposer-ts.algo.ts),
+  [3](./contracts/lib-pcg128-exposer-ts.algo.ts)
 ]
 
 ## Usage
-All generators all use `this.pcg<N>Init()` for seeding the algorithm.
+All generators all use `pcg<N>Init()` for seeding the algorithm.
 
-To generate a sequence, use `this.pcg<N>Random()`.
+To generate a sequence, use `pcg<N>Random()`.
 
-You can pass non-zero `lowerBound` and `upperBound` arguments to `this.pcg<N>Random()` to get integers in a desired range.
+You can pass non-zero `lowerBound` and `upperBound` arguments to `pcg<N>Random()` to get integers in a desired range.
 Note that:
 - `lowerBound` is always included in your range.
 - `upperBound` is always excluded by your range.
