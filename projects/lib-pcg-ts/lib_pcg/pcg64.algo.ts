@@ -1,10 +1,10 @@
-import { __pcg32Init, __pcg32Output, __pcg32Random, __pcg32Step, __uint64Twos } from './pcg32.algo';
+import { __pcg32Init, __pcg32Output, __pcg32UnboundedRandom, __pcg32Step, __uint64Twos } from './pcg32.algo';
 import { pcgFirstIncrement, pcgSecondIncrement } from './consts.algo';
 
 type PCG64STATE = [uint64, uint64];
 
 function __pcg64Random(state: PCG64STATE): [PCG64STATE, uint64] {
-  const highResult = __pcg32Random(state[0]);
+  const highResult = __pcg32UnboundedRandom(state[0]);
 
   const lowState = __pcg32Step(state[1], pcgSecondIncrement << (highResult[0] === 0 ? 1 : 0));
 

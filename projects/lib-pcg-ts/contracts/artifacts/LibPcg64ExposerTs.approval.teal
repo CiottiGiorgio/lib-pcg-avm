@@ -476,11 +476,11 @@ __pcg64Random:
 	dup
 
 	// lib_pcg\pcg64.algo.ts:7
-	// highResult = __pcg32Random(state[0])
+	// highResult = __pcg32UnboundedRandom(state[0])
 	frame_dig -1 // state: PCG64STATE
 	extract 0 8
 	btoi
-	callsub __pcg32Random
+	callsub __pcg32UnboundedRandom
 	frame_bury 0 // highResult: (uint64,uint64)
 
 	// lib_pcg\pcg64.algo.ts:9
@@ -640,8 +640,8 @@ __pcg32Step:
 	popn 3
 	retsub
 
-// __pcg32Random(state: PCG32STATE): [PCG32STATE, uint64]
-__pcg32Random:
+// __pcg32UnboundedRandom(state: PCG32STATE): [PCG32STATE, uint64]
+__pcg32UnboundedRandom:
 	proto 1 1
 
 	// lib_pcg\pcg32.algo.ts:29
@@ -713,14 +713,14 @@ __pcg32Init:
 	bytec 0 // 0x
 	dupn 2
 
-	// lib_pcg\pcg32.algo.ts:33
+	// lib_pcg\pcg32.algo.ts:89
 	// state = __pcg32Step(0, incr)
 	frame_dig -2 // incr: uint64
 	intc 1 // 0
 	callsub __pcg32Step
 	frame_bury 0 // state: uint64
 
-	// lib_pcg\pcg32.algo.ts:34
+	// lib_pcg\pcg32.algo.ts:90
 	// addwResult = addw(state, initialState)
 	frame_dig 0 // state: uint64
 	frame_dig -1 // initialState: PCG32STATE
@@ -728,7 +728,7 @@ __pcg32Init:
 	frame_bury 1 // addwResult low: uint64
 	frame_bury 2 // addwResult high: uint64
 
-	// lib_pcg\pcg32.algo.ts:36
+	// lib_pcg\pcg32.algo.ts:92
 	// return __pcg32Step(addwResult.low, incr);
 	frame_dig -2 // incr: uint64
 	frame_dig 1 // addwResult low: uint64
