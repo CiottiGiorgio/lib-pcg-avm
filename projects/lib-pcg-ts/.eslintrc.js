@@ -50,6 +50,8 @@ module.exports = {
         'operator-assignment': 'off',
         'prefer-template': 'off',
         'prefer-destructuring': 'off',
+        'no-underscore-dangle': 'off',
+        'no-param-reassign': 'off',
       },
     },
   ],
