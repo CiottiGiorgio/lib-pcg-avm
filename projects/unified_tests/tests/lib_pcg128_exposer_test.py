@@ -100,7 +100,7 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                     [get_random_sequence_method],
                 )
             if "expected_library_size" in metafunc.fixturenames:
-                metafunc.parametrize("expected_library_size", [2000])
+                metafunc.parametrize("expected_library_size", [950])
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize("max_unbounded_opup_calls", [44])
             if "max_bounded_opup_calls" in metafunc.fixturenames:
