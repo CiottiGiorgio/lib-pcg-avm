@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lib-pcg-algopy"
-version = "0.3.3"
+version = "0.4.0"
 description = "PCG library implemented using Algorand Python"
 license = "MIT"
 authors = ["CiottiGiorgio <giorgio.ciotti@algorand.foundation>"]
@@ -21,7 +21,7 @@ ruff = "^0.1.6"
 mypy = "*"
 pip-audit = "*"
 pre-commit = "*"
-puyapy = "^2.3.0"
+puyapy = "^4.1.0"
 
 [build-system]
 requires = ["poetry-core"]
