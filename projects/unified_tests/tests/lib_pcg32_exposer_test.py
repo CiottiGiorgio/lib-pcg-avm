@@ -38,14 +38,14 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                     "lib_pcg32_client", ["lib_pcg32_exposer_algopy_client"]
                 )
             if "expected_library_size" in metafunc.fixturenames:
-                metafunc.parametrize("expected_library_size", [400])
+                metafunc.parametrize("expected_library_size", [450])
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "bit_size,max_unbounded_opup_calls", zip(BIT_SIZES, [84, 42, 21])
+                    "bit_size,max_unbounded_opup_calls", zip(BIT_SIZES, [76, 38, 20])
                 )
             if "max_bounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [98, 49, 25])
+                    "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [91, 46, 23])
                 )
         case "ts":
             if "lib_pcg32_client" in metafunc.fixturenames:

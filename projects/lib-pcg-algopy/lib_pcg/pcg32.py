@@ -234,7 +234,7 @@ def __pcg32_bounded_sequence(
     return state, result
 
 
-@subroutine
+@subroutine(inline=True)
 def __pcg32_unbounded_random(state: PCG32STATE) -> tuple[PCG32STATE, UInt64]:
     """PCG XSH RR 64/32 next number in the sequence.
 
