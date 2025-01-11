@@ -272,40 +272,21 @@ def __pcg32_step(state: PCG32STATE, incr: UInt64) -> PCG32STATE:
     return low_add
 
 
-@subroutine
+@subroutine(inline=True)
 def __pcg32_output(state: PCG32STATE) -> UInt64:
     """PCG XSH RR 64/32 output k-to-1 permutation function."""
-    # Original body of the function after inlining, but with more abstraction:
-    # xorshifted = __mask_to_uint32(((state >> 18) ^ state) >> 27)
-    # rot = state >> 59
-    # return (xorshifted >> rot) | __mask_to_uint32(
-    #     xorshifted << (__uint64_twos(rot) & 31)
-    # )
-    xorshifted = (((state >> 18) ^ state) >> 27) & ((1 << 32) - 1)
-    rot = state >> 59
-    _high_twos_rot, low_twos_rot = op.addw(~rot, 1)
-    return (xorshifted >> rot) | ((xorshifted << (low_twos_rot & 31)) & ((1 << 32) - 1))
+    return __pcg32_rotation(
+        __mask_to_uint32(((state >> 18) ^ state) >> 27), state >> 59
+    )
 
 
-# FIXME: When Algorand Python gets inlining support, we can remove the manual inlining in favor of
-#  the original functions with automatic inlining.
-#  This will make the code more readable and maintainable.
-# Original functions before manual inlining:
-# @subroutine
-# def __pcg32_output(state: PCG32STATE) -> UInt64:
-#     """PCG XSH RR 64/32 output k-to-1 permutation function."""
-#     return __pcg32_rotation(
-#         __mask_to_uint32(((state >> 18) ^ state) >> 27), state >> 59
-#     )
-#
-#
-# @subroutine
-# def __pcg32_rotation(value: UInt64, rot: UInt64) -> UInt64:
-#     """PCG XSH RR 64/32 rotation function."""
-#     return (value >> rot) | __mask_to_uint32(value << (__uint64_twos(rot) & 31))
+@subroutine(inline=True)
+def __pcg32_rotation(value: UInt64, rot: UInt64) -> UInt64:
+    """PCG XSH RR 64/32 rotation function."""
+    return (value >> rot) | __mask_to_uint32(value << (__uint64_twos(rot) & 31))
 
 
-@subroutine
+@subroutine(inline=True)
 def __uint64_twos(value: UInt64) -> UInt64:
     """Performs the two's complement on a native uint64."""
     _addw_high, addw_low = op.addw(~value, 1)
@@ -313,7 +294,7 @@ def __uint64_twos(value: UInt64) -> UInt64:
     return addw_low
 
 
-@subroutine
+@subroutine(inline=True)
 def __mask_to_uint32(value: UInt64) -> UInt64:
     """Sets input's highest 32 bits to zero."""
     return value & ((1 << 32) - 1)
