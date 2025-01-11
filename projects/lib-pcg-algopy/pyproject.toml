@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lib-pcg-algopy"
-version = "0.3.3"
+version = "0.4.0"
 description = "PCG library implemented using Algorand Python"
 license = "MIT"
 authors = ["CiottiGiorgio <giorgio.ciotti@algorand.foundation>"]
