@@ -15,6 +15,12 @@
     },
     {
       "path": "projects/unified_tests"
+    },
+    {
+      "path": "projects/lib-pcg-avm"
+    },
+    {
+      "path": "projects/lib-pcg-algots"
     }
   ],
   "settings": {
