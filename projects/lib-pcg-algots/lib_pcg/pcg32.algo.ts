@@ -71,7 +71,6 @@ function __pcg32BoundedSequence(
     const threshold: uint64 = __maskToUint32(__uint64Twos(absoluteBound)) % absoluteBound;
 
     for (let i = Uint64(0); i < length; i = i + 1) {
-      // eslint-disable-next-line no-constant-condition
       while (true) {
         const [newState, candidate] = __pcg32UnboundedRandom(state);
         state = newState;
