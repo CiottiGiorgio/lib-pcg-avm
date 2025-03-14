@@ -22,7 +22,7 @@ the same command can be used from a subproject folder to build a specific implem
 It’s also possible to build a specific implementation with:
 ```bash
 algokit project run build --project-name=lib-pcg-algopy
-algokit project run build --project-name=lib-pcg-ts
+algokit project run build --project-name=lib-pcg-algots
 algokit project run build --project-name=lib-pcg-pyteal
 ```
 
@@ -35,7 +35,7 @@ algokit project link --all --language=python
 It’s also possible to link a specific implementation with:
 ```bash
 algokit project link --project-name=lib-pcg-algopy --language=python
-algokit project link --project-name=lib-pcg-ts --language=python
+algokit project link --project-name=lib-pcg-algots --language=python
 algokit project link --project-name=lib-pcg-pyteal --language=python
 ```
 
@@ -48,6 +48,6 @@ algokit project run test
 It’s also possible to link a specific implementation with:
 ```bash
 algokit project run test-algopy
-algokit project run test-ts
+algokit project run test-algots
 algokit project run test-pyteal
 ```

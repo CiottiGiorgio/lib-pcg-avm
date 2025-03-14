@@ -12,15 +12,15 @@ artifacts = 'smart_contracts/artifacts'
 test-algopy = { commands = [
   'poetry run pytest --language=algopy'
 ], description = 'Run lib-pcg algopy implementation tests' }
-test-ts = { commands = [
-  'poetry run pytest --language=ts'
+test-algots = { commands = [
+  'poetry run pytest --language=algots'
 ], description = 'Run lib-pcg ts implementation tests' }
 test-pyteal = { commands = [
   'poetry run pytest --language=pyteal'
 ], description = 'Run lib-pcg pyteal implementation tests' }
 test = { commands = [
   'algokit project run test-algopy',
-  'algokit project run test-ts',
+  'algokit project run test-algots',
   'algokit project run test-pyteal',
 ], description = 'Run smart contract tests' }
 audit = { commands = [

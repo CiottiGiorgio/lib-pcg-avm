@@ -19,7 +19,7 @@ from algosdk.v2client.models import SimulateTraceConfig
 import algokit_utils
 from algokit_utils import AlgorandClient as _AlgoKitAlgorandClient
 
-_APP_SPEC_JSON = r"""{"arcs": [], "bareActions": {"call": ["DeleteApplication", "UpdateApplication"], "create": ["NoOp"]}, "methods": [{"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "byte[8]", "name": "seed"}, {"type": "uint32", "name": "lower_bound"}, {"type": "uint32", "name": "upper_bound"}, {"type": "uint16", "name": "length"}], "name": "bounded_rand_uint32", "returns": {"type": "uint32[]"}, "events": []}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "byte[8]", "name": "seed"}, {"type": "uint16", "name": "lower_bound"}, {"type": "uint16", "name": "upper_bound"}, {"type": "uint16", "name": "length"}], "name": "bounded_rand_uint16", "returns": {"type": "uint16[]"}, "events": []}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "byte[8]", "name": "seed"}, {"type": "uint8", "name": "lower_bound"}, {"type": "uint8", "name": "upper_bound"}, {"type": "uint16", "name": "length"}], "name": "bounded_rand_uint8", "returns": {"type": "uint8[]"}, "events": []}], "name": "lib_pcg32_exposer_pyteal", "state": {"keys": {"box": {}, "global": {}, "local": {}}, "maps": {"box": {}, "global": {}, "local": {}}, "schema": {"global": {"bytes": 0, "ints": 0}, "local": {"bytes": 0, "ints": 0}}}, "structs": {}, "source": {"approval": "I3ByYWdtYSB2ZXJzaW9uIDgKaW50Y2Jsb2NrIDAgMSA4IDE0NDI2OTUwNDA4ODg5NjM0MDcgNjM2NDEzNjIyMzg0Njc5MzAwNSA0Mjk0OTY3Mjk1CmJ5dGVjYmxvY2sgMHggMHgxNTFmN2M3NQp0eG4gTnVtQXBwQXJncwppbnRjXzAgLy8gMAo9PQpibnogbWFpbl9sOAp0eG5hIEFwcGxpY2F0aW9uQXJncyAwCnB1c2hieXRlcyAweGVkMDZmNzBhIC8vICJib3VuZGVkX3JhbmRfdWludDMyKGJ5dGVbOF0sdWludDMyLHVpbnQzMix1aW50MTYpdWludDMyW10iCj09CmJueiBtYWluX2w3CnR4bmEgQXBwbGljYXRpb25BcmdzIDAKcHVzaGJ5dGVzIDB4OGQ3Y2NlNzkgLy8gImJvdW5kZWRfcmFuZF91aW50MTYoYnl0ZVs4XSx1aW50MTYsdWludDE2LHVpbnQxNil1aW50MTZbXSIKPT0KYm56IG1haW5fbDYKdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMApwdXNoYnl0ZXMgMHhkMGEzNWUxZSAvLyAiYm91bmRlZF9yYW5kX3VpbnQ4KGJ5dGVbOF0sdWludDgsdWludDgsdWludDE2KXVpbnQ4W10iCj09CmJueiBtYWluX2w1CmVycgptYWluX2w1Ogp0eG4gT25Db21wbGV0aW9uCmludGNfMCAvLyBOb09wCj09CnR4biBBcHBsaWNhdGlvbklECmludGNfMCAvLyAwCiE9CiYmCmFzc2VydApjYWxsc3ViIGJvdW5kZWRyYW5kdWludDhjYXN0ZXJfMTUKaW50Y18xIC8vIDEKcmV0dXJuCm1haW5fbDY6CnR4biBPbkNvbXBsZXRpb24KaW50Y18wIC8vIE5vT3AKPT0KdHhuIEFwcGxpY2F0aW9uSUQKaW50Y18wIC8vIDAKIT0KJiYKYXNzZXJ0CmNhbGxzdWIgYm91bmRlZHJhbmR1aW50MTZjYXN0ZXJfMTQKaW50Y18xIC8vIDEKcmV0dXJuCm1haW5fbDc6CnR4biBPbkNvbXBsZXRpb24KaW50Y18wIC8vIE5vT3AKPT0KdHhuIEFwcGxpY2F0aW9uSUQKaW50Y18wIC8vIDAKIT0KJiYKYXNzZXJ0CmNhbGxzdWIgYm91bmRlZHJhbmR1aW50MzJjYXN0ZXJfMTMKaW50Y18xIC8vIDEKcmV0dXJuCm1haW5fbDg6CnR4biBPbkNvbXBsZXRpb24KaW50Y18wIC8vIE5vT3AKPT0KYm56IG1haW5fbDE0CnR4biBPbkNvbXBsZXRpb24KcHVzaGludCA0IC8vIFVwZGF0ZUFwcGxpY2F0aW9uCj09CmJueiBtYWluX2wxMwp0eG4gT25Db21wbGV0aW9uCnB1c2hpbnQgNSAvLyBEZWxldGVBcHBsaWNhdGlvbgo9PQpibnogbWFpbl9sMTIKZXJyCm1haW5fbDEyOgp0eG4gQXBwbGljYXRpb25JRAppbnRjXzAgLy8gMAohPQphc3NlcnQKY2FsbHN1YiBkZWxldGVfOQppbnRjXzEgLy8gMQpyZXR1cm4KbWFpbl9sMTM6CnR4biBBcHBsaWNhdGlvbklECmludGNfMCAvLyAwCiE9CmFzc2VydApjYWxsc3ViIHVwZGF0ZV84CmludGNfMSAvLyAxCnJldHVybgptYWluX2wxNDoKdHhuIEFwcGxpY2F0aW9uSUQKaW50Y18wIC8vIDAKPT0KYXNzZXJ0CmludGNfMSAvLyAxCnJldHVybgoKLy8gcGNnMzJfaW5pdApwY2czMmluaXRfMDoKcHJvdG8gMiAwCmZyYW1lX2RpZyAtMQpsZW4KaW50Y18yIC8vIDgKPT0KYXNzZXJ0CmZyYW1lX2RpZyAtMgppbnRjXzAgLy8gMApzdG9yZXMKZnJhbWVfZGlnIC0yCmludGNfMyAvLyAxNDQyNjk1MDQwODg4OTYzNDA3CmludGMgNCAvLyA2MzY0MTM2MjIzODQ2NzkzMDA1CmZyYW1lX2RpZyAtMgpsb2FkcwptdWx3CmJ1cnkgMQphZGR3CmJ1cnkgMQpzdG9yZXMKZnJhbWVfZGlnIC0yCmZyYW1lX2RpZyAtMgpsb2FkcwpmcmFtZV9kaWcgLTEKYnRvaQphZGR3CmJ1cnkgMQpzdG9yZXMKZnJhbWVfZGlnIC0yCmludGNfMyAvLyAxNDQyNjk1MDQwODg4OTYzNDA3CmludGMgNCAvLyA2MzY0MTM2MjIzODQ2NzkzMDA1CmZyYW1lX2RpZyAtMgpsb2FkcwptdWx3CmJ1cnkgMQphZGR3CmJ1cnkgMQpzdG9yZXMKcmV0c3ViCgovLyBwY2cxNl9pbml0CnBjZzE2aW5pdF8xOgpwcm90byAyIDAKZnJhbWVfZGlnIC0yCmZyYW1lX2RpZyAtMQpjYWxsc3ViIHBjZzMyaW5pdF8wCnJldHN1YgoKLy8gcGNnOF9pbml0CnBjZzhpbml0XzI6CnByb3RvIDIgMApmcmFtZV9kaWcgLTIKZnJhbWVfZGlnIC0xCmNhbGxzdWIgcGNnMzJpbml0XzAKcmV0c3ViCgovLyBwY2czMl9yYW5kb20KcGNnMzJyYW5kb21fMzoKcHJvdG8gNCAxCmZyYW1lX2RpZyAtNApwdXNoaW50IDMyIC8vIDMyCmZyYW1lX2RpZyAtMwpmcmFtZV9kaWcgLTIKZnJhbWVfZGlnIC0xCmNhbGxzdWIgcGNnMzJib3VuZGVkc2VxdWVuY2VfNgpyZXRzdWIKCi8vIHBjZzE2X3JhbmRvbQpwY2cxNnJhbmRvbV80Ogpwcm90byA0IDEKZnJhbWVfZGlnIC00CnB1c2hpbnQgMTYgLy8gMTYKZnJhbWVfZGlnIC0zCmZyYW1lX2RpZyAtMgpmcmFtZV9kaWcgLTEKY2FsbHN1YiBwY2czMmJvdW5kZWRzZXF1ZW5jZV82CnJldHN1YgoKLy8gcGNnOF9yYW5kb20KcGNnOHJhbmRvbV81Ogpwcm90byA0IDEKZnJhbWVfZGlnIC00CmludGNfMiAvLyA4CmZyYW1lX2RpZyAtMwpmcmFtZV9kaWcgLTIKZnJhbWVfZGlnIC0xCmNhbGxzdWIgcGNnMzJib3VuZGVkc2VxdWVuY2VfNgpyZXRzdWIKCi8vIF9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZQpwY2czMmJvdW5kZWRzZXF1ZW5jZV82Ogpwcm90byA1IDEKaW50Y18wIC8vIDAKZnJhbWVfZGlnIC0xCmZyYW1lX2J1cnkgMApmcmFtZV9kaWcgMApwdXNoaW50IDY1NTM2IC8vIDY1NTM2CjwKYXNzZXJ0CmZyYW1lX2RpZyAwCml0b2IKZXh0cmFjdCA2IDAKc3RvcmUgNApmcmFtZV9kaWcgLTQKaW50Y18yIC8vIDgKPT0KZnJhbWVfZGlnIC00CnB1c2hpbnQgMTYgLy8gMTYKPT0KfHwKZnJhbWVfZGlnIC00CnB1c2hpbnQgMzIgLy8gMzIKPT0KfHwKYXNzZXJ0CmZyYW1lX2RpZyAtNApwdXNoaW50IDMgLy8gMwpzaHIKc3RvcmUgMQppbnRjXzIgLy8gOApsb2FkIDEKLQpzdG9yZSA1CmZyYW1lX2RpZyAtMwppbnRjXzAgLy8gMAo9PQpmcmFtZV9kaWcgLTIKaW50Y18wIC8vIDAKPT0KJiYKYm56IHBjZzMyYm91bmRlZHNlcXVlbmNlXzZfbDEwCmZyYW1lX2RpZyAtMgppbnRjXzAgLy8gMAohPQpibnogcGNnMzJib3VuZGVkc2VxdWVuY2VfNl9sOQpmcmFtZV9kaWcgLTMKaW50Y18xIC8vIDEKZnJhbWVfZGlnIC00CnNobAppbnRjXzEgLy8gMQotCjwKYXNzZXJ0CmludGNfMSAvLyAxCmZyYW1lX2RpZyAtNApzaGwKZnJhbWVfZGlnIC0zCi0Kc3RvcmUgMgpwY2czMmJvdW5kZWRzZXF1ZW5jZV82X2wzOgpsb2FkIDIKfgppbnRjXzEgLy8gMQorCmludGMgNSAvLyA0Mjk0OTY3Mjk1CiYKbG9hZCAyCiUKc3RvcmUgMwppbnRjXzAgLy8gMApzdG9yZSA2CnBjZzMyYm91bmRlZHNlcXVlbmNlXzZfbDQ6CmxvYWQgNgpmcmFtZV9kaWcgLTEKPApieiBwY2czMmJvdW5kZWRzZXF1ZW5jZV82X2wxMwpmcmFtZV9kaWcgLTUKY2FsbHN1YiBwY2czMnVuYm91bmRlZHJhbmRvbV83CnN0b3JlIDcKcGNnMzJib3VuZGVkc2VxdWVuY2VfNl9sNjoKbG9hZCA3CmxvYWQgMwo8CmJueiBwY2czMmJvdW5kZWRzZXF1ZW5jZV82X2w4CmxvYWQgNApsb2FkIDcKbG9hZCAyCiUKZnJhbWVfZGlnIC0zCisKaXRvYgpsb2FkIDUKbG9hZCAxCmV4dHJhY3QzCmNvbmNhdApzdG9yZSA0CmxvYWQgNgppbnRjXzEgLy8gMQorCnN0b3JlIDYKYiBwY2czMmJvdW5kZWRzZXF1ZW5jZV82X2w0CnBjZzMyYm91bmRlZHNlcXVlbmNlXzZfbDg6CmZyYW1lX2RpZyAtNQpjYWxsc3ViIHBjZzMydW5ib3VuZGVkcmFuZG9tXzcKc3RvcmUgNwpiIHBjZzMyYm91bmRlZHNlcXVlbmNlXzZfbDYKcGNnMzJib3VuZGVkc2VxdWVuY2VfNl9sOToKZnJhbWVfZGlnIC0yCmludGNfMSAvLyAxCj4KYXNzZXJ0CmZyYW1lX2RpZyAtMgppbnRjXzEgLy8gMQpmcmFtZV9kaWcgLTQKc2hsCjwKYXNzZXJ0CmZyYW1lX2RpZyAtMwpmcmFtZV9kaWcgLTIKaW50Y18xIC8vIDEKLQo8CmFzc2VydApmcmFtZV9kaWcgLTIKZnJhbWVfZGlnIC0zCi0Kc3RvcmUgMgpiIHBjZzMyYm91bmRlZHNlcXVlbmNlXzZfbDMKcGNnMzJib3VuZGVkc2VxdWVuY2VfNl9sMTA6CmludGNfMCAvLyAwCnN0b3JlIDYKcGNnMzJib3VuZGVkc2VxdWVuY2VfNl9sMTE6CmxvYWQgNgpmcmFtZV9kaWcgLTEKPApieiBwY2czMmJvdW5kZWRzZXF1ZW5jZV82X2wxMwpsb2FkIDQKZnJhbWVfZGlnIC01CmNhbGxzdWIgcGNnMzJ1bmJvdW5kZWRyYW5kb21fNwppdG9iCmxvYWQgNQpsb2FkIDEKZXh0cmFjdDMKY29uY2F0CnN0b3JlIDQKbG9hZCA2CmludGNfMSAvLyAxCisKc3RvcmUgNgpiIHBjZzMyYm91bmRlZHNlcXVlbmNlXzZfbDExCnBjZzMyYm91bmRlZHNlcXVlbmNlXzZfbDEzOgpsb2FkIDQKZnJhbWVfYnVyeSAwCnJldHN1YgoKLy8gX19wY2czMl91bmJvdW5kZWRfcmFuZG9tCnBjZzMydW5ib3VuZGVkcmFuZG9tXzc6CnByb3RvIDEgMQpmcmFtZV9kaWcgLTEKbG9hZHMKc3RvcmUgOApmcmFtZV9kaWcgLTEKaW50Y18zIC8vIDE0NDI2OTUwNDA4ODg5NjM0MDcKaW50YyA0IC8vIDYzNjQxMzYyMjM4NDY3OTMwMDUKZnJhbWVfZGlnIC0xCmxvYWRzCm11bHcKYnVyeSAxCmFkZHcKYnVyeSAxCnN0b3Jlcwpsb2FkIDgKcHVzaGludCAxOCAvLyAxOApzaHIKbG9hZCA4Cl4KcHVzaGludCAyNyAvLyAyNwpzaHIKaW50YyA1IC8vIDQyOTQ5NjcyOTUKJgpzdG9yZSA5CmxvYWQgOApwdXNoaW50IDU5IC8vIDU5CnNocgpzdG9yZSAxMApsb2FkIDkKbG9hZCAxMApzaHIKbG9hZCA5CmxvYWQgMTAKfgppbnRjXzEgLy8gMQphZGR3CmJ1cnkgMQpwdXNoaW50IDMxIC8vIDMxCiYKc2hsCmludGMgNSAvLyA0Mjk0OTY3Mjk1CiYKfApyZXRzdWIKCi8vIHVwZGF0ZQp1cGRhdGVfODoKcHJvdG8gMCAwCnR4biBTZW5kZXIKZ2xvYmFsIENyZWF0b3JBZGRyZXNzCj09Ci8vIHVuYXV0aG9yaXplZAphc3NlcnQKcHVzaGludCBUTVBMX1VQREFUQUJMRSAvLyBUTVBMX1VQREFUQUJMRQovLyBDaGVjayBhcHAgaXMgdXBkYXRhYmxlCmFzc2VydApyZXRzdWIKCi8vIGRlbGV0ZQpkZWxldGVfOToKcHJvdG8gMCAwCnR4biBTZW5kZXIKZ2xvYmFsIENyZWF0b3JBZGRyZXNzCj09Ci8vIHVuYXV0aG9yaXplZAphc3NlcnQKcHVzaGludCBUTVBMX0RFTEVUQUJMRSAvLyBUTVBMX0RFTEVUQUJMRQovLyBDaGVjayBhcHAgaXMgZGVsZXRhYmxlCmFzc2VydApyZXRzdWIKCi8vIGJvdW5kZWRfcmFuZF91aW50MzIKYm91bmRlZHJhbmR1aW50MzJfMTA6CnByb3RvIDQgMQpieXRlY18wIC8vICIiCmludGNfMCAvLyAwCmZyYW1lX2RpZyAtNApjYWxsc3ViIHBjZzMyaW5pdF8wCmludGNfMCAvLyAwCmZyYW1lX2RpZyAtMwpmcmFtZV9kaWcgLTIKZnJhbWVfZGlnIC0xCmNhbGxzdWIgcGNnMzJyYW5kb21fMwpmcmFtZV9idXJ5IDAKcmV0c3ViCgovLyBib3VuZGVkX3JhbmRfdWludDE2CmJvdW5kZWRyYW5kdWludDE2XzExOgpwcm90byA0IDEKYnl0ZWNfMCAvLyAiIgpwdXNoaW50IDExIC8vIDExCmZyYW1lX2RpZyAtNApjYWxsc3ViIHBjZzE2aW5pdF8xCnB1c2hpbnQgMTEgLy8gMTEKZnJhbWVfZGlnIC0zCmZyYW1lX2RpZyAtMgpmcmFtZV9kaWcgLTEKY2FsbHN1YiBwY2cxNnJhbmRvbV80CmZyYW1lX2J1cnkgMApyZXRzdWIKCi8vIGJvdW5kZWRfcmFuZF91aW50OApib3VuZGVkcmFuZHVpbnQ4XzEyOgpwcm90byA0IDEKYnl0ZWNfMCAvLyAiIgpwdXNoaW50IDEyIC8vIDEyCmZyYW1lX2RpZyAtNApjYWxsc3ViIHBjZzhpbml0XzIKcHVzaGludCAxMiAvLyAxMgpmcmFtZV9kaWcgLTMKZnJhbWVfZGlnIC0yCmZyYW1lX2RpZyAtMQpjYWxsc3ViIHBjZzhyYW5kb21fNQpmcmFtZV9idXJ5IDAKcmV0c3ViCgovLyBib3VuZGVkX3JhbmRfdWludDMyX2Nhc3Rlcgpib3VuZGVkcmFuZHVpbnQzMmNhc3Rlcl8xMzoKcHJvdG8gMCAwCmJ5dGVjXzAgLy8gIiIKZHVwCmludGNfMCAvLyAwCmR1cG4gMgp0eG5hIEFwcGxpY2F0aW9uQXJncyAxCmZyYW1lX2J1cnkgMQp0eG5hIEFwcGxpY2F0aW9uQXJncyAyCmludGNfMCAvLyAwCmV4dHJhY3RfdWludDMyCmZyYW1lX2J1cnkgMgp0eG5hIEFwcGxpY2F0aW9uQXJncyAzCmludGNfMCAvLyAwCmV4dHJhY3RfdWludDMyCmZyYW1lX2J1cnkgMwp0eG5hIEFwcGxpY2F0aW9uQXJncyA0CmludGNfMCAvLyAwCmV4dHJhY3RfdWludDE2CmZyYW1lX2J1cnkgNApmcmFtZV9kaWcgMQpmcmFtZV9kaWcgMgpmcmFtZV9kaWcgMwpmcmFtZV9kaWcgNApjYWxsc3ViIGJvdW5kZWRyYW5kdWludDMyXzEwCmZyYW1lX2J1cnkgMApieXRlY18xIC8vIDB4MTUxZjdjNzUKZnJhbWVfZGlnIDAKY29uY2F0CmxvZwpyZXRzdWIKCi8vIGJvdW5kZWRfcmFuZF91aW50MTZfY2FzdGVyCmJvdW5kZWRyYW5kdWludDE2Y2FzdGVyXzE0Ogpwcm90byAwIDAKYnl0ZWNfMCAvLyAiIgpkdXAKaW50Y18wIC8vIDAKZHVwbiAyCnR4bmEgQXBwbGljYXRpb25BcmdzIDEKZnJhbWVfYnVyeSAxCnR4bmEgQXBwbGljYXRpb25BcmdzIDIKaW50Y18wIC8vIDAKZXh0cmFjdF91aW50MTYKZnJhbWVfYnVyeSAyCnR4bmEgQXBwbGljYXRpb25BcmdzIDMKaW50Y18wIC8vIDAKZXh0cmFjdF91aW50MTYKZnJhbWVfYnVyeSAzCnR4bmEgQXBwbGljYXRpb25BcmdzIDQKaW50Y18wIC8vIDAKZXh0cmFjdF91aW50MTYKZnJhbWVfYnVyeSA0CmZyYW1lX2RpZyAxCmZyYW1lX2RpZyAyCmZyYW1lX2RpZyAzCmZyYW1lX2RpZyA0CmNhbGxzdWIgYm91bmRlZHJhbmR1aW50MTZfMTEKZnJhbWVfYnVyeSAwCmJ5dGVjXzEgLy8gMHgxNTFmN2M3NQpmcmFtZV9kaWcgMApjb25jYXQKbG9nCnJldHN1YgoKLy8gYm91bmRlZF9yYW5kX3VpbnQ4X2Nhc3Rlcgpib3VuZGVkcmFuZHVpbnQ4Y2FzdGVyXzE1Ogpwcm90byAwIDAKYnl0ZWNfMCAvLyAiIgpkdXAKaW50Y18wIC8vIDAKZHVwbiAyCnR4bmEgQXBwbGljYXRpb25BcmdzIDEKZnJhbWVfYnVyeSAxCnR4bmEgQXBwbGljYXRpb25BcmdzIDIKaW50Y18wIC8vIDAKZ2V0Ynl0ZQpmcmFtZV9idXJ5IDIKdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMwppbnRjXzAgLy8gMApnZXRieXRlCmZyYW1lX2J1cnkgMwp0eG5hIEFwcGxpY2F0aW9uQXJncyA0CmludGNfMCAvLyAwCmV4dHJhY3RfdWludDE2CmZyYW1lX2J1cnkgNApmcmFtZV9kaWcgMQpmcmFtZV9kaWcgMgpmcmFtZV9kaWcgMwpmcmFtZV9kaWcgNApjYWxsc3ViIGJvdW5kZWRyYW5kdWludDhfMTIKZnJhbWVfYnVyeSAwCmJ5dGVjXzEgLy8gMHgxNTFmN2M3NQpmcmFtZV9kaWcgMApjb25jYXQKbG9nCnJldHN1Yg==", "clear": "I3ByYWdtYSB2ZXJzaW9uIDgKcHVzaGludCAwIC8vIDAKcmV0dXJu"}}"""
+_APP_SPEC_JSON = r"""{"arcs": [], "bareActions": {"call": ["UpdateApplication"], "create": ["NoOp"]}, "methods": [{"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "byte[8]", "name": "seed"}, {"type": "uint32", "name": "lower_bound"}, {"type": "uint32", "name": "upper_bound"}, {"type": "uint16", "name": "length"}], "name": "bounded_rand_uint32", "returns": {"type": "uint32[]"}, "events": []}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "byte[8]", "name": "seed"}, {"type": "uint16", "name": "lower_bound"}, {"type": "uint16", "name": "upper_bound"}, {"type": "uint16", "name": "length"}], "name": "bounded_rand_uint16", "returns": {"type": "uint16[]"}, "events": []}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "byte[8]", "name": "seed"}, {"type": "uint8", "name": "lower_bound"}, {"type": "uint8", "name": "upper_bound"}, {"type": "uint16", "name": "length"}], "name": "bounded_rand_uint8", "returns": {"type": "uint8[]"}, "events": []}], "name": "LibPcg32ExposerAlgoPy", "state": {"keys": {"box": {}, "global": {}, "local": {}}, "maps": {"box": {}, "global": {}, "local": {}}, "schema": {"global": {"bytes": 0, "ints": 0}, "local": {"bytes": 0, "ints": 0}}}, "structs": {}, "source": {"approval": "I3ByYWdtYSB2ZXJzaW9uIDEwCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuYXBwcm92YWxfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIGludGNibG9jayAxIDAgNDI5NDk2NzI5NSA4IDYzNjQxMzYyMjM4NDY3OTMwMDUgMTQ0MjY5NTA0MDg4ODk2MzQwNwogICAgYnl0ZWNibG9jayAweDE1MWY3Yzc1CiAgICB0eG4gTnVtQXBwQXJncwogICAgYnogbWFpbl9iYXJlX3JvdXRpbmdAOAogICAgcHVzaGJ5dGVzcyAweGVkMDZmNzBhIDB4OGQ3Y2NlNzkgMHhkMGEzNWUxZSAvLyBtZXRob2QgImJvdW5kZWRfcmFuZF91aW50MzIoYnl0ZVs4XSx1aW50MzIsdWludDMyLHVpbnQxNil1aW50MzJbXSIsIG1ldGhvZCAiYm91bmRlZF9yYW5kX3VpbnQxNihieXRlWzhdLHVpbnQxNix1aW50MTYsdWludDE2KXVpbnQxNltdIiwgbWV0aG9kICJib3VuZGVkX3JhbmRfdWludDgoYnl0ZVs4XSx1aW50OCx1aW50OCx1aW50MTYpdWludDhbXSIKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDAKICAgIG1hdGNoIG1haW5fYm91bmRlZF9yYW5kX3VpbnQzMl9yb3V0ZUAzIG1haW5fYm91bmRlZF9yYW5kX3VpbnQxNl9yb3V0ZUA0IG1haW5fYm91bmRlZF9yYW5kX3VpbnQ4X3JvdXRlQDUKCm1haW5fYWZ0ZXJfaWZfZWxzZUAxMzoKICAgIGludGNfMSAvLyAwCiAgICByZXR1cm4KCm1haW5fYm91bmRlZF9yYW5kX3VpbnQ4X3JvdXRlQDU6CiAgICB0eG4gT25Db21wbGV0aW9uCiAgICAhCiAgICBhc3NlcnQgLy8gT25Db21wbGV0aW9uIGlzIG5vdCBOb09wCiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgYXNzZXJ0IC8vIGNhbiBvbmx5IGNhbGwgd2hlbiBub3QgY3JlYXRpbmcKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDEKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDIKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDMKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDQKICAgIGNhbGxzdWIgYm91bmRlZF9yYW5kX3VpbnQ4CiAgICBieXRlY18wIC8vIDB4MTUxZjdjNzUKICAgIHN3YXAKICAgIGNvbmNhdAogICAgbG9nCiAgICBpbnRjXzAgLy8gMQogICAgcmV0dXJuCgptYWluX2JvdW5kZWRfcmFuZF91aW50MTZfcm91dGVANDoKICAgIHR4biBPbkNvbXBsZXRpb24KICAgICEKICAgIGFzc2VydCAvLyBPbkNvbXBsZXRpb24gaXMgbm90IE5vT3AKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICBhc3NlcnQgLy8gY2FuIG9ubHkgY2FsbCB3aGVuIG5vdCBjcmVhdGluZwogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMgogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMwogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgNAogICAgY2FsbHN1YiBib3VuZGVkX3JhbmRfdWludDE2CiAgICBieXRlY18wIC8vIDB4MTUxZjdjNzUKICAgIHN3YXAKICAgIGNvbmNhdAogICAgbG9nCiAgICBpbnRjXzAgLy8gMQogICAgcmV0dXJuCgptYWluX2JvdW5kZWRfcmFuZF91aW50MzJfcm91dGVAMzoKICAgIHR4biBPbkNvbXBsZXRpb24KICAgICEKICAgIGFzc2VydCAvLyBPbkNvbXBsZXRpb24gaXMgbm90IE5vT3AKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICBhc3NlcnQgLy8gY2FuIG9ubHkgY2FsbCB3aGVuIG5vdCBjcmVhdGluZwogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMgogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMwogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgNAogICAgY2FsbHN1YiBib3VuZGVkX3JhbmRfdWludDMyCiAgICBieXRlY18wIC8vIDB4MTUxZjdjNzUKICAgIHN3YXAKICAgIGNvbmNhdAogICAgbG9nCiAgICBpbnRjXzAgLy8gMQogICAgcmV0dXJuCgptYWluX2JhcmVfcm91dGluZ0A4OgogICAgcHVzaGludCA0IC8vIDQKICAgIGludGNfMSAvLyAwCiAgICB0eG4gT25Db21wbGV0aW9uCiAgICBtYXRjaCBtYWluX3VwZGF0ZUA5IG1haW5fX19hbGdvcHlfZGVmYXVsdF9jcmVhdGVAMTAKICAgIGIgbWFpbl9hZnRlcl9pZl9lbHNlQDEzCgptYWluX19fYWxnb3B5X2RlZmF1bHRfY3JlYXRlQDEwOgogICAgdHhuIEFwcGxpY2F0aW9uSUQKICAgICEKICAgIGFzc2VydCAvLyBjYW4gb25seSBjYWxsIHdoZW4gY3JlYXRpbmcKICAgIGludGNfMCAvLyAxCiAgICByZXR1cm4KCm1haW5fdXBkYXRlQDk6CiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgYXNzZXJ0IC8vIGNhbiBvbmx5IGNhbGwgd2hlbiBub3QgY3JlYXRpbmcKICAgIGNhbGxzdWIgdXBkYXRlCiAgICBpbnRjXzAgLy8gMQogICAgcmV0dXJuCgoKLy8gbGliX3BjZy5wY2czMi5wY2czMl9pbml0KHNlZWQ6IGJ5dGVzKSAtPiB1aW50NjQ6CnBjZzMyX2luaXQ6CiAgICBwcm90byAxIDEKICAgIGZyYW1lX2RpZyAtMQogICAgbGVuCiAgICBpbnRjXzMgLy8gOAogICAgPT0KICAgIGFzc2VydAogICAgZnJhbWVfZGlnIC0xCiAgICBidG9pCiAgICBpbnRjXzEgLy8gMAogICAgaW50YyA0IC8vIDYzNjQxMzYyMjM4NDY3OTMwMDUKICAgIG11bHcKICAgIGJ1cnkgMQogICAgaW50YyA1IC8vIDE0NDI2OTUwNDA4ODg5NjM0MDcKICAgIGFkZHcKICAgIGJ1cnkgMQogICAgYWRkdwogICAgYnVyeSAxCiAgICBpbnRjIDQgLy8gNjM2NDEzNjIyMzg0Njc5MzAwNQogICAgbXVsdwogICAgYnVyeSAxCiAgICBpbnRjIDUgLy8gMTQ0MjY5NTA0MDg4ODk2MzQwNwogICAgYWRkdwogICAgYnVyeSAxCiAgICByZXRzdWIKCgovLyBsaWJfcGNnLnBjZzMyLl9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZShzdGF0ZTogdWludDY0LCBiaXRfc2l6ZTogdWludDY0LCBsb3dlcl9ib3VuZDogdWludDY0LCB1cHBlcl9ib3VuZDogdWludDY0LCBsZW5ndGg6IHVpbnQ2NCkgLT4gdWludDY0LCBieXRlczoKX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlOgogICAgcHJvdG8gNSAyCiAgICBwdXNoYnl0ZXMgIiIKICAgIGR1cG4gNQogICAgZnJhbWVfZGlnIC0xCiAgICBwdXNoaW50IDY1NTM2IC8vIDY1NTM2CiAgICA8CiAgICBhc3NlcnQKICAgIGZyYW1lX2RpZyAtMQogICAgaXRvYgogICAgZXh0cmFjdCA2IDIKICAgIGZyYW1lX2RpZyAtNAogICAgaW50Y18zIC8vIDgKICAgID09CiAgICBibnogX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2Jvb2xfdHJ1ZUAzCiAgICBmcmFtZV9kaWcgLTQKICAgIHB1c2hpbnQgMTYgLy8gMTYKICAgID09CiAgICBibnogX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2Jvb2xfdHJ1ZUAzCiAgICBmcmFtZV9kaWcgLTQKICAgIHB1c2hpbnQgMzIgLy8gMzIKICAgID09CiAgICBieiBfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2VfYm9vbF9mYWxzZUA0CgpfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2VfYm9vbF90cnVlQDM6CiAgICBpbnRjXzAgLy8gMQoKX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2Jvb2xfbWVyZ2VANToKICAgIGFzc2VydAogICAgZnJhbWVfZGlnIC00CiAgICBwdXNoaW50IDMgLy8gMwogICAgc2hyCiAgICBkdXAKICAgIGZyYW1lX2J1cnkgMQogICAgaW50Y18zIC8vIDgKICAgIHN3YXAKICAgIC0KICAgIGZyYW1lX2J1cnkgNQogICAgZnJhbWVfZGlnIC0zCiAgICBibnogX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2Vsc2VfYm9keUAxMgogICAgZnJhbWVfZGlnIC0yCiAgICBibnogX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2Vsc2VfYm9keUAxMgogICAgaW50Y18xIC8vIDAKICAgIGZyYW1lX2J1cnkgMwoKX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2Zvcl9oZWFkZXJAODoKICAgIGZyYW1lX2RpZyAzCiAgICBmcmFtZV9kaWcgLTEKICAgIDwKICAgIGJ6IF9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZV9hZnRlcl9pZl9lbHNlQDI1CiAgICBmcmFtZV9kaWcgLTUKICAgIGludGMgNCAvLyA2MzY0MTM2MjIzODQ2NzkzMDA1CiAgICBtdWx3CiAgICBidXJ5IDEKICAgIGludGMgNSAvLyAxNDQyNjk1MDQwODg4OTYzNDA3CiAgICBhZGR3CiAgICBidXJ5IDEKICAgIGZyYW1lX2RpZyAtNQogICAgcHVzaGludCAxOCAvLyAxOAogICAgc2hyCiAgICBmcmFtZV9kaWcgLTUKICAgIF4KICAgIHB1c2hpbnQgMjcgLy8gMjcKICAgIHNocgogICAgaW50Y18yIC8vIDQyOTQ5NjcyOTUKICAgICYKICAgIGZyYW1lX2RpZyAtNQogICAgcHVzaGludCA1OSAvLyA1OQogICAgc2hyCiAgICBkdXAyCiAgICBzaHIKICAgIHN3YXAKICAgIH4KICAgIGludGNfMCAvLyAxCiAgICBhZGR3CiAgICBidXJ5IDEKICAgIHB1c2hpbnQgMzEgLy8gMzEKICAgICYKICAgIHVuY292ZXIgMgogICAgc3dhcAogICAgc2hsCiAgICBpbnRjXzIgLy8gNDI5NDk2NzI5NQogICAgJgogICAgfAogICAgaXRvYgogICAgZnJhbWVfZGlnIDUKICAgIGZyYW1lX2RpZyAxCiAgICBleHRyYWN0MwogICAgZnJhbWVfZGlnIDYKICAgIHN3YXAKICAgIGNvbmNhdAogICAgZnJhbWVfYnVyeSA2CiAgICBmcmFtZV9kaWcgMwogICAgaW50Y18wIC8vIDEKICAgICsKICAgIGZyYW1lX2J1cnkgMwogICAgZnJhbWVfYnVyeSAtNQogICAgYiBfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2VfZm9yX2hlYWRlckA4CgpfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2VfYWZ0ZXJfaWZfZWxzZUAyNToKICAgIGZyYW1lX2RpZyAtNQogICAgZnJhbWVfZGlnIDYKICAgIGZyYW1lX2J1cnkgMQogICAgZnJhbWVfYnVyeSAwCiAgICByZXRzdWIKCl9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZV9lbHNlX2JvZHlAMTI6CiAgICBmcmFtZV9kaWcgLTIKICAgIGJ6IF9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZV9lbHNlX2JvZHlAMTQKICAgIGZyYW1lX2RpZyAtMgogICAgaW50Y18wIC8vIDEKICAgID4KICAgIGFzc2VydAogICAgaW50Y18wIC8vIDEKICAgIGZyYW1lX2RpZyAtNAogICAgc2hsCiAgICBmcmFtZV9kaWcgLTIKICAgID4KICAgIGFzc2VydAogICAgZnJhbWVfZGlnIC0yCiAgICBpbnRjXzAgLy8gMQogICAgLQogICAgZnJhbWVfZGlnIC0zCiAgICA+CiAgICBhc3NlcnQKICAgIGZyYW1lX2RpZyAtMgogICAgZnJhbWVfZGlnIC0zCiAgICAtCiAgICBmcmFtZV9idXJ5IDAKCl9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZV9hZnRlcl9pZl9lbHNlQDE1OgogICAgZnJhbWVfZGlnIDAKICAgIGR1cAogICAgfgogICAgaW50Y18wIC8vIDEKICAgIGFkZHcKICAgIGJ1cnkgMQogICAgaW50Y18yIC8vIDQyOTQ5NjcyOTUKICAgICYKICAgIHN3YXAKICAgICUKICAgIGZyYW1lX2J1cnkgNAogICAgaW50Y18xIC8vIDAKICAgIGZyYW1lX2J1cnkgMwoKX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2Zvcl9oZWFkZXJAMTY6CiAgICBmcmFtZV9kaWcgMwogICAgZnJhbWVfZGlnIC0xCiAgICA8CiAgICBieiBfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2VfYWZ0ZXJfaWZfZWxzZUAyNQoKX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX3doaWxlX3RvcEAxODoKICAgIGZyYW1lX2RpZyAtNQogICAgaW50YyA0IC8vIDYzNjQxMzYyMjM4NDY3OTMwMDUKICAgIG11bHcKICAgIGJ1cnkgMQogICAgaW50YyA1IC8vIDE0NDI2OTUwNDA4ODg5NjM0MDcKICAgIGFkZHcKICAgIGJ1cnkgMQogICAgZnJhbWVfZGlnIC01CiAgICBwdXNoaW50IDE4IC8vIDE4CiAgICBzaHIKICAgIGZyYW1lX2RpZyAtNQogICAgXgogICAgcHVzaGludCAyNyAvLyAyNwogICAgc2hyCiAgICBpbnRjXzIgLy8gNDI5NDk2NzI5NQogICAgJgogICAgZnJhbWVfZGlnIC01CiAgICBwdXNoaW50IDU5IC8vIDU5CiAgICBzaHIKICAgIGR1cDIKICAgIHNocgogICAgc3dhcAogICAgfgogICAgaW50Y18wIC8vIDEKICAgIGFkZHcKICAgIGJ1cnkgMQogICAgcHVzaGludCAzMSAvLyAzMQogICAgJgogICAgdW5jb3ZlciAyCiAgICBzd2FwCiAgICBzaGwKICAgIGludGNfMiAvLyA0Mjk0OTY3Mjk1CiAgICAmCiAgICB8CiAgICBkdXAKICAgIGZyYW1lX2J1cnkgMgogICAgZnJhbWVfZGlnIDQKICAgID49CiAgICBieiBfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2VfYWZ0ZXJfaWZfZWxzZUAyMQogICAgZnJhbWVfZGlnIDIKICAgIGZyYW1lX2RpZyAwCiAgICAlCiAgICBmcmFtZV9kaWcgLTMKICAgICsKICAgIGl0b2IKICAgIGZyYW1lX2RpZyA1CiAgICBmcmFtZV9kaWcgMQogICAgZXh0cmFjdDMKICAgIGZyYW1lX2RpZyA2CiAgICBzd2FwCiAgICBjb25jYXQKICAgIGZyYW1lX2J1cnkgNgogICAgZnJhbWVfZGlnIDMKICAgIGludGNfMCAvLyAxCiAgICArCiAgICBmcmFtZV9idXJ5IDMKICAgIGZyYW1lX2J1cnkgLTUKICAgIGIgX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2Zvcl9oZWFkZXJAMTYKCl9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZV9hZnRlcl9pZl9lbHNlQDIxOgogICAgZnJhbWVfYnVyeSAtNQogICAgYiBfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2Vfd2hpbGVfdG9wQDE4CgpfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2VfZWxzZV9ib2R5QDE0OgogICAgaW50Y18wIC8vIDEKICAgIGZyYW1lX2RpZyAtNAogICAgc2hsCiAgICBkdXAKICAgIGludGNfMCAvLyAxCiAgICAtCiAgICBmcmFtZV9kaWcgLTMKICAgID4KICAgIGFzc2VydAogICAgZnJhbWVfZGlnIC0zCiAgICAtCiAgICBmcmFtZV9idXJ5IDAKICAgIGIgX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2FmdGVyX2lmX2Vsc2VAMTUKCl9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZV9ib29sX2ZhbHNlQDQ6CiAgICBpbnRjXzEgLy8gMAogICAgYiBfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2VfYm9vbF9tZXJnZUA1CgoKLy8gc21hcnRfY29udHJhY3RzLmxpYl9wY2czMl9leHBvc2VyLmNvbnRyYWN0LkxpYlBjZzMyRXhwb3NlckFsZ29QeS5ib3VuZGVkX3JhbmRfdWludDMyKHNlZWQ6IGJ5dGVzLCBsb3dlcl9ib3VuZDogYnl0ZXMsIHVwcGVyX2JvdW5kOiBieXRlcywgbGVuZ3RoOiBieXRlcykgLT4gYnl0ZXM6CmJvdW5kZWRfcmFuZF91aW50MzI6CiAgICBwcm90byA0IDEKICAgIGZyYW1lX2RpZyAtNAogICAgY2FsbHN1YiBwY2czMl9pbml0CiAgICBmcmFtZV9kaWcgLTMKICAgIGJ0b2kKICAgIGZyYW1lX2RpZyAtMgogICAgYnRvaQogICAgZnJhbWVfZGlnIC0xCiAgICBidG9pCiAgICB1bmNvdmVyIDMKICAgIHB1c2hpbnQgMzIgLy8gMzIKICAgIGNvdmVyIDQKICAgIGNvdmVyIDQKICAgIGNhbGxzdWIgX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlCiAgICBidXJ5IDEKICAgIHJldHN1YgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5saWJfcGNnMzJfZXhwb3Nlci5jb250cmFjdC5MaWJQY2czMkV4cG9zZXJBbGdvUHkuYm91bmRlZF9yYW5kX3VpbnQxNihzZWVkOiBieXRlcywgbG93ZXJfYm91bmQ6IGJ5dGVzLCB1cHBlcl9ib3VuZDogYnl0ZXMsIGxlbmd0aDogYnl0ZXMpIC0+IGJ5dGVzOgpib3VuZGVkX3JhbmRfdWludDE2OgogICAgcHJvdG8gNCAxCiAgICBmcmFtZV9kaWcgLTQKICAgIGNhbGxzdWIgcGNnMzJfaW5pdAogICAgZnJhbWVfZGlnIC0zCiAgICBidG9pCiAgICBmcmFtZV9kaWcgLTIKICAgIGJ0b2kKICAgIGZyYW1lX2RpZyAtMQogICAgYnRvaQogICAgdW5jb3ZlciAzCiAgICBwdXNoaW50IDE2IC8vIDE2CiAgICBjb3ZlciA0CiAgICBjb3ZlciA0CiAgICBjYWxsc3ViIF9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZQogICAgYnVyeSAxCiAgICByZXRzdWIKCgovLyBzbWFydF9jb250cmFjdHMubGliX3BjZzMyX2V4cG9zZXIuY29udHJhY3QuTGliUGNnMzJFeHBvc2VyQWxnb1B5LmJvdW5kZWRfcmFuZF91aW50OChzZWVkOiBieXRlcywgbG93ZXJfYm91bmQ6IGJ5dGVzLCB1cHBlcl9ib3VuZDogYnl0ZXMsIGxlbmd0aDogYnl0ZXMpIC0+IGJ5dGVzOgpib3VuZGVkX3JhbmRfdWludDg6CiAgICBwcm90byA0IDEKICAgIGZyYW1lX2RpZyAtNAogICAgY2FsbHN1YiBwY2czMl9pbml0CiAgICBmcmFtZV9kaWcgLTMKICAgIGJ0b2kKICAgIGZyYW1lX2RpZyAtMgogICAgYnRvaQogICAgZnJhbWVfZGlnIC0xCiAgICBidG9pCiAgICB1bmNvdmVyIDMKICAgIGludGNfMyAvLyA4CiAgICBjb3ZlciA0CiAgICBjb3ZlciA0CiAgICBjYWxsc3ViIF9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZQogICAgYnVyeSAxCiAgICByZXRzdWIKCgovLyBzbWFydF9jb250cmFjdHMubGliX3BjZzMyX2V4cG9zZXIuY29udHJhY3QuTGliUGNnMzJFeHBvc2VyQWxnb1B5LnVwZGF0ZSgpIC0+IHZvaWQ6CnVwZGF0ZToKICAgIHByb3RvIDAgMAogICAgdHhuIFNlbmRlcgogICAgZ2xvYmFsIENyZWF0b3JBZGRyZXNzCiAgICA9PQogICAgYXNzZXJ0CiAgICByZXRzdWIK", "clear": "I3ByYWdtYSB2ZXJzaW9uIDEwCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMSAvLyAxCiAgICByZXR1cm4K"}}"""
 APP_SPEC = algokit_utils.Arc56Contract.from_json(_APP_SPEC_JSON)
 
 def _parse_abi_args(args: object | None = None) -> list[object] | None:
@@ -101,7 +101,7 @@ class BoundedRandUint8Args:
         return "bounded_rand_uint8(byte[8],uint8,uint8,uint16)uint8[]"
 
 
-class _LibPcg32ExposerPytealUpdate:
+class _LibPcg32ExposerAlgoPyUpdate:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
@@ -111,27 +111,13 @@ class _LibPcg32ExposerPytealUpdate:
         return self.app_client.params.bare.update(params)
 
 
-class _LibPcg32ExposerPytealDelete:
-    def __init__(self, app_client: algokit_utils.AppClient):
-        self.app_client = app_client
-
-    def bare(
-        self, params: algokit_utils.AppClientBareCallParams | None = None
-    ) -> algokit_utils.AppCallParams:
-        return self.app_client.params.bare.delete(params)
-
-
-class LibPcg32ExposerPytealParams:
+class LibPcg32ExposerAlgoPyParams:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
     @property
-    def update(self) -> "_LibPcg32ExposerPytealUpdate":
-        return _LibPcg32ExposerPytealUpdate(self.app_client)
-
-    @property
-    def delete(self) -> "_LibPcg32ExposerPytealDelete":
-        return _LibPcg32ExposerPytealDelete(self.app_client)
+    def update(self) -> "_LibPcg32ExposerAlgoPyUpdate":
+        return _LibPcg32ExposerAlgoPyUpdate(self.app_client)
 
     def bounded_rand_uint32(
         self,
@@ -183,7 +169,7 @@ class LibPcg32ExposerPytealParams:
         )
 
 
-class _LibPcg32ExposerPytealUpdateTransaction:
+class _LibPcg32ExposerAlgoPyUpdateTransaction:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
@@ -191,25 +177,13 @@ class _LibPcg32ExposerPytealUpdateTransaction:
         return self.app_client.create_transaction.bare.update(params)
 
 
-class _LibPcg32ExposerPytealDeleteTransaction:
-    def __init__(self, app_client: algokit_utils.AppClient):
-        self.app_client = app_client
-
-    def bare(self, params: algokit_utils.AppClientBareCallParams | None = None) -> Transaction:
-        return self.app_client.create_transaction.bare.delete(params)
-
-
-class LibPcg32ExposerPytealCreateTransactionParams:
+class LibPcg32ExposerAlgoPyCreateTransactionParams:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
     @property
-    def update(self) -> "_LibPcg32ExposerPytealUpdateTransaction":
-        return _LibPcg32ExposerPytealUpdateTransaction(self.app_client)
-
-    @property
-    def delete(self) -> "_LibPcg32ExposerPytealDeleteTransaction":
-        return _LibPcg32ExposerPytealDeleteTransaction(self.app_client)
+    def update(self) -> "_LibPcg32ExposerAlgoPyUpdateTransaction":
+        return _LibPcg32ExposerAlgoPyUpdateTransaction(self.app_client)
 
     def bounded_rand_uint32(
         self,
@@ -261,7 +235,7 @@ class LibPcg32ExposerPytealCreateTransactionParams:
         )
 
 
-class _LibPcg32ExposerPytealUpdateSend:
+class _LibPcg32ExposerAlgoPyUpdateSend:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
@@ -278,34 +252,13 @@ class _LibPcg32ExposerPytealUpdateSend:
         )
 
 
-class _LibPcg32ExposerPytealDeleteSend:
-    def __init__(self, app_client: algokit_utils.AppClient):
-        self.app_client = app_client
-
-    def bare(
-        self,
-        params: algokit_utils.AppClientBareCallParams | None = None,
-        send_params: algokit_utils.SendParams | None = None,
-        
-    ) -> algokit_utils.SendAppTransactionResult:
-        return self.app_client.send.bare.delete(
-            params=params,
-            send_params=send_params,
-            
-        )
-
-
-class LibPcg32ExposerPytealSend:
+class LibPcg32ExposerAlgoPySend:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
     @property
-    def update(self) -> "_LibPcg32ExposerPytealUpdateSend":
-        return _LibPcg32ExposerPytealUpdateSend(self.app_client)
-
-    @property
-    def delete(self) -> "_LibPcg32ExposerPytealDeleteSend":
-        return _LibPcg32ExposerPytealDeleteSend(self.app_client)
+    def update(self) -> "_LibPcg32ExposerAlgoPyUpdateSend":
+        return _LibPcg32ExposerAlgoPyUpdateSend(self.app_client)
 
     def bounded_rand_uint32(
         self,
@@ -366,14 +319,14 @@ class LibPcg32ExposerPytealSend:
         )
 
 
-class LibPcg32ExposerPytealState:
-    """Methods to access state for the current lib_pcg32_exposer_pyteal app"""
+class LibPcg32ExposerAlgoPyState:
+    """Methods to access state for the current LibPcg32ExposerAlgoPy app"""
 
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
-class LibPcg32ExposerPytealClient:
-    """Client for interacting with lib_pcg32_exposer_pyteal smart contract"""
+class LibPcg32ExposerAlgoPyClient:
+    """Client for interacting with LibPcg32ExposerAlgoPy smart contract"""
 
     @typing.overload
     def __init__(self, app_client: algokit_utils.AppClient) -> None: ...
@@ -421,10 +374,10 @@ class LibPcg32ExposerPytealClient:
         else:
             raise ValueError("Either app_client or algorand and app_id must be provided")
     
-        self.params = LibPcg32ExposerPytealParams(self.app_client)
-        self.create_transaction = LibPcg32ExposerPytealCreateTransactionParams(self.app_client)
-        self.send = LibPcg32ExposerPytealSend(self.app_client)
-        self.state = LibPcg32ExposerPytealState(self.app_client)
+        self.params = LibPcg32ExposerAlgoPyParams(self.app_client)
+        self.create_transaction = LibPcg32ExposerAlgoPyCreateTransactionParams(self.app_client)
+        self.send = LibPcg32ExposerAlgoPySend(self.app_client)
+        self.state = LibPcg32ExposerAlgoPyState(self.app_client)
 
     @staticmethod
     def from_creator_and_name(
@@ -437,8 +390,8 @@ class LibPcg32ExposerPytealClient:
         clear_source_map: SourceMap | None = None,
         ignore_cache: bool | None = None,
         app_lookup_cache: algokit_utils.ApplicationLookup | None = None,
-    ) -> "LibPcg32ExposerPytealClient":
-        return LibPcg32ExposerPytealClient(
+    ) -> "LibPcg32ExposerAlgoPyClient":
+        return LibPcg32ExposerAlgoPyClient(
             algokit_utils.AppClient.from_creator_and_name(
                 creator_address=creator_address,
                 app_name=app_name,
@@ -461,8 +414,8 @@ class LibPcg32ExposerPytealClient:
         default_signer: TransactionSigner | None = None,
         approval_source_map: SourceMap | None = None,
         clear_source_map: SourceMap | None = None,
-    ) -> "LibPcg32ExposerPytealClient":
-        return LibPcg32ExposerPytealClient(
+    ) -> "LibPcg32ExposerAlgoPyClient":
+        return LibPcg32ExposerAlgoPyClient(
             algokit_utils.AppClient.from_network(
                 app_spec=APP_SPEC,
                 algorand=algorand,
@@ -501,8 +454,8 @@ class LibPcg32ExposerPytealClient:
         default_signer: TransactionSigner | None = None,
         approval_source_map: SourceMap | None = None,
         clear_source_map: SourceMap | None = None,
-    ) -> "LibPcg32ExposerPytealClient":
-        return LibPcg32ExposerPytealClient(
+    ) -> "LibPcg32ExposerAlgoPyClient":
+        return LibPcg32ExposerAlgoPyClient(
             self.app_client.clone(
                 app_name=app_name,
                 default_sender=default_sender,
@@ -512,8 +465,8 @@ class LibPcg32ExposerPytealClient:
             )
         )
 
-    def new_group(self) -> "LibPcg32ExposerPytealComposer":
-        return LibPcg32ExposerPytealComposer(self)
+    def new_group(self) -> "LibPcg32ExposerAlgoPyComposer":
+        return LibPcg32ExposerAlgoPyComposer(self)
 
     @typing.overload
     def decode_return_value(
@@ -564,31 +517,23 @@ class LibPcg32ExposerPytealClient:
 
 
 @dataclasses.dataclass(frozen=True)
-class LibPcg32ExposerPytealBareCallCreateParams(algokit_utils.AppClientBareCallCreateParams):
-    """Parameters for creating LibPcg32ExposerPyteal contract with bare calls"""
+class LibPcg32ExposerAlgoPyBareCallCreateParams(algokit_utils.AppClientBareCallCreateParams):
+    """Parameters for creating LibPcg32ExposerAlgoPy contract with bare calls"""
     on_complete: typing.Literal[OnComplete.NoOpOC] | None = None
 
     def to_algokit_utils_params(self) -> algokit_utils.AppClientBareCallCreateParams:
         return algokit_utils.AppClientBareCallCreateParams(**self.__dict__)
 
 @dataclasses.dataclass(frozen=True)
-class LibPcg32ExposerPytealBareCallUpdateParams(algokit_utils.AppClientBareCallParams):
-    """Parameters for calling LibPcg32ExposerPyteal contract with bare calls"""
+class LibPcg32ExposerAlgoPyBareCallUpdateParams(algokit_utils.AppClientBareCallParams):
+    """Parameters for calling LibPcg32ExposerAlgoPy contract with bare calls"""
     on_complete: typing.Literal[OnComplete.UpdateApplicationOC] | None = None
 
     def to_algokit_utils_params(self) -> algokit_utils.AppClientBareCallParams:
         return algokit_utils.AppClientBareCallParams(**self.__dict__)
 
-@dataclasses.dataclass(frozen=True)
-class LibPcg32ExposerPytealBareCallDeleteParams(algokit_utils.AppClientBareCallParams):
-    """Parameters for calling LibPcg32ExposerPyteal contract with bare calls"""
-    on_complete: typing.Literal[OnComplete.DeleteApplicationOC] | None = None
-
-    def to_algokit_utils_params(self) -> algokit_utils.AppClientBareCallParams:
-        return algokit_utils.AppClientBareCallParams(**self.__dict__)
-
-class LibPcg32ExposerPytealFactory(algokit_utils.TypedAppFactoryProtocol[LibPcg32ExposerPytealBareCallCreateParams, LibPcg32ExposerPytealBareCallUpdateParams, LibPcg32ExposerPytealBareCallDeleteParams]):
-    """Factory for deploying and managing LibPcg32ExposerPytealClient smart contracts"""
+class LibPcg32ExposerAlgoPyFactory(algokit_utils.TypedAppFactoryProtocol[LibPcg32ExposerAlgoPyBareCallCreateParams, LibPcg32ExposerAlgoPyBareCallUpdateParams, None]):
+    """Factory for deploying and managing LibPcg32ExposerAlgoPyClient smart contracts"""
 
     def __init__(
         self,
@@ -611,9 +556,9 @@ class LibPcg32ExposerPytealFactory(algokit_utils.TypedAppFactoryProtocol[LibPcg3
                 compilation_params=compilation_params,
             )
         )
-        self.params = LibPcg32ExposerPytealFactoryParams(self.app_factory)
-        self.create_transaction = LibPcg32ExposerPytealFactoryCreateTransaction(self.app_factory)
-        self.send = LibPcg32ExposerPytealFactorySend(self.app_factory)
+        self.params = LibPcg32ExposerAlgoPyFactoryParams(self.app_factory)
+        self.create_transaction = LibPcg32ExposerAlgoPyFactoryCreateTransaction(self.app_factory)
+        self.send = LibPcg32ExposerAlgoPyFactorySend(self.app_factory)
 
     @property
     def app_name(self) -> str:
@@ -632,22 +577,22 @@ class LibPcg32ExposerPytealFactory(algokit_utils.TypedAppFactoryProtocol[LibPcg3
         *,
         on_update: algokit_utils.OnUpdate | None = None,
         on_schema_break: algokit_utils.OnSchemaBreak | None = None,
-        create_params: LibPcg32ExposerPytealBareCallCreateParams | None = None,
-        update_params: LibPcg32ExposerPytealBareCallUpdateParams | None = None,
-        delete_params: LibPcg32ExposerPytealBareCallDeleteParams | None = None,
+        create_params: LibPcg32ExposerAlgoPyBareCallCreateParams | None = None,
+        update_params: LibPcg32ExposerAlgoPyBareCallUpdateParams | None = None,
+        delete_params: None = None,
         existing_deployments: algokit_utils.ApplicationLookup | None = None,
         ignore_cache: bool = False,
         app_name: str | None = None,
         compilation_params: algokit_utils.AppClientCompilationParams | None = None,
         send_params: algokit_utils.SendParams | None = None,
-    ) -> tuple[LibPcg32ExposerPytealClient, algokit_utils.AppFactoryDeployResult]:
+    ) -> tuple[LibPcg32ExposerAlgoPyClient, algokit_utils.AppFactoryDeployResult]:
         """Deploy the application"""
         deploy_response = self.app_factory.deploy(
             on_update=on_update,
             on_schema_break=on_schema_break,
             create_params=create_params.to_algokit_utils_params() if create_params else None,
             update_params=update_params.to_algokit_utils_params() if update_params else None,
-            delete_params=delete_params.to_algokit_utils_params() if delete_params else None,
+            delete_params=delete_params,
             existing_deployments=existing_deployments,
             ignore_cache=ignore_cache,
             app_name=app_name,
@@ -655,7 +600,7 @@ class LibPcg32ExposerPytealFactory(algokit_utils.TypedAppFactoryProtocol[LibPcg3
             send_params=send_params,
         )
 
-        return LibPcg32ExposerPytealClient(deploy_response[0]), deploy_response[1]
+        return LibPcg32ExposerAlgoPyClient(deploy_response[0]), deploy_response[1]
 
     def get_app_client_by_creator_and_name(
         self,
@@ -667,9 +612,9 @@ class LibPcg32ExposerPytealFactory(algokit_utils.TypedAppFactoryProtocol[LibPcg3
         app_lookup_cache: algokit_utils.ApplicationLookup | None = None,
         approval_source_map: SourceMap | None = None,
         clear_source_map: SourceMap | None = None,
-    ) -> LibPcg32ExposerPytealClient:
+    ) -> LibPcg32ExposerAlgoPyClient:
         """Get an app client by creator address and name"""
-        return LibPcg32ExposerPytealClient(
+        return LibPcg32ExposerAlgoPyClient(
             self.app_factory.get_app_client_by_creator_and_name(
                 creator_address,
                 app_name,
@@ -690,9 +635,9 @@ class LibPcg32ExposerPytealFactory(algokit_utils.TypedAppFactoryProtocol[LibPcg3
         default_signer: TransactionSigner | None = None,
         approval_source_map: SourceMap | None = None,
         clear_source_map: SourceMap | None = None,
-    ) -> LibPcg32ExposerPytealClient:
+    ) -> LibPcg32ExposerAlgoPyClient:
         """Get an app client by app ID"""
-        return LibPcg32ExposerPytealClient(
+        return LibPcg32ExposerAlgoPyClient(
             self.app_factory.get_app_client_by_id(
                 app_id,
                 app_name,
@@ -704,17 +649,17 @@ class LibPcg32ExposerPytealFactory(algokit_utils.TypedAppFactoryProtocol[LibPcg3
         )
 
 
-class LibPcg32ExposerPytealFactoryParams:
-    """Parameters for creating transactions for LibPcg32ExposerPyteal contract"""
+class LibPcg32ExposerAlgoPyFactoryParams:
+    """Parameters for creating transactions for LibPcg32ExposerAlgoPy contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
-        self.create = LibPcg32ExposerPytealFactoryCreateParams(app_factory)
-        self.update = LibPcg32ExposerPytealFactoryUpdateParams(app_factory)
-        self.delete = LibPcg32ExposerPytealFactoryDeleteParams(app_factory)
+        self.create = LibPcg32ExposerAlgoPyFactoryCreateParams(app_factory)
+        self.update = LibPcg32ExposerAlgoPyFactoryUpdateParams(app_factory)
+        self.delete = LibPcg32ExposerAlgoPyFactoryDeleteParams(app_factory)
 
-class LibPcg32ExposerPytealFactoryCreateParams:
-    """Parameters for 'create' operations of LibPcg32ExposerPyteal contract"""
+class LibPcg32ExposerAlgoPyFactoryCreateParams:
+    """Parameters for 'create' operations of LibPcg32ExposerAlgoPy contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
@@ -791,8 +736,8 @@ class LibPcg32ExposerPytealFactoryCreateParams:
             compilation_params=compilation_params
         )
 
-class LibPcg32ExposerPytealFactoryUpdateParams:
-    """Parameters for 'update' operations of LibPcg32ExposerPyteal contract"""
+class LibPcg32ExposerAlgoPyFactoryUpdateParams:
+    """Parameters for 'update' operations of LibPcg32ExposerAlgoPy contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
@@ -809,8 +754,8 @@ class LibPcg32ExposerPytealFactoryUpdateParams:
             algokit_utils.AppClientBareCallParams(**dataclasses.asdict(params)),
             )
 
-class LibPcg32ExposerPytealFactoryDeleteParams:
-    """Parameters for 'delete' operations of LibPcg32ExposerPyteal contract"""
+class LibPcg32ExposerAlgoPyFactoryDeleteParams:
+    """Parameters for 'delete' operations of LibPcg32ExposerAlgoPy contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
@@ -828,16 +773,16 @@ class LibPcg32ExposerPytealFactoryDeleteParams:
             )
 
 
-class LibPcg32ExposerPytealFactoryCreateTransaction:
-    """Create transactions for LibPcg32ExposerPyteal contract"""
+class LibPcg32ExposerAlgoPyFactoryCreateTransaction:
+    """Create transactions for LibPcg32ExposerAlgoPy contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
-        self.create = LibPcg32ExposerPytealFactoryCreateTransactionCreate(app_factory)
+        self.create = LibPcg32ExposerAlgoPyFactoryCreateTransactionCreate(app_factory)
 
 
-class LibPcg32ExposerPytealFactoryCreateTransactionCreate:
-    """Create new instances of LibPcg32ExposerPyteal contract"""
+class LibPcg32ExposerAlgoPyFactoryCreateTransactionCreate:
+    """Create new instances of LibPcg32ExposerAlgoPy contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
@@ -853,16 +798,16 @@ class LibPcg32ExposerPytealFactoryCreateTransactionCreate:
         )
 
 
-class LibPcg32ExposerPytealFactorySend:
-    """Send calls to LibPcg32ExposerPyteal contract"""
+class LibPcg32ExposerAlgoPyFactorySend:
+    """Send calls to LibPcg32ExposerAlgoPy contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
-        self.create = LibPcg32ExposerPytealFactorySendCreate(app_factory)
+        self.create = LibPcg32ExposerAlgoPyFactorySendCreate(app_factory)
 
 
-class LibPcg32ExposerPytealFactorySendCreate:
-    """Send create calls to LibPcg32ExposerPyteal contract"""
+class LibPcg32ExposerAlgoPyFactorySendCreate:
+    """Send create calls to LibPcg32ExposerAlgoPy contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
@@ -873,7 +818,7 @@ class LibPcg32ExposerPytealFactorySendCreate:
         params: algokit_utils.CommonAppCallCreateParams | None = None,
         send_params: algokit_utils.SendParams | None = None,
         compilation_params: algokit_utils.AppClientCompilationParams | None = None,
-    ) -> tuple[LibPcg32ExposerPytealClient, algokit_utils.SendAppCreateTransactionResult]:
+    ) -> tuple[LibPcg32ExposerAlgoPyClient, algokit_utils.SendAppCreateTransactionResult]:
         """Creates a new instance using a bare call"""
         params = params or algokit_utils.CommonAppCallCreateParams()
         result = self.app_factory.send.bare.create(
@@ -881,40 +826,32 @@ class LibPcg32ExposerPytealFactorySendCreate:
             send_params=send_params,
             compilation_params=compilation_params
         )
-        return LibPcg32ExposerPytealClient(result[0]), result[1]
+        return LibPcg32ExposerAlgoPyClient(result[0]), result[1]
 
 
-class _LibPcg32ExposerPytealUpdateComposer:
-    def __init__(self, composer: "LibPcg32ExposerPytealComposer"):
+class _LibPcg32ExposerAlgoPyUpdateComposer:
+    def __init__(self, composer: "LibPcg32ExposerAlgoPyComposer"):
         self.composer = composer
 
 
-class _LibPcg32ExposerPytealDeleteComposer:
-    def __init__(self, composer: "LibPcg32ExposerPytealComposer"):
-        self.composer = composer
+class LibPcg32ExposerAlgoPyComposer:
+    """Composer for creating transaction groups for LibPcg32ExposerAlgoPy contract calls"""
 
-
-class LibPcg32ExposerPytealComposer:
-    """Composer for creating transaction groups for LibPcg32ExposerPyteal contract calls"""
-
-    def __init__(self, client: "LibPcg32ExposerPytealClient"):
+    def __init__(self, client: "LibPcg32ExposerAlgoPyClient"):
         self.client = client
         self._composer = client.algorand.new_group()
         self._result_mappers: list[typing.Callable[[algokit_utils.ABIReturn | None], object] | None] = []
 
     @property
-    def update(self) -> "_LibPcg32ExposerPytealUpdateComposer":
-        return _LibPcg32ExposerPytealUpdateComposer(self)
-
-    @property
-    def delete(self) -> "_LibPcg32ExposerPytealDeleteComposer":
-        return _LibPcg32ExposerPytealDeleteComposer(self)
+    def update(self) -> "_LibPcg32ExposerAlgoPyUpdateComposer":
+        return _LibPcg32ExposerAlgoPyUpdateComposer(self)
 
     def bounded_rand_uint32(
         self,
         args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint32Args,
-        params: algokit_utils.CommonAppCallParams | None = None
-    ) -> "LibPcg32ExposerPytealComposer":
+        params: algokit_utils.CommonAppCallParams | None = None,
+        compilation_params: algokit_utils.AppClientCompilationParams | None = None
+    ) -> "LibPcg32ExposerAlgoPyComposer":
         self._composer.add_app_call_method_call(
             self.client.params.bounded_rand_uint32(
                 args=args,
@@ -931,8 +868,9 @@ class LibPcg32ExposerPytealComposer:
     def bounded_rand_uint16(
         self,
         args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint16Args,
-        params: algokit_utils.CommonAppCallParams | None = None
-    ) -> "LibPcg32ExposerPytealComposer":
+        params: algokit_utils.CommonAppCallParams | None = None,
+        compilation_params: algokit_utils.AppClientCompilationParams | None = None
+    ) -> "LibPcg32ExposerAlgoPyComposer":
         self._composer.add_app_call_method_call(
             self.client.params.bounded_rand_uint16(
                 args=args,
@@ -949,8 +887,9 @@ class LibPcg32ExposerPytealComposer:
     def bounded_rand_uint8(
         self,
         args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint8Args,
-        params: algokit_utils.CommonAppCallParams | None = None
-    ) -> "LibPcg32ExposerPytealComposer":
+        params: algokit_utils.CommonAppCallParams | None = None,
+        compilation_params: algokit_utils.AppClientCompilationParams | None = None
+    ) -> "LibPcg32ExposerAlgoPyComposer":
         self._composer.add_app_call_method_call(
             self.client.params.bounded_rand_uint8(
                 args=args,
@@ -969,7 +908,7 @@ class LibPcg32ExposerPytealComposer:
         *,
         args: list[bytes] | None = None,
         params: algokit_utils.CommonAppCallParams | None = None,
-    ) -> "LibPcg32ExposerPytealComposer":
+    ) -> "LibPcg32ExposerAlgoPyComposer":
         params=params or algokit_utils.CommonAppCallParams()
         self._composer.add_app_call(
             self.client.params.clear_state(
@@ -985,7 +924,7 @@ class LibPcg32ExposerPytealComposer:
     
     def add_transaction(
         self, txn: Transaction, signer: TransactionSigner | None = None
-    ) -> "LibPcg32ExposerPytealComposer":
+    ) -> "LibPcg32ExposerAlgoPyComposer":
         self._composer.add_transaction(txn, signer)
         return self
     

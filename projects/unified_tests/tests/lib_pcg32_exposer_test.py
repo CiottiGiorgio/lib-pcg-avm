@@ -1,32 +1,22 @@
 import algokit_utils
 import pytest
-from algokit_utils import get_localnet_default_account
-from algokit_utils.config import config
-from algosdk.atomic_transaction_composer import SimulateAtomicTransactionResponse
-from algosdk.v2client.algod import AlgodClient
-from algosdk.v2client.indexer import IndexerClient
+from algokit_utils import (
+    AlgorandClient,
+    SendAtomicTransactionComposerResults,
+    SigningAccount,
+)
 
-from smart_contracts.artifacts.lib_pcg32_exposer_algopy import (
-    LibPcg32ExposerAlgopyClient,
-    SimulateOptions,
+from smart_contracts.artifacts.lib_pcg32_exposer_algo_py import (
+    LibPcg32ExposerAlgoPyClient,
+    LibPcg32ExposerAlgoPyFactory,
+)
+from smart_contracts.artifacts.lib_pcg32_exposer_algo_ts import (
+    LibPcg32ExposerAlgoTsClient,
+    LibPcg32ExposerAlgoTsFactory,
 )
 from smart_contracts.artifacts.lib_pcg32_exposer_pyteal import (
     LibPcg32ExposerPytealClient,
-)
-from smart_contracts.artifacts.lib_pcg32_exposer_ts import (
-    CreateApplicationArgs as CreateApplicationArgsTs,
-)
-from smart_contracts.artifacts.lib_pcg32_exposer_ts import (
-    Deploy as DeployTs,
-)
-from smart_contracts.artifacts.lib_pcg32_exposer_ts import (
-    DeployCreate as DeployCreateTs,
-)
-from smart_contracts.artifacts.lib_pcg32_exposer_ts import (
-    LibPcg32ExposerTsClient,
-)
-from smart_contracts.artifacts.lib_pcg32_exposer_ts import (
-    UpdateApplicationArgs as UpdateApplicationArgsTs,
+    LibPcg32ExposerPytealFactory,
 )
 
 
@@ -47,10 +37,10 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 metafunc.parametrize(
                     "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [91, 46, 23])
                 )
-        case "ts":
+        case "algots":
             if "lib_pcg32_client" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "lib_pcg32_client", ["lib_pcg32_exposer_ts_client"]
+                    "lib_pcg32_client", ["lib_pcg32_exposer_algots_client"]
                 )
             if "expected_library_size" in metafunc.fixturenames:
                 metafunc.parametrize("expected_library_size", [1300])
@@ -81,71 +71,44 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
 
 @pytest.fixture(scope="session")
 def lib_pcg32_exposer_algopy_client(
-    algod_client: AlgodClient, indexer_client: IndexerClient
-) -> LibPcg32ExposerAlgopyClient:
-    config.configure(
-        debug=True,
-        # trace_all=True,
-    )
-
-    client = LibPcg32ExposerAlgopyClient(
-        algod_client,
-        creator=get_localnet_default_account(algod_client),
-        indexer_client=indexer_client,
-    )
-
-    client.deploy(
+    algorand_client: AlgorandClient, deployer: SigningAccount
+) -> LibPcg32ExposerAlgoPyClient:
+    client, _ = LibPcg32ExposerAlgoPyFactory(
+        algorand_client, default_sender=deployer.address
+    ).deploy(
         on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
         on_update=algokit_utils.OnUpdate.UpdateApp,
     )
+
     return client
 
 
 @pytest.fixture(scope="session")
-def lib_pcg32_exposer_ts_client(
-    algod_client: AlgodClient, indexer_client: IndexerClient
-) -> LibPcg32ExposerTsClient:
-    config.configure(
-        debug=True,
-        # trace_all=True,
-    )
-
-    client = LibPcg32ExposerTsClient(
-        algod_client,
-        creator=get_localnet_default_account(algod_client),
-        indexer_client=indexer_client,
-    )
-
-    client.deploy(
+def lib_pcg32_exposer_algots_client(
+    algorand_client: AlgorandClient, deployer: SigningAccount
+) -> LibPcg32ExposerAlgoTsClient:
+    client, _ = LibPcg32ExposerAlgoTsFactory(
+        algorand_client, default_sender=deployer.address
+    ).deploy(
         on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
         on_update=algokit_utils.OnUpdate.AppendApp,
-        create_args=DeployCreateTs(args=CreateApplicationArgsTs()),
-        update_args=DeployTs(args=UpdateApplicationArgsTs()),
     )
+
     return client
 
 
 @pytest.fixture(scope="session")
 def lib_pcg32_exposer_pyteal_client(
-    algod_client: AlgodClient, indexer_client: IndexerClient
+    algorand_client: AlgorandClient, deployer: SigningAccount
 ) -> LibPcg32ExposerPytealClient:
-    config.configure(
-        debug=True,
-        # trace_all=True,
-    )
-
-    client = LibPcg32ExposerPytealClient(
-        algod_client,
-        creator=get_localnet_default_account(algod_client),
-        indexer_client=indexer_client,
-    )
-
-    client.deploy(
+    client, _ = LibPcg32ExposerPytealFactory(
+        algorand_client, default_sender=deployer.address
+    ).deploy(
         on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
         on_update=algokit_utils.OnUpdate.UpdateApp,
-        allow_update=True,
-        allow_delete=True,
+        compilation_params={"updatable": True, "deletable": True},
     )
+
     return client
 
 
@@ -1389,48 +1352,33 @@ UPPER_LOWER_BOUNDED_SEQUENCE = (
 
 def __bit_size_to_method(
     lib_pcg_exposer_client: (
-        LibPcg32ExposerAlgopyClient
+        LibPcg32ExposerAlgoPyClient
         | LibPcg32ExposerPytealClient
-        | LibPcg32ExposerTsClient
+        | LibPcg32ExposerAlgoTsClient
     ),
     bit_size: int,
     lower_bound: int,
     upper_bound: int,
     length: int,
-) -> SimulateAtomicTransactionResponse:
+) -> SendAtomicTransactionComposerResults:
     match bit_size:
         case 8:
             result = (
-                lib_pcg_exposer_client.compose()
-                .bounded_rand_uint8(
-                    seed=RNG_SEED,
-                    lower_bound=lower_bound,
-                    upper_bound=upper_bound,
-                    length=length,
-                )
-                .simulate(SimulateOptions(extra_opcode_budget=320_000))
+                lib_pcg_exposer_client.new_group()
+                .bounded_rand_uint8((RNG_SEED, lower_bound, upper_bound, length))
+                .simulate(extra_opcode_budget=320_000)
             )
         case 16:
             result = (
-                lib_pcg_exposer_client.compose()
-                .bounded_rand_uint16(
-                    seed=RNG_SEED,
-                    lower_bound=lower_bound,
-                    upper_bound=upper_bound,
-                    length=length,
-                )
-                .simulate(SimulateOptions(extra_opcode_budget=320_000))
+                lib_pcg_exposer_client.new_group()
+                .bounded_rand_uint16((RNG_SEED, lower_bound, upper_bound, length))
+                .simulate(extra_opcode_budget=320_000)
             )
         case 32:
             result = (
-                lib_pcg_exposer_client.compose()
-                .bounded_rand_uint32(
-                    seed=RNG_SEED,
-                    lower_bound=lower_bound,
-                    upper_bound=upper_bound,
-                    length=length,
-                )
-                .simulate(SimulateOptions(extra_opcode_budget=320_000))
+                lib_pcg_exposer_client.new_group()
+                .bounded_rand_uint32((RNG_SEED, lower_bound, upper_bound, length))
+                .simulate(extra_opcode_budget=320_000)
             )
         case _:
             raise ValueError("")
@@ -1444,7 +1392,10 @@ def test_library_size(
     lib_pcg32_client: str, expected_library_size: int, request: pytest.FixtureRequest
 ):
     client = request.getfixturevalue(lib_pcg32_client)
-    assert len(client.app_client.approval.teal.split("\n")) < expected_library_size
+    assert (
+        len(client.app_client.app_spec.source.approval.split("\n"))
+        < expected_library_size
+    )
 
 
 def test_unbounded_maximal_cost(
@@ -1460,7 +1411,7 @@ def test_unbounded_maximal_cost(
         client, bit_size, 0, 0, expected_maximal_sequence_length
     )
 
-    assert result.abi_results[0].return_value
+    assert result.returns[0].value
     assert (
         result.simulate_response["txn-groups"][0]["app-budget-consumed"]
         < 700 * max_unbounded_opup_calls
@@ -1484,7 +1435,7 @@ def test_bounded_maximal_cost(
         expected_maximal_sequence_length,
     )
 
-    assert result.abi_results[0].return_value
+    assert result.returns[0].value
     assert (
         result.simulate_response["txn-groups"][0]["app-budget-consumed"]
         < 700 * max_bounded_opup_calls
@@ -1503,7 +1454,7 @@ def test_unbounded_sequence(
     client = request.getfixturevalue(lib_pcg32_client)
     result = __bit_size_to_method(client, bit_size, 0, 0, 100)
 
-    assert result.abi_results[0].return_value == expected_sequence
+    assert result.returns[0].value == expected_sequence
 
 
 @pytest.mark.parametrize(
@@ -1518,7 +1469,7 @@ def test_lower_bounded_sequence(
     client = request.getfixturevalue(lib_pcg32_client)
     result = __bit_size_to_method(client, bit_size, 2 ** (bit_size - 1) - 1, 0, 100)
 
-    assert result.abi_results[0].return_value == expected_sequence
+    assert result.returns[0].value == expected_sequence
 
 
 @pytest.mark.parametrize(
@@ -1533,7 +1484,7 @@ def test_upper_bounded_sequence(
     client = request.getfixturevalue(lib_pcg32_client)
     result = __bit_size_to_method(client, bit_size, 0, 2 ** (bit_size - 1) + 1, 100)
 
-    assert result.abi_results[0].return_value == expected_sequence
+    assert result.returns[0].value == expected_sequence
 
 
 @pytest.mark.parametrize(
@@ -1554,4 +1505,4 @@ def test_upper_lower_bounded_sequence(
         100,
     )
 
-    assert result.abi_results[0].return_value == expected_sequence
+    assert result.returns[0].value == expected_sequence

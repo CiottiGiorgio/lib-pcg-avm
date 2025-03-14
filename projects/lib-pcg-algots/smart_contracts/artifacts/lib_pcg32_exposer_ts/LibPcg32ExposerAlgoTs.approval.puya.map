@@ -118,7 +118,7 @@
       ]
     },
     "94": {
-      "callsub": "smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerTs.bounded_rand_uint8",
+      "callsub": "smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.bounded_rand_uint8",
       "op": "callsub bounded_rand_uint8",
       "defined_out": [
         "tmp%31#0"
@@ -234,7 +234,7 @@
       ]
     },
     "122": {
-      "callsub": "smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerTs.bounded_rand_uint16",
+      "callsub": "smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.bounded_rand_uint16",
       "op": "callsub bounded_rand_uint16",
       "defined_out": [
         "tmp%21#0"
@@ -350,7 +350,7 @@
       ]
     },
     "150": {
-      "callsub": "smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerTs.bounded_rand_uint32",
+      "callsub": "smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.bounded_rand_uint32",
       "op": "callsub bounded_rand_uint32",
       "defined_out": [
         "tmp%11#0"
@@ -484,7 +484,7 @@
       "stack_out": []
     },
     "182": {
-      "callsub": "smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerTs.update",
+      "callsub": "smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.update",
       "op": "callsub update"
     },
     "185": {
@@ -2706,7 +2706,7 @@
       "op": "retsub"
     },
     "530": {
-      "subroutine": "smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerTs.bounded_rand_uint32",
+      "subroutine": "smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.bounded_rand_uint32",
       "params": {
         "seed#0": "bytes",
         "lower_bound#0": "bytes",
@@ -3137,7 +3137,7 @@
       "op": "retsub"
     },
     "624": {
-      "subroutine": "smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerTs.bounded_rand_uint16",
+      "subroutine": "smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.bounded_rand_uint16",
       "params": {
         "seed#0": "bytes",
         "lower_bound#0": "bytes",
@@ -3568,7 +3568,7 @@
       "op": "retsub"
     },
     "716": {
-      "subroutine": "smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerTs.bounded_rand_uint8",
+      "subroutine": "smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.bounded_rand_uint8",
       "params": {
         "seed#0": "bytes",
         "lower_bound#0": "bytes",
@@ -3993,7 +3993,7 @@
       "op": "retsub"
     },
     "805": {
-      "subroutine": "smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerTs.update",
+      "subroutine": "smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.update",
       "params": {},
       "block": "update",
       "stack_in": [],

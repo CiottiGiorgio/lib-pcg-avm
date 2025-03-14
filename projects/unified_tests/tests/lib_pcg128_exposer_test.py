@@ -3,33 +3,24 @@ from typing import Any
 
 import algokit_utils
 import pytest
-from algokit_utils import get_localnet_default_account
-from algokit_utils.config import config
-from algosdk.atomic_transaction_composer import SimulateAtomicTransactionResponse
-from algosdk.v2client.algod import AlgodClient
-from algosdk.v2client.indexer import IndexerClient
-
-from smart_contracts.artifacts.lib_pcg128_exposer_algopy import (
-    LibPcg128ExposerAlgopyClient,
-    SimulateOptions,
+from algokit_utils import (
+    AlgorandClient,
+    SendAtomicTransactionComposerResults,
+    SigningAccount,
 )
+
+from smart_contracts.artifacts.lib_pcg128_exposer_algo_py import (
+    LibPcg128ExposerAlgoPyClient,
+    LibPcg128ExposerAlgoPyFactory,
+)
+
+# from smart_contracts.artifacts.lib_pcg128_exposer_algo_ts import (
+#     LibPcg128ExposerAlgoTsClient,
+#     LibPcg128ExposerAlgoTsFactory,
+# )
 from smart_contracts.artifacts.lib_pcg128_exposer_pyteal import (
     LibPcg128ExposerPytealClient,
-)
-from smart_contracts.artifacts.lib_pcg128_exposer_ts import (
-    CreateApplicationArgs as CreateApplicationArgsTs,
-)
-from smart_contracts.artifacts.lib_pcg128_exposer_ts import (
-    Deploy as DeployTs,
-)
-from smart_contracts.artifacts.lib_pcg128_exposer_ts import (
-    DeployCreate as DeployCreateTs,
-)
-from smart_contracts.artifacts.lib_pcg128_exposer_ts import (
-    LibPcg128ExposerTsClient,
-)
-from smart_contracts.artifacts.lib_pcg128_exposer_ts import (
-    UpdateApplicationArgs as UpdateApplicationArgsTs,
+    LibPcg128ExposerPytealFactory,
 )
 
 
@@ -43,21 +34,16 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
             if "get_random_sequence_method" in metafunc.fixturenames:
 
                 def get_random_sequence_method(
-                    client: LibPcg128ExposerAlgopyClient,
+                    client: LibPcg128ExposerAlgoPyClient,
                     seed: bytes,
                     lower_bound: int,
                     upper_bound: int,
                     length: int,
-                ) -> SimulateAtomicTransactionResponse:
+                ) -> SendAtomicTransactionComposerResults:
                     return (
-                        client.compose()
-                        .bounded_rand_uint128(
-                            seed=seed,
-                            lower_bound=lower_bound,
-                            upper_bound=upper_bound,
-                            length=length,
-                        )
-                        .simulate(SimulateOptions(extra_opcode_budget=320_000))
+                        client.new_group()
+                        .bounded_rand_uint128((seed, lower_bound, upper_bound, length))
+                        .simulate(extra_opcode_budget=320_000)
                     )
 
                 metafunc.parametrize(
@@ -70,41 +56,41 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 metafunc.parametrize("max_unbounded_opup_calls", [19])
             if "max_bounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize("max_bounded_opup_calls", [22])
-        case "ts":
-            if "lib_pcg128_client" in metafunc.fixturenames:
-                metafunc.parametrize(
-                    "lib_pcg128_client", ["lib_pcg128_exposer_ts_client"]
-                )
-            if "get_random_sequence_method" in metafunc.fixturenames:
-
-                def get_random_sequence_method(
-                    client: LibPcg128ExposerTsClient,
-                    seed: bytes,
-                    lower_bound: int,
-                    upper_bound: int,
-                    length: int,
-                ) -> SimulateAtomicTransactionResponse:
-                    return (
-                        client.compose()
-                        .bounded_rand_uint128(
-                            seed=seed,
-                            lower_bound=lower_bound,
-                            upper_bound=upper_bound,
-                            length=length,
-                        )
-                        .simulate(SimulateOptions(extra_opcode_budget=320_000))
-                    )
-
-                metafunc.parametrize(
-                    "get_random_sequence_method",
-                    [get_random_sequence_method],
-                )
-            if "expected_library_size" in metafunc.fixturenames:
-                metafunc.parametrize("expected_library_size", [950])
-            if "max_unbounded_opup_calls" in metafunc.fixturenames:
-                metafunc.parametrize("max_unbounded_opup_calls", [44])
-            if "max_bounded_opup_calls" in metafunc.fixturenames:
-                metafunc.parametrize("max_bounded_opup_calls", [50])
+        # case "algots":
+        #     if "lib_pcg128_client" in metafunc.fixturenames:
+        #         metafunc.parametrize(
+        #             "lib_pcg128_client", ["lib_pcg128_exposer_algots_client"]
+        #         )
+        #     if "get_random_sequence_method" in metafunc.fixturenames:
+        #
+        #         def get_random_sequence_method(
+        #             client: LibPcg128ExposerAlgoTsClient,
+        #             seed: bytes,
+        #             lower_bound: int,
+        #             upper_bound: int,
+        #             length: int,
+        #         ) -> SimulateAtomicTransactionResponse:
+        #             return (
+        #                 client.compose()
+        #                 .bounded_rand_uint128(
+        #                     seed=seed,
+        #                     lower_bound=lower_bound,
+        #                     upper_bound=upper_bound,
+        #                     length=length,
+        #                 )
+        #                 .simulate(SimulateOptions(extra_opcode_budget=320_000))
+        #             )
+        #
+        #         metafunc.parametrize(
+        #             "get_random_sequence_method",
+        #             [get_random_sequence_method],
+        #         )
+        #     if "expected_library_size" in metafunc.fixturenames:
+        #         metafunc.parametrize("expected_library_size", [950])
+        #     if "max_unbounded_opup_calls" in metafunc.fixturenames:
+        #         metafunc.parametrize("max_unbounded_opup_calls", [44])
+        #     if "max_bounded_opup_calls" in metafunc.fixturenames:
+        #         metafunc.parametrize("max_bounded_opup_calls", [50])
         case "pyteal":
             if "lib_pcg128_client" in metafunc.fixturenames:
                 metafunc.parametrize(
@@ -118,20 +104,21 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                     lower_bound: int,
                     upper_bound: int,
                     length: int,
-                ) -> SimulateAtomicTransactionResponse:
+                ) -> SendAtomicTransactionComposerResults:
                     result = (
-                        client.compose()
+                        client.new_group()
                         .bounded_rand_uint128(
-                            seed=seed,
-                            lower_bound=lower_bound.to_bytes(16, "big"),
-                            upper_bound=upper_bound.to_bytes(16, "big"),
-                            length=length,
+                            (
+                                seed,
+                                lower_bound.to_bytes(16, "big"),
+                                upper_bound.to_bytes(16, "big"),
+                                length,
+                            )
                         )
-                        .simulate(SimulateOptions(extra_opcode_budget=320_000))
+                        .simulate(extra_opcode_budget=320_000)
                     )
-                    result.abi_results[0].return_value = [
-                        int.from_bytes(x, "big")
-                        for x in result.abi_results[0].return_value
+                    result.returns[0].value = [
+                        int.from_bytes(x, "big") for x in result.returns[0].value
                     ]
                     return result
 
@@ -149,71 +136,44 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
 
 @pytest.fixture(scope="session")
 def lib_pcg128_exposer_algopy_client(
-    algod_client: AlgodClient, indexer_client: IndexerClient
-) -> LibPcg128ExposerAlgopyClient:
-    config.configure(
-        debug=True,
-        # trace_all=True,
-    )
-
-    client = LibPcg128ExposerAlgopyClient(
-        algod_client,
-        creator=get_localnet_default_account(algod_client),
-        indexer_client=indexer_client,
-    )
-
-    client.deploy(
-        on_schema_break=algokit_utils.OnSchemaBreak.ReplaceApp,
+    algorand_client: AlgorandClient, deployer: SigningAccount
+) -> LibPcg128ExposerAlgoPyClient:
+    client, _ = LibPcg128ExposerAlgoPyFactory(
+        algorand_client, default_sender=deployer.address
+    ).deploy(
+        on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
         on_update=algokit_utils.OnUpdate.UpdateApp,
     )
+
     return client
 
 
-@pytest.fixture(scope="session")
-def lib_pcg128_exposer_ts_client(
-    algod_client: AlgodClient, indexer_client: IndexerClient
-) -> LibPcg128ExposerTsClient:
-    config.configure(
-        debug=True,
-        # trace_all=True,
-    )
-
-    client = LibPcg128ExposerTsClient(
-        algod_client,
-        creator=get_localnet_default_account(algod_client),
-        indexer_client=indexer_client,
-    )
-
-    client.deploy(
-        on_schema_break=algokit_utils.OnSchemaBreak.ReplaceApp,
-        on_update=algokit_utils.OnUpdate.UpdateApp,
-        create_args=DeployCreateTs(args=CreateApplicationArgsTs()),
-        update_args=DeployTs(args=UpdateApplicationArgsTs()),
-    )
-    return client
+# @pytest.fixture(scope="session")
+# def lib_pcg128_exposer_ts_client(
+#     algorand_client: AlgorandClient, deployer: SigningAccount
+# ) -> LibPcg128ExposerAlgoTsClient:
+#     client, _ = LibPcg128ExposerAlgoTsFactory(
+#         algorand_client, default_sender=deployer.address
+#     ).deploy(
+#         on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
+#         on_update=algokit_utils.OnUpdate.AppendApp,
+#     )
+#
+#     return client
 
 
 @pytest.fixture(scope="session")
 def lib_pcg128_exposer_pyteal_client(
-    algod_client: AlgodClient, indexer_client: IndexerClient
+    algorand_client: AlgorandClient, deployer: SigningAccount
 ) -> LibPcg128ExposerPytealClient:
-    config.configure(
-        debug=True,
-        # trace_all=True,
-    )
-
-    client = LibPcg128ExposerPytealClient(
-        algod_client,
-        creator=get_localnet_default_account(algod_client),
-        indexer_client=indexer_client,
-    )
-
-    client.deploy(
-        on_schema_break=algokit_utils.OnSchemaBreak.ReplaceApp,
+    client, _ = LibPcg128ExposerPytealFactory(
+        algorand_client, default_sender=deployer.address
+    ).deploy(
+        on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
         on_update=algokit_utils.OnUpdate.UpdateApp,
-        allow_update=True,
-        allow_delete=True,
+        compilation_params={"updatable": True, "deletable": True},
     )
+
     return client
 
 
@@ -688,7 +648,10 @@ def test_library_size(
     request: pytest.FixtureRequest,
 ):
     client = request.getfixturevalue(lib_pcg128_client)
-    assert len(client.app_client.approval.teal.split("\n")) < expected_library_size
+    assert (
+        len(client.app_client.app_spec.source.approval.split("\n"))
+        < expected_library_size
+    )
 
 
 def test_unbounded_maximal_cost(
@@ -702,7 +665,7 @@ def test_unbounded_maximal_cost(
         client, RNG_SEED, 0, 0, EXPECTED_MAXIMAL_SEQUENCE_LENGTH
     )
 
-    assert result.abi_results[0].return_value
+    assert result.returns[0].value
     assert (
         result.simulate_response["txn-groups"][0]["app-budget-consumed"]
         < 700 * max_unbounded_opup_calls
@@ -720,7 +683,7 @@ def test_bounded_maximal_cost(
         client, RNG_SEED, 1, 2**64 - 1, EXPECTED_MAXIMAL_SEQUENCE_LENGTH
     )
 
-    assert result.abi_results[0].return_value
+    assert result.returns[0].value
     assert (
         result.simulate_response["txn-groups"][0]["app-budget-consumed"]
         < 700 * max_bounded_opup_calls
@@ -737,7 +700,7 @@ def test_unbounded_sequence(
         client, RNG_SEED, 0, 0, EXPECTED_MAXIMAL_SEQUENCE_LENGTH
     )
 
-    assert result.abi_results[0].return_value == UNBOUNDED_SEQUENCE
+    assert result.returns[0].value == UNBOUNDED_SEQUENCE
 
 
 # def test_lower_bounded_sequence(
@@ -756,7 +719,7 @@ def test_unbounded_sequence(
 #         .simulate(SimulateOptions(extra_opcode_budget=320_000))
 #     )
 #
-#     assert result.abi_results[0].return_value == LOWER_BOUNDED_SEQUENCE
+#     assert result.returns[0].value == LOWER_BOUNDED_SEQUENCE
 #
 #
 # def test_upper_bounded_sequence(
@@ -775,7 +738,7 @@ def test_unbounded_sequence(
 #         .simulate(SimulateOptions(extra_opcode_budget=320_000))
 #     )
 #
-#     assert result.abi_results[0].return_value == UPPER_BOUNDED_SEQUENCE
+#     assert result.returns[0].value == UPPER_BOUNDED_SEQUENCE
 #
 #
 # def test_upper_lower_bounded_sequence(
@@ -794,4 +757,4 @@ def test_unbounded_sequence(
 #         .simulate(SimulateOptions(extra_opcode_budget=320_000))
 #     )
 #
-#     assert result.abi_results[0].return_value == UPPER_LOWER_BOUNDED_SEQUENCE
+#     assert result.returns[0].value == UPPER_LOWER_BOUNDED_SEQUENCE

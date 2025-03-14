@@ -4,7 +4,7 @@
     "../../../lib_pcg/pcg32.py",
     "../../lib_pcg32_exposer/contract.py"
   ],
-  "mappings": "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",
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ACcA;;AAAA;;;AAAA;;;;;;;;;;;;;;;;;AAAA;;;AAAA;;;;;;;;AAAA;;AAiCK;;AAAA;AAAA;AAAA;;AAAA;AAjCL;;;AAAA;;;AAAA;;;AAAA;;;AAiCK;;;AAAA;AAAA;AAAA;AAAA;AAAA;;AAhBA;;AAAA;AAAA;AAAA;;AAAA;AAjBL;;;AAAA;;;AAAA;;;AAAA;;;AAiBK;;;AAAA;AAAA;AAAA;AAAA;AAAA;;AAhBA;;AAAA;AAAA;AAAA;;AAAA;AADL;;;AAAA;;;AAAA;;;AAAA;;;AACK;;;AAAA;AAAA;AAAA;AAAA;AAAA;;AADL;;AAAA;AAAA;;AAAA;;;;;;AAAA;;;;;;;;;AAiDK;;AAAA;AAAA;;;AAAA;;ADtDL;;;AAWW;;AAAA;AAAe;AAAf;AAAP;AAEoB;;AAAA;AAoIC;AAkHe;;AAAf;AAAA;;AAtPc;;AAuPd;AAAA;;AAlHD;AAAA;;AAiHgB;;AAAf;AAAA;;AAtPc;;AAuPd;AAAA;;AAvPrB;AA0IJ;;;;;;;AAoCW;;AAAS;;;;AAAT;AAAP;AACU;;AAAA;AAAA;;;AAEH;;AAAY;AAAZ;AAAA;;;AAAiB;;AAAY;;AAAZ;AAAjB;;;AAAmC;;AAAY;;AAAZ;AAAnC;;;;AAAP;AACA;;AAAwB;;AAAZ;AAAZ;AAAA;;AACwB;AAAxB;AAAwB;AAAxB;;AAEG;;AAAA;;;AAAA;;AAAA;;;AACU;AAAL;;AAAK;;AAAA;;AAAA;AAAjB;;;AAgEyB;;AAAe;;AAAf;AAAA;;AAfM;;AAgBN;AAAA;;AASE;;AAAS;;AAAT;AAAD;;AAAA;AAA0B;;AAA3B;AAqBL;AAAT;AArB8C;;AAAS;;AAAT;AAO7C;AAAA;AAMuB;AAAA;AAAQ;AAAhB;AAAA;;AANiD;;AAArB;AAAV;;AAAA;AAAA;AAczB;AAAT;AAdA;AA9EsB;AAAX;;AAAA;;AAAA;AAAV;;AAAA;AAAA;AAAA;;AAHK;;AAAA;AAAA;AAAA;;;;;;;AA6Bb;;AAAA;;AAAA;;AAAA;;AAAA;AAxBJ;;AAAA;;;AACmB;;AAAc;AAAd;AAAP;AACsB;AAAA;;AAAA;AAAf;;AAAA;AAAP;AACsB;;AAAc;AAAd;AAAf;;AAAA;AAAP;AAEA;;AAAA;;AAAiB;AAAjB;;AA6EuB;;AAAA;AAAA;AAAQ;AAAhB;AAAA;;AAQP;AAAT;AA/EH;AAAY;AAAZ;;AAES;AAAL;;AAAK;;AAAA;;AAAA;AAAjB;;;AA8CyB;;AAAe;;AAAf;AAAA;;AAfM;;AAgBN;AAAA;;AASE;;AAAS;;AAAT;AAAD;;AAAA;AAA0B;;AAA3B;AAqBL;AAAT;AArB8C;;AAAS;;AAAT;AAO7C;AAAA;AAMuB;AAAA;AAAQ;AAAhB;AAAA;;AANiD;;AAArB;AAAV;;AAAA;AAAA;AAczB;AAAT;AAdA;AAAA;AAAA;;AA5DQ;;AAAA;AAAnB;;;AAEiC;;AAAA;;AAAA;AAAD;;AAAA;AAAR;AADM;;AAAA;;AAAA;AAAV;;AAAA;AAAA;AAAA;;AAJH;;AAAA;AAAA;AAAA;;;;;;;;;;;;AANkB;AAAA;;AAAA;AAAD;AAAkB;AAAlB;AAAf;;AAAA;AAAP;AAEA;;AAAiB;AAAjB;;;;;;;;;AC3MZ;;;AAQQ;;AAAQ;;;AAGG;;AAAA;AAAoB;;AAAA;AAAoB;;AAAA;AD4CrC;;AACP;;AADO;;AAAA;;AAAA;;;AAAA;;ACzCd;AAER;;;ADCW;;AAAA;;;ACUQ;;AAAA;AAAoB;;AAAA;AAAoB;;AAAA;AD2DrC;;AACP;;AADO;;AAAA;;AAAA;;;AAAA;;ACxDd;AAER;;;ADLW;;AAAA;;;ACgBQ;;AAAA;AAAoB;;AAAA;AAAoB;;AAAA;AD0ErC;;AACP;AADO;;AAAA;;AAAA;;;AAAA;;ACvEd;AAER;;;AAEe;;AAAc;;AAAd;AAAP;",
   "op_pc_offset": 0,
   "pc_events": {
     "1": {
@@ -117,7 +117,7 @@
       ]
     },
     "90": {
-      "callsub": "smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgopy.bounded_rand_uint8",
+      "callsub": "smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgoPy.bounded_rand_uint8",
       "op": "callsub bounded_rand_uint8",
       "defined_out": [
         "tmp%31#0"
@@ -233,7 +233,7 @@
       ]
     },
     "118": {
-      "callsub": "smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgopy.bounded_rand_uint16",
+      "callsub": "smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgoPy.bounded_rand_uint16",
       "op": "callsub bounded_rand_uint16",
       "defined_out": [
         "tmp%21#0"
@@ -349,7 +349,7 @@
       ]
     },
     "146": {
-      "callsub": "smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgopy.bounded_rand_uint32",
+      "callsub": "smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgoPy.bounded_rand_uint32",
       "op": "callsub bounded_rand_uint32",
       "defined_out": [
         "tmp%11#0"
@@ -483,7 +483,7 @@
       "stack_out": []
     },
     "178": {
-      "callsub": "smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgopy.update",
+      "callsub": "smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgoPy.update",
       "op": "callsub update"
     },
     "181": {
@@ -499,176 +499,6 @@
       "op": "return"
     },
     "183": {
-      "subroutine": "smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgopy.bounded_rand_uint32",
-      "params": {
-        "seed#0": "bytes",
-        "lower_bound#0": "bytes",
-        "upper_bound#0": "bytes",
-        "length#0": "bytes"
-      },
-      "block": "bounded_rand_uint32",
-      "stack_in": [],
-      "op": "proto 4 1"
-    },
-    "186": {
-      "op": "frame_dig -4",
-      "defined_out": [
-        "seed#0 (copy)"
-      ],
-      "stack_out": [
-        "seed#0 (copy)"
-      ]
-    },
-    "188": {
-      "callsub": "lib_pcg.pcg32.pcg32_init",
-      "op": "callsub pcg32_init",
-      "defined_out": [
-        "state#0"
-      ],
-      "stack_out": [
-        "state#0"
-      ]
-    },
-    "191": {
-      "op": "frame_dig -3",
-      "defined_out": [
-        "lower_bound#0 (copy)",
-        "state#0"
-      ],
-      "stack_out": [
-        "state#0",
-        "lower_bound#0 (copy)"
-      ]
-    },
-    "193": {
-      "op": "btoi",
-      "defined_out": [
-        "lower_bound#1",
-        "state#0"
-      ],
-      "stack_out": [
-        "state#0",
-        "lower_bound#1"
-      ]
-    },
-    "194": {
-      "op": "frame_dig -2",
-      "defined_out": [
-        "lower_bound#1",
-        "state#0",
-        "upper_bound#0 (copy)"
-      ],
-      "stack_out": [
-        "state#0",
-        "lower_bound#1",
-        "upper_bound#0 (copy)"
-      ]
-    },
-    "196": {
-      "op": "btoi",
-      "defined_out": [
-        "lower_bound#1",
-        "state#0",
-        "upper_bound#1"
-      ],
-      "stack_out": [
-        "state#0",
-        "lower_bound#1",
-        "upper_bound#1"
-      ]
-    },
-    "197": {
-      "op": "frame_dig -1",
-      "defined_out": [
-        "length#0 (copy)",
-        "lower_bound#1",
-        "state#0",
-        "upper_bound#1"
-      ],
-      "stack_out": [
-        "state#0",
-        "lower_bound#1",
-        "upper_bound#1",
-        "length#0 (copy)"
-      ]
-    },
-    "199": {
-      "op": "btoi",
-      "defined_out": [
-        "length#1",
-        "lower_bound#1",
-        "state#0",
-        "upper_bound#1"
-      ],
-      "stack_out": [
-        "state#0",
-        "lower_bound#1",
-        "upper_bound#1",
-        "length#1"
-      ]
-    },
-    "200": {
-      "op": "uncover 3",
-      "stack_out": [
-        "lower_bound#1",
-        "upper_bound#1",
-        "length#1",
-        "state#0"
-      ]
-    },
-    "202": {
-      "op": "pushint 32 // 32",
-      "defined_out": [
-        "32",
-        "length#1",
-        "lower_bound#1",
-        "state#0",
-        "upper_bound#1"
-      ],
-      "stack_out": [
-        "lower_bound#1",
-        "upper_bound#1",
-        "length#1",
-        "state#0",
-        "32"
-      ]
-    },
-    "204": {
-      "op": "cover 4"
-    },
-    "206": {
-      "op": "cover 4",
-      "stack_out": [
-        "state#0",
-        "32",
-        "lower_bound#1",
-        "upper_bound#1",
-        "length#1"
-      ]
-    },
-    "208": {
-      "callsub": "lib_pcg.pcg32.__pcg32_bounded_sequence",
-      "op": "callsub __pcg32_bounded_sequence",
-      "defined_out": [
-        "sequence#1",
-        "state#0"
-      ],
-      "stack_out": [
-        "state#0",
-        "sequence#1"
-      ]
-    },
-    "211": {
-      "op": "bury 1",
-      "stack_out": [
-        "sequence#1"
-      ]
-    },
-    "213": {
-      "retsub": true,
-      "op": "retsub"
-    },
-    "214": {
       "subroutine": "lib_pcg.pcg32.pcg32_init",
       "params": {
         "seed#0": "bytes"
@@ -677,7 +507,7 @@
       "stack_in": [],
       "op": "proto 1 1"
     },
-    "217": {
+    "186": {
       "op": "frame_dig -1",
       "defined_out": [
         "seed#0 (copy)"
@@ -686,7 +516,7 @@
         "seed#0 (copy)"
       ]
     },
-    "219": {
+    "188": {
       "op": "len",
       "defined_out": [
         "tmp%0#0"
@@ -695,7 +525,7 @@
         "tmp%0#0"
       ]
     },
-    "220": {
+    "189": {
       "op": "intc_3 // 8",
       "defined_out": [
         "8",
@@ -706,7 +536,7 @@
         "8"
       ]
     },
-    "221": {
+    "190": {
       "op": "==",
       "defined_out": [
         "tmp%1#0"
@@ -715,17 +545,17 @@
         "tmp%1#0"
       ]
     },
-    "222": {
+    "191": {
       "op": "assert",
       "stack_out": []
     },
-    "223": {
+    "192": {
       "op": "frame_dig -1",
       "stack_out": [
         "seed#0 (copy)"
       ]
     },
-    "225": {
+    "194": {
       "op": "btoi",
       "defined_out": [
         "initial_state#0"
@@ -734,7 +564,7 @@
         "initial_state#0"
       ]
     },
-    "226": {
+    "195": {
       "op": "intc_1 // 0",
       "defined_out": [
         "0",
@@ -745,7 +575,7 @@
         "0"
       ]
     },
-    "227": {
+    "196": {
       "op": "intc 4 // 6364136223846793005",
       "defined_out": [
         "0",
@@ -758,7 +588,7 @@
         "6364136223846793005"
       ]
     },
-    "229": {
+    "198": {
       "op": "mulw",
       "defined_out": [
         "_high_mul#0",
@@ -771,14 +601,14 @@
         "low_mul#0"
       ]
     },
-    "230": {
+    "199": {
       "op": "bury 1",
       "stack_out": [
         "initial_state#0",
         "low_mul#0"
       ]
     },
-    "232": {
+    "201": {
       "op": "intc 5 // 1442695040888963407",
       "defined_out": [
         "1442695040888963407",
@@ -791,7 +621,7 @@
         "1442695040888963407"
       ]
     },
-    "234": {
+    "203": {
       "op": "addw",
       "defined_out": [
         "_high_add#0",
@@ -804,14 +634,14 @@
         "low_add#0"
       ]
     },
-    "235": {
+    "204": {
       "op": "bury 1",
       "stack_out": [
         "initial_state#0",
         "low_add#0"
       ]
     },
-    "237": {
+    "206": {
       "op": "addw",
       "defined_out": [
         "_high_addw#0",
@@ -822,57 +652,57 @@
         "state#1"
       ]
     },
-    "238": {
+    "207": {
       "op": "bury 1",
       "stack_out": [
         "state#1"
       ]
     },
-    "240": {
+    "209": {
       "op": "intc 4 // 6364136223846793005",
       "stack_out": [
         "state#1",
         "6364136223846793005"
       ]
     },
-    "242": {
+    "211": {
       "op": "mulw",
       "stack_out": [
         "_high_mul#0",
         "low_mul#0"
       ]
     },
-    "243": {
+    "212": {
       "op": "bury 1",
       "stack_out": [
         "low_mul#0"
       ]
     },
-    "245": {
+    "214": {
       "op": "intc 5 // 1442695040888963407",
       "stack_out": [
         "low_mul#0",
         "1442695040888963407"
       ]
     },
-    "247": {
+    "216": {
       "op": "addw",
       "stack_out": [
         "_high_add#0",
         "low_add#0"
       ]
     },
-    "248": {
+    "217": {
       "op": "bury 1",
       "stack_out": [
         "low_add#0"
       ]
     },
-    "250": {
+    "219": {
       "retsub": true,
       "op": "retsub"
     },
-    "251": {
+    "220": {
       "subroutine": "lib_pcg.pcg32.__pcg32_bounded_sequence",
       "params": {
         "state#0": "uint64",
@@ -885,13 +715,13 @@
       "stack_in": [],
       "op": "proto 5 2"
     },
-    "254": {
+    "223": {
       "op": "pushbytes \"\"",
       "stack_out": [
         "absolute_bound#0"
       ]
     },
-    "256": {
+    "225": {
       "op": "dupn 5",
       "stack_out": [
         "absolute_bound#0",
@@ -902,7 +732,7 @@
         "truncate_start_cached#0"
       ]
     },
-    "258": {
+    "227": {
       "op": "frame_dig -1",
       "defined_out": [
         "length#0 (copy)"
@@ -917,7 +747,7 @@
         "length#0 (copy)"
       ]
     },
-    "260": {
+    "229": {
       "op": "pushint 65536 // 65536",
       "defined_out": [
         "65536",
@@ -934,7 +764,7 @@
         "65536"
       ]
     },
-    "264": {
+    "233": {
       "op": "<",
       "defined_out": [
         "tmp%0#0"
@@ -949,7 +779,7 @@
         "tmp%0#0"
       ]
     },
-    "265": {
+    "234": {
       "op": "assert",
       "stack_out": [
         "absolute_bound#0",
@@ -960,7 +790,7 @@
         "truncate_start_cached#0"
       ]
     },
-    "266": {
+    "235": {
       "op": "frame_dig -1",
       "stack_out": [
         "absolute_bound#0",
@@ -972,7 +802,7 @@
         "length#0 (copy)"
       ]
     },
-    "268": {
+    "237": {
       "op": "itob",
       "defined_out": [
         "val_as_bytes%0#0"
@@ -987,7 +817,7 @@
         "val_as_bytes%0#0"
       ]
     },
-    "269": {
+    "238": {
       "op": "extract 6 2",
       "defined_out": [
         "result#1"
@@ -1002,7 +832,7 @@
         "result#1"
       ]
     },
-    "272": {
+    "241": {
       "op": "frame_dig -4",
       "defined_out": [
         "bit_size#0 (copy)",
@@ -1019,7 +849,7 @@
         "bit_size#0 (copy)"
       ]
     },
-    "274": {
+    "243": {
       "op": "intc_3 // 8",
       "defined_out": [
         "8",
@@ -1038,7 +868,7 @@
         "8"
       ]
     },
-    "275": {
+    "244": {
       "op": "==",
       "defined_out": [
         "result#1",
@@ -1055,7 +885,7 @@
         "tmp%2#0"
       ]
     },
-    "276": {
+    "245": {
       "op": "bnz __pcg32_bounded_sequence_bool_true@3",
       "stack_out": [
         "absolute_bound#0",
@@ -1067,31 +897,31 @@
         "result#1"
       ]
     },
-    "279": {
+    "248": {
       "op": "frame_dig -4"
     },
-    "281": {
+    "250": {
       "op": "pushint 16 // 16"
     },
-    "283": {
+    "252": {
       "op": "=="
     },
-    "284": {
+    "253": {
       "op": "bnz __pcg32_bounded_sequence_bool_true@3"
     },
-    "287": {
+    "256": {
       "op": "frame_dig -4"
     },
-    "289": {
+    "258": {
       "op": "pushint 32 // 32"
     },
-    "291": {
+    "260": {
       "op": "=="
     },
-    "292": {
+    "261": {
       "op": "bz __pcg32_bounded_sequence_bool_false@4"
     },
-    "295": {
+    "264": {
       "block": "__pcg32_bounded_sequence_bool_true@3",
       "stack_in": [
         "absolute_bound#0",
@@ -1117,7 +947,7 @@
         "or_result%0#0"
       ]
     },
-    "296": {
+    "265": {
       "block": "__pcg32_bounded_sequence_bool_merge@5",
       "stack_in": [
         "absolute_bound#0",
@@ -1141,7 +971,7 @@
         "result#1"
       ]
     },
-    "297": {
+    "266": {
       "op": "frame_dig -4",
       "defined_out": [
         "bit_size#0 (copy)"
@@ -1157,7 +987,7 @@
         "bit_size#0 (copy)"
       ]
     },
-    "299": {
+    "268": {
       "op": "pushint 3 // 3",
       "defined_out": [
         "3",
@@ -1175,7 +1005,7 @@
         "3"
       ]
     },
-    "301": {
+    "270": {
       "op": "shr",
       "defined_out": [
         "byte_size#0"
@@ -1191,7 +1021,7 @@
         "byte_size#0"
       ]
     },
-    "302": {
+    "271": {
       "op": "dup",
       "stack_out": [
         "absolute_bound#0",
@@ -1205,7 +1035,7 @@
         "byte_size#0"
       ]
     },
-    "303": {
+    "272": {
       "op": "frame_bury 1",
       "defined_out": [
         "byte_size#0"
@@ -1221,7 +1051,7 @@
         "byte_size#0"
       ]
     },
-    "305": {
+    "274": {
       "op": "intc_3 // 8",
       "defined_out": [
         "8",
@@ -1239,7 +1069,7 @@
         "8"
       ]
     },
-    "306": {
+    "275": {
       "op": "swap",
       "stack_out": [
         "absolute_bound#0",
@@ -1253,7 +1083,7 @@
         "byte_size#0"
       ]
     },
-    "307": {
+    "276": {
       "op": "-",
       "defined_out": [
         "byte_size#0",
@@ -1270,7 +1100,7 @@
         "truncate_start_cached#0"
       ]
     },
-    "308": {
+    "277": {
       "op": "frame_bury 5",
       "defined_out": [
         "byte_size#0",
@@ -1286,7 +1116,7 @@
         "result#1"
       ]
     },
-    "310": {
+    "279": {
       "op": "frame_dig -3",
       "defined_out": [
         "byte_size#0",
@@ -1304,7 +1134,7 @@
         "lower_bound#0 (copy)"
       ]
     },
-    "312": {
+    "281": {
       "op": "bnz __pcg32_bounded_sequence_else_body@12",
       "stack_out": [
         "absolute_bound#0",
@@ -1316,19 +1146,19 @@
         "result#1"
       ]
     },
-    "315": {
+    "284": {
       "op": "frame_dig -2"
     },
-    "317": {
+    "286": {
       "op": "bnz __pcg32_bounded_sequence_else_body@12"
     },
-    "320": {
+    "289": {
       "op": "intc_1 // 0"
     },
-    "321": {
+    "290": {
       "op": "frame_bury 3"
     },
-    "323": {
+    "292": {
       "block": "__pcg32_bounded_sequence_for_header@8",
       "stack_in": [
         "absolute_bound#0",
@@ -1354,7 +1184,7 @@
         "i#0"
       ]
     },
-    "325": {
+    "294": {
       "op": "frame_dig -1",
       "defined_out": [
         "i#0",
@@ -1372,7 +1202,7 @@
         "length#0 (copy)"
       ]
     },
-    "327": {
+    "296": {
       "op": "<",
       "defined_out": [
         "continue_looping%0#0",
@@ -1389,7 +1219,7 @@
         "continue_looping%0#0"
       ]
     },
-    "328": {
+    "297": {
       "op": "bz __pcg32_bounded_sequence_after_if_else@25",
       "stack_out": [
         "absolute_bound#0",
@@ -1401,151 +1231,151 @@
         "result#1"
       ]
     },
-    "331": {
+    "300": {
       "op": "frame_dig -5"
     },
-    "333": {
+    "302": {
       "op": "intc 4 // 6364136223846793005"
     },
-    "335": {
+    "304": {
       "op": "mulw"
+    },
+    "305": {
+      "op": "bury 1"
+    },
+    "307": {
+      "op": "intc 5 // 1442695040888963407"
+    },
+    "309": {
+      "op": "addw"
+    },
+    "310": {
+      "op": "bury 1"
+    },
+    "312": {
+      "op": "frame_dig -5"
+    },
+    "314": {
+      "op": "pushint 18 // 18"
+    },
+    "316": {
+      "op": "shr"
+    },
+    "317": {
+      "op": "frame_dig -5"
+    },
+    "319": {
+      "op": "^"
+    },
+    "320": {
+      "op": "pushint 27 // 27"
+    },
+    "322": {
+      "op": "shr"
+    },
+    "323": {
+      "op": "intc_2 // 4294967295"
+    },
+    "324": {
+      "op": "&"
+    },
+    "325": {
+      "op": "frame_dig -5"
+    },
+    "327": {
+      "op": "pushint 59 // 59"
+    },
+    "329": {
+      "op": "shr"
+    },
+    "330": {
+      "op": "dup2"
+    },
+    "331": {
+      "op": "shr"
+    },
+    "332": {
+      "op": "swap"
+    },
+    "333": {
+      "op": "~"
+    },
+    "334": {
+      "op": "intc_0 // 1"
+    },
+    "335": {
+      "op": "addw"
     },
     "336": {
       "op": "bury 1"
     },
     "338": {
-      "op": "intc 5 // 1442695040888963407"
-    },
-    "340": {
-      "op": "addw"
-    },
-    "341": {
-      "op": "bury 1"
-    },
-    "343": {
-      "op": "frame_dig -5"
-    },
-    "345": {
-      "op": "pushint 18 // 18"
-    },
-    "347": {
-      "op": "shr"
-    },
-    "348": {
-      "op": "frame_dig -5"
-    },
-    "350": {
-      "op": "^"
-    },
-    "351": {
-      "op": "pushint 27 // 27"
-    },
-    "353": {
-      "op": "shr"
-    },
-    "354": {
-      "op": "intc_2 // 4294967295"
-    },
-    "355": {
-      "op": "&"
-    },
-    "356": {
-      "op": "frame_dig -5"
-    },
-    "358": {
-      "op": "pushint 59 // 59"
-    },
-    "360": {
-      "op": "shr"
-    },
-    "361": {
-      "op": "dup2"
-    },
-    "362": {
-      "op": "shr"
-    },
-    "363": {
-      "op": "swap"
-    },
-    "364": {
-      "op": "~"
-    },
-    "365": {
-      "op": "intc_0 // 1"
-    },
-    "366": {
-      "op": "addw"
-    },
-    "367": {
-      "op": "bury 1"
-    },
-    "369": {
       "op": "pushint 31 // 31"
     },
-    "371": {
+    "340": {
       "op": "&"
     },
-    "372": {
+    "341": {
       "op": "uncover 2"
     },
-    "374": {
+    "343": {
       "op": "swap"
     },
-    "375": {
+    "344": {
       "op": "shl"
     },
-    "376": {
+    "345": {
       "op": "intc_2 // 4294967295"
     },
-    "377": {
+    "346": {
       "op": "&"
     },
-    "378": {
+    "347": {
       "op": "|"
     },
-    "379": {
+    "348": {
       "op": "itob"
     },
-    "380": {
+    "349": {
       "op": "frame_dig 5"
     },
-    "382": {
+    "351": {
       "op": "frame_dig 1"
     },
-    "384": {
+    "353": {
       "op": "extract3"
     },
-    "385": {
+    "354": {
       "op": "frame_dig 6"
     },
-    "387": {
+    "356": {
       "op": "swap"
     },
-    "388": {
+    "357": {
       "op": "concat"
     },
-    "389": {
+    "358": {
       "op": "frame_bury 6"
     },
-    "391": {
+    "360": {
       "op": "frame_dig 3"
     },
-    "393": {
+    "362": {
       "op": "intc_0 // 1"
     },
-    "394": {
+    "363": {
       "op": "+"
     },
-    "395": {
+    "364": {
       "op": "frame_bury 3"
     },
-    "397": {
+    "366": {
       "op": "frame_bury -5"
     },
-    "399": {
+    "368": {
       "op": "b __pcg32_bounded_sequence_for_header@8"
     },
-    "402": {
+    "371": {
       "block": "__pcg32_bounded_sequence_after_if_else@25",
       "stack_in": [
         "absolute_bound#0",
@@ -1571,7 +1401,7 @@
         "state#0 (copy)"
       ]
     },
-    "404": {
+    "373": {
       "op": "frame_dig 6",
       "defined_out": [
         "result#1",
@@ -1589,17 +1419,17 @@
         "result#1"
       ]
     },
-    "406": {
+    "375": {
       "op": "frame_bury 1"
     },
-    "408": {
+    "377": {
       "op": "frame_bury 0"
     },
-    "410": {
+    "379": {
       "retsub": true,
       "op": "retsub"
     },
-    "411": {
+    "380": {
       "block": "__pcg32_bounded_sequence_else_body@12",
       "stack_in": [
         "absolute_bound#0",
@@ -1625,7 +1455,7 @@
         "upper_bound#0 (copy)"
       ]
     },
-    "413": {
+    "382": {
       "op": "bz __pcg32_bounded_sequence_else_body@14",
       "stack_out": [
         "absolute_bound#0",
@@ -1637,67 +1467,67 @@
         "result#1"
       ]
     },
-    "416": {
+    "385": {
       "op": "frame_dig -2"
     },
-    "418": {
+    "387": {
       "op": "intc_0 // 1"
     },
-    "419": {
+    "388": {
       "op": ">"
     },
-    "420": {
+    "389": {
       "op": "assert"
     },
-    "421": {
+    "390": {
       "op": "intc_0 // 1"
     },
-    "422": {
+    "391": {
       "op": "frame_dig -4"
     },
-    "424": {
+    "393": {
       "op": "shl"
     },
-    "425": {
+    "394": {
       "op": "frame_dig -2"
     },
-    "427": {
+    "396": {
       "op": ">"
     },
-    "428": {
+    "397": {
       "op": "assert"
     },
-    "429": {
+    "398": {
       "op": "frame_dig -2"
     },
-    "431": {
+    "400": {
       "op": "intc_0 // 1"
     },
-    "432": {
+    "401": {
       "op": "-"
     },
-    "433": {
+    "402": {
       "op": "frame_dig -3"
     },
-    "435": {
+    "404": {
       "op": ">"
     },
-    "436": {
+    "405": {
       "op": "assert"
     },
-    "437": {
+    "406": {
       "op": "frame_dig -2"
     },
-    "439": {
+    "408": {
       "op": "frame_dig -3"
     },
-    "441": {
+    "410": {
       "op": "-"
     },
-    "442": {
+    "411": {
       "op": "frame_bury 0"
     },
-    "444": {
+    "413": {
       "block": "__pcg32_bounded_sequence_after_if_else@15",
       "stack_in": [
         "absolute_bound#0",
@@ -1723,7 +1553,7 @@
         "absolute_bound#0"
       ]
     },
-    "446": {
+    "415": {
       "op": "dup",
       "defined_out": [
         "absolute_bound#0",
@@ -1741,7 +1571,7 @@
         "absolute_bound#0 (copy)"
       ]
     },
-    "447": {
+    "416": {
       "op": "~",
       "defined_out": [
         "absolute_bound#0",
@@ -1759,7 +1589,7 @@
         "tmp%0#2"
       ]
     },
-    "448": {
+    "417": {
       "op": "intc_0 // 1",
       "defined_out": [
         "1",
@@ -1779,7 +1609,7 @@
         "1"
       ]
     },
-    "449": {
+    "418": {
       "op": "addw",
       "defined_out": [
         "_addw_high#0",
@@ -1799,7 +1629,7 @@
         "addw_low#0"
       ]
     },
-    "450": {
+    "419": {
       "op": "bury 1",
       "stack_out": [
         "absolute_bound#0",
@@ -1813,7 +1643,7 @@
         "addw_low#0"
       ]
     },
-    "452": {
+    "421": {
       "op": "intc_2 // 4294967295",
       "defined_out": [
         "4294967295",
@@ -1833,7 +1663,7 @@
         "4294967295"
       ]
     },
-    "453": {
+    "422": {
       "op": "&",
       "stack_out": [
         "absolute_bound#0",
@@ -1847,7 +1677,7 @@
         "tmp%0#2"
       ]
     },
-    "454": {
+    "423": {
       "op": "swap",
       "stack_out": [
         "absolute_bound#0",
@@ -1861,7 +1691,7 @@
         "absolute_bound#0"
       ]
     },
-    "455": {
+    "424": {
       "op": "%",
       "defined_out": [
         "absolute_bound#0",
@@ -1878,7 +1708,7 @@
         "threshold#0"
       ]
     },
-    "456": {
+    "425": {
       "op": "frame_bury 4",
       "defined_out": [
         "absolute_bound#0",
@@ -1894,7 +1724,7 @@
         "result#1"
       ]
     },
-    "458": {
+    "427": {
       "op": "intc_1 // 0",
       "defined_out": [
         "absolute_bound#0",
@@ -1912,7 +1742,7 @@
         "i#0"
       ]
     },
-    "459": {
+    "428": {
       "op": "frame_bury 3",
       "defined_out": [
         "absolute_bound#0",
@@ -1929,7 +1759,7 @@
         "result#1"
       ]
     },
-    "461": {
+    "430": {
       "block": "__pcg32_bounded_sequence_for_header@16",
       "stack_in": [
         "absolute_bound#0",
@@ -1955,7 +1785,7 @@
         "i#0"
       ]
     },
-    "463": {
+    "432": {
       "op": "frame_dig -1",
       "defined_out": [
         "i#0",
@@ -1973,7 +1803,7 @@
         "length#0 (copy)"
       ]
     },
-    "465": {
+    "434": {
       "op": "<",
       "defined_out": [
         "continue_looping%1#0",
@@ -1990,7 +1820,7 @@
         "continue_looping%1#0"
       ]
     },
-    "466": {
+    "435": {
       "op": "bz __pcg32_bounded_sequence_after_if_else@25",
       "stack_out": [
         "absolute_bound#0",
@@ -2002,7 +1832,7 @@
         "result#1"
       ]
     },
-    "469": {
+    "438": {
       "block": "__pcg32_bounded_sequence_while_top@18",
       "stack_in": [
         "absolute_bound#0",
@@ -2028,7 +1858,7 @@
         "state#0 (copy)"
       ]
     },
-    "471": {
+    "440": {
       "op": "intc 4 // 6364136223846793005",
       "defined_out": [
         "6364136223846793005",
@@ -2046,7 +1876,7 @@
         "6364136223846793005"
       ]
     },
-    "473": {
+    "442": {
       "op": "mulw",
       "defined_out": [
         "_high_mul#0",
@@ -2064,7 +1894,7 @@
         "low_mul#0"
       ]
     },
-    "474": {
+    "443": {
       "op": "bury 1",
       "stack_out": [
         "absolute_bound#0",
@@ -2077,7 +1907,7 @@
         "low_mul#0"
       ]
     },
-    "476": {
+    "445": {
       "op": "intc 5 // 1442695040888963407",
       "defined_out": [
         "1442695040888963407",
@@ -2095,7 +1925,7 @@
         "1442695040888963407"
       ]
     },
-    "478": {
+    "447": {
       "op": "addw",
       "defined_out": [
         "_high_add#0",
@@ -2113,7 +1943,7 @@
         "low_add#0"
       ]
     },
-    "479": {
+    "448": {
       "op": "bury 1",
       "defined_out": [
         "low_add#0"
@@ -2129,7 +1959,7 @@
         "low_add#0"
       ]
     },
-    "481": {
+    "450": {
       "op": "frame_dig -5",
       "stack_out": [
         "absolute_bound#0",
@@ -2143,7 +1973,7 @@
         "state#0 (copy)"
       ]
     },
-    "483": {
+    "452": {
       "op": "pushint 18 // 18",
       "defined_out": [
         "18",
@@ -2163,7 +1993,7 @@
         "18"
       ]
     },
-    "485": {
+    "454": {
       "op": "shr",
       "defined_out": [
         "low_add#0",
@@ -2181,7 +2011,7 @@
         "tmp%0#2"
       ]
     },
-    "486": {
+    "455": {
       "op": "frame_dig -5",
       "stack_out": [
         "absolute_bound#0",
@@ -2196,7 +2026,7 @@
         "state#0 (copy)"
       ]
     },
-    "488": {
+    "457": {
       "op": "^",
       "defined_out": [
         "low_add#0",
@@ -2214,7 +2044,7 @@
         "tmp%1#0"
       ]
     },
-    "489": {
+    "458": {
       "op": "pushint 27 // 27",
       "defined_out": [
         "27",
@@ -2234,7 +2064,7 @@
         "27"
       ]
     },
-    "491": {
+    "460": {
       "op": "shr",
       "defined_out": [
         "low_add#0",
@@ -2252,7 +2082,7 @@
         "value#0"
       ]
     },
-    "492": {
+    "461": {
       "op": "intc_2 // 4294967295",
       "defined_out": [
         "4294967295",
@@ -2272,7 +2102,7 @@
         "4294967295"
       ]
     },
-    "493": {
+    "462": {
       "op": "&",
       "stack_out": [
         "absolute_bound#0",
@@ -2286,7 +2116,7 @@
         "value#0"
       ]
     },
-    "494": {
+    "463": {
       "op": "frame_dig -5",
       "stack_out": [
         "absolute_bound#0",
@@ -2301,7 +2131,7 @@
         "state#0 (copy)"
       ]
     },
-    "496": {
+    "465": {
       "op": "pushint 59 // 59",
       "defined_out": [
         "59",
@@ -2323,7 +2153,7 @@
         "59"
       ]
     },
-    "498": {
+    "467": {
       "op": "shr",
       "defined_out": [
         "low_add#0",
@@ -2343,7 +2173,7 @@
         "rot#0"
       ]
     },
-    "499": {
+    "468": {
       "op": "dup2",
       "defined_out": [
         "low_add#0",
@@ -2367,7 +2197,7 @@
         "rot#0 (copy)"
       ]
     },
-    "500": {
+    "469": {
       "op": "shr",
       "stack_out": [
         "absolute_bound#0",
@@ -2383,7 +2213,7 @@
         "tmp%0#2"
       ]
     },
-    "501": {
+    "470": {
       "op": "swap",
       "stack_out": [
         "absolute_bound#0",
@@ -2399,7 +2229,7 @@
         "rot#0"
       ]
     },
-    "502": {
+    "471": {
       "op": "~",
       "defined_out": [
         "low_add#0",
@@ -2421,7 +2251,7 @@
         "tmp%0#10"
       ]
     },
-    "503": {
+    "472": {
       "op": "intc_0 // 1",
       "defined_out": [
         "1",
@@ -2445,7 +2275,7 @@
         "1"
       ]
     },
-    "504": {
+    "473": {
       "op": "addw",
       "defined_out": [
         "_addw_high#0",
@@ -2469,7 +2299,7 @@
         "addw_low#0"
       ]
     },
-    "505": {
+    "474": {
       "op": "bury 1",
       "stack_out": [
         "absolute_bound#0",
@@ -2485,7 +2315,7 @@
         "addw_low#0"
       ]
     },
-    "507": {
+    "476": {
       "op": "pushint 31 // 31",
       "defined_out": [
         "31",
@@ -2509,7 +2339,7 @@
         "31"
       ]
     },
-    "509": {
+    "478": {
       "op": "&",
       "defined_out": [
         "low_add#0",
@@ -2531,7 +2361,7 @@
         "tmp%2#2"
       ]
     },
-    "510": {
+    "479": {
       "op": "uncover 2",
       "stack_out": [
         "absolute_bound#0",
@@ -2547,7 +2377,7 @@
         "value#0"
       ]
     },
-    "512": {
+    "481": {
       "op": "swap",
       "stack_out": [
         "absolute_bound#0",
@@ -2563,7 +2393,7 @@
         "tmp%2#2"
       ]
     },
-    "513": {
+    "482": {
       "op": "shl",
       "stack_out": [
         "absolute_bound#0",
@@ -2578,7 +2408,7 @@
         "value#0"
       ]
     },
-    "514": {
+    "483": {
       "op": "intc_2 // 4294967295",
       "stack_out": [
         "absolute_bound#0",
@@ -2594,7 +2424,7 @@
         "4294967295"
       ]
     },
-    "515": {
+    "484": {
       "op": "&",
       "stack_out": [
         "absolute_bound#0",
@@ -2609,7 +2439,7 @@
         "tmp%0#10"
       ]
     },
-    "516": {
+    "485": {
       "op": "|",
       "defined_out": [
         "candidate#0",
@@ -2627,7 +2457,7 @@
         "candidate#0"
       ]
     },
-    "517": {
+    "486": {
       "op": "dup",
       "stack_out": [
         "absolute_bound#0",
@@ -2642,7 +2472,7 @@
         "candidate#0"
       ]
     },
-    "518": {
+    "487": {
       "op": "frame_bury 2",
       "defined_out": [
         "candidate#0",
@@ -2660,7 +2490,7 @@
         "candidate#0"
       ]
     },
-    "520": {
+    "489": {
       "op": "frame_dig 4",
       "defined_out": [
         "candidate#0",
@@ -2680,7 +2510,7 @@
         "threshold#0"
       ]
     },
-    "522": {
+    "491": {
       "op": ">=",
       "defined_out": [
         "candidate#0",
@@ -2700,7 +2530,7 @@
         "tmp%21#0"
       ]
     },
-    "523": {
+    "492": {
       "op": "bz __pcg32_bounded_sequence_after_if_else@21",
       "stack_out": [
         "absolute_bound#0",
@@ -2713,64 +2543,64 @@
         "low_add#0"
       ]
     },
-    "526": {
+    "495": {
       "op": "frame_dig 2"
     },
-    "528": {
+    "497": {
       "op": "frame_dig 0"
     },
-    "530": {
+    "499": {
       "op": "%"
     },
-    "531": {
+    "500": {
       "op": "frame_dig -3"
     },
-    "533": {
+    "502": {
       "op": "+"
     },
-    "534": {
+    "503": {
       "op": "itob"
     },
-    "535": {
+    "504": {
       "op": "frame_dig 5"
     },
-    "537": {
+    "506": {
       "op": "frame_dig 1"
     },
-    "539": {
+    "508": {
       "op": "extract3"
     },
-    "540": {
+    "509": {
       "op": "frame_dig 6"
     },
-    "542": {
+    "511": {
       "op": "swap"
     },
-    "543": {
+    "512": {
       "op": "concat"
     },
-    "544": {
+    "513": {
       "op": "frame_bury 6"
     },
-    "546": {
+    "515": {
       "op": "frame_dig 3"
     },
-    "548": {
+    "517": {
       "op": "intc_0 // 1"
     },
-    "549": {
+    "518": {
       "op": "+"
     },
-    "550": {
+    "519": {
       "op": "frame_bury 3"
     },
-    "552": {
+    "521": {
       "op": "frame_bury -5"
     },
-    "554": {
+    "523": {
       "op": "b __pcg32_bounded_sequence_for_header@16"
     },
-    "557": {
+    "526": {
       "block": "__pcg32_bounded_sequence_after_if_else@21",
       "stack_in": [
         "absolute_bound#0",
@@ -2794,10 +2624,10 @@
         "result#1"
       ]
     },
-    "559": {
+    "528": {
       "op": "b __pcg32_bounded_sequence_while_top@18"
     },
-    "562": {
+    "531": {
       "block": "__pcg32_bounded_sequence_else_body@14",
       "stack_in": [
         "absolute_bound#0",
@@ -2823,7 +2653,7 @@
         "1"
       ]
     },
-    "563": {
+    "532": {
       "op": "frame_dig -4",
       "defined_out": [
         "1",
@@ -2841,7 +2671,7 @@
         "bit_size#0 (copy)"
       ]
     },
-    "565": {
+    "534": {
       "op": "shl",
       "defined_out": [
         "tmp%15#0"
@@ -2857,7 +2687,7 @@
         "tmp%15#0"
       ]
     },
-    "566": {
+    "535": {
       "op": "dup",
       "defined_out": [
         "tmp%15#0",
@@ -2875,7 +2705,7 @@
         "tmp%15#0 (copy)"
       ]
     },
-    "567": {
+    "536": {
       "op": "intc_0 // 1",
       "stack_out": [
         "absolute_bound#0",
@@ -2890,7 +2720,7 @@
         "1"
       ]
     },
-    "568": {
+    "537": {
       "op": "-",
       "defined_out": [
         "tmp%15#0",
@@ -2908,7 +2738,7 @@
         "tmp%16#0"
       ]
     },
-    "569": {
+    "538": {
       "op": "frame_dig -3",
       "defined_out": [
         "lower_bound#0 (copy)",
@@ -2928,7 +2758,7 @@
         "lower_bound#0 (copy)"
       ]
     },
-    "571": {
+    "540": {
       "op": ">",
       "defined_out": [
         "tmp%15#0",
@@ -2946,7 +2776,7 @@
         "tmp%17#0"
       ]
     },
-    "572": {
+    "541": {
       "op": "assert",
       "stack_out": [
         "absolute_bound#0",
@@ -2959,7 +2789,7 @@
         "tmp%15#0"
       ]
     },
-    "573": {
+    "542": {
       "op": "frame_dig -3",
       "stack_out": [
         "absolute_bound#0",
@@ -2973,7 +2803,7 @@
         "lower_bound#0 (copy)"
       ]
     },
-    "575": {
+    "544": {
       "op": "-",
       "defined_out": [
         "absolute_bound#0"
@@ -2989,7 +2819,7 @@
         "absolute_bound#0"
       ]
     },
-    "576": {
+    "545": {
       "op": "frame_bury 0",
       "defined_out": [
         "absolute_bound#0"
@@ -3004,10 +2834,10 @@
         "result#1"
       ]
     },
-    "578": {
+    "547": {
       "op": "b __pcg32_bounded_sequence_after_if_else@15"
     },
-    "581": {
+    "550": {
       "block": "__pcg32_bounded_sequence_bool_false@4",
       "stack_in": [
         "absolute_bound#0",
@@ -3033,11 +2863,181 @@
         "or_result%0#0"
       ]
     },
-    "582": {
+    "551": {
       "op": "b __pcg32_bounded_sequence_bool_merge@5"
     },
+    "554": {
+      "subroutine": "smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgoPy.bounded_rand_uint32",
+      "params": {
+        "seed#0": "bytes",
+        "lower_bound#0": "bytes",
+        "upper_bound#0": "bytes",
+        "length#0": "bytes"
+      },
+      "block": "bounded_rand_uint32",
+      "stack_in": [],
+      "op": "proto 4 1"
+    },
+    "557": {
+      "op": "frame_dig -4",
+      "defined_out": [
+        "seed#0 (copy)"
+      ],
+      "stack_out": [
+        "seed#0 (copy)"
+      ]
+    },
+    "559": {
+      "callsub": "lib_pcg.pcg32.pcg32_init",
+      "op": "callsub pcg32_init",
+      "defined_out": [
+        "state#0"
+      ],
+      "stack_out": [
+        "state#0"
+      ]
+    },
+    "562": {
+      "op": "frame_dig -3",
+      "defined_out": [
+        "lower_bound#0 (copy)",
+        "state#0"
+      ],
+      "stack_out": [
+        "state#0",
+        "lower_bound#0 (copy)"
+      ]
+    },
+    "564": {
+      "op": "btoi",
+      "defined_out": [
+        "lower_bound#1",
+        "state#0"
+      ],
+      "stack_out": [
+        "state#0",
+        "lower_bound#1"
+      ]
+    },
+    "565": {
+      "op": "frame_dig -2",
+      "defined_out": [
+        "lower_bound#1",
+        "state#0",
+        "upper_bound#0 (copy)"
+      ],
+      "stack_out": [
+        "state#0",
+        "lower_bound#1",
+        "upper_bound#0 (copy)"
+      ]
+    },
+    "567": {
+      "op": "btoi",
+      "defined_out": [
+        "lower_bound#1",
+        "state#0",
+        "upper_bound#1"
+      ],
+      "stack_out": [
+        "state#0",
+        "lower_bound#1",
+        "upper_bound#1"
+      ]
+    },
+    "568": {
+      "op": "frame_dig -1",
+      "defined_out": [
+        "length#0 (copy)",
+        "lower_bound#1",
+        "state#0",
+        "upper_bound#1"
+      ],
+      "stack_out": [
+        "state#0",
+        "lower_bound#1",
+        "upper_bound#1",
+        "length#0 (copy)"
+      ]
+    },
+    "570": {
+      "op": "btoi",
+      "defined_out": [
+        "length#1",
+        "lower_bound#1",
+        "state#0",
+        "upper_bound#1"
+      ],
+      "stack_out": [
+        "state#0",
+        "lower_bound#1",
+        "upper_bound#1",
+        "length#1"
+      ]
+    },
+    "571": {
+      "op": "uncover 3",
+      "stack_out": [
+        "lower_bound#1",
+        "upper_bound#1",
+        "length#1",
+        "state#0"
+      ]
+    },
+    "573": {
+      "op": "pushint 32 // 32",
+      "defined_out": [
+        "32",
+        "length#1",
+        "lower_bound#1",
+        "state#0",
+        "upper_bound#1"
+      ],
+      "stack_out": [
+        "lower_bound#1",
+        "upper_bound#1",
+        "length#1",
+        "state#0",
+        "32"
+      ]
+    },
+    "575": {
+      "op": "cover 4"
+    },
+    "577": {
+      "op": "cover 4",
+      "stack_out": [
+        "state#0",
+        "32",
+        "lower_bound#1",
+        "upper_bound#1",
+        "length#1"
+      ]
+    },
+    "579": {
+      "callsub": "lib_pcg.pcg32.__pcg32_bounded_sequence",
+      "op": "callsub __pcg32_bounded_sequence",
+      "defined_out": [
+        "sequence#1",
+        "state#0"
+      ],
+      "stack_out": [
+        "state#0",
+        "sequence#1"
+      ]
+    },
+    "582": {
+      "op": "bury 1",
+      "stack_out": [
+        "sequence#1"
+      ]
+    },
+    "584": {
+      "retsub": true,
+      "op": "retsub"
+    },
     "585": {
-      "subroutine": "smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgopy.bounded_rand_uint16",
+      "subroutine": "smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgoPy.bounded_rand_uint16",
       "params": {
         "seed#0": "bytes",
         "lower_bound#0": "bytes",
@@ -3207,7 +3207,7 @@
       "op": "retsub"
     },
     "616": {
-      "subroutine": "smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgopy.bounded_rand_uint8",
+      "subroutine": "smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgoPy.bounded_rand_uint8",
       "params": {
         "seed#0": "bytes",
         "lower_bound#0": "bytes",
@@ -3377,7 +3377,7 @@
       "op": "retsub"
     },
     "646": {
-      "subroutine": "smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgopy.update",
+      "subroutine": "smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgoPy.update",
       "params": {},
       "block": "update",
       "stack_in": [],

@@ -1,31 +1,19 @@
 import algokit_utils
 import pytest
-from algokit_utils import get_localnet_default_account
-from algokit_utils.config import config
-from algosdk.v2client.algod import AlgodClient
-from algosdk.v2client.indexer import IndexerClient
+from algokit_utils import AlgorandClient, SigningAccount
 
-from smart_contracts.artifacts.lib_pcg64_exposer_algopy import (
-    LibPcg64ExposerAlgopyClient,
-    SimulateOptions,
+from smart_contracts.artifacts.lib_pcg64_exposer_algo_py import (
+    LibPcg64ExposerAlgoPyClient,
+    LibPcg64ExposerAlgoPyFactory,
 )
+
+# from smart_contracts.artifacts.lib_pcg64_exposer_algo_ts import (
+#     LibPcg64ExposerAlgoTsFactory,
+#     LibPcg64ExposerAlgoTsClient,
+# )
 from smart_contracts.artifacts.lib_pcg64_exposer_pyteal import (
     LibPcg64ExposerPytealClient,
-)
-from smart_contracts.artifacts.lib_pcg64_exposer_ts import (
-    CreateApplicationArgs as CreateApplicationArgsTs,
-)
-from smart_contracts.artifacts.lib_pcg64_exposer_ts import (
-    Deploy as DeployTs,
-)
-from smart_contracts.artifacts.lib_pcg64_exposer_ts import (
-    DeployCreate as DeployCreateTs,
-)
-from smart_contracts.artifacts.lib_pcg64_exposer_ts import (
-    LibPcg64ExposerTsClient,
-)
-from smart_contracts.artifacts.lib_pcg64_exposer_ts import (
-    UpdateApplicationArgs as UpdateApplicationArgsTs,
+    LibPcg64ExposerPytealFactory,
 )
 
 
@@ -42,10 +30,10 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 metafunc.parametrize("max_unbounded_opup_calls", [20])
             if "max_bounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize("max_bounded_opup_calls", [22])
-        case "ts":
+        case "algots":
             if "lib_pcg64_client" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "lib_pcg64_client", ["lib_pcg64_exposer_ts_client"]
+                    "lib_pcg64_client", ["lib_pcg64_exposer_algots_client"]
                 )
             if "expected_library_size" in metafunc.fixturenames:
                 metafunc.parametrize("expected_library_size", [800])
@@ -68,71 +56,47 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
 
 @pytest.fixture(scope="session")
 def lib_pcg64_exposer_algopy_client(
-    algod_client: AlgodClient, indexer_client: IndexerClient
-) -> LibPcg64ExposerAlgopyClient:
-    config.configure(
-        debug=True,
-        # trace_all=True,
-    )
-
-    client = LibPcg64ExposerAlgopyClient(
-        algod_client,
-        creator=get_localnet_default_account(algod_client),
-        indexer_client=indexer_client,
-    )
-
-    client.deploy(
+    algorand_client: AlgorandClient,
+    deployer: SigningAccount,
+) -> LibPcg64ExposerAlgoPyClient:
+    client, _ = LibPcg64ExposerAlgoPyFactory(
+        algorand_client,
+        default_sender=deployer.address,
+    ).deploy(
         on_schema_break=algokit_utils.OnSchemaBreak.ReplaceApp,
         on_update=algokit_utils.OnUpdate.UpdateApp,
     )
+
     return client
 
 
-@pytest.fixture(scope="session")
-def lib_pcg64_exposer_ts_client(
-    algod_client: AlgodClient, indexer_client: IndexerClient
-) -> LibPcg64ExposerTsClient:
-    config.configure(
-        debug=True,
-        # trace_all=True,
-    )
-
-    client = LibPcg64ExposerTsClient(
-        algod_client,
-        creator=get_localnet_default_account(algod_client),
-        indexer_client=indexer_client,
-    )
-
-    client.deploy(
-        on_schema_break=algokit_utils.OnSchemaBreak.ReplaceApp,
-        on_update=algokit_utils.OnUpdate.AppendApp,
-        create_args=DeployCreateTs(args=CreateApplicationArgsTs()),
-        update_args=DeployTs(args=UpdateApplicationArgsTs()),
-    )
-    return client
+# @pytest.fixture(scope="session")
+# def lib_pcg64_exposer_algots_client(
+#     algorand_client: AlgorandClient, deployer: SigningAccount
+# ) -> LibPcg64ExposerAlgoTsClient:
+#     client = LibPcg64ExposerTsFactory(
+#         algorand_client, default_sender=deployer.address
+#     ).deploy(
+#         on_schema_break=algokit_utils.OnSchemaBreak.ReplaceApp,
+#         on_update=algokit_utils.OnUpdate.AppendApp,
+#     )
+#
+#     return client
 
 
 @pytest.fixture(scope="session")
 def lib_pcg64_exposer_pyteal_client(
-    algod_client: AlgodClient, indexer_client: IndexerClient
+    algorand_client: AlgorandClient,
+    deployer: SigningAccount,
 ) -> LibPcg64ExposerPytealClient:
-    config.configure(
-        debug=True,
-        # trace_all=True,
-    )
-
-    client = LibPcg64ExposerPytealClient(
-        algod_client,
-        creator=get_localnet_default_account(algod_client),
-        indexer_client=indexer_client,
-    )
-
-    client.deploy(
-        on_schema_break=algokit_utils.OnSchemaBreak.ReplaceApp,
+    client, _ = LibPcg64ExposerPytealFactory(
+        algorand_client, default_sender=deployer.address
+    ).deploy(
+        on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
         on_update=algokit_utils.OnUpdate.UpdateApp,
-        allow_update=True,
-        allow_delete=True,
+        compilation_params={"updatable": True, "deletable": True},
     )
+
     return client
 
 
@@ -666,7 +630,10 @@ def test_library_size(
     request: pytest.FixtureRequest,
 ):
     client = request.getfixturevalue(lib_pcg64_client)
-    assert len(client.app_client.approval.teal.split("\n")) < expected_library_size
+    assert (
+        len(client.app_client.app_spec.source.approval.split("\n"))
+        < expected_library_size
+    )
 
 
 def test_unbounded_maximal_cost(
@@ -676,17 +643,12 @@ def test_unbounded_maximal_cost(
 ) -> None:
     client = request.getfixturevalue(lib_pcg64_client)
     result = (
-        client.compose()
-        .bounded_rand_uint64(
-            seed=RNG_SEED,
-            lower_bound=0,
-            upper_bound=0,
-            length=EXPECTED_MAXIMAL_SEQUENCE_LENGTH,
-        )
-        .simulate(SimulateOptions(extra_opcode_budget=320_000))
+        client.new_group()
+        .bounded_rand_uint64((RNG_SEED, 0, 0, EXPECTED_MAXIMAL_SEQUENCE_LENGTH))
+        .simulate(extra_opcode_budget=320_000)
     )
 
-    assert result.abi_results[0].return_value
+    assert result.returns[0].value
     assert (
         result.simulate_response["txn-groups"][0]["app-budget-consumed"]
         < 700 * max_unbounded_opup_calls
@@ -700,17 +662,12 @@ def test_bounded_maximal_cost(
 ) -> None:
     client = request.getfixturevalue(lib_pcg64_client)
     result = (
-        client.compose()
-        .bounded_rand_uint64(
-            seed=RNG_SEED,
-            lower_bound=1,
-            upper_bound=2**64 - 1,
-            length=EXPECTED_MAXIMAL_SEQUENCE_LENGTH,
-        )
-        .simulate(SimulateOptions(extra_opcode_budget=320_000))
+        client.new_group()
+        .bounded_rand_uint64((RNG_SEED, 1, 2**64 - 1, EXPECTED_MAXIMAL_SEQUENCE_LENGTH))
+        .simulate(extra_opcode_budget=320_000)
     )
 
-    assert result.abi_results[0].return_value
+    assert result.returns[0].value
     assert (
         result.simulate_response["txn-groups"][0]["app-budget-consumed"]
         < 700 * max_bounded_opup_calls
@@ -723,17 +680,12 @@ def test_unbounded_sequence(
 ) -> None:
     client = request.getfixturevalue(lib_pcg64_client)
     result = (
-        client.compose()
-        .bounded_rand_uint64(
-            seed=RNG_SEED,
-            lower_bound=0,
-            upper_bound=0,
-            length=EXPECTED_MAXIMAL_SEQUENCE_LENGTH,
-        )
-        .simulate(SimulateOptions(extra_opcode_budget=320_000))
+        client.new_group()
+        .bounded_rand_uint64((RNG_SEED, 0, 0, EXPECTED_MAXIMAL_SEQUENCE_LENGTH))
+        .simulate(extra_opcode_budget=320_000)
     )
 
-    assert result.abi_results[0].return_value == UNBOUNDED_SEQUENCE
+    assert result.returns[0].value == UNBOUNDED_SEQUENCE
 
 
 def test_lower_bounded_sequence(
@@ -742,17 +694,12 @@ def test_lower_bounded_sequence(
 ) -> None:
     client = request.getfixturevalue(lib_pcg64_client)
     result = (
-        client.compose()
-        .bounded_rand_uint64(
-            seed=RNG_SEED,
-            lower_bound=2**63 - 1,
-            upper_bound=0,
-            length=EXPECTED_MAXIMAL_SEQUENCE_LENGTH,
-        )
-        .simulate(SimulateOptions(extra_opcode_budget=320_000))
+        client.new_group()
+        .bounded_rand_uint64((RNG_SEED, 2**63 - 1, 0, EXPECTED_MAXIMAL_SEQUENCE_LENGTH))
+        .simulate(extra_opcode_budget=320_000)
     )
 
-    assert result.abi_results[0].return_value == LOWER_BOUNDED_SEQUENCE
+    assert result.returns[0].value == LOWER_BOUNDED_SEQUENCE
 
 
 def test_upper_bounded_sequence(
@@ -761,17 +708,12 @@ def test_upper_bounded_sequence(
 ) -> None:
     client = request.getfixturevalue(lib_pcg64_client)
     result = (
-        client.compose()
-        .bounded_rand_uint64(
-            seed=RNG_SEED,
-            lower_bound=0,
-            upper_bound=2**63 + 1,
-            length=EXPECTED_MAXIMAL_SEQUENCE_LENGTH,
-        )
-        .simulate(SimulateOptions(extra_opcode_budget=320_000))
+        client.new_group()
+        .bounded_rand_uint64((RNG_SEED, 0, 2**63 + 1, EXPECTED_MAXIMAL_SEQUENCE_LENGTH))
+        .simulate(extra_opcode_budget=320_000)
     )
-
-    assert result.abi_results[0].return_value == UPPER_BOUNDED_SEQUENCE
+    assert result
+    assert result.returns[0].value == UPPER_BOUNDED_SEQUENCE
 
 
 def test_upper_lower_bounded_sequence(
@@ -780,14 +722,11 @@ def test_upper_lower_bounded_sequence(
 ) -> None:
     client = request.getfixturevalue(lib_pcg64_client)
     result = (
-        client.compose()
+        client.new_group()
         .bounded_rand_uint64(
-            seed=RNG_SEED,
-            lower_bound=2**16,
-            upper_bound=2**48,
-            length=EXPECTED_MAXIMAL_SEQUENCE_LENGTH,
+            (RNG_SEED, 2**16, 2**48, EXPECTED_MAXIMAL_SEQUENCE_LENGTH),
         )
-        .simulate(SimulateOptions(extra_opcode_budget=320_000))
+        .simulate(extra_opcode_budget=320_000)
     )
 
-    assert result.abi_results[0].return_value == UPPER_LOWER_BOUNDED_SEQUENCE
+    assert result.returns[0].value == UPPER_LOWER_BOUNDED_SEQUENCE

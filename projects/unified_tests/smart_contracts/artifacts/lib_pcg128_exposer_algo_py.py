@@ -19,7 +19,7 @@ from algosdk.v2client.models import SimulateTraceConfig
 import algokit_utils
 from algokit_utils import AlgorandClient as _AlgoKitAlgorandClient
 
-_APP_SPEC_JSON = r"""{"arcs": [], "bareActions": {"call": ["DeleteApplication", "UpdateApplication"], "create": ["NoOp"]}, "methods": [{"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "byte[16]", "name": "seed"}, {"type": "uint64", "name": "lower_bound"}, {"type": "uint64", "name": "upper_bound"}, {"type": "uint16", "name": "length"}], "name": "bounded_rand_uint64", "returns": {"type": "uint64[]"}, "events": []}], "name": "lib_pcg64_exposer_pyteal", "state": {"keys": {"box": {}, "global": {}, "local": {}}, "maps": {"box": {}, "global": {}, "local": {}}, "schema": {"global": {"bytes": 0, "ints": 0}, "local": {"bytes": 0, "ints": 0}}}, "structs": {}, "source": {"approval": "I3ByYWdtYSB2ZXJzaW9uIDgKaW50Y2Jsb2NrIDAgMSA2MzY0MTM2MjIzODQ2NzkzMDA1IDQyOTQ5NjcyOTUgMTQ0MjY5NTA0MDg4ODk2MzQwNyAxNDQyNjk1MDQwODg4OTYzNDA5CmJ5dGVjYmxvY2sgMHgKdHhuIE51bUFwcEFyZ3MKaW50Y18wIC8vIDAKPT0KYm56IG1haW5fbDQKdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMApwdXNoYnl0ZXMgMHhiYTU2ODJjZSAvLyAiYm91bmRlZF9yYW5kX3VpbnQ2NChieXRlWzE2XSx1aW50NjQsdWludDY0LHVpbnQxNil1aW50NjRbXSIKPT0KYm56IG1haW5fbDMKZXJyCm1haW5fbDM6CnR4biBPbkNvbXBsZXRpb24KaW50Y18wIC8vIE5vT3AKPT0KdHhuIEFwcGxpY2F0aW9uSUQKaW50Y18wIC8vIDAKIT0KJiYKYXNzZXJ0CmNhbGxzdWIgYm91bmRlZHJhbmR1aW50NjRjYXN0ZXJfNgppbnRjXzEgLy8gMQpyZXR1cm4KbWFpbl9sNDoKdHhuIE9uQ29tcGxldGlvbgppbnRjXzAgLy8gTm9PcAo9PQpibnogbWFpbl9sMTAKdHhuIE9uQ29tcGxldGlvbgpwdXNoaW50IDQgLy8gVXBkYXRlQXBwbGljYXRpb24KPT0KYm56IG1haW5fbDkKdHhuIE9uQ29tcGxldGlvbgpwdXNoaW50IDUgLy8gRGVsZXRlQXBwbGljYXRpb24KPT0KYm56IG1haW5fbDgKZXJyCm1haW5fbDg6CnR4biBBcHBsaWNhdGlvbklECmludGNfMCAvLyAwCiE9CmFzc2VydApjYWxsc3ViIGRlbGV0ZV80CmludGNfMSAvLyAxCnJldHVybgptYWluX2w5Ogp0eG4gQXBwbGljYXRpb25JRAppbnRjXzAgLy8gMAohPQphc3NlcnQKY2FsbHN1YiB1cGRhdGVfMwppbnRjXzEgLy8gMQpyZXR1cm4KbWFpbl9sMTA6CnR4biBBcHBsaWNhdGlvbklECmludGNfMCAvLyAwCj09CmFzc2VydAppbnRjXzEgLy8gMQpyZXR1cm4KCi8vIHBjZzY0X2luaXQKcGNnNjRpbml0XzA6CnByb3RvIDMgMApmcmFtZV9kaWcgLTEKbGVuCnB1c2hpbnQgMTYgLy8gMTYKPT0KYXNzZXJ0CmZyYW1lX2RpZyAtMwppbnRjXzAgLy8gMApzdG9yZXMKZnJhbWVfZGlnIC0zCmludGMgNCAvLyAxNDQyNjk1MDQwODg4OTYzNDA3CmludGNfMiAvLyA2MzY0MTM2MjIzODQ2NzkzMDA1CmZyYW1lX2RpZyAtMwpsb2FkcwptdWx3CmJ1cnkgMQphZGR3CmJ1cnkgMQpzdG9yZXMKZnJhbWVfZGlnIC0zCmZyYW1lX2RpZyAtMwpsb2FkcwpmcmFtZV9kaWcgLTEKaW50Y18wIC8vIDAKZXh0cmFjdF91aW50NjQKYWRkdwpidXJ5IDEKc3RvcmVzCmZyYW1lX2RpZyAtMwppbnRjIDQgLy8gMTQ0MjY5NTA0MDg4ODk2MzQwNwppbnRjXzIgLy8gNjM2NDEzNjIyMzg0Njc5MzAwNQpmcmFtZV9kaWcgLTMKbG9hZHMKbXVsdwpidXJ5IDEKYWRkdwpidXJ5IDEKc3RvcmVzCmZyYW1lX2RpZyAtMgppbnRjXzAgLy8gMApzdG9yZXMKZnJhbWVfZGlnIC0yCmludGMgNSAvLyAxNDQyNjk1MDQwODg4OTYzNDA5CmludGNfMiAvLyA2MzY0MTM2MjIzODQ2NzkzMDA1CmZyYW1lX2RpZyAtMgpsb2FkcwptdWx3CmJ1cnkgMQphZGR3CmJ1cnkgMQpzdG9yZXMKZnJhbWVfZGlnIC0yCmZyYW1lX2RpZyAtMgpsb2FkcwpmcmFtZV9kaWcgLTEKcHVzaGludCA4IC8vIDgKZXh0cmFjdF91aW50NjQKYWRkdwpidXJ5IDEKc3RvcmVzCmZyYW1lX2RpZyAtMgppbnRjIDUgLy8gMTQ0MjY5NTA0MDg4ODk2MzQwOQppbnRjXzIgLy8gNjM2NDEzNjIyMzg0Njc5MzAwNQpmcmFtZV9kaWcgLTIKbG9hZHMKbXVsdwpidXJ5IDEKYWRkdwpidXJ5IDEKc3RvcmVzCnJldHN1YgoKLy8gcGNnNjRfcmFuZG9tCnBjZzY0cmFuZG9tXzE6CnByb3RvIDUgMQppbnRjXzAgLy8gMApmcmFtZV9kaWcgLTEKZnJhbWVfYnVyeSAwCmZyYW1lX2RpZyAwCnB1c2hpbnQgNjU1MzYgLy8gNjU1MzYKPAphc3NlcnQKZnJhbWVfZGlnIDAKaXRvYgpleHRyYWN0IDYgMApzdG9yZSA0CmZyYW1lX2RpZyAtMwppbnRjXzAgLy8gMAo9PQpmcmFtZV9kaWcgLTIKaW50Y18wIC8vIDAKPT0KJiYKYm56IHBjZzY0cmFuZG9tXzFfbDEwCmZyYW1lX2RpZyAtMgppbnRjXzAgLy8gMAohPQpibnogcGNnNjRyYW5kb21fMV9sOQpmcmFtZV9kaWcgLTMKcHVzaGludCAxODQ0Njc0NDA3MzcwOTU1MTYxNSAvLyAxODQ0Njc0NDA3MzcwOTU1MTYxNQo8CmFzc2VydApwdXNoYnl0ZXMgMHgwMTAwMDAwMDAwMDAwMDAwMDAgLy8gMHgwMTAwMDAwMDAwMDAwMDAwMDAKZnJhbWVfZGlnIC0zCml0b2IKYi0KYnRvaQpzdG9yZSAyCnBjZzY0cmFuZG9tXzFfbDM6CmxvYWQgMgp+CmludGNfMSAvLyAxCmFkZHcKYnVyeSAxCmxvYWQgMgolCnN0b3JlIDMKaW50Y18wIC8vIDAKc3RvcmUgNQpwY2c2NHJhbmRvbV8xX2w0Ogpsb2FkIDUKZnJhbWVfZGlnIC0xCjwKYnogcGNnNjRyYW5kb21fMV9sMTMKZnJhbWVfZGlnIC01CmZyYW1lX2RpZyAtNApjYWxsc3ViIHBjZzY0dW5ib3VuZGVkcmFuZG9tXzIKc3RvcmUgNgpwY2c2NHJhbmRvbV8xX2w2Ogpsb2FkIDYKbG9hZCAzCjwKYm56IHBjZzY0cmFuZG9tXzFfbDgKbG9hZCA0CmxvYWQgNgpsb2FkIDIKJQpmcmFtZV9kaWcgLTMKKwppdG9iCmNvbmNhdApzdG9yZSA0CmxvYWQgNQppbnRjXzEgLy8gMQorCnN0b3JlIDUKYiBwY2c2NHJhbmRvbV8xX2w0CnBjZzY0cmFuZG9tXzFfbDg6CmZyYW1lX2RpZyAtNQpmcmFtZV9kaWcgLTQKY2FsbHN1YiBwY2c2NHVuYm91bmRlZHJhbmRvbV8yCnN0b3JlIDYKYiBwY2c2NHJhbmRvbV8xX2w2CnBjZzY0cmFuZG9tXzFfbDk6CmZyYW1lX2RpZyAtMgppbnRjXzEgLy8gMQo+CmFzc2VydApmcmFtZV9kaWcgLTMKZnJhbWVfZGlnIC0yCmludGNfMSAvLyAxCi0KPAphc3NlcnQKZnJhbWVfZGlnIC0yCmZyYW1lX2RpZyAtMwotCnN0b3JlIDIKYiBwY2c2NHJhbmRvbV8xX2wzCnBjZzY0cmFuZG9tXzFfbDEwOgppbnRjXzAgLy8gMApzdG9yZSA1CnBjZzY0cmFuZG9tXzFfbDExOgpsb2FkIDUKZnJhbWVfZGlnIC0xCjwKYnogcGNnNjRyYW5kb21fMV9sMTMKbG9hZCA0CmZyYW1lX2RpZyAtNQpmcmFtZV9kaWcgLTQKY2FsbHN1YiBwY2c2NHVuYm91bmRlZHJhbmRvbV8yCml0b2IKY29uY2F0CnN0b3JlIDQKbG9hZCA1CmludGNfMSAvLyAxCisKc3RvcmUgNQpiIHBjZzY0cmFuZG9tXzFfbDExCnBjZzY0cmFuZG9tXzFfbDEzOgpsb2FkIDQKZnJhbWVfYnVyeSAwCnJldHN1YgoKLy8gX19wY2c2NF91bmJvdW5kZWRfcmFuZG9tCnBjZzY0dW5ib3VuZGVkcmFuZG9tXzI6CnByb3RvIDIgMQpmcmFtZV9kaWcgLTIKbG9hZHMKc3RvcmUgNwpmcmFtZV9kaWcgLTEKbG9hZHMKc3RvcmUgOApmcmFtZV9kaWcgLTIKaW50YyA0IC8vIDE0NDI2OTUwNDA4ODg5NjM0MDcKaW50Y18yIC8vIDYzNjQxMzYyMjM4NDY3OTMwMDUKZnJhbWVfZGlnIC0yCmxvYWRzCm11bHcKYnVyeSAxCmFkZHcKYnVyeSAxCnN0b3JlcwpmcmFtZV9kaWcgLTEKaW50YyA1IC8vIDE0NDI2OTUwNDA4ODg5NjM0MDkKZnJhbWVfZGlnIC0yCmxvYWRzCmludGNfMCAvLyAwCj09CnNobAppbnRjXzIgLy8gNjM2NDEzNjIyMzg0Njc5MzAwNQpmcmFtZV9kaWcgLTEKbG9hZHMKbXVsdwpidXJ5IDEKYWRkdwpidXJ5IDEKc3RvcmVzCmxvYWQgNwpwdXNoaW50IDE4IC8vIDE4CnNocgpsb2FkIDcKXgpwdXNoaW50IDI3IC8vIDI3CnNocgppbnRjXzMgLy8gNDI5NDk2NzI5NQomCnN0b3JlIDkKbG9hZCA3CnB1c2hpbnQgNTkgLy8gNTkKc2hyCnN0b3JlIDEwCmxvYWQgOQpsb2FkIDEwCnNocgpsb2FkIDkKbG9hZCAxMAp+CmludGNfMSAvLyAxCmFkZHcKYnVyeSAxCnB1c2hpbnQgMzEgLy8gMzEKJgpzaGwKaW50Y18zIC8vIDQyOTQ5NjcyOTUKJgp8CnB1c2hpbnQgMzIgLy8gMzIKc2hsCmxvYWQgOApwdXNoaW50IDE4IC8vIDE4CnNocgpsb2FkIDgKXgpwdXNoaW50IDI3IC8vIDI3CnNocgppbnRjXzMgLy8gNDI5NDk2NzI5NQomCnN0b3JlIDExCmxvYWQgOApwdXNoaW50IDU5IC8vIDU5CnNocgpzdG9yZSAxMgpsb2FkIDExCmxvYWQgMTIKc2hyCmxvYWQgMTEKbG9hZCAxMgp+CmludGNfMSAvLyAxCmFkZHcKYnVyeSAxCnB1c2hpbnQgMzEgLy8gMzEKJgpzaGwKaW50Y18zIC8vIDQyOTQ5NjcyOTUKJgp8CnwKcmV0c3ViCgovLyB1cGRhdGUKdXBkYXRlXzM6CnByb3RvIDAgMAp0eG4gU2VuZGVyCmdsb2JhbCBDcmVhdG9yQWRkcmVzcwo9PQovLyB1bmF1dGhvcml6ZWQKYXNzZXJ0CnB1c2hpbnQgVE1QTF9VUERBVEFCTEUgLy8gVE1QTF9VUERBVEFCTEUKLy8gQ2hlY2sgYXBwIGlzIHVwZGF0YWJsZQphc3NlcnQKcmV0c3ViCgovLyBkZWxldGUKZGVsZXRlXzQ6CnByb3RvIDAgMAp0eG4gU2VuZGVyCmdsb2JhbCBDcmVhdG9yQWRkcmVzcwo9PQovLyB1bmF1dGhvcml6ZWQKYXNzZXJ0CnB1c2hpbnQgVE1QTF9ERUxFVEFCTEUgLy8gVE1QTF9ERUxFVEFCTEUKLy8gQ2hlY2sgYXBwIGlzIGRlbGV0YWJsZQphc3NlcnQKcmV0c3ViCgovLyBib3VuZGVkX3JhbmRfdWludDY0CmJvdW5kZWRyYW5kdWludDY0XzU6CnByb3RvIDQgMQpieXRlY18wIC8vICIiCmludGNfMCAvLyAwCmludGNfMSAvLyAxCmZyYW1lX2RpZyAtNApjYWxsc3ViIHBjZzY0aW5pdF8wCmludGNfMCAvLyAwCmludGNfMSAvLyAxCmZyYW1lX2RpZyAtMwpmcmFtZV9kaWcgLTIKZnJhbWVfZGlnIC0xCmNhbGxzdWIgcGNnNjRyYW5kb21fMQpmcmFtZV9idXJ5IDAKcmV0c3ViCgovLyBib3VuZGVkX3JhbmRfdWludDY0X2Nhc3Rlcgpib3VuZGVkcmFuZHVpbnQ2NGNhc3Rlcl82Ogpwcm90byAwIDAKYnl0ZWNfMCAvLyAiIgpkdXAKaW50Y18wIC8vIDAKZHVwbiAyCnR4bmEgQXBwbGljYXRpb25BcmdzIDEKZnJhbWVfYnVyeSAxCnR4bmEgQXBwbGljYXRpb25BcmdzIDIKYnRvaQpmcmFtZV9idXJ5IDIKdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMwpidG9pCmZyYW1lX2J1cnkgMwp0eG5hIEFwcGxpY2F0aW9uQXJncyA0CmludGNfMCAvLyAwCmV4dHJhY3RfdWludDE2CmZyYW1lX2J1cnkgNApmcmFtZV9kaWcgMQpmcmFtZV9kaWcgMgpmcmFtZV9kaWcgMwpmcmFtZV9kaWcgNApjYWxsc3ViIGJvdW5kZWRyYW5kdWludDY0XzUKZnJhbWVfYnVyeSAwCnB1c2hieXRlcyAweDE1MWY3Yzc1IC8vIDB4MTUxZjdjNzUKZnJhbWVfZGlnIDAKY29uY2F0CmxvZwpyZXRzdWI=", "clear": "I3ByYWdtYSB2ZXJzaW9uIDgKcHVzaGludCAwIC8vIDAKcmV0dXJu"}}"""
+_APP_SPEC_JSON = r"""{"arcs": [], "bareActions": {"call": ["UpdateApplication"], "create": ["NoOp"]}, "methods": [{"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "byte[32]", "name": "seed"}, {"type": "uint128", "name": "lower_bound"}, {"type": "uint128", "name": "upper_bound"}, {"type": "uint16", "name": "length"}], "name": "bounded_rand_uint128", "returns": {"type": "uint128[]"}, "events": []}], "name": "LibPcg128ExposerAlgoPy", "state": {"keys": {"box": {}, "global": {}, "local": {}}, "maps": {"box": {}, "global": {}, "local": {}}, "schema": {"global": {"bytes": 0, "ints": 0}, "local": {"bytes": 0, "ints": 0}}}, "structs": {}, "source": {"approval": "I3ByYWdtYSB2ZXJzaW9uIDEwCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuYXBwcm92YWxfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIGludGNibG9jayAxIDYzNjQxMzYyMjM4NDY3OTMwMDUgNDI5NDk2NzI5NSAwIDE0NDI2OTUwNDA4ODg5NjM0MDcgMTQ0MjY5NTA0MDg4ODk2MzQwOSAxNDQyNjk1MDQwODg4OTYzNDExIDE0NDI2OTUwNDA4ODg5NjM0MTMKICAgIGJ5dGVjYmxvY2sgMHggMHgwMSAweDAxMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAKICAgIHR4biBOdW1BcHBBcmdzCiAgICBieiBtYWluX2JhcmVfcm91dGluZ0A2CiAgICBwdXNoYnl0ZXMgMHhjMzVlMDk1ZCAvLyBtZXRob2QgImJvdW5kZWRfcmFuZF91aW50MTI4KGJ5dGVbMzJdLHVpbnQxMjgsdWludDEyOCx1aW50MTYpdWludDEyOFtdIgogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMAogICAgbWF0Y2ggbWFpbl9ib3VuZGVkX3JhbmRfdWludDEyOF9yb3V0ZUAzCgptYWluX2FmdGVyX2lmX2Vsc2VAMTE6CiAgICBpbnRjXzMgLy8gMAogICAgcmV0dXJuCgptYWluX2JvdW5kZWRfcmFuZF91aW50MTI4X3JvdXRlQDM6CiAgICB0eG4gT25Db21wbGV0aW9uCiAgICAhCiAgICBhc3NlcnQgLy8gT25Db21wbGV0aW9uIGlzIG5vdCBOb09wCiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgYXNzZXJ0IC8vIGNhbiBvbmx5IGNhbGwgd2hlbiBub3QgY3JlYXRpbmcKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDEKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDIKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDMKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDQKICAgIGNhbGxzdWIgYm91bmRlZF9yYW5kX3VpbnQxMjgKICAgIHB1c2hieXRlcyAweDE1MWY3Yzc1CiAgICBzd2FwCiAgICBjb25jYXQKICAgIGxvZwogICAgaW50Y18wIC8vIDEKICAgIHJldHVybgoKbWFpbl9iYXJlX3JvdXRpbmdANjoKICAgIHB1c2hpbnQgNCAvLyA0CiAgICBpbnRjXzMgLy8gMAogICAgdHhuIE9uQ29tcGxldGlvbgogICAgbWF0Y2ggbWFpbl91cGRhdGVANyBtYWluX19fYWxnb3B5X2RlZmF1bHRfY3JlYXRlQDgKICAgIGIgbWFpbl9hZnRlcl9pZl9lbHNlQDExCgptYWluX19fYWxnb3B5X2RlZmF1bHRfY3JlYXRlQDg6CiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgIQogICAgYXNzZXJ0IC8vIGNhbiBvbmx5IGNhbGwgd2hlbiBjcmVhdGluZwogICAgaW50Y18wIC8vIDEKICAgIHJldHVybgoKbWFpbl91cGRhdGVANzoKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICBhc3NlcnQgLy8gY2FuIG9ubHkgY2FsbCB3aGVuIG5vdCBjcmVhdGluZwogICAgY2FsbHN1YiB1cGRhdGUKICAgIGludGNfMCAvLyAxCiAgICByZXR1cm4KCgovLyBsaWJfcGNnLnBjZzEyOC5fX3BjZzEyOF91bmJvdW5kZWRfcmFuZG9tKHN0YXRlLjA6IHVpbnQ2NCwgc3RhdGUuMTogdWludDY0LCBzdGF0ZS4yOiB1aW50NjQsIHN0YXRlLjM6IHVpbnQ2NCkgLT4gdWludDY0LCB1aW50NjQsIHVpbnQ2NCwgdWludDY0LCBieXRlczoKX19wY2cxMjhfdW5ib3VuZGVkX3JhbmRvbToKICAgIHByb3RvIDQgNQogICAgZnJhbWVfZGlnIC00CiAgICBpbnRjXzEgLy8gNjM2NDEzNjIyMzg0Njc5MzAwNQogICAgbXVsdwogICAgYnVyeSAxCiAgICBpbnRjIDQgLy8gMTQ0MjY5NTA0MDg4ODk2MzQwNwogICAgYWRkdwogICAgYnVyeSAxCiAgICBkdXAKICAgICEKICAgIGludGMgNSAvLyAxNDQyNjk1MDQwODg4OTYzNDA5CiAgICBzd2FwCiAgICBzaGwKICAgIGZyYW1lX2RpZyAtMwogICAgaW50Y18xIC8vIDYzNjQxMzYyMjM4NDY3OTMwMDUKICAgIG11bHcKICAgIGJ1cnkgMQogICAgYWRkdwogICAgYnVyeSAxCiAgICBkdXAKICAgICEKICAgIGludGMgNiAvLyAxNDQyNjk1MDQwODg4OTYzNDExCiAgICBzd2FwCiAgICBzaGwKICAgIGZyYW1lX2RpZyAtMgogICAgaW50Y18xIC8vIDYzNjQxMzYyMjM4NDY3OTMwMDUKICAgIG11bHcKICAgIGJ1cnkgMQogICAgYWRkdwogICAgYnVyeSAxCiAgICBkdXAKICAgICEKICAgIGludGMgNyAvLyAxNDQyNjk1MDQwODg4OTYzNDEzCiAgICBzd2FwCiAgICBzaGwKICAgIGZyYW1lX2RpZyAtMQogICAgaW50Y18xIC8vIDYzNjQxMzYyMjM4NDY3OTMwMDUKICAgIG11bHcKICAgIGJ1cnkgMQogICAgYWRkdwogICAgYnVyeSAxCiAgICBmcmFtZV9kaWcgLTQKICAgIHB1c2hpbnQgMTggLy8gMTgKICAgIHNocgogICAgZnJhbWVfZGlnIC00CiAgICBeCiAgICBwdXNoaW50IDI3IC8vIDI3CiAgICBzaHIKICAgIGludGNfMiAvLyA0Mjk0OTY3Mjk1CiAgICAmCiAgICBmcmFtZV9kaWcgLTQKICAgIHB1c2hpbnQgNTkgLy8gNTkKICAgIHNocgogICAgZHVwMgogICAgc2hyCiAgICBzd2FwCiAgICB+CiAgICBpbnRjXzAgLy8gMQogICAgYWRkdwogICAgYnVyeSAxCiAgICBwdXNoaW50IDMxIC8vIDMxCiAgICAmCiAgICB1bmNvdmVyIDIKICAgIHN3YXAKICAgIHNobAogICAgaW50Y18yIC8vIDQyOTQ5NjcyOTUKICAgICYKICAgIHwKICAgIHB1c2hpbnQgMzIgLy8gMzIKICAgIHNobAogICAgZnJhbWVfZGlnIC0zCiAgICBwdXNoaW50IDE4IC8vIDE4CiAgICBzaHIKICAgIGZyYW1lX2RpZyAtMwogICAgXgogICAgcHVzaGludCAyNyAvLyAyNwogICAgc2hyCiAgICBpbnRjXzIgLy8gNDI5NDk2NzI5NQogICAgJgogICAgZnJhbWVfZGlnIC0zCiAgICBwdXNoaW50IDU5IC8vIDU5CiAgICBzaHIKICAgIGR1cDIKICAgIHNocgogICAgc3dhcAogICAgfgogICAgaW50Y18wIC8vIDEKICAgIGFkZHcKICAgIGJ1cnkgMQogICAgcHVzaGludCAzMSAvLyAzMQogICAgJgogICAgdW5jb3ZlciAyCiAgICBzd2FwCiAgICBzaGwKICAgIGludGNfMiAvLyA0Mjk0OTY3Mjk1CiAgICAmCiAgICB8CiAgICB8CiAgICBpdG9iCiAgICBmcmFtZV9kaWcgLTIKICAgIHB1c2hpbnQgMTggLy8gMTgKICAgIHNocgogICAgZnJhbWVfZGlnIC0yCiAgICBeCiAgICBwdXNoaW50IDI3IC8vIDI3CiAgICBzaHIKICAgIGludGNfMiAvLyA0Mjk0OTY3Mjk1CiAgICAmCiAgICBmcmFtZV9kaWcgLTIKICAgIHB1c2hpbnQgNTkgLy8gNTkKICAgIHNocgogICAgZHVwMgogICAgc2hyCiAgICBzd2FwCiAgICB+CiAgICBpbnRjXzAgLy8gMQogICAgYWRkdwogICAgYnVyeSAxCiAgICBwdXNoaW50IDMxIC8vIDMxCiAgICAmCiAgICB1bmNvdmVyIDIKICAgIHN3YXAKICAgIHNobAogICAgaW50Y18yIC8vIDQyOTQ5NjcyOTUKICAgICYKICAgIHwKICAgIHB1c2hpbnQgMzIgLy8gMzIKICAgIHNobAogICAgZnJhbWVfZGlnIC0xCiAgICBwdXNoaW50IDE4IC8vIDE4CiAgICBzaHIKICAgIGZyYW1lX2RpZyAtMQogICAgXgogICAgcHVzaGludCAyNyAvLyAyNwogICAgc2hyCiAgICBpbnRjXzIgLy8gNDI5NDk2NzI5NQogICAgJgogICAgZnJhbWVfZGlnIC0xCiAgICBwdXNoaW50IDU5IC8vIDU5CiAgICBzaHIKICAgIGR1cDIKICAgIHNocgogICAgc3dhcAogICAgfgogICAgaW50Y18wIC8vIDEKICAgIGFkZHcKICAgIGJ1cnkgMQogICAgcHVzaGludCAzMSAvLyAzMQogICAgJgogICAgdW5jb3ZlciAyCiAgICBzd2FwCiAgICBzaGwKICAgIGludGNfMiAvLyA0Mjk0OTY3Mjk1CiAgICAmCiAgICB8CiAgICB8CiAgICBpdG9iCiAgICBjb25jYXQKICAgIHJldHN1YgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5saWJfcGNnMTI4X2V4cG9zZXIuY29udHJhY3QuTGliUGNnMTI4RXhwb3NlckFsZ29QeS5ib3VuZGVkX3JhbmRfdWludDEyOChzZWVkOiBieXRlcywgbG93ZXJfYm91bmQ6IGJ5dGVzLCB1cHBlcl9ib3VuZDogYnl0ZXMsIGxlbmd0aDogYnl0ZXMpIC0+IGJ5dGVzOgpib3VuZGVkX3JhbmRfdWludDEyODoKICAgIHByb3RvIDQgMQogICAgaW50Y18zIC8vIDAKICAgIGR1cG4gMgogICAgYnl0ZWNfMCAvLyAiIgogICAgZHVwbiA0CiAgICBmcmFtZV9kaWcgLTQKICAgIGxlbgogICAgcHVzaGludCAzMiAvLyAzMgogICAgPT0KICAgIGFzc2VydAogICAgZnJhbWVfZGlnIC00CiAgICBpbnRjXzMgLy8gMAogICAgZXh0cmFjdF91aW50NjQKICAgIGludGNfMyAvLyAwCiAgICBpbnRjXzEgLy8gNjM2NDEzNjIyMzg0Njc5MzAwNQogICAgbXVsdwogICAgYnVyeSAxCiAgICBkdXAKICAgIGludGMgNCAvLyAxNDQyNjk1MDQwODg4OTYzNDA3CiAgICBhZGR3CiAgICBidXJ5IDEKICAgIHVuY292ZXIgMgogICAgYWRkdwogICAgYnVyeSAxCiAgICBpbnRjXzEgLy8gNjM2NDEzNjIyMzg0Njc5MzAwNQogICAgbXVsdwogICAgYnVyeSAxCiAgICBpbnRjIDQgLy8gMTQ0MjY5NTA0MDg4ODk2MzQwNwogICAgYWRkdwogICAgY292ZXIgMgogICAgcG9wCiAgICBmcmFtZV9kaWcgLTQKICAgIHB1c2hpbnQgOCAvLyA4CiAgICBleHRyYWN0X3VpbnQ2NAogICAgZGlnIDEKICAgIGludGMgNSAvLyAxNDQyNjk1MDQwODg4OTYzNDA5CiAgICBhZGR3CiAgICBidXJ5IDEKICAgIGFkZHcKICAgIGJ1cnkgMQogICAgaW50Y18xIC8vIDYzNjQxMzYyMjM4NDY3OTMwMDUKICAgIG11bHcKICAgIGJ1cnkgMQogICAgaW50YyA1IC8vIDE0NDI2OTUwNDA4ODg5NjM0MDkKICAgIGFkZHcKICAgIGNvdmVyIDIKICAgIHBvcAogICAgZnJhbWVfZGlnIC00CiAgICBwdXNoaW50IDE2IC8vIDE2CiAgICBleHRyYWN0X3VpbnQ2NAogICAgZGlnIDEKICAgIGludGMgNiAvLyAxNDQyNjk1MDQwODg4OTYzNDExCiAgICBhZGR3CiAgICBidXJ5IDEKICAgIGFkZHcKICAgIGJ1cnkgMQogICAgaW50Y18xIC8vIDYzNjQxMzYyMjM4NDY3OTMwMDUKICAgIG11bHcKICAgIGJ1cnkgMQogICAgaW50YyA2IC8vIDE0NDI2OTUwNDA4ODg5NjM0MTEKICAgIGFkZHcKICAgIGNvdmVyIDIKICAgIHBvcAogICAgZnJhbWVfZGlnIC00CiAgICBwdXNoaW50IDI0IC8vIDI0CiAgICBleHRyYWN0X3VpbnQ2NAogICAgc3dhcAogICAgaW50YyA3IC8vIDE0NDI2OTUwNDA4ODg5NjM0MTMKICAgIGFkZHcKICAgIGJ1cnkgMQogICAgYWRkdwogICAgYnVyeSAxCiAgICBpbnRjXzEgLy8gNjM2NDEzNjIyMzg0Njc5MzAwNQogICAgbXVsdwogICAgYnVyeSAxCiAgICBpbnRjIDcgLy8gMTQ0MjY5NTA0MDg4ODk2MzQxMwogICAgYWRkdwogICAgYnVyeSAxCiAgICBmcmFtZV9kaWcgLTEKICAgIGJ0b2kKICAgIHB1c2hieXRlcyAweDAwMDAKICAgIGZyYW1lX2RpZyAtMwogICAgYnl0ZWNfMCAvLyAweAogICAgYj09CiAgICBieiBib3VuZGVkX3JhbmRfdWludDEyOF9lbHNlX2JvZHlAOQogICAgZnJhbWVfZGlnIC0yCiAgICBieXRlY18wIC8vIDB4CiAgICBiPT0KICAgIGJ6IGJvdW5kZWRfcmFuZF91aW50MTI4X2Vsc2VfYm9keUA5CiAgICBpbnRjXzMgLy8gMAogICAgZnJhbWVfYnVyeSAzCiAgICBmcmFtZV9kaWcgMTEKICAgIGZyYW1lX2J1cnkgNwogICAgZnJhbWVfZGlnIDEwCiAgICBmcmFtZV9idXJ5IDYKICAgIGZyYW1lX2RpZyA5CiAgICBmcmFtZV9idXJ5IDUKICAgIGZyYW1lX2RpZyA4CiAgICBmcmFtZV9idXJ5IDQKCmJvdW5kZWRfcmFuZF91aW50MTI4X2Zvcl9oZWFkZXJANjoKICAgIGZyYW1lX2RpZyAzCiAgICBmcmFtZV9kaWcgMTIKICAgIDwKICAgIGJ6IGJvdW5kZWRfcmFuZF91aW50MTI4X2FmdGVyX2lmX2Vsc2VAMTkKICAgIGZyYW1lX2RpZyA0CiAgICBmcmFtZV9kaWcgNQogICAgZnJhbWVfZGlnIDYKICAgIGZyYW1lX2RpZyA3CiAgICBjYWxsc3ViIF9fcGNnMTI4X3VuYm91bmRlZF9yYW5kb20KICAgIGNvdmVyIDQKICAgIGZyYW1lX2J1cnkgNwogICAgZnJhbWVfYnVyeSA2CiAgICBmcmFtZV9idXJ5IDUKICAgIGZyYW1lX2J1cnkgNAogICAgZnJhbWVfZGlnIDEzCiAgICBleHRyYWN0IDIgMAogICAgZGlnIDEKICAgIGxlbgogICAgcHVzaGludCAxNiAvLyAxNgogICAgPD0KICAgIGFzc2VydCAvLyBvdmVyZmxvdwogICAgcHVzaGludCAxNiAvLyAxNgogICAgYnplcm8KICAgIHVuY292ZXIgMgogICAgYnwKICAgIGNvbmNhdAogICAgZHVwCiAgICBsZW4KICAgIHB1c2hpbnQgMTYgLy8gMTYKICAgIC8KICAgIGl0b2IKICAgIGV4dHJhY3QgNiAyCiAgICBzd2FwCiAgICBjb25jYXQKICAgIGZyYW1lX2J1cnkgMTMKICAgIGZyYW1lX2RpZyAzCiAgICBpbnRjXzAgLy8gMQogICAgKwogICAgZnJhbWVfYnVyeSAzCiAgICBiIGJvdW5kZWRfcmFuZF91aW50MTI4X2Zvcl9oZWFkZXJANgoKYm91bmRlZF9yYW5kX3VpbnQxMjhfYWZ0ZXJfaWZfZWxzZUAxOToKICAgIGZyYW1lX2RpZyAxMwogICAgZnJhbWVfYnVyeSAwCiAgICByZXRzdWIKCmJvdW5kZWRfcmFuZF91aW50MTI4X2Vsc2VfYm9keUA5OgogICAgZnJhbWVfZGlnIC0yCiAgICBieXRlY18wIC8vIDB4CiAgICBiIT0KICAgIGJ6IGJvdW5kZWRfcmFuZF91aW50MTI4X2Vsc2VfYm9keUAxMQogICAgZnJhbWVfZGlnIC0yCiAgICBieXRlY18xIC8vIDB4MDEKICAgIGI+CiAgICBhc3NlcnQKICAgIGZyYW1lX2RpZyAtMgogICAgYnl0ZWNfMiAvLyAweDAxMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAKICAgIGI8CiAgICBhc3NlcnQKICAgIGZyYW1lX2RpZyAtMgogICAgYnl0ZWNfMSAvLyAweDAxCiAgICBiLQogICAgZnJhbWVfZGlnIC0zCiAgICBiPgogICAgYXNzZXJ0CiAgICBmcmFtZV9kaWcgLTIKICAgIGZyYW1lX2RpZyAtMwogICAgYi0KICAgIGZyYW1lX2J1cnkgMAoKYm91bmRlZF9yYW5kX3VpbnQxMjhfYWZ0ZXJfaWZfZWxzZUAxMjoKICAgIGZyYW1lX2RpZyAwCiAgICBkdXAKICAgIGJ+CiAgICBieXRlY18xIC8vIDB4MDEKICAgIGIrCiAgICBwdXNoYnl0ZXMgMHhmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZgogICAgYiYKICAgIHN3YXAKICAgIGIlCiAgICBmcmFtZV9idXJ5IDIKICAgIGludGNfMyAvLyAwCiAgICBmcmFtZV9idXJ5IDMKICAgIGZyYW1lX2RpZyAxMQogICAgZnJhbWVfYnVyeSA3CiAgICBmcmFtZV9kaWcgMTAKICAgIGZyYW1lX2J1cnkgNgogICAgZnJhbWVfZGlnIDkKICAgIGZyYW1lX2J1cnkgNQogICAgZnJhbWVfZGlnIDgKICAgIGZyYW1lX2J1cnkgNAoKYm91bmRlZF9yYW5kX3VpbnQxMjhfZm9yX2hlYWRlckAxMzoKICAgIGZyYW1lX2RpZyAzCiAgICBmcmFtZV9kaWcgMTIKICAgIDwKICAgIGJ6IGJvdW5kZWRfcmFuZF91aW50MTI4X2FmdGVyX2lmX2Vsc2VAMTkKCmJvdW5kZWRfcmFuZF91aW50MTI4X3doaWxlX3RvcEAxNToKICAgIGZyYW1lX2RpZyA0CiAgICBmcmFtZV9kaWcgNQogICAgZnJhbWVfZGlnIDYKICAgIGZyYW1lX2RpZyA3CiAgICBjYWxsc3ViIF9fcGNnMTI4X3VuYm91bmRlZF9yYW5kb20KICAgIGR1cAogICAgY292ZXIgNQogICAgZnJhbWVfYnVyeSAxCiAgICBmcmFtZV9idXJ5IDcKICAgIGZyYW1lX2J1cnkgNgogICAgZnJhbWVfYnVyeSA1CiAgICBmcmFtZV9idXJ5IDQKICAgIGZyYW1lX2RpZyAyCiAgICBiPj0KICAgIGJ6IGJvdW5kZWRfcmFuZF91aW50MTI4X3doaWxlX3RvcEAxNQogICAgZnJhbWVfZGlnIDEzCiAgICBleHRyYWN0IDIgMAogICAgZnJhbWVfZGlnIDEKICAgIGZyYW1lX2RpZyAwCiAgICBiJQogICAgZnJhbWVfZGlnIC0zCiAgICBiKwogICAgZHVwCiAgICBsZW4KICAgIHB1c2hpbnQgMTYgLy8gMTYKICAgIDw9CiAgICBhc3NlcnQgLy8gb3ZlcmZsb3cKICAgIHB1c2hpbnQgMTYgLy8gMTYKICAgIGJ6ZXJvCiAgICBifAogICAgY29uY2F0CiAgICBkdXAKICAgIGxlbgogICAgcHVzaGludCAxNiAvLyAxNgogICAgLwogICAgaXRvYgogICAgZXh0cmFjdCA2IDIKICAgIHN3YXAKICAgIGNvbmNhdAogICAgZnJhbWVfYnVyeSAxMwogICAgZnJhbWVfZGlnIDMKICAgIGludGNfMCAvLyAxCiAgICArCiAgICBmcmFtZV9idXJ5IDMKICAgIGIgYm91bmRlZF9yYW5kX3VpbnQxMjhfZm9yX2hlYWRlckAxMwoKYm91bmRlZF9yYW5kX3VpbnQxMjhfZWxzZV9ib2R5QDExOgogICAgZnJhbWVfZGlnIC0zCiAgICBwdXNoYnl0ZXMgMHg4MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMAogICAgYjwKICAgIGFzc2VydAogICAgYnl0ZWNfMiAvLyAweDAxMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAKICAgIGZyYW1lX2RpZyAtMwogICAgYi0KICAgIGZyYW1lX2J1cnkgMAogICAgYiBib3VuZGVkX3JhbmRfdWludDEyOF9hZnRlcl9pZl9lbHNlQDEyCgoKLy8gc21hcnRfY29udHJhY3RzLmxpYl9wY2cxMjhfZXhwb3Nlci5jb250cmFjdC5MaWJQY2cxMjhFeHBvc2VyQWxnb1B5LnVwZGF0ZSgpIC0+IHZvaWQ6CnVwZGF0ZToKICAgIHByb3RvIDAgMAogICAgdHhuIFNlbmRlcgogICAgZ2xvYmFsIENyZWF0b3JBZGRyZXNzCiAgICA9PQogICAgYXNzZXJ0CiAgICByZXRzdWIK", "clear": "I3ByYWdtYSB2ZXJzaW9uIDEwCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMSAvLyAxCiAgICByZXR1cm4K"}}"""
 APP_SPEC = algokit_utils.Arc56Contract.from_json(_APP_SPEC_JSON)
 
 def _parse_abi_args(args: object | None = None) -> list[object] | None:
@@ -65,19 +65,19 @@ def _init_dataclass(cls: type, data: dict) -> object:
     return cls(**field_values)
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
-class BoundedRandUint64Args:
-    """Dataclass for bounded_rand_uint64 arguments"""
-    seed: bytes | str | tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int]
+class BoundedRandUint128Args:
+    """Dataclass for bounded_rand_uint128 arguments"""
+    seed: bytes | str | tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int]
     lower_bound: int
     upper_bound: int
     length: int
 
     @property
     def abi_method_signature(self) -> str:
-        return "bounded_rand_uint64(byte[16],uint64,uint64,uint16)uint64[]"
+        return "bounded_rand_uint128(byte[32],uint128,uint128,uint16)uint128[]"
 
 
-class _LibPcg64ExposerPytealUpdate:
+class _LibPcg128ExposerAlgoPyUpdate:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
@@ -87,38 +87,24 @@ class _LibPcg64ExposerPytealUpdate:
         return self.app_client.params.bare.update(params)
 
 
-class _LibPcg64ExposerPytealDelete:
-    def __init__(self, app_client: algokit_utils.AppClient):
-        self.app_client = app_client
-
-    def bare(
-        self, params: algokit_utils.AppClientBareCallParams | None = None
-    ) -> algokit_utils.AppCallParams:
-        return self.app_client.params.bare.delete(params)
-
-
-class LibPcg64ExposerPytealParams:
+class LibPcg128ExposerAlgoPyParams:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
     @property
-    def update(self) -> "_LibPcg64ExposerPytealUpdate":
-        return _LibPcg64ExposerPytealUpdate(self.app_client)
+    def update(self) -> "_LibPcg128ExposerAlgoPyUpdate":
+        return _LibPcg128ExposerAlgoPyUpdate(self.app_client)
 
-    @property
-    def delete(self) -> "_LibPcg64ExposerPytealDelete":
-        return _LibPcg64ExposerPytealDelete(self.app_client)
-
-    def bounded_rand_uint64(
+    def bounded_rand_uint128(
         self,
-        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint64Args,
+        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint128Args,
         params: algokit_utils.CommonAppCallParams | None = None
     ) -> algokit_utils.AppCallMethodCallParams:
         method_args = _parse_abi_args(args)
         params = params or algokit_utils.CommonAppCallParams()
         return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
-            "method": "bounded_rand_uint64(byte[16],uint64,uint64,uint16)uint64[]",
+            "method": "bounded_rand_uint128(byte[32],uint128,uint128,uint16)uint128[]",
             "args": method_args,
         }))
 
@@ -133,7 +119,7 @@ class LibPcg64ExposerPytealParams:
         )
 
 
-class _LibPcg64ExposerPytealUpdateTransaction:
+class _LibPcg128ExposerAlgoPyUpdateTransaction:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
@@ -141,36 +127,24 @@ class _LibPcg64ExposerPytealUpdateTransaction:
         return self.app_client.create_transaction.bare.update(params)
 
 
-class _LibPcg64ExposerPytealDeleteTransaction:
-    def __init__(self, app_client: algokit_utils.AppClient):
-        self.app_client = app_client
-
-    def bare(self, params: algokit_utils.AppClientBareCallParams | None = None) -> Transaction:
-        return self.app_client.create_transaction.bare.delete(params)
-
-
-class LibPcg64ExposerPytealCreateTransactionParams:
+class LibPcg128ExposerAlgoPyCreateTransactionParams:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
     @property
-    def update(self) -> "_LibPcg64ExposerPytealUpdateTransaction":
-        return _LibPcg64ExposerPytealUpdateTransaction(self.app_client)
+    def update(self) -> "_LibPcg128ExposerAlgoPyUpdateTransaction":
+        return _LibPcg128ExposerAlgoPyUpdateTransaction(self.app_client)
 
-    @property
-    def delete(self) -> "_LibPcg64ExposerPytealDeleteTransaction":
-        return _LibPcg64ExposerPytealDeleteTransaction(self.app_client)
-
-    def bounded_rand_uint64(
+    def bounded_rand_uint128(
         self,
-        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint64Args,
+        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint128Args,
         params: algokit_utils.CommonAppCallParams | None = None
     ) -> algokit_utils.BuiltTransactions:
         method_args = _parse_abi_args(args)
         params = params or algokit_utils.CommonAppCallParams()
         return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
-            "method": "bounded_rand_uint64(byte[16],uint64,uint64,uint16)uint64[]",
+            "method": "bounded_rand_uint128(byte[32],uint128,uint128,uint16)uint128[]",
             "args": method_args,
         }))
 
@@ -185,7 +159,7 @@ class LibPcg64ExposerPytealCreateTransactionParams:
         )
 
 
-class _LibPcg64ExposerPytealUpdateSend:
+class _LibPcg128ExposerAlgoPyUpdateSend:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
@@ -202,38 +176,17 @@ class _LibPcg64ExposerPytealUpdateSend:
         )
 
 
-class _LibPcg64ExposerPytealDeleteSend:
-    def __init__(self, app_client: algokit_utils.AppClient):
-        self.app_client = app_client
-
-    def bare(
-        self,
-        params: algokit_utils.AppClientBareCallParams | None = None,
-        send_params: algokit_utils.SendParams | None = None,
-        
-    ) -> algokit_utils.SendAppTransactionResult:
-        return self.app_client.send.bare.delete(
-            params=params,
-            send_params=send_params,
-            
-        )
-
-
-class LibPcg64ExposerPytealSend:
+class LibPcg128ExposerAlgoPySend:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
     @property
-    def update(self) -> "_LibPcg64ExposerPytealUpdateSend":
-        return _LibPcg64ExposerPytealUpdateSend(self.app_client)
+    def update(self) -> "_LibPcg128ExposerAlgoPyUpdateSend":
+        return _LibPcg128ExposerAlgoPyUpdateSend(self.app_client)
 
-    @property
-    def delete(self) -> "_LibPcg64ExposerPytealDeleteSend":
-        return _LibPcg64ExposerPytealDeleteSend(self.app_client)
-
-    def bounded_rand_uint64(
+    def bounded_rand_uint128(
         self,
-        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint64Args,
+        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint128Args,
         params: algokit_utils.CommonAppCallParams | None = None,
         send_params: algokit_utils.SendParams | None = None
     ) -> algokit_utils.SendAppTransactionResult[list[int]]:
@@ -241,7 +194,7 @@ class LibPcg64ExposerPytealSend:
         params = params or algokit_utils.CommonAppCallParams()
         response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
-            "method": "bounded_rand_uint64(byte[16],uint64,uint64,uint16)uint64[]",
+            "method": "bounded_rand_uint128(byte[32],uint128,uint128,uint16)uint128[]",
             "args": method_args,
         }), send_params=send_params)
         parsed_response = response
@@ -258,14 +211,14 @@ class LibPcg64ExposerPytealSend:
         )
 
 
-class LibPcg64ExposerPytealState:
-    """Methods to access state for the current lib_pcg64_exposer_pyteal app"""
+class LibPcg128ExposerAlgoPyState:
+    """Methods to access state for the current LibPcg128ExposerAlgoPy app"""
 
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
-class LibPcg64ExposerPytealClient:
-    """Client for interacting with lib_pcg64_exposer_pyteal smart contract"""
+class LibPcg128ExposerAlgoPyClient:
+    """Client for interacting with LibPcg128ExposerAlgoPy smart contract"""
 
     @typing.overload
     def __init__(self, app_client: algokit_utils.AppClient) -> None: ...
@@ -313,10 +266,10 @@ class LibPcg64ExposerPytealClient:
         else:
             raise ValueError("Either app_client or algorand and app_id must be provided")
     
-        self.params = LibPcg64ExposerPytealParams(self.app_client)
-        self.create_transaction = LibPcg64ExposerPytealCreateTransactionParams(self.app_client)
-        self.send = LibPcg64ExposerPytealSend(self.app_client)
-        self.state = LibPcg64ExposerPytealState(self.app_client)
+        self.params = LibPcg128ExposerAlgoPyParams(self.app_client)
+        self.create_transaction = LibPcg128ExposerAlgoPyCreateTransactionParams(self.app_client)
+        self.send = LibPcg128ExposerAlgoPySend(self.app_client)
+        self.state = LibPcg128ExposerAlgoPyState(self.app_client)
 
     @staticmethod
     def from_creator_and_name(
@@ -329,8 +282,8 @@ class LibPcg64ExposerPytealClient:
         clear_source_map: SourceMap | None = None,
         ignore_cache: bool | None = None,
         app_lookup_cache: algokit_utils.ApplicationLookup | None = None,
-    ) -> "LibPcg64ExposerPytealClient":
-        return LibPcg64ExposerPytealClient(
+    ) -> "LibPcg128ExposerAlgoPyClient":
+        return LibPcg128ExposerAlgoPyClient(
             algokit_utils.AppClient.from_creator_and_name(
                 creator_address=creator_address,
                 app_name=app_name,
@@ -353,8 +306,8 @@ class LibPcg64ExposerPytealClient:
         default_signer: TransactionSigner | None = None,
         approval_source_map: SourceMap | None = None,
         clear_source_map: SourceMap | None = None,
-    ) -> "LibPcg64ExposerPytealClient":
-        return LibPcg64ExposerPytealClient(
+    ) -> "LibPcg128ExposerAlgoPyClient":
+        return LibPcg128ExposerAlgoPyClient(
             algokit_utils.AppClient.from_network(
                 app_spec=APP_SPEC,
                 algorand=algorand,
@@ -393,8 +346,8 @@ class LibPcg64ExposerPytealClient:
         default_signer: TransactionSigner | None = None,
         approval_source_map: SourceMap | None = None,
         clear_source_map: SourceMap | None = None,
-    ) -> "LibPcg64ExposerPytealClient":
-        return LibPcg64ExposerPytealClient(
+    ) -> "LibPcg128ExposerAlgoPyClient":
+        return LibPcg128ExposerAlgoPyClient(
             self.app_client.clone(
                 app_name=app_name,
                 default_sender=default_sender,
@@ -404,13 +357,13 @@ class LibPcg64ExposerPytealClient:
             )
         )
 
-    def new_group(self) -> "LibPcg64ExposerPytealComposer":
-        return LibPcg64ExposerPytealComposer(self)
+    def new_group(self) -> "LibPcg128ExposerAlgoPyComposer":
+        return LibPcg128ExposerAlgoPyComposer(self)
 
     @typing.overload
     def decode_return_value(
         self,
-        method: typing.Literal["bounded_rand_uint64(byte[16],uint64,uint64,uint16)uint64[]"],
+        method: typing.Literal["bounded_rand_uint128(byte[32],uint128,uint128,uint16)uint128[]"],
         return_value: algokit_utils.ABIReturn | None
     ) -> list[int] | None: ...
     @typing.overload
@@ -444,31 +397,23 @@ class LibPcg64ExposerPytealClient:
 
 
 @dataclasses.dataclass(frozen=True)
-class LibPcg64ExposerPytealBareCallCreateParams(algokit_utils.AppClientBareCallCreateParams):
-    """Parameters for creating LibPcg64ExposerPyteal contract with bare calls"""
+class LibPcg128ExposerAlgoPyBareCallCreateParams(algokit_utils.AppClientBareCallCreateParams):
+    """Parameters for creating LibPcg128ExposerAlgoPy contract with bare calls"""
     on_complete: typing.Literal[OnComplete.NoOpOC] | None = None
 
     def to_algokit_utils_params(self) -> algokit_utils.AppClientBareCallCreateParams:
         return algokit_utils.AppClientBareCallCreateParams(**self.__dict__)
 
 @dataclasses.dataclass(frozen=True)
-class LibPcg64ExposerPytealBareCallUpdateParams(algokit_utils.AppClientBareCallParams):
-    """Parameters for calling LibPcg64ExposerPyteal contract with bare calls"""
+class LibPcg128ExposerAlgoPyBareCallUpdateParams(algokit_utils.AppClientBareCallParams):
+    """Parameters for calling LibPcg128ExposerAlgoPy contract with bare calls"""
     on_complete: typing.Literal[OnComplete.UpdateApplicationOC] | None = None
 
     def to_algokit_utils_params(self) -> algokit_utils.AppClientBareCallParams:
         return algokit_utils.AppClientBareCallParams(**self.__dict__)
 
-@dataclasses.dataclass(frozen=True)
-class LibPcg64ExposerPytealBareCallDeleteParams(algokit_utils.AppClientBareCallParams):
-    """Parameters for calling LibPcg64ExposerPyteal contract with bare calls"""
-    on_complete: typing.Literal[OnComplete.DeleteApplicationOC] | None = None
-
-    def to_algokit_utils_params(self) -> algokit_utils.AppClientBareCallParams:
-        return algokit_utils.AppClientBareCallParams(**self.__dict__)
-
-class LibPcg64ExposerPytealFactory(algokit_utils.TypedAppFactoryProtocol[LibPcg64ExposerPytealBareCallCreateParams, LibPcg64ExposerPytealBareCallUpdateParams, LibPcg64ExposerPytealBareCallDeleteParams]):
-    """Factory for deploying and managing LibPcg64ExposerPytealClient smart contracts"""
+class LibPcg128ExposerAlgoPyFactory(algokit_utils.TypedAppFactoryProtocol[LibPcg128ExposerAlgoPyBareCallCreateParams, LibPcg128ExposerAlgoPyBareCallUpdateParams, None]):
+    """Factory for deploying and managing LibPcg128ExposerAlgoPyClient smart contracts"""
 
     def __init__(
         self,
@@ -491,9 +436,9 @@ class LibPcg64ExposerPytealFactory(algokit_utils.TypedAppFactoryProtocol[LibPcg6
                 compilation_params=compilation_params,
             )
         )
-        self.params = LibPcg64ExposerPytealFactoryParams(self.app_factory)
-        self.create_transaction = LibPcg64ExposerPytealFactoryCreateTransaction(self.app_factory)
-        self.send = LibPcg64ExposerPytealFactorySend(self.app_factory)
+        self.params = LibPcg128ExposerAlgoPyFactoryParams(self.app_factory)
+        self.create_transaction = LibPcg128ExposerAlgoPyFactoryCreateTransaction(self.app_factory)
+        self.send = LibPcg128ExposerAlgoPyFactorySend(self.app_factory)
 
     @property
     def app_name(self) -> str:
@@ -512,22 +457,22 @@ class LibPcg64ExposerPytealFactory(algokit_utils.TypedAppFactoryProtocol[LibPcg6
         *,
         on_update: algokit_utils.OnUpdate | None = None,
         on_schema_break: algokit_utils.OnSchemaBreak | None = None,
-        create_params: LibPcg64ExposerPytealBareCallCreateParams | None = None,
-        update_params: LibPcg64ExposerPytealBareCallUpdateParams | None = None,
-        delete_params: LibPcg64ExposerPytealBareCallDeleteParams | None = None,
+        create_params: LibPcg128ExposerAlgoPyBareCallCreateParams | None = None,
+        update_params: LibPcg128ExposerAlgoPyBareCallUpdateParams | None = None,
+        delete_params: None = None,
         existing_deployments: algokit_utils.ApplicationLookup | None = None,
         ignore_cache: bool = False,
         app_name: str | None = None,
         compilation_params: algokit_utils.AppClientCompilationParams | None = None,
         send_params: algokit_utils.SendParams | None = None,
-    ) -> tuple[LibPcg64ExposerPytealClient, algokit_utils.AppFactoryDeployResult]:
+    ) -> tuple[LibPcg128ExposerAlgoPyClient, algokit_utils.AppFactoryDeployResult]:
         """Deploy the application"""
         deploy_response = self.app_factory.deploy(
             on_update=on_update,
             on_schema_break=on_schema_break,
             create_params=create_params.to_algokit_utils_params() if create_params else None,
             update_params=update_params.to_algokit_utils_params() if update_params else None,
-            delete_params=delete_params.to_algokit_utils_params() if delete_params else None,
+            delete_params=delete_params,
             existing_deployments=existing_deployments,
             ignore_cache=ignore_cache,
             app_name=app_name,
@@ -535,7 +480,7 @@ class LibPcg64ExposerPytealFactory(algokit_utils.TypedAppFactoryProtocol[LibPcg6
             send_params=send_params,
         )
 
-        return LibPcg64ExposerPytealClient(deploy_response[0]), deploy_response[1]
+        return LibPcg128ExposerAlgoPyClient(deploy_response[0]), deploy_response[1]
 
     def get_app_client_by_creator_and_name(
         self,
@@ -547,9 +492,9 @@ class LibPcg64ExposerPytealFactory(algokit_utils.TypedAppFactoryProtocol[LibPcg6
         app_lookup_cache: algokit_utils.ApplicationLookup | None = None,
         approval_source_map: SourceMap | None = None,
         clear_source_map: SourceMap | None = None,
-    ) -> LibPcg64ExposerPytealClient:
+    ) -> LibPcg128ExposerAlgoPyClient:
         """Get an app client by creator address and name"""
-        return LibPcg64ExposerPytealClient(
+        return LibPcg128ExposerAlgoPyClient(
             self.app_factory.get_app_client_by_creator_and_name(
                 creator_address,
                 app_name,
@@ -570,9 +515,9 @@ class LibPcg64ExposerPytealFactory(algokit_utils.TypedAppFactoryProtocol[LibPcg6
         default_signer: TransactionSigner | None = None,
         approval_source_map: SourceMap | None = None,
         clear_source_map: SourceMap | None = None,
-    ) -> LibPcg64ExposerPytealClient:
+    ) -> LibPcg128ExposerAlgoPyClient:
         """Get an app client by app ID"""
-        return LibPcg64ExposerPytealClient(
+        return LibPcg128ExposerAlgoPyClient(
             self.app_factory.get_app_client_by_id(
                 app_id,
                 app_name,
@@ -584,17 +529,17 @@ class LibPcg64ExposerPytealFactory(algokit_utils.TypedAppFactoryProtocol[LibPcg6
         )
 
 
-class LibPcg64ExposerPytealFactoryParams:
-    """Parameters for creating transactions for LibPcg64ExposerPyteal contract"""
+class LibPcg128ExposerAlgoPyFactoryParams:
+    """Parameters for creating transactions for LibPcg128ExposerAlgoPy contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
-        self.create = LibPcg64ExposerPytealFactoryCreateParams(app_factory)
-        self.update = LibPcg64ExposerPytealFactoryUpdateParams(app_factory)
-        self.delete = LibPcg64ExposerPytealFactoryDeleteParams(app_factory)
+        self.create = LibPcg128ExposerAlgoPyFactoryCreateParams(app_factory)
+        self.update = LibPcg128ExposerAlgoPyFactoryUpdateParams(app_factory)
+        self.delete = LibPcg128ExposerAlgoPyFactoryDeleteParams(app_factory)
 
-class LibPcg64ExposerPytealFactoryCreateParams:
-    """Parameters for 'create' operations of LibPcg64ExposerPyteal contract"""
+class LibPcg128ExposerAlgoPyFactoryCreateParams:
+    """Parameters for 'create' operations of LibPcg128ExposerAlgoPy contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
@@ -611,28 +556,28 @@ class LibPcg64ExposerPytealFactoryCreateParams:
             algokit_utils.AppFactoryCreateParams(**dataclasses.asdict(params)),
             compilation_params=compilation_params)
 
-    def bounded_rand_uint64(
+    def bounded_rand_uint128(
         self,
-        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint64Args,
+        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint128Args,
         *,
         params: algokit_utils.CommonAppCallCreateParams | None = None,
         compilation_params: algokit_utils.AppClientCompilationParams | None = None
     ) -> algokit_utils.AppCreateMethodCallParams:
-        """Creates a new instance using the bounded_rand_uint64(byte[16],uint64,uint64,uint16)uint64[] ABI method"""
+        """Creates a new instance using the bounded_rand_uint128(byte[32],uint128,uint128,uint16)uint128[] ABI method"""
         params = params or algokit_utils.CommonAppCallCreateParams()
         return self.app_factory.params.create(
             algokit_utils.AppFactoryCreateMethodCallParams(
                 **{
                 **dataclasses.asdict(params),
-                "method": "bounded_rand_uint64(byte[16],uint64,uint64,uint16)uint64[]",
+                "method": "bounded_rand_uint128(byte[32],uint128,uint128,uint16)uint128[]",
                 "args": _parse_abi_args(args),
                 }
             ),
             compilation_params=compilation_params
         )
 
-class LibPcg64ExposerPytealFactoryUpdateParams:
-    """Parameters for 'update' operations of LibPcg64ExposerPyteal contract"""
+class LibPcg128ExposerAlgoPyFactoryUpdateParams:
+    """Parameters for 'update' operations of LibPcg128ExposerAlgoPy contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
@@ -649,8 +594,8 @@ class LibPcg64ExposerPytealFactoryUpdateParams:
             algokit_utils.AppClientBareCallParams(**dataclasses.asdict(params)),
             )
 
-class LibPcg64ExposerPytealFactoryDeleteParams:
-    """Parameters for 'delete' operations of LibPcg64ExposerPyteal contract"""
+class LibPcg128ExposerAlgoPyFactoryDeleteParams:
+    """Parameters for 'delete' operations of LibPcg128ExposerAlgoPy contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
@@ -668,16 +613,16 @@ class LibPcg64ExposerPytealFactoryDeleteParams:
             )
 
 
-class LibPcg64ExposerPytealFactoryCreateTransaction:
-    """Create transactions for LibPcg64ExposerPyteal contract"""
+class LibPcg128ExposerAlgoPyFactoryCreateTransaction:
+    """Create transactions for LibPcg128ExposerAlgoPy contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
-        self.create = LibPcg64ExposerPytealFactoryCreateTransactionCreate(app_factory)
+        self.create = LibPcg128ExposerAlgoPyFactoryCreateTransactionCreate(app_factory)
 
 
-class LibPcg64ExposerPytealFactoryCreateTransactionCreate:
-    """Create new instances of LibPcg64ExposerPyteal contract"""
+class LibPcg128ExposerAlgoPyFactoryCreateTransactionCreate:
+    """Create new instances of LibPcg128ExposerAlgoPy contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
@@ -693,16 +638,16 @@ class LibPcg64ExposerPytealFactoryCreateTransactionCreate:
         )
 
 
-class LibPcg64ExposerPytealFactorySend:
-    """Send calls to LibPcg64ExposerPyteal contract"""
+class LibPcg128ExposerAlgoPyFactorySend:
+    """Send calls to LibPcg128ExposerAlgoPy contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
-        self.create = LibPcg64ExposerPytealFactorySendCreate(app_factory)
+        self.create = LibPcg128ExposerAlgoPyFactorySendCreate(app_factory)
 
 
-class LibPcg64ExposerPytealFactorySendCreate:
-    """Send create calls to LibPcg64ExposerPyteal contract"""
+class LibPcg128ExposerAlgoPyFactorySendCreate:
+    """Send create calls to LibPcg128ExposerAlgoPy contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
@@ -713,7 +658,7 @@ class LibPcg64ExposerPytealFactorySendCreate:
         params: algokit_utils.CommonAppCallCreateParams | None = None,
         send_params: algokit_utils.SendParams | None = None,
         compilation_params: algokit_utils.AppClientCompilationParams | None = None,
-    ) -> tuple[LibPcg64ExposerPytealClient, algokit_utils.SendAppCreateTransactionResult]:
+    ) -> tuple[LibPcg128ExposerAlgoPyClient, algokit_utils.SendAppCreateTransactionResult]:
         """Creates a new instance using a bare call"""
         params = params or algokit_utils.CommonAppCallCreateParams()
         result = self.app_factory.send.bare.create(
@@ -721,49 +666,41 @@ class LibPcg64ExposerPytealFactorySendCreate:
             send_params=send_params,
             compilation_params=compilation_params
         )
-        return LibPcg64ExposerPytealClient(result[0]), result[1]
+        return LibPcg128ExposerAlgoPyClient(result[0]), result[1]
 
 
-class _LibPcg64ExposerPytealUpdateComposer:
-    def __init__(self, composer: "LibPcg64ExposerPytealComposer"):
+class _LibPcg128ExposerAlgoPyUpdateComposer:
+    def __init__(self, composer: "LibPcg128ExposerAlgoPyComposer"):
         self.composer = composer
 
 
-class _LibPcg64ExposerPytealDeleteComposer:
-    def __init__(self, composer: "LibPcg64ExposerPytealComposer"):
-        self.composer = composer
+class LibPcg128ExposerAlgoPyComposer:
+    """Composer for creating transaction groups for LibPcg128ExposerAlgoPy contract calls"""
 
-
-class LibPcg64ExposerPytealComposer:
-    """Composer for creating transaction groups for LibPcg64ExposerPyteal contract calls"""
-
-    def __init__(self, client: "LibPcg64ExposerPytealClient"):
+    def __init__(self, client: "LibPcg128ExposerAlgoPyClient"):
         self.client = client
         self._composer = client.algorand.new_group()
         self._result_mappers: list[typing.Callable[[algokit_utils.ABIReturn | None], object] | None] = []
 
     @property
-    def update(self) -> "_LibPcg64ExposerPytealUpdateComposer":
-        return _LibPcg64ExposerPytealUpdateComposer(self)
+    def update(self) -> "_LibPcg128ExposerAlgoPyUpdateComposer":
+        return _LibPcg128ExposerAlgoPyUpdateComposer(self)
 
-    @property
-    def delete(self) -> "_LibPcg64ExposerPytealDeleteComposer":
-        return _LibPcg64ExposerPytealDeleteComposer(self)
-
-    def bounded_rand_uint64(
+    def bounded_rand_uint128(
         self,
-        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint64Args,
-        params: algokit_utils.CommonAppCallParams | None = None
-    ) -> "LibPcg64ExposerPytealComposer":
+        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint128Args,
+        params: algokit_utils.CommonAppCallParams | None = None,
+        compilation_params: algokit_utils.AppClientCompilationParams | None = None
+    ) -> "LibPcg128ExposerAlgoPyComposer":
         self._composer.add_app_call_method_call(
-            self.client.params.bounded_rand_uint64(
+            self.client.params.bounded_rand_uint128(
                 args=args,
                 params=params,
             )
         )
         self._result_mappers.append(
             lambda v: self.client.decode_return_value(
-                "bounded_rand_uint64(byte[16],uint64,uint64,uint16)uint64[]", v
+                "bounded_rand_uint128(byte[32],uint128,uint128,uint16)uint128[]", v
             )
         )
         return self
@@ -773,7 +710,7 @@ class LibPcg64ExposerPytealComposer:
         *,
         args: list[bytes] | None = None,
         params: algokit_utils.CommonAppCallParams | None = None,
-    ) -> "LibPcg64ExposerPytealComposer":
+    ) -> "LibPcg128ExposerAlgoPyComposer":
         params=params or algokit_utils.CommonAppCallParams()
         self._composer.add_app_call(
             self.client.params.clear_state(
@@ -789,7 +726,7 @@ class LibPcg64ExposerPytealComposer:
     
     def add_transaction(
         self, txn: Transaction, signer: TransactionSigner | None = None
-    ) -> "LibPcg64ExposerPytealComposer":
+    ) -> "LibPcg128ExposerAlgoPyComposer":
         self._composer.add_transaction(txn, signer)
         return self
     

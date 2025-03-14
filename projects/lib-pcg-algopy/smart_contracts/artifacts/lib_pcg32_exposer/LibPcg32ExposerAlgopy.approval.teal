@@ -91,26 +91,6 @@ main_update@9:
     return
 
 
-// smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgopy.bounded_rand_uint32(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
-bounded_rand_uint32:
-    proto 4 1
-    frame_dig -4
-    callsub pcg32_init
-    frame_dig -3
-    btoi
-    frame_dig -2
-    btoi
-    frame_dig -1
-    btoi
-    uncover 3
-    pushint 32 // 32
-    cover 4
-    cover 4
-    callsub __pcg32_bounded_sequence
-    bury 1
-    retsub
-
-
 // lib_pcg.pcg32.pcg32_init(seed: bytes) -> uint64:
 pcg32_init:
     proto 1 1
@@ -375,7 +355,27 @@ __pcg32_bounded_sequence_bool_false@4:
     b __pcg32_bounded_sequence_bool_merge@5
 
 
-// smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgopy.bounded_rand_uint16(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
+// smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgoPy.bounded_rand_uint32(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
+bounded_rand_uint32:
+    proto 4 1
+    frame_dig -4
+    callsub pcg32_init
+    frame_dig -3
+    btoi
+    frame_dig -2
+    btoi
+    frame_dig -1
+    btoi
+    uncover 3
+    pushint 32 // 32
+    cover 4
+    cover 4
+    callsub __pcg32_bounded_sequence
+    bury 1
+    retsub
+
+
+// smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgoPy.bounded_rand_uint16(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
 bounded_rand_uint16:
     proto 4 1
     frame_dig -4
@@ -395,7 +395,7 @@ bounded_rand_uint16:
     retsub
 
 
-// smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgopy.bounded_rand_uint8(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
+// smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgoPy.bounded_rand_uint8(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
 bounded_rand_uint8:
     proto 4 1
     frame_dig -4
@@ -415,7 +415,7 @@ bounded_rand_uint8:
     retsub
 
 
-// smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgopy.update() -> void:
+// smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgoPy.update() -> void:
 update:
     proto 0 0
     txn Sender

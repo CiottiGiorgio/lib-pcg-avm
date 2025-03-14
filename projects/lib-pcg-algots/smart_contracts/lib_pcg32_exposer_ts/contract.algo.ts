@@ -2,7 +2,7 @@ import { Contract, assert, Global, Txn } from '@algorandfoundation/algorand-type
 import { StaticArray, DynamicArray, Byte, UintN, baremethod } from '@algorandfoundation/algorand-typescript/arc4'
 import { pcg16Init, pcg16Random, pcg32Init, pcg32Random, pcg8Init, pcg8Random } from '../../lib_pcg/pcg32.algo'
 
-export class LibPcg32ExposerTs extends Contract {
+export class LibPcg32ExposerAlgoTs extends Contract {
   public bounded_rand_uint32(
     seed: StaticArray<Byte, 8>,
     lower_bound: UintN<32>,
