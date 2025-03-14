@@ -1,5 +1,7 @@
 #pragma version 10
+#pragma typetrack false
 
-smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerTs.clearStateProgram:
+// @algorandfoundation/algorand-typescript/base-contract.d.ts::BaseContract.clearStateProgram() -> uint64:
+main:
     pushint 1 // 1
     return

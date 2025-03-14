@@ -6,9 +6,10 @@ This project has been generated using AlgoKit. See below for default getting sta
 
 ### Pre-requisites
 
-- [Nodejs 20](https://nodejs.org/en/download) or later
+- [Nodejs 22](https://nodejs.org/en/download) or later
 - [AlgoKit CLI 2.5](https://github.com/algorandfoundation/algokit-cli?tab=readme-ov-file#install) or later
 - [Docker](https://www.docker.com/) (only required for LocalNet)
+- [Puya Compiler 4.4.4](https://pypi.org/project/puyapy/) or later
 
 > For interactive tour over the codebase, download [vsls-contrib.codetour](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour) extension for VS Code, then open the [`.codetour.json`](./.tours/getting-started-with-your-algokit-project.tour) file in code tour extension.
 
@@ -22,6 +23,7 @@ Ensure the following pre-requisites are installed and properly configured:
 
 - **Docker**: Required for running a local Algorand network.
 - **AlgoKit CLI**: Essential for project setup and operations. Verify installation with `algokit --version`, expecting `2.5.0` or later.
+- **Puya Compiler**: Can be installed from PyPi by running `pipx install puyapy`. Verify installation with `puyapy --version`, expecting `4.4.4` or later.
 
 #### 3. Bootstrap Your Local Environment
 Run the following commands within the project folder:

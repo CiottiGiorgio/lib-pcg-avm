@@ -1,9 +1,9 @@
 import { Contract, assert, Global, Txn } from '@algorandfoundation/algorand-typescript'
-import { StaticArray, DynamicArray, Byte, UintN } from '@algorandfoundation/algorand-typescript/arc4'
+import { StaticArray, DynamicArray, Byte, UintN, baremethod } from '@algorandfoundation/algorand-typescript/arc4'
 import { pcg16Init, pcg16Random, pcg32Init, pcg32Random, pcg8Init, pcg8Random } from '../../lib_pcg/pcg32.algo'
 
 export class LibPcg32ExposerTs extends Contract {
-  bounded_rand_uint32(
+  public bounded_rand_uint32(
     seed: StaticArray<Byte, 8>,
     lower_bound: UintN<32>,
     upper_bound: UintN<32>,
@@ -17,7 +17,7 @@ export class LibPcg32ExposerTs extends Contract {
     return sequence;
   }
 
-  bounded_rand_uint16(
+  public bounded_rand_uint16(
     seed: StaticArray<Byte, 8>,
     lower_bound: UintN<16>,
     upper_bound: UintN<16>,
@@ -31,7 +31,7 @@ export class LibPcg32ExposerTs extends Contract {
     return sequence;
   }
 
-  bounded_rand_uint8(
+  public bounded_rand_uint8(
     seed: StaticArray<Byte, 8>,
     lower_bound: UintN<8>,
     upper_bound: UintN<8>,
@@ -45,8 +45,8 @@ export class LibPcg32ExposerTs extends Contract {
     return sequence;
   }
 
-  // @baremethod({ allowActions: ['UpdateApplication'] })
-  update() {
+  @baremethod({ allowActions: ['UpdateApplication'] })
+  public update() {
     assert(Txn.sender === Global.creatorAddress);
   }
 }

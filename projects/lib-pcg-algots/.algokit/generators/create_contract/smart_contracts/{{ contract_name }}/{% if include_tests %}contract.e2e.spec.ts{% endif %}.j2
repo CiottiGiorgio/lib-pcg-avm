@@ -2,9 +2,9 @@ import { Config } from '@algorandfoundation/algokit-utils'
 import { algorandFixture } from '@algorandfoundation/algokit-utils/testing'
 import { Address } from 'algosdk'
 import { beforeAll, beforeEach, describe, expect, test } from 'vitest'
-import { LibPcg32ExposerTsFactory } from '../artifacts/lib_pcg32_exposer_ts/LibPcg32ExposerTsClient'
+import { {{ contract_name.split('_')|map('capitalize')|join }}Factory } from '../artifacts/{{ contract_name }}/{{ contract_name.split('_')|map('capitalize')|join }}Client'
 
-describe('LibPcg32ExposerTs contract', () => {
+describe('{{ contract_name.split('_')|map('capitalize')|join }} contract', () => {
   const localnet = algorandFixture()
   beforeAll(() => {
     Config.configure({
@@ -12,10 +12,10 @@ describe('LibPcg32ExposerTs contract', () => {
       // traceAll: true,
     })
   })
-  beforeEach(localnet.beforeEach)
+  beforeEach(localnet.newScope)
 
   const deploy = async (account: Address) => {
-    const factory = localnet.algorand.client.getTypedAppFactory(LibPcg32ExposerTsFactory, {
+    const factory = localnet.algorand.client.getTypedAppFactory({{ contract_name.split('_')|map('capitalize')|join }}Factory, {
       defaultSender: account,
     })
 
