@@ -12,6 +12,12 @@ export class LibPcg64ExposerTs extends Contract {
     return result[1];
   }
 
+  @allow.bareCreate()
+  createApplication() {
+    assert(globals.creatorAddress === this.txn.sender);
+  }
+
+  @allow.bareCall('UpdateApplication')
   updateApplication() {
     assert(globals.creatorAddress === this.txn.sender);
   }

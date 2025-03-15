@@ -11,16 +11,20 @@ artifacts = 'smart_contracts/artifacts'
 # Commands intented for use locally and in CI
 test-algopy = { commands = [
   'poetry run pytest --language=algopy'
-], description = 'Run lib-pcg algopy implementation tests' }
+], description = 'Run lib-pcg Algorand Python implementation tests' }
 test-algots = { commands = [
   'poetry run pytest --language=algots'
-], description = 'Run lib-pcg ts implementation tests' }
+], description = 'Run lib-pcg Algorand TypeScript implementation tests' }
+test-ts = { commands = [
+  'poetry run pytest --language=ts'
+], description = 'Run lib-pcg TEALScript implementation tests' }
 test-pyteal = { commands = [
   'poetry run pytest --language=pyteal'
-], description = 'Run lib-pcg pyteal implementation tests' }
+], description = 'Run lib-pcg PyTeal implementation tests' }
 test = { commands = [
   'algokit project run test-algopy',
   'algokit project run test-algots',
+  'algokit project run test-ts',
   'algokit project run test-pyteal',
 ], description = 'Run smart contract tests' }
 audit = { commands = [

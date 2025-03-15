@@ -6,14 +6,18 @@ from smart_contracts.artifacts.lib_pcg64_exposer_algo_py import (
     LibPcg64ExposerAlgoPyClient,
     LibPcg64ExposerAlgoPyFactory,
 )
+from smart_contracts.artifacts.lib_pcg64_exposer_pyteal import (
+    LibPcg64ExposerPytealClient,
+    LibPcg64ExposerPytealFactory,
+)
 
 # from smart_contracts.artifacts.lib_pcg64_exposer_algo_ts import (
 #     LibPcg64ExposerAlgoTsFactory,
 #     LibPcg64ExposerAlgoTsClient,
 # )
-from smart_contracts.artifacts.lib_pcg64_exposer_pyteal import (
-    LibPcg64ExposerPytealClient,
-    LibPcg64ExposerPytealFactory,
+from smart_contracts.artifacts.lib_pcg64_exposer_ts import (
+    LibPcg64ExposerTsClient,
+    LibPcg64ExposerTsFactory,
 )
 
 
@@ -34,6 +38,17 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
             if "lib_pcg64_client" in metafunc.fixturenames:
                 metafunc.parametrize(
                     "lib_pcg64_client", ["lib_pcg64_exposer_algots_client"]
+                )
+            if "expected_library_size" in metafunc.fixturenames:
+                metafunc.parametrize("expected_library_size", [800])
+            if "max_unbounded_opup_calls" in metafunc.fixturenames:
+                metafunc.parametrize("max_unbounded_opup_calls", [40])
+            if "max_bounded_opup_calls" in metafunc.fixturenames:
+                metafunc.parametrize("max_bounded_opup_calls", [42])
+        case "ts":
+            if "lib_pcg64_client" in metafunc.fixturenames:
+                metafunc.parametrize(
+                    "lib_pcg64_client", ["lib_pcg64_exposer_ts_client"]
                 )
             if "expected_library_size" in metafunc.fixturenames:
                 metafunc.parametrize("expected_library_size", [800])
@@ -85,6 +100,21 @@ def lib_pcg64_exposer_algopy_client(
 
 
 @pytest.fixture(scope="session")
+def lib_pcg64_exposer_ts_client(
+    algorand_client: AlgorandClient,
+    deployer: SigningAccount,
+) -> LibPcg64ExposerTsClient:
+    client, _ = LibPcg64ExposerTsFactory(
+        algorand_client, default_sender=deployer.address
+    ).deploy(
+        on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
+        on_update=algokit_utils.OnUpdate.UpdateApp,
+    )
+
+    return client
+
+
+@pytest.fixture(scope="session")
 def lib_pcg64_exposer_pyteal_client(
     algorand_client: AlgorandClient,
     deployer: SigningAccount,
@@ -100,7 +130,7 @@ def lib_pcg64_exposer_pyteal_client(
     return client
 
 
-RNG_SEED = b"\x00\x00\x00\x00\x00\x00\x00\x2A" + b"\x00\x00\x00\x00\x00\x00\x00\x36"
+RNG_SEED = b"\x00\x00\x00\x00\x00\x00\x00\x2a" + b"\x00\x00\x00\x00\x00\x00\x00\x36"
 
 EXPECTED_MAXIMAL_SEQUENCE_LENGTH = 127
 # These sequences WERE NOT generated using the reference C implementation.

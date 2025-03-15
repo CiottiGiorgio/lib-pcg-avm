@@ -33,19 +33,6 @@
       }
     },
     {
-      "name": "updateApplication",
-      "args": [],
-      "returns": {
-        "type": "void"
-      },
-      "actions": {
-        "create": [],
-        "call": [
-          "UpdateApplication"
-        ]
-      }
-    },
-    {
       "name": "createApplication",
       "args": [],
       "returns": {
@@ -56,6 +43,19 @@
           "NoOp"
         ],
         "call": []
+      }
+    },
+    {
+      "name": "updateApplication",
+      "args": [],
+      "returns": {
+        "type": "void"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "UpdateApplication"
+        ]
       }
     }
   ],
@@ -785,7 +785,7 @@
         },
         {
           "teal": 147,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:16",
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:17",
           "pc": [
             189,
             190
@@ -793,7 +793,7 @@
         },
         {
           "teal": 148,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:16",
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:17",
           "pc": [
             191,
             192
@@ -801,14 +801,14 @@
         },
         {
           "teal": 149,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:16",
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:17",
           "pc": [
             193
           ]
         },
         {
           "teal": 150,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:16",
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:17",
           "pc": [
             194
           ]
@@ -821,325 +821,320 @@
           ]
         },
         {
-          "teal": 154,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "teal": 156,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:20",
           "pc": [
-            196
+            196,
+            197,
+            198
           ]
         },
         {
-          "teal": 155,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "teal": 157,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:20",
           "pc": [
-            197
+            199
           ]
         },
         {
           "teal": 158,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:20",
           "pc": [
-            198,
-            199,
-            200,
+            200
+          ]
+        },
+        {
+          "teal": 162,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:20",
+          "pc": [
             201,
             202,
             203
           ]
         },
         {
-          "teal": 159,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "teal": 166,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:22",
           "pc": [
             204,
-            205,
-            206
-          ]
-        },
-        {
-          "teal": 160,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
-          "pc": [
-            207,
-            208,
-            209,
-            210
-          ]
-        },
-        {
-          "teal": 163,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
-          "errorMessage": "this contract does not implement the given ABI method for create NoOp",
-          "pc": [
-            211
-          ]
-        },
-        {
-          "teal": 166,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
-          "pc": [
-            212,
-            213,
-            214,
-            215,
-            216,
-            217
+            205
           ]
         },
         {
           "teal": 167,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:22",
           "pc": [
-            218,
-            219,
-            220
+            206,
+            207
           ]
         },
         {
           "teal": 168,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:22",
           "pc": [
-            221,
-            222,
-            223,
-            224
+            208
           ]
         },
         {
-          "teal": 171,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
-          "errorMessage": "this contract does not implement the given ABI method for call NoOp",
+          "teal": 169,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:22",
           "pc": [
-            225
+            209
+          ]
+        },
+        {
+          "teal": 170,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:20",
+          "pc": [
+            210
+          ]
+        },
+        {
+          "teal": 173,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            211,
+            212
           ]
         },
         {
           "teal": 174,
           "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
           "pc": [
-            226,
-            227,
-            228,
-            229,
-            230,
-            231
+            213,
+            214,
+            215
           ]
         },
         {
           "teal": 175,
           "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
           "pc": [
-            232,
-            233,
-            234
+            216,
+            217,
+            218,
+            219,
+            220,
+            221
           ]
         },
         {
           "teal": 176,
           "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
           "pc": [
-            235,
+            222,
+            223,
+            224
+          ]
+        },
+        {
+          "teal": 177,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            225,
+            226,
+            227,
+            228
+          ]
+        },
+        {
+          "teal": 180,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "errorMessage": "this contract does not implement the given ABI method for create NoOp",
+          "pc": [
+            229
+          ]
+        },
+        {
+          "teal": 183,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            230,
+            231,
+            232,
+            233,
+            234,
+            235
+          ]
+        },
+        {
+          "teal": 184,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
             236,
             237,
             238
           ]
         },
         {
-          "teal": 179,
+          "teal": 185,
           "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
-          "errorMessage": "this contract does not implement the given ABI method for call UpdateApplication",
           "pc": [
-            239
-          ]
-        },
-        {
-          "teal": 183,
-          "source": "lib_pcg\\pcg64.algo.ts:23",
-          "pc": [
+            239,
             240,
             241,
             242
           ]
         },
         {
-          "teal": 186,
-          "source": "lib_pcg\\pcg64.algo.ts:23",
+          "teal": 188,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "errorMessage": "this contract does not implement the given ABI method for call NoOp",
           "pc": [
             243
           ]
         },
         {
-          "teal": 187,
-          "source": "lib_pcg\\pcg64.algo.ts:23",
+          "teal": 192,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "errorMessage": "this contract does not implement any ABI methods for UpdateApplication create",
           "pc": [
-            244,
-            245
+            244
           ]
         },
         {
-          "teal": 191,
-          "source": "lib_pcg\\pcg64.algo.ts:29",
+          "teal": 195,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
           "pc": [
+            245,
             246
           ]
         },
         {
-          "teal": 192,
-          "source": "lib_pcg\\pcg64.algo.ts:29",
+          "teal": 196,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
           "pc": [
             247,
-            248
-          ]
-        },
-        {
-          "teal": 196,
-          "source": "lib_pcg\\pcg64.algo.ts:33",
-          "pc": [
-            249,
-            250
+            248,
+            249
           ]
         },
         {
           "teal": 197,
-          "source": "lib_pcg\\pcg64.algo.ts:33",
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
           "pc": [
+            250,
             251,
-            252
-          ]
-        },
-        {
-          "teal": 202,
-          "source": "lib_pcg\\pcg64.algo.ts:35",
-          "pc": [
+            252,
             253,
-            254
-          ]
-        },
-        {
-          "teal": 203,
-          "source": "lib_pcg\\pcg64.algo.ts:35",
-          "pc": [
+            254,
             255
           ]
         },
         {
-          "teal": 204,
-          "source": "lib_pcg\\pcg64.algo.ts:35",
+          "teal": 198,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
           "pc": [
-            256
+            256,
+            257,
+            258
           ]
         },
         {
-          "teal": 205,
-          "source": "lib_pcg\\pcg64.algo.ts:35",
+          "teal": 199,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
           "pc": [
-            257
-          ]
-        },
-        {
-          "teal": 206,
-          "source": "lib_pcg\\pcg64.algo.ts:35",
-          "pc": [
-            258,
             259,
-            260
-          ]
-        },
-        {
-          "teal": 207,
-          "source": "lib_pcg\\pcg64.algo.ts:35",
-          "pc": [
+            260,
             261,
             262
           ]
         },
         {
-          "teal": 208,
-          "source": "lib_pcg\\pcg64.algo.ts:35",
+          "teal": 202,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "errorMessage": "this contract does not implement the given ABI method for call UpdateApplication",
           "pc": [
             263
           ]
         },
         {
-          "teal": 209,
-          "source": "lib_pcg\\pcg64.algo.ts:35",
+          "teal": 206,
+          "source": "lib_pcg\\pcg64.algo.ts:23",
           "pc": [
-            264
+            264,
+            265,
+            266
+          ]
+        },
+        {
+          "teal": 209,
+          "source": "lib_pcg\\pcg64.algo.ts:23",
+          "pc": [
+            267
           ]
         },
         {
           "teal": 210,
-          "source": "lib_pcg\\pcg64.algo.ts:35",
+          "source": "lib_pcg\\pcg64.algo.ts:23",
           "pc": [
-            265
-          ]
-        },
-        {
-          "teal": 213,
-          "source": "lib_pcg\\pcg64.algo.ts:35",
-          "pc": [
-            266,
-            267,
-            268
-          ]
-        },
-        {
-          "teal": 218,
-          "source": "lib_pcg\\pcg64.algo.ts:36",
-          "pc": [
+            268,
             269
           ]
         },
         {
+          "teal": 214,
+          "source": "lib_pcg\\pcg64.algo.ts:29",
+          "pc": [
+            270
+          ]
+        },
+        {
+          "teal": 215,
+          "source": "lib_pcg\\pcg64.algo.ts:29",
+          "pc": [
+            271,
+            272
+          ]
+        },
+        {
           "teal": 219,
-          "source": "lib_pcg\\pcg64.algo.ts:36",
+          "source": "lib_pcg\\pcg64.algo.ts:33",
           "pc": [
-            270,
-            271
+            273,
+            274
           ]
         },
         {
-          "teal": 224,
-          "source": "lib_pcg\\pcg64.algo.ts:36",
+          "teal": 220,
+          "source": "lib_pcg\\pcg64.algo.ts:33",
           "pc": [
-            272,
-            273
-          ]
-        },
-        {
-          "teal": 225,
-          "source": "lib_pcg\\pcg64.algo.ts:36",
-          "pc": [
-            274,
-            275
-          ]
-        },
-        {
-          "teal": 226,
-          "source": "lib_pcg\\pcg64.algo.ts:36",
-          "pc": [
+            275,
             276
           ]
         },
         {
-          "teal": 227,
-          "source": "lib_pcg\\pcg64.algo.ts:36",
+          "teal": 225,
+          "source": "lib_pcg\\pcg64.algo.ts:35",
           "pc": [
             277,
-            278,
+            278
+          ]
+        },
+        {
+          "teal": 226,
+          "source": "lib_pcg\\pcg64.algo.ts:35",
+          "pc": [
             279
           ]
         },
         {
-          "teal": 231,
-          "source": "lib_pcg\\pcg64.algo.ts:37",
+          "teal": 227,
+          "source": "lib_pcg\\pcg64.algo.ts:35",
           "pc": [
-            280,
+            280
+          ]
+        },
+        {
+          "teal": 228,
+          "source": "lib_pcg\\pcg64.algo.ts:35",
+          "pc": [
             281
           ]
         },
         {
-          "teal": 232,
-          "source": "lib_pcg\\pcg64.algo.ts:37",
+          "teal": 229,
+          "source": "lib_pcg\\pcg64.algo.ts:35",
           "pc": [
             282,
             283,
@@ -1147,165 +1142,159 @@
           ]
         },
         {
-          "teal": 233,
-          "source": "lib_pcg\\pcg64.algo.ts:37",
+          "teal": 230,
+          "source": "lib_pcg\\pcg64.algo.ts:35",
           "pc": [
             285,
             286
           ]
         },
         {
-          "teal": 237,
-          "source": "lib_pcg\\pcg64.algo.ts:38",
+          "teal": 231,
+          "source": "lib_pcg\\pcg64.algo.ts:35",
           "pc": [
-            287,
+            287
+          ]
+        },
+        {
+          "teal": 232,
+          "source": "lib_pcg\\pcg64.algo.ts:35",
+          "pc": [
             288
           ]
         },
         {
-          "teal": 238,
-          "source": "lib_pcg\\pcg64.algo.ts:38",
+          "teal": 233,
+          "source": "lib_pcg\\pcg64.algo.ts:35",
           "pc": [
-            289,
-            290,
-            291
+            289
           ]
         },
         {
-          "teal": 239,
-          "source": "lib_pcg\\pcg64.algo.ts:38",
+          "teal": 236,
+          "source": "lib_pcg\\pcg64.algo.ts:35",
           "pc": [
-            292,
+            290,
+            291,
+            292
+          ]
+        },
+        {
+          "teal": 241,
+          "source": "lib_pcg\\pcg64.algo.ts:36",
+          "pc": [
             293
           ]
         },
         {
-          "teal": 243,
-          "source": "lib_pcg\\pcg64.algo.ts:39",
+          "teal": 242,
+          "source": "lib_pcg\\pcg64.algo.ts:36",
           "pc": [
             294,
             295
           ]
         },
         {
-          "teal": 244,
-          "source": "lib_pcg\\pcg64.algo.ts:39",
+          "teal": 247,
+          "source": "lib_pcg\\pcg64.algo.ts:36",
           "pc": [
             296,
             297
           ]
         },
         {
-          "teal": 245,
-          "source": "lib_pcg\\pcg64.algo.ts:39",
+          "teal": 248,
+          "source": "lib_pcg\\pcg64.algo.ts:36",
           "pc": [
             298,
-            299,
-            300
-          ]
-        },
-        {
-          "teal": 246,
-          "source": "lib_pcg\\pcg64.algo.ts:39",
-          "pc": [
-            301
-          ]
-        },
-        {
-          "teal": 247,
-          "source": "lib_pcg\\pcg64.algo.ts:39",
-          "pc": [
-            302
-          ]
-        },
-        {
-          "teal": 248,
-          "source": "lib_pcg\\pcg64.algo.ts:39",
-          "pc": [
-            303
+            299
           ]
         },
         {
           "teal": 249,
-          "source": "lib_pcg\\pcg64.algo.ts:39",
+          "source": "lib_pcg\\pcg64.algo.ts:36",
+          "pc": [
+            300
+          ]
+        },
+        {
+          "teal": 250,
+          "source": "lib_pcg\\pcg64.algo.ts:36",
+          "pc": [
+            301,
+            302,
+            303
+          ]
+        },
+        {
+          "teal": 254,
+          "source": "lib_pcg\\pcg64.algo.ts:37",
           "pc": [
             304,
             305
           ]
         },
         {
-          "teal": 254,
-          "source": "lib_pcg\\pcg64.algo.ts:36",
+          "teal": 255,
+          "source": "lib_pcg\\pcg64.algo.ts:37",
           "pc": [
             306,
-            307
-          ]
-        },
-        {
-          "teal": 255,
-          "source": "lib_pcg\\pcg64.algo.ts:36",
-          "pc": [
+            307,
             308
           ]
         },
         {
           "teal": 256,
-          "source": "lib_pcg\\pcg64.algo.ts:36",
+          "source": "lib_pcg\\pcg64.algo.ts:37",
           "pc": [
-            309
+            309,
+            310
           ]
         },
         {
-          "teal": 257,
-          "source": "lib_pcg\\pcg64.algo.ts:36",
+          "teal": 260,
+          "source": "lib_pcg\\pcg64.algo.ts:38",
           "pc": [
-            310,
-            311
-          ]
-        },
-        {
-          "teal": 258,
-          "source": "lib_pcg\\pcg64.algo.ts:36",
-          "pc": [
-            312,
-            313,
-            314
+            311,
+            312
           ]
         },
         {
           "teal": 261,
-          "source": "lib_pcg\\pcg64.algo.ts:35",
+          "source": "lib_pcg\\pcg64.algo.ts:38",
           "pc": [
-            315,
+            313,
+            314,
+            315
+          ]
+        },
+        {
+          "teal": 262,
+          "source": "lib_pcg\\pcg64.algo.ts:38",
+          "pc": [
             316,
             317
           ]
         },
         {
-          "teal": 267,
-          "source": "lib_pcg\\pcg64.algo.ts:42",
+          "teal": 266,
+          "source": "lib_pcg\\pcg64.algo.ts:39",
           "pc": [
             318,
             319
           ]
         },
         {
-          "teal": 268,
-          "source": "lib_pcg\\pcg64.algo.ts:42",
+          "teal": 267,
+          "source": "lib_pcg\\pcg64.algo.ts:39",
           "pc": [
-            320
-          ]
-        },
-        {
-          "teal": 269,
-          "source": "lib_pcg\\pcg64.algo.ts:42",
-          "pc": [
+            320,
             321
           ]
         },
         {
-          "teal": 270,
-          "source": "lib_pcg\\pcg64.algo.ts:42",
+          "teal": 268,
+          "source": "lib_pcg\\pcg64.algo.ts:39",
           "pc": [
             322,
             323,
@@ -1313,244 +1302,273 @@
           ]
         },
         {
-          "teal": 275,
-          "source": "lib_pcg\\pcg64.algo.ts:43",
+          "teal": 269,
+          "source": "lib_pcg\\pcg64.algo.ts:39",
           "pc": [
-            325,
+            325
+          ]
+        },
+        {
+          "teal": 270,
+          "source": "lib_pcg\\pcg64.algo.ts:39",
+          "pc": [
             326
           ]
         },
         {
-          "teal": 276,
-          "source": "lib_pcg\\pcg64.algo.ts:43",
+          "teal": 271,
+          "source": "lib_pcg\\pcg64.algo.ts:39",
           "pc": [
             327
           ]
         },
         {
-          "teal": 277,
-          "source": "lib_pcg\\pcg64.algo.ts:43",
+          "teal": 272,
+          "source": "lib_pcg\\pcg64.algo.ts:39",
           "pc": [
-            328
-          ]
-        },
-        {
-          "teal": 278,
-          "source": "lib_pcg\\pcg64.algo.ts:43",
-          "pc": [
+            328,
             329
           ]
         },
         {
-          "teal": 282,
-          "source": "lib_pcg\\pcg64.algo.ts:44",
+          "teal": 277,
+          "source": "lib_pcg\\pcg64.algo.ts:36",
           "pc": [
             330,
             331
           ]
         },
         {
-          "teal": 283,
-          "source": "lib_pcg\\pcg64.algo.ts:44",
+          "teal": 278,
+          "source": "lib_pcg\\pcg64.algo.ts:36",
           "pc": [
-            332,
+            332
+          ]
+        },
+        {
+          "teal": 279,
+          "source": "lib_pcg\\pcg64.algo.ts:36",
+          "pc": [
             333
           ]
         },
         {
-          "teal": 284,
-          "source": "lib_pcg\\pcg64.algo.ts:44",
+          "teal": 280,
+          "source": "lib_pcg\\pcg64.algo.ts:36",
           "pc": [
-            334
-          ]
-        },
-        {
-          "teal": 285,
-          "source": "lib_pcg\\pcg64.algo.ts:44",
-          "pc": [
+            334,
             335
           ]
         },
         {
-          "teal": 286,
-          "source": "lib_pcg\\pcg64.algo.ts:44",
+          "teal": 281,
+          "source": "lib_pcg\\pcg64.algo.ts:36",
           "pc": [
-            336
+            336,
+            337,
+            338
           ]
         },
         {
-          "teal": 287,
-          "source": "lib_pcg\\pcg64.algo.ts:44",
+          "teal": 284,
+          "source": "lib_pcg\\pcg64.algo.ts:35",
           "pc": [
-            337
-          ]
-        },
-        {
-          "teal": 291,
-          "source": "lib_pcg\\pcg64.algo.ts:46",
-          "pc": [
-            338,
-            339
-          ]
-        },
-        {
-          "teal": 292,
-          "source": "lib_pcg\\pcg64.algo.ts:46",
-          "pc": [
+            339,
             340,
             341
           ]
         },
         {
-          "teal": 293,
-          "source": "lib_pcg\\pcg64.algo.ts:46",
+          "teal": 290,
+          "source": "lib_pcg\\pcg64.algo.ts:42",
           "pc": [
-            342
+            342,
+            343
           ]
         },
         {
-          "teal": 294,
-          "source": "lib_pcg\\pcg64.algo.ts:46",
+          "teal": 291,
+          "source": "lib_pcg\\pcg64.algo.ts:42",
           "pc": [
-            343,
             344
           ]
         },
         {
-          "teal": 295,
+          "teal": 292,
           "source": "lib_pcg\\pcg64.algo.ts:42",
           "pc": [
-            345,
+            345
+          ]
+        },
+        {
+          "teal": 293,
+          "source": "lib_pcg\\pcg64.algo.ts:42",
+          "pc": [
             346,
-            347
+            347,
+            348
+          ]
+        },
+        {
+          "teal": 298,
+          "source": "lib_pcg\\pcg64.algo.ts:43",
+          "pc": [
+            349,
+            350
+          ]
+        },
+        {
+          "teal": 299,
+          "source": "lib_pcg\\pcg64.algo.ts:43",
+          "pc": [
+            351
           ]
         },
         {
           "teal": 300,
-          "source": "lib_pcg\\pcg64.algo.ts:49",
+          "source": "lib_pcg\\pcg64.algo.ts:43",
           "pc": [
-            348,
-            349
+            352
           ]
         },
         {
           "teal": 301,
-          "source": "lib_pcg\\pcg64.algo.ts:49",
+          "source": "lib_pcg\\pcg64.algo.ts:43",
           "pc": [
-            350,
-            351,
-            352,
-            353,
+            353
+          ]
+        },
+        {
+          "teal": 305,
+          "source": "lib_pcg\\pcg64.algo.ts:44",
+          "pc": [
             354,
-            355,
+            355
+          ]
+        },
+        {
+          "teal": 306,
+          "source": "lib_pcg\\pcg64.algo.ts:44",
+          "pc": [
             356,
-            357,
-            358,
-            359,
+            357
+          ]
+        },
+        {
+          "teal": 307,
+          "source": "lib_pcg\\pcg64.algo.ts:44",
+          "pc": [
+            358
+          ]
+        },
+        {
+          "teal": 308,
+          "source": "lib_pcg\\pcg64.algo.ts:44",
+          "pc": [
+            359
+          ]
+        },
+        {
+          "teal": 309,
+          "source": "lib_pcg\\pcg64.algo.ts:44",
+          "pc": [
             360
           ]
         },
         {
-          "teal": 302,
-          "source": "lib_pcg\\pcg64.algo.ts:49",
+          "teal": 310,
+          "source": "lib_pcg\\pcg64.algo.ts:44",
           "pc": [
             361
           ]
         },
         {
-          "teal": 303,
-          "source": "lib_pcg\\pcg64.algo.ts:49",
+          "teal": 314,
+          "source": "lib_pcg\\pcg64.algo.ts:46",
           "pc": [
-            362
+            362,
+            363
           ]
         },
         {
-          "teal": 307,
-          "source": "lib_pcg\\pcg64.algo.ts:54",
+          "teal": 315,
+          "source": "lib_pcg\\pcg64.algo.ts:46",
           "pc": [
-            363,
             364,
-            365,
-            366,
+            365
+          ]
+        },
+        {
+          "teal": 316,
+          "source": "lib_pcg\\pcg64.algo.ts:46",
+          "pc": [
+            366
+          ]
+        },
+        {
+          "teal": 317,
+          "source": "lib_pcg\\pcg64.algo.ts:46",
+          "pc": [
             367,
-            368,
+            368
+          ]
+        },
+        {
+          "teal": 318,
+          "source": "lib_pcg\\pcg64.algo.ts:42",
+          "pc": [
             369,
             370,
-            371,
+            371
+          ]
+        },
+        {
+          "teal": 323,
+          "source": "lib_pcg\\pcg64.algo.ts:49",
+          "pc": [
             372,
-            373,
+            373
+          ]
+        },
+        {
+          "teal": 324,
+          "source": "lib_pcg\\pcg64.algo.ts:49",
+          "pc": [
             374,
             375,
             376,
             377,
             378,
             379,
-            380
-          ]
-        },
-        {
-          "teal": 308,
-          "source": "lib_pcg\\pcg64.algo.ts:54",
-          "pc": [
+            380,
             381,
-            382
-          ]
-        },
-        {
-          "teal": 309,
-          "source": "lib_pcg\\pcg64.algo.ts:54",
-          "pc": [
-            383
-          ]
-        },
-        {
-          "teal": 310,
-          "source": "lib_pcg\\pcg64.algo.ts:54",
-          "pc": [
+            382,
+            383,
             384
           ]
         },
         {
-          "teal": 311,
-          "source": "lib_pcg\\pcg64.algo.ts:54",
+          "teal": 325,
+          "source": "lib_pcg\\pcg64.algo.ts:49",
           "pc": [
             385
           ]
         },
         {
-          "teal": 312,
-          "source": "lib_pcg\\pcg64.algo.ts:54",
+          "teal": 326,
+          "source": "lib_pcg\\pcg64.algo.ts:49",
           "pc": [
             386
           ]
         },
         {
-          "teal": 313,
+          "teal": 330,
           "source": "lib_pcg\\pcg64.algo.ts:54",
           "pc": [
             387,
-            388
-          ]
-        },
-        {
-          "teal": 314,
-          "source": "lib_pcg\\pcg64.algo.ts:54",
-          "pc": [
-            389
-          ]
-        },
-        {
-          "teal": 317,
-          "source": "lib_pcg\\pcg64.algo.ts:54",
-          "errorMessage": "(Uint<128>('18446744073709551616') - (lowerBound as uint128)) as uint64 overflowed 64 bits",
-          "pc": [
-            390
-          ]
-        },
-        {
-          "teal": 318,
-          "source": "lib_pcg\\pcg64.algo.ts:54",
-          "pc": [
+            388,
+            389,
+            390,
             391,
             392,
             393,
@@ -1560,377 +1578,354 @@
             397,
             398,
             399,
-            400
-          ]
-        },
-        {
-          "teal": 319,
-          "source": "lib_pcg\\pcg64.algo.ts:54",
-          "pc": [
-            401
-          ]
-        },
-        {
-          "teal": 320,
-          "source": "lib_pcg\\pcg64.algo.ts:54",
-          "pc": [
-            402
-          ]
-        },
-        {
-          "teal": 321,
-          "source": "lib_pcg\\pcg64.algo.ts:54",
-          "pc": [
-            403
-          ]
-        },
-        {
-          "teal": 322,
-          "source": "lib_pcg\\pcg64.algo.ts:54",
-          "pc": [
+            400,
+            401,
+            402,
+            403,
             404
           ]
         },
         {
-          "teal": 323,
+          "teal": 331,
           "source": "lib_pcg\\pcg64.algo.ts:54",
           "pc": [
-            405
-          ]
-        },
-        {
-          "teal": 324,
-          "source": "lib_pcg\\pcg64.algo.ts:54",
-          "pc": [
+            405,
             406
           ]
         },
         {
-          "teal": 325,
+          "teal": 332,
           "source": "lib_pcg\\pcg64.algo.ts:54",
           "pc": [
             407
           ]
         },
         {
-          "teal": 326,
+          "teal": 333,
           "source": "lib_pcg\\pcg64.algo.ts:54",
           "pc": [
             408
           ]
         },
         {
-          "teal": 327,
+          "teal": 334,
           "source": "lib_pcg\\pcg64.algo.ts:54",
           "pc": [
             409
           ]
         },
         {
-          "teal": 328,
+          "teal": 335,
           "source": "lib_pcg\\pcg64.algo.ts:54",
           "pc": [
-            410,
-            411
-          ]
-        },
-        {
-          "teal": 333,
-          "source": "lib_pcg\\pcg64.algo.ts:57",
-          "pc": [
-            412,
-            413
-          ]
-        },
-        {
-          "teal": 334,
-          "source": "lib_pcg\\pcg64.algo.ts:57",
-          "pc": [
-            414,
-            415,
-            416
-          ]
-        },
-        {
-          "teal": 335,
-          "source": "lib_pcg\\pcg64.algo.ts:57",
-          "pc": [
-            417,
-            418
+            410
           ]
         },
         {
           "teal": 336,
-          "source": "lib_pcg\\pcg64.algo.ts:57",
+          "source": "lib_pcg\\pcg64.algo.ts:54",
           "pc": [
-            419
+            411,
+            412
           ]
         },
         {
           "teal": 337,
-          "source": "lib_pcg\\pcg64.algo.ts:57",
+          "source": "lib_pcg\\pcg64.algo.ts:54",
           "pc": [
-            420,
-            421
+            413
+          ]
+        },
+        {
+          "teal": 340,
+          "source": "lib_pcg\\pcg64.algo.ts:54",
+          "errorMessage": "(Uint<128>('18446744073709551616') - (lowerBound as uint128)) as uint64 overflowed 64 bits",
+          "pc": [
+            414
           ]
         },
         {
           "teal": 341,
-          "source": "lib_pcg\\pcg64.algo.ts:59",
+          "source": "lib_pcg\\pcg64.algo.ts:54",
           "pc": [
-            422
-          ]
-        },
-        {
-          "teal": 342,
-          "source": "lib_pcg\\pcg64.algo.ts:59",
-          "pc": [
+            415,
+            416,
+            417,
+            418,
+            419,
+            420,
+            421,
+            422,
             423,
             424
           ]
         },
         {
-          "teal": 347,
-          "source": "lib_pcg\\pcg64.algo.ts:59",
+          "teal": 342,
+          "source": "lib_pcg\\pcg64.algo.ts:54",
           "pc": [
-            425,
+            425
+          ]
+        },
+        {
+          "teal": 343,
+          "source": "lib_pcg\\pcg64.algo.ts:54",
+          "pc": [
             426
           ]
         },
         {
-          "teal": 348,
-          "source": "lib_pcg\\pcg64.algo.ts:59",
+          "teal": 344,
+          "source": "lib_pcg\\pcg64.algo.ts:54",
           "pc": [
-            427,
+            427
+          ]
+        },
+        {
+          "teal": 345,
+          "source": "lib_pcg\\pcg64.algo.ts:54",
+          "pc": [
             428
           ]
         },
         {
-          "teal": 349,
-          "source": "lib_pcg\\pcg64.algo.ts:59",
+          "teal": 346,
+          "source": "lib_pcg\\pcg64.algo.ts:54",
           "pc": [
             429
           ]
         },
         {
-          "teal": 350,
-          "source": "lib_pcg\\pcg64.algo.ts:59",
+          "teal": 347,
+          "source": "lib_pcg\\pcg64.algo.ts:54",
           "pc": [
-            430,
-            431,
+            430
+          ]
+        },
+        {
+          "teal": 348,
+          "source": "lib_pcg\\pcg64.algo.ts:54",
+          "pc": [
+            431
+          ]
+        },
+        {
+          "teal": 349,
+          "source": "lib_pcg\\pcg64.algo.ts:54",
+          "pc": [
             432
           ]
         },
         {
-          "teal": 357,
-          "source": "lib_pcg\\pcg64.algo.ts:61",
+          "teal": 350,
+          "source": "lib_pcg\\pcg64.algo.ts:54",
           "pc": [
             433
           ]
         },
         {
-          "teal": 358,
-          "source": "lib_pcg\\pcg64.algo.ts:61",
+          "teal": 351,
+          "source": "lib_pcg\\pcg64.algo.ts:54",
           "pc": [
             434,
-            435,
-            436
+            435
           ]
         },
         {
-          "teal": 362,
-          "source": "lib_pcg\\pcg64.algo.ts:62",
+          "teal": 356,
+          "source": "lib_pcg\\pcg64.algo.ts:57",
           "pc": [
-            437,
-            438
+            436,
+            437
           ]
         },
         {
-          "teal": 363,
-          "source": "lib_pcg\\pcg64.algo.ts:62",
+          "teal": 357,
+          "source": "lib_pcg\\pcg64.algo.ts:57",
           "pc": [
+            438,
             439,
-            440,
-            441
+            440
           ]
         },
         {
-          "teal": 364,
-          "source": "lib_pcg\\pcg64.algo.ts:62",
+          "teal": 358,
+          "source": "lib_pcg\\pcg64.algo.ts:57",
           "pc": [
-            442,
+            441,
+            442
+          ]
+        },
+        {
+          "teal": 359,
+          "source": "lib_pcg\\pcg64.algo.ts:57",
+          "pc": [
             443
           ]
         },
         {
-          "teal": 368,
-          "source": "lib_pcg\\pcg64.algo.ts:63",
+          "teal": 360,
+          "source": "lib_pcg\\pcg64.algo.ts:57",
           "pc": [
             444,
             445
           ]
         },
         {
-          "teal": 369,
-          "source": "lib_pcg\\pcg64.algo.ts:63",
+          "teal": 364,
+          "source": "lib_pcg\\pcg64.algo.ts:59",
           "pc": [
-            446,
+            446
+          ]
+        },
+        {
+          "teal": 365,
+          "source": "lib_pcg\\pcg64.algo.ts:59",
+          "pc": [
             447,
             448
           ]
         },
         {
           "teal": 370,
-          "source": "lib_pcg\\pcg64.algo.ts:63",
+          "source": "lib_pcg\\pcg64.algo.ts:59",
           "pc": [
             449,
             450
           ]
         },
         {
-          "teal": 375,
-          "source": "lib_pcg\\pcg64.algo.ts:64",
+          "teal": 371,
+          "source": "lib_pcg\\pcg64.algo.ts:59",
           "pc": [
             451,
             452
           ]
         },
         {
-          "teal": 376,
-          "source": "lib_pcg\\pcg64.algo.ts:64",
+          "teal": 372,
+          "source": "lib_pcg\\pcg64.algo.ts:59",
           "pc": [
-            453,
-            454,
-            455
+            453
           ]
         },
         {
-          "teal": 377,
-          "source": "lib_pcg\\pcg64.algo.ts:64",
+          "teal": 373,
+          "source": "lib_pcg\\pcg64.algo.ts:59",
           "pc": [
+            454,
+            455,
             456
           ]
         },
         {
-          "teal": 378,
-          "source": "lib_pcg\\pcg64.algo.ts:64",
-          "pc": [
-            457,
-            458
-          ]
-        },
-        {
-          "teal": 379,
-          "source": "lib_pcg\\pcg64.algo.ts:64",
-          "pc": [
-            459
-          ]
-        },
-        {
           "teal": 380,
-          "source": "lib_pcg\\pcg64.algo.ts:64",
+          "source": "lib_pcg\\pcg64.algo.ts:61",
           "pc": [
-            460,
+            457
+          ]
+        },
+        {
+          "teal": 381,
+          "source": "lib_pcg\\pcg64.algo.ts:61",
+          "pc": [
+            458,
+            459,
+            460
+          ]
+        },
+        {
+          "teal": 385,
+          "source": "lib_pcg\\pcg64.algo.ts:62",
+          "pc": [
             461,
             462
           ]
         },
         {
-          "teal": 385,
-          "source": "lib_pcg\\pcg64.algo.ts:65",
+          "teal": 386,
+          "source": "lib_pcg\\pcg64.algo.ts:62",
           "pc": [
             463,
-            464
-          ]
-        },
-        {
-          "teal": 386,
-          "source": "lib_pcg\\pcg64.algo.ts:65",
-          "pc": [
-            465,
-            466
+            464,
+            465
           ]
         },
         {
           "teal": 387,
-          "source": "lib_pcg\\pcg64.algo.ts:65",
+          "source": "lib_pcg\\pcg64.algo.ts:62",
           "pc": [
-            467,
+            466,
+            467
+          ]
+        },
+        {
+          "teal": 391,
+          "source": "lib_pcg\\pcg64.algo.ts:63",
+          "pc": [
             468,
             469
           ]
         },
         {
-          "teal": 388,
-          "source": "lib_pcg\\pcg64.algo.ts:65",
+          "teal": 392,
+          "source": "lib_pcg\\pcg64.algo.ts:63",
           "pc": [
-            470
-          ]
-        },
-        {
-          "teal": 389,
-          "source": "lib_pcg\\pcg64.algo.ts:65",
-          "pc": [
+            470,
             471,
             472
           ]
         },
         {
-          "teal": 390,
-          "source": "lib_pcg\\pcg64.algo.ts:65",
+          "teal": 393,
+          "source": "lib_pcg\\pcg64.algo.ts:63",
           "pc": [
-            473
+            473,
+            474
           ]
         },
         {
-          "teal": 391,
-          "source": "lib_pcg\\pcg64.algo.ts:65",
+          "teal": 398,
+          "source": "lib_pcg\\pcg64.algo.ts:64",
           "pc": [
-            474,
-            475
-          ]
-        },
-        {
-          "teal": 392,
-          "source": "lib_pcg\\pcg64.algo.ts:65",
-          "pc": [
+            475,
             476
           ]
         },
         {
-          "teal": 393,
-          "source": "lib_pcg\\pcg64.algo.ts:65",
+          "teal": 399,
+          "source": "lib_pcg\\pcg64.algo.ts:64",
           "pc": [
-            477
+            477,
+            478,
+            479
           ]
         },
         {
-          "teal": 394,
-          "source": "lib_pcg\\pcg64.algo.ts:65",
+          "teal": 400,
+          "source": "lib_pcg\\pcg64.algo.ts:64",
           "pc": [
-            478
-          ]
-        },
-        {
-          "teal": 395,
-          "source": "lib_pcg\\pcg64.algo.ts:65",
-          "pc": [
-            479,
             480
           ]
         },
         {
-          "teal": 396,
-          "source": "lib_pcg\\pcg64.algo.ts:66",
+          "teal": 401,
+          "source": "lib_pcg\\pcg64.algo.ts:64",
           "pc": [
             481,
-            482,
+            482
+          ]
+        },
+        {
+          "teal": 402,
+          "source": "lib_pcg\\pcg64.algo.ts:64",
+          "pc": [
             483
           ]
         },
         {
-          "teal": 399,
-          "source": "lib_pcg\\pcg64.algo.ts:61",
+          "teal": 403,
+          "source": "lib_pcg\\pcg64.algo.ts:64",
           "pc": [
             484,
             485,
@@ -1938,604 +1933,598 @@
           ]
         },
         {
-          "teal": 406,
-          "source": "lib_pcg\\pcg64.algo.ts:59",
+          "teal": 408,
+          "source": "lib_pcg\\pcg64.algo.ts:65",
           "pc": [
             487,
             488
           ]
         },
         {
-          "teal": 407,
-          "source": "lib_pcg\\pcg64.algo.ts:59",
+          "teal": 409,
+          "source": "lib_pcg\\pcg64.algo.ts:65",
           "pc": [
-            489
-          ]
-        },
-        {
-          "teal": 408,
-          "source": "lib_pcg\\pcg64.algo.ts:59",
-          "pc": [
+            489,
             490
           ]
         },
         {
-          "teal": 409,
-          "source": "lib_pcg\\pcg64.algo.ts:59",
+          "teal": 410,
+          "source": "lib_pcg\\pcg64.algo.ts:65",
           "pc": [
             491,
-            492
+            492,
+            493
           ]
         },
         {
-          "teal": 410,
-          "source": "lib_pcg\\pcg64.algo.ts:59",
+          "teal": 411,
+          "source": "lib_pcg\\pcg64.algo.ts:65",
           "pc": [
-            493,
-            494,
-            495
+            494
           ]
         },
         {
-          "teal": 417,
-          "source": "lib_pcg\\pcg64.algo.ts:72",
+          "teal": 412,
+          "source": "lib_pcg\\pcg64.algo.ts:65",
           "pc": [
+            495,
             496
           ]
         },
         {
-          "teal": 418,
-          "source": "lib_pcg\\pcg64.algo.ts:72",
+          "teal": 413,
+          "source": "lib_pcg\\pcg64.algo.ts:65",
           "pc": [
             497
           ]
         },
         {
-          "teal": 419,
-          "source": "lib_pcg\\pcg64.algo.ts:72",
+          "teal": 414,
+          "source": "lib_pcg\\pcg64.algo.ts:65",
           "pc": [
             498,
-            499,
-            500,
+            499
+          ]
+        },
+        {
+          "teal": 415,
+          "source": "lib_pcg\\pcg64.algo.ts:65",
+          "pc": [
+            500
+          ]
+        },
+        {
+          "teal": 416,
+          "source": "lib_pcg\\pcg64.algo.ts:65",
+          "pc": [
             501
           ]
         },
         {
-          "teal": 420,
-          "source": "lib_pcg\\pcg64.algo.ts:72",
+          "teal": 417,
+          "source": "lib_pcg\\pcg64.algo.ts:65",
           "pc": [
-            502,
-            503
+            502
           ]
         },
         {
-          "teal": 421,
-          "source": "lib_pcg\\pcg64.algo.ts:72",
+          "teal": 418,
+          "source": "lib_pcg\\pcg64.algo.ts:65",
           "pc": [
-            504,
+            503,
+            504
+          ]
+        },
+        {
+          "teal": 419,
+          "source": "lib_pcg\\pcg64.algo.ts:66",
+          "pc": [
             505,
-            506
+            506,
+            507
           ]
         },
         {
           "teal": 422,
-          "source": "lib_pcg\\pcg64.algo.ts:72",
+          "source": "lib_pcg\\pcg64.algo.ts:61",
           "pc": [
-            507,
-            508
-          ]
-        },
-        {
-          "teal": 423,
-          "source": "lib_pcg\\pcg64.algo.ts:72",
-          "pc": [
-            509
-          ]
-        },
-        {
-          "teal": 424,
-          "source": "lib_pcg\\pcg64.algo.ts:72",
-          "pc": [
+            508,
+            509,
             510
           ]
         },
         {
-          "teal": 425,
-          "source": "lib_pcg\\pcg64.algo.ts:72",
+          "teal": 429,
+          "source": "lib_pcg\\pcg64.algo.ts:59",
           "pc": [
-            511
-          ]
-        },
-        {
-          "teal": 426,
-          "source": "lib_pcg\\pcg64.algo.ts:72",
-          "pc": [
+            511,
             512
           ]
         },
         {
-          "teal": 427,
-          "source": "lib_pcg\\pcg64.algo.ts:72",
+          "teal": 430,
+          "source": "lib_pcg\\pcg64.algo.ts:59",
           "pc": [
             513
           ]
         },
         {
-          "teal": 428,
-          "source": "lib_pcg\\pcg64.algo.ts:72",
+          "teal": 431,
+          "source": "lib_pcg\\pcg64.algo.ts:59",
           "pc": [
-            514,
+            514
+          ]
+        },
+        {
+          "teal": 432,
+          "source": "lib_pcg\\pcg64.algo.ts:59",
+          "pc": [
             515,
             516
           ]
         },
         {
-          "teal": 429,
-          "source": "lib_pcg\\pcg64.algo.ts:72",
+          "teal": 433,
+          "source": "lib_pcg\\pcg64.algo.ts:59",
           "pc": [
-            517
+            517,
+            518,
+            519
           ]
         },
         {
-          "teal": 430,
+          "teal": 440,
           "source": "lib_pcg\\pcg64.algo.ts:72",
           "pc": [
-            518
+            520
           ]
         },
         {
-          "teal": 431,
+          "teal": 441,
           "source": "lib_pcg\\pcg64.algo.ts:72",
           "pc": [
-            519,
-            520,
             521
           ]
         },
         {
-          "teal": 432,
+          "teal": 442,
           "source": "lib_pcg\\pcg64.algo.ts:72",
           "pc": [
-            522
-          ]
-        },
-        {
-          "teal": 433,
-          "source": "lib_pcg\\pcg64.algo.ts:72",
-          "pc": [
-            523
-          ]
-        },
-        {
-          "teal": 436,
-          "source": "lib_pcg\\pcg64.algo.ts:23",
-          "pc": [
+            522,
+            523,
             524,
             525
           ]
         },
         {
-          "teal": 439,
-          "source": "lib_pcg\\pcg64.algo.ts:23",
+          "teal": 443,
+          "source": "lib_pcg\\pcg64.algo.ts:72",
           "pc": [
             526,
             527
           ]
         },
         {
-          "teal": 440,
-          "source": "lib_pcg\\pcg64.algo.ts:23",
-          "pc": [
-            528
-          ]
-        },
-        {
           "teal": 444,
-          "source": "lib_pcg\\pcg32.algo.ts:5",
+          "source": "lib_pcg\\pcg64.algo.ts:72",
           "pc": [
+            528,
             529,
-            530,
-            531
+            530
           ]
         },
         {
-          "teal": 447,
-          "source": "lib_pcg\\pcg32.algo.ts:5",
+          "teal": 445,
+          "source": "lib_pcg\\pcg64.algo.ts:72",
           "pc": [
+            531,
             532
           ]
         },
         {
-          "teal": 448,
-          "source": "lib_pcg\\pcg32.algo.ts:5",
+          "teal": 446,
+          "source": "lib_pcg\\pcg64.algo.ts:72",
           "pc": [
             533
           ]
         },
         {
-          "teal": 452,
-          "source": "lib_pcg\\pcg32.algo.ts:6",
+          "teal": 447,
+          "source": "lib_pcg\\pcg64.algo.ts:72",
           "pc": [
-            534,
+            534
+          ]
+        },
+        {
+          "teal": 448,
+          "source": "lib_pcg\\pcg64.algo.ts:72",
+          "pc": [
             535
           ]
         },
         {
-          "teal": 453,
-          "source": "lib_pcg\\pcg32.algo.ts:6",
+          "teal": 449,
+          "source": "lib_pcg\\pcg64.algo.ts:72",
           "pc": [
             536
           ]
         },
         {
-          "teal": 454,
-          "source": "lib_pcg\\pcg32.algo.ts:6",
+          "teal": 450,
+          "source": "lib_pcg\\pcg64.algo.ts:72",
           "pc": [
             537
           ]
         },
         {
-          "teal": 455,
-          "source": "lib_pcg\\pcg32.algo.ts:6",
+          "teal": 451,
+          "source": "lib_pcg\\pcg64.algo.ts:72",
           "pc": [
-            538
-          ]
-        },
-        {
-          "teal": 456,
-          "source": "lib_pcg\\pcg32.algo.ts:6",
-          "pc": [
+            538,
             539,
             540
           ]
         },
         {
-          "teal": 457,
-          "source": "lib_pcg\\pcg32.algo.ts:6",
+          "teal": 452,
+          "source": "lib_pcg\\pcg64.algo.ts:72",
           "pc": [
-            541,
+            541
+          ]
+        },
+        {
+          "teal": 453,
+          "source": "lib_pcg\\pcg64.algo.ts:72",
+          "pc": [
             542
           ]
         },
         {
-          "teal": 461,
-          "source": "lib_pcg\\pcg32.algo.ts:7",
+          "teal": 454,
+          "source": "lib_pcg\\pcg64.algo.ts:72",
           "pc": [
             543,
-            544
+            544,
+            545
           ]
         },
         {
-          "teal": 464,
-          "source": "lib_pcg\\pcg32.algo.ts:5",
+          "teal": 455,
+          "source": "lib_pcg\\pcg64.algo.ts:72",
           "pc": [
-            545,
             546
+          ]
+        },
+        {
+          "teal": 456,
+          "source": "lib_pcg\\pcg64.algo.ts:72",
+          "pc": [
+            547
+          ]
+        },
+        {
+          "teal": 459,
+          "source": "lib_pcg\\pcg64.algo.ts:23",
+          "pc": [
+            548,
+            549
+          ]
+        },
+        {
+          "teal": 462,
+          "source": "lib_pcg\\pcg64.algo.ts:23",
+          "pc": [
+            550,
+            551
+          ]
+        },
+        {
+          "teal": 463,
+          "source": "lib_pcg\\pcg64.algo.ts:23",
+          "pc": [
+            552
           ]
         },
         {
           "teal": 467,
           "source": "lib_pcg\\pcg32.algo.ts:5",
           "pc": [
-            547,
-            548
+            553,
+            554,
+            555
           ]
         },
         {
-          "teal": 468,
+          "teal": 470,
           "source": "lib_pcg\\pcg32.algo.ts:5",
           "pc": [
-            549
-          ]
-        },
-        {
-          "teal": 472,
-          "source": "lib_pcg\\pcg64.algo.ts:6",
-          "pc": [
-            550,
-            551,
-            552
-          ]
-        },
-        {
-          "teal": 475,
-          "source": "lib_pcg\\pcg64.algo.ts:6",
-          "pc": [
-            553
-          ]
-        },
-        {
-          "teal": 476,
-          "source": "lib_pcg\\pcg64.algo.ts:6",
-          "pc": [
-            554
-          ]
-        },
-        {
-          "teal": 480,
-          "source": "lib_pcg\\pcg64.algo.ts:7",
-          "pc": [
-            555,
             556
           ]
         },
         {
-          "teal": 481,
-          "source": "lib_pcg\\pcg64.algo.ts:7",
+          "teal": 471,
+          "source": "lib_pcg\\pcg32.algo.ts:5",
           "pc": [
-            557,
+            557
+          ]
+        },
+        {
+          "teal": 475,
+          "source": "lib_pcg\\pcg32.algo.ts:6",
+          "pc": [
             558,
             559
           ]
         },
         {
-          "teal": 482,
-          "source": "lib_pcg\\pcg64.algo.ts:7",
+          "teal": 476,
+          "source": "lib_pcg\\pcg32.algo.ts:6",
           "pc": [
             560
           ]
         },
         {
-          "teal": 483,
-          "source": "lib_pcg\\pcg64.algo.ts:7",
+          "teal": 477,
+          "source": "lib_pcg\\pcg32.algo.ts:6",
           "pc": [
-            561,
-            562,
-            563
+            561
+          ]
+        },
+        {
+          "teal": 478,
+          "source": "lib_pcg\\pcg32.algo.ts:6",
+          "pc": [
+            562
+          ]
+        },
+        {
+          "teal": 479,
+          "source": "lib_pcg\\pcg32.algo.ts:6",
+          "pc": [
+            563,
+            564
+          ]
+        },
+        {
+          "teal": 480,
+          "source": "lib_pcg\\pcg32.algo.ts:6",
+          "pc": [
+            565,
+            566
           ]
         },
         {
           "teal": 484,
-          "source": "lib_pcg\\pcg64.algo.ts:7",
+          "source": "lib_pcg\\pcg32.algo.ts:7",
           "pc": [
-            564,
-            565
+            567,
+            568
+          ]
+        },
+        {
+          "teal": 487,
+          "source": "lib_pcg\\pcg32.algo.ts:5",
+          "pc": [
+            569,
+            570
           ]
         },
         {
           "teal": 490,
-          "source": "lib_pcg\\consts.algo.ts:5",
+          "source": "lib_pcg\\pcg32.algo.ts:5",
           "pc": [
-            566,
-            567
-          ]
-        },
-        {
-          "teal": 494,
-          "source": "lib_pcg\\pcg64.algo.ts:9",
-          "pc": [
-            568,
-            569
-          ]
-        },
-        {
-          "teal": 495,
-          "source": "lib_pcg\\pcg64.algo.ts:9",
-          "pc": [
-            570,
             571,
             572
           ]
         },
         {
-          "teal": 496,
-          "source": "lib_pcg\\pcg64.algo.ts:9",
+          "teal": 491,
+          "source": "lib_pcg\\pcg32.algo.ts:5",
           "pc": [
             573
           ]
         },
         {
-          "teal": 497,
-          "source": "lib_pcg\\pcg64.algo.ts:9",
+          "teal": 495,
+          "source": "lib_pcg\\pcg64.algo.ts:6",
           "pc": [
-            574
+            574,
+            575,
+            576
           ]
         },
         {
           "teal": 498,
-          "source": "lib_pcg\\pcg64.algo.ts:9",
+          "source": "lib_pcg\\pcg64.algo.ts:6",
           "pc": [
-            575
+            577
           ]
         },
         {
           "teal": 499,
-          "source": "lib_pcg\\pcg64.algo.ts:9",
+          "source": "lib_pcg\\pcg64.algo.ts:6",
           "pc": [
-            576,
-            577,
             578
           ]
         },
         {
-          "teal": 500,
-          "source": "lib_pcg\\pcg64.algo.ts:9",
+          "teal": 503,
+          "source": "lib_pcg\\pcg64.algo.ts:7",
           "pc": [
-            579
-          ]
-        },
-        {
-          "teal": 501,
-          "source": "lib_pcg\\pcg64.algo.ts:9",
-          "pc": [
-            580,
-            581,
-            582
+            579,
+            580
           ]
         },
         {
           "teal": 504,
-          "source": "lib_pcg\\pcg64.algo.ts:9",
+          "source": "lib_pcg\\pcg64.algo.ts:7",
           "pc": [
+            581,
+            582,
             583
           ]
         },
         {
-          "teal": 507,
-          "source": "lib_pcg\\pcg64.algo.ts:9",
+          "teal": 505,
+          "source": "lib_pcg\\pcg64.algo.ts:7",
           "pc": [
             584
           ]
         },
         {
-          "teal": 511,
-          "source": "lib_pcg\\pcg64.algo.ts:9",
+          "teal": 506,
+          "source": "lib_pcg\\pcg64.algo.ts:7",
           "pc": [
             585,
-            586
+            586,
+            587
           ]
         },
         {
-          "teal": 512,
-          "source": "lib_pcg\\pcg64.algo.ts:9",
+          "teal": 507,
+          "source": "lib_pcg\\pcg64.algo.ts:7",
           "pc": [
-            587,
             588,
             589
           ]
         },
         {
           "teal": 513,
-          "source": "lib_pcg\\pcg64.algo.ts:9",
+          "source": "lib_pcg\\consts.algo.ts:5",
           "pc": [
-            590
+            590,
+            591
           ]
         },
         {
-          "teal": 514,
+          "teal": 517,
           "source": "lib_pcg\\pcg64.algo.ts:9",
           "pc": [
-            591,
             592,
             593
           ]
         },
         {
-          "teal": 515,
+          "teal": 518,
           "source": "lib_pcg\\pcg64.algo.ts:9",
           "pc": [
             594,
-            595
+            595,
+            596
           ]
         },
         {
           "teal": 519,
-          "source": "lib_pcg\\pcg64.algo.ts:11",
+          "source": "lib_pcg\\pcg64.algo.ts:9",
           "pc": [
-            596,
             597
           ]
         },
         {
           "teal": 520,
-          "source": "lib_pcg\\pcg64.algo.ts:11",
+          "source": "lib_pcg\\pcg64.algo.ts:9",
           "pc": [
-            598,
-            599,
-            600
+            598
           ]
         },
         {
           "teal": 521,
-          "source": "lib_pcg\\pcg64.algo.ts:11",
+          "source": "lib_pcg\\pcg64.algo.ts:9",
           "pc": [
-            601
+            599
           ]
         },
         {
           "teal": 522,
-          "source": "lib_pcg\\pcg64.algo.ts:11",
+          "source": "lib_pcg\\pcg64.algo.ts:9",
           "pc": [
+            600,
+            601,
             602
           ]
         },
         {
           "teal": 523,
-          "source": "lib_pcg\\pcg64.algo.ts:11",
+          "source": "lib_pcg\\pcg64.algo.ts:9",
           "pc": [
-            603,
-            604
+            603
           ]
         },
         {
           "teal": 524,
-          "source": "lib_pcg\\pcg64.algo.ts:11",
+          "source": "lib_pcg\\pcg64.algo.ts:9",
           "pc": [
-            605
-          ]
-        },
-        {
-          "teal": 525,
-          "source": "lib_pcg\\pcg64.algo.ts:11",
-          "pc": [
+            604,
+            605,
             606
           ]
         },
         {
-          "teal": 526,
-          "source": "lib_pcg\\pcg64.algo.ts:11",
-          "pc": [
-            607,
-            608
-          ]
-        },
-        {
           "teal": 527,
-          "source": "lib_pcg\\pcg64.algo.ts:11",
+          "source": "lib_pcg\\pcg64.algo.ts:9",
           "pc": [
-            609,
-            610,
-            611
-          ]
-        },
-        {
-          "teal": 528,
-          "source": "lib_pcg\\pcg64.algo.ts:11",
-          "pc": [
-            612
-          ]
-        },
-        {
-          "teal": 529,
-          "source": "lib_pcg\\pcg64.algo.ts:11",
-          "pc": [
-            613,
-            614
+            607
           ]
         },
         {
           "teal": 530,
-          "source": "lib_pcg\\pcg64.algo.ts:11",
+          "source": "lib_pcg\\pcg64.algo.ts:9",
           "pc": [
-            615
+            608
           ]
         },
         {
-          "teal": 531,
-          "source": "lib_pcg\\pcg64.algo.ts:11",
+          "teal": 534,
+          "source": "lib_pcg\\pcg64.algo.ts:9",
           "pc": [
+            609,
+            610
+          ]
+        },
+        {
+          "teal": 535,
+          "source": "lib_pcg\\pcg64.algo.ts:9",
+          "pc": [
+            611,
+            612,
+            613
+          ]
+        },
+        {
+          "teal": 536,
+          "source": "lib_pcg\\pcg64.algo.ts:9",
+          "pc": [
+            614
+          ]
+        },
+        {
+          "teal": 537,
+          "source": "lib_pcg\\pcg64.algo.ts:9",
+          "pc": [
+            615,
             616,
             617
           ]
         },
         {
-          "teal": 532,
-          "source": "lib_pcg\\pcg64.algo.ts:11",
+          "teal": 538,
+          "source": "lib_pcg\\pcg64.algo.ts:9",
           "pc": [
             618,
-            619,
-            620
+            619
           ]
         },
         {
-          "teal": 533,
+          "teal": 542,
           "source": "lib_pcg\\pcg64.algo.ts:11",
           "pc": [
+            620,
             621
           ]
         },
         {
-          "teal": 534,
+          "teal": 543,
           "source": "lib_pcg\\pcg64.algo.ts:11",
           "pc": [
             622,
@@ -2544,52 +2533,52 @@
           ]
         },
         {
-          "teal": 535,
+          "teal": 544,
           "source": "lib_pcg\\pcg64.algo.ts:11",
           "pc": [
             625
           ]
         },
         {
-          "teal": 536,
+          "teal": 545,
           "source": "lib_pcg\\pcg64.algo.ts:11",
           "pc": [
             626
           ]
         },
         {
-          "teal": 537,
+          "teal": 546,
           "source": "lib_pcg\\pcg64.algo.ts:11",
           "pc": [
-            627
+            627,
+            628
           ]
         },
         {
-          "teal": 540,
-          "source": "lib_pcg\\pcg64.algo.ts:6",
+          "teal": 547,
+          "source": "lib_pcg\\pcg64.algo.ts:11",
           "pc": [
-            628,
             629
           ]
         },
         {
-          "teal": 543,
-          "source": "lib_pcg\\pcg64.algo.ts:6",
+          "teal": 548,
+          "source": "lib_pcg\\pcg64.algo.ts:11",
           "pc": [
-            630,
-            631
+            630
           ]
         },
         {
-          "teal": 544,
-          "source": "lib_pcg\\pcg64.algo.ts:6",
+          "teal": 549,
+          "source": "lib_pcg\\pcg64.algo.ts:11",
           "pc": [
+            631,
             632
           ]
         },
         {
-          "teal": 548,
-          "source": "lib_pcg\\pcg32.algo.ts:22",
+          "teal": 550,
+          "source": "lib_pcg\\pcg64.algo.ts:11",
           "pc": [
             633,
             634,
@@ -2598,896 +2587,896 @@
         },
         {
           "teal": 551,
-          "source": "lib_pcg\\pcg32.algo.ts:22",
+          "source": "lib_pcg\\pcg64.algo.ts:11",
           "pc": [
             636
           ]
         },
         {
           "teal": 552,
-          "source": "lib_pcg\\pcg32.algo.ts:22",
+          "source": "lib_pcg\\pcg64.algo.ts:11",
           "pc": [
-            637
+            637,
+            638
           ]
         },
         {
-          "teal": 556,
-          "source": "lib_pcg\\pcg32.algo.ts:23",
+          "teal": 553,
+          "source": "lib_pcg\\pcg64.algo.ts:11",
           "pc": [
-            638,
             639
           ]
         },
         {
-          "teal": 557,
-          "source": "lib_pcg\\pcg32.algo.ts:23",
+          "teal": 554,
+          "source": "lib_pcg\\pcg64.algo.ts:11",
           "pc": [
             640,
             641
           ]
         },
         {
-          "teal": 558,
-          "source": "lib_pcg\\pcg32.algo.ts:23",
+          "teal": 555,
+          "source": "lib_pcg\\pcg64.algo.ts:11",
           "pc": [
-            642
-          ]
-        },
-        {
-          "teal": 559,
-          "source": "lib_pcg\\pcg32.algo.ts:23",
-          "pc": [
+            642,
             643,
             644
           ]
         },
         {
-          "teal": 560,
-          "source": "lib_pcg\\pcg32.algo.ts:23",
+          "teal": 556,
+          "source": "lib_pcg\\pcg64.algo.ts:11",
           "pc": [
             645
           ]
         },
         {
-          "teal": 561,
-          "source": "lib_pcg\\pcg32.algo.ts:23",
+          "teal": 557,
+          "source": "lib_pcg\\pcg64.algo.ts:11",
           "pc": [
             646,
-            647
-          ]
-        },
-        {
-          "teal": 562,
-          "source": "lib_pcg\\pcg32.algo.ts:23",
-          "pc": [
+            647,
             648
           ]
         },
         {
-          "teal": 563,
-          "source": "lib_pcg\\pcg32.algo.ts:23",
+          "teal": 558,
+          "source": "lib_pcg\\pcg64.algo.ts:11",
           "pc": [
-            649,
-            650,
+            649
+          ]
+        },
+        {
+          "teal": 559,
+          "source": "lib_pcg\\pcg64.algo.ts:11",
+          "pc": [
+            650
+          ]
+        },
+        {
+          "teal": 560,
+          "source": "lib_pcg\\pcg64.algo.ts:11",
+          "pc": [
             651
           ]
         },
         {
-          "teal": 564,
-          "source": "lib_pcg\\pcg32.algo.ts:23",
+          "teal": 563,
+          "source": "lib_pcg\\pcg64.algo.ts:6",
           "pc": [
             652,
             653
           ]
         },
         {
-          "teal": 568,
-          "source": "lib_pcg\\pcg32.algo.ts:24",
+          "teal": 566,
+          "source": "lib_pcg\\pcg64.algo.ts:6",
           "pc": [
             654,
             655
           ]
         },
         {
-          "teal": 569,
-          "source": "lib_pcg\\pcg32.algo.ts:24",
+          "teal": 567,
+          "source": "lib_pcg\\pcg64.algo.ts:6",
           "pc": [
-            656,
-            657
-          ]
-        },
-        {
-          "teal": 570,
-          "source": "lib_pcg\\pcg32.algo.ts:24",
-          "pc": [
-            658
+            656
           ]
         },
         {
           "teal": 571,
-          "source": "lib_pcg\\pcg32.algo.ts:24",
+          "source": "lib_pcg\\pcg32.algo.ts:22",
           "pc": [
-            659,
+            657,
+            658,
+            659
+          ]
+        },
+        {
+          "teal": 574,
+          "source": "lib_pcg\\pcg32.algo.ts:22",
+          "pc": [
             660
           ]
         },
         {
           "teal": 575,
-          "source": "lib_pcg\\pcg32.algo.ts:25",
+          "source": "lib_pcg\\pcg32.algo.ts:22",
           "pc": [
-            661,
-            662
-          ]
-        },
-        {
-          "teal": 576,
-          "source": "lib_pcg\\pcg32.algo.ts:25",
-          "pc": [
-            663,
-            664
-          ]
-        },
-        {
-          "teal": 577,
-          "source": "lib_pcg\\pcg32.algo.ts:25",
-          "pc": [
-            665
-          ]
-        },
-        {
-          "teal": 578,
-          "source": "lib_pcg\\pcg32.algo.ts:25",
-          "pc": [
-            666,
-            667
+            661
           ]
         },
         {
           "teal": 579,
-          "source": "lib_pcg\\pcg32.algo.ts:25",
+          "source": "lib_pcg\\pcg32.algo.ts:23",
           "pc": [
-            668,
-            669
+            662,
+            663
           ]
         },
         {
           "teal": 580,
-          "source": "lib_pcg\\pcg32.algo.ts:25",
+          "source": "lib_pcg\\pcg32.algo.ts:23",
           "pc": [
-            670,
-            671,
-            672
+            664,
+            665
           ]
         },
         {
           "teal": 581,
-          "source": "lib_pcg\\pcg32.algo.ts:25",
+          "source": "lib_pcg\\pcg32.algo.ts:23",
           "pc": [
-            673,
-            674
+            666
           ]
         },
         {
           "teal": 582,
-          "source": "lib_pcg\\pcg32.algo.ts:25",
+          "source": "lib_pcg\\pcg32.algo.ts:23",
           "pc": [
-            675
+            667,
+            668
           ]
         },
         {
           "teal": 583,
-          "source": "lib_pcg\\pcg32.algo.ts:25",
+          "source": "lib_pcg\\pcg32.algo.ts:23",
           "pc": [
-            676
+            669
           ]
         },
         {
           "teal": 584,
-          "source": "lib_pcg\\pcg32.algo.ts:25",
+          "source": "lib_pcg\\pcg32.algo.ts:23",
           "pc": [
-            677,
+            670,
+            671
+          ]
+        },
+        {
+          "teal": 585,
+          "source": "lib_pcg\\pcg32.algo.ts:23",
+          "pc": [
+            672
+          ]
+        },
+        {
+          "teal": 586,
+          "source": "lib_pcg\\pcg32.algo.ts:23",
+          "pc": [
+            673,
+            674,
+            675
+          ]
+        },
+        {
+          "teal": 587,
+          "source": "lib_pcg\\pcg32.algo.ts:23",
+          "pc": [
+            676,
+            677
+          ]
+        },
+        {
+          "teal": 591,
+          "source": "lib_pcg\\pcg32.algo.ts:24",
+          "pc": [
             678,
             679
           ]
         },
         {
-          "teal": 585,
-          "source": "lib_pcg\\pcg32.algo.ts:25",
+          "teal": 592,
+          "source": "lib_pcg\\pcg32.algo.ts:24",
           "pc": [
-            680
+            680,
+            681
           ]
         },
         {
-          "teal": 588,
-          "source": "lib_pcg\\pcg32.algo.ts:22",
+          "teal": 593,
+          "source": "lib_pcg\\pcg32.algo.ts:24",
           "pc": [
-            681,
             682
           ]
         },
         {
-          "teal": 591,
-          "source": "lib_pcg\\pcg32.algo.ts:22",
+          "teal": 594,
+          "source": "lib_pcg\\pcg32.algo.ts:24",
           "pc": [
             683,
             684
           ]
         },
         {
-          "teal": 592,
-          "source": "lib_pcg\\pcg32.algo.ts:22",
+          "teal": 598,
+          "source": "lib_pcg\\pcg32.algo.ts:25",
           "pc": [
-            685
+            685,
+            686
           ]
         },
         {
-          "teal": 596,
-          "source": "lib_pcg\\pcg32.algo.ts:10",
+          "teal": 599,
+          "source": "lib_pcg\\pcg32.algo.ts:25",
           "pc": [
-            686,
             687,
             688
           ]
         },
         {
           "teal": 600,
-          "source": "lib_pcg\\pcg32.algo.ts:12",
+          "source": "lib_pcg\\pcg32.algo.ts:25",
           "pc": [
-            689,
-            690
+            689
           ]
         },
         {
           "teal": 601,
-          "source": "lib_pcg\\pcg32.algo.ts:12",
+          "source": "lib_pcg\\pcg32.algo.ts:25",
           "pc": [
-            691,
+            690,
+            691
+          ]
+        },
+        {
+          "teal": 602,
+          "source": "lib_pcg\\pcg32.algo.ts:25",
+          "pc": [
             692,
-            693,
+            693
+          ]
+        },
+        {
+          "teal": 603,
+          "source": "lib_pcg\\pcg32.algo.ts:25",
+          "pc": [
             694,
             695,
             696
           ]
         },
         {
-          "teal": 602,
-          "source": "lib_pcg\\pcg32.algo.ts:12",
+          "teal": 604,
+          "source": "lib_pcg\\pcg32.algo.ts:25",
           "pc": [
-            697
-          ]
-        },
-        {
-          "teal": 603,
-          "source": "lib_pcg\\pcg32.algo.ts:10",
-          "pc": [
+            697,
             698
           ]
         },
         {
+          "teal": 605,
+          "source": "lib_pcg\\pcg32.algo.ts:25",
+          "pc": [
+            699
+          ]
+        },
+        {
+          "teal": 606,
+          "source": "lib_pcg\\pcg32.algo.ts:25",
+          "pc": [
+            700
+          ]
+        },
+        {
           "teal": 607,
-          "source": "lib_pcg\\pcg32.algo.ts:15",
+          "source": "lib_pcg\\pcg32.algo.ts:25",
           "pc": [
-            699,
-            700,
-            701
+            701,
+            702,
+            703
           ]
         },
         {
-          "teal": 610,
-          "source": "lib_pcg\\pcg32.algo.ts:15",
+          "teal": 608,
+          "source": "lib_pcg\\pcg32.algo.ts:25",
           "pc": [
-            702
-          ]
-        },
-        {
-          "teal": 611,
-          "source": "lib_pcg\\pcg32.algo.ts:15",
-          "pc": [
-            703,
             704
           ]
         },
         {
-          "teal": 615,
-          "source": "lib_pcg\\pcg32.algo.ts:16",
+          "teal": 611,
+          "source": "lib_pcg\\pcg32.algo.ts:22",
           "pc": [
             705,
             706
           ]
         },
         {
-          "teal": 619,
-          "source": "lib_pcg\\consts.algo.ts:1",
+          "teal": 614,
+          "source": "lib_pcg\\pcg32.algo.ts:22",
           "pc": [
             707,
-            708,
-            709,
+            708
+          ]
+        },
+        {
+          "teal": 615,
+          "source": "lib_pcg\\pcg32.algo.ts:22",
+          "pc": [
+            709
+          ]
+        },
+        {
+          "teal": 619,
+          "source": "lib_pcg\\pcg32.algo.ts:10",
+          "pc": [
             710,
             711,
-            712,
+            712
+          ]
+        },
+        {
+          "teal": 623,
+          "source": "lib_pcg\\pcg32.algo.ts:12",
+          "pc": [
             713,
-            714,
+            714
+          ]
+        },
+        {
+          "teal": 624,
+          "source": "lib_pcg\\pcg32.algo.ts:12",
+          "pc": [
             715,
-            716
-          ]
-        },
-        {
-          "teal": 620,
-          "source": "lib_pcg\\pcg32.algo.ts:16",
-          "pc": [
-            717
-          ]
-        },
-        {
-          "teal": 621,
-          "source": "lib_pcg\\pcg32.algo.ts:16",
-          "pc": [
+            716,
+            717,
             718,
-            719
+            719,
+            720
           ]
         },
         {
-          "teal": 622,
-          "source": "lib_pcg\\pcg32.algo.ts:16",
+          "teal": 625,
+          "source": "lib_pcg\\pcg32.algo.ts:12",
           "pc": [
-            720,
             721
           ]
         },
         {
           "teal": 626,
-          "source": "lib_pcg\\pcg32.algo.ts:17",
+          "source": "lib_pcg\\pcg32.algo.ts:10",
           "pc": [
-            722,
-            723
+            722
           ]
         },
         {
-          "teal": 627,
-          "source": "lib_pcg\\pcg32.algo.ts:17",
+          "teal": 630,
+          "source": "lib_pcg\\pcg32.algo.ts:15",
           "pc": [
+            723,
             724,
             725
           ]
         },
         {
-          "teal": 628,
-          "source": "lib_pcg\\pcg32.algo.ts:17",
+          "teal": 633,
+          "source": "lib_pcg\\pcg32.algo.ts:15",
           "pc": [
             726
           ]
         },
         {
-          "teal": 629,
-          "source": "lib_pcg\\pcg32.algo.ts:17",
+          "teal": 634,
+          "source": "lib_pcg\\pcg32.algo.ts:15",
           "pc": [
             727,
             728
           ]
         },
         {
-          "teal": 630,
-          "source": "lib_pcg\\pcg32.algo.ts:17",
+          "teal": 638,
+          "source": "lib_pcg\\pcg32.algo.ts:16",
           "pc": [
             729,
             730
           ]
         },
         {
-          "teal": 634,
-          "source": "lib_pcg\\pcg32.algo.ts:19",
+          "teal": 642,
+          "source": "lib_pcg\\consts.algo.ts:1",
           "pc": [
             731,
-            732
-          ]
-        },
-        {
-          "teal": 637,
-          "source": "lib_pcg\\pcg32.algo.ts:15",
-          "pc": [
+            732,
             733,
-            734
-          ]
-        },
-        {
-          "teal": 640,
-          "source": "lib_pcg\\pcg32.algo.ts:15",
-          "pc": [
+            734,
             735,
-            736
-          ]
-        },
-        {
-          "teal": 641,
-          "source": "lib_pcg\\pcg32.algo.ts:15",
-          "pc": [
-            737
-          ]
-        },
-        {
-          "teal": 645,
-          "source": "lib_pcg\\pcg32.algo.ts:28",
-          "pc": [
+            736,
+            737,
             738,
             739,
             740
           ]
         },
         {
-          "teal": 651,
-          "source": "lib_pcg\\consts.algo.ts:3",
+          "teal": 643,
+          "source": "lib_pcg\\pcg32.algo.ts:16",
           "pc": [
-            741,
-            742
+            741
           ]
         },
         {
-          "teal": 652,
-          "source": "lib_pcg\\pcg32.algo.ts:29",
+          "teal": 644,
+          "source": "lib_pcg\\pcg32.algo.ts:16",
           "pc": [
-            743,
-            744
+            742,
+            743
           ]
         },
         {
-          "teal": 653,
-          "source": "lib_pcg\\pcg32.algo.ts:29",
+          "teal": 645,
+          "source": "lib_pcg\\pcg32.algo.ts:16",
           "pc": [
-            745,
+            744,
+            745
+          ]
+        },
+        {
+          "teal": 649,
+          "source": "lib_pcg\\pcg32.algo.ts:17",
+          "pc": [
             746,
             747
           ]
         },
         {
-          "teal": 654,
-          "source": "lib_pcg\\pcg32.algo.ts:29",
+          "teal": 650,
+          "source": "lib_pcg\\pcg32.algo.ts:17",
           "pc": [
-            748
+            748,
+            749
           ]
         },
         {
-          "teal": 658,
-          "source": "lib_pcg\\pcg32.algo.ts:29",
+          "teal": 651,
+          "source": "lib_pcg\\pcg32.algo.ts:17",
           "pc": [
-            749,
             750
           ]
         },
         {
-          "teal": 659,
-          "source": "lib_pcg\\pcg32.algo.ts:29",
+          "teal": 652,
+          "source": "lib_pcg\\pcg32.algo.ts:17",
           "pc": [
             751,
-            752,
-            753
+            752
           ]
         },
         {
-          "teal": 660,
-          "source": "lib_pcg\\pcg32.algo.ts:29",
+          "teal": 653,
+          "source": "lib_pcg\\pcg32.algo.ts:17",
           "pc": [
+            753,
             754
           ]
         },
         {
-          "teal": 661,
-          "source": "lib_pcg\\pcg32.algo.ts:29",
+          "teal": 657,
+          "source": "lib_pcg\\pcg32.algo.ts:19",
           "pc": [
-            755
-          ]
-        },
-        {
-          "teal": 662,
-          "source": "lib_pcg\\pcg32.algo.ts:28",
-          "pc": [
+            755,
             756
           ]
         },
         {
-          "teal": 666,
-          "source": "lib_pcg\\pcg64.algo.ts:14",
+          "teal": 660,
+          "source": "lib_pcg\\pcg32.algo.ts:15",
           "pc": [
             757,
-            758,
-            759
+            758
           ]
         },
         {
-          "teal": 670,
-          "source": "lib_pcg\\pcg64.algo.ts:15",
+          "teal": 663,
+          "source": "lib_pcg\\pcg32.algo.ts:15",
           "pc": [
+            759,
             760
           ]
         },
         {
-          "teal": 671,
-          "source": "lib_pcg\\pcg64.algo.ts:15",
+          "teal": 664,
+          "source": "lib_pcg\\pcg32.algo.ts:15",
           "pc": [
             761
           ]
         },
         {
-          "teal": 672,
-          "source": "lib_pcg\\pcg64.algo.ts:15",
+          "teal": 668,
+          "source": "lib_pcg\\pcg32.algo.ts:28",
           "pc": [
-            762
+            762,
+            763,
+            764
           ]
         },
         {
-          "teal": 673,
-          "source": "lib_pcg\\pcg64.algo.ts:15",
-          "pc": [
-            763
-          ]
-        },
-        {
-          "teal": 682,
+          "teal": 674,
           "source": "lib_pcg\\consts.algo.ts:3",
           "pc": [
-            764,
-            765
+            765,
+            766
           ]
         },
         {
-          "teal": 686,
-          "source": "lib_pcg\\pcg64.algo.ts:18",
+          "teal": 675,
+          "source": "lib_pcg\\pcg32.algo.ts:29",
           "pc": [
-            766,
-            767
-          ]
-        },
-        {
-          "teal": 687,
-          "source": "lib_pcg\\pcg64.algo.ts:18",
-          "pc": [
+            767,
             768
           ]
         },
         {
-          "teal": 688,
-          "source": "lib_pcg\\pcg64.algo.ts:18",
+          "teal": 676,
+          "source": "lib_pcg\\pcg32.algo.ts:29",
           "pc": [
-            769
+            769,
+            770,
+            771
           ]
         },
         {
-          "teal": 689,
-          "source": "lib_pcg\\pcg64.algo.ts:18",
+          "teal": 677,
+          "source": "lib_pcg\\pcg32.algo.ts:29",
           "pc": [
-            770,
-            771,
             772
           ]
         },
         {
-          "teal": 690,
-          "source": "lib_pcg\\pcg64.algo.ts:18",
+          "teal": 681,
+          "source": "lib_pcg\\pcg32.algo.ts:29",
           "pc": [
-            773
+            773,
+            774
           ]
         },
         {
-          "teal": 696,
-          "source": "lib_pcg\\consts.algo.ts:5",
+          "teal": 682,
+          "source": "lib_pcg\\pcg32.algo.ts:29",
           "pc": [
-            774,
-            775
-          ]
-        },
-        {
-          "teal": 700,
-          "source": "lib_pcg\\pcg64.algo.ts:19",
-          "pc": [
+            775,
             776,
             777
           ]
         },
         {
-          "teal": 701,
-          "source": "lib_pcg\\pcg64.algo.ts:19",
+          "teal": 683,
+          "source": "lib_pcg\\pcg32.algo.ts:29",
           "pc": [
             778
           ]
         },
         {
-          "teal": 702,
-          "source": "lib_pcg\\pcg64.algo.ts:19",
+          "teal": 684,
+          "source": "lib_pcg\\pcg32.algo.ts:29",
           "pc": [
             779
           ]
         },
         {
-          "teal": 703,
-          "source": "lib_pcg\\pcg64.algo.ts:19",
+          "teal": 685,
+          "source": "lib_pcg\\pcg32.algo.ts:28",
           "pc": [
-            780,
-            781,
-            782
+            780
           ]
         },
         {
-          "teal": 704,
-          "source": "lib_pcg\\pcg64.algo.ts:19",
+          "teal": 689,
+          "source": "lib_pcg\\pcg64.algo.ts:14",
           "pc": [
+            781,
+            782,
             783
           ]
         },
         {
-          "teal": 705,
-          "source": "lib_pcg\\pcg64.algo.ts:19",
+          "teal": 693,
+          "source": "lib_pcg\\pcg64.algo.ts:15",
           "pc": [
             784
           ]
         },
         {
-          "teal": 706,
-          "source": "lib_pcg\\pcg64.algo.ts:14",
+          "teal": 694,
+          "source": "lib_pcg\\pcg64.algo.ts:15",
           "pc": [
             785
           ]
         },
         {
-          "teal": 710,
-          "source": "lib_pcg\\pcg32.algo.ts:89",
+          "teal": 695,
+          "source": "lib_pcg\\pcg64.algo.ts:15",
           "pc": [
-            786,
-            787,
-            788
+            786
           ]
         },
         {
-          "teal": 713,
-          "source": "lib_pcg\\pcg32.algo.ts:89",
+          "teal": 696,
+          "source": "lib_pcg\\pcg64.algo.ts:15",
           "pc": [
+            787
+          ]
+        },
+        {
+          "teal": 705,
+          "source": "lib_pcg\\consts.algo.ts:3",
+          "pc": [
+            788,
             789
           ]
         },
         {
-          "teal": 714,
-          "source": "lib_pcg\\pcg32.algo.ts:89",
+          "teal": 709,
+          "source": "lib_pcg\\pcg64.algo.ts:18",
           "pc": [
             790,
             791
           ]
         },
         {
-          "teal": 718,
-          "source": "lib_pcg\\pcg32.algo.ts:90",
+          "teal": 710,
+          "source": "lib_pcg\\pcg64.algo.ts:18",
           "pc": [
-            792,
+            792
+          ]
+        },
+        {
+          "teal": 711,
+          "source": "lib_pcg\\pcg64.algo.ts:18",
+          "pc": [
             793
           ]
         },
         {
-          "teal": 719,
-          "source": "lib_pcg\\pcg32.algo.ts:90",
+          "teal": 712,
+          "source": "lib_pcg\\pcg64.algo.ts:18",
           "pc": [
-            794
+            794,
+            795,
+            796
           ]
         },
         {
-          "teal": 720,
-          "source": "lib_pcg\\pcg32.algo.ts:90",
+          "teal": 713,
+          "source": "lib_pcg\\pcg64.algo.ts:18",
           "pc": [
-            795,
-            796,
             797
           ]
         },
         {
-          "teal": 721,
-          "source": "lib_pcg\\pcg32.algo.ts:90",
+          "teal": 719,
+          "source": "lib_pcg\\consts.algo.ts:5",
           "pc": [
             798,
             799
           ]
         },
         {
-          "teal": 725,
-          "source": "lib_pcg\\pcg32.algo.ts:91",
+          "teal": 723,
+          "source": "lib_pcg\\pcg64.algo.ts:19",
           "pc": [
             800,
             801
           ]
         },
         {
-          "teal": 726,
-          "source": "lib_pcg\\pcg32.algo.ts:91",
+          "teal": 724,
+          "source": "lib_pcg\\pcg64.algo.ts:19",
           "pc": [
-            802,
+            802
+          ]
+        },
+        {
+          "teal": 725,
+          "source": "lib_pcg\\pcg64.algo.ts:19",
+          "pc": [
             803
           ]
         },
         {
-          "teal": 727,
-          "source": "lib_pcg\\pcg32.algo.ts:91",
+          "teal": 726,
+          "source": "lib_pcg\\pcg64.algo.ts:19",
           "pc": [
-            804
-          ]
-        },
-        {
-          "teal": 728,
-          "source": "lib_pcg\\pcg32.algo.ts:91",
-          "pc": [
+            804,
             805,
             806
           ]
         },
         {
-          "teal": 729,
-          "source": "lib_pcg\\pcg32.algo.ts:91",
+          "teal": 727,
+          "source": "lib_pcg\\pcg64.algo.ts:19",
           "pc": [
-            807,
+            807
+          ]
+        },
+        {
+          "teal": 728,
+          "source": "lib_pcg\\pcg64.algo.ts:19",
+          "pc": [
             808
           ]
         },
         {
-          "teal": 733,
-          "source": "lib_pcg\\pcg32.algo.ts:93",
+          "teal": 729,
+          "source": "lib_pcg\\pcg64.algo.ts:14",
           "pc": [
-            809,
-            810
+            809
           ]
         },
         {
-          "teal": 734,
-          "source": "lib_pcg\\pcg32.algo.ts:93",
+          "teal": 733,
+          "source": "lib_pcg\\pcg32.algo.ts:89",
           "pc": [
+            810,
             811,
             812
           ]
         },
         {
-          "teal": 735,
-          "source": "lib_pcg\\pcg32.algo.ts:93",
+          "teal": 736,
+          "source": "lib_pcg\\pcg32.algo.ts:89",
           "pc": [
-            813,
+            813
+          ]
+        },
+        {
+          "teal": 737,
+          "source": "lib_pcg\\pcg32.algo.ts:89",
+          "pc": [
             814,
             815
           ]
         },
         {
-          "teal": 738,
-          "source": "lib_pcg\\pcg32.algo.ts:89",
+          "teal": 741,
+          "source": "lib_pcg\\pcg32.algo.ts:90",
           "pc": [
             816,
             817
           ]
         },
         {
-          "teal": 741,
-          "source": "lib_pcg\\pcg32.algo.ts:89",
-          "pc": [
-            818,
-            819
-          ]
-        },
-        {
           "teal": 742,
-          "source": "lib_pcg\\pcg32.algo.ts:89",
+          "source": "lib_pcg\\pcg32.algo.ts:90",
           "pc": [
-            820
+            818
           ]
         },
         {
-          "teal": 745,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "teal": 743,
+          "source": "lib_pcg\\pcg32.algo.ts:90",
           "pc": [
-            821,
+            819,
+            820,
+            821
+          ]
+        },
+        {
+          "teal": 744,
+          "source": "lib_pcg\\pcg32.algo.ts:90",
+          "pc": [
             822,
             823
           ]
         },
         {
-          "teal": 746,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "teal": 748,
+          "source": "lib_pcg\\pcg32.algo.ts:91",
           "pc": [
             824,
             825
           ]
         },
         {
-          "teal": 747,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "teal": 749,
+          "source": "lib_pcg\\pcg32.algo.ts:91",
           "pc": [
             826,
             827
           ]
         },
         {
-          "teal": 748,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "teal": 750,
+          "source": "lib_pcg\\pcg32.algo.ts:91",
           "pc": [
             828
           ]
         },
         {
-          "teal": 749,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "teal": 751,
+          "source": "lib_pcg\\pcg32.algo.ts:91",
           "pc": [
             829,
             830
           ]
         },
         {
-          "teal": 750,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "teal": 752,
+          "source": "lib_pcg\\pcg32.algo.ts:91",
           "pc": [
             831,
             832
           ]
         },
         {
-          "teal": 751,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "teal": 756,
+          "source": "lib_pcg\\pcg32.algo.ts:93",
           "pc": [
-            833
+            833,
+            834
           ]
         },
         {
-          "teal": 754,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "teal": 757,
+          "source": "lib_pcg\\pcg32.algo.ts:93",
           "pc": [
-            834,
             835,
             836
           ]
         },
         {
-          "teal": 755,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "teal": 758,
+          "source": "lib_pcg\\pcg32.algo.ts:93",
           "pc": [
             837,
-            838
+            838,
+            839
           ]
         },
         {
-          "teal": 756,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "teal": 761,
+          "source": "lib_pcg\\pcg32.algo.ts:89",
           "pc": [
-            839,
-            840
-          ]
-        },
-        {
-          "teal": 757,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
-          "pc": [
+            840,
             841
           ]
         },
         {
-          "teal": 758,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "teal": 764,
+          "source": "lib_pcg\\pcg32.algo.ts:89",
           "pc": [
             842,
             843
           ]
         },
         {
-          "teal": 759,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "teal": 765,
+          "source": "lib_pcg\\pcg32.algo.ts:89",
           "pc": [
-            844,
-            845
+            844
           ]
         },
         {
-          "teal": 760,
+          "teal": 768,
           "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
           "pc": [
-            846
-          ]
-        },
-        {
-          "teal": 761,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
-          "pc": [
+            845,
+            846,
             847
           ]
         },
         {
-          "teal": 762,
+          "teal": 769,
           "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
           "pc": [
             848,
@@ -3495,83 +3484,77 @@
           ]
         },
         {
-          "teal": 763,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
-          "pc": [
-            850
-          ]
-        },
-        {
-          "teal": 764,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
-          "pc": [
-            851
-          ]
-        },
-        {
-          "teal": 765,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
-          "pc": [
-            852
-          ]
-        },
-        {
-          "teal": 766,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
-          "pc": [
-            853,
-            854,
-            855
-          ]
-        },
-        {
-          "teal": 767,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
-          "pc": [
-            856,
-            857
-          ]
-        },
-        {
-          "teal": 768,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
-          "pc": [
-            858,
-            859
-          ]
-        },
-        {
-          "teal": 769,
-          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
-          "pc": [
-            860
-          ]
-        },
-        {
           "teal": 770,
           "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
           "pc": [
-            861
+            850,
+            851
           ]
         },
         {
           "teal": 771,
           "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
           "pc": [
-            862,
-            863
+            852
           ]
         },
         {
           "teal": 772,
           "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
           "pc": [
-            864,
-            865
+            853,
+            854
           ]
         },
         {
           "teal": 773,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            855,
+            856
+          ]
+        },
+        {
+          "teal": 774,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            857
+          ]
+        },
+        {
+          "teal": 777,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            858,
+            859,
+            860
+          ]
+        },
+        {
+          "teal": 778,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            861,
+            862
+          ]
+        },
+        {
+          "teal": 779,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            863,
+            864
+          ]
+        },
+        {
+          "teal": 780,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            865
+          ]
+        },
+        {
+          "teal": 781,
           "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
           "pc": [
             866,
@@ -3579,7 +3562,7 @@
           ]
         },
         {
-          "teal": 774,
+          "teal": 782,
           "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
           "pc": [
             868,
@@ -3587,10 +3570,124 @@
           ]
         },
         {
-          "teal": 775,
+          "teal": 783,
           "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
           "pc": [
             870
+          ]
+        },
+        {
+          "teal": 784,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            871
+          ]
+        },
+        {
+          "teal": 785,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            872,
+            873
+          ]
+        },
+        {
+          "teal": 786,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            874
+          ]
+        },
+        {
+          "teal": 787,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            875
+          ]
+        },
+        {
+          "teal": 788,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            876
+          ]
+        },
+        {
+          "teal": 789,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            877,
+            878,
+            879
+          ]
+        },
+        {
+          "teal": 790,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            880,
+            881
+          ]
+        },
+        {
+          "teal": 791,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            882,
+            883
+          ]
+        },
+        {
+          "teal": 792,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            884
+          ]
+        },
+        {
+          "teal": 793,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            885
+          ]
+        },
+        {
+          "teal": 794,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            886,
+            887
+          ]
+        },
+        {
+          "teal": 795,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            888,
+            889
+          ]
+        },
+        {
+          "teal": 796,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            890,
+            891
+          ]
+        },
+        {
+          "teal": 797,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            892,
+            893
+          ]
+        },
+        {
+          "teal": 798,
+          "source": "contracts\\lib-pcg64-exposer-ts.algo.ts:4",
+          "pc": [
+            894
           ]
         }
       ],
@@ -3602,20 +3699,20 @@
     }
   },
   "source": {
-    "approval": "I3ByYWdtYSB2ZXJzaW9uIDEwCmludGNibG9jayAxIDAgOCAxNiAxNDQyNjk1MDQwODg4OTYzNDA5IDE0NDI2OTUwNDA4ODg5NjM0MDcgMgpieXRlY2Jsb2NrIDB4CgovLyBUaGlzIFRFQUwgd2FzIGdlbmVyYXRlZCBieSBURUFMU2NyaXB0IHYwLjEwNS41Ci8vIGh0dHBzOi8vZ2l0aHViLmNvbS9hbGdvcmFuZGZvdW5kYXRpb24vVEVBTFNjcmlwdAoKLy8gVGhpcyBjb250cmFjdCBpcyBjb21wbGlhbnQgd2l0aCBhbmQvb3IgaW1wbGVtZW50cyB0aGUgZm9sbG93aW5nIEFSQ3M6IFsgQVJDNCBdCgovLyBUaGUgZm9sbG93aW5nIHRlbiBsaW5lcyBvZiBURUFMIGhhbmRsZSBpbml0aWFsIHByb2dyYW0gZmxvdwovLyBUaGlzIHBhdHRlcm4gaXMgdXNlZCB0byBtYWtlIGl0IGVhc3kgZm9yIGFueW9uZSB0byBwYXJzZSB0aGUgc3RhcnQgb2YgdGhlIHByb2dyYW0gYW5kIGRldGVybWluZSBpZiBhIHNwZWNpZmljIGFjdGlvbiBpcyBhbGxvd2VkCi8vIEhlcmUsIGFjdGlvbiByZWZlcnMgdG8gdGhlIE9uQ29tcGxldGUgaW4gY29tYmluYXRpb24gd2l0aCB3aGV0aGVyIHRoZSBhcHAgaXMgYmVpbmcgY3JlYXRlZCBvciBjYWxsZWQKLy8gRXZlcnkgcG9zc2libGUgYWN0aW9uIGZvciB0aGlzIGNvbnRyYWN0IGlzIHJlcHJlc2VudGVkIGluIHRoZSBzd2l0Y2ggc3RhdGVtZW50Ci8vIElmIHRoZSBhY3Rpb24gaXMgbm90IGltcGxlbWVudGVkIGluIHRoZSBjb250cmFjdCwgaXRzIHJlc3BlY3RpdmUgYnJhbmNoIHdpbGwgYmUgIipOT1RfSU1QTEVNRU5URUQiIHdoaWNoIGp1c3QgY29udGFpbnMgImVyciIKdHhuIEFwcGxpY2F0aW9uSUQKIQpwdXNoaW50IDYKKgp0eG4gT25Db21wbGV0aW9uCisKc3dpdGNoICpjYWxsX05vT3AgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVEICpOT1RfSU1QTEVNRU5URUQgKmNhbGxfVXBkYXRlQXBwbGljYXRpb24gKk5PVF9JTVBMRU1FTlRFRCAqY3JlYXRlX05vT3AgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVEICpOT1RfSU1QTEVNRU5URUQgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVECgoqTk9UX0lNUExFTUVOVEVEOgoJLy8gVGhlIHJlcXVlc3RlZCBhY3Rpb24gaXMgbm90IGltcGxlbWVudGVkIGluIHRoaXMgY29udHJhY3QuIEFyZSB5b3UgdXNpbmcgdGhlIGNvcnJlY3QgT25Db21wbGV0ZT8gRGlkIHlvdSBzZXQgeW91ciBhcHAgSUQ/CgllcnIKCi8vIGJvdW5kZWRfcmFuZF91aW50NjQoYnl0ZVsxNl0sdWludDY0LHVpbnQ2NCx1aW50MTYpdWludDY0W10KKmFiaV9yb3V0ZV9ib3VuZGVkX3JhbmRfdWludDY0OgoJLy8gVGhlIEFCSSByZXR1cm4gcHJlZml4CglwdXNoYnl0ZXMgMHgxNTFmN2M3NQoKCS8vIGxlbmd0aDogdWludDE2Cgl0eG5hIEFwcGxpY2F0aW9uQXJncyA0CglkdXAKCWxlbgoJaW50YyA2IC8vIDIKCT09CgoJLy8gYXJndW1lbnQgMCAobGVuZ3RoKSBmb3IgYm91bmRlZF9yYW5kX3VpbnQ2NCBtdXN0IGJlIGEgdWludDE2Cglhc3NlcnQKCWJ0b2kKCgkvLyB1cHBlcl9ib3VuZDogdWludDY0Cgl0eG5hIEFwcGxpY2F0aW9uQXJncyAzCglidG9pCgoJLy8gbG93ZXJfYm91bmQ6IHVpbnQ2NAoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMgoJYnRvaQoKCS8vIHNlZWQ6IGJ5dGVbMTZdCgl0eG5hIEFwcGxpY2F0aW9uQXJncyAxCglkdXAKCWxlbgoJaW50YyAzIC8vIDE2Cgk9PQoKCS8vIGFyZ3VtZW50IDMgKHNlZWQpIGZvciBib3VuZGVkX3JhbmRfdWludDY0IG11c3QgYmUgYSBieXRlWzE2XQoJYXNzZXJ0CgoJLy8gZXhlY3V0ZSBib3VuZGVkX3JhbmRfdWludDY0KGJ5dGVbMTZdLHVpbnQ2NCx1aW50NjQsdWludDE2KXVpbnQ2NFtdCgljYWxsc3ViIGJvdW5kZWRfcmFuZF91aW50NjQKCWR1cAoJbGVuCglpbnRjIDIgLy8gOAoJLwoJaXRvYgoJZXh0cmFjdCA2IDIKCXN3YXAKCWNvbmNhdAoJY29uY2F0Cglsb2cKCWludGMgMCAvLyAxCglyZXR1cm4KCi8vIGJvdW5kZWRfcmFuZF91aW50NjQoc2VlZDogYnl0ZXM8MTY+LCBsb3dlcl9ib3VuZDogdWludDY0LCB1cHBlcl9ib3VuZDogdWludDY0LCBsZW5ndGg6IHVpbnQxNik6IHVpbnQ2NFtdCmJvdW5kZWRfcmFuZF91aW50NjQ6Cglwcm90byA0IDEKCgkvLyBQdXNoIGVtcHR5IGJ5dGVzIGFmdGVyIHRoZSBmcmFtZSBwb2ludGVyIHRvIHJlc2VydmUgc3BhY2UgZm9yIGxvY2FsIHZhcmlhYmxlcwoJYnl0ZWMgMCAvLyAweAoJZHVwCgoJLy8gY29udHJhY3RzXGxpYi1wY2c2NC1leHBvc2VyLXRzLmFsZ28udHM6NwoJLy8gc3RhdGUgPSBwY2c2NEluaXQoc2VlZCkKCWZyYW1lX2RpZyAtMSAvLyBzZWVkOiBieXRlczwxNj4KCWNhbGxzdWIgcGNnNjRJbml0CglmcmFtZV9idXJ5IDAgLy8gc3RhdGU6ICh1aW50NjQsdWludDY0KQoKCS8vIGNvbnRyYWN0c1xsaWItcGNnNjQtZXhwb3Nlci10cy5hbGdvLnRzOjkKCS8vIHJlc3VsdCA9IHBjZzY0UmFuZG9tKHN0YXRlLCBsb3dlcl9ib3VuZCwgdXBwZXJfYm91bmQsIGxlbmd0aCBhcyB1aW50NjQpCglmcmFtZV9kaWcgLTQgLy8gbGVuZ3RoOiB1aW50MTYKCWZyYW1lX2RpZyAtMyAvLyB1cHBlcl9ib3VuZDogdWludDY0CglmcmFtZV9kaWcgLTIgLy8gbG93ZXJfYm91bmQ6IHVpbnQ2NAoJZnJhbWVfZGlnIDAgLy8gc3RhdGU6ICh1aW50NjQsdWludDY0KQoJY2FsbHN1YiBwY2c2NFJhbmRvbQoJZnJhbWVfYnVyeSAxIC8vIHJlc3VsdDogKCh1aW50NjQsdWludDY0KSx1aW50NjRbXSkKCgkvLyBjb250cmFjdHNcbGliLXBjZzY0LWV4cG9zZXItdHMuYWxnby50czoxMAoJLy8gc3RhdGUgPSByZXN1bHRbMF0KCWZyYW1lX2RpZyAxIC8vIHJlc3VsdDogKCh1aW50NjQsdWludDY0KSx1aW50NjRbXSkKCXN0b3JlIDI1NSAvLyBmdWxsIGFycmF5Cglsb2FkIDI1NSAvLyBmdWxsIGFycmF5CglleHRyYWN0IDAgMTYKCWZyYW1lX2J1cnkgMCAvLyBzdGF0ZTogKHVpbnQ2NCx1aW50NjQpCgoJLy8gY29udHJhY3RzXGxpYi1wY2c2NC1leHBvc2VyLXRzLmFsZ28udHM6MTIKCS8vIHJldHVybiByZXN1bHRbMV07CglmcmFtZV9kaWcgMSAvLyByZXN1bHQ6ICgodWludDY0LHVpbnQ2NCksdWludDY0W10pCglzdG9yZSAyNTUgLy8gZnVsbCBhcnJheQoJaW50YyAzIC8vIDE2Cglsb2FkIDI1NSAvLyBmdWxsIGFycmF5Cglsb2FkIDI1NSAvLyBmdWxsIGFycmF5Cgl1bmNvdmVyIDIKCWV4dHJhY3RfdWludDE2CglkdXAgLy8gZHVwbGljYXRlIHN0YXJ0IG9mIGVsZW1lbnQKCWxvYWQgMjU1IC8vIGZ1bGwgYXJyYXkKCXN3YXAKCWV4dHJhY3RfdWludDE2IC8vIGdldCBudW1iZXIgb2YgZWxlbWVudHMKCWludGMgMiAvLyAgZ2V0IHR5cGUgbGVuZ3RoCgkqIC8vIG11bHRpcGx5IGJ5IHR5cGUgbGVuZ3RoCglpbnRjIDYgLy8gMgoJKyAvLyBhZGQgdHdvIGZvciBsZW5ndGgKCWV4dHJhY3QzCglleHRyYWN0IDIgMAoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDEKCXJldHN1YgoKLy8gdXBkYXRlQXBwbGljYXRpb24oKXZvaWQKKmFiaV9yb3V0ZV91cGRhdGVBcHBsaWNhdGlvbjoKCS8vIGV4ZWN1dGUgdXBkYXRlQXBwbGljYXRpb24oKXZvaWQKCWNhbGxzdWIgdXBkYXRlQXBwbGljYXRpb24KCWludGMgMCAvLyAxCglyZXR1cm4KCi8vIHVwZGF0ZUFwcGxpY2F0aW9uKCk6IHZvaWQKdXBkYXRlQXBwbGljYXRpb246Cglwcm90byAwIDAKCgkvLyBjb250cmFjdHNcbGliLXBjZzY0LWV4cG9zZXItdHMuYWxnby50czoxNgoJLy8gYXNzZXJ0KGdsb2JhbHMuY3JlYXRvckFkZHJlc3MgPT09IHRoaXMudHhuLnNlbmRlcikKCWdsb2JhbCBDcmVhdG9yQWRkcmVzcwoJdHhuIFNlbmRlcgoJPT0KCWFzc2VydAoJcmV0c3ViCgoqYWJpX3JvdXRlX2NyZWF0ZUFwcGxpY2F0aW9uOgoJaW50YyAwIC8vIDEKCXJldHVybgoKKmNyZWF0ZV9Ob09wOgoJcHVzaGJ5dGVzIDB4Yjg0NDdiMzYgLy8gbWV0aG9kICJjcmVhdGVBcHBsaWNhdGlvbigpdm9pZCIKCXR4bmEgQXBwbGljYXRpb25BcmdzIDAKCW1hdGNoICphYmlfcm91dGVfY3JlYXRlQXBwbGljYXRpb24KCgkvLyB0aGlzIGNvbnRyYWN0IGRvZXMgbm90IGltcGxlbWVudCB0aGUgZ2l2ZW4gQUJJIG1ldGhvZCBmb3IgY3JlYXRlIE5vT3AKCWVycgoKKmNhbGxfTm9PcDoKCXB1c2hieXRlcyAweGJhNTY4MmNlIC8vIG1ldGhvZCAiYm91bmRlZF9yYW5kX3VpbnQ2NChieXRlWzE2XSx1aW50NjQsdWludDY0LHVpbnQxNil1aW50NjRbXSIKCXR4bmEgQXBwbGljYXRpb25BcmdzIDAKCW1hdGNoICphYmlfcm91dGVfYm91bmRlZF9yYW5kX3VpbnQ2NAoKCS8vIHRoaXMgY29udHJhY3QgZG9lcyBub3QgaW1wbGVtZW50IHRoZSBnaXZlbiBBQkkgbWV0aG9kIGZvciBjYWxsIE5vT3AKCWVycgoKKmNhbGxfVXBkYXRlQXBwbGljYXRpb246CglwdXNoYnl0ZXMgMHg0NmY3NjUzMyAvLyBtZXRob2QgInVwZGF0ZUFwcGxpY2F0aW9uKCl2b2lkIgoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMAoJbWF0Y2ggKmFiaV9yb3V0ZV91cGRhdGVBcHBsaWNhdGlvbgoKCS8vIHRoaXMgY29udHJhY3QgZG9lcyBub3QgaW1wbGVtZW50IHRoZSBnaXZlbiBBQkkgbWV0aG9kIGZvciBjYWxsIFVwZGF0ZUFwcGxpY2F0aW9uCgllcnIKCi8vIHBjZzY0UmFuZG9tKHN0YXRlOiBQQ0c2NFNUQVRFLCBsb3dlckJvdW5kOiB1aW50NjQsIHVwcGVyQm91bmQ6IHVpbnQ2NCwgbGVuZ3RoOiB1aW50NjQpOiBbUENHNjRTVEFURSwgdWludDY0W11dCnBjZzY0UmFuZG9tOgoJcHJvdG8gNCAxCgoJLy8gUHVzaCBlbXB0eSBieXRlcyBhZnRlciB0aGUgZnJhbWUgcG9pbnRlciB0byByZXNlcnZlIHNwYWNlIGZvciBsb2NhbCB2YXJpYWJsZXMKCWJ5dGVjIDAgLy8gMHgKCWR1cG4gNwoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czoyOQoJLy8gcmVzdWx0OiB1aW50NjRbXSA9IFtdCglieXRlYyAwIC8vIDB4CglmcmFtZV9idXJ5IDAgLy8gcmVzdWx0OiB1aW50NjRbXQoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czozMwoJLy8gbmV3U3RhdGUgPSBjbG9uZShzdGF0ZSkKCWZyYW1lX2RpZyAtMSAvLyBzdGF0ZTogUENHNjRTVEFURQoJZnJhbWVfYnVyeSAzIC8vIG5ld1N0YXRlOiAodWludDY0LHVpbnQ2NCkKCgkvLyAqaWYwX2NvbmRpdGlvbgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjM1CgkvLyBsb3dlckJvdW5kID09PSAwICYmIHVwcGVyQm91bmQgPT09IDAKCWZyYW1lX2RpZyAtMiAvLyBsb3dlckJvdW5kOiB1aW50NjQKCWludGMgMSAvLyAwCgk9PQoJZHVwCglieiAqc2tpcF9hbmQwCglmcmFtZV9kaWcgLTMgLy8gdXBwZXJCb3VuZDogdWludDY0CglpbnRjIDEgLy8gMAoJPT0KCSYmCgoqc2tpcF9hbmQwOgoJYnogKmlmMF9lbHNlCgoJLy8gKmlmMF9jb25zZXF1ZW50CgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6MzYKCS8vIGZvciAobGV0IGkgPSAwOyBpIDwgbGVuZ3RoOyBpID0gaSArIDEpCglpbnRjIDEgLy8gMAoJZnJhbWVfYnVyeSA0IC8vIGk6IHVpbnQ2NAoKKmZvcl8wOgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjM2CgkvLyBpIDwgbGVuZ3RoCglmcmFtZV9kaWcgNCAvLyBpOiB1aW50NjQKCWZyYW1lX2RpZyAtNCAvLyBsZW5ndGg6IHVpbnQ2NAoJPAoJYnogKmZvcl8wX2VuZAoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czozNwoJLy8gc3RlcFJlc3VsdCA9IF9fcGNnNjRSYW5kb20obmV3U3RhdGUpCglmcmFtZV9kaWcgMyAvLyBuZXdTdGF0ZTogKHVpbnQ2NCx1aW50NjQpCgljYWxsc3ViIF9fcGNnNjRSYW5kb20KCWZyYW1lX2J1cnkgNSAvLyBzdGVwUmVzdWx0OiAoKHVpbnQ2NCx1aW50NjQpLHVpbnQ2NCkKCgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6MzgKCS8vIG5ld1N0YXRlID0gc3RlcFJlc3VsdFswXQoJZnJhbWVfZGlnIDUgLy8gc3RlcFJlc3VsdDogKCh1aW50NjQsdWludDY0KSx1aW50NjQpCglleHRyYWN0IDAgMTYKCWZyYW1lX2J1cnkgMyAvLyBuZXdTdGF0ZTogKHVpbnQ2NCx1aW50NjQpCgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjM5CgkvLyByZXN1bHQucHVzaChzdGVwUmVzdWx0WzFdKQoJZnJhbWVfZGlnIDAgLy8gcmVzdWx0OiB1aW50NjRbXQoJZnJhbWVfZGlnIDUgLy8gc3RlcFJlc3VsdDogKCh1aW50NjQsdWludDY0KSx1aW50NjQpCglleHRyYWN0IDE2IDgKCWJ0b2kKCWl0b2IKCWNvbmNhdAoJZnJhbWVfYnVyeSAwIC8vIHJlc3VsdDogdWludDY0W10KCipmb3JfMF9jb250aW51ZToKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czozNgoJLy8gaSA9IGkgKyAxCglmcmFtZV9kaWcgNCAvLyBpOiB1aW50NjQKCWludGMgMCAvLyAxCgkrCglmcmFtZV9idXJ5IDQgLy8gaTogdWludDY0CgliICpmb3JfMAoKKmZvcl8wX2VuZDoKCWIgKmlmMF9lbmQKCippZjBfZWxzZToKCS8vICppZjFfY29uZGl0aW9uCgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6NDIKCS8vIHVwcGVyQm91bmQgIT09IDAKCWZyYW1lX2RpZyAtMyAvLyB1cHBlckJvdW5kOiB1aW50NjQKCWludGMgMSAvLyAwCgkhPQoJYnogKmlmMV9lbHNlCgoJLy8gKmlmMV9jb25zZXF1ZW50CgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6NDMKCS8vIGFzc2VydCh1cHBlckJvdW5kID4gMSkKCWZyYW1lX2RpZyAtMyAvLyB1cHBlckJvdW5kOiB1aW50NjQKCWludGMgMCAvLyAxCgk+Cglhc3NlcnQKCgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6NDQKCS8vIGFzc2VydChsb3dlckJvdW5kIDwgdXBwZXJCb3VuZCAtIDEpCglmcmFtZV9kaWcgLTIgLy8gbG93ZXJCb3VuZDogdWludDY0CglmcmFtZV9kaWcgLTMgLy8gdXBwZXJCb3VuZDogdWludDY0CglpbnRjIDAgLy8gMQoJLQoJPAoJYXNzZXJ0CgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjQ2CgkvLyBhYnNvbHV0ZUJvdW5kID0gdXBwZXJCb3VuZCAtIGxvd2VyQm91bmQKCWZyYW1lX2RpZyAtMyAvLyB1cHBlckJvdW5kOiB1aW50NjQKCWZyYW1lX2RpZyAtMiAvLyBsb3dlckJvdW5kOiB1aW50NjQKCS0KCWZyYW1lX2J1cnkgMSAvLyBhYnNvbHV0ZUJvdW5kOiB1aW50NjQKCWIgKmlmMV9lbmQKCippZjFfZWxzZToKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czo0OQoJLy8gYXNzZXJ0KGxvd2VyQm91bmQgPCBVaW50PDY0PignMTg0NDY3NDQwNzM3MDk1NTE2MTUnKSkKCWZyYW1lX2RpZyAtMiAvLyBsb3dlckJvdW5kOiB1aW50NjQKCXB1c2hpbnQgMTg0NDY3NDQwNzM3MDk1NTE2MTUKCTwKCWFzc2VydAoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czo1NAoJLy8gYWJzb2x1dGVCb3VuZCA9IChVaW50PDEyOD4oJzE4NDQ2NzQ0MDczNzA5NTUxNjE2JykgLSAobG93ZXJCb3VuZCBhcyB1aW50MTI4KSkgYXMgdWludDY0CglwdXNoYnl0ZXMgMHgwMDAwMDAwMDAwMDAwMDAxMDAwMDAwMDAwMDAwMDAwMAoJZnJhbWVfZGlnIC0yIC8vIGxvd2VyQm91bmQ6IHVpbnQ2NAoJaXRvYgoJYi0KCWR1cAoJYml0bGVuCglwdXNoaW50IDY0Cgk8PQoKCS8vIChVaW50PDEyOD4oJzE4NDQ2NzQ0MDczNzA5NTUxNjE2JykgLSAobG93ZXJCb3VuZCBhcyB1aW50MTI4KSkgYXMgdWludDY0IG92ZXJmbG93ZWQgNjQgYml0cwoJYXNzZXJ0CglwdXNoYnl0ZXMgMHhGRkZGRkZGRkZGRkZGRkZGCgliJgoJZHVwCglsZW4KCWR1cAoJaW50YyAyIC8vIDgKCS0KCXN3YXAKCXN1YnN0cmluZzMKCWJ0b2kKCWZyYW1lX2J1cnkgMSAvLyBhYnNvbHV0ZUJvdW5kOiB1aW50NjQKCippZjFfZW5kOgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjU3CgkvLyB0aHJlc2hvbGQgPSBfX3VpbnQ2NFR3b3MoYWJzb2x1dGVCb3VuZCkgJSBhYnNvbHV0ZUJvdW5kCglmcmFtZV9kaWcgMSAvLyBhYnNvbHV0ZUJvdW5kOiB1aW50NjQKCWNhbGxzdWIgX191aW50NjRUd29zCglmcmFtZV9kaWcgMSAvLyBhYnNvbHV0ZUJvdW5kOiB1aW50NjQKCSUKCWZyYW1lX2J1cnkgMiAvLyB0aHJlc2hvbGQ6IHVpbnQ2NAoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czo1OQoJLy8gZm9yIChsZXQgaSA9IDA7IGkgPCBsZW5ndGg7IGkgPSBpICsgMSkKCWludGMgMSAvLyAwCglmcmFtZV9idXJ5IDYgLy8gaTogdWludDY0CgoqZm9yXzE6CgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6NTkKCS8vIGkgPCBsZW5ndGgKCWZyYW1lX2RpZyA2IC8vIGk6IHVpbnQ2NAoJZnJhbWVfZGlnIC00IC8vIGxlbmd0aDogdWludDY0Cgk8CglieiAqZm9yXzFfZW5kCgoqd2hpbGVfMDoKCip3aGlsZV8wX2NvbnRpbnVlOgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjYxCgkvLyB0cnVlCglpbnRjIDAgLy8gMQoJYnogKndoaWxlXzBfZW5kCgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjYyCgkvLyBzdGVwUmVzdWx0ID0gX19wY2c2NFJhbmRvbShuZXdTdGF0ZSkKCWZyYW1lX2RpZyAzIC8vIG5ld1N0YXRlOiAodWludDY0LHVpbnQ2NCkKCWNhbGxzdWIgX19wY2c2NFJhbmRvbQoJZnJhbWVfYnVyeSA3IC8vIHN0ZXBSZXN1bHQ6ICgodWludDY0LHVpbnQ2NCksdWludDY0KQoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czo2MwoJLy8gbmV3U3RhdGUgPSBzdGVwUmVzdWx0WzBdCglmcmFtZV9kaWcgNyAvLyBzdGVwUmVzdWx0OiAoKHVpbnQ2NCx1aW50NjQpLHVpbnQ2NCkKCWV4dHJhY3QgMCAxNgoJZnJhbWVfYnVyeSAzIC8vIG5ld1N0YXRlOiAodWludDY0LHVpbnQ2NCkKCgkvLyAqaWYyX2NvbmRpdGlvbgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjY0CgkvLyBzdGVwUmVzdWx0WzFdID49IHRocmVzaG9sZAoJZnJhbWVfZGlnIDcgLy8gc3RlcFJlc3VsdDogKCh1aW50NjQsdWludDY0KSx1aW50NjQpCglleHRyYWN0IDE2IDgKCWJ0b2kKCWZyYW1lX2RpZyAyIC8vIHRocmVzaG9sZDogdWludDY0Cgk+PQoJYnogKmlmMl9lbmQKCgkvLyAqaWYyX2NvbnNlcXVlbnQKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czo2NQoJLy8gcmVzdWx0LnB1c2goKHN0ZXBSZXN1bHRbMV0gJSBhYnNvbHV0ZUJvdW5kKSArIGxvd2VyQm91bmQpCglmcmFtZV9kaWcgMCAvLyByZXN1bHQ6IHVpbnQ2NFtdCglmcmFtZV9kaWcgNyAvLyBzdGVwUmVzdWx0OiAoKHVpbnQ2NCx1aW50NjQpLHVpbnQ2NCkKCWV4dHJhY3QgMTYgOAoJYnRvaQoJZnJhbWVfZGlnIDEgLy8gYWJzb2x1dGVCb3VuZDogdWludDY0CgklCglmcmFtZV9kaWcgLTIgLy8gbG93ZXJCb3VuZDogdWludDY0CgkrCglpdG9iCgljb25jYXQKCWZyYW1lX2J1cnkgMCAvLyByZXN1bHQ6IHVpbnQ2NFtdCgliICp3aGlsZV8wX2VuZAoKKmlmMl9lbmQ6CgliICp3aGlsZV8wCgoqd2hpbGVfMF9lbmQ6CgoqZm9yXzFfY29udGludWU6CgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6NTkKCS8vIGkgPSBpICsgMQoJZnJhbWVfZGlnIDYgLy8gaTogdWludDY0CglpbnRjIDAgLy8gMQoJKwoJZnJhbWVfYnVyeSA2IC8vIGk6IHVpbnQ2NAoJYiAqZm9yXzEKCipmb3JfMV9lbmQ6CgoqaWYwX2VuZDoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czo3MgoJLy8gcmV0dXJuIFtuZXdTdGF0ZSwgcmVzdWx0XTsKCWJ5dGVjIDAgLy8gIGluaXRpYWwgaGVhZAoJYnl0ZWMgMCAvLyAgaW5pdGlhbCB0YWlsCglwdXNoYnl0ZXMgMHgwMDEyIC8vIGluaXRpYWwgaGVhZCBvZmZzZXQKCWZyYW1lX2RpZyAzIC8vIG5ld1N0YXRlOiAodWludDY0LHVpbnQ2NCkKCWNhbGxzdWIgKnByb2Nlc3Nfc3RhdGljX3R1cGxlX2VsZW1lbnQKCWZyYW1lX2RpZyAwIC8vIHJlc3VsdDogdWludDY0W10KCWR1cAoJbGVuCglpbnRjIDIgLy8gOAoJLwoJaXRvYgoJZXh0cmFjdCA2IDIKCXN3YXAKCWNvbmNhdAoJY2FsbHN1YiAqcHJvY2Vzc19keW5hbWljX3R1cGxlX2VsZW1lbnQKCXBvcCAvLyBwb3AgaGVhZCBvZmZzZXQKCWNvbmNhdCAvLyBjb25jYXQgaGVhZCBhbmQgdGFpbAoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDcKCXJldHN1YgoKLy8gX191aW50NjRUd29zKHZhbHVlOiB1aW50NjQpOiB1aW50NjQKX191aW50NjRUd29zOgoJcHJvdG8gMSAxCgoJLy8gUHVzaCBlbXB0eSBieXRlcyBhZnRlciB0aGUgZnJhbWUgcG9pbnRlciB0byByZXNlcnZlIHNwYWNlIGZvciBsb2NhbCB2YXJpYWJsZXMKCWJ5dGVjIDAgLy8gMHgKCWR1cAoKCS8vIGxpYl9wY2dccGNnMzIuYWxnby50czo2CgkvLyBhZGR3UmVzdWx0ID0gYWRkdyh+dmFsdWUsIDEpCglmcmFtZV9kaWcgLTEgLy8gdmFsdWU6IHVpbnQ2NAoJfgoJaW50YyAwIC8vIDEKCWFkZHcKCWZyYW1lX2J1cnkgMCAvLyBhZGR3UmVzdWx0IGxvdzogdWludDY0CglmcmFtZV9idXJ5IDEgLy8gYWRkd1Jlc3VsdCBoaWdoOiB1aW50NjQKCgkvLyBsaWJfcGNnXHBjZzMyLmFsZ28udHM6NwoJLy8gcmV0dXJuIGFkZHdSZXN1bHQubG93OwoJZnJhbWVfZGlnIDAgLy8gYWRkd1Jlc3VsdCBsb3c6IHVpbnQ2NAoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDEKCXJldHN1YgoKLy8gX19wY2c2NFJhbmRvbShzdGF0ZTogUENHNjRTVEFURSk6IFtQQ0c2NFNUQVRFLCB1aW50NjRdCl9fcGNnNjRSYW5kb206Cglwcm90byAxIDEKCgkvLyBQdXNoIGVtcHR5IGJ5dGVzIGFmdGVyIHRoZSBmcmFtZSBwb2ludGVyIHRvIHJlc2VydmUgc3BhY2UgZm9yIGxvY2FsIHZhcmlhYmxlcwoJYnl0ZWMgMCAvLyAweAoJZHVwCgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjcKCS8vIGhpZ2hSZXN1bHQgPSBfX3BjZzMyVW5ib3VuZGVkUmFuZG9tKHN0YXRlWzBdKQoJZnJhbWVfZGlnIC0xIC8vIHN0YXRlOiBQQ0c2NFNUQVRFCglleHRyYWN0IDAgOAoJYnRvaQoJY2FsbHN1YiBfX3BjZzMyVW5ib3VuZGVkUmFuZG9tCglmcmFtZV9idXJ5IDAgLy8gaGlnaFJlc3VsdDogKHVpbnQ2NCx1aW50NjQpCgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjkKCS8vIGxvd1N0YXRlID0gX19wY2czMlN0ZXAoc3RhdGVbMV0sIHBjZ1NlY29uZEluY3JlbWVudCA8PCAoaGlnaFJlc3VsdFswXSA9PT0gMCA/IDEgOiAwKSkKCS8vIGxpYl9wY2dcY29uc3RzLmFsZ28udHM6NQoJLy8gVWludDw2ND4oJzE0NDI2OTUwNDA4ODg5NjM0MDknKQoJaW50YyA0IC8vIDE0NDI2OTUwNDA4ODg5NjM0MDkKCgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6OQoJLy8gaGlnaFJlc3VsdFswXSA9PT0gMAoJZnJhbWVfZGlnIDAgLy8gaGlnaFJlc3VsdDogKHVpbnQ2NCx1aW50NjQpCglleHRyYWN0IDAgOAoJYnRvaQoJaW50YyAxIC8vIDAKCT09CglieiAqdGVybmFyeTFfZmFsc2UKCWludGMgMCAvLyAxCgliICp0ZXJuYXJ5MV9lbmQKCip0ZXJuYXJ5MV9mYWxzZToKCWludGMgMSAvLyAwCgoqdGVybmFyeTFfZW5kOgoJc2hsCgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjkKCS8vIHN0YXRlWzFdCglmcmFtZV9kaWcgLTEgLy8gc3RhdGU6IFBDRzY0U1RBVEUKCWV4dHJhY3QgOCA4CglidG9pCgljYWxsc3ViIF9fcGNnMzJTdGVwCglmcmFtZV9idXJ5IDEgLy8gbG93U3RhdGU6IHVpbnQ2NAoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czoxMQoJLy8gcmV0dXJuIFtbaGlnaFJlc3VsdFswXSwgbG93U3RhdGVdLCAoaGlnaFJlc3VsdFsxXSA8PCAzMikgfCBfX3BjZzMyT3V0cHV0KHN0YXRlWzFdKV07CglmcmFtZV9kaWcgMCAvLyBoaWdoUmVzdWx0OiAodWludDY0LHVpbnQ2NCkKCWV4dHJhY3QgMCA4CglidG9pCglpdG9iCglmcmFtZV9kaWcgMSAvLyBsb3dTdGF0ZTogdWludDY0CglpdG9iCgljb25jYXQKCWZyYW1lX2RpZyAwIC8vIGhpZ2hSZXN1bHQ6ICh1aW50NjQsdWludDY0KQoJZXh0cmFjdCA4IDgKCWJ0b2kKCXB1c2hpbnQgMzIKCXNobAoJZnJhbWVfZGlnIC0xIC8vIHN0YXRlOiBQQ0c2NFNUQVRFCglleHRyYWN0IDggOAoJYnRvaQoJY2FsbHN1YiBfX3BjZzMyT3V0cHV0Cgl8CglpdG9iCgljb25jYXQKCgkvLyBzZXQgdGhlIHN1YnJvdXRpbmUgcmV0dXJuIHZhbHVlCglmcmFtZV9idXJ5IDAKCgkvLyBwb3AgYWxsIGxvY2FsIHZhcmlhYmxlcyBmcm9tIHRoZSBzdGFjawoJcG9wbiAxCglyZXRzdWIKCi8vIF9fcGNnMzJPdXRwdXQoc3RhdGU6IFBDRzMyU1RBVEUpOiB1aW50NjQKX19wY2czMk91dHB1dDoKCXByb3RvIDEgMQoKCS8vIFB1c2ggZW1wdHkgYnl0ZXMgYWZ0ZXIgdGhlIGZyYW1lIHBvaW50ZXIgdG8gcmVzZXJ2ZSBzcGFjZSBmb3IgbG9jYWwgdmFyaWFibGVzCglieXRlYyAwIC8vIDB4CglkdXAKCgkvLyBsaWJfcGNnXHBjZzMyLmFsZ28udHM6MjMKCS8vIHhvcnNoaWZ0ZWQgPSBfX21hc2tUb1VpbnQzMigoKHN0YXRlID4+IDE4KSBeIHN0YXRlKSA+PiAyNykKCWZyYW1lX2RpZyAtMSAvLyBzdGF0ZTogUENHMzJTVEFURQoJcHVzaGludCAxOAoJc2hyCglmcmFtZV9kaWcgLTEgLy8gc3RhdGU6IFBDRzMyU1RBVEUKCV4KCXB1c2hpbnQgMjcKCXNocgoJY2FsbHN1YiBfX21hc2tUb1VpbnQzMgoJZnJhbWVfYnVyeSAwIC8vIHhvcnNoaWZ0ZWQ6IHVpbnQ2NAoKCS8vIGxpYl9wY2dccGNnMzIuYWxnby50czoyNAoJLy8gcm90ID0gc3RhdGUgPj4gNTkKCWZyYW1lX2RpZyAtMSAvLyBzdGF0ZTogUENHMzJTVEFURQoJcHVzaGludCA1OQoJc2hyCglmcmFtZV9idXJ5IDEgLy8gcm90OiB1aW50NjQKCgkvLyBsaWJfcGNnXHBjZzMyLmFsZ28udHM6MjUKCS8vIHJldHVybiAoeG9yc2hpZnRlZCA+PiByb3QpIHwgX19tYXNrVG9VaW50MzIoeG9yc2hpZnRlZCA8PCAoX191aW50NjRUd29zKHJvdCkgJiAzMSkpOwoJZnJhbWVfZGlnIDAgLy8geG9yc2hpZnRlZDogdWludDY0CglmcmFtZV9kaWcgMSAvLyByb3Q6IHVpbnQ2NAoJc2hyCglmcmFtZV9kaWcgMCAvLyB4b3JzaGlmdGVkOiB1aW50NjQKCWZyYW1lX2RpZyAxIC8vIHJvdDogdWludDY0CgljYWxsc3ViIF9fdWludDY0VHdvcwoJcHVzaGludCAzMQoJJgoJc2hsCgljYWxsc3ViIF9fbWFza1RvVWludDMyCgl8CgoJLy8gc2V0IHRoZSBzdWJyb3V0aW5lIHJldHVybiB2YWx1ZQoJZnJhbWVfYnVyeSAwCgoJLy8gcG9wIGFsbCBsb2NhbCB2YXJpYWJsZXMgZnJvbSB0aGUgc3RhY2sKCXBvcG4gMQoJcmV0c3ViCgovLyBfX21hc2tUb1VpbnQzMih2YWx1ZTogdWludDY0KTogdWludDY0Cl9fbWFza1RvVWludDMyOgoJcHJvdG8gMSAxCgoJLy8gbGliX3BjZ1xwY2czMi5hbGdvLnRzOjEyCgkvLyByZXR1cm4gdmFsdWUgJiA0Mjk0OTY3Mjk1OwoJZnJhbWVfZGlnIC0xIC8vIHZhbHVlOiB1aW50NjQKCXB1c2hpbnQgNDI5NDk2NzI5NQoJJgoJcmV0c3ViCgovLyBfX3BjZzMyU3RlcChzdGF0ZTogUENHMzJTVEFURSwgaW5jcjogdWludDY0KTogdWludDY0Cl9fcGNnMzJTdGVwOgoJcHJvdG8gMiAxCgoJLy8gUHVzaCBlbXB0eSBieXRlcyBhZnRlciB0aGUgZnJhbWUgcG9pbnRlciB0byByZXNlcnZlIHNwYWNlIGZvciBsb2NhbCB2YXJpYWJsZXMKCWJ5dGVjIDAgLy8gMHgKCWR1cG4gMwoKCS8vIGxpYl9wY2dccGNnMzIuYWxnby50czoxNgoJLy8gbXVsd1Jlc3VsdCA9IG11bHcoc3RhdGUsIHBjZ011bHRpcGxpZXIpCglmcmFtZV9kaWcgLTEgLy8gc3RhdGU6IFBDRzMyU1RBVEUKCgkvLyBsaWJfcGNnXGNvbnN0cy5hbGdvLnRzOjEKCS8vIFVpbnQ8NjQ+KCc2MzY0MTM2MjIzODQ2NzkzMDA1JykKCXB1c2hpbnQgNjM2NDEzNjIyMzg0Njc5MzAwNQoJbXVsdwoJZnJhbWVfYnVyeSAwIC8vIG11bHdSZXN1bHQgbG93OiB1aW50NjQKCWZyYW1lX2J1cnkgMSAvLyBtdWx3UmVzdWx0IGhpZ2g6IHVpbnQ2NAoKCS8vIGxpYl9wY2dccGNnMzIuYWxnby50czoxNwoJLy8gYWRkd1Jlc3VsdCA9IGFkZHcobXVsd1Jlc3VsdC5sb3csIGluY3IpCglmcmFtZV9kaWcgMCAvLyBtdWx3UmVzdWx0IGxvdzogdWludDY0CglmcmFtZV9kaWcgLTIgLy8gaW5jcjogdWludDY0CglhZGR3CglmcmFtZV9idXJ5IDIgLy8gYWRkd1Jlc3VsdCBsb3c6IHVpbnQ2NAoJZnJhbWVfYnVyeSAzIC8vIGFkZHdSZXN1bHQgaGlnaDogdWludDY0CgoJLy8gbGliX3BjZ1xwY2czMi5hbGdvLnRzOjE5CgkvLyByZXR1cm4gYWRkd1Jlc3VsdC5sb3c7CglmcmFtZV9kaWcgMiAvLyBhZGR3UmVzdWx0IGxvdzogdWludDY0CgoJLy8gc2V0IHRoZSBzdWJyb3V0aW5lIHJldHVybiB2YWx1ZQoJZnJhbWVfYnVyeSAwCgoJLy8gcG9wIGFsbCBsb2NhbCB2YXJpYWJsZXMgZnJvbSB0aGUgc3RhY2sKCXBvcG4gMwoJcmV0c3ViCgovLyBfX3BjZzMyVW5ib3VuZGVkUmFuZG9tKHN0YXRlOiBQQ0czMlNUQVRFKTogW1BDRzMyU1RBVEUsIHVpbnQ2NF0KX19wY2czMlVuYm91bmRlZFJhbmRvbToKCXByb3RvIDEgMQoKCS8vIGxpYl9wY2dccGNnMzIuYWxnby50czoyOQoJLy8gcmV0dXJuIFtfX3BjZzMyU3RlcChzdGF0ZSwgcGNnRmlyc3RJbmNyZW1lbnQpLCBfX3BjZzMyT3V0cHV0KHN0YXRlKV07CgkvLyBsaWJfcGNnXGNvbnN0cy5hbGdvLnRzOjMKCS8vIFVpbnQ8NjQ+KCcxNDQyNjk1MDQwODg4OTYzNDA3JykKCWludGMgNSAvLyAxNDQyNjk1MDQwODg4OTYzNDA3CglmcmFtZV9kaWcgLTEgLy8gc3RhdGU6IFBDRzMyU1RBVEUKCWNhbGxzdWIgX19wY2czMlN0ZXAKCWl0b2IKCgkvLyBsaWJfcGNnXHBjZzMyLmFsZ28udHM6MjkKCS8vIF9fcGNnMzJPdXRwdXQoc3RhdGUpCglmcmFtZV9kaWcgLTEgLy8gc3RhdGU6IFBDRzMyU1RBVEUKCWNhbGxzdWIgX19wY2czMk91dHB1dAoJaXRvYgoJY29uY2F0CglyZXRzdWIKCi8vIHBjZzY0SW5pdChzZWVkOiBieXRlczwxNj4pOiBQQ0c2NFNUQVRFCnBjZzY0SW5pdDoKCXByb3RvIDEgMQoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czoxNQoJLy8gYXNzZXJ0KHNlZWQubGVuZ3RoID09PSAxNikKCWludGMgMyAvLyAxNgoJZHVwCgk9PQoJYXNzZXJ0CgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjE3CgkvLyByZXR1cm4gWwoJLy8gICAgIF9fcGNnMzJJbml0KGV4dHJhY3RVaW50NjQoc2VlZCwgMCksIHBjZ0ZpcnN0SW5jcmVtZW50KSwKCS8vICAgICBfX3BjZzMySW5pdChleHRyYWN0VWludDY0KHNlZWQsIDgpLCBwY2dTZWNvbmRJbmNyZW1lbnQpLAoJLy8gICBdOwoJLy8gbGliX3BjZ1xjb25zdHMuYWxnby50czozCgkvLyBVaW50PDY0PignMTQ0MjY5NTA0MDg4ODk2MzQwNycpCglpbnRjIDUgLy8gMTQ0MjY5NTA0MDg4ODk2MzQwNwoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czoxOAoJLy8gZXh0cmFjdFVpbnQ2NChzZWVkLCAwKQoJZnJhbWVfZGlnIC0xIC8vIHNlZWQ6IGJ5dGVzPDE2PgoJaW50YyAxIC8vIDAKCWV4dHJhY3RfdWludDY0CgljYWxsc3ViIF9fcGNnMzJJbml0CglpdG9iCgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjE5CgkvLyBfX3BjZzMySW5pdChleHRyYWN0VWludDY0KHNlZWQsIDgpLCBwY2dTZWNvbmRJbmNyZW1lbnQpCgkvLyBsaWJfcGNnXGNvbnN0cy5hbGdvLnRzOjUKCS8vIFVpbnQ8NjQ+KCcxNDQyNjk1MDQwODg4OTYzNDA5JykKCWludGMgNCAvLyAxNDQyNjk1MDQwODg4OTYzNDA5CgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjE5CgkvLyBleHRyYWN0VWludDY0KHNlZWQsIDgpCglmcmFtZV9kaWcgLTEgLy8gc2VlZDogYnl0ZXM8MTY+CglpbnRjIDIgLy8gOAoJZXh0cmFjdF91aW50NjQKCWNhbGxzdWIgX19wY2czMkluaXQKCWl0b2IKCWNvbmNhdAoJcmV0c3ViCgovLyBfX3BjZzMySW5pdChpbml0aWFsU3RhdGU6IFBDRzMyU1RBVEUsIGluY3I6IHVpbnQ2NCk6IFBDRzMyU1RBVEUKX19wY2czMkluaXQ6Cglwcm90byAyIDEKCgkvLyBQdXNoIGVtcHR5IGJ5dGVzIGFmdGVyIHRoZSBmcmFtZSBwb2ludGVyIHRvIHJlc2VydmUgc3BhY2UgZm9yIGxvY2FsIHZhcmlhYmxlcwoJYnl0ZWMgMCAvLyAweAoJZHVwbiAyCgoJLy8gbGliX3BjZ1xwY2czMi5hbGdvLnRzOjkwCgkvLyBzdGF0ZSA9IF9fcGNnMzJTdGVwKDAsIGluY3IpCglmcmFtZV9kaWcgLTIgLy8gaW5jcjogdWludDY0CglpbnRjIDEgLy8gMAoJY2FsbHN1YiBfX3BjZzMyU3RlcAoJZnJhbWVfYnVyeSAwIC8vIHN0YXRlOiB1aW50NjQKCgkvLyBsaWJfcGNnXHBjZzMyLmFsZ28udHM6OTEKCS8vIGFkZHdSZXN1bHQgPSBhZGR3KHN0YXRlLCBpbml0aWFsU3RhdGUpCglmcmFtZV9kaWcgMCAvLyBzdGF0ZTogdWludDY0CglmcmFtZV9kaWcgLTEgLy8gaW5pdGlhbFN0YXRlOiBQQ0czMlNUQVRFCglhZGR3CglmcmFtZV9idXJ5IDEgLy8gYWRkd1Jlc3VsdCBsb3c6IHVpbnQ2NAoJZnJhbWVfYnVyeSAyIC8vIGFkZHdSZXN1bHQgaGlnaDogdWludDY0CgoJLy8gbGliX3BjZ1xwY2czMi5hbGdvLnRzOjkzCgkvLyByZXR1cm4gX19wY2czMlN0ZXAoYWRkd1Jlc3VsdC5sb3csIGluY3IpOwoJZnJhbWVfZGlnIC0yIC8vIGluY3I6IHVpbnQ2NAoJZnJhbWVfZGlnIDEgLy8gYWRkd1Jlc3VsdCBsb3c6IHVpbnQ2NAoJY2FsbHN1YiBfX3BjZzMyU3RlcAoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDIKCXJldHN1YgoKKnByb2Nlc3Nfc3RhdGljX3R1cGxlX2VsZW1lbnQ6Cglwcm90byA0IDMKCWZyYW1lX2RpZyAtNCAvLyB0dXBsZSBoZWFkCglmcmFtZV9kaWcgLTEgLy8gZWxlbWVudAoJY29uY2F0CglmcmFtZV9kaWcgLTMgLy8gdHVwbGUgdGFpbAoJZnJhbWVfZGlnIC0yIC8vIGhlYWQgb2Zmc2V0CglyZXRzdWIKCipwcm9jZXNzX2R5bmFtaWNfdHVwbGVfZWxlbWVudDoKCXByb3RvIDQgMwoJZnJhbWVfZGlnIC00IC8vIHR1cGxlIGhlYWQKCWZyYW1lX2RpZyAtMiAvLyBoZWFkIG9mZnNldAoJY29uY2F0CglmcmFtZV9idXJ5IC00IC8vIHR1cGxlIGhlYWQKCWZyYW1lX2RpZyAtMSAvLyBlbGVtZW50CglkdXAKCWxlbgoJZnJhbWVfZGlnIC0yIC8vIGhlYWQgb2Zmc2V0CglidG9pCgkrCglpdG9iCglleHRyYWN0IDYgMgoJZnJhbWVfYnVyeSAtMiAvLyBoZWFkIG9mZnNldAoJZnJhbWVfZGlnIC0zIC8vIHR1cGxlIHRhaWwKCXN3YXAKCWNvbmNhdAoJZnJhbWVfYnVyeSAtMyAvLyB0dXBsZSB0YWlsCglmcmFtZV9kaWcgLTQgLy8gdHVwbGUgaGVhZAoJZnJhbWVfZGlnIC0zIC8vIHR1cGxlIHRhaWwKCWZyYW1lX2RpZyAtMiAvLyBoZWFkIG9mZnNldAoJcmV0c3Vi",
+    "approval": "I3ByYWdtYSB2ZXJzaW9uIDEwCmludGNibG9jayAxIDAgOCAxNiAxNDQyNjk1MDQwODg4OTYzNDA5IDE0NDI2OTUwNDA4ODg5NjM0MDcgMgpieXRlY2Jsb2NrIDB4CgovLyBUaGlzIFRFQUwgd2FzIGdlbmVyYXRlZCBieSBURUFMU2NyaXB0IHYwLjEwNi4yCi8vIGh0dHBzOi8vZ2l0aHViLmNvbS9hbGdvcmFuZGZvdW5kYXRpb24vVEVBTFNjcmlwdAoKLy8gVGhpcyBjb250cmFjdCBpcyBjb21wbGlhbnQgd2l0aCBhbmQvb3IgaW1wbGVtZW50cyB0aGUgZm9sbG93aW5nIEFSQ3M6IFsgQVJDNCBdCgovLyBUaGUgZm9sbG93aW5nIHRlbiBsaW5lcyBvZiBURUFMIGhhbmRsZSBpbml0aWFsIHByb2dyYW0gZmxvdwovLyBUaGlzIHBhdHRlcm4gaXMgdXNlZCB0byBtYWtlIGl0IGVhc3kgZm9yIGFueW9uZSB0byBwYXJzZSB0aGUgc3RhcnQgb2YgdGhlIHByb2dyYW0gYW5kIGRldGVybWluZSBpZiBhIHNwZWNpZmljIGFjdGlvbiBpcyBhbGxvd2VkCi8vIEhlcmUsIGFjdGlvbiByZWZlcnMgdG8gdGhlIE9uQ29tcGxldGUgaW4gY29tYmluYXRpb24gd2l0aCB3aGV0aGVyIHRoZSBhcHAgaXMgYmVpbmcgY3JlYXRlZCBvciBjYWxsZWQKLy8gRXZlcnkgcG9zc2libGUgYWN0aW9uIGZvciB0aGlzIGNvbnRyYWN0IGlzIHJlcHJlc2VudGVkIGluIHRoZSBzd2l0Y2ggc3RhdGVtZW50Ci8vIElmIHRoZSBhY3Rpb24gaXMgbm90IGltcGxlbWVudGVkIGluIHRoZSBjb250cmFjdCwgaXRzIHJlc3BlY3RpdmUgYnJhbmNoIHdpbGwgYmUgIipOT1RfSU1QTEVNRU5URUQiIHdoaWNoIGp1c3QgY29udGFpbnMgImVyciIKdHhuIEFwcGxpY2F0aW9uSUQKIQpwdXNoaW50IDYKKgp0eG4gT25Db21wbGV0aW9uCisKc3dpdGNoICpjYWxsX05vT3AgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVEICpOT1RfSU1QTEVNRU5URUQgKmNhbGxfVXBkYXRlQXBwbGljYXRpb24gKk5PVF9JTVBMRU1FTlRFRCAqY3JlYXRlX05vT3AgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVEICpOT1RfSU1QTEVNRU5URUQgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVECgoqTk9UX0lNUExFTUVOVEVEOgoJLy8gVGhlIHJlcXVlc3RlZCBhY3Rpb24gaXMgbm90IGltcGxlbWVudGVkIGluIHRoaXMgY29udHJhY3QuIEFyZSB5b3UgdXNpbmcgdGhlIGNvcnJlY3QgT25Db21wbGV0ZT8gRGlkIHlvdSBzZXQgeW91ciBhcHAgSUQ/CgllcnIKCi8vIGJvdW5kZWRfcmFuZF91aW50NjQoYnl0ZVsxNl0sdWludDY0LHVpbnQ2NCx1aW50MTYpdWludDY0W10KKmFiaV9yb3V0ZV9ib3VuZGVkX3JhbmRfdWludDY0OgoJLy8gVGhlIEFCSSByZXR1cm4gcHJlZml4CglwdXNoYnl0ZXMgMHgxNTFmN2M3NQoKCS8vIGxlbmd0aDogdWludDE2Cgl0eG5hIEFwcGxpY2F0aW9uQXJncyA0CglkdXAKCWxlbgoJaW50YyA2IC8vIDIKCT09CgoJLy8gYXJndW1lbnQgMCAobGVuZ3RoKSBmb3IgYm91bmRlZF9yYW5kX3VpbnQ2NCBtdXN0IGJlIGEgdWludDE2Cglhc3NlcnQKCWJ0b2kKCgkvLyB1cHBlcl9ib3VuZDogdWludDY0Cgl0eG5hIEFwcGxpY2F0aW9uQXJncyAzCglidG9pCgoJLy8gbG93ZXJfYm91bmQ6IHVpbnQ2NAoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMgoJYnRvaQoKCS8vIHNlZWQ6IGJ5dGVbMTZdCgl0eG5hIEFwcGxpY2F0aW9uQXJncyAxCglkdXAKCWxlbgoJaW50YyAzIC8vIDE2Cgk9PQoKCS8vIGFyZ3VtZW50IDMgKHNlZWQpIGZvciBib3VuZGVkX3JhbmRfdWludDY0IG11c3QgYmUgYSBieXRlWzE2XQoJYXNzZXJ0CgoJLy8gZXhlY3V0ZSBib3VuZGVkX3JhbmRfdWludDY0KGJ5dGVbMTZdLHVpbnQ2NCx1aW50NjQsdWludDE2KXVpbnQ2NFtdCgljYWxsc3ViIGJvdW5kZWRfcmFuZF91aW50NjQKCWR1cAoJbGVuCglpbnRjIDIgLy8gOAoJLwoJaXRvYgoJZXh0cmFjdCA2IDIKCXN3YXAKCWNvbmNhdAoJY29uY2F0Cglsb2cKCWludGMgMCAvLyAxCglyZXR1cm4KCi8vIGJvdW5kZWRfcmFuZF91aW50NjQoc2VlZDogYnl0ZXM8MTY+LCBsb3dlcl9ib3VuZDogdWludDY0LCB1cHBlcl9ib3VuZDogdWludDY0LCBsZW5ndGg6IHVpbnQxNik6IHVpbnQ2NFtdCmJvdW5kZWRfcmFuZF91aW50NjQ6Cglwcm90byA0IDEKCgkvLyBQdXNoIGVtcHR5IGJ5dGVzIGFmdGVyIHRoZSBmcmFtZSBwb2ludGVyIHRvIHJlc2VydmUgc3BhY2UgZm9yIGxvY2FsIHZhcmlhYmxlcwoJYnl0ZWMgMCAvLyAweAoJZHVwCgoJLy8gY29udHJhY3RzXGxpYi1wY2c2NC1leHBvc2VyLXRzLmFsZ28udHM6NwoJLy8gc3RhdGUgPSBwY2c2NEluaXQoc2VlZCkKCWZyYW1lX2RpZyAtMSAvLyBzZWVkOiBieXRlczwxNj4KCWNhbGxzdWIgcGNnNjRJbml0CglmcmFtZV9idXJ5IDAgLy8gc3RhdGU6ICh1aW50NjQsdWludDY0KQoKCS8vIGNvbnRyYWN0c1xsaWItcGNnNjQtZXhwb3Nlci10cy5hbGdvLnRzOjkKCS8vIHJlc3VsdCA9IHBjZzY0UmFuZG9tKHN0YXRlLCBsb3dlcl9ib3VuZCwgdXBwZXJfYm91bmQsIGxlbmd0aCBhcyB1aW50NjQpCglmcmFtZV9kaWcgLTQgLy8gbGVuZ3RoOiB1aW50MTYKCWZyYW1lX2RpZyAtMyAvLyB1cHBlcl9ib3VuZDogdWludDY0CglmcmFtZV9kaWcgLTIgLy8gbG93ZXJfYm91bmQ6IHVpbnQ2NAoJZnJhbWVfZGlnIDAgLy8gc3RhdGU6ICh1aW50NjQsdWludDY0KQoJY2FsbHN1YiBwY2c2NFJhbmRvbQoJZnJhbWVfYnVyeSAxIC8vIHJlc3VsdDogKCh1aW50NjQsdWludDY0KSx1aW50NjRbXSkKCgkvLyBjb250cmFjdHNcbGliLXBjZzY0LWV4cG9zZXItdHMuYWxnby50czoxMAoJLy8gc3RhdGUgPSByZXN1bHRbMF0KCWZyYW1lX2RpZyAxIC8vIHJlc3VsdDogKCh1aW50NjQsdWludDY0KSx1aW50NjRbXSkKCXN0b3JlIDI1NSAvLyBmdWxsIGFycmF5Cglsb2FkIDI1NSAvLyBmdWxsIGFycmF5CglleHRyYWN0IDAgMTYKCWZyYW1lX2J1cnkgMCAvLyBzdGF0ZTogKHVpbnQ2NCx1aW50NjQpCgoJLy8gY29udHJhY3RzXGxpYi1wY2c2NC1leHBvc2VyLXRzLmFsZ28udHM6MTIKCS8vIHJldHVybiByZXN1bHRbMV07CglmcmFtZV9kaWcgMSAvLyByZXN1bHQ6ICgodWludDY0LHVpbnQ2NCksdWludDY0W10pCglzdG9yZSAyNTUgLy8gZnVsbCBhcnJheQoJaW50YyAzIC8vIDE2Cglsb2FkIDI1NSAvLyBmdWxsIGFycmF5Cglsb2FkIDI1NSAvLyBmdWxsIGFycmF5Cgl1bmNvdmVyIDIKCWV4dHJhY3RfdWludDE2CglkdXAgLy8gZHVwbGljYXRlIHN0YXJ0IG9mIGVsZW1lbnQKCWxvYWQgMjU1IC8vIGZ1bGwgYXJyYXkKCXN3YXAKCWV4dHJhY3RfdWludDE2IC8vIGdldCBudW1iZXIgb2YgZWxlbWVudHMKCWludGMgMiAvLyAgZ2V0IHR5cGUgbGVuZ3RoCgkqIC8vIG11bHRpcGx5IGJ5IHR5cGUgbGVuZ3RoCglpbnRjIDYgLy8gMgoJKyAvLyBhZGQgdHdvIGZvciBsZW5ndGgKCWV4dHJhY3QzCglleHRyYWN0IDIgMAoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDEKCXJldHN1YgoKLy8gY3JlYXRlQXBwbGljYXRpb24oKXZvaWQKKmFiaV9yb3V0ZV9jcmVhdGVBcHBsaWNhdGlvbjoKCS8vIGV4ZWN1dGUgY3JlYXRlQXBwbGljYXRpb24oKXZvaWQKCWNhbGxzdWIgY3JlYXRlQXBwbGljYXRpb24KCWludGMgMCAvLyAxCglyZXR1cm4KCi8vIGNyZWF0ZUFwcGxpY2F0aW9uKCk6IHZvaWQKY3JlYXRlQXBwbGljYXRpb246Cglwcm90byAwIDAKCgkvLyBjb250cmFjdHNcbGliLXBjZzY0LWV4cG9zZXItdHMuYWxnby50czoxNwoJLy8gYXNzZXJ0KGdsb2JhbHMuY3JlYXRvckFkZHJlc3MgPT09IHRoaXMudHhuLnNlbmRlcikKCWdsb2JhbCBDcmVhdG9yQWRkcmVzcwoJdHhuIFNlbmRlcgoJPT0KCWFzc2VydAoJcmV0c3ViCgovLyB1cGRhdGVBcHBsaWNhdGlvbigpdm9pZAoqYWJpX3JvdXRlX3VwZGF0ZUFwcGxpY2F0aW9uOgoJLy8gZXhlY3V0ZSB1cGRhdGVBcHBsaWNhdGlvbigpdm9pZAoJY2FsbHN1YiB1cGRhdGVBcHBsaWNhdGlvbgoJaW50YyAwIC8vIDEKCXJldHVybgoKLy8gdXBkYXRlQXBwbGljYXRpb24oKTogdm9pZAp1cGRhdGVBcHBsaWNhdGlvbjoKCXByb3RvIDAgMAoKCS8vIGNvbnRyYWN0c1xsaWItcGNnNjQtZXhwb3Nlci10cy5hbGdvLnRzOjIyCgkvLyBhc3NlcnQoZ2xvYmFscy5jcmVhdG9yQWRkcmVzcyA9PT0gdGhpcy50eG4uc2VuZGVyKQoJZ2xvYmFsIENyZWF0b3JBZGRyZXNzCgl0eG4gU2VuZGVyCgk9PQoJYXNzZXJ0CglyZXRzdWIKCipjcmVhdGVfTm9PcDoKCXR4biBOdW1BcHBBcmdzCglieiAqYWJpX3JvdXRlX2NyZWF0ZUFwcGxpY2F0aW9uCglwdXNoYnl0ZXMgMHhiODQ0N2IzNiAvLyBtZXRob2QgImNyZWF0ZUFwcGxpY2F0aW9uKCl2b2lkIgoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMAoJbWF0Y2ggKmFiaV9yb3V0ZV9jcmVhdGVBcHBsaWNhdGlvbgoKCS8vIHRoaXMgY29udHJhY3QgZG9lcyBub3QgaW1wbGVtZW50IHRoZSBnaXZlbiBBQkkgbWV0aG9kIGZvciBjcmVhdGUgTm9PcAoJZXJyCgoqY2FsbF9Ob09wOgoJcHVzaGJ5dGVzIDB4YmE1NjgyY2UgLy8gbWV0aG9kICJib3VuZGVkX3JhbmRfdWludDY0KGJ5dGVbMTZdLHVpbnQ2NCx1aW50NjQsdWludDE2KXVpbnQ2NFtdIgoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMAoJbWF0Y2ggKmFiaV9yb3V0ZV9ib3VuZGVkX3JhbmRfdWludDY0CgoJLy8gdGhpcyBjb250cmFjdCBkb2VzIG5vdCBpbXBsZW1lbnQgdGhlIGdpdmVuIEFCSSBtZXRob2QgZm9yIGNhbGwgTm9PcAoJZXJyCgoqY3JlYXRlX1VwZGF0ZUFwcGxpY2F0aW9uOgoJLy8gdGhpcyBjb250cmFjdCBkb2VzIG5vdCBpbXBsZW1lbnQgYW55IEFCSSBtZXRob2RzIGZvciBVcGRhdGVBcHBsaWNhdGlvbiBjcmVhdGUKCWVycgoKKmNhbGxfVXBkYXRlQXBwbGljYXRpb246Cgl0eG4gTnVtQXBwQXJncwoJYnogKmFiaV9yb3V0ZV91cGRhdGVBcHBsaWNhdGlvbgoJcHVzaGJ5dGVzIDB4NDZmNzY1MzMgLy8gbWV0aG9kICJ1cGRhdGVBcHBsaWNhdGlvbigpdm9pZCIKCXR4bmEgQXBwbGljYXRpb25BcmdzIDAKCW1hdGNoICphYmlfcm91dGVfdXBkYXRlQXBwbGljYXRpb24KCgkvLyB0aGlzIGNvbnRyYWN0IGRvZXMgbm90IGltcGxlbWVudCB0aGUgZ2l2ZW4gQUJJIG1ldGhvZCBmb3IgY2FsbCBVcGRhdGVBcHBsaWNhdGlvbgoJZXJyCgovLyBwY2c2NFJhbmRvbShzdGF0ZTogUENHNjRTVEFURSwgbG93ZXJCb3VuZDogdWludDY0LCB1cHBlckJvdW5kOiB1aW50NjQsIGxlbmd0aDogdWludDY0KTogW1BDRzY0U1RBVEUsIHVpbnQ2NFtdXQpwY2c2NFJhbmRvbToKCXByb3RvIDQgMQoKCS8vIFB1c2ggZW1wdHkgYnl0ZXMgYWZ0ZXIgdGhlIGZyYW1lIHBvaW50ZXIgdG8gcmVzZXJ2ZSBzcGFjZSBmb3IgbG9jYWwgdmFyaWFibGVzCglieXRlYyAwIC8vIDB4CglkdXBuIDcKCgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6MjkKCS8vIHJlc3VsdDogdWludDY0W10gPSBbXQoJYnl0ZWMgMCAvLyAweAoJZnJhbWVfYnVyeSAwIC8vIHJlc3VsdDogdWludDY0W10KCgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6MzMKCS8vIG5ld1N0YXRlID0gY2xvbmUoc3RhdGUpCglmcmFtZV9kaWcgLTEgLy8gc3RhdGU6IFBDRzY0U1RBVEUKCWZyYW1lX2J1cnkgMyAvLyBuZXdTdGF0ZTogKHVpbnQ2NCx1aW50NjQpCgoJLy8gKmlmMF9jb25kaXRpb24KCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czozNQoJLy8gbG93ZXJCb3VuZCA9PT0gMCAmJiB1cHBlckJvdW5kID09PSAwCglmcmFtZV9kaWcgLTIgLy8gbG93ZXJCb3VuZDogdWludDY0CglpbnRjIDEgLy8gMAoJPT0KCWR1cAoJYnogKnNraXBfYW5kMAoJZnJhbWVfZGlnIC0zIC8vIHVwcGVyQm91bmQ6IHVpbnQ2NAoJaW50YyAxIC8vIDAKCT09CgkmJgoKKnNraXBfYW5kMDoKCWJ6ICppZjBfZWxzZQoKCS8vICppZjBfY29uc2VxdWVudAoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjM2CgkvLyBmb3IgKGxldCBpID0gMDsgaSA8IGxlbmd0aDsgaSA9IGkgKyAxKQoJaW50YyAxIC8vIDAKCWZyYW1lX2J1cnkgNCAvLyBpOiB1aW50NjQKCipmb3JfMDoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czozNgoJLy8gaSA8IGxlbmd0aAoJZnJhbWVfZGlnIDQgLy8gaTogdWludDY0CglmcmFtZV9kaWcgLTQgLy8gbGVuZ3RoOiB1aW50NjQKCTwKCWJ6ICpmb3JfMF9lbmQKCgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6MzcKCS8vIHN0ZXBSZXN1bHQgPSBfX3BjZzY0UmFuZG9tKG5ld1N0YXRlKQoJZnJhbWVfZGlnIDMgLy8gbmV3U3RhdGU6ICh1aW50NjQsdWludDY0KQoJY2FsbHN1YiBfX3BjZzY0UmFuZG9tCglmcmFtZV9idXJ5IDUgLy8gc3RlcFJlc3VsdDogKCh1aW50NjQsdWludDY0KSx1aW50NjQpCgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjM4CgkvLyBuZXdTdGF0ZSA9IHN0ZXBSZXN1bHRbMF0KCWZyYW1lX2RpZyA1IC8vIHN0ZXBSZXN1bHQ6ICgodWludDY0LHVpbnQ2NCksdWludDY0KQoJZXh0cmFjdCAwIDE2CglmcmFtZV9idXJ5IDMgLy8gbmV3U3RhdGU6ICh1aW50NjQsdWludDY0KQoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czozOQoJLy8gcmVzdWx0LnB1c2goc3RlcFJlc3VsdFsxXSkKCWZyYW1lX2RpZyAwIC8vIHJlc3VsdDogdWludDY0W10KCWZyYW1lX2RpZyA1IC8vIHN0ZXBSZXN1bHQ6ICgodWludDY0LHVpbnQ2NCksdWludDY0KQoJZXh0cmFjdCAxNiA4CglidG9pCglpdG9iCgljb25jYXQKCWZyYW1lX2J1cnkgMCAvLyByZXN1bHQ6IHVpbnQ2NFtdCgoqZm9yXzBfY29udGludWU6CgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6MzYKCS8vIGkgPSBpICsgMQoJZnJhbWVfZGlnIDQgLy8gaTogdWludDY0CglpbnRjIDAgLy8gMQoJKwoJZnJhbWVfYnVyeSA0IC8vIGk6IHVpbnQ2NAoJYiAqZm9yXzAKCipmb3JfMF9lbmQ6CgliICppZjBfZW5kCgoqaWYwX2Vsc2U6CgkvLyAqaWYxX2NvbmRpdGlvbgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjQyCgkvLyB1cHBlckJvdW5kICE9PSAwCglmcmFtZV9kaWcgLTMgLy8gdXBwZXJCb3VuZDogdWludDY0CglpbnRjIDEgLy8gMAoJIT0KCWJ6ICppZjFfZWxzZQoKCS8vICppZjFfY29uc2VxdWVudAoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjQzCgkvLyBhc3NlcnQodXBwZXJCb3VuZCA+IDEpCglmcmFtZV9kaWcgLTMgLy8gdXBwZXJCb3VuZDogdWludDY0CglpbnRjIDAgLy8gMQoJPgoJYXNzZXJ0CgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjQ0CgkvLyBhc3NlcnQobG93ZXJCb3VuZCA8IHVwcGVyQm91bmQgLSAxKQoJZnJhbWVfZGlnIC0yIC8vIGxvd2VyQm91bmQ6IHVpbnQ2NAoJZnJhbWVfZGlnIC0zIC8vIHVwcGVyQm91bmQ6IHVpbnQ2NAoJaW50YyAwIC8vIDEKCS0KCTwKCWFzc2VydAoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czo0NgoJLy8gYWJzb2x1dGVCb3VuZCA9IHVwcGVyQm91bmQgLSBsb3dlckJvdW5kCglmcmFtZV9kaWcgLTMgLy8gdXBwZXJCb3VuZDogdWludDY0CglmcmFtZV9kaWcgLTIgLy8gbG93ZXJCb3VuZDogdWludDY0CgktCglmcmFtZV9idXJ5IDEgLy8gYWJzb2x1dGVCb3VuZDogdWludDY0CgliICppZjFfZW5kCgoqaWYxX2Vsc2U6CgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6NDkKCS8vIGFzc2VydChsb3dlckJvdW5kIDwgVWludDw2ND4oJzE4NDQ2NzQ0MDczNzA5NTUxNjE1JykpCglmcmFtZV9kaWcgLTIgLy8gbG93ZXJCb3VuZDogdWludDY0CglwdXNoaW50IDE4NDQ2NzQ0MDczNzA5NTUxNjE1Cgk8Cglhc3NlcnQKCgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6NTQKCS8vIGFic29sdXRlQm91bmQgPSAoVWludDwxMjg+KCcxODQ0Njc0NDA3MzcwOTU1MTYxNicpIC0gKGxvd2VyQm91bmQgYXMgdWludDEyOCkpIGFzIHVpbnQ2NAoJcHVzaGJ5dGVzIDB4MDAwMDAwMDAwMDAwMDAwMTAwMDAwMDAwMDAwMDAwMDAKCWZyYW1lX2RpZyAtMiAvLyBsb3dlckJvdW5kOiB1aW50NjQKCWl0b2IKCWItCglkdXAKCWJpdGxlbgoJcHVzaGludCA2NAoJPD0KCgkvLyAoVWludDwxMjg+KCcxODQ0Njc0NDA3MzcwOTU1MTYxNicpIC0gKGxvd2VyQm91bmQgYXMgdWludDEyOCkpIGFzIHVpbnQ2NCBvdmVyZmxvd2VkIDY0IGJpdHMKCWFzc2VydAoJcHVzaGJ5dGVzIDB4RkZGRkZGRkZGRkZGRkZGRgoJYiYKCWR1cAoJbGVuCglkdXAKCWludGMgMiAvLyA4CgktCglzd2FwCglzdWJzdHJpbmczCglidG9pCglmcmFtZV9idXJ5IDEgLy8gYWJzb2x1dGVCb3VuZDogdWludDY0CgoqaWYxX2VuZDoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czo1NwoJLy8gdGhyZXNob2xkID0gX191aW50NjRUd29zKGFic29sdXRlQm91bmQpICUgYWJzb2x1dGVCb3VuZAoJZnJhbWVfZGlnIDEgLy8gYWJzb2x1dGVCb3VuZDogdWludDY0CgljYWxsc3ViIF9fdWludDY0VHdvcwoJZnJhbWVfZGlnIDEgLy8gYWJzb2x1dGVCb3VuZDogdWludDY0CgklCglmcmFtZV9idXJ5IDIgLy8gdGhyZXNob2xkOiB1aW50NjQKCgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6NTkKCS8vIGZvciAobGV0IGkgPSAwOyBpIDwgbGVuZ3RoOyBpID0gaSArIDEpCglpbnRjIDEgLy8gMAoJZnJhbWVfYnVyeSA2IC8vIGk6IHVpbnQ2NAoKKmZvcl8xOgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjU5CgkvLyBpIDwgbGVuZ3RoCglmcmFtZV9kaWcgNiAvLyBpOiB1aW50NjQKCWZyYW1lX2RpZyAtNCAvLyBsZW5ndGg6IHVpbnQ2NAoJPAoJYnogKmZvcl8xX2VuZAoKKndoaWxlXzA6Cgoqd2hpbGVfMF9jb250aW51ZToKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czo2MQoJLy8gdHJ1ZQoJaW50YyAwIC8vIDEKCWJ6ICp3aGlsZV8wX2VuZAoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czo2MgoJLy8gc3RlcFJlc3VsdCA9IF9fcGNnNjRSYW5kb20obmV3U3RhdGUpCglmcmFtZV9kaWcgMyAvLyBuZXdTdGF0ZTogKHVpbnQ2NCx1aW50NjQpCgljYWxsc3ViIF9fcGNnNjRSYW5kb20KCWZyYW1lX2J1cnkgNyAvLyBzdGVwUmVzdWx0OiAoKHVpbnQ2NCx1aW50NjQpLHVpbnQ2NCkKCgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6NjMKCS8vIG5ld1N0YXRlID0gc3RlcFJlc3VsdFswXQoJZnJhbWVfZGlnIDcgLy8gc3RlcFJlc3VsdDogKCh1aW50NjQsdWludDY0KSx1aW50NjQpCglleHRyYWN0IDAgMTYKCWZyYW1lX2J1cnkgMyAvLyBuZXdTdGF0ZTogKHVpbnQ2NCx1aW50NjQpCgoJLy8gKmlmMl9jb25kaXRpb24KCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czo2NAoJLy8gc3RlcFJlc3VsdFsxXSA+PSB0aHJlc2hvbGQKCWZyYW1lX2RpZyA3IC8vIHN0ZXBSZXN1bHQ6ICgodWludDY0LHVpbnQ2NCksdWludDY0KQoJZXh0cmFjdCAxNiA4CglidG9pCglmcmFtZV9kaWcgMiAvLyB0aHJlc2hvbGQ6IHVpbnQ2NAoJPj0KCWJ6ICppZjJfZW5kCgoJLy8gKmlmMl9jb25zZXF1ZW50CgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6NjUKCS8vIHJlc3VsdC5wdXNoKChzdGVwUmVzdWx0WzFdICUgYWJzb2x1dGVCb3VuZCkgKyBsb3dlckJvdW5kKQoJZnJhbWVfZGlnIDAgLy8gcmVzdWx0OiB1aW50NjRbXQoJZnJhbWVfZGlnIDcgLy8gc3RlcFJlc3VsdDogKCh1aW50NjQsdWludDY0KSx1aW50NjQpCglleHRyYWN0IDE2IDgKCWJ0b2kKCWZyYW1lX2RpZyAxIC8vIGFic29sdXRlQm91bmQ6IHVpbnQ2NAoJJQoJZnJhbWVfZGlnIC0yIC8vIGxvd2VyQm91bmQ6IHVpbnQ2NAoJKwoJaXRvYgoJY29uY2F0CglmcmFtZV9idXJ5IDAgLy8gcmVzdWx0OiB1aW50NjRbXQoJYiAqd2hpbGVfMF9lbmQKCippZjJfZW5kOgoJYiAqd2hpbGVfMAoKKndoaWxlXzBfZW5kOgoKKmZvcl8xX2NvbnRpbnVlOgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjU5CgkvLyBpID0gaSArIDEKCWZyYW1lX2RpZyA2IC8vIGk6IHVpbnQ2NAoJaW50YyAwIC8vIDEKCSsKCWZyYW1lX2J1cnkgNiAvLyBpOiB1aW50NjQKCWIgKmZvcl8xCgoqZm9yXzFfZW5kOgoKKmlmMF9lbmQ6CgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6NzIKCS8vIHJldHVybiBbbmV3U3RhdGUsIHJlc3VsdF07CglieXRlYyAwIC8vICBpbml0aWFsIGhlYWQKCWJ5dGVjIDAgLy8gIGluaXRpYWwgdGFpbAoJcHVzaGJ5dGVzIDB4MDAxMiAvLyBpbml0aWFsIGhlYWQgb2Zmc2V0CglmcmFtZV9kaWcgMyAvLyBuZXdTdGF0ZTogKHVpbnQ2NCx1aW50NjQpCgljYWxsc3ViICpwcm9jZXNzX3N0YXRpY190dXBsZV9lbGVtZW50CglmcmFtZV9kaWcgMCAvLyByZXN1bHQ6IHVpbnQ2NFtdCglkdXAKCWxlbgoJaW50YyAyIC8vIDgKCS8KCWl0b2IKCWV4dHJhY3QgNiAyCglzd2FwCgljb25jYXQKCWNhbGxzdWIgKnByb2Nlc3NfZHluYW1pY190dXBsZV9lbGVtZW50Cglwb3AgLy8gcG9wIGhlYWQgb2Zmc2V0Cgljb25jYXQgLy8gY29uY2F0IGhlYWQgYW5kIHRhaWwKCgkvLyBzZXQgdGhlIHN1YnJvdXRpbmUgcmV0dXJuIHZhbHVlCglmcmFtZV9idXJ5IDAKCgkvLyBwb3AgYWxsIGxvY2FsIHZhcmlhYmxlcyBmcm9tIHRoZSBzdGFjawoJcG9wbiA3CglyZXRzdWIKCi8vIF9fdWludDY0VHdvcyh2YWx1ZTogdWludDY0KTogdWludDY0Cl9fdWludDY0VHdvczoKCXByb3RvIDEgMQoKCS8vIFB1c2ggZW1wdHkgYnl0ZXMgYWZ0ZXIgdGhlIGZyYW1lIHBvaW50ZXIgdG8gcmVzZXJ2ZSBzcGFjZSBmb3IgbG9jYWwgdmFyaWFibGVzCglieXRlYyAwIC8vIDB4CglkdXAKCgkvLyBsaWJfcGNnXHBjZzMyLmFsZ28udHM6NgoJLy8gYWRkd1Jlc3VsdCA9IGFkZHcofnZhbHVlLCAxKQoJZnJhbWVfZGlnIC0xIC8vIHZhbHVlOiB1aW50NjQKCX4KCWludGMgMCAvLyAxCglhZGR3CglmcmFtZV9idXJ5IDAgLy8gYWRkd1Jlc3VsdCBsb3c6IHVpbnQ2NAoJZnJhbWVfYnVyeSAxIC8vIGFkZHdSZXN1bHQgaGlnaDogdWludDY0CgoJLy8gbGliX3BjZ1xwY2czMi5hbGdvLnRzOjcKCS8vIHJldHVybiBhZGR3UmVzdWx0LmxvdzsKCWZyYW1lX2RpZyAwIC8vIGFkZHdSZXN1bHQgbG93OiB1aW50NjQKCgkvLyBzZXQgdGhlIHN1YnJvdXRpbmUgcmV0dXJuIHZhbHVlCglmcmFtZV9idXJ5IDAKCgkvLyBwb3AgYWxsIGxvY2FsIHZhcmlhYmxlcyBmcm9tIHRoZSBzdGFjawoJcG9wbiAxCglyZXRzdWIKCi8vIF9fcGNnNjRSYW5kb20oc3RhdGU6IFBDRzY0U1RBVEUpOiBbUENHNjRTVEFURSwgdWludDY0XQpfX3BjZzY0UmFuZG9tOgoJcHJvdG8gMSAxCgoJLy8gUHVzaCBlbXB0eSBieXRlcyBhZnRlciB0aGUgZnJhbWUgcG9pbnRlciB0byByZXNlcnZlIHNwYWNlIGZvciBsb2NhbCB2YXJpYWJsZXMKCWJ5dGVjIDAgLy8gMHgKCWR1cAoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czo3CgkvLyBoaWdoUmVzdWx0ID0gX19wY2czMlVuYm91bmRlZFJhbmRvbShzdGF0ZVswXSkKCWZyYW1lX2RpZyAtMSAvLyBzdGF0ZTogUENHNjRTVEFURQoJZXh0cmFjdCAwIDgKCWJ0b2kKCWNhbGxzdWIgX19wY2czMlVuYm91bmRlZFJhbmRvbQoJZnJhbWVfYnVyeSAwIC8vIGhpZ2hSZXN1bHQ6ICh1aW50NjQsdWludDY0KQoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czo5CgkvLyBsb3dTdGF0ZSA9IF9fcGNnMzJTdGVwKHN0YXRlWzFdLCBwY2dTZWNvbmRJbmNyZW1lbnQgPDwgKGhpZ2hSZXN1bHRbMF0gPT09IDAgPyAxIDogMCkpCgkvLyBsaWJfcGNnXGNvbnN0cy5hbGdvLnRzOjUKCS8vIFVpbnQ8NjQ+KCcxNDQyNjk1MDQwODg4OTYzNDA5JykKCWludGMgNCAvLyAxNDQyNjk1MDQwODg4OTYzNDA5CgoJLy8gbGliX3BjZ1xwY2c2NC5hbGdvLnRzOjkKCS8vIGhpZ2hSZXN1bHRbMF0gPT09IDAKCWZyYW1lX2RpZyAwIC8vIGhpZ2hSZXN1bHQ6ICh1aW50NjQsdWludDY0KQoJZXh0cmFjdCAwIDgKCWJ0b2kKCWludGMgMSAvLyAwCgk9PQoJYnogKnRlcm5hcnkxX2ZhbHNlCglpbnRjIDAgLy8gMQoJYiAqdGVybmFyeTFfZW5kCgoqdGVybmFyeTFfZmFsc2U6CglpbnRjIDEgLy8gMAoKKnRlcm5hcnkxX2VuZDoKCXNobAoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czo5CgkvLyBzdGF0ZVsxXQoJZnJhbWVfZGlnIC0xIC8vIHN0YXRlOiBQQ0c2NFNUQVRFCglleHRyYWN0IDggOAoJYnRvaQoJY2FsbHN1YiBfX3BjZzMyU3RlcAoJZnJhbWVfYnVyeSAxIC8vIGxvd1N0YXRlOiB1aW50NjQKCgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6MTEKCS8vIHJldHVybiBbW2hpZ2hSZXN1bHRbMF0sIGxvd1N0YXRlXSwgKGhpZ2hSZXN1bHRbMV0gPDwgMzIpIHwgX19wY2czMk91dHB1dChzdGF0ZVsxXSldOwoJZnJhbWVfZGlnIDAgLy8gaGlnaFJlc3VsdDogKHVpbnQ2NCx1aW50NjQpCglleHRyYWN0IDAgOAoJYnRvaQoJaXRvYgoJZnJhbWVfZGlnIDEgLy8gbG93U3RhdGU6IHVpbnQ2NAoJaXRvYgoJY29uY2F0CglmcmFtZV9kaWcgMCAvLyBoaWdoUmVzdWx0OiAodWludDY0LHVpbnQ2NCkKCWV4dHJhY3QgOCA4CglidG9pCglwdXNoaW50IDMyCglzaGwKCWZyYW1lX2RpZyAtMSAvLyBzdGF0ZTogUENHNjRTVEFURQoJZXh0cmFjdCA4IDgKCWJ0b2kKCWNhbGxzdWIgX19wY2czMk91dHB1dAoJfAoJaXRvYgoJY29uY2F0CgoJLy8gc2V0IHRoZSBzdWJyb3V0aW5lIHJldHVybiB2YWx1ZQoJZnJhbWVfYnVyeSAwCgoJLy8gcG9wIGFsbCBsb2NhbCB2YXJpYWJsZXMgZnJvbSB0aGUgc3RhY2sKCXBvcG4gMQoJcmV0c3ViCgovLyBfX3BjZzMyT3V0cHV0KHN0YXRlOiBQQ0czMlNUQVRFKTogdWludDY0Cl9fcGNnMzJPdXRwdXQ6Cglwcm90byAxIDEKCgkvLyBQdXNoIGVtcHR5IGJ5dGVzIGFmdGVyIHRoZSBmcmFtZSBwb2ludGVyIHRvIHJlc2VydmUgc3BhY2UgZm9yIGxvY2FsIHZhcmlhYmxlcwoJYnl0ZWMgMCAvLyAweAoJZHVwCgoJLy8gbGliX3BjZ1xwY2czMi5hbGdvLnRzOjIzCgkvLyB4b3JzaGlmdGVkID0gX19tYXNrVG9VaW50MzIoKChzdGF0ZSA+PiAxOCkgXiBzdGF0ZSkgPj4gMjcpCglmcmFtZV9kaWcgLTEgLy8gc3RhdGU6IFBDRzMyU1RBVEUKCXB1c2hpbnQgMTgKCXNocgoJZnJhbWVfZGlnIC0xIC8vIHN0YXRlOiBQQ0czMlNUQVRFCgleCglwdXNoaW50IDI3CglzaHIKCWNhbGxzdWIgX19tYXNrVG9VaW50MzIKCWZyYW1lX2J1cnkgMCAvLyB4b3JzaGlmdGVkOiB1aW50NjQKCgkvLyBsaWJfcGNnXHBjZzMyLmFsZ28udHM6MjQKCS8vIHJvdCA9IHN0YXRlID4+IDU5CglmcmFtZV9kaWcgLTEgLy8gc3RhdGU6IFBDRzMyU1RBVEUKCXB1c2hpbnQgNTkKCXNocgoJZnJhbWVfYnVyeSAxIC8vIHJvdDogdWludDY0CgoJLy8gbGliX3BjZ1xwY2czMi5hbGdvLnRzOjI1CgkvLyByZXR1cm4gKHhvcnNoaWZ0ZWQgPj4gcm90KSB8IF9fbWFza1RvVWludDMyKHhvcnNoaWZ0ZWQgPDwgKF9fdWludDY0VHdvcyhyb3QpICYgMzEpKTsKCWZyYW1lX2RpZyAwIC8vIHhvcnNoaWZ0ZWQ6IHVpbnQ2NAoJZnJhbWVfZGlnIDEgLy8gcm90OiB1aW50NjQKCXNocgoJZnJhbWVfZGlnIDAgLy8geG9yc2hpZnRlZDogdWludDY0CglmcmFtZV9kaWcgMSAvLyByb3Q6IHVpbnQ2NAoJY2FsbHN1YiBfX3VpbnQ2NFR3b3MKCXB1c2hpbnQgMzEKCSYKCXNobAoJY2FsbHN1YiBfX21hc2tUb1VpbnQzMgoJfAoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDEKCXJldHN1YgoKLy8gX19tYXNrVG9VaW50MzIodmFsdWU6IHVpbnQ2NCk6IHVpbnQ2NApfX21hc2tUb1VpbnQzMjoKCXByb3RvIDEgMQoKCS8vIGxpYl9wY2dccGNnMzIuYWxnby50czoxMgoJLy8gcmV0dXJuIHZhbHVlICYgNDI5NDk2NzI5NTsKCWZyYW1lX2RpZyAtMSAvLyB2YWx1ZTogdWludDY0CglwdXNoaW50IDQyOTQ5NjcyOTUKCSYKCXJldHN1YgoKLy8gX19wY2czMlN0ZXAoc3RhdGU6IFBDRzMyU1RBVEUsIGluY3I6IHVpbnQ2NCk6IHVpbnQ2NApfX3BjZzMyU3RlcDoKCXByb3RvIDIgMQoKCS8vIFB1c2ggZW1wdHkgYnl0ZXMgYWZ0ZXIgdGhlIGZyYW1lIHBvaW50ZXIgdG8gcmVzZXJ2ZSBzcGFjZSBmb3IgbG9jYWwgdmFyaWFibGVzCglieXRlYyAwIC8vIDB4CglkdXBuIDMKCgkvLyBsaWJfcGNnXHBjZzMyLmFsZ28udHM6MTYKCS8vIG11bHdSZXN1bHQgPSBtdWx3KHN0YXRlLCBwY2dNdWx0aXBsaWVyKQoJZnJhbWVfZGlnIC0xIC8vIHN0YXRlOiBQQ0czMlNUQVRFCgoJLy8gbGliX3BjZ1xjb25zdHMuYWxnby50czoxCgkvLyBVaW50PDY0PignNjM2NDEzNjIyMzg0Njc5MzAwNScpCglwdXNoaW50IDYzNjQxMzYyMjM4NDY3OTMwMDUKCW11bHcKCWZyYW1lX2J1cnkgMCAvLyBtdWx3UmVzdWx0IGxvdzogdWludDY0CglmcmFtZV9idXJ5IDEgLy8gbXVsd1Jlc3VsdCBoaWdoOiB1aW50NjQKCgkvLyBsaWJfcGNnXHBjZzMyLmFsZ28udHM6MTcKCS8vIGFkZHdSZXN1bHQgPSBhZGR3KG11bHdSZXN1bHQubG93LCBpbmNyKQoJZnJhbWVfZGlnIDAgLy8gbXVsd1Jlc3VsdCBsb3c6IHVpbnQ2NAoJZnJhbWVfZGlnIC0yIC8vIGluY3I6IHVpbnQ2NAoJYWRkdwoJZnJhbWVfYnVyeSAyIC8vIGFkZHdSZXN1bHQgbG93OiB1aW50NjQKCWZyYW1lX2J1cnkgMyAvLyBhZGR3UmVzdWx0IGhpZ2g6IHVpbnQ2NAoKCS8vIGxpYl9wY2dccGNnMzIuYWxnby50czoxOQoJLy8gcmV0dXJuIGFkZHdSZXN1bHQubG93OwoJZnJhbWVfZGlnIDIgLy8gYWRkd1Jlc3VsdCBsb3c6IHVpbnQ2NAoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDMKCXJldHN1YgoKLy8gX19wY2czMlVuYm91bmRlZFJhbmRvbShzdGF0ZTogUENHMzJTVEFURSk6IFtQQ0czMlNUQVRFLCB1aW50NjRdCl9fcGNnMzJVbmJvdW5kZWRSYW5kb206Cglwcm90byAxIDEKCgkvLyBsaWJfcGNnXHBjZzMyLmFsZ28udHM6MjkKCS8vIHJldHVybiBbX19wY2czMlN0ZXAoc3RhdGUsIHBjZ0ZpcnN0SW5jcmVtZW50KSwgX19wY2czMk91dHB1dChzdGF0ZSldOwoJLy8gbGliX3BjZ1xjb25zdHMuYWxnby50czozCgkvLyBVaW50PDY0PignMTQ0MjY5NTA0MDg4ODk2MzQwNycpCglpbnRjIDUgLy8gMTQ0MjY5NTA0MDg4ODk2MzQwNwoJZnJhbWVfZGlnIC0xIC8vIHN0YXRlOiBQQ0czMlNUQVRFCgljYWxsc3ViIF9fcGNnMzJTdGVwCglpdG9iCgoJLy8gbGliX3BjZ1xwY2czMi5hbGdvLnRzOjI5CgkvLyBfX3BjZzMyT3V0cHV0KHN0YXRlKQoJZnJhbWVfZGlnIC0xIC8vIHN0YXRlOiBQQ0czMlNUQVRFCgljYWxsc3ViIF9fcGNnMzJPdXRwdXQKCWl0b2IKCWNvbmNhdAoJcmV0c3ViCgovLyBwY2c2NEluaXQoc2VlZDogYnl0ZXM8MTY+KTogUENHNjRTVEFURQpwY2c2NEluaXQ6Cglwcm90byAxIDEKCgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6MTUKCS8vIGFzc2VydChzZWVkLmxlbmd0aCA9PT0gMTYpCglpbnRjIDMgLy8gMTYKCWR1cAoJPT0KCWFzc2VydAoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czoxNwoJLy8gcmV0dXJuIFsKCS8vICAgICBfX3BjZzMySW5pdChleHRyYWN0VWludDY0KHNlZWQsIDApLCBwY2dGaXJzdEluY3JlbWVudCksCgkvLyAgICAgX19wY2czMkluaXQoZXh0cmFjdFVpbnQ2NChzZWVkLCA4KSwgcGNnU2Vjb25kSW5jcmVtZW50KSwKCS8vICAgXTsKCS8vIGxpYl9wY2dcY29uc3RzLmFsZ28udHM6MwoJLy8gVWludDw2ND4oJzE0NDI2OTUwNDA4ODg5NjM0MDcnKQoJaW50YyA1IC8vIDE0NDI2OTUwNDA4ODg5NjM0MDcKCgkvLyBsaWJfcGNnXHBjZzY0LmFsZ28udHM6MTgKCS8vIGV4dHJhY3RVaW50NjQoc2VlZCwgMCkKCWZyYW1lX2RpZyAtMSAvLyBzZWVkOiBieXRlczwxNj4KCWludGMgMSAvLyAwCglleHRyYWN0X3VpbnQ2NAoJY2FsbHN1YiBfX3BjZzMySW5pdAoJaXRvYgoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czoxOQoJLy8gX19wY2czMkluaXQoZXh0cmFjdFVpbnQ2NChzZWVkLCA4KSwgcGNnU2Vjb25kSW5jcmVtZW50KQoJLy8gbGliX3BjZ1xjb25zdHMuYWxnby50czo1CgkvLyBVaW50PDY0PignMTQ0MjY5NTA0MDg4ODk2MzQwOScpCglpbnRjIDQgLy8gMTQ0MjY5NTA0MDg4ODk2MzQwOQoKCS8vIGxpYl9wY2dccGNnNjQuYWxnby50czoxOQoJLy8gZXh0cmFjdFVpbnQ2NChzZWVkLCA4KQoJZnJhbWVfZGlnIC0xIC8vIHNlZWQ6IGJ5dGVzPDE2PgoJaW50YyAyIC8vIDgKCWV4dHJhY3RfdWludDY0CgljYWxsc3ViIF9fcGNnMzJJbml0CglpdG9iCgljb25jYXQKCXJldHN1YgoKLy8gX19wY2czMkluaXQoaW5pdGlhbFN0YXRlOiBQQ0czMlNUQVRFLCBpbmNyOiB1aW50NjQpOiBQQ0czMlNUQVRFCl9fcGNnMzJJbml0OgoJcHJvdG8gMiAxCgoJLy8gUHVzaCBlbXB0eSBieXRlcyBhZnRlciB0aGUgZnJhbWUgcG9pbnRlciB0byByZXNlcnZlIHNwYWNlIGZvciBsb2NhbCB2YXJpYWJsZXMKCWJ5dGVjIDAgLy8gMHgKCWR1cG4gMgoKCS8vIGxpYl9wY2dccGNnMzIuYWxnby50czo5MAoJLy8gc3RhdGUgPSBfX3BjZzMyU3RlcCgwLCBpbmNyKQoJZnJhbWVfZGlnIC0yIC8vIGluY3I6IHVpbnQ2NAoJaW50YyAxIC8vIDAKCWNhbGxzdWIgX19wY2czMlN0ZXAKCWZyYW1lX2J1cnkgMCAvLyBzdGF0ZTogdWludDY0CgoJLy8gbGliX3BjZ1xwY2czMi5hbGdvLnRzOjkxCgkvLyBhZGR3UmVzdWx0ID0gYWRkdyhzdGF0ZSwgaW5pdGlhbFN0YXRlKQoJZnJhbWVfZGlnIDAgLy8gc3RhdGU6IHVpbnQ2NAoJZnJhbWVfZGlnIC0xIC8vIGluaXRpYWxTdGF0ZTogUENHMzJTVEFURQoJYWRkdwoJZnJhbWVfYnVyeSAxIC8vIGFkZHdSZXN1bHQgbG93OiB1aW50NjQKCWZyYW1lX2J1cnkgMiAvLyBhZGR3UmVzdWx0IGhpZ2g6IHVpbnQ2NAoKCS8vIGxpYl9wY2dccGNnMzIuYWxnby50czo5MwoJLy8gcmV0dXJuIF9fcGNnMzJTdGVwKGFkZHdSZXN1bHQubG93LCBpbmNyKTsKCWZyYW1lX2RpZyAtMiAvLyBpbmNyOiB1aW50NjQKCWZyYW1lX2RpZyAxIC8vIGFkZHdSZXN1bHQgbG93OiB1aW50NjQKCWNhbGxzdWIgX19wY2czMlN0ZXAKCgkvLyBzZXQgdGhlIHN1YnJvdXRpbmUgcmV0dXJuIHZhbHVlCglmcmFtZV9idXJ5IDAKCgkvLyBwb3AgYWxsIGxvY2FsIHZhcmlhYmxlcyBmcm9tIHRoZSBzdGFjawoJcG9wbiAyCglyZXRzdWIKCipwcm9jZXNzX3N0YXRpY190dXBsZV9lbGVtZW50OgoJcHJvdG8gNCAzCglmcmFtZV9kaWcgLTQgLy8gdHVwbGUgaGVhZAoJZnJhbWVfZGlnIC0xIC8vIGVsZW1lbnQKCWNvbmNhdAoJZnJhbWVfZGlnIC0zIC8vIHR1cGxlIHRhaWwKCWZyYW1lX2RpZyAtMiAvLyBoZWFkIG9mZnNldAoJcmV0c3ViCgoqcHJvY2Vzc19keW5hbWljX3R1cGxlX2VsZW1lbnQ6Cglwcm90byA0IDMKCWZyYW1lX2RpZyAtNCAvLyB0dXBsZSBoZWFkCglmcmFtZV9kaWcgLTIgLy8gaGVhZCBvZmZzZXQKCWNvbmNhdAoJZnJhbWVfYnVyeSAtNCAvLyB0dXBsZSBoZWFkCglmcmFtZV9kaWcgLTEgLy8gZWxlbWVudAoJZHVwCglsZW4KCWZyYW1lX2RpZyAtMiAvLyBoZWFkIG9mZnNldAoJYnRvaQoJKwoJaXRvYgoJZXh0cmFjdCA2IDIKCWZyYW1lX2J1cnkgLTIgLy8gaGVhZCBvZmZzZXQKCWZyYW1lX2RpZyAtMyAvLyB0dXBsZSB0YWlsCglzd2FwCgljb25jYXQKCWZyYW1lX2J1cnkgLTMgLy8gdHVwbGUgdGFpbAoJZnJhbWVfZGlnIC00IC8vIHR1cGxlIGhlYWQKCWZyYW1lX2RpZyAtMyAvLyB0dXBsZSB0YWlsCglmcmFtZV9kaWcgLTIgLy8gaGVhZCBvZmZzZXQKCXJldHN1Yg==",
     "clear": "I3ByYWdtYSB2ZXJzaW9uIDEw"
   },
   "byteCode": {
-    "approval": "CiAHAQAIENGCnrvv796CFM+Cnrvv796CFAImAQAxGBSBBgsxGQiNDACUAAAAAAAAAKIAAACGAAAAAAAAAAAAAACABBUffHU2GgRJFSEGEkQXNhoDFzYaAhc2GgFJFSUSRIgADkkVJAoWVwYCTFBQsCJDigQBKEmL/4gCeYwAi/yL/Yv+iwCIAGeMAYsBNf80/1cAEIwAiwE1/yU0/zT/TwJZSTT/TFkkCyEGCFhXAgCMAEYBiYgAAiJDigAAMgkxABJEiSJDgAS4RHs2NhoAjgH/8QCABLpWgs42GgCOAf9gAIAERvdlMzYaAI4B/8YAigQBKEcHKIwAi/+MA4v+IxJJQQAFi/0jEhBBADEjjASLBIv8DEEAI4sDiAEJjAWLBVcAEIwDiwCLBVcQCBcWUIwAiwQiCIwEQv/VQgCyi/0jE0EAF4v9Ig1Ei/6L/SIJDESL/Yv+CYwBQgBAi/6B////////////AQxEgBAAAAAAAAAAAQAAAAAAAAAAi/4WoUmTgUAORIAI//////////+sSRVJJAlMUheMAYsBiABwiwEYjAIjjAaLBov8DEEAPyJBADKLA4gAbIwHiwdXABCMA4sHVxAIF4sCD0EAFYsAiwdXEAgXiwEYi/4IFlCMAEIAA0L/yosGIgiMBkL/uSgogAIAEosDiAE6iwBJFSQKFlcGAkxQiAE4SFCMAEYHiYoBAShJi/8cIh6MAIwBiwCMAEYBiYoBAShJi/9XAAgXiACujAAhBIsAVwAIFyMSQQAEIkIAASOQi/9XCAgXiABpjAGLAFcACBcWiwEWUIsAVwgIF4EgkIv/VwgIF4gACBkWUIwARgGJigEBKEmL/4ESkYv/G4EbkYgAIowAi/+BO5GMAYsAiwGRiwCLAYj/cIEfGpCIAAYZjABGAYmKAQGL/4H/////DxqJigIBKEcDi/+Brf7V5NSF/ahYHYwAjAGLAIv+HowCjAOLAowARgOJigEBIQWL/4j/zxaL/4j/hxZQiYoBASVJEkQhBYv/I1uIAA0WIQSL/yRbiAADFlCJigIBKEcCi/4jiP+djACLAIv/HowBjAKL/osBiP+LjABGAomKBAOL/Iv/UIv9i/6JigQDi/yL/lCM/Iv/SRWL/hcIFlcGAoz+i/1MUIz9i/yL/Yv+iQ==",
+    "approval": "CiAHAQAIENGCnrvv796CFM+Cnrvv796CFAImAQAxGBSBBgsxGQiNDACmAAAAAAAAALUAAACTAAAAAAAAAAAAAACABBUffHU2GgRJFSEGEkQXNhoDFzYaAhc2GgFJFSUSRIgADkkVJAoWVwYCTFBQsCJDigQBKEmL/4gCkYwAi/yL/Yv+iwCIAH+MAYsBNf80/1cAEIwAiwE1/yU0/zT/TwJZSTT/TFkkCyEGCFhXAgCMAEYBiYgAAiJDigAAMgkxABJEiYgAAiJDigAAMgkxABJEiTEbQf/dgAS4RHs2NhoAjgH/0ACABLpWgs42GgCOAf9OAAAxG0H/yoAERvdlMzYaAI4B/70AigQBKEcHKIwAi/+MA4v+IxJJQQAFi/0jEhBBADEjjASLBIv8DEEAI4sDiAEJjAWLBVcAEIwDiwCLBVcQCBcWUIwAiwQiCIwEQv/VQgCyi/0jE0EAF4v9Ig1Ei/6L/SIJDESL/Yv+CYwBQgBAi/6B////////////AQxEgBAAAAAAAAAAAQAAAAAAAAAAi/4WoUmTgUAORIAI//////////+sSRVJJAlMUheMAYsBiABwiwEYjAIjjAaLBov8DEEAPyJBADKLA4gAbIwHiwdXABCMA4sHVxAIF4sCD0EAFYsAiwdXEAgXiwEYi/4IFlCMAEIAA0L/yosGIgiMBkL/uSgogAIAEosDiAE6iwBJFSQKFlcGAkxQiAE4SFCMAEYHiYoBAShJi/8cIh6MAIwBiwCMAEYBiYoBAShJi/9XAAgXiACujAAhBIsAVwAIFyMSQQAEIkIAASOQi/9XCAgXiABpjAGLAFcACBcWiwEWUIsAVwgIF4EgkIv/VwgIF4gACBkWUIwARgGJigEBKEmL/4ESkYv/G4EbkYgAIowAi/+BO5GMAYsAiwGRiwCLAYj/cIEfGpCIAAYZjABGAYmKAQGL/4H/////DxqJigIBKEcDi/+Brf7V5NSF/ahYHYwAjAGLAIv+HowCjAOLAowARgOJigEBIQWL/4j/zxaL/4j/hxZQiYoBASVJEkQhBYv/I1uIAA0WIQSL/yRbiAADFlCJigIBKEcCi/4jiP+djACLAIv/HowBjAKL/osBiP+LjABGAomKBAOL/Iv/UIv9i/6JigQDi/yL/lCM/Iv/SRWL/hcIFlcGAoz+i/1MUIz9i/yL/Yv+iQ==",
     "clear": "Cg=="
   },
   "compilerInfo": {
     "compiler": "algod",
     "compilerVersion": {
-      "major": 3,
-      "minor": 26,
-      "patch": 0,
-      "commitHash": "0d10b244"
+      "major": 4,
+      "minor": 0,
+      "patch": 2,
+      "commitHash": "6b940281"
     }
   }
 }

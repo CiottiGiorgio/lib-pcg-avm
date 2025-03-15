@@ -18,6 +18,10 @@ from smart_contracts.artifacts.lib_pcg32_exposer_pyteal import (
     LibPcg32ExposerPytealClient,
     LibPcg32ExposerPytealFactory,
 )
+from smart_contracts.artifacts.lib_pcg32_exposer_ts import (
+    LibPcg32ExposerTsClient,
+    LibPcg32ExposerTsFactory,
+)
 
 
 def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
@@ -52,6 +56,21 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 metafunc.parametrize(
                     "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [174, 88, 44])
                 )
+        case "ts":
+            if "lib_pcg32_client" in metafunc.fixturenames:
+                metafunc.parametrize(
+                    "lib_pcg32_client", ["lib_pcg32_exposer_ts_client"]
+                )
+            if "expected_library_size" in metafunc.fixturenames:
+                metafunc.parametrize("expected_library_size", [1300])
+            if "max_unbounded_opup_calls" in metafunc.fixturenames:
+                metafunc.parametrize(
+                    "bit_size,max_unbounded_opup_calls", zip(BIT_SIZES, [155, 78, 39])
+                )
+            if "max_bounded_opup_calls" in metafunc.fixturenames:
+                metafunc.parametrize(
+                    "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [174, 88, 44])
+                )
         case "pyteal":
             if "lib_pcg32_client" in metafunc.fixturenames:
                 metafunc.parametrize(
@@ -67,6 +86,8 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 metafunc.parametrize(
                     "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [106, 53, 27])
                 )
+        case _:
+            raise ValueError
 
 
 @pytest.fixture(scope="session")
@@ -98,6 +119,21 @@ def lib_pcg32_exposer_algots_client(
 
 
 @pytest.fixture(scope="session")
+def lib_pcg32_exposer_ts_client(
+    algorand_client: AlgorandClient,
+    deployer: SigningAccount,
+) -> LibPcg32ExposerTsClient:
+    client, _ = LibPcg32ExposerTsFactory(
+        algorand_client, default_sender=deployer.address
+    ).deploy(
+        on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
+        on_update=algokit_utils.OnUpdate.UpdateApp,
+    )
+
+    return client
+
+
+@pytest.fixture(scope="session")
 def lib_pcg32_exposer_pyteal_client(
     algorand_client: AlgorandClient, deployer: SigningAccount
 ) -> LibPcg32ExposerPytealClient:
@@ -112,7 +148,7 @@ def lib_pcg32_exposer_pyteal_client(
     return client
 
 
-RNG_SEED = b"\x00\x00\x00\x00\x00\x00\x00\x2A"
+RNG_SEED = b"\x00\x00\x00\x00\x00\x00\x00\x2a"
 
 BIT_SIZES = [8, 16, 32]
 # These sequences are generated using the reference C implementation.
