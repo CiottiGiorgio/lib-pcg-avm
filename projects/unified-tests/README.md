@@ -1,6 +1,6 @@
 # PCG Random Number Generator, AVM Edition
 
-## unified_tests
+## unified-tests
 This [AlgoKit](http://algokit.io) subproject implements the common tests for all included implementations of PCG for the AVM.
 For more general info on this library, see the [main page](../..).
 

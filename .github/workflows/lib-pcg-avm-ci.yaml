@@ -55,7 +55,7 @@ jobs:
 
       - name: Link smart contracts
         run: algokit project link --all --language=python
-        working-directory: ./projects/unified_tests/
+        working-directory: ./projects/unified-tests/
 
       - name: Check output stability of the smart contracts
         run: algokit project run ci-teal-diff --sequential

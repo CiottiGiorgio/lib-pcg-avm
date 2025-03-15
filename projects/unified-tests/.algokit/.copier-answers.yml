@@ -6,5 +6,5 @@ author_name: CiottiGiorgio
 contract_name: hello_world
 deployment_language: python
 preset_name: production
-project_name: unified_tests
+project_name: unified-tests
 

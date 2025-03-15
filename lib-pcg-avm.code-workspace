@@ -21,6 +21,9 @@
     },
     {
       "path": "projects/lib-pcg-algots"
+    },
+    {
+      "path": "projects/unified_tests2"
     }
   ],
   "settings": {
