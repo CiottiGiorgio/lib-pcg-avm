@@ -8,7 +8,14 @@
       "module": "smart_contracts",
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "Start AlgoKit LocalNet",
-      "envFile": "${workspaceFolder}/.env.localnet"
+      "env": {
+        "ALGOD_TOKEN": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "ALGOD_SERVER": "http://localhost",
+        "ALGOD_PORT": "4001",
+        "INDEXER_TOKEN": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "INDEXER_SERVER": "http://localhost",
+        "INDEXER_PORT": "8980"
+      }
     },
     {
       "name": "Deploy contracts",
@@ -17,7 +24,14 @@
       "module": "smart_contracts",
       "args": ["deploy"],
       "cwd": "${workspaceFolder}",
-      "envFile": "${workspaceFolder}/.env.localnet"
+      "env": {
+        "ALGOD_TOKEN": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "ALGOD_SERVER": "http://localhost",
+        "ALGOD_PORT": "4001",
+        "INDEXER_TOKEN": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "INDEXER_SERVER": "http://localhost",
+        "INDEXER_PORT": "8980"
+      }
     },
     {
       "name": "Build contracts",

@@ -10,18 +10,18 @@ packages = [{include = "lib_pcg"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
-algokit-utils = "^3.0.2"
+algokit-utils = "^3.0.0"
 python-dotenv = "^1.0.0"
 algorand-python = "^2.0.0"
 
 [tool.poetry.group.dev.dependencies]
-algokit-client-generator = "^2.0.1"
+algokit-client-generator = "^2.0.0"
 black = {extras = ["d"], version = "*"}
-ruff = "^0.1.6"
-mypy = "*"
+ruff = "^0.9.4"
+mypy = "^1"
 pip-audit = "*"
 pre-commit = "*"
-puyapy = "^4.1.0"
+puyapy = "*"
 
 [build-system]
 requires = ["poetry-core"]
@@ -29,19 +29,15 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 line-length = 120
-select = ["E", "F", "ANN", "UP", "N", "C4", "B", "A", "YTT", "W", "FBT", "Q", "RUF", "I"]
-ignore = [
-  "ANN101", # no type for self
-  "ANN102", # no type for cls
-]
-unfixable = ["B", "RUF"]
+lint.select = ["E", "F", "ANN", "UP", "N", "C4", "B", "A", "YTT", "W", "FBT", "Q", "RUF", "I"]
+lint.unfixable = ["B", "RUF"]
 
-[tool.ruff.flake8-annotations]
+[tool.ruff.lint.flake8-annotations]
 allow-star-arg-any = true
 suppress-none-returning = true
 
 [tool.mypy]
-files = ["smart_contracts/", "lib_pcg/"]
+files = ["lib_pcg/", "smart_contracts/"]
 python_version = "3.12"
 disallow_any_generics = true
 disallow_subclassing_any = true
@@ -54,8 +50,14 @@ warn_redundant_casts = true
 warn_unused_ignores = true
 warn_return_any = true
 strict_equality = true
-strict_concatenate = true
+extra_checks = true
 disallow_any_unimported = true
 disallow_any_expr = true
 disallow_any_decorated = true
 disallow_any_explicit = true
+untyped_calls_exclude = ["algosdk"]
+# Remove if you prefer to use mypy's default behavior against 
+# untyped algosdk types
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_any_expr = false

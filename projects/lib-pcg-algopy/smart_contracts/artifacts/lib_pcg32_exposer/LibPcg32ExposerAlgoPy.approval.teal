@@ -1,0 +1,424 @@
+#pragma version 10
+#pragma typetrack false
+
+// algopy.arc4.ARC4Contract.approval_program() -> uint64:
+main:
+    intcblock 1 0 4294967295 8 6364136223846793005 1442695040888963407
+    bytecblock 0x151f7c75
+    txn NumAppArgs
+    bz main_bare_routing@8
+    pushbytess 0xed06f70a 0x8d7cce79 0xd0a35e1e // method "bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint32[]", method "bounded_rand_uint16(byte[8],uint16,uint16,uint16)uint16[]", method "bounded_rand_uint8(byte[8],uint8,uint8,uint16)uint8[]"
+    txna ApplicationArgs 0
+    match main_bounded_rand_uint32_route@3 main_bounded_rand_uint16_route@4 main_bounded_rand_uint8_route@5
+
+main_after_if_else@13:
+    intc_1 // 0
+    return
+
+main_bounded_rand_uint8_route@5:
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    txna ApplicationArgs 1
+    txna ApplicationArgs 2
+    txna ApplicationArgs 3
+    txna ApplicationArgs 4
+    callsub bounded_rand_uint8
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_0 // 1
+    return
+
+main_bounded_rand_uint16_route@4:
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    txna ApplicationArgs 1
+    txna ApplicationArgs 2
+    txna ApplicationArgs 3
+    txna ApplicationArgs 4
+    callsub bounded_rand_uint16
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_0 // 1
+    return
+
+main_bounded_rand_uint32_route@3:
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    txna ApplicationArgs 1
+    txna ApplicationArgs 2
+    txna ApplicationArgs 3
+    txna ApplicationArgs 4
+    callsub bounded_rand_uint32
+    bytec_0 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_0 // 1
+    return
+
+main_bare_routing@8:
+    pushint 4 // 4
+    intc_1 // 0
+    txn OnCompletion
+    match main_update@9 main___algopy_default_create@10
+    b main_after_if_else@13
+
+main___algopy_default_create@10:
+    txn ApplicationID
+    !
+    assert // can only call when creating
+    intc_0 // 1
+    return
+
+main_update@9:
+    txn ApplicationID
+    assert // can only call when not creating
+    callsub update
+    intc_0 // 1
+    return
+
+
+// lib_pcg.pcg32.pcg32_init(seed: bytes) -> uint64:
+pcg32_init:
+    proto 1 1
+    frame_dig -1
+    len
+    intc_3 // 8
+    ==
+    assert
+    frame_dig -1
+    btoi
+    intc_1 // 0
+    intc 4 // 6364136223846793005
+    mulw
+    bury 1
+    intc 5 // 1442695040888963407
+    addw
+    bury 1
+    addw
+    bury 1
+    intc 4 // 6364136223846793005
+    mulw
+    bury 1
+    intc 5 // 1442695040888963407
+    addw
+    bury 1
+    retsub
+
+
+// lib_pcg.pcg32.__pcg32_bounded_sequence(state: uint64, bit_size: uint64, lower_bound: uint64, upper_bound: uint64, length: uint64) -> uint64, bytes:
+__pcg32_bounded_sequence:
+    proto 5 2
+    pushbytes ""
+    dupn 5
+    frame_dig -1
+    pushint 65536 // 65536
+    <
+    assert
+    frame_dig -1
+    itob
+    extract 6 2
+    frame_dig -4
+    intc_3 // 8
+    ==
+    bnz __pcg32_bounded_sequence_bool_true@3
+    frame_dig -4
+    pushint 16 // 16
+    ==
+    bnz __pcg32_bounded_sequence_bool_true@3
+    frame_dig -4
+    pushint 32 // 32
+    ==
+    bz __pcg32_bounded_sequence_bool_false@4
+
+__pcg32_bounded_sequence_bool_true@3:
+    intc_0 // 1
+
+__pcg32_bounded_sequence_bool_merge@5:
+    assert
+    frame_dig -4
+    pushint 3 // 3
+    shr
+    dup
+    frame_bury 1
+    intc_3 // 8
+    swap
+    -
+    frame_bury 5
+    frame_dig -3
+    bnz __pcg32_bounded_sequence_else_body@12
+    frame_dig -2
+    bnz __pcg32_bounded_sequence_else_body@12
+    intc_1 // 0
+    frame_bury 3
+
+__pcg32_bounded_sequence_for_header@8:
+    frame_dig 3
+    frame_dig -1
+    <
+    bz __pcg32_bounded_sequence_after_if_else@25
+    frame_dig -5
+    intc 4 // 6364136223846793005
+    mulw
+    bury 1
+    intc 5 // 1442695040888963407
+    addw
+    bury 1
+    frame_dig -5
+    pushint 18 // 18
+    shr
+    frame_dig -5
+    ^
+    pushint 27 // 27
+    shr
+    intc_2 // 4294967295
+    &
+    frame_dig -5
+    pushint 59 // 59
+    shr
+    dup2
+    shr
+    swap
+    ~
+    intc_0 // 1
+    addw
+    bury 1
+    pushint 31 // 31
+    &
+    uncover 2
+    swap
+    shl
+    intc_2 // 4294967295
+    &
+    |
+    itob
+    frame_dig 5
+    frame_dig 1
+    extract3
+    frame_dig 6
+    swap
+    concat
+    frame_bury 6
+    frame_dig 3
+    intc_0 // 1
+    +
+    frame_bury 3
+    frame_bury -5
+    b __pcg32_bounded_sequence_for_header@8
+
+__pcg32_bounded_sequence_after_if_else@25:
+    frame_dig -5
+    frame_dig 6
+    frame_bury 1
+    frame_bury 0
+    retsub
+
+__pcg32_bounded_sequence_else_body@12:
+    frame_dig -2
+    bz __pcg32_bounded_sequence_else_body@14
+    frame_dig -2
+    intc_0 // 1
+    >
+    assert
+    intc_0 // 1
+    frame_dig -4
+    shl
+    frame_dig -2
+    >
+    assert
+    frame_dig -2
+    intc_0 // 1
+    -
+    frame_dig -3
+    >
+    assert
+    frame_dig -2
+    frame_dig -3
+    -
+    frame_bury 0
+
+__pcg32_bounded_sequence_after_if_else@15:
+    frame_dig 0
+    dup
+    ~
+    intc_0 // 1
+    addw
+    bury 1
+    intc_2 // 4294967295
+    &
+    swap
+    %
+    frame_bury 4
+    intc_1 // 0
+    frame_bury 3
+
+__pcg32_bounded_sequence_for_header@16:
+    frame_dig 3
+    frame_dig -1
+    <
+    bz __pcg32_bounded_sequence_after_if_else@25
+
+__pcg32_bounded_sequence_while_top@18:
+    frame_dig -5
+    intc 4 // 6364136223846793005
+    mulw
+    bury 1
+    intc 5 // 1442695040888963407
+    addw
+    bury 1
+    frame_dig -5
+    pushint 18 // 18
+    shr
+    frame_dig -5
+    ^
+    pushint 27 // 27
+    shr
+    intc_2 // 4294967295
+    &
+    frame_dig -5
+    pushint 59 // 59
+    shr
+    dup2
+    shr
+    swap
+    ~
+    intc_0 // 1
+    addw
+    bury 1
+    pushint 31 // 31
+    &
+    uncover 2
+    swap
+    shl
+    intc_2 // 4294967295
+    &
+    |
+    dup
+    frame_bury 2
+    frame_dig 4
+    >=
+    bz __pcg32_bounded_sequence_after_if_else@21
+    frame_dig 2
+    frame_dig 0
+    %
+    frame_dig -3
+    +
+    itob
+    frame_dig 5
+    frame_dig 1
+    extract3
+    frame_dig 6
+    swap
+    concat
+    frame_bury 6
+    frame_dig 3
+    intc_0 // 1
+    +
+    frame_bury 3
+    frame_bury -5
+    b __pcg32_bounded_sequence_for_header@16
+
+__pcg32_bounded_sequence_after_if_else@21:
+    frame_bury -5
+    b __pcg32_bounded_sequence_while_top@18
+
+__pcg32_bounded_sequence_else_body@14:
+    intc_0 // 1
+    frame_dig -4
+    shl
+    dup
+    intc_0 // 1
+    -
+    frame_dig -3
+    >
+    assert
+    frame_dig -3
+    -
+    frame_bury 0
+    b __pcg32_bounded_sequence_after_if_else@15
+
+__pcg32_bounded_sequence_bool_false@4:
+    intc_1 // 0
+    b __pcg32_bounded_sequence_bool_merge@5
+
+
+// smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgoPy.bounded_rand_uint32(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
+bounded_rand_uint32:
+    proto 4 1
+    frame_dig -4
+    callsub pcg32_init
+    frame_dig -3
+    btoi
+    frame_dig -2
+    btoi
+    frame_dig -1
+    btoi
+    uncover 3
+    pushint 32 // 32
+    cover 4
+    cover 4
+    callsub __pcg32_bounded_sequence
+    bury 1
+    retsub
+
+
+// smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgoPy.bounded_rand_uint16(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
+bounded_rand_uint16:
+    proto 4 1
+    frame_dig -4
+    callsub pcg32_init
+    frame_dig -3
+    btoi
+    frame_dig -2
+    btoi
+    frame_dig -1
+    btoi
+    uncover 3
+    pushint 16 // 16
+    cover 4
+    cover 4
+    callsub __pcg32_bounded_sequence
+    bury 1
+    retsub
+
+
+// smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgoPy.bounded_rand_uint8(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
+bounded_rand_uint8:
+    proto 4 1
+    frame_dig -4
+    callsub pcg32_init
+    frame_dig -3
+    btoi
+    frame_dig -2
+    btoi
+    frame_dig -1
+    btoi
+    uncover 3
+    intc_3 // 8
+    cover 4
+    cover 4
+    callsub __pcg32_bounded_sequence
+    bury 1
+    retsub
+
+
+// smart_contracts.lib_pcg32_exposer.contract.LibPcg32ExposerAlgoPy.update() -> void:
+update:
+    txn Sender
+    global CreatorAddress
+    ==
+    assert
+    retsub
