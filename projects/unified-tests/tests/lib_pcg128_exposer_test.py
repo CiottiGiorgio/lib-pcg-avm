@@ -54,7 +54,7 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                     [get_random_sequence_method],
                 )
             if "expected_library_size" in metafunc.fixturenames:
-                metafunc.parametrize("expected_library_size", [500])
+                metafunc.parametrize("expected_library_size", [11_000])
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize("max_unbounded_opup_calls", [19])
             if "max_bounded_opup_calls" in metafunc.fixturenames:
@@ -84,7 +84,7 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                     [get_random_sequence_method],
                 )
             if "expected_library_size" in metafunc.fixturenames:
-                metafunc.parametrize("expected_library_size", [950])
+                metafunc.parametrize("expected_library_size", [29_500])
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize("max_unbounded_opup_calls", [44])
             if "max_bounded_opup_calls" in metafunc.fixturenames:
@@ -125,11 +125,13 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                     [get_random_sequence_method],
                 )
             if "expected_library_size" in metafunc.fixturenames:
-                metafunc.parametrize("expected_library_size", [650])
+                metafunc.parametrize("expected_library_size", [10_500])
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize("max_unbounded_opup_calls", [21])
             if "max_bounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize("max_bounded_opup_calls", [24])
+        case _:
+            raise ValueError
 
 
 @pytest.fixture(scope="session")
@@ -647,7 +649,7 @@ def test_library_size(
 ):
     client = request.getfixturevalue(lib_pcg128_client)
     assert (
-        len(client.app_client.app_spec.source.approval.split("\n"))
+        len(client.app_client.app_spec.source.approval)
         < expected_library_size
     )
 
