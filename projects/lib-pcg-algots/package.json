@@ -18,14 +18,13 @@
     "npm": ">=9.0"
   },
   "dependencies": {
-    "@algorandfoundation/algorand-typescript": "^1.0.0-beta.20"
+    "@algorandfoundation/algorand-typescript": "^1.0.0-beta.25"
   },
   "devDependencies": {
     "@algorandfoundation/algokit-client-generator": "^4.0.8",
     "@algorandfoundation/algokit-utils": "^8.2.1",
     "@algorandfoundation/algokit-utils-debug": "^1.0.3",
-    "@algorandfoundation/algorand-typescript-testing": "^1.0.0-beta.27",
-    "@algorandfoundation/puya-ts": "^1.0.0-beta.34",
+    "@algorandfoundation/puya-ts": "^1.0.0-beta.45",
     "@eslint/js": "^9.18.0",
     "@rollup/plugin-typescript": "^12.1.2",
     "@tsconfig/node22": "^22.0.0",
