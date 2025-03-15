@@ -4,7 +4,7 @@
   "description": "Smart contract deployer",
   "main": "smart_contracts/index.ts",
   "scripts": {
-    "build": "puya-ts build smart_contracts --output-source-map --out-dir artifacts && algokit generate client smart_contracts/artifacts --output {app_spec_dir}/{contract_name}Client.ts",
+    "build": "puya-ts build smart_contracts --no-output-arc32 --no-output-source-map --debug-level=0 --out-dir artifacts",
     "deploy": "ts-node-dev --transpile-only --watch .env -r dotenv/config smart_contracts/index.ts",
     "deploy:ci": "ts-node --transpile-only -r dotenv/config smart_contracts/index.ts",
     "lint": "eslint smart_contracts",

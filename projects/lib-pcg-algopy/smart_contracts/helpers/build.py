@@ -24,7 +24,8 @@ def build(output_dir: Path, contract_path: Path) -> Path:
             "python",
             contract_path.absolute(),
             f"--out-dir={output_dir}",
-            "--output-arc32",
+            "--no-output-source-map",
+            "--no-output-arc32",
             # Due to the debug symbols being generated in a way that is dependent on the OS,
             #  we are disabling them for now.
             # This has impacted a CI job making it fail for a very silly reason (forward vs. backward slashes).

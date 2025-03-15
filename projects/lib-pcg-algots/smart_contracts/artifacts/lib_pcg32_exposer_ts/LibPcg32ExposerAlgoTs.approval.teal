@@ -5,8 +5,6 @@
 main:
     intcblock 1 0 2 8 6364136223846793005 1442695040888963407 4294967295
     bytecblock 0x151f7c75 0x0000
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:5
-    // export class LibPcg32ExposerAlgoTs extends Contract {
     txn NumAppArgs
     bz main_bare_routing@8
     pushbytess 0xed06f70a 0x8d7cce79 0xd0a35e1e // method "bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint32[]", method "bounded_rand_uint16(byte[8],uint16,uint16,uint16)uint16[]", method "bounded_rand_uint8(byte[8],uint8,uint8,uint16)uint8[]"
@@ -14,37 +12,19 @@ main:
     match main_bounded_rand_uint32_route@3 main_bounded_rand_uint16_route@4 main_bounded_rand_uint8_route@5
 
 main_after_if_else@13:
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:5
-    // export class LibPcg32ExposerAlgoTs extends Contract {
     intc_1 // 0
     return
 
 main_bounded_rand_uint8_route@5:
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:34-39
-    // public bounded_rand_uint8(
-    //   seed: StaticArray<Byte, 8>,
-    //   lower_bound: UintN<8>,
-    //   upper_bound: UintN<8>,
-    //   length: UintN<16>
-    // ): DynamicArray<UintN<8>> {
     txn OnCompletion
     !
     assert // OnCompletion is not NoOp
     txn ApplicationID
     assert // can only call when not creating
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:5
-    // export class LibPcg32ExposerAlgoTs extends Contract {
     txna ApplicationArgs 1
     txna ApplicationArgs 2
     txna ApplicationArgs 3
     txna ApplicationArgs 4
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:34-39
-    // public bounded_rand_uint8(
-    //   seed: StaticArray<Byte, 8>,
-    //   lower_bound: UintN<8>,
-    //   upper_bound: UintN<8>,
-    //   length: UintN<16>
-    // ): DynamicArray<UintN<8>> {
     callsub bounded_rand_uint8
     bytec_0 // 0x151f7c75
     swap
@@ -54,31 +34,15 @@ main_bounded_rand_uint8_route@5:
     return
 
 main_bounded_rand_uint16_route@4:
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:20-25
-    // public bounded_rand_uint16(
-    //   seed: StaticArray<Byte, 8>,
-    //   lower_bound: UintN<16>,
-    //   upper_bound: UintN<16>,
-    //   length: UintN<16>
-    // ): DynamicArray<UintN<16>> {
     txn OnCompletion
     !
     assert // OnCompletion is not NoOp
     txn ApplicationID
     assert // can only call when not creating
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:5
-    // export class LibPcg32ExposerAlgoTs extends Contract {
     txna ApplicationArgs 1
     txna ApplicationArgs 2
     txna ApplicationArgs 3
     txna ApplicationArgs 4
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:20-25
-    // public bounded_rand_uint16(
-    //   seed: StaticArray<Byte, 8>,
-    //   lower_bound: UintN<16>,
-    //   upper_bound: UintN<16>,
-    //   length: UintN<16>
-    // ): DynamicArray<UintN<16>> {
     callsub bounded_rand_uint16
     bytec_0 // 0x151f7c75
     swap
@@ -88,31 +52,15 @@ main_bounded_rand_uint16_route@4:
     return
 
 main_bounded_rand_uint32_route@3:
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:6-11
-    // public bounded_rand_uint32(
-    //   seed: StaticArray<Byte, 8>,
-    //   lower_bound: UintN<32>,
-    //   upper_bound: UintN<32>,
-    //   length: UintN<16>
-    // ): DynamicArray<UintN<32>> {
     txn OnCompletion
     !
     assert // OnCompletion is not NoOp
     txn ApplicationID
     assert // can only call when not creating
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:5
-    // export class LibPcg32ExposerAlgoTs extends Contract {
     txna ApplicationArgs 1
     txna ApplicationArgs 2
     txna ApplicationArgs 3
     txna ApplicationArgs 4
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:6-11
-    // public bounded_rand_uint32(
-    //   seed: StaticArray<Byte, 8>,
-    //   lower_bound: UintN<32>,
-    //   upper_bound: UintN<32>,
-    //   length: UintN<16>
-    // ): DynamicArray<UintN<32>> {
     callsub bounded_rand_uint32
     bytec_0 // 0x151f7c75
     swap
@@ -122,8 +70,6 @@ main_bounded_rand_uint32_route@3:
     return
 
 main_bare_routing@8:
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:5
-    // export class LibPcg32ExposerAlgoTs extends Contract {
     pushint 4 // 4
     intc_1 // 0
     txn OnCompletion
@@ -131,8 +77,6 @@ main_bare_routing@8:
     b main_after_if_else@13
 
 main___algots__.defaultCreate@10:
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:5
-    // export class LibPcg32ExposerAlgoTs extends Contract {
     txn ApplicationID
     !
     assert // can only call when creating
@@ -140,8 +84,6 @@ main___algots__.defaultCreate@10:
     return
 
 main_update@9:
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:48
-    // @baremethod({ allowActions: ['UpdateApplication'] })
     txn ApplicationID
     assert // can only call when not creating
     callsub update
@@ -151,28 +93,14 @@ main_update@9:
 
 // lib_pcg/pcg32.algo.ts::__pcg32UnboundedRandom(state: uint64) -> uint64, uint64:
 __pcg32UnboundedRandom:
-    // lib_pcg/pcg32.algo.ts:29
-    // export function __pcg32UnboundedRandom(state: PCG32STATE): [PCG32STATE, uint64] {
     proto 1 2
-    // lib_pcg/pcg32.algo.ts:17
-    // const [, mulLow] = op.mulw(state, pcgMultiplier);
     frame_dig -1
-    // lib_pcg/consts.algo.ts:4
-    // export const pcgMultiplier = Uint64(6364136223846793005n);
     intc 4 // 6364136223846793005
-    // lib_pcg/pcg32.algo.ts:17
-    // const [, mulLow] = op.mulw(state, pcgMultiplier);
     mulw
     bury 1
-    // lib_pcg/consts.algo.ts:6
-    // export const pcgFirstIncrement = Uint64(1442695040888963407n);
     intc 5 // 1442695040888963407
-    // lib_pcg/pcg32.algo.ts:18
-    // const [, addLow] = op.addw(mulLow, incr);
     addw
     bury 1
-    // lib_pcg/pcg32.algo.ts:24
-    // const xorshifted = __maskToUint32(op.shr(op.shr(state, 18) ^ state, 27));
     frame_dig -1
     pushint 18 // 18
     shr
@@ -180,71 +108,41 @@ __pcg32UnboundedRandom:
     ^
     pushint 27 // 27
     shr
-    // lib_pcg/pcg32.algo.ts:13
-    // return value & (op.shl(1, 32) - 1);
     intc 6 // 4294967295
     &
-    // lib_pcg/pcg32.algo.ts:25
-    // const rot = op.shr(state, 59);
     frame_dig -1
     pushint 59 // 59
     shr
-    // lib_pcg/pcg32.algo.ts:26
-    // return op.shr(xorshifted, rot) | __maskToUint32(op.shl(xorshifted, __uint64Twos(rot) & 31));
     dup2
     shr
-    // lib_pcg/pcg32.algo.ts:8
-    // const [, addLow] = op.addw(~value, 1);
     swap
     ~
     intc_0 // 1
     addw
     bury 1
-    // lib_pcg/pcg32.algo.ts:26
-    // return op.shr(xorshifted, rot) | __maskToUint32(op.shl(xorshifted, __uint64Twos(rot) & 31));
     pushint 31 // 31
     &
     uncover 2
     swap
     shl
-    // lib_pcg/pcg32.algo.ts:13
-    // return value & (op.shl(1, 32) - 1);
     intc 6 // 4294967295
     &
-    // lib_pcg/pcg32.algo.ts:26
-    // return op.shr(xorshifted, rot) | __maskToUint32(op.shl(xorshifted, __uint64Twos(rot) & 31));
     |
-    // lib_pcg/pcg32.algo.ts:30
-    // return [__pcg32Step(state, pcgFirstIncrement), __pcg32Output(state)];
     retsub
 
 
 // lib_pcg/pcg32.algo.ts::__pcg32BoundedSequence(state: uint64, bitSize: uint64, lowerBound: uint64, upperBound: uint64, length: uint64) -> uint64, bytes:
 __pcg32BoundedSequence:
-    // lib_pcg/pcg32.algo.ts:33-39
-    // function __pcg32BoundedSequence(
-    //   state: PCG32STATE,
-    //   bitSize: uint64,
-    //   lowerBound: uint64,
-    //   upperBound: uint64,
-    //   length: uint64
-    // ): [PCG32STATE, bytes] {
     proto 5 2
     pushbytes ""
     dupn 6
-    // lib_pcg/pcg32.algo.ts:42
-    // assert(length < op.shl(1, 16));
     frame_dig -1
     pushint 65536 // 65536
     <
     assert
-    // lib_pcg/pcg32.algo.ts:43
-    // result = new UintN<16>(length).bytes;
     frame_dig -1
     itob
     extract 6 2
-    // lib_pcg/pcg32.algo.ts:45
-    // assert(bitSize === 8 || bitSize === 16 || bitSize === 32);
     frame_dig -4
     intc_3 // 8
     ==
@@ -262,46 +160,30 @@ __pcg32BoundedSequence_bool_true@3:
     intc_0 // 1
 
 __pcg32BoundedSequence_bool_merge@5:
-    // lib_pcg/pcg32.algo.ts:45
-    // assert(bitSize === 8 || bitSize === 16 || bitSize === 32);
     assert
-    // lib_pcg/pcg32.algo.ts:46
-    // const byteSize = op.shr(bitSize, 3);
     frame_dig -4
     pushint 3 // 3
     shr
     dup
     frame_bury 1
-    // lib_pcg/pcg32.algo.ts:47
-    // const truncatedStartCached: uint64 = Uint64(8) - byteSize;
     intc_3 // 8
     swap
     -
     frame_bury 6
-    // lib_pcg/pcg32.algo.ts:51
-    // if (lowerBound === 0 && upperBound === 0) {
     frame_dig -3
     bnz __pcg32BoundedSequence_else_body@11
     frame_dig -2
     bnz __pcg32BoundedSequence_else_body@11
-    // lib_pcg/pcg32.algo.ts:52
-    // for (let i = Uint64(0); i < length; i = i + 1) {
     intc_1 // 0
     frame_bury 3
 
 __pcg32BoundedSequence_while_top@8:
-    // lib_pcg/pcg32.algo.ts:52
-    // for (let i = Uint64(0); i < length; i = i + 1) {
     frame_dig 3
     frame_dig -1
     <
     bz __pcg32BoundedSequence_after_if_else@24
-    // lib_pcg/pcg32.algo.ts:53
-    // const [newState, n] = __pcg32UnboundedRandom(state);
     frame_dig -5
     callsub __pcg32UnboundedRandom
-    // lib_pcg/pcg32.algo.ts:56
-    // result = op.concat(result, op.extract(op.itob(n), truncatedStartCached, byteSize));
     itob
     frame_dig 6
     frame_dig 1
@@ -310,8 +192,6 @@ __pcg32BoundedSequence_while_top@8:
     swap
     concat
     frame_bury 7
-    // lib_pcg/pcg32.algo.ts:52
-    // for (let i = Uint64(0); i < length; i = i + 1) {
     frame_dig 3
     intc_0 // 1
     +
@@ -320,8 +200,6 @@ __pcg32BoundedSequence_while_top@8:
     b __pcg32BoundedSequence_while_top@8
 
 __pcg32BoundedSequence_after_if_else@24:
-    // lib_pcg/pcg32.algo.ts:88
-    // return [state, result];
     frame_dig -5
     frame_dig 7
     frame_bury 1
@@ -329,86 +207,60 @@ __pcg32BoundedSequence_after_if_else@24:
     retsub
 
 __pcg32BoundedSequence_else_body@11:
-    // lib_pcg/pcg32.algo.ts:59
-    // if (upperBound !== 0) {
     frame_dig -2
     bz __pcg32BoundedSequence_else_body@13
-    // lib_pcg/pcg32.algo.ts:60
-    // assert(upperBound > 1);
     frame_dig -2
     intc_0 // 1
     >
     assert
-    // lib_pcg/pcg32.algo.ts:61
-    // assert(upperBound < op.shl(1, bitSize));
     intc_0 // 1
     frame_dig -4
     shl
     frame_dig -2
     >
     assert
-    // lib_pcg/pcg32.algo.ts:62
-    // assert(lowerBound < upperBound - 1);
     frame_dig -2
     intc_0 // 1
     -
     frame_dig -3
     >
     assert
-    // lib_pcg/pcg32.algo.ts:64
-    // absoluteBound = upperBound - lowerBound;
     frame_dig -2
     frame_dig -3
     -
     frame_bury 0
 
 __pcg32BoundedSequence_after_if_else@14:
-    // lib_pcg/pcg32.algo.ts:8
-    // const [, addLow] = op.addw(~value, 1);
     frame_dig 0
     dup
     ~
     intc_0 // 1
     addw
     bury 1
-    // lib_pcg/pcg32.algo.ts:13
-    // return value & (op.shl(1, 32) - 1);
     intc 6 // 4294967295
     &
-    // lib_pcg/pcg32.algo.ts:71
-    // const threshold: uint64 = __maskToUint32(__uint64Twos(absoluteBound)) % absoluteBound;
     swap
     %
     frame_bury 5
-    // lib_pcg/pcg32.algo.ts:73
-    // for (let i = Uint64(0); i < length; i = i + 1) {
     intc_1 // 0
     frame_bury 4
 
 __pcg32BoundedSequence_while_top@15:
-    // lib_pcg/pcg32.algo.ts:73
-    // for (let i = Uint64(0); i < length; i = i + 1) {
     frame_dig 4
     frame_dig -1
     <
     bz __pcg32BoundedSequence_after_if_else@24
 
 __pcg32BoundedSequence_while_top@17:
-    // lib_pcg/pcg32.algo.ts:75
-    // const [newState, candidate] = __pcg32UnboundedRandom(state);
     frame_dig -5
     callsub __pcg32UnboundedRandom
     dup
     cover 2
     frame_bury 2
     swap
-    // lib_pcg/pcg32.algo.ts:77
-    // if (candidate >= threshold) {
     frame_dig 5
     >=
     bz __pcg32BoundedSequence_after_if_else@20
-    // lib_pcg/pcg32.algo.ts:80
-    // op.extract(op.itob((candidate % absoluteBound) + lowerBound), truncatedStartCached, byteSize)
     frame_dig 2
     frame_dig 0
     %
@@ -418,17 +270,10 @@ __pcg32BoundedSequence_while_top@17:
     frame_dig 6
     frame_dig 1
     extract3
-    // lib_pcg/pcg32.algo.ts:78-81
-    // result = op.concat(
-    //   result,
-    //   op.extract(op.itob((candidate % absoluteBound) + lowerBound), truncatedStartCached, byteSize)
-    // );
     frame_dig 7
     swap
     concat
     frame_bury 7
-    // lib_pcg/pcg32.algo.ts:73
-    // for (let i = Uint64(0); i < length; i = i + 1) {
     frame_dig 4
     intc_0 // 1
     +
@@ -441,8 +286,6 @@ __pcg32BoundedSequence_after_if_else@20:
     b __pcg32BoundedSequence_while_top@17
 
 __pcg32BoundedSequence_else_body@13:
-    // lib_pcg/pcg32.algo.ts:66
-    // assert(lowerBound < op.shl(1, bitSize) - 1);
     intc_0 // 1
     frame_dig -4
     shl
@@ -452,8 +295,6 @@ __pcg32BoundedSequence_else_body@13:
     frame_dig -3
     >
     assert
-    // lib_pcg/pcg32.algo.ts:68
-    // absoluteBound = op.shl(1, bitSize) - lowerBound;
     frame_dig -3
     -
     frame_bury 0
@@ -466,76 +307,37 @@ __pcg32BoundedSequence_bool_false@4:
 
 // lib_pcg/pcg32.algo.ts::pcg32Init(seed: bytes) -> uint64:
 pcg32Init:
-    // lib_pcg/pcg32.algo.ts:98
-    // export function pcg32Init(seed: bytes): PCG32STATE {
     proto 1 1
-    // lib_pcg/pcg32.algo.ts:99
-    // assert(seed.length === 8);
     frame_dig -1
     len
     intc_3 // 8
     ==
     assert
-    // lib_pcg/pcg32.algo.ts:101
-    // return __pcg32Init(op.btoi(seed), pcgFirstIncrement);
     frame_dig -1
     btoi
-    // lib_pcg/pcg32.algo.ts:92
-    // const state = __pcg32Step(0, incr);
     intc_1 // 0
-    // lib_pcg/consts.algo.ts:4
-    // export const pcgMultiplier = Uint64(6364136223846793005n);
     intc 4 // 6364136223846793005
-    // lib_pcg/pcg32.algo.ts:17
-    // const [, mulLow] = op.mulw(state, pcgMultiplier);
     mulw
     bury 1
-    // lib_pcg/consts.algo.ts:6
-    // export const pcgFirstIncrement = Uint64(1442695040888963407n);
     intc 5 // 1442695040888963407
-    // lib_pcg/pcg32.algo.ts:18
-    // const [, addLow] = op.addw(mulLow, incr);
     addw
     bury 1
-    // lib_pcg/pcg32.algo.ts:93
-    // const [, addLow] = op.addw(state, initialState);
     addw
     bury 1
-    // lib_pcg/consts.algo.ts:4
-    // export const pcgMultiplier = Uint64(6364136223846793005n);
     intc 4 // 6364136223846793005
-    // lib_pcg/pcg32.algo.ts:17
-    // const [, mulLow] = op.mulw(state, pcgMultiplier);
     mulw
     bury 1
-    // lib_pcg/consts.algo.ts:6
-    // export const pcgFirstIncrement = Uint64(1442695040888963407n);
     intc 5 // 1442695040888963407
-    // lib_pcg/pcg32.algo.ts:18
-    // const [, addLow] = op.addw(mulLow, incr);
     addw
     bury 1
-    // lib_pcg/pcg32.algo.ts:101
-    // return __pcg32Init(op.btoi(seed), pcgFirstIncrement);
     retsub
 
 
 // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.bounded_rand_uint32(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
 bounded_rand_uint32:
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:6-11
-    // public bounded_rand_uint32(
-    //   seed: StaticArray<Byte, 8>,
-    //   lower_bound: UintN<32>,
-    //   upper_bound: UintN<32>,
-    //   length: UintN<16>
-    // ): DynamicArray<UintN<32>> {
     proto 4 1
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:12
-    // const state = pcg32Init(seed.bytes);
     frame_dig -4
     callsub pcg32Init
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:15
-    // const [newState, sequence] = pcg32Random(state, lower_bound.native, upper_bound.native, length.native);
     frame_dig -3
     btoi
     frame_dig -2
@@ -544,31 +346,21 @@ bounded_rand_uint32:
     btoi
     dup
     cover 4
-    // lib_pcg/pcg32.algo.ts:118
-    // const result = new DynamicArray<UintN<32>>();
     bytec_1 // 0x0000
     cover 4
-    // lib_pcg/pcg32.algo.ts:119
-    // const [newState, sequence] = __pcg32BoundedSequence(state, 32, lowerBound, upperBound, length);
     uncover 3
     pushint 32 // 32
     cover 4
     cover 4
     callsub __pcg32BoundedSequence
     bury 1
-    // lib_pcg/pcg32.algo.ts:122
-    // for (let i = Uint64(0); i < length; i = i + 1) {
     intc_1 // 0
 
 bounded_rand_uint32_while_top@2:
-    // lib_pcg/pcg32.algo.ts:122
-    // for (let i = Uint64(0); i < length; i = i + 1) {
     frame_dig 3
     frame_dig 0
     <
     bz bounded_rand_uint32_after_while@4
-    // lib_pcg/pcg32.algo.ts:123
-    // result.push(new UintN<32>(op.extractUint32(sequence, 2 + i * 4)));
     frame_dig 1
     extract 2 0
     frame_dig 3
@@ -593,16 +385,12 @@ bounded_rand_uint32_while_top@2:
     swap
     concat
     frame_bury 1
-    // lib_pcg/pcg32.algo.ts:122
-    // for (let i = Uint64(0); i < length; i = i + 1) {
     intc_0 // 1
     +
     frame_bury 3
     b bounded_rand_uint32_while_top@2
 
 bounded_rand_uint32_after_while@4:
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:17
-    // return sequence;
     frame_dig 1
     frame_bury 0
     retsub
@@ -610,20 +398,9 @@ bounded_rand_uint32_after_while@4:
 
 // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.bounded_rand_uint16(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
 bounded_rand_uint16:
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:20-25
-    // public bounded_rand_uint16(
-    //   seed: StaticArray<Byte, 8>,
-    //   lower_bound: UintN<16>,
-    //   upper_bound: UintN<16>,
-    //   length: UintN<16>
-    // ): DynamicArray<UintN<16>> {
     proto 4 1
-    // lib_pcg/pcg32.algo.ts:105
-    // return pcg32Init(seed);
     frame_dig -4
     callsub pcg32Init
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:29
-    // const [newState, sequence] = pcg16Random(state, lower_bound.native, upper_bound.native, length.native);
     frame_dig -3
     btoi
     frame_dig -2
@@ -632,31 +409,21 @@ bounded_rand_uint16:
     btoi
     dup
     cover 4
-    // lib_pcg/pcg32.algo.ts:135
-    // const result = new DynamicArray<UintN<16>>();
     bytec_1 // 0x0000
     cover 4
-    // lib_pcg/pcg32.algo.ts:136
-    // const [newState, sequence] = __pcg32BoundedSequence(state, 16, lowerBound, upperBound, length);
     uncover 3
     pushint 16 // 16
     cover 4
     cover 4
     callsub __pcg32BoundedSequence
     bury 1
-    // lib_pcg/pcg32.algo.ts:139
-    // for (let i = Uint64(0); i < length; i = i + 1) {
     intc_1 // 0
 
 bounded_rand_uint16_while_top@4:
-    // lib_pcg/pcg32.algo.ts:139
-    // for (let i = Uint64(0); i < length; i = i + 1) {
     frame_dig 3
     frame_dig 0
     <
     bz bounded_rand_uint16_after_while@6
-    // lib_pcg/pcg32.algo.ts:140
-    // result.push(new UintN<16>(op.extractUint16(sequence, 2 + i * 2)));
     frame_dig 1
     extract 2 0
     frame_dig 3
@@ -681,16 +448,12 @@ bounded_rand_uint16_while_top@4:
     swap
     concat
     frame_bury 1
-    // lib_pcg/pcg32.algo.ts:139
-    // for (let i = Uint64(0); i < length; i = i + 1) {
     intc_0 // 1
     +
     frame_bury 3
     b bounded_rand_uint16_while_top@4
 
 bounded_rand_uint16_after_while@6:
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:31
-    // return sequence;
     frame_dig 1
     frame_bury 0
     retsub
@@ -698,20 +461,9 @@ bounded_rand_uint16_after_while@6:
 
 // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.bounded_rand_uint8(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
 bounded_rand_uint8:
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:34-39
-    // public bounded_rand_uint8(
-    //   seed: StaticArray<Byte, 8>,
-    //   lower_bound: UintN<8>,
-    //   upper_bound: UintN<8>,
-    //   length: UintN<16>
-    // ): DynamicArray<UintN<8>> {
     proto 4 1
-    // lib_pcg/pcg32.algo.ts:109
-    // return pcg32Init(seed);
     frame_dig -4
     callsub pcg32Init
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:43
-    // const [newState, sequence] = pcg8Random(state, lower_bound.native, upper_bound.native, length.native);
     frame_dig -3
     btoi
     frame_dig -2
@@ -720,31 +472,21 @@ bounded_rand_uint8:
     btoi
     dup
     cover 4
-    // lib_pcg/pcg32.algo.ts:152
-    // const result = new DynamicArray<UintN<8>>();
     bytec_1 // 0x0000
     cover 4
-    // lib_pcg/pcg32.algo.ts:153
-    // const [newState, sequence] = __pcg32BoundedSequence(state, 8, lowerBound, upperBound, length);
     uncover 3
     intc_3 // 8
     cover 4
     cover 4
     callsub __pcg32BoundedSequence
     bury 1
-    // lib_pcg/pcg32.algo.ts:156
-    // for (let i = Uint64(0); i < length; i = i + 1) {
     intc_1 // 0
 
 bounded_rand_uint8_while_top@4:
-    // lib_pcg/pcg32.algo.ts:156
-    // for (let i = Uint64(0); i < length; i = i + 1) {
     frame_dig 3
     frame_dig 0
     <
     bz bounded_rand_uint8_after_while@6
-    // lib_pcg/pcg32.algo.ts:157
-    // result.push(new UintN<8>(op.btoi(op.extract(sequence, 2 + i, 1))));
     frame_dig 1
     extract 2 0
     intc_2 // 2
@@ -767,16 +509,12 @@ bounded_rand_uint8_while_top@4:
     swap
     concat
     frame_bury 1
-    // lib_pcg/pcg32.algo.ts:156
-    // for (let i = Uint64(0); i < length; i = i + 1) {
     intc_0 // 1
     +
     frame_bury 3
     b bounded_rand_uint8_while_top@4
 
 bounded_rand_uint8_after_while@6:
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:45
-    // return sequence;
     frame_dig 1
     frame_bury 0
     retsub
@@ -784,12 +522,7 @@ bounded_rand_uint8_after_while@6:
 
 // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.update() -> void:
 update:
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:48-49
-    // @baremethod({ allowActions: ['UpdateApplication'] })
-    // public update() {
     proto 0 0
-    // smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts:50
-    // assert(Txn.sender === Global.creatorAddress);
     txn Sender
     global CreatorAddress
     ==
