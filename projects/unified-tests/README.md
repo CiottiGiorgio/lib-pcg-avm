@@ -27,7 +27,7 @@ algokit project run build --project-name=lib-pcg-pyteal
 ```
 
 ### Linking
-From the [unified_tests subproject folder](.), it’s possible to link all contracts with:
+From the [unified-tests subproject folder](.), it’s possible to link all contracts with:
 ```bash
 algokit project link --all --language=python
 ```
@@ -40,7 +40,7 @@ algokit project link --project-name=lib-pcg-pyteal --language=python
 ```
 
 ### Testing
-From the [unified_tests subproject folder](.) (and from [root folder](../..)), it’s possible to test all libraries with:
+From the [unified-tests subproject folder](.) (and from [root folder](../..)), it’s possible to test all libraries with:
 ```bash
 algokit project run test
 ```

@@ -4,7 +4,7 @@ min_version = "v2.0.0"
 [project]
 # This is supposed to be 'contract' but that does not allow linking. 'frontend' type does.
 type = 'frontend'
-name = 'unified_tests'
+name = 'unified-tests'
 artifacts = 'smart_contracts/artifacts'
 
 [project.run]
@@ -24,9 +24,8 @@ test = { commands = [
   'algokit project run test-pyteal',
 ], description = 'Run smart contract tests' }
 audit = { commands = [
-  'poetry export --without=dev -o requirements.txt',
-  'poetry run pip-audit -r requirements.txt',
-], description = 'Audit with pip-audit' }
+  'poetry run pip-audit',
+], description = 'Audit with pip-audit. NOTE: If used with poetry >v2, make sure to install `poetry-plugin-export` as per https://github.com/python-poetry/poetry-plugin-export#installation.' }
 lint = { commands = [
   'poetry run black .',
   'poetry run ruff check . --fix',

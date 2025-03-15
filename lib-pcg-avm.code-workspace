@@ -8,23 +8,14 @@
       "path": "projects/lib-pcg-algopy"
     },
     {
-      "path": "projects/lib-pcg-pyteal"
-    },
-    {
-      "path": "projects/lib-pcg-ts"
-    },
-    {
-      "path": "projects/unified_tests"
-    },
-    {
-      "path": "projects/lib-pcg-avm"
-    },
-    {
       "path": "projects/lib-pcg-algots"
     },
     {
-      "path": "projects/unified_tests2"
-    }
+      "path": "projects/lib-pcg-pyteal"
+    },
+    {
+      "path": "projects/unified-tests"
+    },
   ],
   "settings": {
     "files.exclude": {
