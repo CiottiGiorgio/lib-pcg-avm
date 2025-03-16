@@ -1,9 +1,9 @@
-import {assert, BigUint, Bytes, bytes, op, uint64, Uint64} from '@algorandfoundation/algorand-typescript';
-import {pcgFirstIncrement, pcgSecondIncrement} from './consts.algo';
-import {__pcg32Init, __pcg32Output, __pcg32Step, __uint64Twos} from "./pcg32.algo";
-import {DynamicArray, UintN64} from "@algorandfoundation/algorand-typescript/arc4";
+import { assert, BigUint, Bytes, bytes, op, uint64, Uint64 } from '@algorandfoundation/algorand-typescript'
+import { pcgFirstIncrement, pcgSecondIncrement } from './consts.algo'
+import { __pcg32Init, __pcg32Output, __pcg32Step, __uint64Twos } from './pcg32.algo'
+import { DynamicArray, UintN64 } from '@algorandfoundation/algorand-typescript/arc4'
 
-type PCG64STATE = [uint64, uint64];
+type PCG64STATE = [uint64, uint64]
 
 export function __pcg64UnboundedRandom(state: PCG64STATE): [PCG64STATE, uint64] {
   const newState1 = __pcg32Step(state[0], pcgFirstIncrement)
@@ -21,7 +21,12 @@ export function pcg64Init(seed: bytes): PCG64STATE {
   ]
 }
 
-export function pcg64Random(state: PCG64STATE, lowerBound: uint64, upperBound: uint64, length: uint64): [PCG64STATE, DynamicArray<UintN64>] {
+export function pcg64Random(
+  state: PCG64STATE,
+  lowerBound: uint64,
+  upperBound: uint64,
+  length: uint64,
+): [PCG64STATE, DynamicArray<UintN64>] {
   const result = new DynamicArray<UintN64>()
 
   let absoluteBound: uint64
@@ -40,17 +45,17 @@ export function pcg64Random(state: PCG64STATE, lowerBound: uint64, upperBound: u
 
       absoluteBound = upperBound - lowerBound
     } else {
-      assert(lowerBound < 2**64-1)
+      assert(lowerBound < 2 ** 64 - 1)
 
-      absoluteBound = op.btoi(Bytes(BigUint(2**64) - BigUint(lowerBound)))
+      absoluteBound = op.btoi(Bytes(BigUint(2 ** 64) - BigUint(lowerBound)))
     }
 
     const threshold: uint64 = __uint64Twos(absoluteBound) % absoluteBound
 
     for (let i = Uint64(0); i < length; i = i + 1) {
       while (true) {
-        const [newState, candidate] = __pcg64UnboundedRandom(state);
-        state = newState;
+        const [newState, candidate] = __pcg64UnboundedRandom(state)
+        state = newState
         if (candidate >= threshold) {
           result.push(new UintN64((candidate % absoluteBound) + lowerBound))
           break

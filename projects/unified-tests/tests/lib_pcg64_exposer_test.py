@@ -6,14 +6,13 @@ from smart_contracts.artifacts.lib_pcg64_exposer_algo_py import (
     LibPcg64ExposerAlgoPyClient,
     LibPcg64ExposerAlgoPyFactory,
 )
+from smart_contracts.artifacts.lib_pcg64_exposer_algo_ts import (
+    LibPcg64ExposerAlgoTsClient,
+    LibPcg64ExposerAlgoTsFactory,
+)
 from smart_contracts.artifacts.lib_pcg64_exposer_pyteal import (
     LibPcg64ExposerPytealClient,
     LibPcg64ExposerPytealFactory,
-)
-
-from smart_contracts.artifacts.lib_pcg64_exposer_algo_ts import (
-    LibPcg64ExposerAlgoTsFactory,
-    LibPcg64ExposerAlgoTsClient,
 )
 from smart_contracts.artifacts.lib_pcg64_exposer_ts import (
     LibPcg64ExposerTsClient,
@@ -662,10 +661,7 @@ def test_library_size(
     request: pytest.FixtureRequest,
 ):
     client = request.getfixturevalue(lib_pcg64_client)
-    assert (
-        len(client.app_client.app_spec.source.approval)
-        < expected_library_size
-    )
+    assert len(client.app_client.app_spec.source.approval) < expected_library_size
 
 
 def test_unbounded_maximal_cost(

@@ -23,7 +23,8 @@ from smart_contracts.artifacts.lib_pcg128_exposer_pyteal import (
 #     LibPcg128ExposerAlgoTsFactory,
 # )
 from smart_contracts.artifacts.lib_pcg128_exposer_ts import (
-    LibPcg128ExposerTsClient, LibPcg128ExposerTsFactory,
+    LibPcg128ExposerTsClient,
+    LibPcg128ExposerTsFactory,
 )
 
 
@@ -648,10 +649,7 @@ def test_library_size(
     request: pytest.FixtureRequest,
 ):
     client = request.getfixturevalue(lib_pcg128_client)
-    assert (
-        len(client.app_client.app_spec.source.approval)
-        < expected_library_size
-    )
+    assert len(client.app_client.app_spec.source.approval) < expected_library_size
 
 
 def test_unbounded_maximal_cost(

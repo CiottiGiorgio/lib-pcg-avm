@@ -1,20 +1,20 @@
-import {assert, Contract, Global, Txn} from '@algorandfoundation/algorand-typescript'
+import { assert, Contract, Global, Txn } from '@algorandfoundation/algorand-typescript'
 import {
   baremethod,
   Byte,
   DynamicArray,
   StaticArray,
   UintN16,
-  UintN64
-} from "@algorandfoundation/algorand-typescript/arc4";
-import {pcg64Init, pcg64Random} from "../../lib_pcg/pcg64.algo";
+  UintN64,
+} from '@algorandfoundation/algorand-typescript/arc4'
+import { pcg64Init, pcg64Random } from '../../lib_pcg/pcg64.algo'
 
 export class LibPcg64ExposerAlgoTs extends Contract {
   public bounded_rand_uint64(
     seed: StaticArray<Byte, 16>,
     lower_bound: UintN64,
     upper_bound: UintN64,
-    length: UintN16
+    length: UintN16,
   ): DynamicArray<UintN64> {
     const state = pcg64Init(seed.bytes)
 
@@ -26,6 +26,6 @@ export class LibPcg64ExposerAlgoTs extends Contract {
 
   @baremethod({ allowActions: ['UpdateApplication'] })
   public update() {
-    assert(Txn.sender === Global.creatorAddress);
+    assert(Txn.sender === Global.creatorAddress)
   }
 }

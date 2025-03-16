@@ -4,7 +4,7 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   esbuild: {},
-  test: {    
+  test: {
     testTimeout: 10000,
     coverage: {
       provider: 'v8',

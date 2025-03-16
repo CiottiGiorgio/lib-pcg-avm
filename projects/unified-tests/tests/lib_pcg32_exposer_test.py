@@ -1428,10 +1428,7 @@ def test_library_size(
     lib_pcg32_client: str, expected_library_size: int, request: pytest.FixtureRequest
 ):
     client = request.getfixturevalue(lib_pcg32_client)
-    assert (
-        len(client.app_client.app_spec.source.approval)
-        < expected_library_size
-    )
+    assert len(client.app_client.app_spec.source.approval) < expected_library_size
 
 
 def test_unbounded_maximal_cost(
