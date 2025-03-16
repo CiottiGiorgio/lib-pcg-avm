@@ -333,7 +333,7 @@ pcg32Init:
     retsub
 
 
-// smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.bounded_rand_uint32(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
+// smart_contracts/lib_pcg32_exposer_algo_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.bounded_rand_uint32(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
 bounded_rand_uint32:
     proto 4 1
     frame_dig -4
@@ -396,7 +396,7 @@ bounded_rand_uint32_after_while@4:
     retsub
 
 
-// smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.bounded_rand_uint16(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
+// smart_contracts/lib_pcg32_exposer_algo_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.bounded_rand_uint16(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
 bounded_rand_uint16:
     proto 4 1
     frame_dig -4
@@ -459,7 +459,7 @@ bounded_rand_uint16_after_while@6:
     retsub
 
 
-// smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.bounded_rand_uint8(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
+// smart_contracts/lib_pcg32_exposer_algo_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.bounded_rand_uint8(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
 bounded_rand_uint8:
     proto 4 1
     frame_dig -4
@@ -518,7 +518,7 @@ bounded_rand_uint8_after_while@6:
     retsub
 
 
-// smart_contracts/lib_pcg32_exposer_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.update() -> void:
+// smart_contracts/lib_pcg32_exposer_algo_ts/contract.algo.ts::LibPcg32ExposerAlgoTs.update() -> void:
 update:
     txn Sender
     global CreatorAddress

@@ -1,4 +1,3 @@
-/* eslint-disable no-loss-of-precision */
 import { Uint64 } from '@algorandfoundation/algorand-typescript';
 
 export const pcgMultiplier = Uint64(6364136223846793005n);

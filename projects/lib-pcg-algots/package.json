@@ -7,8 +7,8 @@
     "build": "puya-ts build smart_contracts --no-output-arc32 --no-output-source-map --debug-level=0 --out-dir artifacts",
     "deploy": "ts-node-dev --transpile-only --watch .env -r dotenv/config smart_contracts/index.ts",
     "deploy:ci": "ts-node --transpile-only -r dotenv/config smart_contracts/index.ts",
-    "lint": "eslint smart_contracts",
-    "lint:fix": "eslint smart_contracts --fix",
+    "lint": "eslint lib_pcg smart_contracts",
+    "lint:fix": "eslint lib_pcg smart_contracts --fix",
     "audit": "better-npm-audit audit",
     "format": "prettier --write .",
     "check-types": "tsc --noEmit"
