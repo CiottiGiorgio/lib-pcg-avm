@@ -13,15 +13,14 @@ from smart_contracts.artifacts.lib_pcg128_exposer_algo_py import (
     LibPcg128ExposerAlgoPyClient,
     LibPcg128ExposerAlgoPyFactory,
 )
+from smart_contracts.artifacts.lib_pcg128_exposer_algo_ts import (
+    LibPcg128ExposerAlgoTsClient,
+    LibPcg128ExposerAlgoTsFactory,
+)
 from smart_contracts.artifacts.lib_pcg128_exposer_pyteal import (
     LibPcg128ExposerPytealClient,
     LibPcg128ExposerPytealFactory,
 )
-
-# from smart_contracts.artifacts.lib_pcg128_exposer_algo_ts import (
-#     LibPcg128ExposerAlgoTsClient,
-#     LibPcg128ExposerAlgoTsFactory,
-# )
 from smart_contracts.artifacts.lib_pcg128_exposer_ts import (
     LibPcg128ExposerTsClient,
     LibPcg128ExposerTsFactory,
@@ -60,6 +59,36 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 metafunc.parametrize("max_unbounded_opup_calls", [19])
             if "max_bounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize("max_bounded_opup_calls", [22])
+        case "algots":
+            if "lib_pcg128_client" in metafunc.fixturenames:
+                metafunc.parametrize(
+                    "lib_pcg128_client", ["lib_pcg128_exposer_algots_client"]
+                )
+            if "get_random_sequence_method" in metafunc.fixturenames:
+
+                def get_random_sequence_method(
+                    client: LibPcg128ExposerAlgoTsClient,
+                    seed: bytes,
+                    lower_bound: int,
+                    upper_bound: int,
+                    length: int,
+                ) -> SendAtomicTransactionComposerResults:
+                    return (
+                        client.new_group()
+                        .bounded_rand_uint128((seed, lower_bound, upper_bound, length))
+                        .simulate(extra_opcode_budget=320_000)
+                    )
+
+                metafunc.parametrize(
+                    "get_random_sequence_method",
+                    [get_random_sequence_method],
+                )
+            if "expected_library_size" in metafunc.fixturenames:
+                metafunc.parametrize("expected_library_size", [12_000])
+            if "max_unbounded_opup_calls" in metafunc.fixturenames:
+                metafunc.parametrize("max_unbounded_opup_calls", [21])
+            if "max_bounded_opup_calls" in metafunc.fixturenames:
+                metafunc.parametrize("max_bounded_opup_calls", [26])
         case "ts":
             if "lib_pcg128_client" in metafunc.fixturenames:
                 metafunc.parametrize(
@@ -140,6 +169,20 @@ def lib_pcg128_exposer_algopy_client(
     algorand_client: AlgorandClient, deployer: SigningAccount
 ) -> LibPcg128ExposerAlgoPyClient:
     client, _ = LibPcg128ExposerAlgoPyFactory(
+        algorand_client, default_sender=deployer.address
+    ).deploy(
+        on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
+        on_update=algokit_utils.OnUpdate.UpdateApp,
+    )
+
+    return client
+
+
+@pytest.fixture(scope="session")
+def lib_pcg128_exposer_algots_client(
+    algorand_client: AlgorandClient, deployer: SigningAccount
+) -> LibPcg128ExposerAlgoTsClient:
+    client, _ = LibPcg128ExposerAlgoTsFactory(
         algorand_client, default_sender=deployer.address
     ).deploy(
         on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
