@@ -5,7 +5,7 @@ from algopy import Global, Txn, arc4
 from lib_pcg import pcg128_init, pcg128_random
 
 
-class LibPcg128ExposerAlgopy(arc4.ARC4Contract):
+class LibPcg128ExposerAlgoPy(arc4.ARC4Contract):
     @arc4.abimethod
     def bounded_rand_uint128(
         self,

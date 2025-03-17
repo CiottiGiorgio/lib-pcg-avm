@@ -1,0 +1,8 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 0.2.0
+_src_path: https://github.com/algorandfoundation/algokit-typescript-template
+author_email: giorgio.ciotti@algorand.foundation
+author_name: CiottiGiorgio
+contract_name: hello_world
+preset_name: production
+project_name: lib-pcg-algots

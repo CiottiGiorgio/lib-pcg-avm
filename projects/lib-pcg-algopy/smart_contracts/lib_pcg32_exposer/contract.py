@@ -12,7 +12,7 @@ from lib_pcg import (
 )
 
 
-class LibPcg32ExposerAlgopy(arc4.ARC4Contract):
+class LibPcg32ExposerAlgoPy(arc4.ARC4Contract):
     @arc4.abimethod
     def bounded_rand_uint32(
         self,

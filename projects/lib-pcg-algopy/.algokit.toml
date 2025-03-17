@@ -1,9 +1,13 @@
 [algokit]
 min_version = "v2.0.0"
 
-[generate.smart_contract]
-description = "Adds new smart contract to existing project"
+[generate.smart-contract]
+description = "Generate a new smart contract for existing project"
 path = ".algokit/generators/create_contract"
+
+[generate.env-file]
+description = "Generate a new generic or Algorand network specific .env file"
+path = ".algokit/generators/create_env_file"
 
 [project]
 type = 'contract'
@@ -26,17 +30,16 @@ build = { commands = [
   'poetry run python -m smart_contracts build',
 ], description = 'Build all smart contracts in the project' }
 audit = { commands = [
-  'poetry export --without=dev -o requirements.txt',
-  'poetry run pip-audit -r requirements.txt',
-], description = 'Audit with pip-audit' }
-audit-teal = { commands = [
-  # 🚨 IMPORTANT 🚨: For strict TEAL validation, remove --exclude statements. The default starter contract is not for production. Ensure thorough testing and adherence to best practices in smart contract development. This is not a replacement for a professional audit.
-  'algokit task analyze smart_contracts/artifacts --recursive --force --exclude rekey-to --exclude is-updatable --exclude missing-fee-check --exclude is-deletable --exclude can-close-asset --exclude can-close-account --exclude unprotected-deletable --exclude unprotected-updatable',
-], description = 'Audit TEAL files' }
+  'poetry run pip-audit',
+], description = 'Audit with pip-audit. NOTE: If used with poetry >v2, make sure to install `poetry-plugin-export` as per https://github.com/python-poetry/poetry-plugin-export#installation.' }
 lint = { commands = [
   'poetry run black .',
   'poetry run ruff check . --fix',
 ], description = 'Perform linting' }
+audit-teal = { commands = [
+  # 🚨 IMPORTANT 🚨: For strict TEAL validation, remove --exclude statements. The default starter contract is not for production. Ensure thorough testing and adherence to best practices in smart contract development. This is not a replacement for a professional audit.
+  'algokit task analyze smart_contracts/artifacts --recursive --force --exclude rekey-to --exclude is-updatable --exclude missing-fee-check --exclude is-deletable --exclude can-close-asset --exclude can-close-account --exclude unprotected-deletable --exclude unprotected-updatable',
+], description = 'Audit TEAL files' }
 
 # Commands intented for CI only, prefixed with `ci-` by convention
 ci-teal-diff = { commands = [

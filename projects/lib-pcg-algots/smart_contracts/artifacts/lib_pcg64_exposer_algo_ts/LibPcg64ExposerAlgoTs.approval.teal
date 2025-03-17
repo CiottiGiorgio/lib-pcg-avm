@@ -1,0 +1,339 @@
+#pragma version 10
+#pragma typetrack false
+
+// @algorandfoundation/algorand-typescript/arc4/index.d.ts::Contract.approvalProgram() -> uint64:
+main:
+    intcblock 1 0 6364136223846793005 1442695040888963407 1442695040888963409 4294967295
+    txn NumAppArgs
+    bz main_bare_routing@6
+    pushbytes 0xba5682ce // method "bounded_rand_uint64(byte[16],uint64,uint64,uint16)uint64[]"
+    txna ApplicationArgs 0
+    match main_bounded_rand_uint64_route@3
+
+main_after_if_else@11:
+    intc_1 // 0
+    return
+
+main_bounded_rand_uint64_route@3:
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    txna ApplicationArgs 1
+    txna ApplicationArgs 2
+    txna ApplicationArgs 3
+    txna ApplicationArgs 4
+    callsub bounded_rand_uint64
+    pushbytes 0x151f7c75
+    swap
+    concat
+    log
+    intc_0 // 1
+    return
+
+main_bare_routing@6:
+    pushint 4 // 4
+    intc_1 // 0
+    txn OnCompletion
+    match main_update@7 main___algots__.defaultCreate@8
+    b main_after_if_else@11
+
+main___algots__.defaultCreate@8:
+    txn ApplicationID
+    !
+    assert // can only call when creating
+    intc_0 // 1
+    return
+
+main_update@7:
+    txn ApplicationID
+    assert // can only call when not creating
+    callsub update
+    intc_0 // 1
+    return
+
+
+// lib_pcg/pcg32.algo.ts::__pcg32Output(state: uint64) -> uint64:
+__pcg32Output:
+    proto 1 1
+    frame_dig -1
+    pushint 18 // 18
+    shr
+    frame_dig -1
+    ^
+    pushint 27 // 27
+    shr
+    intc 5 // 4294967295
+    &
+    frame_dig -1
+    pushint 59 // 59
+    shr
+    dup2
+    shr
+    swap
+    ~
+    intc_0 // 1
+    addw
+    bury 1
+    pushint 31 // 31
+    &
+    uncover 2
+    swap
+    shl
+    intc 5 // 4294967295
+    &
+    |
+    retsub
+
+
+// lib_pcg/pcg64.algo.ts::__pcg64UnboundedRandom(state.0: uint64, state.1: uint64) -> uint64, uint64, uint64:
+__pcg64UnboundedRandom:
+    proto 2 3
+    frame_dig -2
+    intc_2 // 6364136223846793005
+    mulw
+    bury 1
+    intc_3 // 1442695040888963407
+    addw
+    dup
+    uncover 2
+    pop
+    bnz __pcg64UnboundedRandom_ternary_false@2
+    pushint 2885390081777926818 // 2885390081777926818
+
+__pcg64UnboundedRandom_ternary_merge@3:
+    frame_dig -1
+    intc_2 // 6364136223846793005
+    mulw
+    bury 1
+    addw
+    bury 1
+    frame_dig -2
+    callsub __pcg32Output
+    pushint 32 // 32
+    shl
+    frame_dig -1
+    callsub __pcg32Output
+    |
+    frame_dig 0
+    cover 2
+    uncover 3
+    retsub
+
+__pcg64UnboundedRandom_ternary_false@2:
+    intc 4 // 1442695040888963409
+    b __pcg64UnboundedRandom_ternary_merge@3
+
+
+// smart_contracts/lib_pcg64_exposer_algo_ts/contract.algo.ts::LibPcg64ExposerAlgoTs.bounded_rand_uint64(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
+bounded_rand_uint64:
+    proto 4 1
+    pushbytes ""
+    dupn 7
+    frame_dig -4
+    len
+    pushint 16 // 16
+    ==
+    assert
+    frame_dig -4
+    intc_1 // 0
+    extract_uint64
+    intc_1 // 0
+    intc_2 // 6364136223846793005
+    mulw
+    bury 1
+    dup
+    intc_3 // 1442695040888963407
+    addw
+    bury 1
+    uncover 2
+    addw
+    bury 1
+    intc_2 // 6364136223846793005
+    mulw
+    bury 1
+    intc_3 // 1442695040888963407
+    addw
+    cover 2
+    pop
+    frame_dig -4
+    pushint 8 // 8
+    extract_uint64
+    swap
+    intc 4 // 1442695040888963409
+    addw
+    bury 1
+    addw
+    bury 1
+    intc_2 // 6364136223846793005
+    mulw
+    bury 1
+    intc 4 // 1442695040888963409
+    addw
+    bury 1
+    frame_dig -3
+    btoi
+    dup
+    frame_dig -2
+    btoi
+    swap
+    frame_dig -1
+    btoi
+    swap
+    pushbytes 0x0000
+    swap
+    bnz bounded_rand_uint64_else_body@9
+    frame_dig 11
+    bnz bounded_rand_uint64_else_body@9
+    intc_1 // 0
+    frame_bury 2
+    frame_dig 9
+    frame_bury 6
+    frame_dig 8
+    frame_bury 5
+
+bounded_rand_uint64_while_top@6:
+    frame_dig 2
+    frame_dig 12
+    <
+    bz bounded_rand_uint64_after_if_else@20
+    frame_dig 5
+    frame_dig 6
+    callsub __pcg64UnboundedRandom
+    frame_dig 13
+    extract 2 0
+    swap
+    itob
+    concat
+    dup
+    len
+    pushint 8 // 8
+    /
+    itob
+    extract 6 2
+    swap
+    concat
+    frame_bury 13
+    frame_dig 2
+    intc_0 // 1
+    +
+    frame_bury 2
+    frame_bury 6
+    frame_bury 5
+    b bounded_rand_uint64_while_top@6
+
+bounded_rand_uint64_after_if_else@20:
+    frame_dig 13
+    frame_bury 0
+    retsub
+
+bounded_rand_uint64_else_body@9:
+    frame_dig 11
+    bz bounded_rand_uint64_else_body@11
+    frame_dig 11
+    dup
+    intc_0 // 1
+    >
+    assert
+    dup
+    intc_0 // 1
+    -
+    frame_dig 10
+    dup
+    uncover 2
+    <
+    assert
+    -
+    frame_bury 0
+
+bounded_rand_uint64_after_if_else@12:
+    frame_dig 0
+    dup
+    ~
+    intc_0 // 1
+    addw
+    bury 1
+    swap
+    %
+    frame_bury 7
+    intc_1 // 0
+    frame_bury 3
+    frame_dig 9
+    frame_bury 6
+    frame_dig 8
+    frame_bury 5
+
+bounded_rand_uint64_while_top@13:
+    frame_dig 3
+    frame_dig 12
+    <
+    bz bounded_rand_uint64_after_if_else@20
+
+bounded_rand_uint64_while_top@15:
+    frame_dig 5
+    frame_dig 6
+    callsub __pcg64UnboundedRandom
+    dup
+    cover 3
+    frame_bury 1
+    cover 2
+    frame_bury 4
+    frame_dig 7
+    >=
+    bz bounded_rand_uint64_after_if_else@17
+    frame_dig 13
+    extract 2 0
+    frame_dig 1
+    frame_dig 0
+    %
+    frame_dig 10
+    +
+    itob
+    concat
+    dup
+    len
+    pushint 8 // 8
+    /
+    itob
+    extract 6 2
+    swap
+    concat
+    frame_bury 13
+    frame_dig 3
+    intc_0 // 1
+    +
+    frame_bury 3
+    frame_bury 6
+    frame_dig 4
+    frame_bury 5
+    b bounded_rand_uint64_while_top@13
+
+bounded_rand_uint64_after_if_else@17:
+    frame_bury 6
+    frame_dig 4
+    frame_bury 5
+    b bounded_rand_uint64_while_top@15
+
+bounded_rand_uint64_else_body@11:
+    frame_dig 10
+    dup
+    pushint 18446744073709551615 // 18446744073709551615
+    <
+    assert
+    itob
+    pushbytes 0x010000000000000000
+    swap
+    b-
+    btoi
+    frame_bury 0
+    b bounded_rand_uint64_after_if_else@12
+
+
+// smart_contracts/lib_pcg64_exposer_algo_ts/contract.algo.ts::LibPcg64ExposerAlgoTs.update() -> void:
+update:
+    txn Sender
+    global CreatorAddress
+    ==
+    assert
+    retsub

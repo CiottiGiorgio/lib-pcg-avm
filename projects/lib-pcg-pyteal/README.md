@@ -18,13 +18,11 @@ from lib_pcg.pcg32 import pcg32_init, pcg32_random
 
 
 @app.external
-def your_method(
-  ...
-) -> ...:
-  # Here you would acquire a safe randomness seed.
+def your_method(...) -> ...:
+  # Here you would acquire a safe randomness seed
   ...
 
-  # Create a ScratchVar that holds your PRNG state.
+  # Create a ScratchVar that holds your PRNG state
   rng_handle = pt.ScratchVar(pt.TealType.uint64)
 
   return pt.Seq(

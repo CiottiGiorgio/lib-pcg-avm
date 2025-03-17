@@ -27,14 +27,14 @@
       }
     },
     {
-      "name": "updateApplication",
+      "name": "createApplication",
       "args": [],
       "returns": {
         "type": "void"
       }
     },
     {
-      "name": "createApplication",
+      "name": "updateApplication",
       "args": [],
       "returns": {
         "type": "void"
