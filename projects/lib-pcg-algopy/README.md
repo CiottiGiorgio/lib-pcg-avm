@@ -19,7 +19,7 @@ from lib_pcg import pcg32_init, pcg32_random
 class YourContract(arc4.ARC4Contract):
   @arc4.abimethod
   def your_method(self, ...) -> ...:
-    # Here you would acquire a safe randomness seed.
+    # Here you would acquire a safe randomness seed
     ...
     
     # Seed the PRNG

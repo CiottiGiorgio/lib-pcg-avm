@@ -12,7 +12,7 @@ In your contract, import `pcg<N>Init` and `pcg<N>Random` for your preferred size
 ```typescript
 export class YourContract extends Contract {
   yourMethod(...): ... {
-    // Here you would acquire a safe randomness seed.
+    // Here you would acquire a safe randomness seed
     ...
 
     // Seed the PRNG
