@@ -14,8 +14,11 @@
       "path": "projects/lib-pcg-pyteal"
     },
     {
-      "path": "projects/unified-tests"
+      "path": "projects/lib-pcg-ts"
     },
+    {
+      "path": "projects/unified-tests"
+    }
   ],
   "settings": {
     "files.exclude": {
