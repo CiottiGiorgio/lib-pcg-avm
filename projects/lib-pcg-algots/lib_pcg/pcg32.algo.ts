@@ -1,5 +1,12 @@
-import { uint64, op, bytes, Bytes, assert, Uint64 } from '@algorandfoundation/algorand-typescript'
-import { DynamicArray, UintN } from '@algorandfoundation/algorand-typescript/arc4'
+import { assert, bytes, Bytes, op, Uint64, uint64 } from '@algorandfoundation/algorand-typescript'
+import {
+  interpretAsArc4,
+  DynamicArray,
+  UintN,
+  UintN32,
+  UintN8,
+  UintN16,
+} from '@algorandfoundation/algorand-typescript/arc4'
 import { pcgFirstIncrement, pcgMultiplier } from './consts.algo'
 
 type PCG32STATE = uint64
@@ -114,16 +121,10 @@ export function pcg32Random(
   lowerBound: uint64,
   upperBound: uint64,
   length: uint64,
-): [PCG32STATE, DynamicArray<UintN<32>>] {
-  const result = new DynamicArray<UintN<32>>()
+): [PCG32STATE, DynamicArray<UintN32>] {
   const [newState, sequence] = __pcg32BoundedSequence(state, 32, lowerBound, upperBound, length)
 
-  // This works while waiting for .fromBytes() to be implemented
-  for (let i = Uint64(0); i < length; i = i + 1) {
-    result.push(new UintN<32>(op.extractUint32(sequence, 2 + i * 4)))
-  }
-
-  return [newState, result.copy()]
+  return [newState, interpretAsArc4<DynamicArray<UintN32>>(sequence)]
 }
 
 export function pcg16Random(
@@ -131,16 +132,10 @@ export function pcg16Random(
   lowerBound: uint64,
   upperBound: uint64,
   length: uint64,
-): [PCG32STATE, DynamicArray<UintN<16>>] {
-  const result = new DynamicArray<UintN<16>>()
+): [PCG32STATE, DynamicArray<UintN16>] {
   const [newState, sequence] = __pcg32BoundedSequence(state, 16, lowerBound, upperBound, length)
 
-  // This works while waiting for .fromBytes() to be implemented
-  for (let i = Uint64(0); i < length; i = i + 1) {
-    result.push(new UintN<16>(op.extractUint16(sequence, 2 + i * 2)))
-  }
-
-  return [newState, result.copy()]
+  return [newState, interpretAsArc4<DynamicArray<UintN16>>(sequence)]
 }
 
 export function pcg8Random(
@@ -148,14 +143,8 @@ export function pcg8Random(
   lowerBound: uint64,
   upperBound: uint64,
   length: uint64,
-): [PCG32STATE, DynamicArray<UintN<8>>] {
-  const result = new DynamicArray<UintN<8>>()
+): [PCG32STATE, DynamicArray<UintN8>] {
   const [newState, sequence] = __pcg32BoundedSequence(state, 8, lowerBound, upperBound, length)
 
-  // This works while waiting for .fromBytes() to be implemented
-  for (let i = Uint64(0); i < length; i = i + 1) {
-    result.push(new UintN<8>(op.btoi(op.extract(sequence, 2 + i, 1))))
-  }
-
-  return [newState, result.copy()]
+  return [newState, interpretAsArc4<DynamicArray<UintN8>>(sequence)]
 }
