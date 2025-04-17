@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lib-pcg-algopy"
-version = "0.4.0"
+version = "0.4.1"
 description = "PCG library implemented using Algorand Python"
 license = "MIT"
 authors = ["CiottiGiorgio <giorgio.ciotti@algorand.foundation>"]
@@ -10,11 +10,11 @@ packages = [{include = "lib_pcg"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
-algokit-utils = "^3.0.0"
-python-dotenv = "^1.0.0"
 algorand-python = "^2.0.0"
 
 [tool.poetry.group.dev.dependencies]
+algokit-utils = "^3.0.0"
+python-dotenv = "^1.0.0"
 algokit-client-generator = "^2.0.0"
 black = {extras = ["d"], version = "*"}
 ruff = "^0.9.4"
