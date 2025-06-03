@@ -13,7 +13,7 @@ python = "^3.12"
 algorand-python = "^2.0.0"
 
 [tool.poetry.group.dev.dependencies]
-algokit-utils = "^3.0.0"
+algokit-utils = ">=3,<5"
 python-dotenv = "^1.0.0"
 algokit-client-generator = "^2.0.0"
 black = {extras = ["d"], version = "*"}
