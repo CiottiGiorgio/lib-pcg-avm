@@ -125,11 +125,12 @@ __pcg32_bounded_sequence:
     pushbytes ""
     dupn 5
     frame_dig -1
-    pushint 65536 // 65536
-    <
-    assert
-    frame_dig -1
     itob
+    dup
+    bitlen
+    pushint 16 // 16
+    <=
+    assert // overflow
     extract 6 2
     frame_dig -4
     intc_3 // 8

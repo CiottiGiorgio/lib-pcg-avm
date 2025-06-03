@@ -194,7 +194,6 @@ def __pcg32_bounded_sequence(
     """
     result = Bytes()
 
-    assert length < 2**16
     result += arc4.UInt16(length).bytes
 
     assert bit_size == 8 or bit_size == 16 or bit_size == 32
