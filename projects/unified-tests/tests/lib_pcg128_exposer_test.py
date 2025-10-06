@@ -58,7 +58,7 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize("max_unbounded_opup_calls", [19])
             if "max_bounded_opup_calls" in metafunc.fixturenames:
-                metafunc.parametrize("max_bounded_opup_calls", [22])
+                metafunc.parametrize("max_bounded_opup_calls", [23])
         case "algots":
             if "lib_pcg128_client" in metafunc.fixturenames:
                 metafunc.parametrize(

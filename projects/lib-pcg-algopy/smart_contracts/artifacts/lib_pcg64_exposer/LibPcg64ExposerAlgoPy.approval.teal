@@ -1,57 +1,43 @@
-#pragma version 10
+#pragma version 11
 #pragma typetrack false
 
 // algopy.arc4.ARC4Contract.approval_program() -> uint64:
 main:
     intcblock 1 0 6364136223846793005 4294967295 1442695040888963407 1442695040888963409
     txn NumAppArgs
-    bz main_bare_routing@6
+    bz main_bare_routing@5
     pushbytes 0xba5682ce // method "bounded_rand_uint64(byte[16],uint64,uint64,uint16)uint64[]"
     txna ApplicationArgs 0
     match main_bounded_rand_uint64_route@3
-
-main_after_if_else@11:
-    intc_1 // 0
-    return
+    err
 
 main_bounded_rand_uint64_route@3:
     txn OnCompletion
     !
-    assert // OnCompletion is not NoOp
     txn ApplicationID
-    assert // can only call when not creating
-    txna ApplicationArgs 1
-    txna ApplicationArgs 2
-    txna ApplicationArgs 3
-    txna ApplicationArgs 4
-    callsub bounded_rand_uint64
-    pushbytes 0x151f7c75
-    swap
-    concat
-    log
-    intc_0 // 1
-    return
+    &&
+    assert // OnCompletion must be NoOp && can only call when not creating
+    b bounded_rand_uint64
 
-main_bare_routing@6:
-    pushint 4 // 4
-    intc_1 // 0
+main_bare_routing@5:
+    intc_1 // NoOp
+    pushint 4 // UpdateApplication
     txn OnCompletion
-    match main_update@7 main___algopy_default_create@8
-    b main_after_if_else@11
-
-main___algopy_default_create@8:
-    txn ApplicationID
-    !
-    assert // can only call when creating
-    intc_0 // 1
-    return
+    match main___algopy_default_create@6 main_update@7
+    err
 
 main_update@7:
     txn ApplicationID
     assert // can only call when not creating
-    callsub update
-    intc_0 // 1
+    txn Sender
+    global CreatorAddress
+    ==
     return
+
+main___algopy_default_create@6:
+    txn ApplicationID
+    !
+    return // on error: can only call when creating
 
 
 // lib_pcg.pcg64.__pcg64_unbounded_random(state.0: uint64, state.1: uint64) -> uint64, uint64, uint64:
@@ -135,17 +121,20 @@ __pcg64_unbounded_random:
     retsub
 
 
-// smart_contracts.lib_pcg64_exposer.contract.LibPcg64ExposerAlgoPy.bounded_rand_uint64(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
+// smart_contracts.lib_pcg64_exposer.contract.LibPcg64ExposerAlgoPy.bounded_rand_uint64[routing]() -> void:
 bounded_rand_uint64:
-    proto 4 1
     pushbytes ""
     dupn 5
-    frame_dig -4
+    txna ApplicationArgs 1
+    txna ApplicationArgs 2
+    txna ApplicationArgs 3
+    txna ApplicationArgs 4
+    dig 3
     len
     pushint 16 // 16
     ==
     assert
-    frame_dig -4
+    dig 3
     intc_1 // 0
     extract_uint64
     intc_1 // 0
@@ -164,9 +153,9 @@ bounded_rand_uint64:
     bury 1
     intc 4 // 1442695040888963407
     addw
-    cover 2
+    cover 6
     pop
-    frame_dig -4
+    uncover 4
     pushint 8 // 8
     extract_uint64
     swap
@@ -180,68 +169,73 @@ bounded_rand_uint64:
     bury 1
     intc 5 // 1442695040888963409
     addw
-    bury 1
-    frame_dig -3
+    cover 4
+    pop
+    uncover 2
     btoi
     dup
-    frame_dig -2
+    cover 3
+    uncover 2
     btoi
+    cover 2
     swap
-    frame_dig -1
     btoi
     swap
     pushbytes 0x0000
     swap
     bnz bounded_rand_uint64_else_body@9
-    frame_dig 9
+    dig 2
     bnz bounded_rand_uint64_else_body@9
     intc_1 // 0
-    frame_bury 2
-    frame_dig 7
-    frame_bury 4
-    frame_dig 6
-    frame_bury 3
+    dig 5
+    bury 9
+    dig 6
+    bury 10
+    bury 10
 
 bounded_rand_uint64_for_header@6:
-    frame_dig 2
-    frame_dig 10
+    dig 9
+    dig 2
     <
     bz bounded_rand_uint64_after_if_else@19
-    frame_dig 3
-    frame_dig 4
+    dig 8
+    dig 8
     callsub __pcg64_unbounded_random
     cover 2
-    frame_bury 4
-    frame_bury 3
-    frame_dig 11
-    extract 2 0
-    swap
+    bury 10
+    bury 10
     itob
-    concat
+    dig 1
     dup
-    len
-    pushint 8 // 8
-    /
-    itob
-    extract 6 2
+    uncover 2
+    concat // on error: max array length exceeded
     swap
-    concat
-    frame_bury 11
-    frame_dig 2
+    intc_1 // 0
+    extract_uint16
     intc_0 // 1
     +
-    frame_bury 2
+    itob
+    extract 6 2
+    replace2 0
+    bury 1
+    dig 9
+    intc_0 // 1
+    +
+    bury 10
     b bounded_rand_uint64_for_header@6
 
 bounded_rand_uint64_after_if_else@19:
-    frame_dig 11
-    frame_bury 0
-    retsub
+    pushbytes 0x151f7c75
+    dig 1
+    concat
+    log
+    intc_0 // 1
+    return
 
 bounded_rand_uint64_else_body@9:
-    frame_dig 9
+    dig 2
     bz bounded_rand_uint64_else_body@11
-    frame_dig 9
+    dig 2
     dup
     intc_0 // 1
     >
@@ -249,16 +243,16 @@ bounded_rand_uint64_else_body@9:
     dup
     intc_0 // 1
     -
-    frame_dig 8
+    dig 5
     dup
     uncover 2
     <
     assert
     -
-    frame_bury 0
+    bury 12
 
 bounded_rand_uint64_after_if_else@12:
-    frame_dig 0
+    dig 11
     dup
     ~
     intc_0 // 1
@@ -266,58 +260,59 @@ bounded_rand_uint64_after_if_else@12:
     bury 1
     swap
     %
-    frame_bury 5
+    bury 7
     intc_1 // 0
-    frame_bury 2
-    frame_dig 7
-    frame_bury 4
-    frame_dig 6
-    frame_bury 3
+    dig 5
+    bury 9
+    dig 6
+    bury 10
+    bury 10
 
 bounded_rand_uint64_for_header@13:
-    frame_dig 2
-    frame_dig 10
+    dig 9
+    dig 2
     <
     bz bounded_rand_uint64_after_if_else@19
 
 bounded_rand_uint64_while_top@15:
-    frame_dig 3
-    frame_dig 4
+    dig 8
+    dig 8
     callsub __pcg64_unbounded_random
     dup
     cover 3
-    frame_bury 1
-    frame_bury 4
-    frame_bury 3
-    frame_dig 5
+    bury 14
+    bury 10
+    bury 10
+    dig 7
     >=
     bz bounded_rand_uint64_while_top@15
-    frame_dig 11
-    extract 2 0
-    frame_dig 1
-    frame_dig 0
+    dig 10
+    dig 12
     %
-    frame_dig 8
+    dig 4
     +
     itob
-    concat
+    dig 1
     dup
-    len
-    pushint 8 // 8
-    /
-    itob
-    extract 6 2
+    uncover 2
+    concat // on error: max array length exceeded
     swap
-    concat
-    frame_bury 11
-    frame_dig 2
+    intc_1 // 0
+    extract_uint16
     intc_0 // 1
     +
-    frame_bury 2
+    itob
+    extract 6 2
+    replace2 0
+    bury 1
+    dig 9
+    intc_0 // 1
+    +
+    bury 10
     b bounded_rand_uint64_for_header@13
 
 bounded_rand_uint64_else_body@11:
-    frame_dig 8
+    dig 3
     dup
     pushint 18446744073709551615 // 18446744073709551615
     <
@@ -327,14 +322,5 @@ bounded_rand_uint64_else_body@11:
     swap
     b-
     btoi
-    frame_bury 0
+    bury 12
     b bounded_rand_uint64_after_if_else@12
-
-
-// smart_contracts.lib_pcg64_exposer.contract.LibPcg64ExposerAlgoPy.update() -> void:
-update:
-    txn Sender
-    global CreatorAddress
-    ==
-    assert
-    retsub

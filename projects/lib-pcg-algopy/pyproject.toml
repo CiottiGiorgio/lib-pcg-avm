@@ -10,14 +10,13 @@ packages = [{include = "lib_pcg"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
-algorand-python = "^2.0.0"
+algokit-utils = "^4.0.0"
+python-dotenv = "^1.0.0"
+algorand-python = "^3"
 
 [tool.poetry.group.dev.dependencies]
-algokit-utils = "^3.0.0"
-python-dotenv = "^1.0.0"
-algokit-client-generator = "^2.0.0"
 black = {extras = ["d"], version = "*"}
-ruff = ">=0.9.4,<0.12.0"
+ruff = "^0.9.4"
 mypy = "^1"
 pip-audit = "*"
 pre-commit = "*"

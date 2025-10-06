@@ -7,11 +7,11 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-algokit-utils = "^3.0.2"
+algokit-utils = "^4.0.0"
 python-dotenv = "^1.0.0"
-algokit-client-generator = "^2.0.0"
 
 [tool.poetry.group.dev.dependencies]
+algokit-client-generator = "^2.1.0"
 black = {extras = ["d"], version = "*"}
 ruff = "^0.9.4"
 mypy = "^1"
