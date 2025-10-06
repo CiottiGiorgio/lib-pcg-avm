@@ -142,6 +142,11 @@ __pcg32BoundedSequence:
     assert
     frame_dig -1
     itob
+    dup
+    bitlen
+    pushint 16 // 16
+    <=
+    assert // overflow
     extract 6 2
     frame_dig -4
     intc_2 // 8

@@ -4,7 +4,7 @@
   "description": "Smart contract deployer",
   "main": "smart_contracts/index.ts",
   "scripts": {
-    "build": "puya-ts build smart_contracts --no-output-arc32 --no-output-source-map --debug-level=0 --out-dir artifacts",
+    "build": "algokit compile ts smart_contracts --no-output-arc32 --no-output-source-map --debug-level=0 --out-dir artifacts",
     "deploy": "ts-node-dev --transpile-only --watch .env -r dotenv/config smart_contracts/index.ts",
     "deploy:ci": "ts-node --transpile-only -r dotenv/config smart_contracts/index.ts",
     "lint": "eslint lib_pcg smart_contracts",
@@ -18,24 +18,24 @@
     "npm": ">=9.0"
   },
   "dependencies": {
-    "@algorandfoundation/algorand-typescript": "^1.0.0-beta.25"
+    "@algorandfoundation/algorand-typescript": "~1.0.0-beta.25 <1.0.0"
   },
   "devDependencies": {
-    "@algorandfoundation/algokit-client-generator": "^4.0.8",
-    "@algorandfoundation/algokit-utils": "^8.2.1",
-    "@algorandfoundation/algokit-utils-debug": "^1.0.3",
-    "@algorandfoundation/puya-ts": "^1.0.0-beta.45",
-    "@eslint/js": "^9.18.0",
+    "@algorandfoundation/algokit-client-generator": "^6.0.0",
+    "@algorandfoundation/algokit-utils": "^9.0.0",
+    "@algorandfoundation/algokit-utils-debug": "^1.0.4",
+    "@algorandfoundation/puya-ts": "~1.0.0-beta.50 <1.0.0",
     "@rollup/plugin-typescript": "^12.1.2",
     "@tsconfig/node22": "^22.0.0",
     "algosdk": "^3.0.0",
     "better-npm-audit": "^3.11.0",
     "dotenv": "^16.4.7",
     "eslint": "^9.18.0",
+    "@eslint/js": "^9.18.0",
+    "typescript-eslint": "^8.19.1",
     "prettier": "^3.4.2",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.7.3",
-    "typescript-eslint": "^8.19.1"
+    "typescript": "^5.7.3"
   },
   "overrides": {
     "esbuild": "0.25.0"

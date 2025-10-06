@@ -132,11 +132,6 @@ bounded_rand_uint64:
     pushbytes ""
     dupn 7
     frame_dig -4
-    len
-    pushint 16 // 16
-    ==
-    assert
-    frame_dig -4
     intc_1 // 0
     extract_uint64
     intc_1 // 0
