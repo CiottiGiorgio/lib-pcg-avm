@@ -1,10 +1,19 @@
-# .github/dependabot.yml
 version: 2
 updates:
-  - package-ecosystem: "pip"
-    directory: "/projects/lib-pcg-algopy"
+  - package-ecosystem: pip
+    directory: /projects/lib-pcg-algopy
     schedule:
-      interval: "weekly"
+      interval: weekly
     groups:
       minor-and-patch:
-        update-types: ["minor", "patch"]
+        update-types:
+          - minor
+          - patch
+  - package-ecosystem: npm
+    directory: /projects/lib-pcg-algots
+    schedule: weekly
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
