@@ -11,7 +11,7 @@ build = { commands = [
   'npm run compile-contract',
 ], description = 'Build all smart contracts in the project' }
 lint = { commands = [
-  'npm run fix',
+  'npm run lint:fix',
 ], description = 'Perform linting' }
 
 
