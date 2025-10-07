@@ -16,6 +16,10 @@ audit = { commands = [
 lint = { commands = [
   'npm run lint:fix',
 ], description = 'Perform linting' }
+audit-teal = { commands = [
+  # 🚨 IMPORTANT 🚨: For strict TEAL validation, remove --exclude statements. The default starter contract is not for production. Ensure thorough testing and adherence to best practices in smart contract development. This is not a replacement for a professional audit.
+  'algokit task analyze contracts/artifacts --recursive --force --exclude rekey-to --exclude is-updatable --exclude missing-fee-check --exclude is-deletable --exclude can-close-asset --exclude can-close-account --exclude unprotected-deletable --exclude unprotected-updatable',
+], description = 'Audit TEAL files' }
 
 
 # Commands intented for CI only, prefixed with `ci-` by convention
