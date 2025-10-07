@@ -29,7 +29,7 @@
     "@tsconfig/node22": "^22.0.0",
     "algosdk": "^3.0.0",
     "better-npm-audit": "^3.11.0",
-    "dotenv": "^16.4.7",
+    "dotenv": "^17.2.3",
     "eslint": "^9.18.0",
     "@eslint/js": "^9.18.0",
     "typescript-eslint": "^8.19.1",
