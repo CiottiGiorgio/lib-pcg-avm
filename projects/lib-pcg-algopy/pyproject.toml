@@ -10,8 +10,6 @@ packages = [{include = "lib_pcg"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
-algokit-utils = "^4.0.0"
-python-dotenv = "^1.0.0"
 algorand-python = "^3"
 
 [tool.poetry.group.dev.dependencies]
@@ -21,6 +19,8 @@ mypy = "^1"
 pip-audit = "*"
 pre-commit = "*"
 puyapy = "*"
+algokit-utils = "^4.0.0"
+python-dotenv = "^1.0.0"
 
 [build-system]
 requires = ["poetry-core"]
