@@ -1,0 +1,30 @@
+name: AlgoTs Release
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      # We would like to only run this workflow in case something changes in the algots project.
+      # However, we can't use both paths and paths-ignore clauses.
+      # To be on the safe side and not ignore changes that are important, we only ignore specific subprojects
+      #  instead of everything outside algots.
+      - "/projects/lib-pcg-algopy/**"
+      - "/projects/lib-pcg-pyteal/**"
+      - "/projects/lib-pcg-ts/**"
+      - "docs/**"
+      - "**.md"
+      - ".vscode/**"
+      - ".idea/**"
+
+jobs:
+  lib-pcg-algots-validate:
+    name: Run lib-pcg-algots validation
+    secrets: inherit
+    uses: ./.github/workflows/lib-pcg-algots-validate.yml
+
+#  lib-pcg-algots-release:
+#    name: Run lib-pcg-algots release
+#    secrets: inherit
+#    uses: ./.github/workflows/lib-pcg-algots-cd.yml
+#    needs: lib-pcg-algots-validate

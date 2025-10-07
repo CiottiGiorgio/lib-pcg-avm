@@ -1,0 +1,78 @@
+name: AlgoPy Validate
+
+on:
+  pull_request:
+    paths-ignore:
+      # We would like to only run this workflow in case something changes in the algopy project.
+      # However, we can't use both paths and paths-ignore clauses.
+      # To be on the safe side and not ignore changes that are important, we only ignore specific subprojects
+      #  instead of everything outside algopy.
+      - "/projects/lib-pcg-algots/**"
+      - "/projects/lib-pcg-pyteal/**"
+      - "/projects/lib-pcg-ts/**"
+  workflow_call:
+  workflow_dispatch:
+
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: |
+          pipx install poetry
+          pipx inject poetry poetry-plugin-export
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+          cache: poetry
+
+      - name: Install algokit
+        run: pipx install algokit
+
+      - name: Start LocalNet
+        run: algokit localnet start
+
+      - name: Bootstrap dependencies
+        run: algokit project bootstrap all --project-name lib-pcg-algopy
+
+      - name: Bootstrap testing dependencies
+        run: algokit project bootstrap all --project-name unified-tests
+
+      - name: Configure git
+        shell: bash
+        run: |
+          # set git user and email as test invoke git
+          git config --global user.email "actions@github.com" && git config --global user.name "github-actions"
+
+      - name: Audit python dependencies
+        run: algokit project run audit --project-name lib-pcg-algopy
+
+      - name: Lint and format python dependencies
+        run: algokit project run ci-lint --project-name lib-pcg-algopy
+
+      - name: Run tests
+        shell: bash
+        run: |
+          set -o pipefail
+          algokit project run test-algopy --project-name unified-tests
+
+      - name: Build smart contracts
+        run: algokit project run build --project-name lib-pcg-algopy
+
+      - name: Scan TEAL files for issues
+        run: algokit project run audit-teal --project-name lib-pcg-algopy
+
+      - name: Link smart contracts
+        run: algokit project link --language=python --project-name lib-pcg-algopy
+        working-directory: ./projects/unified-tests/
+
+      - name: Check output stability of the smart contracts
+        # We could either catch a diff in algopy of unified-tests (since they are linked).
+        # By doing this and not --project-name, we catch both (and more potentially).
+        run: algokit project run ci-teal-diff --sequential
