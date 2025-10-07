@@ -1,30 +1,69 @@
 name: AlgoPy Release
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      # We would like to only run this workflow in case something changes in the algopy project.
-      # However, we can't use both paths and paths-ignore clauses.
-      # To be on the safe side and not ignore changes that are important, we only ignore specific subprojects
-      #  instead of everything outside algopy.
-      - "projects/lib-pcg-algots/**"
-      - "projects/lib-pcg-pyteal/**"
-      - "projects/lib-pcg-ts/**"
-      - "docs/**"
-      - "**.md"
-      - ".vscode/**"
-      - ".idea/**"
+  workflow_dispatch:
+    inputs:
+      version-bump:
+        description: Version bump
+        required: true
+        default: patch
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      dryrun:
+        description: dryrun?
+        required: true
+        default: true
+        type: boolean
+#  push:
+#    branches:
+#      - main
+#    paths-ignore:
+#      # We would like to only run this workflow in case something changes in the algopy project.
+#      # However, we can't use both paths and paths-ignore clauses.
+#      # To be on the safe side and not ignore changes that are important, we only ignore specific subprojects
+#      #  instead of everything outside algopy.
+#      - "projects/lib-pcg-algots/**"
+#      - "projects/lib-pcg-pyteal/**"
+#      - "projects/lib-pcg-ts/**"
+#      - "docs/**"
+#      - "**.md"
+#      - ".vscode/**"
+#      - ".idea/**"
 
 jobs:
   lib-pcg-algopy-validate:
     name: Run lib-pcg-algopy validation
-    secrets: inherit
     uses: ./.github/workflows/lib-pcg-algopy-validate.yml
 
-#  lib-pcg-algopy-release:
-#    name: Run lib-pcg-algopy release
-#    secrets: inherit
-#    uses: ./.github/workflows/lib-pcg-algopy-cd.yml
-#    needs: lib-pcg-algopy-validate
+  lib-pcg-algopy-release:
+    name: Run lib-pcg-algopy release
+    needs: lib-pcg-algopy-validate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+          cache: poetry
+
+      - name: Build Package
+        working-directory: projects/lib-pcg-algopy
+        run: poetry build
+
+      - name: Bump Package Version
+        working-directory: projects/lib-pcg-algopy
+        run: poetry version ${{ github.event.inputs.version-bump }}
+
+      - name: Publish Package
+        working-directory: projects/lib-pcg-algopy
+        run: poetry publish --username __token__ --password ${{ secrets.PYPI_API_TOKEN }} --dry-run
