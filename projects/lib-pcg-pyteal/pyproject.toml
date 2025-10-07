@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "Algorand smart contracts"
 authors = ["CiottiGiorgio <giorgio.ciotti@algorand.foundation>"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -12,7 +13,7 @@ algokit-utils = "^2.2.0"
 python-dotenv = "^1.0.0"
 
 [tool.poetry.group.dev.dependencies]
-setuptools = "^69.0.2" # Adding explicitly to work around pyteal https://github.com/algorand/pyteal/issues/712
+setuptools = "^78.1.1"
 black = {extras = ["d"], version = "*"}
 ruff = "^0.1.6"
 mypy = "*"
