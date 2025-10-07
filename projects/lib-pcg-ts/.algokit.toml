@@ -10,6 +10,9 @@ artifacts = 'contracts/artifacts'
 build = { commands = [
   'npm run compile-contract',
 ], description = 'Build all smart contracts in the project' }
+audit = { commands = [
+  'npm run audit',
+], description = 'Audit with better-npm-audit' }
 lint = { commands = [
   'npm run lint:fix',
 ], description = 'Perform linting' }
