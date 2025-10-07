@@ -93,13 +93,13 @@ bounded_rand_uint128:
 	bytec 0 // 0x
 	dup
 
-	// contracts\lib-pcg128-exposer-ts.algo.ts:7
+	// contracts/lib-pcg128-exposer-ts.algo.ts:7
 	// state = pcg128Init(seed)
 	frame_dig -1 // seed: bytes<32>
 	callsub pcg128Init
 	frame_bury 0 // state: (uint64,uint64,uint64,uint64)
 
-	// contracts\lib-pcg128-exposer-ts.algo.ts:9
+	// contracts/lib-pcg128-exposer-ts.algo.ts:9
 	// result = pcg128Random(state, lower_bound, upper_bound, length as uint64)
 	frame_dig -4 // length: uint16
 	frame_dig -3 // upper_bound: uint128
@@ -108,7 +108,7 @@ bounded_rand_uint128:
 	callsub pcg128Random
 	frame_bury 1 // result: ((uint64,uint64,uint64,uint64),uint128[])
 
-	// contracts\lib-pcg128-exposer-ts.algo.ts:10
+	// contracts/lib-pcg128-exposer-ts.algo.ts:10
 	// state = result[0]
 	frame_dig 1 // result: ((uint64,uint64,uint64,uint64),uint128[])
 	store 255 // full array
@@ -116,7 +116,7 @@ bounded_rand_uint128:
 	extract 0 32
 	frame_bury 0 // state: (uint64,uint64,uint64,uint64)
 
-	// contracts\lib-pcg128-exposer-ts.algo.ts:12
+	// contracts/lib-pcg128-exposer-ts.algo.ts:12
 	// return result[1];
 	frame_dig 1 // result: ((uint64,uint64,uint64,uint64),uint128[])
 	store 255 // full array
@@ -154,7 +154,7 @@ bounded_rand_uint128:
 createApplication:
 	proto 0 0
 
-	// contracts\lib-pcg128-exposer-ts.algo.ts:17
+	// contracts/lib-pcg128-exposer-ts.algo.ts:17
 	// assert(globals.creatorAddress === this.txn.sender)
 	global CreatorAddress
 	txn Sender
@@ -173,7 +173,7 @@ createApplication:
 updateApplication:
 	proto 0 0
 
-	// contracts\lib-pcg128-exposer-ts.algo.ts:22
+	// contracts/lib-pcg128-exposer-ts.algo.ts:22
 	// assert(globals.creatorAddress === this.txn.sender)
 	global CreatorAddress
 	txn Sender
@@ -221,18 +221,18 @@ pcg128Random:
 	bytec 0 // 0x
 	dupn 7
 
-	// lib_pcg\pcg128.algo.ts:44
+	// lib_pcg/pcg128.algo.ts:44
 	// result: uint128[] = []
 	bytec 0 // 0x
 	frame_bury 0 // result: uint128[]
 
-	// lib_pcg\pcg128.algo.ts:48
+	// lib_pcg/pcg128.algo.ts:48
 	// newState = clone(state)
 	frame_dig -1 // state: PCG128STATE
 	frame_bury 3 // newState: (uint64,uint64,uint64,uint64)
 
 	// *if0_condition
-	// lib_pcg\pcg128.algo.ts:50
+	// lib_pcg/pcg128.algo.ts:50
 	// lowerBound === 0 && upperBound === 0
 	frame_dig -2 // lowerBound: uint128
 	bytec 1 // 0x00000000000000000000000000000000
@@ -248,32 +248,32 @@ pcg128Random:
 	bz *if0_else
 
 	// *if0_consequent
-	// lib_pcg\pcg128.algo.ts:51
+	// lib_pcg/pcg128.algo.ts:51
 	// for (let i = 0; i < length; i = i + 1)
 	intc 0 // 0
 	frame_bury 4 // i: uint64
 
 *for_0:
-	// lib_pcg\pcg128.algo.ts:51
+	// lib_pcg/pcg128.algo.ts:51
 	// i < length
 	frame_dig 4 // i: uint64
 	frame_dig -4 // length: uint64
 	<
 	bz *for_0_end
 
-	// lib_pcg\pcg128.algo.ts:52
+	// lib_pcg/pcg128.algo.ts:52
 	// stepResult = __pcg128Random(newState)
 	frame_dig 3 // newState: (uint64,uint64,uint64,uint64)
 	callsub __pcg128Random
 	frame_bury 5 // stepResult: ((uint64,uint64,uint64,uint64),uint128)
 
-	// lib_pcg\pcg128.algo.ts:53
+	// lib_pcg/pcg128.algo.ts:53
 	// newState = stepResult[0]
 	frame_dig 5 // stepResult: ((uint64,uint64,uint64,uint64),uint128)
 	extract 0 32
 	frame_bury 3 // newState: (uint64,uint64,uint64,uint64)
 
-	// lib_pcg\pcg128.algo.ts:54
+	// lib_pcg/pcg128.algo.ts:54
 	// result.push(stepResult[1])
 	frame_dig 0 // result: uint128[]
 	frame_dig 5 // stepResult: ((uint64,uint64,uint64,uint64),uint128)
@@ -282,7 +282,7 @@ pcg128Random:
 	frame_bury 0 // result: uint128[]
 
 *for_0_continue:
-	// lib_pcg\pcg128.algo.ts:51
+	// lib_pcg/pcg128.algo.ts:51
 	// i = i + 1
 	frame_dig 4 // i: uint64
 	intc 1 // 1
@@ -295,7 +295,7 @@ pcg128Random:
 
 *if0_else:
 	// *if1_condition
-	// lib_pcg\pcg128.algo.ts:57
+	// lib_pcg/pcg128.algo.ts:57
 	// upperBound !== 0
 	frame_dig -3 // upperBound: uint128
 	bytec 1 // 0x00000000000000000000000000000000
@@ -303,21 +303,21 @@ pcg128Random:
 	bz *if1_else
 
 	// *if1_consequent
-	// lib_pcg\pcg128.algo.ts:58
+	// lib_pcg/pcg128.algo.ts:58
 	// assert(upperBound > 1)
 	frame_dig -3 // upperBound: uint128
 	bytec 3 // 0x00000000000000000000000000000001
 	b>
 	assert
 
-	// lib_pcg\pcg128.algo.ts:60
+	// lib_pcg/pcg128.algo.ts:60
 	// assert((upperBound as uint256) < Uint<256>('340282366920938463463374607431768211456'))
 	frame_dig -3 // upperBound: uint128
 	bytec 2 // 0x0000000000000000000000000000000100000000000000000000000000000000
 	b<
 	assert
 
-	// lib_pcg\pcg128.algo.ts:61
+	// lib_pcg/pcg128.algo.ts:61
 	// assert(lowerBound < upperBound - 1)
 	frame_dig -2 // lowerBound: uint128
 	frame_dig -3 // upperBound: uint128
@@ -326,7 +326,7 @@ pcg128Random:
 	b<
 	assert
 
-	// lib_pcg\pcg128.algo.ts:63
+	// lib_pcg/pcg128.algo.ts:63
 	// absoluteBound = upperBound - lowerBound
 	frame_dig -3 // upperBound: uint128
 	frame_dig -2 // lowerBound: uint128
@@ -335,14 +335,14 @@ pcg128Random:
 	b *if1_end
 
 *if1_else:
-	// lib_pcg\pcg128.algo.ts:66
+	// lib_pcg/pcg128.algo.ts:66
 	// assert(lowerBound < Uint<128>('340282366920938463463374607431768211455'))
 	frame_dig -2 // lowerBound: uint128
 	bytec 4 // 0xffffffffffffffffffffffffffffffff
 	b<
 	assert
 
-	// lib_pcg\pcg128.algo.ts:71
+	// lib_pcg/pcg128.algo.ts:71
 	// absoluteBound = (Uint<256>('340282366920938463463374607431768211456') - (lowerBound as uint256)) as uint128
 	bytec 2 // 0x0000000000000000000000000000000100000000000000000000000000000000
 	frame_dig -2 // lowerBound: uint128
@@ -350,7 +350,7 @@ pcg128Random:
 	frame_bury 1 // absoluteBound: uint128
 
 *if1_end:
-	// lib_pcg\pcg128.algo.ts:74
+	// lib_pcg/pcg128.algo.ts:74
 	// threshold = __uint128Twos(absoluteBound) % absoluteBound
 	frame_dig 1 // absoluteBound: uint128
 	callsub __uint128Twos
@@ -358,13 +358,13 @@ pcg128Random:
 	b%
 	frame_bury 2 // threshold: uint128
 
-	// lib_pcg\pcg128.algo.ts:76
+	// lib_pcg/pcg128.algo.ts:76
 	// for (let i = 0; i < length; i = i + 1)
 	intc 0 // 0
 	frame_bury 6 // i: uint64
 
 *for_1:
-	// lib_pcg\pcg128.algo.ts:76
+	// lib_pcg/pcg128.algo.ts:76
 	// i < length
 	frame_dig 6 // i: uint64
 	frame_dig -4 // length: uint64
@@ -374,25 +374,25 @@ pcg128Random:
 *while_0:
 
 *while_0_continue:
-	// lib_pcg\pcg128.algo.ts:78
+	// lib_pcg/pcg128.algo.ts:78
 	// true
 	intc 1 // 1
 	bz *while_0_end
 
-	// lib_pcg\pcg128.algo.ts:79
+	// lib_pcg/pcg128.algo.ts:79
 	// stepResult = __pcg128Random(newState)
 	frame_dig 3 // newState: (uint64,uint64,uint64,uint64)
 	callsub __pcg128Random
 	frame_bury 7 // stepResult: ((uint64,uint64,uint64,uint64),uint128)
 
-	// lib_pcg\pcg128.algo.ts:80
+	// lib_pcg/pcg128.algo.ts:80
 	// newState = stepResult[0]
 	frame_dig 7 // stepResult: ((uint64,uint64,uint64,uint64),uint128)
 	extract 0 32
 	frame_bury 3 // newState: (uint64,uint64,uint64,uint64)
 
 	// *if2_condition
-	// lib_pcg\pcg128.algo.ts:81
+	// lib_pcg/pcg128.algo.ts:81
 	// stepResult[1] >= threshold
 	frame_dig 7 // stepResult: ((uint64,uint64,uint64,uint64),uint128)
 	extract 32 16
@@ -401,7 +401,7 @@ pcg128Random:
 	bz *if2_end
 
 	// *if2_consequent
-	// lib_pcg\pcg128.algo.ts:82
+	// lib_pcg/pcg128.algo.ts:82
 	// result.push((stepResult[1] % absoluteBound) + lowerBound)
 	frame_dig 0 // result: uint128[]
 	frame_dig 7 // stepResult: ((uint64,uint64,uint64,uint64),uint128)
@@ -436,7 +436,7 @@ pcg128Random:
 *while_0_end:
 
 *for_1_continue:
-	// lib_pcg\pcg128.algo.ts:76
+	// lib_pcg/pcg128.algo.ts:76
 	// i = i + 1
 	frame_dig 6 // i: uint64
 	intc 1 // 1
@@ -447,7 +447,7 @@ pcg128Random:
 *for_1_end:
 
 *if0_end:
-	// lib_pcg\pcg128.algo.ts:89
+	// lib_pcg/pcg128.algo.ts:89
 	// return [newState, result];
 	bytec 0 //  initial head
 	bytec 0 //  initial tail
@@ -478,7 +478,7 @@ pcg128Random:
 __uint128Twos:
 	proto 1 1
 
-	// lib_pcg\pcg128.algo.ts:7
+	// lib_pcg/pcg128.algo.ts:7
 	// return (
 	//     (((~rawBytes(value) as uint256) + Uint<256>('1')) as uint128) & Uint<128>('340282366920938463463374607431768211455')
 	//   );
@@ -498,13 +498,13 @@ __pcg128Random:
 	bytec 0 // 0x
 	dupn 3
 
-	// lib_pcg\pcg128.algo.ts:13
+	// lib_pcg/pcg128.algo.ts:13
 	// state1 = __pcg32Step(state[0], pcgFirstIncrement)
-	// lib_pcg\consts.algo.ts:3
+	// lib_pcg/consts.algo.ts:3
 	// Uint<64>('1442695040888963407')
 	intc 4 // 1442695040888963407
 
-	// lib_pcg\pcg128.algo.ts:13
+	// lib_pcg/pcg128.algo.ts:13
 	// state[0]
 	frame_dig -1 // state: PCG128STATE
 	extract 0 8
@@ -512,13 +512,13 @@ __pcg128Random:
 	callsub __pcg32Step
 	frame_bury 0 // state1: uint64
 
-	// lib_pcg\pcg128.algo.ts:14
+	// lib_pcg/pcg128.algo.ts:14
 	// state2 = __pcg32Step(state[1], pcgSecondIncrement << (state1 === 0 ? 1 : 0))
-	// lib_pcg\consts.algo.ts:5
+	// lib_pcg/consts.algo.ts:5
 	// Uint<64>('1442695040888963409')
 	intc 5 // 1442695040888963409
 
-	// lib_pcg\pcg128.algo.ts:14
+	// lib_pcg/pcg128.algo.ts:14
 	// state1 === 0
 	frame_dig 0 // state1: uint64
 	intc 0 // 0
@@ -533,7 +533,7 @@ __pcg128Random:
 *ternary1_end:
 	shl
 
-	// lib_pcg\pcg128.algo.ts:14
+	// lib_pcg/pcg128.algo.ts:14
 	// state[1]
 	frame_dig -1 // state: PCG128STATE
 	extract 8 8
@@ -541,13 +541,13 @@ __pcg128Random:
 	callsub __pcg32Step
 	frame_bury 1 // state2: uint64
 
-	// lib_pcg\pcg128.algo.ts:15
+	// lib_pcg/pcg128.algo.ts:15
 	// state3 = __pcg32Step(state[2], pcgThirdIncrement << (state2 === 0 ? 1 : 0))
-	// lib_pcg\consts.algo.ts:7
+	// lib_pcg/consts.algo.ts:7
 	// Uint<64>('1442695040888963411')
 	intc 6 // 1442695040888963411
 
-	// lib_pcg\pcg128.algo.ts:15
+	// lib_pcg/pcg128.algo.ts:15
 	// state2 === 0
 	frame_dig 1 // state2: uint64
 	intc 0 // 0
@@ -562,7 +562,7 @@ __pcg128Random:
 *ternary3_end:
 	shl
 
-	// lib_pcg\pcg128.algo.ts:15
+	// lib_pcg/pcg128.algo.ts:15
 	// state[2]
 	frame_dig -1 // state: PCG128STATE
 	extract 16 8
@@ -570,13 +570,13 @@ __pcg128Random:
 	callsub __pcg32Step
 	frame_bury 2 // state3: uint64
 
-	// lib_pcg\pcg128.algo.ts:16
+	// lib_pcg/pcg128.algo.ts:16
 	// state4 = __pcg32Step(state[3], pcgFourthIncrement << (state3 === 0 ? 1 : 0))
-	// lib_pcg\consts.algo.ts:9
+	// lib_pcg/consts.algo.ts:9
 	// Uint<64>('1442695040888963413')
 	intc 7 // 1442695040888963413
 
-	// lib_pcg\pcg128.algo.ts:16
+	// lib_pcg/pcg128.algo.ts:16
 	// state3 === 0
 	frame_dig 2 // state3: uint64
 	intc 0 // 0
@@ -591,7 +591,7 @@ __pcg128Random:
 *ternary5_end:
 	shl
 
-	// lib_pcg\pcg128.algo.ts:16
+	// lib_pcg/pcg128.algo.ts:16
 	// state[3]
 	frame_dig -1 // state: PCG128STATE
 	extract 24 8
@@ -599,7 +599,7 @@ __pcg128Random:
 	callsub __pcg32Step
 	frame_bury 3 // state4: uint64
 
-	// lib_pcg\pcg128.algo.ts:18
+	// lib_pcg/pcg128.algo.ts:18
 	// return [
 	//     [state1, state2, state3, state4],
 	//     ((__pcg32Output(state[0]) as uint128) * Uint<128>('79228162514264337593543950336')) |
@@ -680,7 +680,7 @@ __pcg32Output:
 	bytec 0 // 0x
 	dup
 
-	// lib_pcg\pcg32.algo.ts:23
+	// lib_pcg/pcg32.algo.ts:23
 	// xorshifted = __maskToUint32(((state >> 18) ^ state) >> 27)
 	frame_dig -1 // state: PCG32STATE
 	pushint 18
@@ -692,14 +692,14 @@ __pcg32Output:
 	callsub __maskToUint32
 	frame_bury 0 // xorshifted: uint64
 
-	// lib_pcg\pcg32.algo.ts:24
+	// lib_pcg/pcg32.algo.ts:24
 	// rot = state >> 59
 	frame_dig -1 // state: PCG32STATE
 	pushint 59
 	shr
 	frame_bury 1 // rot: uint64
 
-	// lib_pcg\pcg32.algo.ts:25
+	// lib_pcg/pcg32.algo.ts:25
 	// return (xorshifted >> rot) | __maskToUint32(xorshifted << (__uint64Twos(rot) & 31));
 	frame_dig 0 // xorshifted: uint64
 	frame_dig 1 // rot: uint64
@@ -728,7 +728,7 @@ __uint64Twos:
 	bytec 0 // 0x
 	dup
 
-	// lib_pcg\pcg32.algo.ts:6
+	// lib_pcg/pcg32.algo.ts:6
 	// addwResult = addw(~value, 1)
 	frame_dig -1 // value: uint64
 	~
@@ -737,7 +737,7 @@ __uint64Twos:
 	frame_bury 0 // addwResult low: uint64
 	frame_bury 1 // addwResult high: uint64
 
-	// lib_pcg\pcg32.algo.ts:7
+	// lib_pcg/pcg32.algo.ts:7
 	// return addwResult.low;
 	frame_dig 0 // addwResult low: uint64
 
@@ -752,7 +752,7 @@ __uint64Twos:
 __maskToUint32:
 	proto 1 1
 
-	// lib_pcg\pcg32.algo.ts:12
+	// lib_pcg/pcg32.algo.ts:12
 	// return value & 4294967295;
 	frame_dig -1 // value: uint64
 	pushint 4294967295
@@ -767,18 +767,18 @@ __pcg32Step:
 	bytec 0 // 0x
 	dupn 3
 
-	// lib_pcg\pcg32.algo.ts:16
+	// lib_pcg/pcg32.algo.ts:16
 	// mulwResult = mulw(state, pcgMultiplier)
 	frame_dig -1 // state: PCG32STATE
 
-	// lib_pcg\consts.algo.ts:1
+	// lib_pcg/consts.algo.ts:1
 	// Uint<64>('6364136223846793005')
 	pushint 6364136223846793005
 	mulw
 	frame_bury 0 // mulwResult low: uint64
 	frame_bury 1 // mulwResult high: uint64
 
-	// lib_pcg\pcg32.algo.ts:17
+	// lib_pcg/pcg32.algo.ts:17
 	// addwResult = addw(mulwResult.low, incr)
 	frame_dig 0 // mulwResult low: uint64
 	frame_dig -2 // incr: uint64
@@ -786,7 +786,7 @@ __pcg32Step:
 	frame_bury 2 // addwResult low: uint64
 	frame_bury 3 // addwResult high: uint64
 
-	// lib_pcg\pcg32.algo.ts:19
+	// lib_pcg/pcg32.algo.ts:19
 	// return addwResult.low;
 	frame_dig 2 // addwResult low: uint64
 
@@ -801,25 +801,25 @@ __pcg32Step:
 pcg128Init:
 	proto 1 1
 
-	// lib_pcg\pcg128.algo.ts:28
+	// lib_pcg/pcg128.algo.ts:28
 	// assert(seed.length === 32)
 	intc 3 // 32
 	dup
 	==
 	assert
 
-	// lib_pcg\pcg128.algo.ts:30
+	// lib_pcg/pcg128.algo.ts:30
 	// return [
 	//     __pcg32Init(extractUint64(seed, 0), pcgFirstIncrement),
 	//     __pcg32Init(extractUint64(seed, 8), pcgSecondIncrement),
 	//     __pcg32Init(extractUint64(seed, 16), pcgThirdIncrement),
 	//     __pcg32Init(extractUint64(seed, 24), pcgFourthIncrement),
 	//   ];
-	// lib_pcg\consts.algo.ts:3
+	// lib_pcg/consts.algo.ts:3
 	// Uint<64>('1442695040888963407')
 	intc 4 // 1442695040888963407
 
-	// lib_pcg\pcg128.algo.ts:31
+	// lib_pcg/pcg128.algo.ts:31
 	// extractUint64(seed, 0)
 	frame_dig -1 // seed: bytes<32>
 	intc 0 // 0
@@ -827,13 +827,13 @@ pcg128Init:
 	callsub __pcg32Init
 	itob
 
-	// lib_pcg\pcg128.algo.ts:32
+	// lib_pcg/pcg128.algo.ts:32
 	// __pcg32Init(extractUint64(seed, 8), pcgSecondIncrement)
-	// lib_pcg\consts.algo.ts:5
+	// lib_pcg/consts.algo.ts:5
 	// Uint<64>('1442695040888963409')
 	intc 5 // 1442695040888963409
 
-	// lib_pcg\pcg128.algo.ts:32
+	// lib_pcg/pcg128.algo.ts:32
 	// extractUint64(seed, 8)
 	frame_dig -1 // seed: bytes<32>
 	pushint 8
@@ -842,13 +842,13 @@ pcg128Init:
 	itob
 	concat
 
-	// lib_pcg\pcg128.algo.ts:33
+	// lib_pcg/pcg128.algo.ts:33
 	// __pcg32Init(extractUint64(seed, 16), pcgThirdIncrement)
-	// lib_pcg\consts.algo.ts:7
+	// lib_pcg/consts.algo.ts:7
 	// Uint<64>('1442695040888963411')
 	intc 6 // 1442695040888963411
 
-	// lib_pcg\pcg128.algo.ts:33
+	// lib_pcg/pcg128.algo.ts:33
 	// extractUint64(seed, 16)
 	frame_dig -1 // seed: bytes<32>
 	intc 2 // 16
@@ -857,13 +857,13 @@ pcg128Init:
 	itob
 	concat
 
-	// lib_pcg\pcg128.algo.ts:34
+	// lib_pcg/pcg128.algo.ts:34
 	// __pcg32Init(extractUint64(seed, 24), pcgFourthIncrement)
-	// lib_pcg\consts.algo.ts:9
+	// lib_pcg/consts.algo.ts:9
 	// Uint<64>('1442695040888963413')
 	intc 7 // 1442695040888963413
 
-	// lib_pcg\pcg128.algo.ts:34
+	// lib_pcg/pcg128.algo.ts:34
 	// extractUint64(seed, 24)
 	frame_dig -1 // seed: bytes<32>
 	pushint 24
@@ -881,14 +881,14 @@ __pcg32Init:
 	bytec 0 // 0x
 	dupn 2
 
-	// lib_pcg\pcg32.algo.ts:90
+	// lib_pcg/pcg32.algo.ts:90
 	// state = __pcg32Step(0, incr)
 	frame_dig -2 // incr: uint64
 	intc 0 // 0
 	callsub __pcg32Step
 	frame_bury 0 // state: uint64
 
-	// lib_pcg\pcg32.algo.ts:91
+	// lib_pcg/pcg32.algo.ts:91
 	// addwResult = addw(state, initialState)
 	frame_dig 0 // state: uint64
 	frame_dig -1 // initialState: PCG32STATE
@@ -896,7 +896,7 @@ __pcg32Init:
 	frame_bury 1 // addwResult low: uint64
 	frame_bury 2 // addwResult high: uint64
 
-	// lib_pcg\pcg32.algo.ts:93
+	// lib_pcg/pcg32.algo.ts:93
 	// return __pcg32Step(addwResult.low, incr);
 	frame_dig -2 // incr: uint64
 	frame_dig 1 // addwResult low: uint64
