@@ -18,26 +18,26 @@ def build(output_dir: Path, app: beaker.Application) -> Path:
     specification = app.build()
     specification.export(output_dir)
 
-    result = subprocess.run(
-        [
-            "algokit",
-            "generate",
-            "client",
-            output_dir / "application.json",
-            "--output",
-            output_dir / f"client.{deployment_extension}",
-        ],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        text=True,
-    )
-    if result.returncode:
-        if "No such command" in result.stdout:
-            raise Exception(
-                "Could not generate typed client, requires AlgoKit 1.8.0 or "
-                "later. Please update AlgoKit"
-            )
-        else:
-            raise Exception(f"Could not generate typed client:\n{result.stdout}")
+    # result = subprocess.run(
+    #     [
+    #         "algokit",
+    #         "generate",
+    #         "client",
+    #         output_dir / "application.json",
+    #         "--output",
+    #         output_dir / f"client.{deployment_extension}",
+    #     ],
+    #     stdout=subprocess.PIPE,
+    #     stderr=subprocess.STDOUT,
+    #     text=True,
+    # )
+    # if result.returncode:
+    #     if "No such command" in result.stdout:
+    #         raise Exception(
+    #             "Could not generate typed client, requires AlgoKit 1.8.0 or "
+    #             "later. Please update AlgoKit"
+    #         )
+    #     else:
+    #         raise Exception(f"Could not generate typed client:\n{result.stdout}")
 
     return output_dir / "application.json"
