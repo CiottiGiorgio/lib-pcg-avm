@@ -12,11 +12,26 @@ on:
           - patch
           - minor
           - major
-      dryrun:
+      dry-run:
         description: dryrun?
         required: true
         default: true
         type: boolean
+  push:
+    branches:
+      - main
+    paths-ignore:
+      # We would like to only run this workflow in case something changes in the algopy project.
+      # However, we can't use both paths and paths-ignore clauses.
+      # To be on the safe side and not ignore changes that are important, we only ignore specific subprojects
+      #  instead of everything outside algopy.
+      - "projects/lib-pcg-algots/**"
+      - "projects/lib-pcg-pyteal/**"
+      - "projects/lib-pcg-ts/**"
+      - "docs/**"
+      - "**.md"
+      - ".vscode/**"
+      - ".idea/**"
 
 jobs:
   lib-pcg-algopy-validate:
@@ -29,6 +44,11 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      VERSION_BUMP: ${{ github.event_name != 'workflow_dispatch' && 'patch' || inputs.version-bump }}
+      DRY_RUN: ${{ github.event_name != 'workflow_dispatch' && 'true' || inputs.dry-run }}
+
+    concurrency: release
 
     steps:
       - name: Checkout source code
@@ -45,18 +65,22 @@ jobs:
 
       - name: Bump Package Version
         working-directory: projects/lib-pcg-algopy
-        run: poetry version ${{ inputs.version-bump }}
+        run: poetry version ${{ env.VERSION_BUMP }}
 
       - name: Publish Package
         working-directory: projects/lib-pcg-algopy
-        run: poetry publish --build ${{ inputs.dryrun && '--dry-run' || '' }} --username __token__ --password ${{ secrets.POETRY_PUBLISH_PYPI_LIB_PCG_ALGOPY }}
+        run: |
+          poetry publish \
+          --build \
+          ${{ env.DRY_RUN == 'true' && '--dry-run' || '' }} \
+          --username __token__ \
+          --password ${{ secrets.POETRY_PUBLISH_PYPI_LIB_PCG_ALGOPY }}
 
       - name: Commit and Push Version Bump
-        if: inputs.dryrun == false
+        if: env.DRY_RUN == 'false'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add projects/lib-pcg-algopy/pyproject.toml
-          # The commit message will include the new version number from the manifest
           git commit -m "chore(release): Bump lib-pcg-algopy version to $(cd projects/lib-pcg-algopy && poetry version -s)"
           git push

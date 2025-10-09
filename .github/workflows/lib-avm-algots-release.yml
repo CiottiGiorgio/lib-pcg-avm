@@ -12,11 +12,26 @@ on:
           - patch
           - minor
           - major
-      dryrun:
+      dry-run:
         description: dryrun?
         required: true
         default: true
         type: boolean
+  push:
+    branches:
+      - main
+    paths-ignore:
+      # We would like to only run this workflow in case something changes in the algots project.
+      # However, we can't use both paths and paths-ignore clauses.
+      # To be on the safe side and not ignore changes that are important, we only ignore specific subprojects
+      #  instead of everything outside algots.
+      - "projects/lib-pcg-algopy/**"
+      - "projects/lib-pcg-pyteal/**"
+      - "projects/lib-pcg-ts/**"
+      - "docs/**"
+      - "**.md"
+      - ".vscode/**"
+      - ".idea/**"
 
 jobs:
   lib-pcg-algots-validate:
@@ -29,6 +44,11 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      VERSION_BUMP: ${{ github.event_name != 'workflow_dispatch' && 'patch' || inputs.version-bump }}
+      DRY_RUN: ${{ github.event_name != 'workflow_dispatch' && 'true' || inputs.dry-run }}
+
+    concurrency: release
 
     steps:
       - name: Checkout source code
@@ -40,19 +60,22 @@ jobs:
           node-version: 22.x
           cache: npm
           cache-dependency-path: ./projects/lib-pcg-algots/package-lock.json
+          registry-url: "https://registry.npmjs.org"
 
       - name: Bump Package Version
         working-directory: projects/lib-pcg-algots
-        run: npm version ${{ inputs.version-bump }}
+        run: npm version ${{ env.VERSION_BUMP }}
 
       - name: Publish Package
         working-directory: projects/lib-pcg-algots
-        run: npm publish ${{ inputs.dryrun && '--dry-run' || '' }}
+        run: |
+          npm publish \
+          ${{ env.DRY_RUN == 'true' && '--dry-run' || '' }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_LIB_PCG_ALGOTS }}
 
       - name: Commit and Push Version Bump
-        if: inputs.dryrun == false
+        if: env.DRY_RUN == 'false'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
