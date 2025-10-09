@@ -8,6 +8,7 @@ For more general info on this library, see the [main page](../..).
 ## Getting Started
 
 Install `lib-pcg-algots` in your project. Using npm, this looks like:
+
 ```bash
 npm add lib-pcg-algots
 ```
