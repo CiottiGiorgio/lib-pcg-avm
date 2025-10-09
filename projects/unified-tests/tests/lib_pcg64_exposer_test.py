@@ -1,6 +1,6 @@
 import algokit_utils
 import pytest
-from algokit_utils import AlgorandClient, SigningAccount
+from algokit_utils import AlgorandClient, AppClientCompilationParams, SigningAccount
 
 from smart_contracts.artifacts.lib_pcg64_exposer_algo_py import (
     LibPcg64ExposerAlgoPyClient,
@@ -125,7 +125,7 @@ def lib_pcg64_exposer_pyteal_client(
     ).deploy(
         on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
         on_update=algokit_utils.OnUpdate.UpdateApp,
-        compilation_params={"updatable": True, "deletable": True},
+        compilation_params=AppClientCompilationParams(updatable=True, deletable=True),
     )
 
     return client

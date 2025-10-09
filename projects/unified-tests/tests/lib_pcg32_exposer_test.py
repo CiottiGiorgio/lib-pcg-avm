@@ -2,6 +2,7 @@ import algokit_utils
 import pytest
 from algokit_utils import (
     AlgorandClient,
+    AppClientCompilationParams,
     SendAtomicTransactionComposerResults,
     SigningAccount,
 )
@@ -142,7 +143,7 @@ def lib_pcg32_exposer_pyteal_client(
     ).deploy(
         on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
         on_update=algokit_utils.OnUpdate.UpdateApp,
-        compilation_params={"updatable": True, "deletable": True},
+        compilation_params=AppClientCompilationParams(updatable=True, deletable=True),
     )
 
     return client
