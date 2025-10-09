@@ -7,15 +7,17 @@ For more general info on this library, see the [main page](../..).
 
 ## Getting Started
 
-Copy the [pcg32](lib_pcg/pcg32.algo.ts), [pcg64](lib_pcg/pcg64.algo.ts), and [pcg128](lib_pcg/pcg128.algo.ts)
-files in your own project’s `lib_pcg` folder.
+Install `lib-pcg-algots` in your project. Using npm, this looks like:
+```bash
+npm add lib-pcg-algots
+```
 
 The typical use case of using the library to generate a sequence of pseudo-random numbers looks like:
 
 ```typescript
 import { Contract, assert, Global, Txn } from '@algorandfoundation/algorand-typescript'
 import { StaticArray, DynamicArray, Byte, UintN, baremethod } from '@algorandfoundation/algorand-typescript/arc4'
-import { pcg32Init, pcg32Random } from '../../lib_pcg/pcg32.algo'
+import { pcg32Init, pcg32Random } from 'lib-pcg-algots'
 
 export class YourContract extends Contract {
   public bounded_rand_uint32(...): ... {
@@ -59,7 +61,7 @@ When either bound is set to zero, that bound is not applied.
 
 ## Feature Support
 
-- [ ] Package published on npm
+- [x] Package published on npm
 - [x] `8 / 16 / 32`-bit generator
 - [x] `64`-bit generator
 - [x] `128`-bit generator
