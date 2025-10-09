@@ -17,7 +17,10 @@ class LibPcg128ExposerAlgoPy(arc4.ARC4Contract):
         state = pcg128_init(seed.bytes)
 
         state, sequence = pcg128_random(
-            state, lower_bound.native, upper_bound.native, length.native
+            state,
+            lower_bound.as_biguint(),
+            upper_bound.as_biguint(),
+            length.as_uint64(),
         )
 
         return sequence

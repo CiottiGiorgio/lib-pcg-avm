@@ -24,7 +24,7 @@ class LibPcg32ExposerAlgoPy(arc4.ARC4Contract):
         state = pcg32_init(seed.bytes)
 
         state, sequence = pcg32_random(
-            state, lower_bound.native, upper_bound.native, length.native
+            state, lower_bound.as_uint64(), upper_bound.as_uint64(), length.as_uint64()
         )
 
         return sequence
@@ -40,7 +40,7 @@ class LibPcg32ExposerAlgoPy(arc4.ARC4Contract):
         state = pcg16_init(seed.bytes)
 
         state, sequence = pcg16_random(
-            state, lower_bound.native, upper_bound.native, length.native
+            state, lower_bound.as_uint64(), upper_bound.as_uint64(), length.as_uint64()
         )
 
         return sequence
@@ -56,7 +56,7 @@ class LibPcg32ExposerAlgoPy(arc4.ARC4Contract):
         state = pcg8_init(seed.bytes)
 
         state, sequence = pcg8_random(
-            state, lower_bound.native, upper_bound.native, length.native
+            state, lower_bound.as_uint64(), upper_bound.as_uint64(), length.as_uint64()
         )
 
         return sequence
