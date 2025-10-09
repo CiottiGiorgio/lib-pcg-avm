@@ -3,7 +3,7 @@ name = "lib-pcg-algopy"
 version = "0.4.1"
 description = "PCG library implemented using Algorand Python"
 license = "MIT"
-authors = ["CiottiGiorgio <giorgio.ciotti@algorand.foundation>"]
+authors = ["Giorgio Ciotti <gciotti.dev@gmail.com>"]
 readme = "README-PyPI.md"
 repository = "https://github.com/CiottiGiorgio/lib-pcg-avm"
 packages = [{include = "lib_pcg"}]

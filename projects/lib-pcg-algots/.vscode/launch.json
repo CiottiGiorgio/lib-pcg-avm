@@ -45,8 +45,8 @@
       "runtimeArgs": ["run", "build"],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
-      "skipFiles": ["<node_internals>/**", "node_modules/**"],
-    },    
+      "skipFiles": ["<node_internals>/**", "node_modules/**"]
+    },
     {
       "type": "avm",
       "request": "launch",

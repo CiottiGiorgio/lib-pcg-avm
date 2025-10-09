@@ -1,12 +1,22 @@
 {
-  "name": "smart_contracts",
-  "version": "1.0.0",
-  "description": "Smart contract deployer",
-  "main": "smart_contracts/index.ts",
+  "name": "lib-pcg-algots",
+  "version": "0.1.0",
+  "description": "PCG library implemented using Algorand TypeScript",
+  "homepage": "https://github.com/CiottiGiorgio/lib-pcg-avm",
+  "license": "MIT",
+  "author": "Giorgio Ciotti <gciotti.dev@gmail.com>",
+  "files": [
+    "lib_pcg"
+  ],
+  "types": "./lib_pcg/index.ts",
+  "exports": {
+    ".": {
+      "types": "./lib_pcg/index.ts",
+      "default": "./lib_pcg/index.ts"
+    }
+  },
   "scripts": {
-    "build": "algokit compile ts smart_contracts --no-output-arc32 --no-output-source-map --debug-level=0 --out-dir artifacts",
-    "deploy": "ts-node-dev --transpile-only --watch .env -r dotenv/config smart_contracts/index.ts",
-    "deploy:ci": "ts-node --transpile-only -r dotenv/config smart_contracts/index.ts",
+    "compile-contracts": "algokit compile ts smart_contracts --no-output-arc32 --no-output-source-map --debug-level=0 --out-dir artifacts",
     "lint": "eslint lib_pcg smart_contracts",
     "lint:fix": "eslint lib_pcg smart_contracts --fix",
     "audit": "better-npm-audit audit",

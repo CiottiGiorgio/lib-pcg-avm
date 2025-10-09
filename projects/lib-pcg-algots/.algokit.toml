@@ -32,7 +32,7 @@ environment_secrets = [
 [project.run]
 # Commands intended for use locally and in CI
 build = { commands = [
-  'npm run build',
+  'npm run compile-contracts',
 ], description = 'Build all smart contracts in the project' }
 audit = { commands = [
   'npm run audit',

@@ -2,7 +2,7 @@
 name = "lib-pcg-pyteal"
 version = "0.1.0"
 description = "Algorand smart contracts"
-authors = ["CiottiGiorgio <giorgio.ciotti@algorand.foundation>"]
+authors = ["Giorgio Ciotti <gciotti.dev@gmail.com>"]
 readme = "README.md"
 package-mode = false
 

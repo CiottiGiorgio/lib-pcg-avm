@@ -9,41 +9,41 @@ target_network:
     - testnet
     - localnet
     - custom
-  default: "localnet"
-  when: "{{ not use_generic_env }}"
+  default: 'localnet'
+  when: '{{ not use_generic_env }}'
 
 custom_network_name:
   type: str
   help: Name of your custom Algorand network.
-  placeholder: "custom"
+  placeholder: 'custom'
   when: "{{ not use_generic_env and target_network == 'custom' }}"
 
 is_localnet:
   type: bool
   help: Whether to deploy on localnet.
-  placeholder: "true"
+  placeholder: 'true'
   default: "{{ target_network == 'localnet' and not use_generic_env }}"
   when: 'false'
 
 is_testnet:
   type: bool
   help: Whether to deploy on testnet.
-  placeholder: "true"
+  placeholder: 'true'
   default: "{{ target_network == 'testnet' and not use_generic_env }}"
   when: 'false'
 
 is_mainnet:
   type: bool
   help: Whether to deploy on mainnet.
-  placeholder: "true"
+  placeholder: 'true'
   default: "{{ target_network == 'mainnet' and not use_generic_env }}"
   when: 'false'
 
 is_customnet:
   type: bool
   help: Whether to deploy on custom network.
-  placeholder: "true"
+  placeholder: 'true'
   default: "{{ target_network == 'custom' and not use_generic_env }}"
   when: 'false'
 
-_templates_suffix: ".j2"
+_templates_suffix: '.j2'
