@@ -18,7 +18,7 @@ The typical use case of using the library to generate a sequence of pseudo-rando
 ```typescript
 import { Contract, assert, Global, Txn } from '@algorandfoundation/algorand-typescript'
 import { StaticArray, DynamicArray, Byte, UintN, baremethod } from '@algorandfoundation/algorand-typescript/arc4'
-import { pcg32Init, pcg32Random } from 'lib-pcg-algots'
+import { pcg32Init, pcg32Random } from 'lib-pcg-algots/lib_pcg/pcg32.algo'
 
 export class YourContract extends Contract {
   public bounded_rand_uint32(...): ... {
