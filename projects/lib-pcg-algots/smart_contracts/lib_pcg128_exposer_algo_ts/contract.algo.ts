@@ -7,7 +7,7 @@ import {
   UintN128,
   UintN16,
 } from '@algorandfoundation/algorand-typescript/arc4'
-import { pcg128Init, pcg128Random } from '../../lib_pcg'
+import { pcg128Init, pcg128Random } from '../../lib_pcg/pcg128.algo'
 
 export class LibPcg128ExposerAlgoTs extends Contract {
   public bounded_rand_uint128(

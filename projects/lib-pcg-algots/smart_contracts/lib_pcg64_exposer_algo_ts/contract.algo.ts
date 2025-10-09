@@ -7,7 +7,7 @@ import {
   UintN16,
   UintN64,
 } from '@algorandfoundation/algorand-typescript/arc4'
-import { pcg64Init, pcg64Random } from '../../lib_pcg'
+import { pcg64Init, pcg64Random } from '../../lib_pcg/pcg64.algo'
 
 export class LibPcg64ExposerAlgoTs extends Contract {
   public bounded_rand_uint64(

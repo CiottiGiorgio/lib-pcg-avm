@@ -8,13 +8,6 @@
   "files": [
     "lib_pcg"
   ],
-  "types": "./lib_pcg/index.ts",
-  "exports": {
-    ".": {
-      "types": "./lib_pcg/index.ts",
-      "default": "./lib_pcg/index.ts"
-    }
-  },
   "scripts": {
     "compile-contracts": "algokit compile ts smart_contracts --no-output-arc32 --no-output-source-map --debug-level=0 --out-dir artifacts",
     "lint": "eslint lib_pcg smart_contracts",
