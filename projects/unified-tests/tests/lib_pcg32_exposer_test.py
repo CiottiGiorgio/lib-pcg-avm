@@ -152,7 +152,6 @@ def lib_pcg32_exposer_pyteal_client(
 RNG_SEED = b"\x00\x00\x00\x00\x00\x00\x00\x2a"
 
 BIT_SIZES = [8, 16, 32]
-# These sequences are generated using the reference C implementation.
 UNBOUNDED_SEQUENCE = (
     [
         214,

@@ -134,7 +134,6 @@ def lib_pcg64_exposer_pyteal_client(
 RNG_SEED = b"\x00\x00\x00\x00\x00\x00\x00\x2a" + b"\x00\x00\x00\x00\x00\x00\x00\x36"
 
 EXPECTED_MAXIMAL_SEQUENCE_LENGTH = 127
-# These sequences WERE NOT generated using the reference C implementation.
 UNBOUNDED_SEQUENCE = [
     14048270771836679757,
     7712349120530716571,

@@ -51,3 +51,23 @@ algokit project run test-algopy
 algokit project run test-algots
 algokit project run test-pyteal
 ```
+
+## Testing Methodology
+
+The golden standard for testing a PRNG is a strong statistical test ran over a significant 
+portion of the generator's output.
+Since this is not a new kind of generator, it should be enough to validate that it runs
+the same as another reference implementation.
+
+This is straightforward to do only in the 32-bit case where there's no extension mechanism and 
+generators from the minimal C implementation can be directly compared with lib-pcg-avm.
+The only reference implementation that uses extension mechanisms is the cpp implementation, and it 
+uses the extension mechanism described in chapter 7.1 of the PCG paper.
+Since generators from 64-bit and beyond use the extension mechanism described in chapter 4.3.4 
+of the PCG paper, the outputs are not directly comparable.
+
+The values for the 64-bit and 128-bit generators are created by modifying the minimal C implementation
+of the reference PCG implementation to extend with the mechanism described in chapter 4.3.4.
+
+Nevertheless, all generators in lib-pcg-avm are tested to produce the same values by comparing 
+a short initial sequence.
