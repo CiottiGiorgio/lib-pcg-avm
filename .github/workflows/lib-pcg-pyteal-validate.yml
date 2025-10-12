@@ -14,7 +14,7 @@ on:
 
 
 jobs:
-  validate:
+  lib-pcg-pyteal-validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code

@@ -34,13 +34,13 @@ on:
       - ".idea/**"
 
 jobs:
-  lib-pcg-algots-validate:
+  lib-pcg-algots-cd-validation:
     name: Run lib-pcg-algots validation
     uses: ./.github/workflows/lib-pcg-algots-validate.yml
 
-  lib-pcg-algots-release:
+  lib-pcg-algots-cd-release:
     name: Run lib-pcg-algots release
-    needs: lib-pcg-algots-validate
+    needs: lib-pcg-algots-cd-validation
     runs-on: ubuntu-latest
     permissions:
       contents: write

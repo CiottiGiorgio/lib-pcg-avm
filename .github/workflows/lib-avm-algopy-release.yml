@@ -34,13 +34,13 @@ on:
       - ".idea/**"
 
 jobs:
-  lib-pcg-algopy-validate:
+  lib-pcg-algopy-cd-validation:
     name: Run lib-pcg-algopy validation
     uses: ./.github/workflows/lib-pcg-algopy-validate.yml
 
-  lib-pcg-algopy-release:
+  lib-pcg-algopy-cd-release:
     name: Run lib-pcg-algopy release
-    needs: lib-pcg-algopy-validate
+    needs: lib-pcg-algopy-cd-validation
     runs-on: ubuntu-latest
     permissions:
       contents: write
