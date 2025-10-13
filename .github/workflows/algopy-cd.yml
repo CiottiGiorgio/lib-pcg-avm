@@ -35,11 +35,9 @@ on:
 
 jobs:
   lib-pcg-algopy-cd-validation:
-    name: Run lib-pcg-algopy validation
     uses: ./.github/workflows/algopy-validate.yml
 
   lib-pcg-algopy-cd-release:
-    name: Run lib-pcg-algopy release
     needs: lib-pcg-algopy-cd-validation
     runs-on: ubuntu-latest
     permissions:
