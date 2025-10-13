@@ -18,21 +18,21 @@ jobs:
         with:
           filters: |
             algopy:
-              - '!(projects/lib-pcg-algots/**)'
-              - '!(projects/lib-pcg-pyteal/**)'
-              - '!(projects/lib-pcg-ts/**)'
+              - '!projects/lib-pcg-algots/'
+              - '!projects/lib-pcg-pyteal/'
+              - '!projects/lib-pcg-ts/'
             algots:
-              - '!(projects/lib-pcg-algopy/**)'
-              - '!(projects/lib-pcg-pyteal/**)'
-              - '!(projects/lib-pcg-ts/**)'
+              - '!projects/lib-pcg-algopy/'
+              - '!projects/lib-pcg-pyteal/'
+              - '!projects/lib-pcg-ts/'
             pyteal:
-              - '!(projects/lib-pcg-algopy/**)'
-              - '!(projects/lib-pcg-algots/**)'
-              - '!(projects/lib-pcg-ts/**)'
+              - '!projects/lib-pcg-algopy/'
+              - '!projects/lib-pcg-algots/'
+              - '!projects/lib-pcg-ts/'
             ts:
-              - '!(projects/lib-pcg-algopy/**)'
-              - '!(projects/lib-pcg-algots/**)'
-              - '!(projects/lib-pcg-pyteal/**)'
+              - '!projects/lib-pcg-algopy/'
+              - '!projects/lib-pcg-algots/'
+              - '!projects/lib-pcg-pyteal/'
 
   # We would like to only run each job in case something changes in the respective project.
   # However, we don't want to accidentally miss important changes in workflow, tests, etc. files so
