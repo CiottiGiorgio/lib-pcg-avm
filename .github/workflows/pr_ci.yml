@@ -8,55 +8,54 @@ jobs:
     permissions:
       pull-requests: read
     outputs:
-      algopy: ${{ steps.changes.outputs.algopy }}
-      algots: ${{ steps.changes.outputs.algots }}
-      pyteal: ${{ steps.changes.outputs.pyteal }}
-      ts: ${{ steps.changes.outputs.ts }}
+      algopy: ${{ steps.filter.outputs.algopy }}
+      algots: ${{ steps.filter.outputs.algots }}
+      pyteal: ${{ steps.filter.outputs.pyteal }}
+      ts: ${{ steps.filter.outputs.ts }}
     steps:
       - uses: dorny/paths-filter@v3
         id: filter
         with:
+          # We would like to only run each job in case something changes in the respective project.
+          # However, we don't want to accidentally miss important changes in workflow, tests, etc. files so
+          #  we will specifically ignore changes in other subprojects instead of including exclusively the relevant project.
+          # This setup helps with modularity of the reusable workflows, and with the fact that required checks will not be
+          #  satisfied by workflows that are skipped due to the 'paths-ignore' clause. This way of skipping a job works well with it.
+          predicate-quantifier: 'every'
           filters: |
             algopy:
-              - '!(projects/lib-pcg-algots/**)'
-              - '!(projects/lib-pcg-pyteal/**)'
-              - '!(projects/lib-pcg-ts/**)'
+              - '!projects/lib-pcg-algots/**'
+              - '!projects/lib-pcg-pyteal/**'
+              - '!projects/lib-pcg-ts/**'
             algots:
-              - '!(projects/lib-pcg-algopy/**)'
-              - '!(projects/lib-pcg-pyteal/**)'
-              - '!(projects/lib-pcg-ts/**)'
+              - '!projects/lib-pcg-algopy/**'
+              - '!projects/lib-pcg-pyteal/**'
+              - '!projects/lib-pcg-ts/**'
             pyteal:
-              - '!(projects/lib-pcg-algopy/**)'
-              - '!(projects/lib-pcg-algots/**)'
-              - '!(projects/lib-pcg-ts/**)'
+              - '!projects/lib-pcg-algopy/**'
+              - '!projects/lib-pcg-algots/**'
+              - '!projects/lib-pcg-ts/**'
             ts:
-              - '!(projects/lib-pcg-algopy/**)'
-              - '!(projects/lib-pcg-algots/**)'
-              - '!(projects/lib-pcg-pyteal/**)'
+              - '!projects/lib-pcg-algopy/**'
+              - '!projects/lib-pcg-algots/**'
+              - '!projects/lib-pcg-pyteal/**'
 
-  # We would like to only run each job in case something changes in the respective project.
-  # However, we don't want to accidentally miss important changes in workflow, tests, etc. files so
-  #  we will specifically ignore changes in other subprojects instead of everything outside the relevant project.
   lib-pcg-algopy-ci-validation:
-    name: Run lib-pcg-algopy validation
     needs: changes
-    if: needs.changes.outputs.algopy == 'true'
+    if: ${{ needs.changes.outputs.algopy == 'true' }}
     uses: ./.github/workflows/algopy-validate.yml
 
   lib-pcg-algots-ci-validation:
-    name: Run lib-pcg-algots validation
     needs: changes
-    if: needs.changes.outputs.algots == 'true'
+    if: ${{ needs.changes.outputs.algots == 'true' }}
     uses: ./.github/workflows/algots-validate.yml
 
   lib-pcg-pyteal-ci-validation:
-    name: Run lib-pcg-pyteal validation
     needs: changes
-    if: needs.changes.outputs.pyteal == 'true'
+    if: ${{ needs.changes.outputs.pyteal == 'true' }}
     uses: ./.github/workflows/pyteal-validate.yml
 
   lib-pcg-ts-ci-validation:
-    name: Run lib-pcg-ts validation
     needs: changes
-    if: needs.changes.outputs.ts == 'true'
+    if: ${{ needs.changes.outputs.ts == 'true' }}
     uses: ./.github/workflows/ts-validate.yml

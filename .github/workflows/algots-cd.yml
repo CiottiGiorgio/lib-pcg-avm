@@ -35,11 +35,9 @@ on:
 
 jobs:
   lib-pcg-algots-cd-validation:
-    name: Run lib-pcg-algots validation
     uses: ./.github/workflows/algots-validate.yml
 
   lib-pcg-algots-cd-release:
-    name: Run lib-pcg-algots release
     needs: lib-pcg-algots-cd-validation
     runs-on: ubuntu-latest
     permissions:
