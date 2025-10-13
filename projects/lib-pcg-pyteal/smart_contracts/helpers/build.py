@@ -1,5 +1,4 @@
 import logging
-import subprocess
 from pathlib import Path
 from shutil import rmtree
 
