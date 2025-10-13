@@ -1,4 +1,4 @@
-name: AlgoPy Release
+name: AlgoPy CD
 
 on:
   workflow_dispatch:
@@ -36,7 +36,7 @@ on:
 jobs:
   lib-pcg-algopy-cd-validation:
     name: Run lib-pcg-algopy validation
-    uses: ./.github/workflows/lib-pcg-algopy-validate.yml
+    uses: ./.github/workflows/algopy-validate.yml
 
   lib-pcg-algopy-cd-release:
     name: Run lib-pcg-algopy release
