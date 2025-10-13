@@ -1,4 +1,4 @@
-name: AlgoTS Release
+name: AlgoTS CD
 
 on:
   workflow_dispatch:
@@ -36,7 +36,7 @@ on:
 jobs:
   lib-pcg-algots-cd-validation:
     name: Run lib-pcg-algots validation
-    uses: ./.github/workflows/lib-pcg-algots-validate.yml
+    uses: ./.github/workflows/algots-validate.yml
 
   lib-pcg-algots-cd-release:
     name: Run lib-pcg-algots release

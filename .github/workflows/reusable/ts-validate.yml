@@ -1,20 +1,10 @@
-name: AlgoTs Validate
+name: TEALScript Validate
 
 on:
-  pull_request:
-    paths-ignore:
-      # We would like to only run this workflow in case something changes in the algots project.
-      # However, we can't use both paths and paths-ignore clauses.
-      # To be on the safe side and not ignore changes that are important, we only ignore specific subprojects
-      #  instead of everything outside algots.
-      - "projects/lib-pcg-algopy/**"
-      - "projects/lib-pcg-pyteal/**"
-      - "projects/lib-pcg-ts/**"
   workflow_call:
 
-
 jobs:
-  lib-pcg-algots-validate:
+  lib-pcg-ts-validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -25,7 +15,7 @@ jobs:
         with:
           node-version: 22.x
           cache: npm
-          cache-dependency-path: ./projects/lib-pcg-algots/package-lock.json
+          cache-dependency-path: ./projects/lib-pcg-ts/package-lock.json
 
       - name: Install poetry
         run: |
@@ -36,7 +26,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: 3.12
-          cache: poetry
 
       - name: Install algokit
         run: pipx install algokit
@@ -45,7 +34,7 @@ jobs:
         run: algokit localnet start
 
       - name: Bootstrap dependencies
-        run: algokit project bootstrap all --project-name lib-pcg-algots
+        run: algokit project bootstrap all --project-name lib-pcg-ts
 
       - name: Bootstrap testing dependencies
         run: algokit project bootstrap all --project-name unified-tests
@@ -57,28 +46,28 @@ jobs:
           git config --global user.email "actions@github.com" && git config --global user.name "github-actions"
 
       - name: Audit dependencies
-        run: algokit project run audit --project-name lib-pcg-algots
+        run: algokit project run audit --project-name lib-pcg-ts
 
       - name: Lint and format
-        run: algokit project run ci-lint --project-name lib-pcg-algots
+        run: algokit project run ci-lint --project-name lib-pcg-ts
 
       - name: Run tests
         shell: bash
         run: |
           set -o pipefail
-          algokit project run test-algots --project-name unified-tests
+          algokit project run test-ts --project-name unified-tests
 
       - name: Build smart contracts
-        run: algokit project run build --project-name lib-pcg-algots
+        run: algokit project run build --project-name lib-pcg-ts
 
       - name: Scan TEAL files for issues
-        run: algokit project run audit-teal --project-name lib-pcg-algots
+        run: algokit project run audit-teal --project-name lib-pcg-ts
 
       - name: Link smart contracts
-        run: algokit project link --language=python --project-name lib-pcg-algots
+        run: algokit project link --language=python --project-name lib-pcg-ts
         working-directory: ./projects/unified-tests/
 
       - name: Check output stability of the smart contracts
-        # We could either catch a diff in algots of unified-tests (since they are linked).
+        # We could either catch a diff in ts of unified-tests (since they are linked).
         # By doing this and not --project-name, we catch both (and more potentially).
         run: algokit project run ci-teal-diff --sequential
