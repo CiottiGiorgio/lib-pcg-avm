@@ -8,4 +8,4 @@ export const pcgSecondIncrement = Uint64(1442695040888963409n)
 
 export const pcgThirdIncrement = Uint64(1442695040888963411n)
 
-export const pcgFourthIncrement = Uint64(1442695040888963413n)
+export const pcgFourthIncrement = Uint64(144269504088896343n)
