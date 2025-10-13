@@ -14,7 +14,7 @@ algorand-python = "^3"
 
 [tool.poetry.group.dev.dependencies]
 black = {extras = ["d"], version = "*"}
-ruff = ">=0.9.4,<0.14.0"
+ruff = ">=0.9.4,<0.15.0"
 mypy = "^1"
 pip-audit = "*"
 pre-commit = "*"
