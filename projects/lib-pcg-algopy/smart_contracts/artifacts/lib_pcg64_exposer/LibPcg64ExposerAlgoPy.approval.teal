@@ -37,7 +37,9 @@ main_update@7:
 main___algopy_default_create@6:
     txn ApplicationID
     !
-    return // on error: can only call when creating
+    assert // can only call when creating
+    intc_0 // 1
+    return
 
 
 // lib_pcg.pcg64.__pcg64_unbounded_random(state.0: uint64, state.1: uint64) -> uint64, uint64, uint64:
@@ -126,14 +128,29 @@ bounded_rand_uint64:
     pushbytes ""
     dupn 5
     txna ApplicationArgs 1
-    txna ApplicationArgs 2
-    txna ApplicationArgs 3
-    txna ApplicationArgs 4
-    dig 3
+    dup
     len
     pushint 16 // 16
     ==
-    assert
+    assert // invalid number of bytes for arc4.static_array<arc4.uint8, 16>
+    txna ApplicationArgs 2
+    dup
+    len
+    pushint 8 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    txna ApplicationArgs 3
+    dup
+    len
+    pushint 8 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    txna ApplicationArgs 4
+    dup
+    len
+    pushint 2 // 2
+    ==
+    assert // invalid number of bytes for arc4.uint16
     dig 3
     intc_1 // 0
     extract_uint64
