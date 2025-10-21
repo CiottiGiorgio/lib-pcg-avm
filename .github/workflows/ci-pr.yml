@@ -42,20 +42,24 @@ jobs:
 
   lib-pcg-algopy-ci-validation:
     needs: changes
-    if: ${{ needs.changes.outputs.algopy == 'true' }}
-    uses: ./.github/workflows/algopy-validate.yml
+    uses: ./.github/workflows/validate-algopy.yml
+    with:
+      skip: ${{ needs.changes.outputs.algopy == 'false' }}
 
   lib-pcg-algots-ci-validation:
     needs: changes
-    if: ${{ needs.changes.outputs.algots == 'true' }}
-    uses: ./.github/workflows/algots-validate.yml
+    uses: ./.github/workflows/validate-algots.yml
+    with:
+      skip: ${{ needs.changes.outputs.algots == 'false' }}
 
   lib-pcg-pyteal-ci-validation:
     needs: changes
-    if: ${{ needs.changes.outputs.pyteal == 'true' }}
-    uses: ./.github/workflows/pyteal-validate.yml
+    uses: ./.github/workflows/validate-pyteal.yml
+    with:
+      skip: ${{ needs.changes.outputs.pyteal == 'false' }}
 
   lib-pcg-ts-ci-validation:
     needs: changes
-    if: ${{ needs.changes.outputs.ts == 'true' }}
-    uses: ./.github/workflows/ts-validate.yml
+    uses: ./.github/workflows/validate-ts.yml
+    with:
+      skip: ${{ needs.changes.outputs.ts == 'false' }}

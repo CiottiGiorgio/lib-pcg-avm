@@ -1,4 +1,4 @@
-name: AlgoPy CD
+name: AlgoTS CD
 
 on:
   workflow_dispatch:
@@ -21,11 +21,11 @@ on:
     branches:
       - main
     paths-ignore:
-      # We would like to only run this workflow in case something changes in the algopy project.
+      # We would like to only run this workflow in case something changes in the algots project.
       # However, we can't use both paths and paths-ignore clauses.
       # To be on the safe side and not ignore changes that are important, we only ignore specific subprojects
-      #  instead of everything outside algopy.
-      - "projects/lib-pcg-algots/**"
+      #  instead of everything outside algots.
+      - "projects/lib-pcg-algopy/**"
       - "projects/lib-pcg-pyteal/**"
       - "projects/lib-pcg-ts/**"
       - "docs/**"
@@ -34,11 +34,11 @@ on:
       - ".idea/**"
 
 jobs:
-  lib-pcg-algopy-cd-validation:
-    uses: ./.github/workflows/algopy-validate.yml
+  lib-pcg-algots-cd-validation:
+    uses: ./.github/workflows/validate-algots.yml
 
-  lib-pcg-algopy-cd-release:
-    needs: lib-pcg-algopy-cd-validation
+  lib-pcg-algots-cd-release:
+    needs: lib-pcg-algots-cd-validation
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -52,33 +52,32 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Install poetry
-        run: pipx install poetry
-
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v5
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v4
         with:
-          python-version: 3.12
-          cache: poetry
+          node-version: 22.x
+          cache: npm
+          cache-dependency-path: ./projects/lib-pcg-algots/package-lock.json
+          registry-url: "https://registry.npmjs.org"
 
       - name: Bump Package Version
-        working-directory: projects/lib-pcg-algopy
-        run: poetry version ${{ env.VERSION_BUMP }}
+        working-directory: projects/lib-pcg-algots
+        run: npm version ${{ env.VERSION_BUMP }}
 
       - name: Publish Package
-        working-directory: projects/lib-pcg-algopy
+        working-directory: projects/lib-pcg-algots
         run: |
-          poetry publish \
-          --build \
-          ${{ env.DRY_RUN == 'true' && '--dry-run' || '' }} \
-          --username __token__ \
-          --password ${{ secrets.POETRY_PUBLISH_PYPI_LIB_PCG_ALGOPY }}
+          npm publish \
+          ${{ env.DRY_RUN == 'true' && '--dry-run' || '' }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_LIB_PCG_ALGOTS }}
 
       - name: Commit and Push Version Bump
         if: env.DRY_RUN == 'false'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add projects/lib-pcg-algopy/pyproject.toml
-          git commit -m "chore(release): Bump lib-pcg-algopy version to $(cd projects/lib-pcg-algopy && poetry version -s)"
+          git add projects/lib-pcg-algots/package.json
+          # The commit message will include the new version number from the manifest
+          git commit -m "chore(release): Bump lib-pcg-algots version to $(jq -r .version projects/lib-pcg-algots/package.json)"
           git push

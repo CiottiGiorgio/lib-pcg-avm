@@ -1,22 +1,21 @@
-name: AlgoTs Validate
+name: PyTeal Validate
 
 on:
   workflow_call:
+    inputs:
+      skip:
+        required: false
+        default: false
+        type: boolean
 
 
 jobs:
-  lib-pcg-algots-validate:
+  lib-pcg-pyteal-validate:
+    if: ${{ !inputs.skip }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
-
-      - name: Use Node.js 22.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.x
-          cache: npm
-          cache-dependency-path: ./projects/lib-pcg-algots/package-lock.json
 
       - name: Install poetry
         run: |
@@ -36,7 +35,7 @@ jobs:
         run: algokit localnet start
 
       - name: Bootstrap dependencies
-        run: algokit project bootstrap all --project-name lib-pcg-algots
+        run: algokit project bootstrap all --project-name lib-pcg-pyteal
 
       - name: Bootstrap testing dependencies
         run: algokit project bootstrap all --project-name unified-tests
@@ -47,29 +46,29 @@ jobs:
           # set git user and email as test invoke git
           git config --global user.email "actions@github.com" && git config --global user.name "github-actions"
 
-      - name: Audit dependencies
-        run: algokit project run audit --project-name lib-pcg-algots
+      - name: Audit python dependencies
+        run: algokit project run audit --project-name lib-pcg-pyteal
 
-      - name: Lint and format
-        run: algokit project run ci-lint --project-name lib-pcg-algots
+      - name: Lint and format python dependencies
+        run: algokit project run ci-lint --project-name lib-pcg-pyteal
 
       - name: Run tests
         shell: bash
         run: |
           set -o pipefail
-          algokit project run test-algots --project-name unified-tests
+          algokit project run test-pyteal --project-name unified-tests
 
       - name: Build smart contracts
-        run: algokit project run build --project-name lib-pcg-algots
+        run: algokit project run build --project-name lib-pcg-pyteal
 
       - name: Scan TEAL files for issues
-        run: algokit project run audit-teal --project-name lib-pcg-algots
+        run: algokit project run audit-teal --project-name lib-pcg-pyteal
 
       - name: Link smart contracts
-        run: algokit project link --language=python --project-name lib-pcg-algots
+        run: algokit project link --language=python --project-name lib-pcg-pyteal
         working-directory: ./projects/unified-tests/
 
       - name: Check output stability of the smart contracts
-        # We could either catch a diff in algots of unified-tests (since they are linked).
+        # We could either catch a diff in pyteal of unified-tests (since they are linked).
         # By doing this and not --project-name, we catch both (and more potentially).
         run: algokit project run ci-teal-diff --sequential

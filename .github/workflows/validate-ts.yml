@@ -2,9 +2,16 @@ name: TEALScript Validate
 
 on:
   workflow_call:
+    inputs:
+      skip:
+        required: false
+        default: false
+        type: boolean
+
 
 jobs:
   lib-pcg-ts-validate:
+    if: ${{ !inputs.skip }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
