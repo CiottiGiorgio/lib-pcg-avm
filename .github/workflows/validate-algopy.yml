@@ -1,4 +1,4 @@
-name: AlgoPy Validate
+name: Validate AlgoPy
 
 on:
   workflow_call:

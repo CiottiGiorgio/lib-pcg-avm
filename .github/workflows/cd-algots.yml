@@ -1,4 +1,4 @@
-name: AlgoTS CD
+name: CD AlgoTS
 
 on:
   workflow_dispatch:

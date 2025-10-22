@@ -1,4 +1,4 @@
-name: AlgoPy CD
+name: CD AlgoPy
 
 on:
   workflow_dispatch:

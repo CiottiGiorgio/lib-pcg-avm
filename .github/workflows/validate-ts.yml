@@ -1,4 +1,4 @@
-name: TEALScript Validate
+name: Validate TEALScript
 
 on:
   workflow_call:

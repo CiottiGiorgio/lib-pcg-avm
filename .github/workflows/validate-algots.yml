@@ -1,4 +1,4 @@
-name: AlgoTs Validate
+name: Validate AlgoTS
 
 on:
   workflow_call:

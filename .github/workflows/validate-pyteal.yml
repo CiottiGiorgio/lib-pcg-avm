@@ -1,4 +1,4 @@
-name: PyTeal Validate
+name: Validate PyTeal
 
 on:
   workflow_call:
