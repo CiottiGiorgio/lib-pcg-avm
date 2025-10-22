@@ -71,7 +71,7 @@ jobs:
           --build \
           ${{ env.DRY_RUN == 'true' && '--dry-run' || '' }} \
           --username __token__ \
-          --password ${{ secrets.POETRY_PUBLISH_PYPI_LIB_PCG_ALGOPY }}
+          --password ${{ secrets.POETRY_PUBLISH_TOKEN_PYPI_LIB_PCG_ALGOPY }}
 
       - name: Commit and Push Version Bump
         if: env.DRY_RUN == 'false'

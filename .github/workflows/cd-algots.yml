@@ -69,7 +69,7 @@ jobs:
           npm publish \
           ${{ env.DRY_RUN == 'true' && '--dry-run' || '' }}
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_LIB_PCG_ALGOTS }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN_NPMJS_LIB_PCG_ALGOTS }}
 
       - name: Commit and Push Version Bump
         if: env.DRY_RUN == 'false'
