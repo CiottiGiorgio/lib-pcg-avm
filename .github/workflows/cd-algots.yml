@@ -50,7 +50,7 @@ jobs:
     steps:
       - name: Generate a token
         id: generate-token
-        uses: actions/create-github-app-token@1
+        uses: actions/create-github-app-token@v2
         with:
           app-id: ${{ secrets.LIB_PCG_RELEASE_APP_ID }}
           private-key: ${{ secrets.LIB_PCG_RELEASE_APP_SK }}
