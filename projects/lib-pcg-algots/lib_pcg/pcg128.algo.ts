@@ -5,27 +5,6 @@ import { DynamicArray, UintN128 } from '@algorandfoundation/algorand-typescript/
 
 type PCG128STATE = [uint64, uint64, uint64, uint64]
 
-export function __uint128Twos(value: biguint): biguint {
-  return (BigUint(Bytes(value).bitwiseInvert()) + BigUint(1)) & BigUint(2 ** 128 - 1)
-}
-
-export function __pcg128UnboundedRandom(state: PCG128STATE): [PCG128STATE, biguint] {
-  const newState1 = __pcg32Step(state[0], pcgFirstIncrement)
-  const newState2 = __pcg32Step(state[1], newState1 === 0 ? op.shl(pcgSecondIncrement, 1) : pcgSecondIncrement)
-  const newState3 = __pcg32Step(state[2], newState2 === 0 ? op.shl(pcgThirdIncrement, 1) : pcgThirdIncrement)
-  const newState4 = __pcg32Step(state[3], newState3 === 0 ? op.shl(pcgFourthIncrement, 1) : pcgFourthIncrement)
-
-  return [
-    [newState1, newState2, newState3, newState4],
-    BigUint(
-      op.concat(
-        op.itob(op.shl(__pcg32Output(state[0]), 32) | __pcg32Output(state[1])),
-        op.itob(op.shl(__pcg32Output(state[2]), 32) | __pcg32Output(state[3])),
-      ),
-    ),
-  ]
-}
-
 export function pcg128Init(seed: bytes): PCG128STATE {
   assert(seed.length === 32)
 
@@ -82,4 +61,25 @@ export function pcg128Random(
   }
 
   return [state, result.copy()]
+}
+
+export function __pcg128UnboundedRandom(state: PCG128STATE): [PCG128STATE, biguint] {
+  const newState1 = __pcg32Step(state[0], pcgFirstIncrement)
+  const newState2 = __pcg32Step(state[1], newState1 === 0 ? op.shl(pcgSecondIncrement, 1) : pcgSecondIncrement)
+  const newState3 = __pcg32Step(state[2], newState2 === 0 ? op.shl(pcgThirdIncrement, 1) : pcgThirdIncrement)
+  const newState4 = __pcg32Step(state[3], newState3 === 0 ? op.shl(pcgFourthIncrement, 1) : pcgFourthIncrement)
+
+  return [
+    [newState1, newState2, newState3, newState4],
+    BigUint(
+      op.concat(
+        op.itob(op.shl(__pcg32Output(state[0]), 32) | __pcg32Output(state[1])),
+        op.itob(op.shl(__pcg32Output(state[2]), 32) | __pcg32Output(state[3])),
+      ),
+    ),
+  ]
+}
+
+export function __uint128Twos(value: biguint): biguint {
+  return (BigUint(Bytes(value).bitwiseInvert()) + BigUint(1)) & BigUint(2 ** 128 - 1)
 }
