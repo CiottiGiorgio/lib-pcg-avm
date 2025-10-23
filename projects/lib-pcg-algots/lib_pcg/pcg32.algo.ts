@@ -11,30 +11,58 @@ import { pcgFirstIncrement, pcgMultiplier } from './consts.algo'
 
 type PCG32STATE = uint64
 
-export function __uint64Twos(value: uint64): uint64 {
-  const [, addLow] = op.addw(~value, 1)
-  return addLow
+export function pcg32Init(seed: bytes): PCG32STATE {
+  assert(seed.length === 8)
+
+  return __pcg32Init(op.btoi(seed), pcgFirstIncrement)
 }
 
-function __maskToUint32(value: uint64): uint64 {
-  return value & (op.shl(1, 32) - 1)
+export function pcg16Init(seed: bytes): PCG32STATE {
+  return pcg32Init(seed)
 }
 
-export function __pcg32Step(state: PCG32STATE, incr: uint64): uint64 {
-  const [, mulLow] = op.mulw(state, pcgMultiplier)
-  const [, addLow] = op.addw(mulLow, incr)
-
-  return addLow
+export function pcg8Init(seed: bytes): PCG32STATE {
+  return pcg32Init(seed)
 }
 
-export function __pcg32Output(state: PCG32STATE): uint64 {
-  const xorshifted = __maskToUint32(op.shr(op.shr(state, 18) ^ state, 27))
-  const rot = op.shr(state, 59)
-  return op.shr(xorshifted, rot) | __maskToUint32(op.shl(xorshifted, __uint64Twos(rot) & 31))
+export function pcg32Random(
+  state: PCG32STATE,
+  lowerBound: uint64,
+  upperBound: uint64,
+  length: uint64,
+): [PCG32STATE, DynamicArray<UintN32>] {
+  const [newState, sequence] = __pcg32BoundedSequence(state, 32, lowerBound, upperBound, length)
+
+  return [newState, interpretAsArc4<DynamicArray<UintN32>>(sequence)]
 }
 
-export function __pcg32UnboundedRandom(state: PCG32STATE): [PCG32STATE, uint64] {
-  return [__pcg32Step(state, pcgFirstIncrement), __pcg32Output(state)]
+export function pcg16Random(
+  state: PCG32STATE,
+  lowerBound: uint64,
+  upperBound: uint64,
+  length: uint64,
+): [PCG32STATE, DynamicArray<UintN16>] {
+  const [newState, sequence] = __pcg32BoundedSequence(state, 16, lowerBound, upperBound, length)
+
+  return [newState, interpretAsArc4<DynamicArray<UintN16>>(sequence)]
+}
+
+export function pcg8Random(
+  state: PCG32STATE,
+  lowerBound: uint64,
+  upperBound: uint64,
+  length: uint64,
+): [PCG32STATE, DynamicArray<UintN8>] {
+  const [newState, sequence] = __pcg32BoundedSequence(state, 8, lowerBound, upperBound, length)
+
+  return [newState, interpretAsArc4<DynamicArray<UintN8>>(sequence)]
+}
+
+export function __pcg32Init(initialState: PCG32STATE, incr: uint64): PCG32STATE {
+  const state = __pcg32Step(0, incr)
+  const [, addLow] = op.addw(state, initialState)
+
+  return __pcg32Step(addLow, incr)
 }
 
 function __pcg32BoundedSequence(
@@ -95,56 +123,28 @@ function __pcg32BoundedSequence(
   return [state, result]
 }
 
-export function __pcg32Init(initialState: PCG32STATE, incr: uint64): PCG32STATE {
-  const state = __pcg32Step(0, incr)
-  const [, addLow] = op.addw(state, initialState)
-
-  return __pcg32Step(addLow, incr)
+export function __pcg32UnboundedRandom(state: PCG32STATE): [PCG32STATE, uint64] {
+  return [__pcg32Step(state, pcgFirstIncrement), __pcg32Output(state)]
 }
 
-export function pcg32Init(seed: bytes): PCG32STATE {
-  assert(seed.length === 8)
+export function __pcg32Step(state: PCG32STATE, incr: uint64): uint64 {
+  const [, mulLow] = op.mulw(state, pcgMultiplier)
+  const [, addLow] = op.addw(mulLow, incr)
 
-  return __pcg32Init(op.btoi(seed), pcgFirstIncrement)
+  return addLow
 }
 
-export function pcg16Init(seed: bytes): PCG32STATE {
-  return pcg32Init(seed)
+export function __pcg32Output(state: PCG32STATE): uint64 {
+  const xorshifted = __maskToUint32(op.shr(op.shr(state, 18) ^ state, 27))
+  const rot = op.shr(state, 59)
+  return op.shr(xorshifted, rot) | __maskToUint32(op.shl(xorshifted, __uint64Twos(rot) & 31))
 }
 
-export function pcg8Init(seed: bytes): PCG32STATE {
-  return pcg32Init(seed)
+export function __uint64Twos(value: uint64): uint64 {
+  const [, addLow] = op.addw(~value, 1)
+  return addLow
 }
 
-export function pcg32Random(
-  state: PCG32STATE,
-  lowerBound: uint64,
-  upperBound: uint64,
-  length: uint64,
-): [PCG32STATE, DynamicArray<UintN32>] {
-  const [newState, sequence] = __pcg32BoundedSequence(state, 32, lowerBound, upperBound, length)
-
-  return [newState, interpretAsArc4<DynamicArray<UintN32>>(sequence)]
-}
-
-export function pcg16Random(
-  state: PCG32STATE,
-  lowerBound: uint64,
-  upperBound: uint64,
-  length: uint64,
-): [PCG32STATE, DynamicArray<UintN16>] {
-  const [newState, sequence] = __pcg32BoundedSequence(state, 16, lowerBound, upperBound, length)
-
-  return [newState, interpretAsArc4<DynamicArray<UintN16>>(sequence)]
-}
-
-export function pcg8Random(
-  state: PCG32STATE,
-  lowerBound: uint64,
-  upperBound: uint64,
-  length: uint64,
-): [PCG32STATE, DynamicArray<UintN8>] {
-  const [newState, sequence] = __pcg32BoundedSequence(state, 8, lowerBound, upperBound, length)
-
-  return [newState, interpretAsArc4<DynamicArray<UintN8>>(sequence)]
+function __maskToUint32(value: uint64): uint64 {
+  return value & (op.shl(1, 32) - 1)
 }
