@@ -72,6 +72,10 @@ jobs:
         working-directory: projects/lib-pcg-algots
         run: npm version ${{ env.VERSION_BUMP }}
 
+      - name: Lock Bumped Version
+        working-directory: projects/lib-pcg-algots
+        run: npm install
+
       - name: Publish Package
         working-directory: projects/lib-pcg-algots
         run: |
