@@ -26,10 +26,9 @@ build = { commands = [
   'poetry run python -m smart_contracts build',
 ], description = 'Build all smart contracts in the project' }
 audit = { commands = [
-  # By using Python 3.12, we already mitigate GHSA-4xh5-x5gv-qwph.
   # Since beaker is deprecated and relies on algokit-utils <3.0.0, we can't easily upgrade algokit-utils
   #  and therefore resolve GHSA-vqfr-h8mv-ghfj.
-  'poetry run pip-audit --ignore-vuln GHSA-4xh5-x5gv-qwph --ignore-vuln GHSA-vqfr-h8mv-ghfj',
+  'poetry run pip-audit --ignore-vuln GHSA-vqfr-h8mv-ghfj',
 ], description = 'Audit with pip-audit' }
 audit-teal = { commands = [
   # 🚨 IMPORTANT 🚨: For strict TEAL validation, remove --exclude statements. The default starter contract is not for production. Ensure thorough testing and adherence to best practices in smart contract development. This is not a replacement for a professional audit.

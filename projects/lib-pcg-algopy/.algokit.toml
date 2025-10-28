@@ -38,8 +38,7 @@ test = { commands = [
   'poetry run pytest',
 ], description = 'Run smart contract tests' }
 audit = { commands = [
-  # By using Python 3.12, we already mitigate this vulnerability.
-  'poetry run pip-audit --ignore-vuln GHSA-4xh5-x5gv-qwph',
+  'poetry run pip-audit',
 ], description = 'Audit with pip-audit. NOTE: If used with poetry >v2, make sure to install `poetry-plugin-export` as per https://github.com/python-poetry/poetry-plugin-export#installation.' }
 lint = { commands = [
   'poetry run black .',
