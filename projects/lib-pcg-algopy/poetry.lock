@@ -549,7 +549,7 @@ description = "Cross-platform colored terminal text."
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 groups = ["dev"]
-markers = "platform_system == \"Windows\" or sys_platform == \"win32\""
+markers = "sys_platform == \"win32\" or platform_system == \"Windows\""
 files = [
     {file = "colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
     {file = "colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"},
@@ -1559,13 +1559,13 @@ files = [
 
 [[package]]
 name = "puyapy"
-version = "5.3.2"
+version = "5.4.0"
 description = "An optimising compiler for Algorand Python"
 optional = false
 python-versions = "<4,>=3.12.0"
 groups = ["dev"]
 files = [
-    {file = "puyapy-5.3.2-py3-none-any.whl", hash = "sha256:b8d05390e3beffcf01ef37e2509a5a37326a0fe9bbcb717da27662e28e8f471b"},
+    {file = "puyapy-5.4.0-py3-none-any.whl", hash = "sha256:0028066723a62c90411b35a1f65a63a01ac737b073f779066ed9a2909cad9a47"},
 ]
 
 [package.dependencies]
