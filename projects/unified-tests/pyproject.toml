@@ -14,7 +14,7 @@ python-dotenv = "^1.2.1"
 [tool.poetry.group.dev.dependencies]
 algokit-client-generator = "^2.1.0"
 black = {extras = ["d"], version = "*"}
-ruff = "^0.14.2"
+ruff = "^0.14.3"
 mypy = "^1"
 pytest = "*"
 pytest-cov = "*"
