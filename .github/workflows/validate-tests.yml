@@ -28,14 +28,16 @@ jobs:
           python-version: 3.12
           cache: poetry
 
-      - name: Install algokit
-        run: pipx install algokit
-
       - name: Bootstrap dependencies
-        run: algokit project bootstrap all --project-name unified-tests
+        run: poetry install
+        working-directory: projects/unified-tests
 
       - name: Audit python dependencies
-        run: algokit project run audit --project-name unified-tests
+        run: poetry run pip-audit
+        working-directory: projects/unified-tests
 
       - name: Lint and format python dependencies
-        run: algokit project run ci-lint --project-name unified-tests
+        run: |
+          poetry run black --check --diff .
+          poetry run ruff check .
+        working-directory: projects/unified-tests
