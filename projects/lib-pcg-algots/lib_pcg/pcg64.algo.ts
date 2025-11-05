@@ -19,7 +19,7 @@ export function pcg64Random(
   upperBound: uint64,
   length: uint64,
 ): [PCG64STATE, arc4.DynamicArray<arc4.Uint64>] {
-  const result = new arc4.DynamicArray<arc4.Uint64>()
+  let result = new arc4.Uint16(length).bytes
 
   let helperState = clone(state)
   let absoluteBound: uint64
@@ -29,7 +29,7 @@ export function pcg64Random(
     for (let i = Uint64(0); i < length; i = i + 1) {
       ;[helperState, n] = __pcg64UnboundedRandom(helperState)
 
-      result.push(new arc4.Uint64(n))
+      result = result.concat(op.itob(n))
     }
   } else {
     if (upperBound !== 0) {
@@ -50,19 +50,19 @@ export function pcg64Random(
       while (true) {
         ;[helperState, candidate] = __pcg64UnboundedRandom(helperState)
         if (candidate >= threshold) {
-          result.push(new arc4.Uint64((candidate % absoluteBound) + lowerBound))
+          result = result.concat(op.itob((candidate % absoluteBound) + lowerBound))
           break
         }
       }
     }
   }
 
-  return [state, clone(result)]
+  return [state, arc4.convertBytes<arc4.DynamicArray<arc4.Uint64>>(result, { strategy: 'unsafe-cast' })]
 }
 
 export function __pcg64UnboundedRandom(state: PCG64STATE): [PCG64STATE, uint64] {
   const newState1 = __pcg32Step(state[0], pcgFirstIncrement)
-  const newState2 = __pcg32Step(state[1], newState1 === 0 ? op.shl(pcgSecondIncrement, 1) : pcgSecondIncrement)
+  const newState2 = __pcg32Step(state[1], op.shl(pcgSecondIncrement, Uint64(newState1 === 0)))
 
   return [[newState1, newState2], op.shl(__pcg32Output(state[0]), 32) | __pcg32Output(state[1])]
 }

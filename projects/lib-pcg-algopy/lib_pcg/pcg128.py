@@ -63,13 +63,15 @@ def pcg128_random(
         - A pseudo-random sequence of 128-bit uints.
 
     """
-    result = arc4.DynamicArray[arc4.UInt128]()
+    result = Bytes()
+
+    result += arc4.UInt16(length).bytes
 
     if lower_bound == 0 and upper_bound == 0:
         for i in urange(length):  # noqa: B007
             state, n = __pcg128_unbounded_random(state)
 
-            result.append(arc4.UInt128(n))
+            result += n.bytes
     else:
         if upper_bound != 0:
             assert upper_bound > BigUInt(1)
@@ -88,12 +90,12 @@ def pcg128_random(
             while True:
                 state, candidate = __pcg128_unbounded_random(state)
                 if candidate >= threshold:
-                    result.append(
-                        arc4.UInt128((candidate % absolute_bound) + lower_bound)
-                    )
+                    result += (
+                        (candidate % absolute_bound) + lower_bound
+                    ).bytes | op.bzero(16)
                     break
 
-    return state, result.copy()
+    return state, arc4.DynamicArray[arc4.UInt128].from_bytes(result)
 
 
 @subroutine
