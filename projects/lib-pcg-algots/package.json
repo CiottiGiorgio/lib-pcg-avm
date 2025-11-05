@@ -1,6 +1,6 @@
 {
   "name": "lib-pcg-algots",
-  "version": "0.2.4",
+  "version": "1.0.0",
   "description": "PCG library implemented using Algorand TypeScript",
   "homepage": "https://github.com/CiottiGiorgio/lib-pcg-avm",
   "license": "MIT",
