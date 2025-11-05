@@ -202,6 +202,8 @@ __pcg32BoundedSequence_after_if_else@14:
     frame_bury 6
     intc_2 // 0
     frame_bury 5
+    frame_dig -5
+    frame_bury 3
 
 __pcg32BoundedSequence_while_top@15:
     frame_dig 5
@@ -210,8 +212,12 @@ __pcg32BoundedSequence_while_top@15:
     bz __pcg32BoundedSequence_after_if_else@24
 
 __pcg32BoundedSequence_while_top@17:
-    frame_dig -5
+    frame_dig 3
     callsub __pcg32UnboundedRandom
+    dup
+    intc_2 // 0
+    extract_uint64
+    frame_bury 3
     intc_1 // 8
     extract_uint64
     dup
