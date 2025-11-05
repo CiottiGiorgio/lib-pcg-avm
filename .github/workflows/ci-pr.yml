@@ -12,6 +12,7 @@ jobs:
       algots: ${{ steps.filter.outputs.algots }}
       pyteal: ${{ steps.filter.outputs.pyteal }}
       ts: ${{ steps.filter.outputs.ts }}
+      tests: ${{ steps.filter.outputs.tests }}
     steps:
       - uses: dorny/paths-filter@v3
         id: filter
@@ -46,6 +47,12 @@ jobs:
               - '!projects/unified-tests/smart_contracts/artifacts/lib_pcg*_exposer_algo_py.py'
               - '!projects/unified-tests/smart_contracts/artifacts/lib_pcg*_exposer_algo_ts.py'
               - '!projects/unified-tests/smart_contracts/artifacts/lib_pcg*_exposer_pyteal.py'
+            tests:
+              - '!projects/lib-pcg-algopy/**'
+              - '!projects/lib-pcg-algots/**'
+              - '!projects/lib-pcg-pyteal/**'
+              - '!projects/lib-pcg-ts/**'
+              - '!projects/unified-tests/smart_contracts/artifacts/**'
 
   lib-pcg-algopy-ci-validation:
     needs: changes
@@ -70,3 +77,9 @@ jobs:
     uses: ./.github/workflows/validate-ts.yml
     with:
       skip: ${{ needs.changes.outputs.ts == 'false' }}
+
+  lib-pcg-tests-ci-validation:
+    needs: changes
+    uses: ./.github/workflows/validate-tests.yml
+    with:
+      skip: ${{ needs.changes.outputs.tests == 'false' }}

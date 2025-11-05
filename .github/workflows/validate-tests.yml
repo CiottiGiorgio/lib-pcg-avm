@@ -1,0 +1,43 @@
+name: Validate Tests Code
+
+on:
+  workflow_call:
+    inputs:
+      skip:
+        required: false
+        default: false
+        type: boolean
+
+
+jobs:
+  lib-pcg-tests-validate:
+    if: ${{ !inputs.skip }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: |
+          pipx install poetry
+          pipx inject poetry poetry-plugin-export
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+          cache: poetry
+
+      - name: Bootstrap dependencies
+        run: poetry install
+        working-directory: projects/unified-tests
+
+      - name: Audit python dependencies
+        run: poetry run pip-audit
+        working-directory: projects/unified-tests
+
+      - name: Lint and format python dependencies
+        run: |
+          poetry run black --check --diff .
+          poetry run ruff check .
+        working-directory: projects/unified-tests

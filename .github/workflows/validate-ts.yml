@@ -72,7 +72,7 @@ jobs:
 
       - name: Link smart contracts
         run: algokit project link --language=python --project-name lib-pcg-ts
-        working-directory: ./projects/unified-tests/
+        working-directory: projects/unified-tests
 
       - name: Check output stability of the smart contracts
         # We could either catch a diff in ts of unified-tests (since they are linked).
