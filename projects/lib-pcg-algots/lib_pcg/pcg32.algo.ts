@@ -101,7 +101,7 @@ function __pcg32BoundedSequence(
     let candidate: uint64
     for (let i = Uint64(0); i < length; i = i + 1) {
       while (true) {
-        ;[helperState, candidate] = __pcg32UnboundedRandom(state)
+        ;[helperState, candidate] = __pcg32UnboundedRandom(helperState)
         if (candidate >= threshold) {
           result = op.concat(
             result,
