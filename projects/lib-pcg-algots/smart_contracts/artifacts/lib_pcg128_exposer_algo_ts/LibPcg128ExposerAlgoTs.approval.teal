@@ -1,77 +1,45 @@
-#pragma version 10
+#pragma version 11
 #pragma typetrack false
 
 // @algorandfoundation/algorand-typescript/arc4/index.d.ts::Contract.approvalProgram() -> uint64:
 main:
-    intcblock 16 6364136223846793005 0 1 1442695040888963407 1442695040888963413 1442695040888963411 1442695040888963409 4294967295
+    intcblock 0 6364136223846793005 1 16 1442695040888963407 1442695040888963413 1442695040888963411 1442695040888963409 4294967295
     bytecblock 0x 0x01 0x0100000000000000000000000000000000 0xffffffffffffffffffffffffffffffff
     txn NumAppArgs
-    bz main_bare_routing@6
+    bz main_bare_routing@5
     pushbytes 0xc35e095d // method "bounded_rand_uint128(byte[32],uint128,uint128,uint16)uint128[]"
     txna ApplicationArgs 0
     match main_bounded_rand_uint128_route@3
-
-main_after_if_else@11:
-    intc_2 // 0
-    return
+    err
 
 main_bounded_rand_uint128_route@3:
     txn OnCompletion
     !
-    assert // OnCompletion is not NoOp
     txn ApplicationID
-    assert // can only call when not creating
-    txna ApplicationArgs 1
-    dup
-    len
-    pushint 32 // 32
-    ==
-    assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
-    txna ApplicationArgs 2
-    dup
-    len
-    intc_0 // 16
-    ==
-    assert // invalid number of bytes for arc4.uint128
-    txna ApplicationArgs 3
-    dup
-    len
-    intc_0 // 16
-    ==
-    assert // invalid number of bytes for arc4.uint128
-    txna ApplicationArgs 4
-    dup
-    len
-    pushint 2 // 2
-    ==
-    assert // invalid number of bytes for arc4.uint16
-    callsub bounded_rand_uint128
-    pushbytes 0x151f7c75
-    swap
-    concat
-    log
-    intc_3 // 1
-    return
+    &&
+    assert // OnCompletion must be NoOp && can only call when not creating
+    b bounded_rand_uint128
 
-main_bare_routing@6:
-    pushint 4 // 4
-    intc_2 // 0
+main_bare_routing@5:
+    intc_0 // NoOp
+    pushint 4 // UpdateApplication
     txn OnCompletion
-    match main_update@7 main___algots__.defaultCreate@8
-    b main_after_if_else@11
-
-main___algots__.defaultCreate@8:
-    txn ApplicationID
-    !
-    assert // can only call when creating
-    intc_3 // 1
-    return
+    match main___algots__.defaultCreate@6 main_update@7
+    err
 
 main_update@7:
     txn ApplicationID
     assert // can only call when not creating
-    callsub update
-    intc_3 // 1
+    txn Sender
+    global CreatorAddress
+    ==
+    return
+
+main___algots__.defaultCreate@6:
+    txn ApplicationID
+    !
+    assert // can only call when creating
+    intc_2 // 1
     return
 
 
@@ -94,7 +62,7 @@ __pcg32Output:
     shr
     swap
     ~
-    intc_3 // 1
+    intc_2 // 1
     addw
     bury 1
     pushint 31 // 31
@@ -108,12 +76,15 @@ __pcg32Output:
     retsub
 
 
-// lib_pcg/pcg128.algo.ts::__pcg128UnboundedRandom(state.0: uint64, state.1: uint64, state.2: uint64, state.3: uint64) -> uint64, uint64, uint64, uint64, bytes:
+// lib_pcg/pcg128.algo.ts::__pcg128UnboundedRandom(state: bytes) -> bytes:
 __pcg128UnboundedRandom:
-    proto 4 5
+    proto 1 1
     bytec_0 // ""
+    dupn 3
+    frame_dig -1
+    intc_0 // 0
+    extract_uint64
     dup
-    frame_dig -4
     intc_1 // 6364136223846793005
     mulw
     bury 1
@@ -122,11 +93,15 @@ __pcg128UnboundedRandom:
     dup
     uncover 2
     pop
+    frame_dig -1
+    pushint 8 // 8
+    extract_uint64
+    swap
     bnz __pcg128UnboundedRandom_ternary_false@2
     pushint 2885390081777926818 // 2885390081777926818
 
 __pcg128UnboundedRandom_ternary_merge@3:
-    frame_dig -3
+    frame_dig 6
     intc_1 // 6364136223846793005
     mulw
     bury 1
@@ -135,11 +110,15 @@ __pcg128UnboundedRandom_ternary_merge@3:
     cover 2
     frame_bury 1
     pop
+    frame_dig -1
+    intc_3 // 16
+    extract_uint64
+    frame_bury 3
     bnz __pcg128UnboundedRandom_ternary_false@5
     pushint 2885390081777926822 // 2885390081777926822
 
 __pcg128UnboundedRandom_ternary_merge@6:
-    frame_dig -2
+    frame_dig 3
     intc_1 // 6364136223846793005
     mulw
     bury 1
@@ -148,41 +127,60 @@ __pcg128UnboundedRandom_ternary_merge@6:
     cover 2
     frame_bury 0
     pop
+    frame_dig -1
+    pushint 24 // 24
+    extract_uint64
+    frame_bury 2
     bnz __pcg128UnboundedRandom_ternary_false@8
     pushint 2885390081777926826 // 2885390081777926826
 
 __pcg128UnboundedRandom_ternary_merge@9:
-    frame_dig -1
+    frame_dig 2
+    dup
     intc_1 // 6364136223846793005
     mulw
     bury 1
+    uncover 2
     addw
     bury 1
-    frame_dig -4
+    frame_dig 5
+    itob
+    frame_dig 1
+    itob
+    concat
+    frame_dig 0
+    itob
+    concat
+    swap
+    itob
+    concat
+    frame_dig 4
     callsub __pcg32Output
     pushint 32 // 32
     shl
-    frame_dig -3
+    frame_dig 6
     callsub __pcg32Output
     |
     itob
-    frame_dig -2
+    frame_dig 3
     callsub __pcg32Output
     pushint 32 // 32
     shl
-    frame_dig -1
+    uncover 3
     callsub __pcg32Output
     |
     itob
     concat
-    frame_dig 2
-    frame_dig 1
-    frame_dig 0
-    uncover 4
-    uncover 4
-    uncover 7
-    uncover 7
-    uncover 7
+    dup
+    len
+    pushint 64 // 64
+    <=
+    assert // overflow
+    pushint 64 // 64
+    bzero
+    b|
+    concat
+    frame_bury 0
     retsub
 
 __pcg128UnboundedRandom_ternary_false@8:
@@ -198,22 +196,43 @@ __pcg128UnboundedRandom_ternary_false@2:
     b __pcg128UnboundedRandom_ternary_merge@3
 
 
-// smart_contracts/lib_pcg128_exposer_algo_ts/contract.algo.ts::LibPcg128ExposerAlgoTs.bounded_rand_uint128(seed: bytes, lower_bound: bytes, upper_bound: bytes, length: bytes) -> bytes:
+// smart_contracts/lib_pcg128_exposer_algo_ts/contract.algo.ts::LibPcg128ExposerAlgoTs.bounded_rand_uint128[routing]() -> void:
 bounded_rand_uint128:
-    proto 4 1
-    intc_2 // 0
-    dupn 2
+    intc_0 // 0
+    dupn 3
     bytec_0 // ""
-    dupn 8
-    frame_dig -4
+    dup
+    txna ApplicationArgs 1
+    dup
     len
     pushint 32 // 32
     ==
-    assert
-    frame_dig -4
-    intc_2 // 0
+    assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
+    txna ApplicationArgs 2
+    dup
+    cover 2
+    dup
+    len
+    intc_3 // 16
+    ==
+    assert // invalid number of bytes for arc4.uint128
+    txna ApplicationArgs 3
+    dup
+    cover 3
+    len
+    intc_3 // 16
+    ==
+    assert // invalid number of bytes for arc4.uint128
+    txna ApplicationArgs 4
+    dup
+    len
+    pushint 2 // 2
+    ==
+    assert // invalid number of bytes for arc4.uint16
+    dig 2
+    intc_0 // 0
     extract_uint64
-    intc_2 // 0
+    intc_0 // 0
     intc_1 // 6364136223846793005
     mulw
     bury 1
@@ -229,9 +248,9 @@ bounded_rand_uint128:
     bury 1
     intc 4 // 1442695040888963407
     addw
-    cover 2
+    cover 3
     pop
-    frame_dig -4
+    dig 4
     pushint 8 // 8
     extract_uint64
     dig 1
@@ -245,10 +264,10 @@ bounded_rand_uint128:
     bury 1
     intc 7 // 1442695040888963409
     addw
-    cover 2
+    cover 3
     pop
-    frame_dig -4
-    intc_0 // 16
+    dig 5
+    intc_3 // 16
     extract_uint64
     dig 1
     intc 6 // 1442695040888963411
@@ -261,9 +280,9 @@ bounded_rand_uint128:
     bury 1
     intc 6 // 1442695040888963411
     addw
-    cover 2
+    cover 3
     pop
-    frame_dig -4
+    uncover 6
     pushint 24 // 24
     extract_uint64
     swap
@@ -278,100 +297,111 @@ bounded_rand_uint128:
     intc 5 // 1442695040888963413
     addw
     bury 1
-    frame_dig -1
+    uncover 4
+    itob
+    uncover 4
+    itob
+    concat
+    uncover 3
+    itob
+    concat
+    swap
+    itob
+    concat
+    cover 2
     btoi
+    swap
     pushbytes 0x0000
-    frame_dig -3
+    swap
     bytec_0 // 0x
     b==
     bz bounded_rand_uint128_else_body@9
-    frame_dig -2
+    dig 3
     bytec_0 // 0x
     b==
     bz bounded_rand_uint128_else_body@9
-    intc_2 // 0
-    frame_bury 3
-    frame_dig 15
-    frame_bury 11
-    frame_dig 14
-    frame_bury 10
-    frame_dig 13
-    frame_bury 9
-    frame_dig 12
-    frame_bury 8
+    intc_0 // 0
+    bury 7
+    dig 2
+    bury 9
 
 bounded_rand_uint128_while_top@6:
-    frame_dig 3
-    frame_dig 16
+    dig 6
+    dig 2
     <
-    bz bounded_rand_uint128_after_if_else@20
-    frame_dig 8
-    frame_dig 9
-    frame_dig 10
-    frame_dig 11
+    bz bounded_rand_uint128_after_if_else@19
+    dig 8
     callsub __pcg128UnboundedRandom
-    frame_dig 17
-    extract 2 0
-    dig 1
-    len
-    intc_0 // 16
-    <=
-    assert // overflow
-    intc_0 // 16
-    bzero
-    uncover 2
-    b|
-    concat
     dup
-    len
-    intc_0 // 16
-    /
+    extract 0 32
+    bury 10
+    extract 32 64
+    extract 48 16
+    dig 1
+    dup
+    uncover 2
+    concat // on error: max array length exceeded
+    swap
+    intc_0 // 0
+    extract_uint16
+    intc_2 // 1
+    +
     itob
     extract 6 2
-    swap
-    concat
-    frame_bury 17
-    frame_dig 3
-    intc_3 // 1
+    replace2 0
+    bury 1
+    dig 6
+    intc_2 // 1
     +
-    frame_bury 3
-    frame_bury 11
-    frame_bury 10
-    frame_bury 9
-    frame_bury 8
+    bury 7
     b bounded_rand_uint128_while_top@6
 
-bounded_rand_uint128_after_if_else@20:
-    frame_dig 17
-    frame_bury 0
-    retsub
+bounded_rand_uint128_after_if_else@19:
+    dig 2
+    pushbytes 0x0022
+    concat
+    dig 1
+    concat
+    dup
+    pushint 32 // 32
+    extract_uint16
+    dig 1
+    len
+    substring3
+    pushbytes 0x151f7c75
+    swap
+    concat
+    log
+    intc_2 // 1
+    return
 
 bounded_rand_uint128_else_body@9:
-    frame_dig -2
+    dig 3
     bytec_0 // 0x
     b!=
     bz bounded_rand_uint128_else_body@11
-    frame_dig -2
+    dig 3
+    dup
     bytec_1 // 0x01
     b>
     assert
-    frame_dig -2
+    dup
     bytec_2 // 0x0100000000000000000000000000000000
     b<
     assert
-    frame_dig -2
+    dup
     bytec_1 // 0x01
     b-
-    frame_dig -3
-    b>
+    dig 6
+    dup
+    uncover 2
+    b<
     assert
-    frame_dig -2
-    frame_dig -3
     b-
-    frame_bury 0
+    bury 11
 
 bounded_rand_uint128_after_if_else@12:
-    frame_dig 0
+    dig 10
     dup
     b~
     bytec_1 // 0x01
@@ -380,104 +410,65 @@ bounded_rand_uint128_after_if_else@12:
     b&
     swap
     b%
-    frame_bury 2
-    intc_2 // 0
-    frame_bury 4
-    frame_dig 15
-    frame_bury 11
-    frame_dig 14
-    frame_bury 10
-    frame_dig 13
-    frame_bury 9
-    frame_dig 12
-    frame_bury 8
+    bury 8
+    intc_0 // 0
+    bury 6
+    dig 2
+    bury 9
 
 bounded_rand_uint128_while_top@13:
-    frame_dig 4
-    frame_dig 16
+    dig 5
+    dig 2
     <
-    bz bounded_rand_uint128_after_if_else@20
+    bz bounded_rand_uint128_after_if_else@19
 
 bounded_rand_uint128_while_top@15:
-    frame_dig 8
-    frame_dig 9
-    frame_dig 10
-    frame_dig 11
+    dig 8
     callsub __pcg128UnboundedRandom
     dup
-    cover 5
-    frame_bury 1
-    cover 4
-    frame_bury 7
-    frame_bury 6
-    frame_bury 5
-    frame_dig 2
-    b>=
-    bz bounded_rand_uint128_after_if_else@17
-    frame_dig 17
-    extract 2 0
-    frame_dig 1
-    frame_dig 0
-    b%
-    frame_dig -3
-    b+
+    extract 0 32
+    bury 10
+    extract 32 64
     dup
-    len
-    intc_0 // 16
-    <=
-    assert // overflow
-    intc_0 // 16
+    bury 11
+    dig 8
+    b>=
+    bz bounded_rand_uint128_while_top@15
+    dig 9
+    dig 11
+    b%
+    dig 5
+    b+
+    intc_3 // 16
     bzero
     b|
-    concat
+    dig 1
     dup
-    len
-    intc_0 // 16
-    /
+    uncover 2
+    concat // on error: max array length exceeded
+    swap
+    intc_0 // 0
+    extract_uint16
+    intc_2 // 1
+    +
     itob
     extract 6 2
-    swap
-    concat
-    frame_bury 17
-    frame_dig 4
-    intc_3 // 1
+    replace2 0
+    bury 1
+    dig 5
+    intc_2 // 1
     +
-    frame_bury 4
-    frame_bury 11
-    frame_dig 7
-    frame_bury 10
-    frame_dig 6
-    frame_bury 9
-    frame_dig 5
-    frame_bury 8
+    bury 6
     b bounded_rand_uint128_while_top@13
 
-bounded_rand_uint128_after_if_else@17:
-    frame_bury 11
-    frame_dig 7
-    frame_bury 10
-    frame_dig 6
-    frame_bury 9
-    frame_dig 5
-    frame_bury 8
-    b bounded_rand_uint128_while_top@15
-
 bounded_rand_uint128_else_body@11:
-    frame_dig -3
+    dig 4
+    dup
     bytec_3 // 0xffffffffffffffffffffffffffffffff
     b<
     assert
     bytec_2 // 0x0100000000000000000000000000000000
-    frame_dig -3
+    swap
     b-
-    frame_bury 0
+    bury 11
     b bounded_rand_uint128_after_if_else@12
-
-
-// smart_contracts/lib_pcg128_exposer_algo_ts/contract.algo.ts::LibPcg128ExposerAlgoTs.update() -> void:
-update:
-    txn Sender
-    global CreatorAddress
-    ==
-    assert
-    retsub

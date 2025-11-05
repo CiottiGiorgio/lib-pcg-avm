@@ -1,7 +1,17 @@
-import { assert, biguint, BigUint, Bytes, bytes, op, uint64, Uint64 } from '@algorandfoundation/algorand-typescript'
+import {
+  assert,
+  biguint,
+  BigUint,
+  Bytes,
+  bytes,
+  op,
+  uint64,
+  Uint64,
+  arc4,
+  clone,
+} from '@algorandfoundation/algorand-typescript'
 import { pcgFirstIncrement, pcgSecondIncrement, pcgThirdIncrement, pcgFourthIncrement } from './consts.algo'
 import { __pcg32Init, __pcg32Output, __pcg32Step } from './pcg32.algo'
-import { DynamicArray, UintN128 } from '@algorandfoundation/algorand-typescript/arc4'
 
 type PCG128STATE = [uint64, uint64, uint64, uint64]
 
@@ -21,17 +31,34 @@ export function pcg128Random(
   lowerBound: biguint,
   upperBound: biguint,
   length: uint64,
-): [PCG128STATE, DynamicArray<UintN128>] {
-  const result = new DynamicArray<UintN128>()
+): [PCG128STATE, arc4.DynamicArray<arc4.Uint128>] {
+  const result = new arc4.DynamicArray<arc4.Uint128>()
 
+  let helperState = clone(state)
   let absoluteBound: biguint
 
   if (lowerBound === BigUint(0) && upperBound === BigUint(0)) {
+    let n: biguint
     for (let i = Uint64(0); i < length; i = i + 1) {
-      const [newState, n] = __pcg128UnboundedRandom(state)
-      state = newState
+      ;[helperState, n] = __pcg128UnboundedRandom(helperState)
 
-      result.push(new UintN128(n))
+      // The current version of puya-ts has a bug where it checks that a biguint can fit into an arc4.Uint
+      //  by checking its byteslice length.
+      // This is erroneous because the biguint could be padded with zeros.
+      // A correct approach would be using b< or bitlen.
+      // As it happens, the pinned release of puya-ts pads biguints with zeros to always have them be long 64 bytes.
+      // This means that creating an arc4.Uint128 from a biguint pretty much always fails the runtime check.
+      //
+      // The solution is to do an unsafe casting and leveraging the knowledge that tha return from __pcg128UnboundedRandom
+      // will be a byteslice of exactly 64 bytes.
+      //
+      // Additionally, this also saves the opcodes and bytecode spent for arc4 validation.
+      result.push(
+        arc4.convertBytes<arc4.Uint128>(op.extract(Bytes(n), 48, 16), {
+          strategy: 'unsafe-cast',
+        }),
+      )
+      // result.push(new arc4.Uint128(n))
     }
   } else {
     if (upperBound !== BigUint(0)) {
@@ -48,19 +75,29 @@ export function pcg128Random(
 
     const threshold: biguint = __uint128Twos(absoluteBound) % absoluteBound
 
+    let candidate: biguint
     for (let i = Uint64(0); i < length; i = i + 1) {
       while (true) {
-        const [newState, candidate] = __pcg128UnboundedRandom(state)
-        state = newState
+        ;[helperState, candidate] = __pcg128UnboundedRandom(helperState)
         if (candidate >= threshold) {
-          result.push(new UintN128((candidate % absoluteBound) + lowerBound))
+          // Please read the comment up above of the similar line in the unbounded case for more
+          //  explanation of this byte sorcery.
+          // In this case, we leverage the fact that operations between biguints [(candidate % x) + y]
+          //  in the AVM always return the unpadded version.
+          // Given this, we manually pad it as an arc4.Uint128.
+          result.push(
+            arc4.convertBytes<arc4.Uint128>(Bytes((candidate % absoluteBound) + lowerBound).bitwiseOr(op.bzero(16)), {
+              strategy: 'unsafe-cast',
+            }),
+          )
+          // result.push(new arc4.Uint128((candidate % absoluteBound) + lowerBound))
           break
         }
       }
     }
   }
 
-  return [state, result.copy()]
+  return [state, clone(result)]
 }
 
 export function __pcg128UnboundedRandom(state: PCG128STATE): [PCG128STATE, biguint] {
