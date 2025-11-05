@@ -1,4 +1,4 @@
-import { assert, bytes, Bytes, op, Uint64, uint64, arc4 } from '@algorandfoundation/algorand-typescript'
+import { assert, bytes, Bytes, op, Uint64, uint64, arc4, clone } from '@algorandfoundation/algorand-typescript'
 import { pcgFirstIncrement, pcgMultiplier } from './consts.algo'
 
 type PCG32STATE = uint64
@@ -65,6 +65,7 @@ function __pcg32BoundedSequence(
   length: uint64,
 ): [PCG32STATE, bytes] {
   let result: bytes = Bytes('')
+  let helperState = clone(state)
 
   assert(length < op.shl(1, 16))
   result = new arc4.Uint<16>(length).bytes
@@ -76,9 +77,9 @@ function __pcg32BoundedSequence(
   let absoluteBound: uint64
 
   if (lowerBound === 0 && upperBound === 0) {
+    let n: uint64
     for (let i = Uint64(0); i < length; i = i + 1) {
-      const [newState, n] = __pcg32UnboundedRandom(state)
-      state = newState
+      [helperState, n] = __pcg32UnboundedRandom(helperState)
 
       result = op.concat(result, op.extract(op.itob(n), truncatedStartCached, byteSize))
     }
@@ -97,10 +98,10 @@ function __pcg32BoundedSequence(
 
     const threshold: uint64 = __maskToUint32(__uint64Twos(absoluteBound)) % absoluteBound
 
+    let candidate: uint64
     for (let i = Uint64(0); i < length; i = i + 1) {
       while (true) {
-        const [newState, candidate] = __pcg32UnboundedRandom(state)
-        state = newState
+        [helperState, candidate] = __pcg32UnboundedRandom(state)
         if (candidate >= threshold) {
           result = op.concat(
             result,

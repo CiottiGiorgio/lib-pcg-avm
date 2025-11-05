@@ -21,12 +21,13 @@ export function pcg64Random(
 ): [PCG64STATE, arc4.DynamicArray<arc4.Uint64>] {
   const result = new arc4.DynamicArray<arc4.Uint64>()
 
+  let helperState = clone(state)
   let absoluteBound: uint64
 
   if (lowerBound === 0 && upperBound === 0) {
+    let n: uint64
     for (let i = Uint64(0); i < length; i = i + 1) {
-      const [newState, n] = __pcg64UnboundedRandom(state)
-      state = newState
+      [helperState, n] = __pcg64UnboundedRandom(helperState)
 
       result.push(new arc4.Uint64(n))
     }
@@ -44,10 +45,10 @@ export function pcg64Random(
 
     const threshold: uint64 = __uint64Twos(absoluteBound) % absoluteBound
 
+    let candidate: uint64
     for (let i = Uint64(0); i < length; i = i + 1) {
       while (true) {
-        const [newState, candidate] = __pcg64UnboundedRandom(state)
-        state = newState
+        [helperState, candidate] = __pcg64UnboundedRandom(helperState)
         if (candidate >= threshold) {
           result.push(new arc4.Uint64((candidate % absoluteBound) + lowerBound))
           break

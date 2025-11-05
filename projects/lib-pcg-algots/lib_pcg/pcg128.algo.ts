@@ -23,12 +23,13 @@ export function pcg128Random(
 ): [PCG128STATE, arc4.DynamicArray<arc4.Uint128>] {
   const result = new arc4.DynamicArray<arc4.Uint128>()
 
+  let helperState = clone(state)
   let absoluteBound: biguint
 
   if (lowerBound === BigUint(0) && upperBound === BigUint(0)) {
+    let n: biguint
     for (let i = Uint64(0); i < length; i = i + 1) {
-      const [newState, n] = __pcg128UnboundedRandom(state)
-      state = newState
+      [helperState, n] = __pcg128UnboundedRandom(helperState)
 
       result.push(new arc4.Uint128(n))
     }
@@ -47,10 +48,10 @@ export function pcg128Random(
 
     const threshold: biguint = __uint128Twos(absoluteBound) % absoluteBound
 
+    let candidate: biguint
     for (let i = Uint64(0); i < length; i = i + 1) {
       while (true) {
-        const [newState, candidate] = __pcg128UnboundedRandom(state)
-        state = newState
+        [helperState, candidate] = __pcg128UnboundedRandom(state)
         if (candidate >= threshold) {
           result.push(new arc4.Uint128((candidate % absoluteBound) + lowerBound))
           break
