@@ -36,11 +36,13 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 metafunc.parametrize("expected_library_size", [11_100])
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "bit_size,max_unbounded_opup_calls", zip(BIT_SIZES, [76, 38, 20])
+                    "bit_size,max_unbounded_opup_calls",
+                    zip(BIT_SIZES, [76, 38, 20], strict=True),
                 )
             if "max_bounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [91, 46, 23])
+                    "bit_size,max_bounded_opup_calls",
+                    zip(BIT_SIZES, [91, 46, 23], strict=True),
                 )
         case "algots":
             if "lib_pcg32_client" in metafunc.fixturenames:
@@ -51,11 +53,13 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 metafunc.parametrize("expected_library_size", [13_500])
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "bit_size,max_unbounded_opup_calls", zip(BIT_SIZES, [94, 47, 24])
+                    "bit_size,max_unbounded_opup_calls",
+                    zip(BIT_SIZES, [94, 47, 24], strict=True),
                 )
             if "max_bounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [111, 56, 28])
+                    "bit_size,max_bounded_opup_calls",
+                    zip(BIT_SIZES, [111, 56, 28], strict=True),
                 )
         case "ts":
             if "lib_pcg32_client" in metafunc.fixturenames:
@@ -66,11 +70,13 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 metafunc.parametrize("expected_library_size", [35_500])
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "bit_size,max_unbounded_opup_calls", zip(BIT_SIZES, [155, 78, 39])
+                    "bit_size,max_unbounded_opup_calls",
+                    zip(BIT_SIZES, [155, 78, 39], strict=True),
                 )
             if "max_bounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [174, 88, 44])
+                    "bit_size,max_bounded_opup_calls",
+                    zip(BIT_SIZES, [174, 88, 44], strict=True),
                 )
         case "pyteal":
             if "lib_pcg32_client" in metafunc.fixturenames:
@@ -81,11 +87,13 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 metafunc.parametrize("expected_library_size", [9_500])
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "bit_size,max_unbounded_opup_calls", zip(BIT_SIZES, [91, 46, 23])
+                    "bit_size,max_unbounded_opup_calls",
+                    zip(BIT_SIZES, [91, 46, 23], strict=True),
                 )
             if "max_bounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [106, 53, 27])
+                    "bit_size,max_bounded_opup_calls",
+                    zip(BIT_SIZES, [106, 53, 27], strict=True),
                 )
         case _:
             raise ValueError
@@ -1476,7 +1484,7 @@ def test_bounded_maximal_cost(
 
 
 @pytest.mark.parametrize(
-    "bit_size,expected_sequence", zip(BIT_SIZES, UNBOUNDED_SEQUENCE)
+    "bit_size,expected_sequence", zip(BIT_SIZES, UNBOUNDED_SEQUENCE, strict=True)
 )
 def test_unbounded_sequence(
     lib_pcg32_client: str,
@@ -1491,7 +1499,7 @@ def test_unbounded_sequence(
 
 
 @pytest.mark.parametrize(
-    "bit_size,expected_sequence", zip(BIT_SIZES, LOWER_BOUNDED_SEQUENCE)
+    "bit_size,expected_sequence", zip(BIT_SIZES, LOWER_BOUNDED_SEQUENCE, strict=True)
 )
 def test_lower_bounded_sequence(
     lib_pcg32_client: str,
@@ -1506,7 +1514,7 @@ def test_lower_bounded_sequence(
 
 
 @pytest.mark.parametrize(
-    "bit_size,expected_sequence", zip(BIT_SIZES, UPPER_BOUNDED_SEQUENCE)
+    "bit_size,expected_sequence", zip(BIT_SIZES, UPPER_BOUNDED_SEQUENCE, strict=True)
 )
 def test_upper_bounded_sequence(
     lib_pcg32_client: str,
@@ -1521,7 +1529,8 @@ def test_upper_bounded_sequence(
 
 
 @pytest.mark.parametrize(
-    "bit_size,expected_sequence", zip(BIT_SIZES, UPPER_LOWER_BOUNDED_SEQUENCE)
+    "bit_size,expected_sequence",
+    zip(BIT_SIZES, UPPER_LOWER_BOUNDED_SEQUENCE, strict=True),
 )
 def test_upper_lower_bounded_sequence(
     lib_pcg32_client: str,
