@@ -1,4 +1,15 @@
-import { assert, biguint, BigUint, Bytes, bytes, op, uint64, Uint64, arc4, clone } from '@algorandfoundation/algorand-typescript'
+import {
+  assert,
+  biguint,
+  BigUint,
+  Bytes,
+  bytes,
+  op,
+  uint64,
+  Uint64,
+  arc4,
+  clone,
+} from '@algorandfoundation/algorand-typescript'
 import { pcgFirstIncrement, pcgSecondIncrement, pcgThirdIncrement, pcgFourthIncrement } from './consts.algo'
 import { __pcg32Init, __pcg32Output, __pcg32Step } from './pcg32.algo'
 
@@ -29,7 +40,7 @@ export function pcg128Random(
   if (lowerBound === BigUint(0) && upperBound === BigUint(0)) {
     let n: biguint
     for (let i = Uint64(0); i < length; i = i + 1) {
-      [helperState, n] = __pcg128UnboundedRandom(helperState)
+      ;[helperState, n] = __pcg128UnboundedRandom(helperState)
 
       result.push(new arc4.Uint128(n))
     }
@@ -51,7 +62,7 @@ export function pcg128Random(
     let candidate: biguint
     for (let i = Uint64(0); i < length; i = i + 1) {
       while (true) {
-        [helperState, candidate] = __pcg128UnboundedRandom(state)
+        ;[helperState, candidate] = __pcg128UnboundedRandom(state)
         if (candidate >= threshold) {
           result.push(new arc4.Uint128((candidate % absoluteBound) + lowerBound))
           break

@@ -11,7 +11,12 @@ export class LibPcg128ExposerAlgoTs extends Contract {
     const state = pcg128Init(seed.bytes)
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [newState, sequence] = pcg128Random(state, lower_bound.asBigUint(), upper_bound.asBigUint(), length.asUint64())
+    const [newState, sequence] = pcg128Random(
+      state,
+      lower_bound.asBigUint(),
+      upper_bound.asBigUint(),
+      length.asUint64(),
+    )
 
     return sequence
   }

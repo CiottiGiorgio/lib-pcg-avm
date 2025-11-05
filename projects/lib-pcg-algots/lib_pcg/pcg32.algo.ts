@@ -79,7 +79,7 @@ function __pcg32BoundedSequence(
   if (lowerBound === 0 && upperBound === 0) {
     let n: uint64
     for (let i = Uint64(0); i < length; i = i + 1) {
-      [helperState, n] = __pcg32UnboundedRandom(helperState)
+      ;[helperState, n] = __pcg32UnboundedRandom(helperState)
 
       result = op.concat(result, op.extract(op.itob(n), truncatedStartCached, byteSize))
     }
@@ -101,7 +101,7 @@ function __pcg32BoundedSequence(
     let candidate: uint64
     for (let i = Uint64(0); i < length; i = i + 1) {
       while (true) {
-        [helperState, candidate] = __pcg32UnboundedRandom(state)
+        ;[helperState, candidate] = __pcg32UnboundedRandom(state)
         if (candidate >= threshold) {
           result = op.concat(
             result,
