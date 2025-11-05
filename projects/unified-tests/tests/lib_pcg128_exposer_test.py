@@ -498,14 +498,16 @@ def test_library_size(
     lib_pcg128_client: str,
     expected_library_size: int,
     request: pytest.FixtureRequest,
-):
+) -> None:
     client = request.getfixturevalue(lib_pcg128_client)
     assert len(client.app_client.app_spec.source.approval) < expected_library_size
 
 
 def test_unbounded_maximal_cost(
     lib_pcg128_client: str,
-    get_random_sequence_method: Callable[[Any, bytes, int, int, int], Any],
+    get_random_sequence_method: Callable[
+        [Any, bytes, int, int, int], SendAtomicTransactionComposerResults
+    ],
     max_unbounded_opup_calls: int,
     request: pytest.FixtureRequest,
 ) -> None:
@@ -523,7 +525,9 @@ def test_unbounded_maximal_cost(
 
 def test_bounded_maximal_cost(
     lib_pcg128_client: str,
-    get_random_sequence_method: Callable[[Any, bytes, int, int, int], Any],
+    get_random_sequence_method: Callable[
+        [Any, bytes, int, int, int], SendAtomicTransactionComposerResults
+    ],
     max_bounded_opup_calls: int,
     request: pytest.FixtureRequest,
 ) -> None:
@@ -541,7 +545,9 @@ def test_bounded_maximal_cost(
 
 def test_unbounded_sequence(
     lib_pcg128_client: str,
-    get_random_sequence_method: Callable[[Any, bytes, int, int, int], Any],
+    get_random_sequence_method: Callable[
+        [Any, bytes, int, int, int], SendAtomicTransactionComposerResults
+    ],
     request: pytest.FixtureRequest,
 ) -> None:
     client = request.getfixturevalue(lib_pcg128_client)
@@ -554,7 +560,9 @@ def test_unbounded_sequence(
 
 def test_lower_bounded_sequence(
     lib_pcg128_client: str,
-    get_random_sequence_method: Callable[[Any, bytes, int, int, int], Any],
+    get_random_sequence_method: Callable[
+        [Any, bytes, int, int, int], SendAtomicTransactionComposerResults
+    ],
     request: pytest.FixtureRequest,
 ) -> None:
     client = request.getfixturevalue(lib_pcg128_client)
@@ -567,7 +575,9 @@ def test_lower_bounded_sequence(
 
 def test_upper_bounded_sequence(
     lib_pcg128_client: str,
-    get_random_sequence_method: Callable[[Any, bytes, int, int, int], Any],
+    get_random_sequence_method: Callable[
+        [Any, bytes, int, int, int], SendAtomicTransactionComposerResults
+    ],
     request: pytest.FixtureRequest,
 ) -> None:
     client = request.getfixturevalue(lib_pcg128_client)
@@ -580,7 +590,9 @@ def test_upper_bounded_sequence(
 
 def test_upper_lower_bounded_sequence(
     lib_pcg128_client: str,
-    get_random_sequence_method: Callable[[Any, bytes, int, int, int], Any],
+    get_random_sequence_method: Callable[
+        [Any, bytes, int, int, int], SendAtomicTransactionComposerResults
+    ],
     request: pytest.FixtureRequest,
 ) -> None:
     client = request.getfixturevalue(lib_pcg128_client)

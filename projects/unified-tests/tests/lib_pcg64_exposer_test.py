@@ -658,7 +658,7 @@ def test_library_size(
     lib_pcg64_client: str,
     expected_library_size: int,
     request: pytest.FixtureRequest,
-):
+) -> None:
     client = request.getfixturevalue(lib_pcg64_client)
     assert len(client.app_client.app_spec.source.approval) < expected_library_size
 

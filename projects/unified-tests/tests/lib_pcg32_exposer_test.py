@@ -1434,7 +1434,7 @@ def __bit_size_to_method(
 #  start taking subroutine inlining and opcode assembly opportunities.
 def test_library_size(
     lib_pcg32_client: str, expected_library_size: int, request: pytest.FixtureRequest
-):
+) -> None:
     client = request.getfixturevalue(lib_pcg32_client)
     assert len(client.app_client.app_spec.source.approval) < expected_library_size
 
@@ -1489,7 +1489,7 @@ def test_bounded_maximal_cost(
 def test_unbounded_sequence(
     lib_pcg32_client: str,
     bit_size: int,
-    expected_sequence: [int],
+    expected_sequence: list[int],
     request: pytest.FixtureRequest,
 ) -> None:
     client = request.getfixturevalue(lib_pcg32_client)
@@ -1504,7 +1504,7 @@ def test_unbounded_sequence(
 def test_lower_bounded_sequence(
     lib_pcg32_client: str,
     bit_size: int,
-    expected_sequence: [int],
+    expected_sequence: list[int],
     request: pytest.FixtureRequest,
 ) -> None:
     client = request.getfixturevalue(lib_pcg32_client)
@@ -1519,7 +1519,7 @@ def test_lower_bounded_sequence(
 def test_upper_bounded_sequence(
     lib_pcg32_client: str,
     bit_size: int,
-    expected_sequence: [int],
+    expected_sequence: list[int],
     request: pytest.FixtureRequest,
 ) -> None:
     client = request.getfixturevalue(lib_pcg32_client)
@@ -1535,7 +1535,7 @@ def test_upper_bounded_sequence(
 def test_upper_lower_bounded_sequence(
     lib_pcg32_client: str,
     bit_size: int,
-    expected_sequence: [int],
+    expected_sequence: list[int],
     request: pytest.FixtureRequest,
 ) -> None:
     client = request.getfixturevalue(lib_pcg32_client)
