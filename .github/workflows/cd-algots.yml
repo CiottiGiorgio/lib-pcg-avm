@@ -89,7 +89,7 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add projects/lib-pcg-algots/package.json
+          git add projects/lib-pcg-algots/package.json projects/lib-pcg-algots/package-lock.json
           # The commit message will include the new version number from the manifest
           git commit -m "chore(release): Bump lib-pcg-algots version to $(jq -r .version projects/lib-pcg-algots/package.json) [skip actions]"
           git push
