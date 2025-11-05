@@ -57,13 +57,15 @@ def pcg64_random(
         - A pseudo-random sequence of 64-bit uints.
 
     """
-    result = arc4.DynamicArray[arc4.UInt64]()
+    result = Bytes()
+
+    result += arc4.UInt16(length).bytes
 
     if lower_bound == 0 and upper_bound == 0:
         for i in urange(length):  # noqa: B007
             state, n = __pcg64_unbounded_random(state)
 
-            result.append(arc4.UInt64(n))
+            result += op.itob(n)
     else:
         if upper_bound != 0:
             assert upper_bound > 1
@@ -81,12 +83,10 @@ def pcg64_random(
             while True:
                 state, candidate = __pcg64_unbounded_random(state)
                 if candidate >= threshold:
-                    result.append(
-                        arc4.UInt64((candidate % absolute_bound) + lower_bound)
-                    )
+                    result += op.itob((candidate % absolute_bound) + lower_bound)
                     break
 
-    return state, result.copy()
+    return state, arc4.DynamicArray[arc4.UInt64].from_bytes(result)
 
 
 @subroutine

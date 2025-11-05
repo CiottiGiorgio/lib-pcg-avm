@@ -197,8 +197,15 @@ bounded_rand_uint64:
     cover 2
     swap
     btoi
-    swap
-    pushbytes 0x0000
+    dup
+    cover 2
+    itob
+    dup
+    bitlen
+    pushint 16 // 16
+    <=
+    assert // overflow
+    extract 6 2
     swap
     bnz bounded_rand_uint64_else_body@9
     dig 2
@@ -223,17 +230,8 @@ bounded_rand_uint64_for_header@6:
     bury 10
     itob
     dig 1
-    dup
-    uncover 2
-    concat // on error: max array length exceeded
     swap
-    intc_1 // 0
-    extract_uint16
-    intc_0 // 1
-    +
-    itob
-    extract 6 2
-    replace2 0
+    concat
     bury 1
     dig 9
     intc_0 // 1
@@ -310,17 +308,8 @@ bounded_rand_uint64_while_top@15:
     +
     itob
     dig 1
-    dup
-    uncover 2
-    concat // on error: max array length exceeded
     swap
-    intc_1 // 0
-    extract_uint16
-    intc_0 // 1
-    +
-    itob
-    extract 6 2
-    replace2 0
+    concat
     bury 1
     dig 9
     intc_0 // 1
