@@ -21,13 +21,13 @@
     "npm": ">=9.0"
   },
   "dependencies": {
-    "@algorandfoundation/algorand-typescript": "~1.0.0-beta.25 <1.0.0"
+    "@algorandfoundation/algorand-typescript": "^1.0.1"
   },
   "devDependencies": {
     "@algorandfoundation/algokit-client-generator": "^6.0.0",
     "@algorandfoundation/algokit-utils": "^9.0.0",
     "@algorandfoundation/algokit-utils-debug": "^1.0.4",
-    "@algorandfoundation/puya-ts": "~1.0.0-beta.50 <1.0.0",
+    "@algorandfoundation/puya-ts": "^1.0.1",
     "@rollup/plugin-typescript": "^12.1.2",
     "@tsconfig/node22": "^22.0.0",
     "algosdk": "^3.0.0",

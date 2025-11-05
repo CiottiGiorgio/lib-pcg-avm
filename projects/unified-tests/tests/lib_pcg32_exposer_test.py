@@ -51,11 +51,11 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 metafunc.parametrize("expected_library_size", [13_500])
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "bit_size,max_unbounded_opup_calls", zip(BIT_SIZES, [82, 41, 21])
+                    "bit_size,max_unbounded_opup_calls", zip(BIT_SIZES, [94, 47, 24])
                 )
             if "max_bounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [100, 50, 25])
+                    "bit_size,max_bounded_opup_calls", zip(BIT_SIZES, [111, 56, 28])
                 )
         case "ts":
             if "lib_pcg32_client" in metafunc.fixturenames:
