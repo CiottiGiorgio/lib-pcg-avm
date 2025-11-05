@@ -12,11 +12,9 @@
     "audit": "better-npm-audit audit"
   },
   "dependencies": {
-    "@algorandfoundation/algokit-utils": "^6.0.2",
-    "algosdk": "^2.7.0"
+    "@algorandfoundation/algokit-utils": "^6.0.2"
   },
   "devDependencies": {
-    "@algorandfoundation/algokit-client-generator": "^2.3.1",
     "@algorandfoundation/tealscript": "latest",
     "@joe-p/algokit-generate-component": "^0.2.0",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
