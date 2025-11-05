@@ -76,9 +76,9 @@ export function pcg128Random(
 
 export function __pcg128UnboundedRandom(state: PCG128STATE): [PCG128STATE, biguint] {
   const newState1 = __pcg32Step(state[0], pcgFirstIncrement)
-  const newState2 = __pcg32Step(state[1], newState1 === 0 ? op.shl(pcgSecondIncrement, 1) : pcgSecondIncrement)
-  const newState3 = __pcg32Step(state[2], newState2 === 0 ? op.shl(pcgThirdIncrement, 1) : pcgThirdIncrement)
-  const newState4 = __pcg32Step(state[3], newState3 === 0 ? op.shl(pcgFourthIncrement, 1) : pcgFourthIncrement)
+  const newState2 = __pcg32Step(state[1], op.shl(pcgSecondIncrement, Uint64(newState1 === 0)))
+  const newState3 = __pcg32Step(state[2], op.shl(pcgThirdIncrement, Uint64(newState2 === 0)))
+  const newState4 = __pcg32Step(state[3], op.shl(pcgFourthIncrement, Uint64(newState3 === 0)))
 
   return [
     [newState1, newState2, newState3, newState4],

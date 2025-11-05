@@ -62,7 +62,7 @@ export function pcg64Random(
 
 export function __pcg64UnboundedRandom(state: PCG64STATE): [PCG64STATE, uint64] {
   const newState1 = __pcg32Step(state[0], pcgFirstIncrement)
-  const newState2 = __pcg32Step(state[1], newState1 === 0 ? op.shl(pcgSecondIncrement, 1) : pcgSecondIncrement)
+  const newState2 = __pcg32Step(state[1], op.shl(pcgSecondIncrement, Uint64(newState1 === 0)))
 
   return [[newState1, newState2], op.shl(__pcg32Output(state[0]), 32) | __pcg32Output(state[1])]
 }
