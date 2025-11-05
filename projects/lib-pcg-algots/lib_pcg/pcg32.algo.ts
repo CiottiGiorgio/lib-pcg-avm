@@ -1,12 +1,4 @@
-import { assert, bytes, Bytes, op, Uint64, uint64 } from '@algorandfoundation/algorand-typescript'
-import {
-  interpretAsArc4,
-  DynamicArray,
-  UintN,
-  UintN32,
-  UintN8,
-  UintN16,
-} from '@algorandfoundation/algorand-typescript/arc4'
+import { assert, bytes, Bytes, op, Uint64, uint64, arc4 } from '@algorandfoundation/algorand-typescript'
 import { pcgFirstIncrement, pcgMultiplier } from './consts.algo'
 
 type PCG32STATE = uint64
@@ -30,10 +22,10 @@ export function pcg32Random(
   lowerBound: uint64,
   upperBound: uint64,
   length: uint64,
-): [PCG32STATE, DynamicArray<UintN32>] {
+): [PCG32STATE, arc4.DynamicArray<arc4.Uint32>] {
   const [newState, sequence] = __pcg32BoundedSequence(state, 32, lowerBound, upperBound, length)
 
-  return [newState, interpretAsArc4<DynamicArray<UintN32>>(sequence)]
+  return [newState, arc4.convertBytes<arc4.DynamicArray<arc4.Uint32>>(sequence, { strategy: 'unsafe-cast' })]
 }
 
 export function pcg16Random(
@@ -41,10 +33,10 @@ export function pcg16Random(
   lowerBound: uint64,
   upperBound: uint64,
   length: uint64,
-): [PCG32STATE, DynamicArray<UintN16>] {
+): [PCG32STATE, arc4.DynamicArray<arc4.Uint16>] {
   const [newState, sequence] = __pcg32BoundedSequence(state, 16, lowerBound, upperBound, length)
 
-  return [newState, interpretAsArc4<DynamicArray<UintN16>>(sequence)]
+  return [newState, arc4.convertBytes<arc4.DynamicArray<arc4.Uint16>>(sequence, { strategy: 'unsafe-cast' })]
 }
 
 export function pcg8Random(
@@ -52,10 +44,10 @@ export function pcg8Random(
   lowerBound: uint64,
   upperBound: uint64,
   length: uint64,
-): [PCG32STATE, DynamicArray<UintN8>] {
+): [PCG32STATE, arc4.DynamicArray<arc4.Uint8>] {
   const [newState, sequence] = __pcg32BoundedSequence(state, 8, lowerBound, upperBound, length)
 
-  return [newState, interpretAsArc4<DynamicArray<UintN8>>(sequence)]
+  return [newState, arc4.convertBytes<arc4.DynamicArray<arc4.Uint8>>(sequence, { strategy: 'unsafe-cast' })]
 }
 
 export function __pcg32Init(initialState: PCG32STATE, incr: uint64): PCG32STATE {
@@ -75,7 +67,7 @@ function __pcg32BoundedSequence(
   let result: bytes = Bytes('')
 
   assert(length < op.shl(1, 16))
-  result = new UintN<16>(length).bytes
+  result = new arc4.Uint<16>(length).bytes
 
   assert(bitSize === 8 || bitSize === 16 || bitSize === 32)
   const byteSize = op.shr(bitSize, 3)
