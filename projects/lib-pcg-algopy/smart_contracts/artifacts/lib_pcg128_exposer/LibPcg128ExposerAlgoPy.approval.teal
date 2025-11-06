@@ -3,7 +3,7 @@
 
 // algopy.arc4.ARC4Contract.approval_program() -> uint64:
 main:
-    intcblock 6364136223846793005 0 1 64 1442695040888963407 1442695040888963409 1442695040888963411 1442695040888963413 4294967295
+    intcblock 0 1 6364136223846793005 64 4294967295 1442695040888963407 1442695040888963409 1442695040888963411 1442695040888963413
     bytecblock 0x 0x01 0x0100000000000000000000000000000000
     txn NumAppArgs
     bz main_bare_routing@5
@@ -21,7 +21,7 @@ main_bounded_rand_uint128_route@3:
     b bounded_rand_uint128
 
 main_bare_routing@5:
-    intc_1 // NoOp
+    intc_0 // NoOp
     pushint 4 // UpdateApplication
     txn OnCompletion
     match main___algopy_default_create@6 main_update@7
@@ -39,8 +39,30 @@ main___algopy_default_create@6:
     txn ApplicationID
     !
     assert // can only call when creating
-    intc_2 // 1
+    intc_1 // 1
     return
+
+
+// lib_pcg.pcg32.__pcg32_init(initial_state: uint64, incr: uint64) -> uint64:
+__pcg32_init:
+    proto 2 1
+    intc_0 // 0
+    intc_2 // 6364136223846793005
+    mulw
+    bury 1
+    frame_dig -1
+    addw
+    bury 1
+    frame_dig -2
+    addw
+    bury 1
+    intc_2 // 6364136223846793005
+    mulw
+    bury 1
+    frame_dig -1
+    addw
+    bury 1
+    retsub
 
 
 // lib_pcg.pcg32.__pcg32_output(state: uint64) -> uint64:
@@ -53,7 +75,7 @@ __pcg32_output:
     ^
     pushint 27 // 27
     shr
-    intc 8 // 4294967295
+    intc 4 // 4294967295
     &
     frame_dig -1
     pushint 59 // 59
@@ -62,7 +84,7 @@ __pcg32_output:
     shr
     swap
     ~
-    intc_2 // 1
+    intc_1 // 1
     addw
     bury 1
     pushint 31 // 31
@@ -70,7 +92,7 @@ __pcg32_output:
     uncover 2
     swap
     shl
-    intc 8 // 4294967295
+    intc 4 // 4294967295
     &
     |
     retsub
@@ -80,41 +102,41 @@ __pcg32_output:
 __pcg128_unbounded_random:
     proto 4 5
     frame_dig -4
-    intc_0 // 6364136223846793005
+    intc_2 // 6364136223846793005
     mulw
     bury 1
-    intc 4 // 1442695040888963407
+    intc 5 // 1442695040888963407
     addw
     bury 1
     dup
     !
-    intc 5 // 1442695040888963409
+    intc 6 // 1442695040888963409
     swap
     shl
     frame_dig -3
-    intc_0 // 6364136223846793005
+    intc_2 // 6364136223846793005
     mulw
     bury 1
     addw
     bury 1
     dup
     !
-    intc 6 // 1442695040888963411
+    intc 7 // 1442695040888963411
     swap
     shl
     frame_dig -2
-    intc_0 // 6364136223846793005
+    intc_2 // 6364136223846793005
     mulw
     bury 1
     addw
     bury 1
     dup
     !
-    intc 7 // 1442695040888963413
+    intc 8 // 1442695040888963413
     swap
     shl
     frame_dig -1
-    intc_0 // 6364136223846793005
+    intc_2 // 6364136223846793005
     mulw
     bury 1
     addw
@@ -141,10 +163,9 @@ __pcg128_unbounded_random:
 
 // smart_contracts.lib_pcg128_exposer.contract.LibPcg128ExposerAlgoPy.bounded_rand_uint128[routing]() -> void:
 bounded_rand_uint128:
-    intc_1 // 0
+    intc_0 // 0
     dupn 2
     bytec_0 // ""
-    dupn 4
     txna ApplicationArgs 1
     dup
     len
@@ -173,74 +194,29 @@ bounded_rand_uint128:
     ==
     assert // invalid number of bytes for arc4.uint16
     dig 2
-    intc_1 // 0
+    intc_0 // 0
     extract_uint64
-    intc_1 // 0
-    intc_0 // 6364136223846793005
-    mulw
-    bury 1
-    dup
-    intc 4 // 1442695040888963407
-    addw
-    bury 1
-    uncover 2
-    addw
-    bury 1
-    intc_0 // 6364136223846793005
-    mulw
-    bury 1
-    intc 4 // 1442695040888963407
-    addw
-    cover 5
-    pop
-    dig 3
+    intc 5 // 1442695040888963407
+    callsub __pcg32_init
+    cover 3
+    dig 2
     pushint 8 // 8
     extract_uint64
-    dig 1
-    intc 5 // 1442695040888963409
-    addw
-    bury 1
-    addw
-    bury 1
-    intc_0 // 6364136223846793005
-    mulw
-    bury 1
-    intc 5 // 1442695040888963409
-    addw
-    cover 5
-    pop
-    dig 3
+    intc 6 // 1442695040888963409
+    callsub __pcg32_init
+    cover 3
+    dig 2
     pushint 16 // 16
     extract_uint64
-    dig 1
-    intc 6 // 1442695040888963411
-    addw
-    bury 1
-    addw
-    bury 1
-    intc_0 // 6364136223846793005
-    mulw
-    bury 1
-    intc 6 // 1442695040888963411
-    addw
-    cover 5
-    pop
-    uncover 3
+    intc 7 // 1442695040888963411
+    callsub __pcg32_init
+    cover 3
+    uncover 2
     pushint 24 // 24
     extract_uint64
-    swap
-    intc 7 // 1442695040888963413
-    addw
-    bury 1
-    addw
-    bury 1
-    intc_0 // 6364136223846793005
-    mulw
-    bury 1
-    intc 7 // 1442695040888963413
-    addw
-    cover 3
-    pop
+    intc 8 // 1442695040888963413
+    callsub __pcg32_init
+    cover 2
     btoi
     swap
     pushbytes 0x0000
@@ -252,32 +228,24 @@ bounded_rand_uint128:
     bytec_0 // 0x
     b==
     bz bounded_rand_uint128_else_body@9
-    intc_1 // 0
-    dig 3
-    bury 10
-    dig 4
-    bury 11
-    dig 5
-    bury 12
-    dig 6
-    bury 13
-    bury 13
+    intc_0 // 0
+    bury 9
 
 bounded_rand_uint128_for_header@6:
-    dig 12
+    dig 8
     dig 2
     <
     bz bounded_rand_uint128_after_if_else@19
-    dig 11
-    dig 11
-    dig 11
-    dig 11
+    dig 5
+    dig 5
+    dig 5
+    dig 5
     callsub __pcg128_unbounded_random
     cover 4
-    bury 13
-    bury 13
-    bury 13
-    bury 13
+    bury 7
+    bury 7
+    bury 7
+    bury 7
     dup
     len
     intc_3 // 64
@@ -291,18 +259,18 @@ bounded_rand_uint128_for_header@6:
     uncover 2
     concat // on error: max array length exceeded
     swap
-    intc_1 // 0
+    intc_0 // 0
     extract_uint16
-    intc_2 // 1
+    intc_1 // 1
     +
     itob
     extract 6 2
     replace2 0
     bury 1
-    dig 12
-    intc_2 // 1
+    dig 8
+    intc_1 // 1
     +
-    bury 13
+    bury 9
     b bounded_rand_uint128_for_header@6
 
 bounded_rand_uint128_after_if_else@19:
@@ -310,7 +278,7 @@ bounded_rand_uint128_after_if_else@19:
     dig 1
     concat
     log
-    intc_2 // 1
+    intc_1 // 1
     return
 
 bounded_rand_uint128_else_body@9:
@@ -336,10 +304,10 @@ bounded_rand_uint128_else_body@9:
     b<
     assert
     b-
-    bury 16
+    bury 12
 
 bounded_rand_uint128_after_if_else@12:
-    dig 15
+    dig 11
     dup
     b~
     bytec_1 // 0x01
@@ -348,42 +316,34 @@ bounded_rand_uint128_after_if_else@12:
     b&
     swap
     b%
-    bury 14
-    intc_1 // 0
-    dig 3
     bury 10
-    dig 4
-    bury 11
-    dig 5
-    bury 12
-    dig 6
-    bury 13
-    bury 13
+    intc_0 // 0
+    bury 9
 
 bounded_rand_uint128_for_header@13:
-    dig 12
+    dig 8
     dig 2
     <
     bz bounded_rand_uint128_after_if_else@19
 
 bounded_rand_uint128_while_top@15:
-    dig 11
-    dig 11
-    dig 11
-    dig 11
+    dig 5
+    dig 5
+    dig 5
+    dig 5
     callsub __pcg128_unbounded_random
     dup
     cover 5
-    bury 20
-    bury 13
-    bury 13
-    bury 13
-    bury 13
-    dig 14
+    bury 16
+    bury 7
+    bury 7
+    bury 7
+    bury 7
+    dig 10
     b>=
     bz bounded_rand_uint128_while_top@15
-    dig 14
-    dig 16
+    dig 10
+    dig 12
     b%
     dig 8
     b+
@@ -400,18 +360,18 @@ bounded_rand_uint128_while_top@15:
     uncover 2
     concat // on error: max array length exceeded
     swap
-    intc_1 // 0
+    intc_0 // 0
     extract_uint16
-    intc_2 // 1
+    intc_1 // 1
     +
     itob
     extract 6 2
     replace2 0
     bury 1
-    dig 12
-    intc_2 // 1
+    dig 8
+    intc_1 // 1
     +
-    bury 13
+    bury 9
     b bounded_rand_uint128_for_header@13
 
 bounded_rand_uint128_else_body@11:
@@ -423,5 +383,5 @@ bounded_rand_uint128_else_body@11:
     bytec_2 // 0x0100000000000000000000000000000000
     swap
     b-
-    bury 16
+    bury 12
     b bounded_rand_uint128_after_if_else@12

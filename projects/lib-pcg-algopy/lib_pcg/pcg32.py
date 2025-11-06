@@ -1,10 +1,11 @@
 from typing import TypeAlias
 
-from algopy import Array, Bytes, UInt64, op, subroutine, urange
+from algopy import Array, Bytes, UInt64, arc4, op, subroutine, urange
 
 from lib_pcg.consts import PCG_FIRST_INCREMENT, PCG_MULTIPLIER
 
 PCG32STATE: TypeAlias = UInt64
+MAX_UINT64_IN_STACK_BYTESLICE = 4096 // 8
 
 
 @subroutine
@@ -25,56 +26,6 @@ def pcg32_init(seed: Bytes) -> PCG32STATE:
 
 @subroutine
 def pcg32_random(
-    state: PCG32STATE,
-    lower_bound: UInt64,
-    upper_bound: UInt64,
-    length: UInt64,
-) -> tuple[PCG32STATE, Array[UInt64]]:
-    """Single PCG XSH RR 64/32 generator function for 32-bit pseudo-random unsigned integers.
-
-    Args:
-        state: The state of the generator.
-        lower_bound: If set to non-zero, it's the lowest (included) possible integer in the sequence.
-        upper_bound: If set to non-zero, it's the highest (not included) possible integer in the sequence.
-            If set to zero, the highest possible integer is the highest integer representable with 32 bits.
-        length: The length of the sequence.
-
-    upper_bound and lower_bound can be set independently of each other.
-    However, they should always be set such that the desired range includes at least two numbers.
-
-    Returns:
-        A tuple of:
-        - The new state of the generator.
-        - A pseudo-random sequence of 32-bit uints.
-
-    """
-    return __pcg32_bounded_sequence(state, lower_bound, upper_bound, length)
-
-
-@subroutine
-def __pcg32_init(initial_state: PCG32STATE, incr: UInt64) -> PCG32STATE:
-    """PCG XSH RR 64/32 state initialization.
-
-    Notably, we perform a second step after initializing the generator because it primes it for
-     the first number that we are going to generate.
-    More details in __pcg32_unbounded_random() subroutine.
-
-    Args:
-        initial_state: Initial entropy used to initialize the state.
-        incr: Constant used in the modulo addition.
-
-    Returns:
-        The properly initialized state of the generator.
-
-    """
-    state = __pcg32_step(UInt64(0), incr)
-    _high_addw, state = op.addw(state, initial_state)
-
-    return __pcg32_step(state, incr)
-
-
-@subroutine
-def __pcg32_bounded_sequence(
     state: PCG32STATE,
     lower_bound: UInt64,
     upper_bound: UInt64,
@@ -137,6 +88,70 @@ def __pcg32_bounded_sequence(
 
 
 @subroutine
+def pcg32_random_arc4_uint32(
+    state: PCG32STATE,
+    lower_bound: UInt64,
+    upper_bound: UInt64,
+    length: UInt64,
+) -> tuple[PCG32STATE, arc4.DynamicArray[arc4.UInt32]]:
+    state, sequence = __pcg32_convert_to_arc4(
+        state, UInt64(4), lower_bound, upper_bound, length
+    )
+
+    return state, arc4.DynamicArray[arc4.UInt32].from_bytes(sequence)
+
+
+@subroutine
+def pcg32_random_arc4_uint16(
+    state: PCG32STATE,
+    lower_bound: UInt64,
+    upper_bound: UInt64,
+    length: UInt64,
+) -> tuple[PCG32STATE, arc4.DynamicArray[arc4.UInt16]]:
+    state, sequence = __pcg32_convert_to_arc4(
+        state, UInt64(2), lower_bound, upper_bound, length
+    )
+
+    return state, arc4.DynamicArray[arc4.UInt16].from_bytes(sequence)
+
+
+@subroutine
+def pcg32_random_arc4_uint8(
+    state: PCG32STATE,
+    lower_bound: UInt64,
+    upper_bound: UInt64,
+    length: UInt64,
+) -> tuple[PCG32STATE, arc4.DynamicArray[arc4.UInt8]]:
+    state, sequence = __pcg32_convert_to_arc4(
+        state, UInt64(1), lower_bound, upper_bound, length
+    )
+
+    return state, arc4.DynamicArray[arc4.UInt8].from_bytes(sequence)
+
+
+@subroutine
+def __pcg32_init(initial_state: PCG32STATE, incr: UInt64) -> PCG32STATE:
+    """PCG XSH RR 64/32 state initialization.
+
+    Notably, we perform a second step after initializing the generator because it primes it for
+     the first number that we are going to generate.
+    More details in __pcg32_unbounded_random() subroutine.
+
+    Args:
+        initial_state: Initial entropy used to initialize the state.
+        incr: Constant used in the modulo addition.
+
+    Returns:
+        The properly initialized state of the generator.
+
+    """
+    state = __pcg32_step(UInt64(0), incr)
+    _high_addw, state = op.addw(state, initial_state)
+
+    return __pcg32_step(state, incr)
+
+
+@subroutine
 def __pcg32_unbounded_random(state: PCG32STATE) -> tuple[PCG32STATE, UInt64]:
     """PCG XSH RR 64/32 next number in the sequence.
 
@@ -157,6 +172,43 @@ def __pcg32_unbounded_random(state: PCG32STATE) -> tuple[PCG32STATE, UInt64]:
 
 
 @subroutine
+def __pcg32_convert_to_arc4(
+    state: PCG32STATE,
+    byte_size: UInt64,
+    lower_bound: UInt64,
+    upper_bound: UInt64,
+    length: UInt64,
+) -> tuple[PCG32STATE, Bytes]:
+    # FIXME: Since we have the entire array, we could just index it without the
+    #  for loop and the conversion to native uint64.
+    assert byte_size == 1 or byte_size == 2 or byte_size == 4
+    truncate_start_cached = 8 - byte_size
+
+    result = Bytes()
+    result += arc4.UInt16(length).bytes
+
+    residual_length = length
+    while True:
+        max_progress_doable = (
+            residual_length
+            if residual_length < UInt64(MAX_UINT64_IN_STACK_BYTESLICE)
+            else UInt64(MAX_UINT64_IN_STACK_BYTESLICE)
+        )
+
+        state, partial_sequence = pcg32_random(
+            state, lower_bound, upper_bound, max_progress_doable
+        )
+        for n in partial_sequence:
+            result += op.extract(op.itob(n), truncate_start_cached, byte_size)
+
+        residual_length = residual_length - max_progress_doable
+        if residual_length == 0:
+            break
+
+    return state, result
+
+
+@subroutine(inline=True)
 def __pcg32_step(state: PCG32STATE, incr: UInt64) -> PCG32STATE:
     """PCG XSH RR 64/32 single step advance in the underlying LCG.
 
@@ -188,7 +240,7 @@ def __pcg32_rotation(value: UInt64, rot: UInt64) -> UInt64:
     return (value >> rot) | __mask_to_uint32(value << (__uint64_twos(rot) & 31))
 
 
-@subroutine
+@subroutine(inline=True)
 def __uint64_twos(value: UInt64) -> UInt64:
     """Performs the two's complement on a native uint64."""
     _addw_high, addw_low = op.addw(~value, 1)
@@ -196,7 +248,7 @@ def __uint64_twos(value: UInt64) -> UInt64:
     return addw_low
 
 
-@subroutine
+@subroutine(inline=True)
 def __mask_to_uint32(value: UInt64) -> UInt64:
     """Sets input's highest 32 bits to zero."""
     return value & ((1 << 32) - 1)
