@@ -1,6 +1,6 @@
 from typing import Literal
 
-from algopy import Global, Txn, arc4
+from algopy import Array, Global, Txn, UInt64, arc4
 
 from lib_pcg import pcg64_init, pcg64_random
 
@@ -13,7 +13,7 @@ class LibPcg64ExposerAlgoPy(arc4.ARC4Contract):
         lower_bound: arc4.UInt64,
         upper_bound: arc4.UInt64,
         length: arc4.UInt16,
-    ) -> arc4.DynamicArray[arc4.UInt64]:
+    ) -> Array[UInt64]:
         state = pcg64_init(seed.bytes)
 
         state, sequence = pcg64_random(

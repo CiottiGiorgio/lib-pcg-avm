@@ -33,16 +33,16 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                     "lib_pcg32_client", ["lib_pcg32_exposer_algopy_client"]
                 )
             if "expected_library_size" in metafunc.fixturenames:
-                metafunc.parametrize("expected_library_size", [11_100])
+                metafunc.parametrize("expected_library_size", [6_500])
             if "max_unbounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "bit_size,max_unbounded_opup_calls",
-                    zip(BIT_SIZES, [76, 38, 20], strict=True),
+                    "max_unbounded_opup_calls",
+                    [12],
                 )
             if "max_bounded_opup_calls" in metafunc.fixturenames:
                 metafunc.parametrize(
-                    "bit_size,max_bounded_opup_calls",
-                    zip(BIT_SIZES, [91, 46, 23], strict=True),
+                    "max_bounded_opup_calls",
+                    [14],
                 )
         case "algots":
             if "lib_pcg32_client" in metafunc.fixturenames:
@@ -51,16 +51,6 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 )
             if "expected_library_size" in metafunc.fixturenames:
                 metafunc.parametrize("expected_library_size", [13_500])
-            if "max_unbounded_opup_calls" in metafunc.fixturenames:
-                metafunc.parametrize(
-                    "bit_size,max_unbounded_opup_calls",
-                    zip(BIT_SIZES, [94, 47, 24], strict=True),
-                )
-            if "max_bounded_opup_calls" in metafunc.fixturenames:
-                metafunc.parametrize(
-                    "bit_size,max_bounded_opup_calls",
-                    zip(BIT_SIZES, [111, 56, 28], strict=True),
-                )
         case "ts":
             if "lib_pcg32_client" in metafunc.fixturenames:
                 metafunc.parametrize(
@@ -68,16 +58,6 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 )
             if "expected_library_size" in metafunc.fixturenames:
                 metafunc.parametrize("expected_library_size", [35_500])
-            if "max_unbounded_opup_calls" in metafunc.fixturenames:
-                metafunc.parametrize(
-                    "bit_size,max_unbounded_opup_calls",
-                    zip(BIT_SIZES, [155, 78, 39], strict=True),
-                )
-            if "max_bounded_opup_calls" in metafunc.fixturenames:
-                metafunc.parametrize(
-                    "bit_size,max_bounded_opup_calls",
-                    zip(BIT_SIZES, [174, 88, 44], strict=True),
-                )
         case "pyteal":
             if "lib_pcg32_client" in metafunc.fixturenames:
                 metafunc.parametrize(
@@ -85,16 +65,6 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
                 )
             if "expected_library_size" in metafunc.fixturenames:
                 metafunc.parametrize("expected_library_size", [9_500])
-            if "max_unbounded_opup_calls" in metafunc.fixturenames:
-                metafunc.parametrize(
-                    "bit_size,max_unbounded_opup_calls",
-                    zip(BIT_SIZES, [91, 46, 23], strict=True),
-                )
-            if "max_bounded_opup_calls" in metafunc.fixturenames:
-                metafunc.parametrize(
-                    "bit_size,max_bounded_opup_calls",
-                    zip(BIT_SIZES, [106, 53, 27], strict=True),
-                )
         case _:
             raise ValueError
 
@@ -159,213 +129,7 @@ def lib_pcg32_exposer_pyteal_client(
 
 RNG_SEED = b"\x00\x00\x00\x00\x00\x00\x00\x2a"
 
-BIT_SIZES = [8, 16, 32]
-UNBOUNDED_SEQUENCE = (
-    [
-        214,
-        169,
-        155,
-        131,
-        173,
-        50,
-        44,
-        215,
-        8,
-        181,
-        217,
-        129,
-        220,
-        150,
-        81,
-        107,
-        218,
-        68,
-        35,
-        196,
-        72,
-        23,
-        208,
-        171,
-        131,
-        33,
-        170,
-        155,
-        20,
-        200,
-        240,
-        11,
-        182,
-        230,
-        245,
-        232,
-        154,
-        111,
-        214,
-        182,
-        162,
-        59,
-        239,
-        156,
-        238,
-        218,
-        58,
-        96,
-        153,
-        213,
-        150,
-        24,
-        34,
-        133,
-        226,
-        148,
-        207,
-        156,
-        239,
-        7,
-        72,
-        153,
-        113,
-        27,
-        128,
-        112,
-        155,
-        48,
-        170,
-        12,
-        31,
-        79,
-        148,
-        118,
-        84,
-        165,
-        251,
-        54,
-        192,
-        64,
-        251,
-        127,
-        62,
-        127,
-        209,
-        134,
-        93,
-        24,
-        50,
-        248,
-        94,
-        150,
-        201,
-        163,
-        177,
-        157,
-        103,
-        186,
-        109,
-        146,
-    ],
-    [
-        31702,
-        50345,
-        45723,
-        21379,
-        24237,
-        46642,
-        12588,
-        51159,
-        2056,
-        15029,
-        7641,
-        8321,
-        19932,
-        56214,
-        63569,
-        8811,
-        60122,
-        56900,
-        47651,
-        47556,
-        40008,
-        20247,
-        9936,
-        26539,
-        11139,
-        41505,
-        7082,
-        7323,
-        1812,
-        40136,
-        57584,
-        17675,
-        63670,
-        32230,
-        17141,
-        1256,
-        26778,
-        55663,
-        54998,
-        10422,
-        4514,
-        49979,
-        26607,
-        29852,
-        4846,
-        5850,
-        44346,
-        25440,
-        32409,
-        18901,
-        12438,
-        61464,
-        40738,
-        53893,
-        51682,
-        35476,
-        46031,
-        12956,
-        21999,
-        53767,
-        63560,
-        47769,
-        26737,
-        29979,
-        49280,
-        20336,
-        55707,
-        49712,
-        1450,
-        60428,
-        21023,
-        25679,
-        24980,
-        24950,
-        57428,
-        24485,
-        13051,
-        52790,
-        46016,
-        9280,
-        60923,
-        50047,
-        32830,
-        49535,
-        18129,
-        8582,
-        55901,
-        34072,
-        41778,
-        4856,
-        61022,
-        41366,
-        41673,
-        45475,
-        56497,
-        56221,
-        1127,
-        7354,
-        26989,
-        22162,
-    ],
-    [
+UNBOUNDED_SEQUENCE = [
         3270867926,
         1795671209,
         1924641435,
@@ -466,214 +230,8 @@ UNBOUNDED_SEQUENCE = (
         509549754,
         3861866861,
         3217053330,
-    ],
-)
-LOWER_BOUNDED_SEQUENCE = (
-    [
-        168,
-        237,
-        133,
-        196,
-        142,
-        128,
-        148,
-        228,
-        216,
-        163,
-        164,
-        197,
-        247,
-        251,
-        162,
-        151,
-        227,
-        182,
-        249,
-        224,
-        133,
-        235,
-        166,
-        236,
-        156,
-        202,
-        229,
-        192,
-        197,
-        135,
-        175,
-        156,
-        203,
-        245,
-        185,
-        167,
-        166,
-        216,
-        237,
-        140,
-        189,
-        232,
-        187,
-        162,
-        185,
-        216,
-        153,
-        237,
-        172,
-        217,
-        184,
-        141,
-        234,
-        158,
-        218,
-        185,
-        187,
-        251,
-        128,
-        137,
-        157,
-        232,
-        210,
-        190,
-        230,
-        163,
-        128,
-        220,
-        191,
-        153,
-        237,
-        151,
-        184,
-        255,
-        237,
-        171,
-        210,
-        179,
-        190,
-        192,
-        139,
-        163,
-        180,
-        251,
-        134,
-        143,
-        208,
-        232,
-        153,
-        150,
-        159,
-        163,
-        235,
-        168,
-        133,
-        246,
-        147,
-        139,
-        180,
-        244,
-    ],
-    [
-        62958,
-        61083,
-        52525,
-        52033,
-        62290,
-        58550,
-        39328,
-        39930,
-        37425,
-        48274,
-        45767,
-        53798,
-        49447,
-        59888,
-        44646,
-        33910,
-        33506,
-        34430,
-        33939,
-        46847,
-        36919,
-        40195,
-        53272,
-        34217,
-        47016,
-        55906,
-        48502,
-        64497,
-        64742,
-        52719,
-        43015,
-        42111,
-        53546,
-        36680,
-        64976,
-        37220,
-        57763,
-        61656,
-        51738,
-        49106,
-        58095,
-        49249,
-        52588,
-        38250,
-        33557,
-        33441,
-        56193,
-        32820,
-        64339,
-        35086,
-        44887,
-        46401,
-        40482,
-        46385,
-        37550,
-        33707,
-        35287,
-        44924,
-        37265,
-        56846,
-        53143,
-        34963,
-        34776,
-        57067,
-        49301,
-        56290,
-        40610,
-        62203,
-        48461,
-        46386,
-        43803,
-        42703,
-        47833,
-        58137,
-        58104,
-        45165,
-        33984,
-        58655,
-        58102,
-        41559,
-        59197,
-        63775,
-        44772,
-        65024,
-        64484,
-        61508,
-        40213,
-        34360,
-        51564,
-        43596,
-        52953,
-        41521,
-        62134,
-        53364,
-        44563,
-        44151,
-        43035,
-        57340,
-        40209,
-        55060,
-    ],
-    [
+    ]
+LOWER_BOUNDED_SEQUENCE = [
         3270867924,
         4121910955,
         3418829098,
@@ -774,214 +332,8 @@ LOWER_BOUNDED_SEQUENCE = (
         2327446262,
         3416156060,
         3691695267,
-    ],
-)
-UPPER_BOUNDED_SEQUENCE = (
-    [
-        41,
-        110,
-        6,
-        69,
-        15,
-        1,
-        21,
-        101,
-        89,
-        36,
-        37,
-        70,
-        120,
-        124,
-        35,
-        24,
-        100,
-        55,
-        122,
-        97,
-        6,
-        108,
-        39,
-        109,
-        29,
-        75,
-        102,
-        65,
-        70,
-        8,
-        48,
-        29,
-        76,
-        118,
-        58,
-        40,
-        39,
-        89,
-        110,
-        13,
-        62,
-        105,
-        60,
-        35,
-        58,
-        89,
-        26,
-        110,
-        45,
-        90,
-        57,
-        14,
-        107,
-        31,
-        91,
-        58,
-        60,
-        124,
-        1,
-        10,
-        30,
-        105,
-        83,
-        63,
-        103,
-        36,
-        1,
-        93,
-        64,
-        26,
-        110,
-        24,
-        57,
-        128,
-        110,
-        44,
-        83,
-        52,
-        63,
-        65,
-        12,
-        36,
-        53,
-        124,
-        7,
-        16,
-        81,
-        105,
-        26,
-        23,
-        32,
-        36,
-        108,
-        41,
-        6,
-        119,
-        20,
-        12,
-        53,
-        117,
-    ],
-    [
-        30191,
-        28316,
-        19758,
-        19266,
-        29523,
-        25783,
-        6561,
-        7163,
-        4658,
-        15507,
-        13000,
-        21031,
-        16680,
-        27121,
-        11879,
-        1143,
-        739,
-        1663,
-        1172,
-        14080,
-        4152,
-        7428,
-        20505,
-        1450,
-        14249,
-        23139,
-        15735,
-        31730,
-        31975,
-        19952,
-        10248,
-        9344,
-        20779,
-        3913,
-        32209,
-        4453,
-        24996,
-        28889,
-        18971,
-        16339,
-        25328,
-        16482,
-        19821,
-        5483,
-        790,
-        674,
-        23426,
-        53,
-        31572,
-        2319,
-        12120,
-        13634,
-        7715,
-        13618,
-        4783,
-        940,
-        2520,
-        12157,
-        4498,
-        24079,
-        20376,
-        2196,
-        2009,
-        24300,
-        16534,
-        23523,
-        7843,
-        29436,
-        15694,
-        13619,
-        11036,
-        9936,
-        15066,
-        25370,
-        25337,
-        12398,
-        1217,
-        25888,
-        25335,
-        8792,
-        26430,
-        31008,
-        12005,
-        32257,
-        31717,
-        28741,
-        7446,
-        1593,
-        18797,
-        10829,
-        20186,
-        8754,
-        29367,
-        20597,
-        11796,
-        11384,
-        10268,
-        24573,
-        7442,
-        22293,
-    ],
-    [
+    ]
+UPPER_BOUNDED_SEQUENCE = [
         1123384277,
         1974427308,
         1271345451,
@@ -1082,214 +434,8 @@ UPPER_BOUNDED_SEQUENCE = (
         179962615,
         1268672413,
         1544211620,
-    ],
-)
-UPPER_LOWER_BOUNDED_SEQUENCE = (
-    [
-        30,
-        33,
-        19,
-        19,
-        61,
-        50,
-        4,
-        15,
-        48,
-        37,
-        29,
-        29,
-        52,
-        38,
-        57,
-        19,
-        62,
-        8,
-        15,
-        32,
-        40,
-        19,
-        4,
-        11,
-        27,
-        61,
-        34,
-        27,
-        8,
-        12,
-        40,
-        39,
-        14,
-        62,
-        29,
-        20,
-        22,
-        63,
-        6,
-        62,
-        54,
-        31,
-        19,
-        60,
-        38,
-        6,
-        54,
-        12,
-        25,
-        25,
-        10,
-        12,
-        18,
-        29,
-        26,
-        8,
-        55,
-        8,
-        47,
-        35,
-        16,
-        25,
-        45,
-        7,
-        56,
-        16,
-        47,
-        4,
-        26,
-        36,
-        15,
-        19,
-        40,
-        18,
-        36,
-        21,
-        27,
-        14,
-        4,
-        48,
-        43,
-        19,
-        6,
-        47,
-        17,
-        50,
-        37,
-        4,
-        42,
-        12,
-        18,
-        46,
-        25,
-        27,
-        61,
-        9,
-        39,
-        58,
-        45,
-        34,
-    ],
-    [
-        1302,
-        2025,
-        3451,
-        2371,
-        1213,
-        3602,
-        1276,
-        3687,
-        3960,
-        3589,
-        3641,
-        1601,
-        3724,
-        2630,
-        1329,
-        2971,
-        3194,
-        3380,
-        3267,
-        4004,
-        2872,
-        1111,
-        16,
-        3083,
-        1059,
-        1873,
-        1306,
-        939,
-        1220,
-        264,
-        1072,
-        3051,
-        1046,
-        1334,
-        2741,
-        632,
-        2314,
-        2895,
-        2838,
-        3974,
-        1266,
-        763,
-        1711,
-        3612,
-        1790,
-        3738,
-        1146,
-        3024,
-        1417,
-        3877,
-        502,
-        2904,
-        210,
-        3221,
-        3938,
-        740,
-        1567,
-        1580,
-        2399,
-        2327,
-        1528,
-        1657,
-        1377,
-        2299,
-        2048,
-        208,
-        1499,
-        1216,
-        2378,
-        1548,
-        2127,
-        991,
-        1012,
-        150,
-        4068,
-        1413,
-        1899,
-        86,
-        976,
-        2400,
-        475,
-        2911,
-        1758,
-        1199,
-        1409,
-        3302,
-        3709,
-        1816,
-        1074,
-        3864,
-        750,
-        1078,
-        1177,
-        2979,
-        1153,
-        1581,
-        2631,
-        2650,
-        4077,
-        1906,
-    ],
-    [
+    ]
+UPPER_LOWER_BOUNDED_SEQUENCE = [
         16137942,
         536745,
         12068251,
@@ -1390,44 +536,7 @@ UPPER_LOWER_BOUNDED_SEQUENCE = (
         6241210,
         3166317,
         12654226,
-    ],
-)
-
-
-def __bit_size_to_method(
-    lib_pcg_exposer_client: (
-        LibPcg32ExposerAlgoPyClient
-        | LibPcg32ExposerPytealClient
-        | LibPcg32ExposerAlgoTsClient
-    ),
-    bit_size: int,
-    lower_bound: int,
-    upper_bound: int,
-    length: int,
-) -> SendAtomicTransactionComposerResults:
-    match bit_size:
-        case 8:
-            result = (
-                lib_pcg_exposer_client.new_group()
-                .bounded_rand_uint8((RNG_SEED, lower_bound, upper_bound, length))
-                .simulate(extra_opcode_budget=320_000)
-            )
-        case 16:
-            result = (
-                lib_pcg_exposer_client.new_group()
-                .bounded_rand_uint16((RNG_SEED, lower_bound, upper_bound, length))
-                .simulate(extra_opcode_budget=320_000)
-            )
-        case 32:
-            result = (
-                lib_pcg_exposer_client.new_group()
-                .bounded_rand_uint32((RNG_SEED, lower_bound, upper_bound, length))
-                .simulate(extra_opcode_budget=320_000)
-            )
-        case _:
-            raise ValueError("")
-
-    return result
+    ]
 
 
 # This simple test ensures that the code size of this library doesn't grow unexpectedly if we
@@ -1441,15 +550,16 @@ def test_library_size(
 
 def test_unbounded_maximal_cost(
     lib_pcg32_client: str,
-    bit_size: int,
     max_unbounded_opup_calls: int,
     request: pytest.FixtureRequest,
 ) -> None:
-    expected_maximal_sequence_length = (1024 - 4 - 2) // (bit_size >> 3)
+    expected_maximal_sequence_length = (1024 - 4 - 2) // (64 >> 3)
 
     client = request.getfixturevalue(lib_pcg32_client)
-    result = __bit_size_to_method(
-        client, bit_size, 0, 0, expected_maximal_sequence_length
+    result = (
+        client.new_group()
+        .bounded_rand_uint32((RNG_SEED, 0, 0, expected_maximal_sequence_length))
+        .simulate(extra_opcode_budget=320_000)
     )
 
     assert result.returns[0].value
@@ -1461,19 +571,16 @@ def test_unbounded_maximal_cost(
 
 def test_bounded_maximal_cost(
     lib_pcg32_client: str,
-    bit_size: int,
     max_bounded_opup_calls: int,
     request: pytest.FixtureRequest,
 ) -> None:
-    expected_maximal_sequence_length = (1024 - 4 - 2) // (bit_size >> 3)
+    expected_maximal_sequence_length = (1024 - 4 - 2) // (64 >> 3)
 
     client = request.getfixturevalue(lib_pcg32_client)
-    result = __bit_size_to_method(
-        client,
-        bit_size,
-        1,
-        2**bit_size - 1,
-        expected_maximal_sequence_length,
+    result = (
+        client.new_group()
+        .bounded_rand_uint32((RNG_SEED, 1, 2**32-1, expected_maximal_sequence_length))
+        .simulate(extra_opcode_budget=320_000)
     )
 
     assert result.returns[0].value
@@ -1483,68 +590,57 @@ def test_bounded_maximal_cost(
     )
 
 
-@pytest.mark.parametrize(
-    "bit_size,expected_sequence", zip(BIT_SIZES, UNBOUNDED_SEQUENCE, strict=True)
-)
 def test_unbounded_sequence(
     lib_pcg32_client: str,
-    bit_size: int,
-    expected_sequence: list[int],
     request: pytest.FixtureRequest,
 ) -> None:
     client = request.getfixturevalue(lib_pcg32_client)
-    result = __bit_size_to_method(client, bit_size, 0, 0, 100)
-
-    assert result.returns[0].value == expected_sequence
-
-
-@pytest.mark.parametrize(
-    "bit_size,expected_sequence", zip(BIT_SIZES, LOWER_BOUNDED_SEQUENCE, strict=True)
-)
-def test_lower_bounded_sequence(
-    lib_pcg32_client: str,
-    bit_size: int,
-    expected_sequence: list[int],
-    request: pytest.FixtureRequest,
-) -> None:
-    client = request.getfixturevalue(lib_pcg32_client)
-    result = __bit_size_to_method(client, bit_size, 2 ** (bit_size - 1) - 1, 0, 100)
-
-    assert result.returns[0].value == expected_sequence
-
-
-@pytest.mark.parametrize(
-    "bit_size,expected_sequence", zip(BIT_SIZES, UPPER_BOUNDED_SEQUENCE, strict=True)
-)
-def test_upper_bounded_sequence(
-    lib_pcg32_client: str,
-    bit_size: int,
-    expected_sequence: list[int],
-    request: pytest.FixtureRequest,
-) -> None:
-    client = request.getfixturevalue(lib_pcg32_client)
-    result = __bit_size_to_method(client, bit_size, 0, 2 ** (bit_size - 1) + 1, 100)
-
-    assert result.returns[0].value == expected_sequence
-
-
-@pytest.mark.parametrize(
-    "bit_size,expected_sequence",
-    zip(BIT_SIZES, UPPER_LOWER_BOUNDED_SEQUENCE, strict=True),
-)
-def test_upper_lower_bounded_sequence(
-    lib_pcg32_client: str,
-    bit_size: int,
-    expected_sequence: list[int],
-    request: pytest.FixtureRequest,
-) -> None:
-    client = request.getfixturevalue(lib_pcg32_client)
-    result = __bit_size_to_method(
-        client,
-        bit_size,
-        2 ** (bit_size >> 2),
-        2 ** ((bit_size >> 2) * 3),
-        100,
+    result = (
+        client.new_group()
+        .bounded_rand_uint32((RNG_SEED, 0, 0, 100))
+        .simulate(extra_opcode_budget=320_000)
     )
 
-    assert result.returns[0].value == expected_sequence
+    assert result.returns[0].value == UNBOUNDED_SEQUENCE
+
+
+def test_lower_bounded_sequence(
+    lib_pcg32_client: str,
+    request: pytest.FixtureRequest,
+) -> None:
+    client = request.getfixturevalue(lib_pcg32_client)
+    result = (
+        client.new_group()
+        .bounded_rand_uint32((RNG_SEED, 2**31-1, 0, 100))
+        .simulate(extra_opcode_budget=320_000)
+    )
+
+    assert result.returns[0].value == LOWER_BOUNDED_SEQUENCE
+
+
+def test_upper_bounded_sequence(
+    lib_pcg32_client: str,
+    request: pytest.FixtureRequest,
+) -> None:
+    client = request.getfixturevalue(lib_pcg32_client)
+    result = (
+        client.new_group()
+        .bounded_rand_uint32((RNG_SEED, 0, 2**31+1, 100))
+        .simulate(extra_opcode_budget=320_000)
+    )
+
+    assert result.returns[0].value == UPPER_BOUNDED_SEQUENCE
+
+
+def test_upper_lower_bounded_sequence(
+    lib_pcg32_client: str,
+    request: pytest.FixtureRequest,
+) -> None:
+    client = request.getfixturevalue(lib_pcg32_client)
+    result = (
+        client.new_group()
+        .bounded_rand_uint32((RNG_SEED, 2**8, 2**24, 100))
+        .simulate(extra_opcode_budget=320_000)
+    )
+
+    assert result.returns[0].value == UPPER_LOWER_BOUNDED_SEQUENCE

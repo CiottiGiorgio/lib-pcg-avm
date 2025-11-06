@@ -1,12 +1,8 @@
 from typing import Literal
 
-from algopy import Global, Txn, arc4
+from algopy import Array, Global, Txn, UInt64, arc4
 
 from lib_pcg import (
-    pcg8_init,
-    pcg8_random,
-    pcg16_init,
-    pcg16_random,
     pcg32_init,
     pcg32_random,
 )
@@ -20,42 +16,10 @@ class LibPcg32ExposerAlgoPy(arc4.ARC4Contract):
         lower_bound: arc4.UInt32,
         upper_bound: arc4.UInt32,
         length: arc4.UInt16,
-    ) -> arc4.DynamicArray[arc4.UInt32]:
+    ) -> Array[UInt64]:
         state = pcg32_init(seed.bytes)
 
         state, sequence = pcg32_random(
-            state, lower_bound.as_uint64(), upper_bound.as_uint64(), length.as_uint64()
-        )
-
-        return sequence
-
-    @arc4.abimethod
-    def bounded_rand_uint16(
-        self,
-        seed: arc4.StaticArray[arc4.Byte, Literal[8]],
-        lower_bound: arc4.UInt16,
-        upper_bound: arc4.UInt16,
-        length: arc4.UInt16,
-    ) -> arc4.DynamicArray[arc4.UInt16]:
-        state = pcg16_init(seed.bytes)
-
-        state, sequence = pcg16_random(
-            state, lower_bound.as_uint64(), upper_bound.as_uint64(), length.as_uint64()
-        )
-
-        return sequence
-
-    @arc4.abimethod
-    def bounded_rand_uint8(
-        self,
-        seed: arc4.StaticArray[arc4.Byte, Literal[8]],
-        lower_bound: arc4.UInt8,
-        upper_bound: arc4.UInt8,
-        length: arc4.UInt16,
-    ) -> arc4.DynamicArray[arc4.UInt8]:
-        state = pcg8_init(seed.bytes)
-
-        state, sequence = pcg8_random(
             state, lower_bound.as_uint64(), upper_bound.as_uint64(), length.as_uint64()
         )
 

@@ -19,7 +19,7 @@ from algosdk.v2client.models import SimulateTraceConfig
 import algokit_utils
 from algokit_utils import AlgorandClient as _AlgoKitAlgorandClient
 
-_APP_SPEC_JSON = r"""{"arcs": [22, 28], "bareActions": {"call": ["UpdateApplication"], "create": ["NoOp"]}, "methods": [{"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "byte[8]", "name": "seed"}, {"type": "uint32", "name": "lower_bound"}, {"type": "uint32", "name": "upper_bound"}, {"type": "uint16", "name": "length"}], "name": "bounded_rand_uint32", "returns": {"type": "uint32[]"}, "events": [], "readonly": false, "recommendations": {}}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "byte[8]", "name": "seed"}, {"type": "uint16", "name": "lower_bound"}, {"type": "uint16", "name": "upper_bound"}, {"type": "uint16", "name": "length"}], "name": "bounded_rand_uint16", "returns": {"type": "uint16[]"}, "events": [], "readonly": false, "recommendations": {}}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "byte[8]", "name": "seed"}, {"type": "uint8", "name": "lower_bound"}, {"type": "uint8", "name": "upper_bound"}, {"type": "uint16", "name": "length"}], "name": "bounded_rand_uint8", "returns": {"type": "uint8[]"}, "events": [], "readonly": false, "recommendations": {}}], "name": "LibPcg32ExposerAlgoPy", "state": {"keys": {"box": {}, "global": {}, "local": {}}, "maps": {"box": {}, "global": {}, "local": {}}, "schema": {"global": {"bytes": 0, "ints": 0}, "local": {"bytes": 0, "ints": 0}}}, "structs": {}, "byteCode": {"approval": "CyAGAQgA/////w+t/tXk1IX9qFjPgp677+/eghQmAQQVH3x1MRtBACQxGRREMRhEggME7Qb3CgSNfM55BNCjXh42GgCOAwGNAdECFQAkgQQxGY4CAAoAAQAxGEQxADIJEkMxGBREIkOKAQGL/xUjEkSL/xckIQQdRQEhBR5FAR5FASEEHUUBIQUeRQGJigUCgABHBYv/FkmTgRAORFcGAov8IxJAABCL/IEQEkAACIv8gSASQQEeIkSL/IEDkUmMASNMCYwFi/1AAGCL/kAAWySMA4sDi/8MQQBHi/shBB1FASEFHkUBi/uBEpGL+xuBG5ElGov7gTuRSpFMHCIeRQGBHxpPAkyQJRoZFosFiwFYiwZMUIwGiwMiCIwDjPtC/7GL+4sGjAGMAImL/kEAkov+Ig1EIov8kIv+DUSL/iIJi/0NRIv+i/0JjACLAEkcIh5FASUaTBiMBCSMA4sDi/8MQf+9i/shBB1FASEFHkUBi/uBEpGL+xuBG5ElGov7gTuRSpFMHCIeRQGBHxpPAkyQJRoZSYwCiwQPQQAfiwKLABiL/QgWiwWLAViLBkxQjAaLAyIIjAOM+0L/oIz7Qv+jIov8kEkiCYv9DUSL/QmMAEL/dyRC/t82GgFJFSMSRDYaAkkVgQQSRDYaA0kVgQQSRDYaBEkVgQISRE8DiP5nTwMXTwMXTwMXTwOBIE4ETgSI/nhFAShMULAiQzYaAUkVIxJENhoCSRWBAhJENhoDSRWBAhJENhoESRWBAhJETwOI/iNPAxdPAxdPAxdPA4EQTgROBIj+NEUBKExQsCJDNhoBSRUjEkQ2GgJJFSISRDYaA0kVIhJENhoESRWBAhJETwOI/eFPAxdPAxdPAxdPAyNOBE4EiP3zRQEoTFCwIkM=", "clear": "C4EBQw=="}, "events": [], "networks": {}, "source": {"approval": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuYXBwcm92YWxfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIGludGNibG9jayAxIDggMCA0Mjk0OTY3Mjk1IDYzNjQxMzYyMjM4NDY3OTMwMDUgMTQ0MjY5NTA0MDg4ODk2MzQwNwogICAgYnl0ZWNibG9jayAweDE1MWY3Yzc1CiAgICB0eG4gTnVtQXBwQXJncwogICAgYnogbWFpbl9iYXJlX3JvdXRpbmdAMTAKICAgIHR4biBPbkNvbXBsZXRpb24KICAgICEKICAgIGFzc2VydCAvLyBPbkNvbXBsZXRpb24gbXVzdCBiZSBOb09wCiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgYXNzZXJ0CiAgICBwdXNoYnl0ZXNzIDB4ZWQwNmY3MGEgMHg4ZDdjY2U3OSAweGQwYTM1ZTFlIC8vIG1ldGhvZCAiYm91bmRlZF9yYW5kX3VpbnQzMihieXRlWzhdLHVpbnQzMix1aW50MzIsdWludDE2KXVpbnQzMltdIiwgbWV0aG9kICJib3VuZGVkX3JhbmRfdWludDE2KGJ5dGVbOF0sdWludDE2LHVpbnQxNix1aW50MTYpdWludDE2W10iLCBtZXRob2QgImJvdW5kZWRfcmFuZF91aW50OChieXRlWzhdLHVpbnQ4LHVpbnQ4LHVpbnQxNil1aW50OFtdIgogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMAogICAgbWF0Y2ggYm91bmRlZF9yYW5kX3VpbnQzMiBib3VuZGVkX3JhbmRfdWludDE2IGJvdW5kZWRfcmFuZF91aW50OAogICAgZXJyCgptYWluX2JhcmVfcm91dGluZ0AxMDoKICAgIGludGNfMiAvLyBOb09wCiAgICBwdXNoaW50IDQgLy8gVXBkYXRlQXBwbGljYXRpb24KICAgIHR4biBPbkNvbXBsZXRpb24KICAgIG1hdGNoIG1haW5fX19hbGdvcHlfZGVmYXVsdF9jcmVhdGVAMTEgbWFpbl91cGRhdGVAMTIKICAgIGVycgoKbWFpbl91cGRhdGVAMTI6CiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgYXNzZXJ0IC8vIGNhbiBvbmx5IGNhbGwgd2hlbiBub3QgY3JlYXRpbmcKICAgIHR4biBTZW5kZXIKICAgIGdsb2JhbCBDcmVhdG9yQWRkcmVzcwogICAgPT0KICAgIHJldHVybgoKbWFpbl9fX2FsZ29weV9kZWZhdWx0X2NyZWF0ZUAxMToKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICAhCiAgICBhc3NlcnQgLy8gY2FuIG9ubHkgY2FsbCB3aGVuIGNyZWF0aW5nCiAgICBpbnRjXzAgLy8gMQogICAgcmV0dXJuCgoKLy8gbGliX3BjZy5wY2czMi5wY2czMl9pbml0KHNlZWQ6IGJ5dGVzKSAtPiB1aW50NjQ6CnBjZzMyX2luaXQ6CiAgICBwcm90byAxIDEKICAgIGZyYW1lX2RpZyAtMQogICAgbGVuCiAgICBpbnRjXzEgLy8gOAogICAgPT0KICAgIGFzc2VydAogICAgZnJhbWVfZGlnIC0xCiAgICBidG9pCiAgICBpbnRjXzIgLy8gMAogICAgaW50YyA0IC8vIDYzNjQxMzYyMjM4NDY3OTMwMDUKICAgIG11bHcKICAgIGJ1cnkgMQogICAgaW50YyA1IC8vIDE0NDI2OTUwNDA4ODg5NjM0MDcKICAgIGFkZHcKICAgIGJ1cnkgMQogICAgYWRkdwogICAgYnVyeSAxCiAgICBpbnRjIDQgLy8gNjM2NDEzNjIyMzg0Njc5MzAwNQogICAgbXVsdwogICAgYnVyeSAxCiAgICBpbnRjIDUgLy8gMTQ0MjY5NTA0MDg4ODk2MzQwNwogICAgYWRkdwogICAgYnVyeSAxCiAgICByZXRzdWIKCgovLyBsaWJfcGNnLnBjZzMyLl9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZShzdGF0ZTogdWludDY0LCBiaXRfc2l6ZTogdWludDY0LCBsb3dlcl9ib3VuZDogdWludDY0LCB1cHBlcl9ib3VuZDogdWludDY0LCBsZW5ndGg6IHVpbnQ2NCkgLT4gdWludDY0LCBieXRlczoKX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlOgogICAgcHJvdG8gNSAyCiAgICBwdXNoYnl0ZXMgIiIKICAgIGR1cG4gNQogICAgZnJhbWVfZGlnIC0xCiAgICBpdG9iCiAgICBkdXAKICAgIGJpdGxlbgogICAgcHVzaGludCAxNiAvLyAxNgogICAgPD0KICAgIGFzc2VydCAvLyBvdmVyZmxvdwogICAgZXh0cmFjdCA2IDIKICAgIGZyYW1lX2RpZyAtNAogICAgaW50Y18xIC8vIDgKICAgID09CiAgICBibnogX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2Jvb2xfdHJ1ZUAzCiAgICBmcmFtZV9kaWcgLTQKICAgIHB1c2hpbnQgMTYgLy8gMTYKICAgID09CiAgICBibnogX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2Jvb2xfdHJ1ZUAzCiAgICBmcmFtZV9kaWcgLTQKICAgIHB1c2hpbnQgMzIgLy8gMzIKICAgID09CiAgICBieiBfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2VfYm9vbF9mYWxzZUA0CgpfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2VfYm9vbF90cnVlQDM6CiAgICBpbnRjXzAgLy8gMQoKX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2Jvb2xfbWVyZ2VANToKICAgIGFzc2VydAogICAgZnJhbWVfZGlnIC00CiAgICBwdXNoaW50IDMgLy8gMwogICAgc2hyCiAgICBkdXAKICAgIGZyYW1lX2J1cnkgMQogICAgaW50Y18xIC8vIDgKICAgIHN3YXAKICAgIC0KICAgIGZyYW1lX2J1cnkgNQogICAgZnJhbWVfZGlnIC0zCiAgICBibnogX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2Vsc2VfYm9keUAxMgogICAgZnJhbWVfZGlnIC0yCiAgICBibnogX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2Vsc2VfYm9keUAxMgogICAgaW50Y18yIC8vIDAKICAgIGZyYW1lX2J1cnkgMwoKX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2Zvcl9oZWFkZXJAODoKICAgIGZyYW1lX2RpZyAzCiAgICBmcmFtZV9kaWcgLTEKICAgIDwKICAgIGJ6IF9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZV9hZnRlcl9pZl9lbHNlQDI1CiAgICBmcmFtZV9kaWcgLTUKICAgIGludGMgNCAvLyA2MzY0MTM2MjIzODQ2NzkzMDA1CiAgICBtdWx3CiAgICBidXJ5IDEKICAgIGludGMgNSAvLyAxNDQyNjk1MDQwODg4OTYzNDA3CiAgICBhZGR3CiAgICBidXJ5IDEKICAgIGZyYW1lX2RpZyAtNQogICAgcHVzaGludCAxOCAvLyAxOAogICAgc2hyCiAgICBmcmFtZV9kaWcgLTUKICAgIF4KICAgIHB1c2hpbnQgMjcgLy8gMjcKICAgIHNocgogICAgaW50Y18zIC8vIDQyOTQ5NjcyOTUKICAgICYKICAgIGZyYW1lX2RpZyAtNQogICAgcHVzaGludCA1OSAvLyA1OQogICAgc2hyCiAgICBkdXAyCiAgICBzaHIKICAgIHN3YXAKICAgIH4KICAgIGludGNfMCAvLyAxCiAgICBhZGR3CiAgICBidXJ5IDEKICAgIHB1c2hpbnQgMzEgLy8gMzEKICAgICYKICAgIHVuY292ZXIgMgogICAgc3dhcAogICAgc2hsCiAgICBpbnRjXzMgLy8gNDI5NDk2NzI5NQogICAgJgogICAgfAogICAgaXRvYgogICAgZnJhbWVfZGlnIDUKICAgIGZyYW1lX2RpZyAxCiAgICBleHRyYWN0MwogICAgZnJhbWVfZGlnIDYKICAgIHN3YXAKICAgIGNvbmNhdAogICAgZnJhbWVfYnVyeSA2CiAgICBmcmFtZV9kaWcgMwogICAgaW50Y18wIC8vIDEKICAgICsKICAgIGZyYW1lX2J1cnkgMwogICAgZnJhbWVfYnVyeSAtNQogICAgYiBfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2VfZm9yX2hlYWRlckA4CgpfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2VfYWZ0ZXJfaWZfZWxzZUAyNToKICAgIGZyYW1lX2RpZyAtNQogICAgZnJhbWVfZGlnIDYKICAgIGZyYW1lX2J1cnkgMQogICAgZnJhbWVfYnVyeSAwCiAgICByZXRzdWIKCl9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZV9lbHNlX2JvZHlAMTI6CiAgICBmcmFtZV9kaWcgLTIKICAgIGJ6IF9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZV9lbHNlX2JvZHlAMTQKICAgIGZyYW1lX2RpZyAtMgogICAgaW50Y18wIC8vIDEKICAgID4KICAgIGFzc2VydAogICAgaW50Y18wIC8vIDEKICAgIGZyYW1lX2RpZyAtNAogICAgc2hsCiAgICBmcmFtZV9kaWcgLTIKICAgID4KICAgIGFzc2VydAogICAgZnJhbWVfZGlnIC0yCiAgICBpbnRjXzAgLy8gMQogICAgLQogICAgZnJhbWVfZGlnIC0zCiAgICA+CiAgICBhc3NlcnQKICAgIGZyYW1lX2RpZyAtMgogICAgZnJhbWVfZGlnIC0zCiAgICAtCiAgICBmcmFtZV9idXJ5IDAKCl9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZV9hZnRlcl9pZl9lbHNlQDE1OgogICAgZnJhbWVfZGlnIDAKICAgIGR1cAogICAgfgogICAgaW50Y18wIC8vIDEKICAgIGFkZHcKICAgIGJ1cnkgMQogICAgaW50Y18zIC8vIDQyOTQ5NjcyOTUKICAgICYKICAgIHN3YXAKICAgICUKICAgIGZyYW1lX2J1cnkgNAogICAgaW50Y18yIC8vIDAKICAgIGZyYW1lX2J1cnkgMwoKX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2Zvcl9oZWFkZXJAMTY6CiAgICBmcmFtZV9kaWcgMwogICAgZnJhbWVfZGlnIC0xCiAgICA8CiAgICBieiBfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2VfYWZ0ZXJfaWZfZWxzZUAyNQoKX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX3doaWxlX3RvcEAxODoKICAgIGZyYW1lX2RpZyAtNQogICAgaW50YyA0IC8vIDYzNjQxMzYyMjM4NDY3OTMwMDUKICAgIG11bHcKICAgIGJ1cnkgMQogICAgaW50YyA1IC8vIDE0NDI2OTUwNDA4ODg5NjM0MDcKICAgIGFkZHcKICAgIGJ1cnkgMQogICAgZnJhbWVfZGlnIC01CiAgICBwdXNoaW50IDE4IC8vIDE4CiAgICBzaHIKICAgIGZyYW1lX2RpZyAtNQogICAgXgogICAgcHVzaGludCAyNyAvLyAyNwogICAgc2hyCiAgICBpbnRjXzMgLy8gNDI5NDk2NzI5NQogICAgJgogICAgZnJhbWVfZGlnIC01CiAgICBwdXNoaW50IDU5IC8vIDU5CiAgICBzaHIKICAgIGR1cDIKICAgIHNocgogICAgc3dhcAogICAgfgogICAgaW50Y18wIC8vIDEKICAgIGFkZHcKICAgIGJ1cnkgMQogICAgcHVzaGludCAzMSAvLyAzMQogICAgJgogICAgdW5jb3ZlciAyCiAgICBzd2FwCiAgICBzaGwKICAgIGludGNfMyAvLyA0Mjk0OTY3Mjk1CiAgICAmCiAgICB8CiAgICBkdXAKICAgIGZyYW1lX2J1cnkgMgogICAgZnJhbWVfZGlnIDQKICAgID49CiAgICBieiBfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2VfYWZ0ZXJfaWZfZWxzZUAyMQogICAgZnJhbWVfZGlnIDIKICAgIGZyYW1lX2RpZyAwCiAgICAlCiAgICBmcmFtZV9kaWcgLTMKICAgICsKICAgIGl0b2IKICAgIGZyYW1lX2RpZyA1CiAgICBmcmFtZV9kaWcgMQogICAgZXh0cmFjdDMKICAgIGZyYW1lX2RpZyA2CiAgICBzd2FwCiAgICBjb25jYXQKICAgIGZyYW1lX2J1cnkgNgogICAgZnJhbWVfZGlnIDMKICAgIGludGNfMCAvLyAxCiAgICArCiAgICBmcmFtZV9idXJ5IDMKICAgIGZyYW1lX2J1cnkgLTUKICAgIGIgX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2Zvcl9oZWFkZXJAMTYKCl9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZV9hZnRlcl9pZl9lbHNlQDIxOgogICAgZnJhbWVfYnVyeSAtNQogICAgYiBfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2Vfd2hpbGVfdG9wQDE4CgpfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2VfZWxzZV9ib2R5QDE0OgogICAgaW50Y18wIC8vIDEKICAgIGZyYW1lX2RpZyAtNAogICAgc2hsCiAgICBkdXAKICAgIGludGNfMCAvLyAxCiAgICAtCiAgICBmcmFtZV9kaWcgLTMKICAgID4KICAgIGFzc2VydAogICAgZnJhbWVfZGlnIC0zCiAgICAtCiAgICBmcmFtZV9idXJ5IDAKICAgIGIgX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlX2FmdGVyX2lmX2Vsc2VAMTUKCl9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZV9ib29sX2ZhbHNlQDQ6CiAgICBpbnRjXzIgLy8gMAogICAgYiBfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2VfYm9vbF9tZXJnZUA1CgoKLy8gc21hcnRfY29udHJhY3RzLmxpYl9wY2czMl9leHBvc2VyLmNvbnRyYWN0LkxpYlBjZzMyRXhwb3NlckFsZ29QeS5ib3VuZGVkX3JhbmRfdWludDMyW3JvdXRpbmddKCkgLT4gdm9pZDoKYm91bmRlZF9yYW5kX3VpbnQzMjoKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDEKICAgIGR1cAogICAgbGVuCiAgICBpbnRjXzEgLy8gOAogICAgPT0KICAgIGFzc2VydCAvLyBpbnZhbGlkIG51bWJlciBvZiBieXRlcyBmb3IgYXJjNC5zdGF0aWNfYXJyYXk8YXJjNC51aW50OCwgOD4KICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDIKICAgIGR1cAogICAgbGVuCiAgICBwdXNoaW50IDQgLy8gNAogICAgPT0KICAgIGFzc2VydCAvLyBpbnZhbGlkIG51bWJlciBvZiBieXRlcyBmb3IgYXJjNC51aW50MzIKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDMKICAgIGR1cAogICAgbGVuCiAgICBwdXNoaW50IDQgLy8gNAogICAgPT0KICAgIGFzc2VydCAvLyBpbnZhbGlkIG51bWJlciBvZiBieXRlcyBmb3IgYXJjNC51aW50MzIKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDQKICAgIGR1cAogICAgbGVuCiAgICBwdXNoaW50IDIgLy8gMgogICAgPT0KICAgIGFzc2VydCAvLyBpbnZhbGlkIG51bWJlciBvZiBieXRlcyBmb3IgYXJjNC51aW50MTYKICAgIHVuY292ZXIgMwogICAgY2FsbHN1YiBwY2czMl9pbml0CiAgICB1bmNvdmVyIDMKICAgIGJ0b2kKICAgIHVuY292ZXIgMwogICAgYnRvaQogICAgdW5jb3ZlciAzCiAgICBidG9pCiAgICB1bmNvdmVyIDMKICAgIHB1c2hpbnQgMzIgLy8gMzIKICAgIGNvdmVyIDQKICAgIGNvdmVyIDQKICAgIGNhbGxzdWIgX19wY2czMl9ib3VuZGVkX3NlcXVlbmNlCiAgICBidXJ5IDEKICAgIGJ5dGVjXzAgLy8gMHgxNTFmN2M3NQogICAgc3dhcAogICAgY29uY2F0CiAgICBsb2cKICAgIGludGNfMCAvLyAxCiAgICByZXR1cm4KCgovLyBzbWFydF9jb250cmFjdHMubGliX3BjZzMyX2V4cG9zZXIuY29udHJhY3QuTGliUGNnMzJFeHBvc2VyQWxnb1B5LmJvdW5kZWRfcmFuZF91aW50MTZbcm91dGluZ10oKSAtPiB2b2lkOgpib3VuZGVkX3JhbmRfdWludDE2OgogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQogICAgZHVwCiAgICBsZW4KICAgIGludGNfMSAvLyA4CiAgICA9PQogICAgYXNzZXJ0IC8vIGludmFsaWQgbnVtYmVyIG9mIGJ5dGVzIGZvciBhcmM0LnN0YXRpY19hcnJheTxhcmM0LnVpbnQ4LCA4PgogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMgogICAgZHVwCiAgICBsZW4KICAgIHB1c2hpbnQgMiAvLyAyCiAgICA9PQogICAgYXNzZXJ0IC8vIGludmFsaWQgbnVtYmVyIG9mIGJ5dGVzIGZvciBhcmM0LnVpbnQxNgogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMwogICAgZHVwCiAgICBsZW4KICAgIHB1c2hpbnQgMiAvLyAyCiAgICA9PQogICAgYXNzZXJ0IC8vIGludmFsaWQgbnVtYmVyIG9mIGJ5dGVzIGZvciBhcmM0LnVpbnQxNgogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgNAogICAgZHVwCiAgICBsZW4KICAgIHB1c2hpbnQgMiAvLyAyCiAgICA9PQogICAgYXNzZXJ0IC8vIGludmFsaWQgbnVtYmVyIG9mIGJ5dGVzIGZvciBhcmM0LnVpbnQxNgogICAgdW5jb3ZlciAzCiAgICBjYWxsc3ViIHBjZzMyX2luaXQKICAgIHVuY292ZXIgMwogICAgYnRvaQogICAgdW5jb3ZlciAzCiAgICBidG9pCiAgICB1bmNvdmVyIDMKICAgIGJ0b2kKICAgIHVuY292ZXIgMwogICAgcHVzaGludCAxNiAvLyAxNgogICAgY292ZXIgNAogICAgY292ZXIgNAogICAgY2FsbHN1YiBfX3BjZzMyX2JvdW5kZWRfc2VxdWVuY2UKICAgIGJ1cnkgMQogICAgYnl0ZWNfMCAvLyAweDE1MWY3Yzc1CiAgICBzd2FwCiAgICBjb25jYXQKICAgIGxvZwogICAgaW50Y18wIC8vIDEKICAgIHJldHVybgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5saWJfcGNnMzJfZXhwb3Nlci5jb250cmFjdC5MaWJQY2czMkV4cG9zZXJBbGdvUHkuYm91bmRlZF9yYW5kX3VpbnQ4W3JvdXRpbmddKCkgLT4gdm9pZDoKYm91bmRlZF9yYW5kX3VpbnQ4OgogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQogICAgZHVwCiAgICBsZW4KICAgIGludGNfMSAvLyA4CiAgICA9PQogICAgYXNzZXJ0IC8vIGludmFsaWQgbnVtYmVyIG9mIGJ5dGVzIGZvciBhcmM0LnN0YXRpY19hcnJheTxhcmM0LnVpbnQ4LCA4PgogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMgogICAgZHVwCiAgICBsZW4KICAgIGludGNfMCAvLyAxCiAgICA9PQogICAgYXNzZXJ0IC8vIGludmFsaWQgbnVtYmVyIG9mIGJ5dGVzIGZvciBhcmM0LnVpbnQ4CiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAzCiAgICBkdXAKICAgIGxlbgogICAgaW50Y18wIC8vIDEKICAgID09CiAgICBhc3NlcnQgLy8gaW52YWxpZCBudW1iZXIgb2YgYnl0ZXMgZm9yIGFyYzQudWludDgKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDQKICAgIGR1cAogICAgbGVuCiAgICBwdXNoaW50IDIgLy8gMgogICAgPT0KICAgIGFzc2VydCAvLyBpbnZhbGlkIG51bWJlciBvZiBieXRlcyBmb3IgYXJjNC51aW50MTYKICAgIHVuY292ZXIgMwogICAgY2FsbHN1YiBwY2czMl9pbml0CiAgICB1bmNvdmVyIDMKICAgIGJ0b2kKICAgIHVuY292ZXIgMwogICAgYnRvaQogICAgdW5jb3ZlciAzCiAgICBidG9pCiAgICB1bmNvdmVyIDMKICAgIGludGNfMSAvLyA4CiAgICBjb3ZlciA0CiAgICBjb3ZlciA0CiAgICBjYWxsc3ViIF9fcGNnMzJfYm91bmRlZF9zZXF1ZW5jZQogICAgYnVyeSAxCiAgICBieXRlY18wIC8vIDB4MTUxZjdjNzUKICAgIHN3YXAKICAgIGNvbmNhdAogICAgbG9nCiAgICBpbnRjXzAgLy8gMQogICAgcmV0dXJuCg==", "clear": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMSAvLyAxCiAgICByZXR1cm4K"}, "sourceInfo": {"approval": {"pcOffsetMethod": "none", "sourceInfo": [{"pc": [44], "errorMessage": "OnCompletion must be NoOp"}, {"pc": [101], "errorMessage": "can only call when creating"}, {"pc": [91], "errorMessage": "can only call when not creating"}, {"pc": [480, 548, 616], "errorMessage": "invalid number of bytes for arc4.static_array<arc4.uint8, 8>"}, {"pc": [507, 557, 566, 575, 641], "errorMessage": "invalid number of bytes for arc4.uint16"}, {"pc": [489, 498], "errorMessage": "invalid number of bytes for arc4.uint32"}, {"pc": [624, 632], "errorMessage": "invalid number of bytes for arc4.uint8"}, {"pc": [156], "errorMessage": "overflow"}]}, "clear": {"pcOffsetMethod": "none", "sourceInfo": []}}, "templateVariables": {}}"""
+_APP_SPEC_JSON = r"""{"arcs": [22, 28], "bareActions": {"call": ["UpdateApplication"], "create": ["NoOp"]}, "methods": [{"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "byte[8]", "name": "seed"}, {"type": "uint32", "name": "lower_bound"}, {"type": "uint32", "name": "upper_bound"}, {"type": "uint16", "name": "length"}], "name": "bounded_rand_uint32", "returns": {"type": "uint64[]"}, "events": [], "readonly": false, "recommendations": {}}], "name": "LibPcg32ExposerAlgoPy", "state": {"keys": {"box": {}, "global": {}, "local": {}}, "maps": {"box": {}, "global": {}, "local": {}}, "schema": {"global": {"bytes": 0, "ints": 0}, "local": {"bytes": 0, "ints": 0}}}, "structs": {}, "byteCode": {"approval": "CyAHAQD/////DwSt/tXk1IX9qFjPgp677+/eghSAgICAEDEbQQAYgASmIZkuNhoAjgEAAQAxGRQxGBBEQgBOIyUxGY4CAAoAAQAxGEQxADIJEkMxGBREIkOKAQKL/yEEHUUBIQUeRQGL/4ESkYv/G4EbkSQai/+BO5FKkUwcIh5FAYEfGk8CTJAkGhmJgABHBDYaAUkVgQgSRDYaAkkVJRJENhoDSRUlEkQ2GgRJFYECEkRPAxcjIQQdRQEhBR5FAR5FASEEHUUBIQUeTgRITwIXSU4DTwIXTgJMF0yAAgAATEAARUsCQABAI0sFRQhFCEsHSwIMQQAlSwaI/1tMRQgWSwFJTwJQTCNZIggWVwYCXABFAUsHIghFCEL/04AEFR98dUsBULAiQ0sCQQBsSwJJIg1ESSEGDERJIglLBUlPAgxECUUKSwlJHCIeRQEkGkwYRQYjSwVFCEUISwdLAgxB/7pLBoj+8ElOAkULRQhLBg9B/+5LCEsKGEsECBZLAUlPAlBMI1kiCBZXBgJcAEUBSwciCEUIQv/BSwNJJAxEIQZMCUUKQv+d", "clear": "C4EBQw=="}, "events": [], "networks": {}, "source": {"approval": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuYXBwcm92YWxfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIGludGNibG9jayAxIDAgNDI5NDk2NzI5NSA0IDYzNjQxMzYyMjM4NDY3OTMwMDUgMTQ0MjY5NTA0MDg4ODk2MzQwNyA0Mjk0OTY3Mjk2CiAgICB0eG4gTnVtQXBwQXJncwogICAgYnogbWFpbl9iYXJlX3JvdXRpbmdANQogICAgcHVzaGJ5dGVzIDB4YTYyMTk5MmUgLy8gbWV0aG9kICJib3VuZGVkX3JhbmRfdWludDMyKGJ5dGVbOF0sdWludDMyLHVpbnQzMix1aW50MTYpdWludDY0W10iCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAwCiAgICBtYXRjaCBtYWluX2JvdW5kZWRfcmFuZF91aW50MzJfcm91dGVAMwogICAgZXJyCgptYWluX2JvdW5kZWRfcmFuZF91aW50MzJfcm91dGVAMzoKICAgIHR4biBPbkNvbXBsZXRpb24KICAgICEKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICAmJgogICAgYXNzZXJ0IC8vIE9uQ29tcGxldGlvbiBtdXN0IGJlIE5vT3AgJiYgY2FuIG9ubHkgY2FsbCB3aGVuIG5vdCBjcmVhdGluZwogICAgYiBib3VuZGVkX3JhbmRfdWludDMyCgptYWluX2JhcmVfcm91dGluZ0A1OgogICAgaW50Y18xIC8vIE5vT3AKICAgIGludGNfMyAvLyBVcGRhdGVBcHBsaWNhdGlvbgogICAgdHhuIE9uQ29tcGxldGlvbgogICAgbWF0Y2ggbWFpbl9fX2FsZ29weV9kZWZhdWx0X2NyZWF0ZUA2IG1haW5fdXBkYXRlQDcKICAgIGVycgoKbWFpbl91cGRhdGVANzoKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICBhc3NlcnQgLy8gY2FuIG9ubHkgY2FsbCB3aGVuIG5vdCBjcmVhdGluZwogICAgdHhuIFNlbmRlcgogICAgZ2xvYmFsIENyZWF0b3JBZGRyZXNzCiAgICA9PQogICAgcmV0dXJuCgptYWluX19fYWxnb3B5X2RlZmF1bHRfY3JlYXRlQDY6CiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgIQogICAgYXNzZXJ0IC8vIGNhbiBvbmx5IGNhbGwgd2hlbiBjcmVhdGluZwogICAgaW50Y18wIC8vIDEKICAgIHJldHVybgoKCi8vIGxpYl9wY2cucGNnMzIuX19wY2czMl91bmJvdW5kZWRfcmFuZG9tKHN0YXRlOiB1aW50NjQpIC0+IHVpbnQ2NCwgdWludDY0OgpfX3BjZzMyX3VuYm91bmRlZF9yYW5kb206CiAgICBwcm90byAxIDIKICAgIGZyYW1lX2RpZyAtMQogICAgaW50YyA0IC8vIDYzNjQxMzYyMjM4NDY3OTMwMDUKICAgIG11bHcKICAgIGJ1cnkgMQogICAgaW50YyA1IC8vIDE0NDI2OTUwNDA4ODg5NjM0MDcKICAgIGFkZHcKICAgIGJ1cnkgMQogICAgZnJhbWVfZGlnIC0xCiAgICBwdXNoaW50IDE4IC8vIDE4CiAgICBzaHIKICAgIGZyYW1lX2RpZyAtMQogICAgXgogICAgcHVzaGludCAyNyAvLyAyNwogICAgc2hyCiAgICBpbnRjXzIgLy8gNDI5NDk2NzI5NQogICAgJgogICAgZnJhbWVfZGlnIC0xCiAgICBwdXNoaW50IDU5IC8vIDU5CiAgICBzaHIKICAgIGR1cDIKICAgIHNocgogICAgc3dhcAogICAgfgogICAgaW50Y18wIC8vIDEKICAgIGFkZHcKICAgIGJ1cnkgMQogICAgcHVzaGludCAzMSAvLyAzMQogICAgJgogICAgdW5jb3ZlciAyCiAgICBzd2FwCiAgICBzaGwKICAgIGludGNfMiAvLyA0Mjk0OTY3Mjk1CiAgICAmCiAgICB8CiAgICByZXRzdWIKCgovLyBzbWFydF9jb250cmFjdHMubGliX3BjZzMyX2V4cG9zZXIuY29udHJhY3QuTGliUGNnMzJFeHBvc2VyQWxnb1B5LmJvdW5kZWRfcmFuZF91aW50MzJbcm91dGluZ10oKSAtPiB2b2lkOgpib3VuZGVkX3JhbmRfdWludDMyOgogICAgcHVzaGJ5dGVzICIiCiAgICBkdXBuIDQKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDEKICAgIGR1cAogICAgbGVuCiAgICBwdXNoaW50IDggLy8gOAogICAgPT0KICAgIGFzc2VydCAvLyBpbnZhbGlkIG51bWJlciBvZiBieXRlcyBmb3IgYXJjNC5zdGF0aWNfYXJyYXk8YXJjNC51aW50OCwgOD4KICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDIKICAgIGR1cAogICAgbGVuCiAgICBpbnRjXzMgLy8gNAogICAgPT0KICAgIGFzc2VydCAvLyBpbnZhbGlkIG51bWJlciBvZiBieXRlcyBmb3IgYXJjNC51aW50MzIKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDMKICAgIGR1cAogICAgbGVuCiAgICBpbnRjXzMgLy8gNAogICAgPT0KICAgIGFzc2VydCAvLyBpbnZhbGlkIG51bWJlciBvZiBieXRlcyBmb3IgYXJjNC51aW50MzIKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDQKICAgIGR1cAogICAgbGVuCiAgICBwdXNoaW50IDIgLy8gMgogICAgPT0KICAgIGFzc2VydCAvLyBpbnZhbGlkIG51bWJlciBvZiBieXRlcyBmb3IgYXJjNC51aW50MTYKICAgIHVuY292ZXIgMwogICAgYnRvaQogICAgaW50Y18xIC8vIDAKICAgIGludGMgNCAvLyA2MzY0MTM2MjIzODQ2NzkzMDA1CiAgICBtdWx3CiAgICBidXJ5IDEKICAgIGludGMgNSAvLyAxNDQyNjk1MDQwODg4OTYzNDA3CiAgICBhZGR3CiAgICBidXJ5IDEKICAgIGFkZHcKICAgIGJ1cnkgMQogICAgaW50YyA0IC8vIDYzNjQxMzYyMjM4NDY3OTMwMDUKICAgIG11bHcKICAgIGJ1cnkgMQogICAgaW50YyA1IC8vIDE0NDI2OTUwNDA4ODg5NjM0MDcKICAgIGFkZHcKICAgIGNvdmVyIDQKICAgIHBvcAogICAgdW5jb3ZlciAyCiAgICBidG9pCiAgICBkdXAKICAgIGNvdmVyIDMKICAgIHVuY292ZXIgMgogICAgYnRvaQogICAgY292ZXIgMgogICAgc3dhcAogICAgYnRvaQogICAgc3dhcAogICAgcHVzaGJ5dGVzIDB4MDAwMAogICAgc3dhcAogICAgYm56IGJvdW5kZWRfcmFuZF91aW50MzJfZWxzZV9ib2R5QDkKICAgIGRpZyAyCiAgICBibnogYm91bmRlZF9yYW5kX3VpbnQzMl9lbHNlX2JvZHlAOQogICAgaW50Y18xIC8vIDAKICAgIGRpZyA1CiAgICBidXJ5IDgKICAgIGJ1cnkgOAoKYm91bmRlZF9yYW5kX3VpbnQzMl9mb3JfaGVhZGVyQDY6CiAgICBkaWcgNwogICAgZGlnIDIKICAgIDwKICAgIGJ6IGJvdW5kZWRfcmFuZF91aW50MzJfYWZ0ZXJfaWZfZWxzZUAxOQogICAgZGlnIDYKICAgIGNhbGxzdWIgX19wY2czMl91bmJvdW5kZWRfcmFuZG9tCiAgICBzd2FwCiAgICBidXJ5IDgKICAgIGl0b2IKICAgIGRpZyAxCiAgICBkdXAKICAgIHVuY292ZXIgMgogICAgY29uY2F0IC8vIG9uIGVycm9yOiBtYXggYXJyYXkgbGVuZ3RoIGV4Y2VlZGVkCiAgICBzd2FwCiAgICBpbnRjXzEgLy8gMAogICAgZXh0cmFjdF91aW50MTYKICAgIGludGNfMCAvLyAxCiAgICArCiAgICBpdG9iCiAgICBleHRyYWN0IDYgMgogICAgcmVwbGFjZTIgMAogICAgYnVyeSAxCiAgICBkaWcgNwogICAgaW50Y18wIC8vIDEKICAgICsKICAgIGJ1cnkgOAogICAgYiBib3VuZGVkX3JhbmRfdWludDMyX2Zvcl9oZWFkZXJANgoKYm91bmRlZF9yYW5kX3VpbnQzMl9hZnRlcl9pZl9lbHNlQDE5OgogICAgcHVzaGJ5dGVzIDB4MTUxZjdjNzUKICAgIGRpZyAxCiAgICBjb25jYXQKICAgIGxvZwogICAgaW50Y18wIC8vIDEKICAgIHJldHVybgoKYm91bmRlZF9yYW5kX3VpbnQzMl9lbHNlX2JvZHlAOToKICAgIGRpZyAyCiAgICBieiBib3VuZGVkX3JhbmRfdWludDMyX2Vsc2VfYm9keUAxMQogICAgZGlnIDIKICAgIGR1cAogICAgaW50Y18wIC8vIDEKICAgID4KICAgIGFzc2VydAogICAgZHVwCiAgICBpbnRjIDYgLy8gNDI5NDk2NzI5NgogICAgPAogICAgYXNzZXJ0CiAgICBkdXAKICAgIGludGNfMCAvLyAxCiAgICAtCiAgICBkaWcgNQogICAgZHVwCiAgICB1bmNvdmVyIDIKICAgIDwKICAgIGFzc2VydAogICAgLQogICAgYnVyeSAxMAoKYm91bmRlZF9yYW5kX3VpbnQzMl9hZnRlcl9pZl9lbHNlQDEyOgogICAgZGlnIDkKICAgIGR1cAogICAgfgogICAgaW50Y18wIC8vIDEKICAgIGFkZHcKICAgIGJ1cnkgMQogICAgaW50Y18yIC8vIDQyOTQ5NjcyOTUKICAgICYKICAgIHN3YXAKICAgICUKICAgIGJ1cnkgNgogICAgaW50Y18xIC8vIDAKICAgIGRpZyA1CiAgICBidXJ5IDgKICAgIGJ1cnkgOAoKYm91bmRlZF9yYW5kX3VpbnQzMl9mb3JfaGVhZGVyQDEzOgogICAgZGlnIDcKICAgIGRpZyAyCiAgICA8CiAgICBieiBib3VuZGVkX3JhbmRfdWludDMyX2FmdGVyX2lmX2Vsc2VAMTkKCmJvdW5kZWRfcmFuZF91aW50MzJfd2hpbGVfdG9wQDE1OgogICAgZGlnIDYKICAgIGNhbGxzdWIgX19wY2czMl91bmJvdW5kZWRfcmFuZG9tCiAgICBkdXAKICAgIGNvdmVyIDIKICAgIGJ1cnkgMTEKICAgIGJ1cnkgOAogICAgZGlnIDYKICAgID49CiAgICBieiBib3VuZGVkX3JhbmRfdWludDMyX3doaWxlX3RvcEAxNQogICAgZGlnIDgKICAgIGRpZyAxMAogICAgJQogICAgZGlnIDQKICAgICsKICAgIGl0b2IKICAgIGRpZyAxCiAgICBkdXAKICAgIHVuY292ZXIgMgogICAgY29uY2F0IC8vIG9uIGVycm9yOiBtYXggYXJyYXkgbGVuZ3RoIGV4Y2VlZGVkCiAgICBzd2FwCiAgICBpbnRjXzEgLy8gMAogICAgZXh0cmFjdF91aW50MTYKICAgIGludGNfMCAvLyAxCiAgICArCiAgICBpdG9iCiAgICBleHRyYWN0IDYgMgogICAgcmVwbGFjZTIgMAogICAgYnVyeSAxCiAgICBkaWcgNwogICAgaW50Y18wIC8vIDEKICAgICsKICAgIGJ1cnkgOAogICAgYiBib3VuZGVkX3JhbmRfdWludDMyX2Zvcl9oZWFkZXJAMTMKCmJvdW5kZWRfcmFuZF91aW50MzJfZWxzZV9ib2R5QDExOgogICAgZGlnIDMKICAgIGR1cAogICAgaW50Y18yIC8vIDQyOTQ5NjcyOTUKICAgIDwKICAgIGFzc2VydAogICAgaW50YyA2IC8vIDQyOTQ5NjcyOTYKICAgIHN3YXAKICAgIC0KICAgIGJ1cnkgMTAKICAgIGIgYm91bmRlZF9yYW5kX3VpbnQzMl9hZnRlcl9pZl9lbHNlQDEyCg==", "clear": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMSAvLyAxCiAgICByZXR1cm4K"}, "sourceInfo": {"approval": {"pcOffsetMethod": "none", "sourceInfo": [{"pc": [59], "errorMessage": "OnCompletion must be NoOp && can only call when not creating"}, {"pc": [86], "errorMessage": "can only call when creating"}, {"pc": [76], "errorMessage": "can only call when not creating"}, {"pc": [153], "errorMessage": "invalid number of bytes for arc4.static_array<arc4.uint8, 8>"}, {"pc": [178], "errorMessage": "invalid number of bytes for arc4.uint16"}, {"pc": [161, 169], "errorMessage": "invalid number of bytes for arc4.uint32"}, {"pc": [263, 388], "errorMessage": "max array length exceeded"}]}, "clear": {"pcOffsetMethod": "none", "sourceInfo": []}}, "templateVariables": {}}"""
 APP_SPEC = algokit_utils.Arc56Contract.from_json(_APP_SPEC_JSON)
 
 def _parse_abi_args(args: object | None = None) -> list[object] | None:
@@ -74,31 +74,7 @@ class BoundedRandUint32Args:
 
     @property
     def abi_method_signature(self) -> str:
-        return "bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint32[]"
-
-@dataclasses.dataclass(frozen=True, kw_only=True)
-class BoundedRandUint16Args:
-    """Dataclass for bounded_rand_uint16 arguments"""
-    seed: bytes | str | tuple[int, int, int, int, int, int, int, int]
-    lower_bound: int
-    upper_bound: int
-    length: int
-
-    @property
-    def abi_method_signature(self) -> str:
-        return "bounded_rand_uint16(byte[8],uint16,uint16,uint16)uint16[]"
-
-@dataclasses.dataclass(frozen=True, kw_only=True)
-class BoundedRandUint8Args:
-    """Dataclass for bounded_rand_uint8 arguments"""
-    seed: bytes | str | tuple[int, int, int, int, int, int, int, int]
-    lower_bound: int
-    upper_bound: int
-    length: int
-
-    @property
-    def abi_method_signature(self) -> str:
-        return "bounded_rand_uint8(byte[8],uint8,uint8,uint16)uint8[]"
+        return "bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint64[]"
 
 
 class _LibPcg32ExposerAlgoPyUpdate:
@@ -128,33 +104,7 @@ class LibPcg32ExposerAlgoPyParams:
         params = params or algokit_utils.CommonAppCallParams()
         return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
-            "method": "bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint32[]",
-            "args": method_args,
-        }))
-
-    def bounded_rand_uint16(
-        self,
-        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint16Args,
-        params: algokit_utils.CommonAppCallParams | None = None
-    ) -> algokit_utils.AppCallMethodCallParams:
-        method_args = _parse_abi_args(args)
-        params = params or algokit_utils.CommonAppCallParams()
-        return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
-            **dataclasses.asdict(params),
-            "method": "bounded_rand_uint16(byte[8],uint16,uint16,uint16)uint16[]",
-            "args": method_args,
-        }))
-
-    def bounded_rand_uint8(
-        self,
-        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint8Args,
-        params: algokit_utils.CommonAppCallParams | None = None
-    ) -> algokit_utils.AppCallMethodCallParams:
-        method_args = _parse_abi_args(args)
-        params = params or algokit_utils.CommonAppCallParams()
-        return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
-            **dataclasses.asdict(params),
-            "method": "bounded_rand_uint8(byte[8],uint8,uint8,uint16)uint8[]",
+            "method": "bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint64[]",
             "args": method_args,
         }))
 
@@ -194,33 +144,7 @@ class LibPcg32ExposerAlgoPyCreateTransactionParams:
         params = params or algokit_utils.CommonAppCallParams()
         return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
-            "method": "bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint32[]",
-            "args": method_args,
-        }))
-
-    def bounded_rand_uint16(
-        self,
-        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint16Args,
-        params: algokit_utils.CommonAppCallParams | None = None
-    ) -> algokit_utils.BuiltTransactions:
-        method_args = _parse_abi_args(args)
-        params = params or algokit_utils.CommonAppCallParams()
-        return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
-            **dataclasses.asdict(params),
-            "method": "bounded_rand_uint16(byte[8],uint16,uint16,uint16)uint16[]",
-            "args": method_args,
-        }))
-
-    def bounded_rand_uint8(
-        self,
-        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint8Args,
-        params: algokit_utils.CommonAppCallParams | None = None
-    ) -> algokit_utils.BuiltTransactions:
-        method_args = _parse_abi_args(args)
-        params = params or algokit_utils.CommonAppCallParams()
-        return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
-            **dataclasses.asdict(params),
-            "method": "bounded_rand_uint8(byte[8],uint8,uint8,uint16)uint8[]",
+            "method": "bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint64[]",
             "args": method_args,
         }))
 
@@ -270,39 +194,7 @@ class LibPcg32ExposerAlgoPySend:
         params = params or algokit_utils.CommonAppCallParams()
         response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
-            "method": "bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint32[]",
-            "args": method_args,
-        }), send_params=send_params)
-        parsed_response = response
-        return typing.cast(algokit_utils.SendAppTransactionResult[list[int]], parsed_response)
-
-    def bounded_rand_uint16(
-        self,
-        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint16Args,
-        params: algokit_utils.CommonAppCallParams | None = None,
-        send_params: algokit_utils.SendParams | None = None
-    ) -> algokit_utils.SendAppTransactionResult[list[int]]:
-        method_args = _parse_abi_args(args)
-        params = params or algokit_utils.CommonAppCallParams()
-        response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
-            **dataclasses.asdict(params),
-            "method": "bounded_rand_uint16(byte[8],uint16,uint16,uint16)uint16[]",
-            "args": method_args,
-        }), send_params=send_params)
-        parsed_response = response
-        return typing.cast(algokit_utils.SendAppTransactionResult[list[int]], parsed_response)
-
-    def bounded_rand_uint8(
-        self,
-        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint8Args,
-        params: algokit_utils.CommonAppCallParams | None = None,
-        send_params: algokit_utils.SendParams | None = None
-    ) -> algokit_utils.SendAppTransactionResult[list[int]]:
-        method_args = _parse_abi_args(args)
-        params = params or algokit_utils.CommonAppCallParams()
-        response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
-            **dataclasses.asdict(params),
-            "method": "bounded_rand_uint8(byte[8],uint8,uint8,uint16)uint8[]",
+            "method": "bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint64[]",
             "args": method_args,
         }), send_params=send_params)
         parsed_response = response
@@ -471,19 +363,7 @@ class LibPcg32ExposerAlgoPyClient:
     @typing.overload
     def decode_return_value(
         self,
-        method: typing.Literal["bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint32[]"],
-        return_value: algokit_utils.ABIReturn | None
-    ) -> list[int] | None: ...
-    @typing.overload
-    def decode_return_value(
-        self,
-        method: typing.Literal["bounded_rand_uint16(byte[8],uint16,uint16,uint16)uint16[]"],
-        return_value: algokit_utils.ABIReturn | None
-    ) -> list[int] | None: ...
-    @typing.overload
-    def decode_return_value(
-        self,
-        method: typing.Literal["bounded_rand_uint8(byte[8],uint8,uint8,uint16)uint8[]"],
+        method: typing.Literal["bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint64[]"],
         return_value: algokit_utils.ABIReturn | None
     ) -> list[int] | None: ...
     @typing.overload
@@ -683,53 +563,13 @@ class LibPcg32ExposerAlgoPyFactoryCreateParams:
         params: algokit_utils.CommonAppCallCreateParams | None = None,
         compilation_params: algokit_utils.AppClientCompilationParams | None = None
     ) -> algokit_utils.AppCreateMethodCallParams:
-        """Creates a new instance using the bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint32[] ABI method"""
+        """Creates a new instance using the bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint64[] ABI method"""
         params = params or algokit_utils.CommonAppCallCreateParams()
         return self.app_factory.params.create(
             algokit_utils.AppFactoryCreateMethodCallParams(
                 **{
                 **dataclasses.asdict(params),
-                "method": "bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint32[]",
-                "args": _parse_abi_args(args),
-                }
-            ),
-            compilation_params=compilation_params
-        )
-
-    def bounded_rand_uint16(
-        self,
-        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint16Args,
-        *,
-        params: algokit_utils.CommonAppCallCreateParams | None = None,
-        compilation_params: algokit_utils.AppClientCompilationParams | None = None
-    ) -> algokit_utils.AppCreateMethodCallParams:
-        """Creates a new instance using the bounded_rand_uint16(byte[8],uint16,uint16,uint16)uint16[] ABI method"""
-        params = params or algokit_utils.CommonAppCallCreateParams()
-        return self.app_factory.params.create(
-            algokit_utils.AppFactoryCreateMethodCallParams(
-                **{
-                **dataclasses.asdict(params),
-                "method": "bounded_rand_uint16(byte[8],uint16,uint16,uint16)uint16[]",
-                "args": _parse_abi_args(args),
-                }
-            ),
-            compilation_params=compilation_params
-        )
-
-    def bounded_rand_uint8(
-        self,
-        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint8Args,
-        *,
-        params: algokit_utils.CommonAppCallCreateParams | None = None,
-        compilation_params: algokit_utils.AppClientCompilationParams | None = None
-    ) -> algokit_utils.AppCreateMethodCallParams:
-        """Creates a new instance using the bounded_rand_uint8(byte[8],uint8,uint8,uint16)uint8[] ABI method"""
-        params = params or algokit_utils.CommonAppCallCreateParams()
-        return self.app_factory.params.create(
-            algokit_utils.AppFactoryCreateMethodCallParams(
-                **{
-                **dataclasses.asdict(params),
-                "method": "bounded_rand_uint8(byte[8],uint8,uint8,uint16)uint8[]",
+                "method": "bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint64[]",
                 "args": _parse_abi_args(args),
                 }
             ),
@@ -860,45 +700,7 @@ class LibPcg32ExposerAlgoPyComposer:
         )
         self._result_mappers.append(
             lambda v: self.client.decode_return_value(
-                "bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint32[]", v
-            )
-        )
-        return self
-
-    def bounded_rand_uint16(
-        self,
-        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint16Args,
-        params: algokit_utils.CommonAppCallParams | None = None,
-        compilation_params: algokit_utils.AppClientCompilationParams | None = None
-    ) -> "LibPcg32ExposerAlgoPyComposer":
-        self._composer.add_app_call_method_call(
-            self.client.params.bounded_rand_uint16(
-                args=args,
-                params=params,
-            )
-        )
-        self._result_mappers.append(
-            lambda v: self.client.decode_return_value(
-                "bounded_rand_uint16(byte[8],uint16,uint16,uint16)uint16[]", v
-            )
-        )
-        return self
-
-    def bounded_rand_uint8(
-        self,
-        args: tuple[bytes | str | tuple[int, int, int, int, int, int, int, int], int, int, int] | BoundedRandUint8Args,
-        params: algokit_utils.CommonAppCallParams | None = None,
-        compilation_params: algokit_utils.AppClientCompilationParams | None = None
-    ) -> "LibPcg32ExposerAlgoPyComposer":
-        self._composer.add_app_call_method_call(
-            self.client.params.bounded_rand_uint8(
-                args=args,
-                params=params,
-            )
-        )
-        self._result_mappers.append(
-            lambda v: self.client.decode_return_value(
-                "bounded_rand_uint8(byte[8],uint8,uint8,uint16)uint8[]", v
+                "bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint64[]", v
             )
         )
         return self

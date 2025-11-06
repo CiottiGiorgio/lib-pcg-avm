@@ -1,6 +1,6 @@
 from typing import Literal
 
-from algopy import Global, Txn, arc4
+from algopy import Array, BigUInt, Global, Txn, arc4
 
 from lib_pcg import pcg128_init, pcg128_random
 
@@ -13,7 +13,7 @@ class LibPcg128ExposerAlgoPy(arc4.ARC4Contract):
         lower_bound: arc4.UInt128,
         upper_bound: arc4.UInt128,
         length: arc4.UInt16,
-    ) -> arc4.DynamicArray[arc4.UInt128]:
+    ) -> Array[BigUInt]:
         state = pcg128_init(seed.bytes)
 
         state, sequence = pcg128_random(

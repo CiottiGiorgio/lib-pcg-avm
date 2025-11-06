@@ -3,7 +3,7 @@
 
 // algopy.arc4.ARC4Contract.approval_program() -> uint64:
 main:
-    intcblock 1 0 6364136223846793005 4294967295 1442695040888963407 1442695040888963409
+    intcblock 1 0 6364136223846793005 1442695040888963407 1442695040888963409 4294967295
     txn NumAppArgs
     bz main_bare_routing@5
     pushbytes 0xba5682ce // method "bounded_rand_uint64(byte[16],uint64,uint64,uint16)uint64[]"
@@ -42,6 +42,39 @@ main___algopy_default_create@6:
     return
 
 
+// lib_pcg.pcg32.__pcg32_output(state: uint64) -> uint64:
+__pcg32_output:
+    proto 1 1
+    frame_dig -1
+    pushint 18 // 18
+    shr
+    frame_dig -1
+    ^
+    pushint 27 // 27
+    shr
+    intc 5 // 4294967295
+    &
+    frame_dig -1
+    pushint 59 // 59
+    shr
+    dup2
+    shr
+    swap
+    ~
+    intc_0 // 1
+    addw
+    bury 1
+    pushint 31 // 31
+    &
+    uncover 2
+    swap
+    shl
+    intc 5 // 4294967295
+    &
+    |
+    retsub
+
+
 // lib_pcg.pcg64.__pcg64_unbounded_random(state.0: uint64, state.1: uint64) -> uint64, uint64, uint64:
 __pcg64_unbounded_random:
     proto 2 3
@@ -49,12 +82,12 @@ __pcg64_unbounded_random:
     intc_2 // 6364136223846793005
     mulw
     bury 1
-    intc 4 // 1442695040888963407
+    intc_3 // 1442695040888963407
     addw
     bury 1
     dup
     !
-    intc 5 // 1442695040888963409
+    intc 4 // 1442695040888963409
     swap
     shl
     frame_dig -1
@@ -64,61 +97,11 @@ __pcg64_unbounded_random:
     addw
     bury 1
     frame_dig -2
-    pushint 18 // 18
-    shr
-    frame_dig -2
-    ^
-    pushint 27 // 27
-    shr
-    intc_3 // 4294967295
-    &
-    frame_dig -2
-    pushint 59 // 59
-    shr
-    dup2
-    shr
-    swap
-    ~
-    intc_0 // 1
-    addw
-    bury 1
-    pushint 31 // 31
-    &
-    uncover 2
-    swap
-    shl
-    intc_3 // 4294967295
-    &
-    |
+    callsub __pcg32_output
     pushint 32 // 32
     shl
     frame_dig -1
-    pushint 18 // 18
-    shr
-    frame_dig -1
-    ^
-    pushint 27 // 27
-    shr
-    intc_3 // 4294967295
-    &
-    frame_dig -1
-    pushint 59 // 59
-    shr
-    dup2
-    shr
-    swap
-    ~
-    intc_0 // 1
-    addw
-    bury 1
-    pushint 31 // 31
-    &
-    uncover 2
-    swap
-    shl
-    intc_3 // 4294967295
-    &
-    |
+    callsub __pcg32_output
     |
     retsub
 
@@ -159,7 +142,7 @@ bounded_rand_uint64:
     mulw
     bury 1
     dup
-    intc 4 // 1442695040888963407
+    intc_3 // 1442695040888963407
     addw
     bury 1
     uncover 2
@@ -168,7 +151,7 @@ bounded_rand_uint64:
     intc_2 // 6364136223846793005
     mulw
     bury 1
-    intc 4 // 1442695040888963407
+    intc_3 // 1442695040888963407
     addw
     cover 6
     pop
@@ -176,7 +159,7 @@ bounded_rand_uint64:
     pushint 8 // 8
     extract_uint64
     swap
-    intc 5 // 1442695040888963409
+    intc 4 // 1442695040888963409
     addw
     bury 1
     addw
@@ -184,7 +167,7 @@ bounded_rand_uint64:
     intc_2 // 6364136223846793005
     mulw
     bury 1
-    intc 5 // 1442695040888963409
+    intc 4 // 1442695040888963409
     addw
     cover 4
     pop
@@ -197,15 +180,8 @@ bounded_rand_uint64:
     cover 2
     swap
     btoi
-    dup
-    cover 2
-    itob
-    dup
-    bitlen
-    pushint 16 // 16
-    <=
-    assert // overflow
-    extract 6 2
+    swap
+    pushbytes 0x0000
     swap
     bnz bounded_rand_uint64_else_body@9
     dig 2
@@ -230,8 +206,17 @@ bounded_rand_uint64_for_header@6:
     bury 10
     itob
     dig 1
+    dup
+    uncover 2
+    concat // on error: max array length exceeded
     swap
-    concat
+    intc_1 // 0
+    extract_uint16
+    intc_0 // 1
+    +
+    itob
+    extract 6 2
+    replace2 0
     bury 1
     dig 9
     intc_0 // 1
@@ -308,8 +293,17 @@ bounded_rand_uint64_while_top@15:
     +
     itob
     dig 1
+    dup
+    uncover 2
+    concat // on error: max array length exceeded
     swap
-    concat
+    intc_1 // 0
+    extract_uint16
+    intc_0 // 1
+    +
+    itob
+    extract 6 2
+    replace2 0
     bury 1
     dig 9
     intc_0 // 1
