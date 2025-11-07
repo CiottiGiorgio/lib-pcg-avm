@@ -183,8 +183,15 @@ def __pcg32_convert_to_arc4(
     #  for loop and the conversion to native uint64.
     # FIXME: This bypasses the check on the bound, for example you could request a 32-bit range which
     #  will be silently truncated to 16 or 8 bits.
+    #  Keeping in mind that in the unbounded case, this code will produce the exact same sequence as before because
+    #  the truncation is performed the same.
     assert byte_size == 1 or byte_size == 2 or byte_size == 4
     truncate_start_cached = 8 - byte_size
+
+    # Since pcg32_random will accept any bound expressed as 32-bit number, we need to further restrict them here.
+    # The pcg32_random function will still check the relative order of this range.
+    assert lower_bound < (1 << (byte_size << 3))
+    assert upper_bound < (1 << (byte_size << 3))
 
     result = Bytes()
     result += arc4.UInt16(length).bytes

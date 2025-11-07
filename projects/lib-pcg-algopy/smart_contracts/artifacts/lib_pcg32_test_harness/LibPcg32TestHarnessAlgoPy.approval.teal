@@ -264,6 +264,19 @@ __pcg32_convert_to_arc4_bool_merge@5:
     frame_dig -4
     -
     frame_bury 6
+    frame_dig -4
+    pushint 3 // 3
+    shl
+    intc_0 // 1
+    swap
+    shl
+    frame_dig -3
+    dig 1
+    <
+    assert
+    frame_dig -2
+    >
+    assert
     frame_dig -1
     itob
     dup
