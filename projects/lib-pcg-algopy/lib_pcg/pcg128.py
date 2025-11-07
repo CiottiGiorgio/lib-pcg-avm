@@ -1,6 +1,6 @@
 from typing import TypeAlias
 
-from algopy import Array, BigUInt, Bytes, UInt64, op, subroutine, urange
+from algopy import Array, BigUInt, Bytes, UInt64, arc4, op, subroutine, urange
 
 from lib_pcg.consts import (
     PCG_FIRST_INCREMENT,
@@ -92,6 +92,26 @@ def pcg128_random(
                     break
 
     return state, result.copy()
+
+
+@subroutine
+def pcg128_random_arc4_uint128(
+    state: PCG128STATE,
+    lower_bound: BigUInt,
+    upper_bound: BigUInt,
+    length: UInt64,
+) -> tuple[PCG128STATE, arc4.DynamicArray[arc4.UInt128]]:
+    result = Bytes()
+    result += arc4.UInt16(length).bytes
+
+    state, sequence = pcg128_random(state, lower_bound, upper_bound, length)
+
+    # FIXME: Build in some kind of static-time or run-time mechanism to make sure that
+    #  these BigUInts are the correct size and not 512-bit long.
+    for n in sequence:
+        result += n.bytes
+
+    return state, arc4.DynamicArray[arc4.UInt128].from_bytes(result)
 
 
 @subroutine

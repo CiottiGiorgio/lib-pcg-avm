@@ -5,7 +5,7 @@ from algopy import Array, Bytes, UInt64, arc4, op, subroutine, urange
 from lib_pcg.consts import PCG_FIRST_INCREMENT, PCG_MULTIPLIER
 
 PCG32STATE: TypeAlias = UInt64
-MAX_UINT64_IN_STACK_BYTESLICE = 4096 // 8
+MAX_UINT64_IN_STACK_ARRAY = (4096 - 2) // 8
 
 
 @subroutine
@@ -191,8 +191,8 @@ def __pcg32_convert_to_arc4(
     while True:
         max_progress_doable = (
             residual_length
-            if residual_length < UInt64(MAX_UINT64_IN_STACK_BYTESLICE)
-            else UInt64(MAX_UINT64_IN_STACK_BYTESLICE)
+            if residual_length < UInt64(MAX_UINT64_IN_STACK_ARRAY)
+            else UInt64(MAX_UINT64_IN_STACK_ARRAY)
         )
 
         state, partial_sequence = pcg32_random(

@@ -1,6 +1,6 @@
 from typing import TypeAlias
 
-from algopy import Array, BigUInt, Bytes, UInt64, op, subroutine, urange
+from algopy import Array, BigUInt, Bytes, UInt64, arc4, op, subroutine, urange
 
 from lib_pcg.consts import PCG_FIRST_INCREMENT, PCG_SECOND_INCREMENT
 from lib_pcg.pcg32 import (
@@ -85,6 +85,26 @@ def pcg64_random(
                     break
 
     return state, result.copy()
+
+
+@subroutine
+def pcg64_random_arc4_uint64(
+    state: PCG64STATE,
+    lower_bound: UInt64,
+    upper_bound: UInt64,
+    length: UInt64,
+) -> tuple[PCG64STATE, arc4.DynamicArray[arc4.UInt64]]:
+    result = Bytes()
+    result += arc4.UInt16(length).bytes
+
+    state, sequence = pcg64_random(state, lower_bound, upper_bound, length)
+
+    # FIXME: We should be able to just re-cycle the underlying bytes representation
+    #  instead of converting manually each element.
+    for n in sequence:
+        result += op.itob(n)
+
+    return state, arc4.DynamicArray[arc4.UInt64].from_bytes(result)
 
 
 @subroutine
