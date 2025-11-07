@@ -17,7 +17,7 @@ from smart_contracts.consts import (
 )
 
 
-class LibPcg32TestHarnessAlgoPy(ARC4Contract):
+class LibPCG32TestHarnessAlgoPy(ARC4Contract):
     @abimethod
     def get_pcg32_sequence_native_uint64_return(
         self,

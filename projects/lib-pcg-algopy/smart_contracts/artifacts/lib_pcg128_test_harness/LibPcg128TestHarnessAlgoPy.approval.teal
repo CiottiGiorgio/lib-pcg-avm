@@ -354,7 +354,7 @@ __pcg128_unbounded_random:
     retsub
 
 
-// smart_contracts.lib_pcg128_test_harness.contract.LibPcg128TestHarnessAlgoPy.get_pcg128_sequence_native_biguint_return[routing]() -> void:
+// smart_contracts.lib_pcg128_test_harness.contract.LibPCG128TestHarnessAlgoPy.get_pcg128_sequence_native_biguint_return[routing]() -> void:
 get_pcg128_sequence_native_biguint_return:
     txna ApplicationArgs 1
     dup
@@ -399,7 +399,7 @@ get_pcg128_sequence_native_biguint_return:
     return
 
 
-// smart_contracts.lib_pcg128_test_harness.contract.LibPcg128TestHarnessAlgoPy.get_pcg128_sequence_arc4_uint128_return[routing]() -> void:
+// smart_contracts.lib_pcg128_test_harness.contract.LibPCG128TestHarnessAlgoPy.get_pcg128_sequence_arc4_uint128_return[routing]() -> void:
 get_pcg128_sequence_arc4_uint128_return:
     txna ApplicationArgs 1
     dup

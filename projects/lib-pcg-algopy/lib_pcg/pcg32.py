@@ -181,6 +181,8 @@ def __pcg32_convert_to_arc4(
 ) -> tuple[PCG32STATE, Bytes]:
     # FIXME: Since we have the entire array, we could just index it without the
     #  for loop and the conversion to native uint64.
+    # FIXME: This bypasses the check on the bound, for example you could request a 32-bit range which
+    #  will be silently truncated to 16 or 8 bits.
     assert byte_size == 1 or byte_size == 2 or byte_size == 4
     truncate_start_cached = 8 - byte_size
 

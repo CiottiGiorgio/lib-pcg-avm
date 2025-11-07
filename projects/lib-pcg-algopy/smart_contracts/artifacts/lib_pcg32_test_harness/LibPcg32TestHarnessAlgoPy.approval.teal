@@ -343,7 +343,7 @@ __pcg32_convert_to_arc4_bool_false@4:
     b __pcg32_convert_to_arc4_bool_merge@5
 
 
-// smart_contracts.lib_pcg32_test_harness.contract.LibPcg32TestHarnessAlgoPy.get_pcg32_sequence_native_uint64_return[routing]() -> void:
+// smart_contracts.lib_pcg32_test_harness.contract.LibPCG32TestHarnessAlgoPy.get_pcg32_sequence_native_uint64_return[routing]() -> void:
 get_pcg32_sequence_native_uint64_return:
     txna ApplicationArgs 1
     dup
@@ -387,7 +387,7 @@ get_pcg32_sequence_native_uint64_return:
     return
 
 
-// smart_contracts.lib_pcg32_test_harness.contract.LibPcg32TestHarnessAlgoPy.get_pcg32_sequence_arc4_uint32_return[routing]() -> void:
+// smart_contracts.lib_pcg32_test_harness.contract.LibPCG32TestHarnessAlgoPy.get_pcg32_sequence_arc4_uint32_return[routing]() -> void:
 get_pcg32_sequence_arc4_uint32_return:
     txna ApplicationArgs 1
     dup
@@ -435,7 +435,7 @@ get_pcg32_sequence_arc4_uint32_return:
     return
 
 
-// smart_contracts.lib_pcg32_test_harness.contract.LibPcg32TestHarnessAlgoPy.get_pcg32_sequence_arc4_uint16_return[routing]() -> void:
+// smart_contracts.lib_pcg32_test_harness.contract.LibPCG32TestHarnessAlgoPy.get_pcg32_sequence_arc4_uint16_return[routing]() -> void:
 get_pcg32_sequence_arc4_uint16_return:
     txna ApplicationArgs 1
     dup
@@ -483,7 +483,7 @@ get_pcg32_sequence_arc4_uint16_return:
     return
 
 
-// smart_contracts.lib_pcg32_test_harness.contract.LibPcg32TestHarnessAlgoPy.get_pcg32_sequence_arc4_uint8_return[routing]() -> void:
+// smart_contracts.lib_pcg32_test_harness.contract.LibPCG32TestHarnessAlgoPy.get_pcg32_sequence_arc4_uint8_return[routing]() -> void:
 get_pcg32_sequence_arc4_uint8_return:
     txna ApplicationArgs 1
     dup
@@ -531,7 +531,7 @@ get_pcg32_sequence_arc4_uint8_return:
     return
 
 
-// smart_contracts.lib_pcg32_test_harness.contract.LibPcg32TestHarnessAlgoPy.runtime_asserts[routing]() -> void:
+// smart_contracts.lib_pcg32_test_harness.contract.LibPCG32TestHarnessAlgoPy.runtime_asserts[routing]() -> void:
 runtime_asserts:
     intc_3 // 8
     bzero
@@ -563,7 +563,7 @@ runtime_asserts:
     return
 
 
-// smart_contracts.lib_pcg32_test_harness.contract.LibPcg32TestHarnessAlgoPy.runtime_failure_stack_byteslice_overflow[routing]() -> void:
+// smart_contracts.lib_pcg32_test_harness.contract.LibPCG32TestHarnessAlgoPy.runtime_failure_stack_byteslice_overflow[routing]() -> void:
 runtime_failure_stack_byteslice_overflow:
     intc_3 // 8
     bzero

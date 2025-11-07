@@ -1,11 +1,11 @@
 import algokit_utils
 import pytest
 from algokit_utils import AlgorandClient, AppClientCompilationParams, SigningAccount
-
 from smart_contracts.artifacts.lib_pcg64_exposer_algo_py import (
     LibPcg64ExposerAlgoPyClient,
     LibPcg64ExposerAlgoPyFactory,
 )
+
 from smart_contracts.artifacts.lib_pcg64_exposer_algo_ts import (
     LibPcg64ExposerAlgoTsClient,
     LibPcg64ExposerAlgoTsFactory,

@@ -7,7 +7,7 @@ from lib_pcg import pcg64_init, pcg64_random
 from lib_pcg.pcg64 import pcg64_random_arc4_uint64
 
 
-class LibPcg64TestHarnessAlgoPy(ARC4Contract):
+class LibPCG64TestHarnessAlgoPy(ARC4Contract):
     @abimethod
     def get_pcg64_sequence_native_uint64_return(
         self,

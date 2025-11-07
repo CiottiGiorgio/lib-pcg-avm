@@ -277,7 +277,7 @@ __pcg64_unbounded_random:
     retsub
 
 
-// smart_contracts.lib_pcg64_test_harness.contract.LibPcg64TestHarnessAlgoPy.get_pcg64_sequence_native_uint64_return[routing]() -> void:
+// smart_contracts.lib_pcg64_test_harness.contract.LibPCG64TestHarnessAlgoPy.get_pcg64_sequence_native_uint64_return[routing]() -> void:
 get_pcg64_sequence_native_uint64_return:
     txna ApplicationArgs 1
     dup
@@ -322,7 +322,7 @@ get_pcg64_sequence_native_uint64_return:
     return
 
 
-// smart_contracts.lib_pcg64_test_harness.contract.LibPcg64TestHarnessAlgoPy.get_pcg64_sequence_arc4_uint64_return[routing]() -> void:
+// smart_contracts.lib_pcg64_test_harness.contract.LibPCG64TestHarnessAlgoPy.get_pcg64_sequence_arc4_uint64_return[routing]() -> void:
 get_pcg64_sequence_arc4_uint64_return:
     txna ApplicationArgs 1
     dup

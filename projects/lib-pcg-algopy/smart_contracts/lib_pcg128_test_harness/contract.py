@@ -7,7 +7,7 @@ from lib_pcg import pcg128_init, pcg128_random
 from lib_pcg.pcg128 import pcg128_random_arc4_uint128
 
 
-class LibPcg128TestHarnessAlgoPy(ARC4Contract):
+class LibPCG128TestHarnessAlgoPy(ARC4Contract):
     @abimethod
     def get_pcg128_sequence_native_biguint_return(
         self,
