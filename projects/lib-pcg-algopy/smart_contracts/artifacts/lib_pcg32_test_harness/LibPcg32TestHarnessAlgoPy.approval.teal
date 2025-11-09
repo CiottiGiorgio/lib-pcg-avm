@@ -3,7 +3,7 @@
 
 // algopy.arc4.ARC4Contract.approval_program() -> uint64:
 main:
-    intcblock 1 0 4 8 4294967295 6364136223846793005 1442695040888963407 511 4294967296
+    intcblock 1 0 8 2 4294967295 6364136223846793005 1442695040888963407 511 4294967296
     bytecblock 0x151f7c75 ""
     txn NumAppArgs
     bz main___algopy_default_create@13
@@ -12,7 +12,7 @@ main:
     assert // OnCompletion must be NoOp
     txn ApplicationID
     assert
-    pushbytess 0x18026ca7 0x0c8478fb 0xe7bbd289 0xe345322b 0x6bee86dc 0x6c0b4898 // method "get_pcg32_sequence_native_uint64_return(byte[8],uint32,uint32,uint16)uint64[]", method "get_pcg32_sequence_arc4_uint32_return(byte[8],uint32,uint32,uint16)uint32[]", method "get_pcg32_sequence_arc4_uint16_return(byte[8],uint32,uint32,uint16)uint16[]", method "get_pcg32_sequence_arc4_uint8_return(byte[8],uint32,uint32,uint16)uint8[]", method "runtime_asserts()void", method "runtime_failure_stack_byteslice_overflow()void"
+    pushbytess 0x18026ca7 0x0c8478fb 0xae78e6e0 0x89d7f54a 0x6bee86dc 0x6c0b4898 // method "get_pcg32_sequence_native_uint64_return(byte[8],uint32,uint32,uint16)uint64[]", method "get_pcg32_sequence_arc4_uint32_return(byte[8],uint32,uint32,uint16)uint32[]", method "get_pcg32_sequence_arc4_uint16_return(byte[8],uint16,uint16,uint16)uint16[]", method "get_pcg32_sequence_arc4_uint8_return(byte[8],uint8,uint8,uint16)uint8[]", method "runtime_asserts()void", method "runtime_failure_stack_byteslice_overflow()void"
     txna ApplicationArgs 0
     match get_pcg32_sequence_native_uint64_return get_pcg32_sequence_arc4_uint32_return get_pcg32_sequence_arc4_uint16_return get_pcg32_sequence_arc4_uint8_return runtime_asserts runtime_failure_stack_byteslice_overflow
     err
@@ -33,7 +33,7 @@ pcg32_init:
     proto 1 1
     frame_dig -1
     len
-    intc_3 // 8
+    intc_2 // 8
     ==
     assert
     frame_dig -1
@@ -247,11 +247,11 @@ __pcg32_convert_to_arc4:
     ==
     bnz __pcg32_convert_to_arc4_bool_true@3
     frame_dig -4
-    pushint 2 // 2
+    intc_3 // 2
     ==
     bnz __pcg32_convert_to_arc4_bool_true@3
     frame_dig -4
-    intc_2 // 4
+    pushint 4 // 4
     ==
     bz __pcg32_convert_to_arc4_bool_false@4
 
@@ -260,23 +260,18 @@ __pcg32_convert_to_arc4_bool_true@3:
 
 __pcg32_convert_to_arc4_bool_merge@5:
     assert
-    intc_3 // 8
+    intc_2 // 8
     frame_dig -4
     -
     frame_bury 6
-    frame_dig -4
-    pushint 3 // 3
-    shl
-    intc_0 // 1
-    swap
-    shl
-    frame_dig -3
-    dig 1
-    <
-    assert
     frame_dig -2
-    >
-    assert
+    bz __pcg32_convert_to_arc4_ternary_false@7
+    frame_dig -2
+
+__pcg32_convert_to_arc4_ternary_merge@8:
+    intc 4 // 4294967295
+    &
+    frame_bury -2
     frame_dig -1
     itob
     dup
@@ -289,7 +284,9 @@ __pcg32_convert_to_arc4_bool_merge@5:
     frame_dig -1
     frame_bury 5
 
-__pcg32_convert_to_arc4_while_top@6:
+__pcg32_convert_to_arc4_while_top@9:
+    frame_dig 5
+    bz __pcg32_convert_to_arc4_after_while@15
     frame_dig 5
     dup
     intc 7 // 511
@@ -314,19 +311,19 @@ __pcg32_convert_to_arc4_while_top@6:
     intc_1 // 0
     frame_bury 3
 
-__pcg32_convert_to_arc4_for_header@8:
+__pcg32_convert_to_arc4_for_header@11:
     frame_dig 3
     frame_dig 2
     <
-    bz __pcg32_convert_to_arc4_after_for@11
+    bz __pcg32_convert_to_arc4_after_for@14
     frame_dig 0
     extract 2 0
     frame_dig 3
     dup
     cover 2
-    intc_3 // 8
+    intc_2 // 8
     *
-    intc_3 // 8
+    intc_2 // 8
     extract3 // on error: index access is out of bounds
     frame_dig 6
     frame_dig -4
@@ -338,18 +335,28 @@ __pcg32_convert_to_arc4_for_header@8:
     intc_0 // 1
     +
     frame_bury 3
-    b __pcg32_convert_to_arc4_for_header@8
+    b __pcg32_convert_to_arc4_for_header@11
 
-__pcg32_convert_to_arc4_after_for@11:
+__pcg32_convert_to_arc4_after_for@14:
     frame_dig 5
     frame_dig 4
     -
-    dup
     frame_bury 5
-    bnz __pcg32_convert_to_arc4_while_top@6
+    b __pcg32_convert_to_arc4_while_top@9
+
+__pcg32_convert_to_arc4_after_while@15:
     frame_dig -5
     frame_bury 0
     retsub
+
+__pcg32_convert_to_arc4_ternary_false@7:
+    frame_dig -4
+    pushint 3 // 3
+    shl
+    intc_0 // 1
+    swap
+    shl
+    b __pcg32_convert_to_arc4_ternary_merge@8
 
 __pcg32_convert_to_arc4_bool_false@4:
     intc_1 // 0
@@ -361,25 +368,25 @@ get_pcg32_sequence_native_uint64_return:
     txna ApplicationArgs 1
     dup
     len
-    intc_3 // 8
+    intc_2 // 8
     ==
     assert // invalid number of bytes for arc4.static_array<arc4.uint8, 8>
     txna ApplicationArgs 2
     dup
     len
-    intc_2 // 4
+    pushint 4 // 4
     ==
     assert // invalid number of bytes for arc4.uint32
     txna ApplicationArgs 3
     dup
     len
-    intc_2 // 4
+    pushint 4 // 4
     ==
     assert // invalid number of bytes for arc4.uint32
     txna ApplicationArgs 4
     dup
     len
-    pushint 2 // 2
+    intc_3 // 2
     ==
     assert // invalid number of bytes for arc4.uint16
     uncover 3
@@ -405,25 +412,25 @@ get_pcg32_sequence_arc4_uint32_return:
     txna ApplicationArgs 1
     dup
     len
-    intc_3 // 8
+    intc_2 // 8
     ==
     assert // invalid number of bytes for arc4.static_array<arc4.uint8, 8>
     txna ApplicationArgs 2
     dup
     len
-    intc_2 // 4
+    pushint 4 // 4
     ==
     assert // invalid number of bytes for arc4.uint32
     txna ApplicationArgs 3
     dup
     len
-    intc_2 // 4
+    pushint 4 // 4
     ==
     assert // invalid number of bytes for arc4.uint32
     txna ApplicationArgs 4
     dup
     len
-    pushint 2 // 2
+    intc_3 // 2
     ==
     assert // invalid number of bytes for arc4.uint16
     uncover 3
@@ -435,7 +442,7 @@ get_pcg32_sequence_arc4_uint32_return:
     uncover 3
     btoi
     uncover 3
-    intc_2 // 4
+    pushint 4 // 4
     cover 4
     cover 4
     callsub __pcg32_convert_to_arc4
@@ -453,25 +460,25 @@ get_pcg32_sequence_arc4_uint16_return:
     txna ApplicationArgs 1
     dup
     len
-    intc_3 // 8
+    intc_2 // 8
     ==
     assert // invalid number of bytes for arc4.static_array<arc4.uint8, 8>
     txna ApplicationArgs 2
     dup
     len
-    intc_2 // 4
+    intc_3 // 2
     ==
-    assert // invalid number of bytes for arc4.uint32
+    assert // invalid number of bytes for arc4.uint16
     txna ApplicationArgs 3
     dup
     len
-    intc_2 // 4
+    intc_3 // 2
     ==
-    assert // invalid number of bytes for arc4.uint32
+    assert // invalid number of bytes for arc4.uint16
     txna ApplicationArgs 4
     dup
     len
-    pushint 2 // 2
+    intc_3 // 2
     ==
     assert // invalid number of bytes for arc4.uint16
     uncover 3
@@ -483,7 +490,7 @@ get_pcg32_sequence_arc4_uint16_return:
     uncover 3
     btoi
     uncover 3
-    pushint 2 // 2
+    intc_3 // 2
     cover 4
     cover 4
     callsub __pcg32_convert_to_arc4
@@ -501,25 +508,25 @@ get_pcg32_sequence_arc4_uint8_return:
     txna ApplicationArgs 1
     dup
     len
-    intc_3 // 8
+    intc_2 // 8
     ==
     assert // invalid number of bytes for arc4.static_array<arc4.uint8, 8>
     txna ApplicationArgs 2
     dup
     len
-    intc_2 // 4
+    intc_0 // 1
     ==
-    assert // invalid number of bytes for arc4.uint32
+    assert // invalid number of bytes for arc4.uint8
     txna ApplicationArgs 3
     dup
     len
-    intc_2 // 4
+    intc_0 // 1
     ==
-    assert // invalid number of bytes for arc4.uint32
+    assert // invalid number of bytes for arc4.uint8
     txna ApplicationArgs 4
     dup
     len
-    pushint 2 // 2
+    intc_3 // 2
     ==
     assert // invalid number of bytes for arc4.uint16
     uncover 3
@@ -546,7 +553,7 @@ get_pcg32_sequence_arc4_uint8_return:
 
 // smart_contracts.lib_pcg32_test_harness.contract.LibPCG32TestHarnessAlgoPy.runtime_asserts[routing]() -> void:
 runtime_asserts:
-    intc_3 // 8
+    intc_2 // 8
     bzero
     callsub pcg32_init
     intc_1 // 0
@@ -554,13 +561,13 @@ runtime_asserts:
     intc 7 // 511
     callsub pcg32_random
     pop
-    intc_2 // 4
+    pushint 4 // 4
     intc_1 // 0
     dup
     pushint 1023 // 1023
     callsub __pcg32_convert_to_arc4
     pop
-    pushint 2 // 2
+    intc_3 // 2
     intc_1 // 0
     dup
     pushint 2047 // 2047
@@ -578,7 +585,7 @@ runtime_asserts:
 
 // smart_contracts.lib_pcg32_test_harness.contract.LibPCG32TestHarnessAlgoPy.runtime_failure_stack_byteslice_overflow[routing]() -> void:
 runtime_failure_stack_byteslice_overflow:
-    intc_3 // 8
+    intc_2 // 8
     bzero
     callsub pcg32_init
     intc_1 // 0

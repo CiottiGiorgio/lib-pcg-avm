@@ -181,23 +181,25 @@ def __pcg32_convert_to_arc4(
 ) -> tuple[PCG32STATE, Bytes]:
     # FIXME: Since we have the entire array, we could just index it without the
     #  for loop and the conversion to native uint64.
-    # FIXME: This bypasses the check on the bound, for example you could request a 32-bit range which
-    #  will be silently truncated to 16 or 8 bits.
-    #  Keeping in mind that in the unbounded case, this code will produce the exact same sequence as before because
-    #  the truncation is performed the same.
     assert byte_size == 1 or byte_size == 2 or byte_size == 4
     truncate_start_cached = 8 - byte_size
 
-    # Since pcg32_random will accept any bound expressed as 32-bit number, we need to further restrict them here.
-    # The pcg32_random function will still check the relative order of this range.
-    assert lower_bound < (1 << (byte_size << 3))
-    assert upper_bound < (1 << (byte_size << 3))
+    # When upper_bound==0, pcg32_random interprets that as the max 32-bit number possible (meaning
+    #  no upper bound is set).
+    # However, in the 8-bit and 16-bit, this upper bound must be the max range.
+    # We solve this by overriding it internally and accounting for the fact that we don't
+    #  actually need to set it in the 32-bit case (hence the mask).
+    # By setting upper_bound in all cases other than the 32-bit one, we also make sure that lower_bound
+    #  is in the correct range relative to upper_bound because pcg32_random checks for relative ordering.
+    upper_bound = __mask_to_uint32(
+        upper_bound if upper_bound != 0 else (1 << (byte_size << 3))
+    )
 
     result = Bytes()
     result += arc4.UInt16(length).bytes
 
     residual_length = length
-    while True:
+    while residual_length:
         max_progress_doable = (
             residual_length
             if residual_length < UInt64(MAX_UINT64_IN_STACK_ARRAY)
@@ -210,9 +212,7 @@ def __pcg32_convert_to_arc4(
         for n in partial_sequence:
             result += op.extract(op.itob(n), truncate_start_cached, byte_size)
 
-        residual_length = residual_length - max_progress_doable
-        if residual_length == 0:
-            break
+        residual_length -= max_progress_doable
 
     return state, result
 

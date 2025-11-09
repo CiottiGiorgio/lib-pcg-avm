@@ -54,8 +54,8 @@ class LibPCG32TestHarnessAlgoPy(ARC4Contract):
     def get_pcg32_sequence_arc4_uint16_return(
         self,
         seed: arc4.StaticArray[arc4.Byte, Literal[8]],
-        lower_bound: arc4.UInt32,
-        upper_bound: arc4.UInt32,
+        lower_bound: arc4.UInt16,
+        upper_bound: arc4.UInt16,
         length: arc4.UInt16,
     ) -> arc4.DynamicArray[arc4.UInt16]:
         state = pcg32_init(seed.bytes)
@@ -70,8 +70,8 @@ class LibPCG32TestHarnessAlgoPy(ARC4Contract):
     def get_pcg32_sequence_arc4_uint8_return(
         self,
         seed: arc4.StaticArray[arc4.Byte, Literal[8]],
-        lower_bound: arc4.UInt32,
-        upper_bound: arc4.UInt32,
+        lower_bound: arc4.UInt8,
+        upper_bound: arc4.UInt8,
         length: arc4.UInt16,
     ) -> arc4.DynamicArray[arc4.UInt8]:
         state = pcg32_init(seed.bytes)
