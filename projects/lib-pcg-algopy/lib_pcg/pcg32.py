@@ -191,8 +191,10 @@ def __pcg32_convert_to_arc4(
     #  actually need to set it in the 32-bit case (hence the mask).
     # By setting upper_bound in all cases other than the 32-bit one, we also make sure that lower_bound
     #  is in the correct range relative to upper_bound because pcg32_random checks for relative ordering.
-    upper_bound = __mask_to_uint32(
-        upper_bound if upper_bound != 0 else (1 << (byte_size << 3))
+    upper_bound = (
+        upper_bound
+        if upper_bound != 0
+        else __mask_to_uint32(UInt64(1) << (byte_size << 3))
     )
 
     result = Bytes()

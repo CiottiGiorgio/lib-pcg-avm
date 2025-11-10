@@ -265,13 +265,18 @@ __pcg32_convert_to_arc4_bool_merge@5:
     -
     frame_bury 6
     frame_dig -2
-    bz __pcg32_convert_to_arc4_ternary_false@7
-    frame_dig -2
-
-__pcg32_convert_to_arc4_ternary_merge@8:
+    bnz __pcg32_convert_to_arc4_ternary_merge@8
+    frame_dig -4
+    pushint 3 // 3
+    shl
+    intc_0 // 1
+    swap
+    shl
     intc 4 // 4294967295
     &
     frame_bury -2
+
+__pcg32_convert_to_arc4_ternary_merge@8:
     frame_dig -1
     itob
     dup
@@ -348,15 +353,6 @@ __pcg32_convert_to_arc4_after_while@15:
     frame_dig -5
     frame_bury 0
     retsub
-
-__pcg32_convert_to_arc4_ternary_false@7:
-    frame_dig -4
-    pushint 3 // 3
-    shl
-    intc_0 // 1
-    swap
-    shl
-    b __pcg32_convert_to_arc4_ternary_merge@8
 
 __pcg32_convert_to_arc4_bool_false@4:
     intc_1 // 0
