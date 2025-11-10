@@ -76,10 +76,39 @@ class LibPCG32TestHarnessAdapter(ILibPCG32TestHarnessAdapter):
             .simulate(extra_opcode_budget=MAX_SIMULATE_OPCODE_BUDGET)
         )
 
-    def runtime_asserts(self) -> SendAtomicTransactionComposerResults:
+    def runtime_asserts_stack_array_native_uint64(
+        self,
+    ) -> SendAtomicTransactionComposerResults:
         return (
             self.app_client.new_group()
-            .runtime_asserts()
+            .runtime_asserts_stack_array_native_uint64()
+            .simulate(extra_opcode_budget=MAX_SIMULATE_OPCODE_BUDGET)
+        )
+
+    def runtime_asserts_stack_array_arc4_uint32(
+        self,
+    ) -> SendAtomicTransactionComposerResults:
+        return (
+            self.app_client.new_group()
+            .runtime_asserts_stack_array_arc4_uint32()
+            .simulate(extra_opcode_budget=MAX_SIMULATE_OPCODE_BUDGET)
+        )
+
+    def runtime_asserts_stack_array_arc4_uint16(
+        self,
+    ) -> SendAtomicTransactionComposerResults:
+        return (
+            self.app_client.new_group()
+            .runtime_asserts_stack_array_arc4_uint16()
+            .simulate(extra_opcode_budget=MAX_SIMULATE_OPCODE_BUDGET)
+        )
+
+    def runtime_asserts_stack_array_arc4_uint8(
+        self,
+    ) -> SendAtomicTransactionComposerResults:
+        return (
+            self.app_client.new_group()
+            .runtime_asserts_stack_array_arc4_uint8()
             .simulate(extra_opcode_budget=MAX_SIMULATE_OPCODE_BUDGET)
         )
 

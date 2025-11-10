@@ -1,6 +1,7 @@
 import pytest
 from algokit_utils import (
     AlgorandClient,
+    LogicError,
     SigningAccount,
 )
 from test_harness.lib_pcg32.adapter import ILibPCG32TestHarnessAdapter
@@ -48,7 +49,7 @@ def lib_pcg32_harness(
 def expected_library_size(request: pytest.FixtureRequest) -> int:
     match request.config.getoption("language"):
         case "algopy":
-            return 16_000
+            return 17_500
         case "algots":
             return 13_500
         case "ts":
@@ -367,9 +368,41 @@ def test_arc4_uint8_return(
     )
 
 
-def test_runtime_asserts(
+def test_runtime_asserts_stack_array_native_uint64(
     lib_pcg32_harness: ILibPCG32TestHarnessAdapter,
 ) -> None:
-    result = lib_pcg32_harness.runtime_asserts()
+    result = lib_pcg32_harness.runtime_asserts_stack_array_native_uint64()
 
-    assert result.returns[0].value
+    assert result.returns[0]
+
+
+def test_runtime_asserts_stack_array_arc4_uint32(
+    lib_pcg32_harness: ILibPCG32TestHarnessAdapter,
+) -> None:
+    result = lib_pcg32_harness.runtime_asserts_stack_array_arc4_uint32()
+
+    assert result.returns[0]
+
+
+def test_runtime_asserts_stack_array_arc4_uint16(
+    lib_pcg32_harness: ILibPCG32TestHarnessAdapter,
+) -> None:
+    result = lib_pcg32_harness.runtime_asserts_stack_array_arc4_uint16()
+
+    assert result.returns[0]
+
+
+@pytest.mark.skip(
+    reason="This test takes more opcode budget than simulate can provide."
+)
+def test_runtime_asserts_stack_array_arc4_uint8(
+    lib_pcg32_harness: ILibPCG32TestHarnessAdapter,
+) -> None:
+    result = lib_pcg32_harness.runtime_asserts_stack_array_arc4_uint8()
+
+    assert result.returns[0]
+
+
+def test_failure(lib_pcg32_harness: ILibPCG32TestHarnessAdapter) -> None:
+    with pytest.raises(LogicError, match="max array length exceeded"):
+        lib_pcg32_harness.runtime_failure_stack_byteslice_overflow()

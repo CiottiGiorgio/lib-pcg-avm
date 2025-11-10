@@ -83,7 +83,7 @@ class LibPCG32TestHarnessAlgoPy(ARC4Contract):
         return sequence
 
     @abimethod
-    def runtime_asserts(self) -> None:
+    def runtime_asserts_stack_array_native_uint64(self) -> None:
         state = pcg32_init(op.bzero(8))
 
         # Can produce a maximal length stack-based array of uint64s.
@@ -91,15 +91,27 @@ class LibPCG32TestHarnessAlgoPy(ARC4Contract):
             state, UInt64(0), UInt64(0), UInt64(MAX_UINT64_IN_STACK_ARRAY)
         )
 
+    @abimethod
+    def runtime_asserts_stack_array_arc4_uint32(self) -> None:
+        state = pcg32_init(op.bzero(8))
+
         # Can produce a maximal length stack-based array of uint32s.
         state, _uint32_sequence = pcg32_random_arc4_uint32(
             state, UInt64(0), UInt64(0), UInt64(MAX_UINT32_IN_STACK_ARRAY)
         )
 
+    @abimethod
+    def runtime_asserts_stack_array_arc4_uint16(self) -> None:
+        state = pcg32_init(op.bzero(8))
+
         # Can produce a maximal length stack-based array of uint16s.
         state, _uint16_sequence = pcg32_random_arc4_uint16(
             state, UInt64(0), UInt64(0), UInt64(MAX_UINT16_IN_STACK_ARRAY)
         )
+
+    @abimethod
+    def runtime_asserts_stack_array_arc4_uint8(self) -> None:
+        state = pcg32_init(op.bzero(8))
 
         # Can produce a maximal length stack-based array of uint8s.
         _state, _uint8_sequence = pcg32_random_arc4_uint8(
