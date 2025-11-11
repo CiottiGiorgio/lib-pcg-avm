@@ -87,7 +87,7 @@ class LibPCG32TestHarnessAlgoPy(ARC4Contract):
         state = pcg32_init(op.bzero(8))
 
         # Can produce a maximal length stack-based array of uint64s.
-        state, _uint64_sequence = pcg32_random(
+        state, sequence = pcg32_random(
             state, UInt64(0), UInt64(0), UInt64(MAX_UINT64_IN_STACK_ARRAY)
         )
 
@@ -96,7 +96,7 @@ class LibPCG32TestHarnessAlgoPy(ARC4Contract):
         state = pcg32_init(op.bzero(8))
 
         # Can produce a maximal length stack-based array of uint32s.
-        state, _uint32_sequence = pcg32_random_arc4_uint32(
+        state, sequence = pcg32_random_arc4_uint32(
             state, UInt64(0), UInt64(0), UInt64(MAX_UINT32_IN_STACK_ARRAY)
         )
 
@@ -105,7 +105,7 @@ class LibPCG32TestHarnessAlgoPy(ARC4Contract):
         state = pcg32_init(op.bzero(8))
 
         # Can produce a maximal length stack-based array of uint16s.
-        state, _uint16_sequence = pcg32_random_arc4_uint16(
+        state, sequence = pcg32_random_arc4_uint16(
             state, UInt64(0), UInt64(0), UInt64(MAX_UINT16_IN_STACK_ARRAY)
         )
 
@@ -114,7 +114,7 @@ class LibPCG32TestHarnessAlgoPy(ARC4Contract):
         state = pcg32_init(op.bzero(8))
 
         # Can produce a maximal length stack-based array of uint8s.
-        _state, _uint8_sequence = pcg32_random_arc4_uint8(
+        state, sequence = pcg32_random_arc4_uint8(
             state, UInt64(0), UInt64(0), UInt64(MAX_UINT8_IN_STACK_ARRAY)
         )
 
@@ -122,6 +122,6 @@ class LibPCG32TestHarnessAlgoPy(ARC4Contract):
     def runtime_failure_stack_byteslice_overflow(self) -> None:
         state = pcg32_init(op.bzero(8))
 
-        _state, _sequence = pcg32_random(
+        state, sequence = pcg32_random(
             state, UInt64(0), UInt64(0), UInt64(MAX_UINT64_IN_STACK_ARRAY + 1)
         )
