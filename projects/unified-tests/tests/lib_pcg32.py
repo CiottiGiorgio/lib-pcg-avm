@@ -191,24 +191,29 @@ def test_library_size(
 @pytest.mark.parametrize(
     "max_opup_fixture_name,lower_bound,upper_bound,expected_sequence",
     [
-        ("max_opup_unbounded_native_uint64_return", 0, 0, UNBOUNDED_SEQUENCE["64bit"]),
+        (
+            "max_opup_unbounded_native_uint64_return",
+            0,
+            0,
+            UNBOUNDED_SEQUENCE["pcg32-native"],
+        ),
         (
             "max_opup_bounded_native_uint64_return",
             2**31 - 1,
             0,
-            LOWER_BOUNDED_SEQUENCE["64bit"],
+            LOWER_BOUNDED_SEQUENCE["pcg32-native"],
         ),
         (
             "max_opup_bounded_native_uint64_return",
             0,
             2**31 + 1,
-            UPPER_BOUNDED_SEQUENCE["64bit"],
+            UPPER_BOUNDED_SEQUENCE["pcg32-native"],
         ),
         (
             "max_opup_bounded_native_uint64_return",
             1,
             2**32 - 1,
-            FULLY_BOUNDED_SEQUENCE["64bit"],
+            FULLY_BOUNDED_SEQUENCE["pcg32-native"],
         ),
     ],
 )
@@ -223,7 +228,10 @@ def test_native_uint64_return(
     max_opup = request.getfixturevalue(max_opup_fixture_name)
 
     result = lib_pcg32_harness.get_pcg32_sequence_native_uint64_return(
-        RNG_SEED, lower_bound, upper_bound, expected_maximal_sequence_length(64)
+        RNG_SEED["pcg32"],
+        lower_bound,
+        upper_bound,
+        expected_maximal_sequence_length(64),
     )
 
     assert result.returns[0].value == expected_sequence
@@ -236,24 +244,29 @@ def test_native_uint64_return(
 @pytest.mark.parametrize(
     "max_opup_fixture_name,lower_bound,upper_bound,expected_sequence",
     [
-        ("max_opup_unbounded_arc4_uint32_return", 0, 0, UNBOUNDED_SEQUENCE["32bit"]),
+        (
+            "max_opup_unbounded_arc4_uint32_return",
+            0,
+            0,
+            UNBOUNDED_SEQUENCE["pcg32-32bit"],
+        ),
         (
             "max_opup_bounded_arc4_uint32_return",
             2**31 - 1,
             0,
-            LOWER_BOUNDED_SEQUENCE["32bit"],
+            LOWER_BOUNDED_SEQUENCE["pcg32-32bit"],
         ),
         (
             "max_opup_bounded_arc4_uint32_return",
             0,
             2**31 + 1,
-            UPPER_BOUNDED_SEQUENCE["32bit"],
+            UPPER_BOUNDED_SEQUENCE["pcg32-32bit"],
         ),
         (
             "max_opup_bounded_arc4_uint32_return",
             1,
             2**32 - 1,
-            FULLY_BOUNDED_SEQUENCE["32bit"],
+            FULLY_BOUNDED_SEQUENCE["pcg32-32bit"],
         ),
     ],
 )
@@ -268,7 +281,10 @@ def test_arc4_uint32_return(
     max_opup = request.getfixturevalue(max_opup_fixture_name)
 
     result = lib_pcg32_harness.get_pcg32_sequence_arc4_uint32_return(
-        RNG_SEED, lower_bound, upper_bound, expected_maximal_sequence_length(32)
+        RNG_SEED["pcg32"],
+        lower_bound,
+        upper_bound,
+        expected_maximal_sequence_length(32),
     )
 
     assert result.returns[0].value == expected_sequence
@@ -281,24 +297,29 @@ def test_arc4_uint32_return(
 @pytest.mark.parametrize(
     "max_opup_fixture_name,lower_bound,upper_bound,expected_sequence",
     [
-        ("max_opup_unbounded_arc4_uint16_return", 0, 0, UNBOUNDED_SEQUENCE["16bit"]),
+        (
+            "max_opup_unbounded_arc4_uint16_return",
+            0,
+            0,
+            UNBOUNDED_SEQUENCE["pcg32-16bit"],
+        ),
         (
             "max_opup_bounded_arc4_uint16_return",
             2**15 - 1,
             0,
-            LOWER_BOUNDED_SEQUENCE["16bit"],
+            LOWER_BOUNDED_SEQUENCE["pcg32-16bit"],
         ),
         (
             "max_opup_bounded_arc4_uint16_return",
             0,
             2**15 + 1,
-            UPPER_BOUNDED_SEQUENCE["16bit"],
+            UPPER_BOUNDED_SEQUENCE["pcg32-16bit"],
         ),
         (
             "max_opup_bounded_arc4_uint16_return",
             1,
             2**16 - 1,
-            FULLY_BOUNDED_SEQUENCE["16bit"],
+            FULLY_BOUNDED_SEQUENCE["pcg32-16bit"],
         ),
     ],
 )
@@ -313,7 +334,10 @@ def test_arc4_uint16_return(
     max_opup = request.getfixturevalue(max_opup_fixture_name)
 
     result = lib_pcg32_harness.get_pcg32_sequence_arc4_uint16_return(
-        RNG_SEED, lower_bound, upper_bound, expected_maximal_sequence_length(16)
+        RNG_SEED["pcg32"],
+        lower_bound,
+        upper_bound,
+        expected_maximal_sequence_length(16),
     )
 
     assert result.returns[0].value == expected_sequence
@@ -326,24 +350,29 @@ def test_arc4_uint16_return(
 @pytest.mark.parametrize(
     "max_opup_fixture_name,lower_bound,upper_bound,expected_sequence",
     [
-        ("max_opup_unbounded_arc4_uint8_return", 0, 0, UNBOUNDED_SEQUENCE["8bit"]),
+        (
+            "max_opup_unbounded_arc4_uint8_return",
+            0,
+            0,
+            UNBOUNDED_SEQUENCE["pcg32-8bit"],
+        ),
         (
             "max_opup_bounded_arc4_uint8_return",
             2**7 - 1,
             0,
-            LOWER_BOUNDED_SEQUENCE["8bit"],
+            LOWER_BOUNDED_SEQUENCE["pcg32-8bit"],
         ),
         (
             "max_opup_bounded_arc4_uint8_return",
             0,
             2**7 + 1,
-            UPPER_BOUNDED_SEQUENCE["8bit"],
+            UPPER_BOUNDED_SEQUENCE["pcg32-8bit"],
         ),
         (
             "max_opup_bounded_arc4_uint8_return",
             1,
             2**8 - 1,
-            FULLY_BOUNDED_SEQUENCE["8bit"],
+            FULLY_BOUNDED_SEQUENCE["pcg32-8bit"],
         ),
     ],
 )
@@ -358,7 +387,7 @@ def test_arc4_uint8_return(
     max_opup = request.getfixturevalue(max_opup_fixture_name)
 
     result = lib_pcg32_harness.get_pcg32_sequence_arc4_uint8_return(
-        RNG_SEED, lower_bound, upper_bound, expected_maximal_sequence_length(8)
+        RNG_SEED["pcg32"], lower_bound, upper_bound, expected_maximal_sequence_length(8)
     )
 
     assert result.returns[0].value == expected_sequence

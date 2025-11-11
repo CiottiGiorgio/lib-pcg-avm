@@ -38,7 +38,15 @@ class ILibPCG64TestHarnessAdapter(ABC):
         pass
 
     @abstractmethod
-    def runtime_asserts(self) -> SendAtomicTransactionComposerResults:
+    def runtime_asserts_stack_array_native_uint64(
+        self,
+    ) -> SendAtomicTransactionComposerResults:
+        pass
+
+    @abstractmethod
+    def runtime_asserts_stack_array_arc4_uint64(
+        self,
+    ) -> SendAtomicTransactionComposerResults:
         pass
 
     @abstractmethod
