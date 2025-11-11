@@ -1,6 +1,6 @@
 from typing import TypeAlias
 
-from algopy import BigUInt, Bytes, UInt64, arc4, op, subroutine, urange
+from algopy import Array, BigUInt, Bytes, UInt64, arc4, op, subroutine, urange
 
 from lib_pcg.consts import PCG_FIRST_INCREMENT, PCG_SECOND_INCREMENT
 from lib_pcg.pcg32 import (
@@ -38,7 +38,7 @@ def pcg64_random(
     lower_bound: UInt64,
     upper_bound: UInt64,
     length: UInt64,
-) -> tuple[PCG64STATE, arc4.DynamicArray[arc4.UInt64]]:
+) -> tuple[PCG64STATE, Array[UInt64]]:
     """Double PCG XSH RR 64/32 generator function for 64-bit pseudo-random unsigned integers.
 
     Args:
@@ -57,15 +57,13 @@ def pcg64_random(
         - A pseudo-random sequence of 64-bit uints.
 
     """
-    result = Bytes()
-
-    result += arc4.UInt16(length).bytes
+    result = Array[UInt64]()
 
     if lower_bound == 0 and upper_bound == 0:
         for i in urange(length):  # noqa: B007
             state, n = __pcg64_unbounded_random(state)
 
-            result += op.itob(n)
+            result.append(n)
     else:
         if upper_bound != 0:
             assert upper_bound > 1
@@ -83,8 +81,28 @@ def pcg64_random(
             while True:
                 state, candidate = __pcg64_unbounded_random(state)
                 if candidate >= threshold:
-                    result += op.itob((candidate % absolute_bound) + lower_bound)
+                    result.append((candidate % absolute_bound) + lower_bound)
                     break
+
+    return state, result.copy()
+
+
+@subroutine
+def pcg64_random_arc4_uint64(
+    state: PCG64STATE,
+    lower_bound: UInt64,
+    upper_bound: UInt64,
+    length: UInt64,
+) -> tuple[PCG64STATE, arc4.DynamicArray[arc4.UInt64]]:
+    result = Bytes()
+    result += arc4.UInt16(length).bytes
+
+    state, sequence = pcg64_random(state, lower_bound, upper_bound, length)
+
+    # FIXME: We should be able to just re-cycle the underlying bytes representation
+    #  instead of converting manually each element.
+    for n in sequence:
+        result += op.itob(n)
 
     return state, arc4.DynamicArray[arc4.UInt64].from_bytes(result)
 

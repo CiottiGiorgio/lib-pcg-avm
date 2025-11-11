@@ -1,6 +1,6 @@
 from typing import TypeAlias
 
-from algopy import BigUInt, Bytes, UInt64, arc4, op, subroutine, urange
+from algopy import Array, BigUInt, Bytes, UInt64, arc4, op, subroutine, urange
 
 from lib_pcg.consts import (
     PCG_FIRST_INCREMENT,
@@ -44,7 +44,7 @@ def pcg128_random(
     lower_bound: BigUInt,
     upper_bound: BigUInt,
     length: UInt64,
-) -> tuple[PCG128STATE, arc4.DynamicArray[arc4.UInt128]]:
+) -> tuple[PCG128STATE, Array[BigUInt]]:
     """Quadruple PCG XSH RR 64/32 generator function for 128-bit pseudo-random big integers.
 
     Args:
@@ -63,15 +63,13 @@ def pcg128_random(
         - A pseudo-random sequence of 128-bit uints.
 
     """
-    result = Bytes()
-
-    result += arc4.UInt16(length).bytes
+    result = Array[BigUInt]()
 
     if lower_bound == 0 and upper_bound == 0:
         for i in urange(length):  # noqa: B007
             state, n = __pcg128_unbounded_random(state)
 
-            result += n.bytes
+            result.append(n)
     else:
         if upper_bound != 0:
             assert upper_bound > BigUInt(1)
@@ -90,10 +88,26 @@ def pcg128_random(
             while True:
                 state, candidate = __pcg128_unbounded_random(state)
                 if candidate >= threshold:
-                    result += (
-                        (candidate % absolute_bound) + lower_bound
-                    ).bytes | op.bzero(16)
+                    result.append((candidate % absolute_bound) + lower_bound)
                     break
+
+    return state, result.copy()
+
+
+@subroutine
+def pcg128_random_arc4_uint128(
+    state: PCG128STATE,
+    lower_bound: BigUInt,
+    upper_bound: BigUInt,
+    length: UInt64,
+) -> tuple[PCG128STATE, arc4.DynamicArray[arc4.UInt128]]:
+    result = Bytes()
+    result += arc4.UInt16(length).bytes
+
+    state, sequence = pcg128_random(state, lower_bound, upper_bound, length)
+
+    for n in sequence:
+        result += op.extract(n.bytes, 48, 16)
 
     return state, arc4.DynamicArray[arc4.UInt128].from_bytes(result)
 
