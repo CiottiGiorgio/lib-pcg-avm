@@ -38,7 +38,15 @@ class ILibPCG128TestHarnessAdapter(ABC):
         pass
 
     @abstractmethod
-    def runtime_asserts(self) -> SendAtomicTransactionComposerResults:
+    def runtime_asserts_stack_array_native_biguint(
+        self,
+    ) -> SendAtomicTransactionComposerResults:
+        pass
+
+    @abstractmethod
+    def runtime_asserts_stack_array_arc4_uint128(
+        self,
+    ) -> SendAtomicTransactionComposerResults:
         pass
 
     @abstractmethod

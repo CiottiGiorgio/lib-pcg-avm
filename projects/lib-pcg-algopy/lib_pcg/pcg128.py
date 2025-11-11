@@ -106,10 +106,8 @@ def pcg128_random_arc4_uint128(
 
     state, sequence = pcg128_random(state, lower_bound, upper_bound, length)
 
-    # FIXME: Build in some kind of static-time or run-time mechanism to make sure that
-    #  these BigUInts are the correct size and not 512-bit long.
     for n in sequence:
-        result += n.bytes
+        result += op.extract(n.bytes, 48, 16)
 
     return state, arc4.DynamicArray[arc4.UInt128].from_bytes(result)
 
