@@ -30,9 +30,9 @@ export class YourContract extends Contract {
 ```
 You can also take a look at the exposer contracts:
 [
-  [1](./contracts/lib-pcg32-exposer-ts.algo.ts),
-  [2](./contracts/lib-pcg64-exposer-ts.algo.ts),
-  [3](./contracts/lib-pcg128-exposer-ts.algo.ts)
+  [1](./contracts/lib-pcg32-test-harness-ts.algo.ts),
+  [2](./contracts/lib-pcg64-test-harness-ts.algo.ts),
+  [3](./contracts/lib-pcg128-test-harness-ts.algo.ts)
 ]
 
 ## Usage

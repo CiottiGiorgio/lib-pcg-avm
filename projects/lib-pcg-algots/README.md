@@ -39,9 +39,9 @@ export class YourContract extends Contract {
 
 You can also take a look at the exposer contracts:
 [
-[1](./smart_contracts/lib_pcg32_exposer_algo_ts/contract.algo.ts),
-[2](./smart_contracts/lib_pcg64_exposer_algo_ts/contract.algo.ts),
-[3](./smart_contracts/lib_pcg128_exposer_algo_ts/contract.algo.ts)
+[1](./smart_contracts/lib_pcg32_test_harness/contract.algo.ts),
+[2](./smart_contracts/lib_pcg64_test_harness/contract.algo.ts),
+[3](./smart_contracts/lib_pcg128_test_harness/contract.algo.ts)
 ]
 
 ## Usage

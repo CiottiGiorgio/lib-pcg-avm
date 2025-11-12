@@ -31,11 +31,11 @@ class YourContract(arc4.ARC4Contract):
     # The rest of your program
     ...
 ```
-You can also take a look at the exposer contracts:
+You can also take a look at the test harness contracts:
 [
-  [1](./smart_contracts/lib_pcg32_exposer/contract.py),
-  [2](./smart_contracts/lib_pcg64_exposer/contract.py),
-  [3](./smart_contracts/lib_pcg128_exposer/contract.py)
+  [1](./smart_contracts/lib_pcg32_test_harness/contract.py),
+  [2](./smart_contracts/lib_pcg64_test_harness/contract.py),
+  [3](./smart_contracts/lib_pcg128_test_harness/contract.py)
 ]
 
 ## Usage
