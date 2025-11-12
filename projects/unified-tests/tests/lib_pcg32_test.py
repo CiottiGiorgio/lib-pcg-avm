@@ -43,7 +43,12 @@ def lib_pcg32_harness(
 
             return harness
         case "ts":
-            pass
+            from test_harness.lib_pcg32.ts import LibPCG32TestHarnessAdapter
+
+            harness = LibPCG32TestHarnessAdapter()
+            harness.deploy(algorand_client, deployer)
+
+            return harness
         case "pyteal":
             from test_harness.lib_pcg32.pyteal import LibPCG32TestHarnessAdapter
 
@@ -63,7 +68,7 @@ def expected_library_size(request: pytest.FixtureRequest) -> int:
         case "algots":
             return 15_500
         case "ts":
-            return 1
+            return 40_500
         case "pyteal":
             return 12_500
         case _:
@@ -78,7 +83,7 @@ def max_opup_unbounded_arc4_uint32_return(request: pytest.FixtureRequest) -> int
         case "algots":
             return 24
         case "ts":
-            return 1
+            return 39
         case "pyteal":
             return 23
         case _:
@@ -93,7 +98,7 @@ def max_opup_unbounded_arc4_uint16_return(request: pytest.FixtureRequest) -> int
         case "algots":
             return 47
         case "ts":
-            return 1
+            return 78
         case "pyteal":
             return 46
         case _:
@@ -108,7 +113,7 @@ def max_opup_unbounded_arc4_uint8_return(request: pytest.FixtureRequest) -> int:
         case "algots":
             return 94
         case "ts":
-            return 1
+            return 155
         case "pyteal":
             return 91
         case _:
@@ -123,7 +128,7 @@ def max_opup_bounded_arc4_uint32_return(request: pytest.FixtureRequest) -> int:
         case "algots":
             return 44
         case "ts":
-            return 1
+            return 72
         case "pyteal":
             return 42
         case _:
@@ -138,7 +143,7 @@ def max_opup_bounded_arc4_uint16_return(request: pytest.FixtureRequest) -> int:
         case "algots":
             return 56
         case "ts":
-            return 1
+            return 88
         case "pyteal":
             return 53
         case _:
@@ -153,7 +158,7 @@ def max_opup_bounded_arc4_uint8_return(request: pytest.FixtureRequest) -> int:
         case "algots":
             return 111
         case "ts":
-            return 1
+            return 174
         case "pyteal":
             return 106
         case _:

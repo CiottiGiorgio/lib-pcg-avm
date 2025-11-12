@@ -1,20 +1,20 @@
 {
-  "name": "LibPcg64ExposerTs",
+  "name": "LibPcg64TestHarnessTs",
   "desc": "",
   "methods": [
     {
-      "name": "bounded_rand_uint64",
+      "name": "get_pcg64_sequence_arc4_uint64_return",
       "args": [
         {
           "name": "seed",
           "type": "byte[16]"
         },
         {
-          "name": "lower_bound",
+          "name": "lowerBound",
           "type": "uint64"
         },
         {
-          "name": "upper_bound",
+          "name": "upperBound",
           "type": "uint64"
         },
         {
@@ -27,14 +27,21 @@
       }
     },
     {
-      "name": "createApplication",
+      "name": "runtime_asserts_pcg64_stack_array",
       "args": [],
       "returns": {
         "type": "void"
       }
     },
     {
-      "name": "updateApplication",
+      "name": "runtime_failure_stack_byteslice_overflow",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "createApplication",
       "args": [],
       "returns": {
         "type": "void"

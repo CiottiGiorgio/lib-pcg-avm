@@ -1,6 +1,6 @@
 import { Contract, Uint64, op, arc4 } from '@algorandfoundation/algorand-typescript'
 import { pcg16Init, pcg16Random, pcg32Init, pcg32Random, pcg8Init, pcg8Random } from '../../lib_pcg/pcg32.algo'
-import { MAX_UINT16_IN_STACK_ARRAY, MAX_UINT32_IN_STACK_ARRAY, MAX_UINT8_IN_STACK_ARRAY } from '../consts.algo'
+import { MAX_UINT16_IN_STACK_ARRAY, MAX_UINT32_IN_STACK_ARRAY, MAX_UINT8_IN_STACK_ARRAY } from '../consts'
 
 export class LibPcg32TestHarnessAlgoTs extends Contract {
   public get_pcg32_sequence_arc4_uint32_return(

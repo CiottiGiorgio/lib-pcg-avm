@@ -1,20 +1,20 @@
 {
-  "name": "LibPcg32ExposerTs",
+  "name": "LibPcg32TestHarnessTs",
   "desc": "",
   "methods": [
     {
-      "name": "bounded_rand_uint32",
+      "name": "get_pcg32_sequence_arc4_uint32_return",
       "args": [
         {
           "name": "seed",
           "type": "byte[8]"
         },
         {
-          "name": "lower_bound",
+          "name": "lowerBound",
           "type": "uint32"
         },
         {
-          "name": "upper_bound",
+          "name": "upperBound",
           "type": "uint32"
         },
         {
@@ -27,18 +27,18 @@
       }
     },
     {
-      "name": "bounded_rand_uint16",
+      "name": "get_pcg32_sequence_arc4_uint16_return",
       "args": [
         {
           "name": "seed",
           "type": "byte[8]"
         },
         {
-          "name": "lower_bound",
+          "name": "lowerBound",
           "type": "uint16"
         },
         {
-          "name": "upper_bound",
+          "name": "upperBound",
           "type": "uint16"
         },
         {
@@ -51,18 +51,18 @@
       }
     },
     {
-      "name": "bounded_rand_uint8",
+      "name": "get_pcg32_sequence_arc4_uint8_return",
       "args": [
         {
           "name": "seed",
           "type": "byte[8]"
         },
         {
-          "name": "lower_bound",
+          "name": "lowerBound",
           "type": "uint8"
         },
         {
-          "name": "upper_bound",
+          "name": "upperBound",
           "type": "uint8"
         },
         {
@@ -75,14 +75,35 @@
       }
     },
     {
-      "name": "createApplication",
+      "name": "runtime_asserts_pcg32_stack_array",
       "args": [],
       "returns": {
         "type": "void"
       }
     },
     {
-      "name": "updateApplication",
+      "name": "runtime_asserts_pcg16_stack_array",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "runtime_asserts_pcg8_stack_array",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "runtime_failure_stack_byteslice_overflow",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "createApplication",
       "args": [],
       "returns": {
         "type": "void"

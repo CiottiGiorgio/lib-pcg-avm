@@ -1,6 +1,6 @@
 import { Contract, BigUint, Uint64, op, arc4 } from '@algorandfoundation/algorand-typescript'
 import { pcg128Init, pcg128Random } from '../../lib_pcg/pcg128.algo'
-import { MAX_UINT128_IN_STACK_ARRAY } from '../consts.algo'
+import { MAX_UINT128_IN_STACK_ARRAY } from '../consts'
 
 export class LibPcg128TestHarnessAlgoTs extends Contract {
   public get_pcg128_sequence_arc4_uint128_return(
