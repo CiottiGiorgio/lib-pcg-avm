@@ -1,8 +1,8 @@
 {
-    "name": "lib_pcg64_exposer_pyteal",
+    "name": "lib_pcg64_test_harness_pyteal",
     "methods": [
         {
-            "name": "bounded_rand_uint64",
+            "name": "get_pcg64_sequence_arc4_uint64_return",
             "args": [
                 {
                     "type": "byte[16]",
@@ -23,6 +23,20 @@
             ],
             "returns": {
                 "type": "uint64[]"
+            }
+        },
+        {
+            "name": "runtime_asserts_pcg64_stack_array",
+            "args": [],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "runtime_failure_stack_byteslice_overflow",
+            "args": [],
+            "returns": {
+                "type": "void"
             }
         }
     ],

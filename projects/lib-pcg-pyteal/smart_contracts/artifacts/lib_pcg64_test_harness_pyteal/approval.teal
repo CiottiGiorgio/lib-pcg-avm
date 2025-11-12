@@ -1,16 +1,24 @@
 #pragma version 8
-intcblock 0 1 6364136223846793005 4294967295 1442695040888963407 1442695040888963409
+intcblock 0 1 6364136223846793005 16 4294967295 1442695040888963407 1442695040888963409
 bytecblock 0x
 txn NumAppArgs
 intc_0 // 0
 ==
-bnz main_l4
+bnz main_l8
 txna ApplicationArgs 0
-pushbytes 0xba5682ce // "bounded_rand_uint64(byte[16],uint64,uint64,uint16)uint64[]"
+pushbytes 0x5f8ae181 // "get_pcg64_sequence_arc4_uint64_return(byte[16],uint64,uint64,uint16)uint64[]"
 ==
-bnz main_l3
+bnz main_l7
+txna ApplicationArgs 0
+pushbytes 0xca6f4838 // "runtime_asserts_pcg64_stack_array()void"
+==
+bnz main_l6
+txna ApplicationArgs 0
+pushbytes 0x6c0b4898 // "runtime_failure_stack_byteslice_overflow()void"
+==
+bnz main_l5
 err
-main_l3:
+main_l5:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -19,39 +27,39 @@ intc_0 // 0
 !=
 &&
 assert
-callsub boundedranduint64caster_6
+callsub runtimefailurestackbytesliceoverflowcaster_8
 intc_1 // 1
 return
-main_l4:
+main_l6:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub runtimeassertspcg64stackarraycaster_7
+intc_1 // 1
+return
+main_l7:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub getpcg64sequencearc4uint64returncaster_6
+intc_1 // 1
+return
+main_l8:
 txn OnCompletion
 intc_0 // NoOp
 ==
 bnz main_l10
-txn OnCompletion
-pushint 4 // UpdateApplication
-==
-bnz main_l9
-txn OnCompletion
-pushint 5 // DeleteApplication
-==
-bnz main_l8
 err
-main_l8:
-txn ApplicationID
-intc_0 // 0
-!=
-assert
-callsub delete_4
-intc_1 // 1
-return
-main_l9:
-txn ApplicationID
-intc_0 // 0
-!=
-assert
-callsub update_3
-intc_1 // 1
-return
 main_l10:
 txn ApplicationID
 intc_0 // 0
@@ -65,14 +73,14 @@ pcg64init_0:
 proto 3 0
 frame_dig -1
 len
-pushint 16 // 16
+intc_3 // 16
 ==
 assert
 frame_dig -3
 intc_0 // 0
 stores
 frame_dig -3
-intc 4 // 1442695040888963407
+intc 5 // 1442695040888963407
 intc_2 // 6364136223846793005
 frame_dig -3
 loads
@@ -91,7 +99,7 @@ addw
 bury 1
 stores
 frame_dig -3
-intc 4 // 1442695040888963407
+intc 5 // 1442695040888963407
 intc_2 // 6364136223846793005
 frame_dig -3
 loads
@@ -104,7 +112,7 @@ frame_dig -2
 intc_0 // 0
 stores
 frame_dig -2
-intc 5 // 1442695040888963409
+intc 6 // 1442695040888963409
 intc_2 // 6364136223846793005
 frame_dig -2
 loads
@@ -123,7 +131,7 @@ addw
 bury 1
 stores
 frame_dig -2
-intc 5 // 1442695040888963409
+intc 6 // 1442695040888963409
 intc_2 // 6364136223846793005
 frame_dig -2
 loads
@@ -266,7 +274,7 @@ frame_dig -1
 loads
 store 8
 frame_dig -2
-intc 4 // 1442695040888963407
+intc 5 // 1442695040888963407
 intc_2 // 6364136223846793005
 frame_dig -2
 loads
@@ -276,7 +284,7 @@ addw
 bury 1
 stores
 frame_dig -1
-intc 5 // 1442695040888963409
+intc 6 // 1442695040888963409
 frame_dig -2
 loads
 intc_0 // 0
@@ -297,7 +305,7 @@ load 7
 ^
 pushint 27 // 27
 shr
-intc_3 // 4294967295
+intc 4 // 4294967295
 &
 store 9
 load 7
@@ -316,7 +324,7 @@ bury 1
 pushint 31 // 31
 &
 shl
-intc_3 // 4294967295
+intc 4 // 4294967295
 &
 |
 pushint 32 // 32
@@ -328,7 +336,7 @@ load 8
 ^
 pushint 27 // 27
 shr
-intc_3 // 4294967295
+intc 4 // 4294967295
 &
 store 11
 load 8
@@ -347,40 +355,14 @@ bury 1
 pushint 31 // 31
 &
 shl
-intc_3 // 4294967295
+intc 4 // 4294967295
 &
 |
 |
 retsub
 
-// update
-update_3:
-proto 0 0
-txn Sender
-global CreatorAddress
-==
-// unauthorized
-assert
-pushint TMPL_UPDATABLE // TMPL_UPDATABLE
-// Check app is updatable
-assert
-retsub
-
-// delete
-delete_4:
-proto 0 0
-txn Sender
-global CreatorAddress
-==
-// unauthorized
-assert
-pushint TMPL_DELETABLE // TMPL_DELETABLE
-// Check app is deletable
-assert
-retsub
-
-// bounded_rand_uint64
-boundedranduint64_5:
+// get_pcg64_sequence_arc4_uint64_return
+getpcg64sequencearc4uint64return_3:
 proto 4 1
 bytec_0 // ""
 intc_0 // 0
@@ -396,8 +378,42 @@ callsub pcg64random_1
 frame_bury 0
 retsub
 
-// bounded_rand_uint64_caster
-boundedranduint64caster_6:
+// runtime_asserts_pcg64_stack_array
+runtimeassertspcg64stackarray_4:
+proto 0 0
+pushint 13 // 13
+pushint 14 // 14
+intc_3 // 16
+bzero
+callsub pcg64init_0
+pushint 13 // 13
+pushint 14 // 14
+intc_0 // 0
+intc_0 // 0
+pushint 511 // 511
+callsub pcg64random_1
+pop
+retsub
+
+// runtime_failure_stack_byteslice_overflow
+runtimefailurestackbytesliceoverflow_5:
+proto 0 0
+pushint 15 // 15
+intc_3 // 16
+intc_3 // 16
+bzero
+callsub pcg64init_0
+pushint 15 // 15
+intc_3 // 16
+intc_0 // 0
+intc_0 // 0
+pushint 512 // 512
+callsub pcg64random_1
+pop
+retsub
+
+// get_pcg64_sequence_arc4_uint64_return_caster
+getpcg64sequencearc4uint64returncaster_6:
 proto 0 0
 bytec_0 // ""
 dup
@@ -419,10 +435,22 @@ frame_dig 1
 frame_dig 2
 frame_dig 3
 frame_dig 4
-callsub boundedranduint64_5
+callsub getpcg64sequencearc4uint64return_3
 frame_bury 0
 pushbytes 0x151f7c75 // 0x151f7c75
 frame_dig 0
 concat
 log
+retsub
+
+// runtime_asserts_pcg64_stack_array_caster
+runtimeassertspcg64stackarraycaster_7:
+proto 0 0
+callsub runtimeassertspcg64stackarray_4
+retsub
+
+// runtime_failure_stack_byteslice_overflow_caster
+runtimefailurestackbytesliceoverflowcaster_8:
+proto 0 0
+callsub runtimefailurestackbytesliceoverflow_5
 retsub

@@ -45,7 +45,12 @@ def lib_pcg32_harness(
         case "ts":
             pass
         case "pyteal":
-            pass
+            from test_harness.lib_pcg32.pyteal import LibPCG32TestHarnessAdapter
+
+            harness = LibPCG32TestHarnessAdapter()
+            harness.deploy(algorand_client, deployer)
+
+            return harness
         case _:
             raise ValueError
 
@@ -58,9 +63,9 @@ def expected_library_size(request: pytest.FixtureRequest) -> int:
         case "algots":
             return 15_500
         case "ts":
-            return 35_500
+            return 1
         case "pyteal":
-            return 9_500
+            return 12_500
         case _:
             raise ValueError
 
@@ -75,7 +80,7 @@ def max_opup_unbounded_arc4_uint32_return(request: pytest.FixtureRequest) -> int
         case "ts":
             return 1
         case "pyteal":
-            return 1
+            return 23
         case _:
             raise ValueError
 
@@ -90,7 +95,7 @@ def max_opup_unbounded_arc4_uint16_return(request: pytest.FixtureRequest) -> int
         case "ts":
             return 1
         case "pyteal":
-            return 1
+            return 46
         case _:
             raise ValueError
 
@@ -105,7 +110,7 @@ def max_opup_unbounded_arc4_uint8_return(request: pytest.FixtureRequest) -> int:
         case "ts":
             return 1
         case "pyteal":
-            return 1
+            return 91
         case _:
             raise ValueError
 
@@ -120,7 +125,7 @@ def max_opup_bounded_arc4_uint32_return(request: pytest.FixtureRequest) -> int:
         case "ts":
             return 1
         case "pyteal":
-            return 1
+            return 42
         case _:
             raise ValueError
 
@@ -135,7 +140,7 @@ def max_opup_bounded_arc4_uint16_return(request: pytest.FixtureRequest) -> int:
         case "ts":
             return 1
         case "pyteal":
-            return 1
+            return 53
         case _:
             raise ValueError
 
@@ -150,7 +155,7 @@ def max_opup_bounded_arc4_uint8_return(request: pytest.FixtureRequest) -> int:
         case "ts":
             return 1
         case "pyteal":
-            return 1
+            return 106
         case _:
             raise ValueError
 

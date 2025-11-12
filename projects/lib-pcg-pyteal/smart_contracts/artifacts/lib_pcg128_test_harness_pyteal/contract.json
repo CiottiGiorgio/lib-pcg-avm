@@ -1,8 +1,8 @@
 {
-    "name": "lib_pcg128_exposer_pyteal",
+    "name": "lib_pcg128_test_harness_pyteal",
     "methods": [
         {
-            "name": "bounded_rand_uint128",
+            "name": "get_pcg128_sequence_arc4_uint128_return",
             "args": [
                 {
                     "type": "byte[32]",
@@ -23,6 +23,20 @@
             ],
             "returns": {
                 "type": "byte[16][]"
+            }
+        },
+        {
+            "name": "runtime_asserts_pcg128_stack_array",
+            "args": [],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "runtime_failure_stack_byteslice_overflow",
+            "args": [],
+            "returns": {
+                "type": "void"
             }
         }
     ],

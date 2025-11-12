@@ -4,13 +4,21 @@ bytecblock 0x0000000000000000000000000000000000000000000000000000000000000000 0x
 txn NumAppArgs
 intc_0 // 0
 ==
-bnz main_l4
+bnz main_l8
 txna ApplicationArgs 0
-pushbytes 0x2df65245 // "bounded_rand_uint128(byte[32],byte[16],byte[16],uint16)byte[16][]"
+pushbytes 0xb53058d8 // "get_pcg128_sequence_arc4_uint128_return(byte[32],byte[16],byte[16],uint16)byte[16][]"
 ==
-bnz main_l3
+bnz main_l7
+txna ApplicationArgs 0
+pushbytes 0xce37f42f // "runtime_asserts_pcg128_stack_array()void"
+==
+bnz main_l6
+txna ApplicationArgs 0
+pushbytes 0x6c0b4898 // "runtime_failure_stack_byteslice_overflow()void"
+==
+bnz main_l5
 err
-main_l3:
+main_l5:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -19,39 +27,39 @@ intc_0 // 0
 !=
 &&
 assert
-callsub boundedranduint128caster_6
+callsub runtimefailurestackbytesliceoverflowcaster_8
 intc_1 // 1
 return
-main_l4:
+main_l6:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub runtimeassertspcg128stackarraycaster_7
+intc_1 // 1
+return
+main_l7:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub getpcg128sequencearc4uint128returncaster_6
+intc_1 // 1
+return
+main_l8:
 txn OnCompletion
 intc_0 // NoOp
 ==
 bnz main_l10
-txn OnCompletion
-pushint 4 // UpdateApplication
-==
-bnz main_l9
-txn OnCompletion
-pushint 5 // DeleteApplication
-==
-bnz main_l8
 err
-main_l8:
-txn ApplicationID
-intc_0 // 0
-!=
-assert
-callsub delete_4
-intc_1 // 1
-return
-main_l9:
-txn ApplicationID
-intc_0 // 0
-!=
-assert
-callsub update_3
-intc_1 // 1
-return
 main_l10:
 txn ApplicationID
 intc_0 // 0
@@ -527,34 +535,8 @@ itob
 concat
 retsub
 
-// update
-update_3:
-proto 0 0
-txn Sender
-global CreatorAddress
-==
-// unauthorized
-assert
-pushint TMPL_UPDATABLE // TMPL_UPDATABLE
-// Check app is updatable
-assert
-retsub
-
-// delete
-delete_4:
-proto 0 0
-txn Sender
-global CreatorAddress
-==
-// unauthorized
-assert
-pushint TMPL_DELETABLE // TMPL_DELETABLE
-// Check app is deletable
-assert
-retsub
-
-// bounded_rand_uint128
-boundedranduint128_5:
+// get_pcg128_sequence_arc4_uint128_return
+getpcg128sequencearc4uint128return_3:
 proto 4 1
 bytec_3 // ""
 intc_0 // 0
@@ -574,8 +556,54 @@ callsub pcg128random_1
 frame_bury 0
 retsub
 
-// bounded_rand_uint128_caster
-boundedranduint128caster_6:
+// runtime_asserts_pcg128_stack_array
+runtimeassertspcg128stackarray_4:
+proto 0 0
+pushint 21 // 21
+pushint 22 // 22
+pushint 23 // 23
+pushint 24 // 24
+pushint 32 // 32
+bzero
+callsub pcg128init_0
+pushint 21 // 21
+pushint 22 // 22
+pushint 23 // 23
+pushint 24 // 24
+intc_1 // 1
+bzero
+intc_1 // 1
+bzero
+pushint 255 // 255
+callsub pcg128random_1
+pop
+retsub
+
+// runtime_failure_stack_byteslice_overflow
+runtimefailurestackbytesliceoverflow_5:
+proto 0 0
+pushint 25 // 25
+pushint 26 // 26
+pushint 27 // 27
+pushint 28 // 28
+pushint 32 // 32
+bzero
+callsub pcg128init_0
+pushint 25 // 25
+pushint 26 // 26
+pushint 27 // 27
+pushint 28 // 28
+intc_1 // 1
+bzero
+intc_1 // 1
+bzero
+pushint 256 // 256
+callsub pcg128random_1
+pop
+retsub
+
+// get_pcg128_sequence_arc4_uint128_return_caster
+getpcg128sequencearc4uint128returncaster_6:
 proto 0 0
 bytec_3 // ""
 dupn 3
@@ -594,10 +622,22 @@ frame_dig 1
 frame_dig 2
 frame_dig 3
 frame_dig 4
-callsub boundedranduint128_5
+callsub getpcg128sequencearc4uint128return_3
 frame_bury 0
 pushbytes 0x151f7c75 // 0x151f7c75
 frame_dig 0
 concat
 log
+retsub
+
+// runtime_asserts_pcg128_stack_array_caster
+runtimeassertspcg128stackarraycaster_7:
+proto 0 0
+callsub runtimeassertspcg128stackarray_4
+retsub
+
+// runtime_failure_stack_byteslice_overflow_caster
+runtimefailurestackbytesliceoverflowcaster_8:
+proto 0 0
+callsub runtimefailurestackbytesliceoverflow_5
 retsub

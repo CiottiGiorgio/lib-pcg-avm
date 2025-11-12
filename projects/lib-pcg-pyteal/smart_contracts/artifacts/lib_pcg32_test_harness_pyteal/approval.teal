@@ -1,90 +1,130 @@
 #pragma version 8
-intcblock 0 1 8 1442695040888963407 6364136223846793005 4294967295
+intcblock 0 1 8 16 1442695040888963407 6364136223846793005 4294967295
 bytecblock 0x 0x151f7c75
 txn NumAppArgs
 intc_0 // 0
 ==
-bnz main_l8
+bnz main_l16
 txna ApplicationArgs 0
-pushbytes 0xed06f70a // "bounded_rand_uint32(byte[8],uint32,uint32,uint16)uint32[]"
+pushbytes 0x0c8478fb // "get_pcg32_sequence_arc4_uint32_return(byte[8],uint32,uint32,uint16)uint32[]"
 ==
-bnz main_l7
+bnz main_l15
 txna ApplicationArgs 0
-pushbytes 0x8d7cce79 // "bounded_rand_uint16(byte[8],uint16,uint16,uint16)uint16[]"
-==
-bnz main_l6
-txna ApplicationArgs 0
-pushbytes 0xd0a35e1e // "bounded_rand_uint8(byte[8],uint8,uint8,uint16)uint8[]"
-==
-bnz main_l5
-err
-main_l5:
-txn OnCompletion
-intc_0 // NoOp
-==
-txn ApplicationID
-intc_0 // 0
-!=
-&&
-assert
-callsub boundedranduint8caster_15
-intc_1 // 1
-return
-main_l6:
-txn OnCompletion
-intc_0 // NoOp
-==
-txn ApplicationID
-intc_0 // 0
-!=
-&&
-assert
-callsub boundedranduint16caster_14
-intc_1 // 1
-return
-main_l7:
-txn OnCompletion
-intc_0 // NoOp
-==
-txn ApplicationID
-intc_0 // 0
-!=
-&&
-assert
-callsub boundedranduint32caster_13
-intc_1 // 1
-return
-main_l8:
-txn OnCompletion
-intc_0 // NoOp
+pushbytes 0xae78e6e0 // "get_pcg32_sequence_arc4_uint16_return(byte[8],uint16,uint16,uint16)uint16[]"
 ==
 bnz main_l14
-txn OnCompletion
-pushint 4 // UpdateApplication
+txna ApplicationArgs 0
+pushbytes 0x89d7f54a // "get_pcg32_sequence_arc4_uint8_return(byte[8],uint8,uint8,uint16)uint8[]"
 ==
 bnz main_l13
-txn OnCompletion
-pushint 5 // DeleteApplication
+txna ApplicationArgs 0
+pushbytes 0x13b952d7 // "runtime_asserts_pcg32_stack_array()void"
 ==
 bnz main_l12
+txna ApplicationArgs 0
+pushbytes 0xd2071623 // "runtime_asserts_pcg16_stack_array()void"
+==
+bnz main_l11
+txna ApplicationArgs 0
+pushbytes 0xc22d18df // "runtime_asserts_pcg8_stack_array()void"
+==
+bnz main_l10
+txna ApplicationArgs 0
+pushbytes 0x6c0b4898 // "runtime_failure_stack_byteslice_overflow()void"
+==
+bnz main_l9
 err
-main_l12:
+main_l9:
+txn OnCompletion
+intc_0 // NoOp
+==
 txn ApplicationID
 intc_0 // 0
 !=
+&&
 assert
-callsub delete_9
+callsub runtimefailurestackbytesliceoverflowcaster_21
+intc_1 // 1
+return
+main_l10:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub runtimeassertspcg8stackarraycaster_20
+intc_1 // 1
+return
+main_l11:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub runtimeassertspcg16stackarraycaster_19
+intc_1 // 1
+return
+main_l12:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub runtimeassertspcg32stackarraycaster_18
 intc_1 // 1
 return
 main_l13:
+txn OnCompletion
+intc_0 // NoOp
+==
 txn ApplicationID
 intc_0 // 0
 !=
+&&
 assert
-callsub update_8
+callsub getpcg32sequencearc4uint8returncaster_17
 intc_1 // 1
 return
 main_l14:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub getpcg32sequencearc4uint16returncaster_16
+intc_1 // 1
+return
+main_l15:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub getpcg32sequencearc4uint32returncaster_15
+intc_1 // 1
+return
+main_l16:
+txn OnCompletion
+intc_0 // NoOp
+==
+bnz main_l18
+err
+main_l18:
 txn ApplicationID
 intc_0 // 0
 ==
@@ -104,8 +144,8 @@ frame_dig -2
 intc_0 // 0
 stores
 frame_dig -2
-intc_3 // 1442695040888963407
-intc 4 // 6364136223846793005
+intc 4 // 1442695040888963407
+intc 5 // 6364136223846793005
 frame_dig -2
 loads
 mulw
@@ -122,8 +162,8 @@ addw
 bury 1
 stores
 frame_dig -2
-intc_3 // 1442695040888963407
-intc 4 // 6364136223846793005
+intc 4 // 1442695040888963407
+intc 5 // 6364136223846793005
 frame_dig -2
 loads
 mulw
@@ -164,7 +204,7 @@ retsub
 pcg16random_4:
 proto 4 1
 frame_dig -4
-pushint 16 // 16
+intc_3 // 16
 frame_dig -3
 frame_dig -2
 frame_dig -1
@@ -200,7 +240,7 @@ frame_dig -4
 intc_2 // 8
 ==
 frame_dig -4
-pushint 16 // 16
+intc_3 // 16
 ==
 ||
 frame_dig -4
@@ -247,7 +287,7 @@ load 2
 ~
 intc_1 // 1
 +
-intc 5 // 4294967295
+intc 6 // 4294967295
 &
 load 2
 %
@@ -345,8 +385,8 @@ frame_dig -1
 loads
 store 8
 frame_dig -1
-intc_3 // 1442695040888963407
-intc 4 // 6364136223846793005
+intc 4 // 1442695040888963407
+intc 5 // 6364136223846793005
 frame_dig -1
 loads
 mulw
@@ -361,7 +401,7 @@ load 8
 ^
 pushint 27 // 27
 shr
-intc 5 // 4294967295
+intc 6 // 4294967295
 &
 store 9
 load 8
@@ -380,39 +420,13 @@ bury 1
 pushint 31 // 31
 &
 shl
-intc 5 // 4294967295
+intc 6 // 4294967295
 &
 |
 retsub
 
-// update
-update_8:
-proto 0 0
-txn Sender
-global CreatorAddress
-==
-// unauthorized
-assert
-pushint TMPL_UPDATABLE // TMPL_UPDATABLE
-// Check app is updatable
-assert
-retsub
-
-// delete
-delete_9:
-proto 0 0
-txn Sender
-global CreatorAddress
-==
-// unauthorized
-assert
-pushint TMPL_DELETABLE // TMPL_DELETABLE
-// Check app is deletable
-assert
-retsub
-
-// bounded_rand_uint32
-boundedranduint32_10:
+// get_pcg32_sequence_arc4_uint32_return
+getpcg32sequencearc4uint32return_8:
 proto 4 1
 bytec_0 // ""
 intc_0 // 0
@@ -426,8 +440,8 @@ callsub pcg32random_3
 frame_bury 0
 retsub
 
-// bounded_rand_uint16
-boundedranduint16_11:
+// get_pcg32_sequence_arc4_uint16_return
+getpcg32sequencearc4uint16return_9:
 proto 4 1
 bytec_0 // ""
 pushint 11 // 11
@@ -441,8 +455,8 @@ callsub pcg16random_4
 frame_bury 0
 retsub
 
-// bounded_rand_uint8
-boundedranduint8_12:
+// get_pcg32_sequence_arc4_uint8_return
+getpcg32sequencearc4uint8return_10:
 proto 4 1
 bytec_0 // ""
 pushint 12 // 12
@@ -456,8 +470,68 @@ callsub pcg8random_5
 frame_bury 0
 retsub
 
-// bounded_rand_uint32_caster
-boundedranduint32caster_13:
+// runtime_asserts_pcg32_stack_array
+runtimeassertspcg32stackarray_11:
+proto 0 0
+pushint 13 // 13
+intc_2 // 8
+bzero
+callsub pcg32init_0
+pushint 13 // 13
+intc_0 // 0
+intc_0 // 0
+pushint 1023 // 1023
+callsub pcg32random_3
+pop
+retsub
+
+// runtime_asserts_pcg16_stack_array
+runtimeassertspcg16stackarray_12:
+proto 0 0
+pushint 14 // 14
+intc_2 // 8
+bzero
+callsub pcg16init_1
+pushint 14 // 14
+intc_0 // 0
+intc_0 // 0
+pushint 2047 // 2047
+callsub pcg16random_4
+pop
+retsub
+
+// runtime_asserts_pcg8_stack_array
+runtimeassertspcg8stackarray_13:
+proto 0 0
+pushint 15 // 15
+intc_2 // 8
+bzero
+callsub pcg8init_2
+pushint 15 // 15
+intc_0 // 0
+intc_0 // 0
+pushint 4094 // 4094
+callsub pcg8random_5
+pop
+retsub
+
+// runtime_failure_stack_byteslice_overflow
+runtimefailurestackbytesliceoverflow_14:
+proto 0 0
+intc_3 // 16
+intc_2 // 8
+bzero
+callsub pcg32init_0
+intc_3 // 16
+intc_0 // 0
+intc_0 // 0
+pushint 1024 // 1024
+callsub pcg32random_3
+pop
+retsub
+
+// get_pcg32_sequence_arc4_uint32_return_caster
+getpcg32sequencearc4uint32returncaster_15:
 proto 0 0
 bytec_0 // ""
 dup
@@ -481,7 +555,7 @@ frame_dig 1
 frame_dig 2
 frame_dig 3
 frame_dig 4
-callsub boundedranduint32_10
+callsub getpcg32sequencearc4uint32return_8
 frame_bury 0
 bytec_1 // 0x151f7c75
 frame_dig 0
@@ -489,8 +563,8 @@ concat
 log
 retsub
 
-// bounded_rand_uint16_caster
-boundedranduint16caster_14:
+// get_pcg32_sequence_arc4_uint16_return_caster
+getpcg32sequencearc4uint16returncaster_16:
 proto 0 0
 bytec_0 // ""
 dup
@@ -514,7 +588,7 @@ frame_dig 1
 frame_dig 2
 frame_dig 3
 frame_dig 4
-callsub boundedranduint16_11
+callsub getpcg32sequencearc4uint16return_9
 frame_bury 0
 bytec_1 // 0x151f7c75
 frame_dig 0
@@ -522,8 +596,8 @@ concat
 log
 retsub
 
-// bounded_rand_uint8_caster
-boundedranduint8caster_15:
+// get_pcg32_sequence_arc4_uint8_return_caster
+getpcg32sequencearc4uint8returncaster_17:
 proto 0 0
 bytec_0 // ""
 dup
@@ -547,10 +621,34 @@ frame_dig 1
 frame_dig 2
 frame_dig 3
 frame_dig 4
-callsub boundedranduint8_12
+callsub getpcg32sequencearc4uint8return_10
 frame_bury 0
 bytec_1 // 0x151f7c75
 frame_dig 0
 concat
 log
+retsub
+
+// runtime_asserts_pcg32_stack_array_caster
+runtimeassertspcg32stackarraycaster_18:
+proto 0 0
+callsub runtimeassertspcg32stackarray_11
+retsub
+
+// runtime_asserts_pcg16_stack_array_caster
+runtimeassertspcg16stackarraycaster_19:
+proto 0 0
+callsub runtimeassertspcg16stackarray_12
+retsub
+
+// runtime_asserts_pcg8_stack_array_caster
+runtimeassertspcg8stackarraycaster_20:
+proto 0 0
+callsub runtimeassertspcg8stackarray_13
+retsub
+
+// runtime_failure_stack_byteslice_overflow_caster
+runtimefailurestackbytesliceoverflowcaster_21:
+proto 0 0
+callsub runtimefailurestackbytesliceoverflow_14
 retsub

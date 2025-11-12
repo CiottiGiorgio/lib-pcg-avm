@@ -43,7 +43,12 @@ def lib_pcg64_harness(
         case "ts":
             pass
         case "pyteal":
-            pass
+            from test_harness.lib_pcg64.pyteal import LibPCG64TestHarnessAdapter
+
+            harness = LibPCG64TestHarnessAdapter()
+            harness.deploy(algorand_client, deployer)
+
+            return harness
         case _:
             raise ValueError
 
@@ -56,9 +61,9 @@ def expected_library_size(request: pytest.FixtureRequest) -> int:
         case "algots":
             return 9_500
         case "ts":
-            return 35_500
+            return 1
         case "pyteal":
-            return 9_500
+            return 8_000
         case _:
             raise ValueError
 
@@ -71,9 +76,9 @@ def max_opup_unbounded_arc4_uint64_return(request: pytest.FixtureRequest) -> int
         case "algots":
             return 22
         case "ts":
-            pass
+            return 1
         case "pyteal":
-            pass
+            return 21
         case _:
             raise ValueError
 
@@ -86,9 +91,9 @@ def max_opup_bounded_arc4_uint64_return(request: pytest.FixtureRequest) -> int:
         case "algots":
             return 41
         case "ts":
-            pass
+            return 1
         case "pyteal":
-            pass
+            return 38
         case _:
             raise ValueError
 
