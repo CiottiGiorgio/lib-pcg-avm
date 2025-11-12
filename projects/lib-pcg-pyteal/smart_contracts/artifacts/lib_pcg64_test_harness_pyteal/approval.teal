@@ -1,0 +1,456 @@
+#pragma version 8
+intcblock 0 1 6364136223846793005 16 4294967295 1442695040888963407 1442695040888963409
+bytecblock 0x
+txn NumAppArgs
+intc_0 // 0
+==
+bnz main_l8
+txna ApplicationArgs 0
+pushbytes 0x5f8ae181 // "get_pcg64_sequence_arc4_uint64_return(byte[16],uint64,uint64,uint16)uint64[]"
+==
+bnz main_l7
+txna ApplicationArgs 0
+pushbytes 0xca6f4838 // "runtime_asserts_pcg64_stack_array()void"
+==
+bnz main_l6
+txna ApplicationArgs 0
+pushbytes 0x6c0b4898 // "runtime_failure_stack_byteslice_overflow()void"
+==
+bnz main_l5
+err
+main_l5:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub runtimefailurestackbytesliceoverflowcaster_8
+intc_1 // 1
+return
+main_l6:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub runtimeassertspcg64stackarraycaster_7
+intc_1 // 1
+return
+main_l7:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub getpcg64sequencearc4uint64returncaster_6
+intc_1 // 1
+return
+main_l8:
+txn OnCompletion
+intc_0 // NoOp
+==
+bnz main_l10
+err
+main_l10:
+txn ApplicationID
+intc_0 // 0
+==
+assert
+intc_1 // 1
+return
+
+// pcg64_init
+pcg64init_0:
+proto 3 0
+frame_dig -1
+len
+intc_3 // 16
+==
+assert
+frame_dig -3
+intc_0 // 0
+stores
+frame_dig -3
+intc 5 // 1442695040888963407
+intc_2 // 6364136223846793005
+frame_dig -3
+loads
+mulw
+bury 1
+addw
+bury 1
+stores
+frame_dig -3
+frame_dig -3
+loads
+frame_dig -1
+intc_0 // 0
+extract_uint64
+addw
+bury 1
+stores
+frame_dig -3
+intc 5 // 1442695040888963407
+intc_2 // 6364136223846793005
+frame_dig -3
+loads
+mulw
+bury 1
+addw
+bury 1
+stores
+frame_dig -2
+intc_0 // 0
+stores
+frame_dig -2
+intc 6 // 1442695040888963409
+intc_2 // 6364136223846793005
+frame_dig -2
+loads
+mulw
+bury 1
+addw
+bury 1
+stores
+frame_dig -2
+frame_dig -2
+loads
+frame_dig -1
+pushint 8 // 8
+extract_uint64
+addw
+bury 1
+stores
+frame_dig -2
+intc 6 // 1442695040888963409
+intc_2 // 6364136223846793005
+frame_dig -2
+loads
+mulw
+bury 1
+addw
+bury 1
+stores
+retsub
+
+// pcg64_random
+pcg64random_1:
+proto 5 1
+intc_0 // 0
+frame_dig -1
+frame_bury 0
+frame_dig 0
+pushint 65536 // 65536
+<
+assert
+frame_dig 0
+itob
+extract 6 0
+store 4
+frame_dig -3
+intc_0 // 0
+==
+frame_dig -2
+intc_0 // 0
+==
+&&
+bnz pcg64random_1_l10
+frame_dig -2
+intc_0 // 0
+!=
+bnz pcg64random_1_l9
+frame_dig -3
+pushint 18446744073709551615 // 18446744073709551615
+<
+assert
+pushbytes 0x010000000000000000 // 0x010000000000000000
+frame_dig -3
+itob
+b-
+btoi
+store 2
+pcg64random_1_l3:
+load 2
+~
+intc_1 // 1
+addw
+bury 1
+load 2
+%
+store 3
+intc_0 // 0
+store 5
+pcg64random_1_l4:
+load 5
+frame_dig -1
+<
+bz pcg64random_1_l13
+frame_dig -5
+frame_dig -4
+callsub pcg64unboundedrandom_2
+store 6
+pcg64random_1_l6:
+load 6
+load 3
+<
+bnz pcg64random_1_l8
+load 4
+load 6
+load 2
+%
+frame_dig -3
++
+itob
+concat
+store 4
+load 5
+intc_1 // 1
++
+store 5
+b pcg64random_1_l4
+pcg64random_1_l8:
+frame_dig -5
+frame_dig -4
+callsub pcg64unboundedrandom_2
+store 6
+b pcg64random_1_l6
+pcg64random_1_l9:
+frame_dig -2
+intc_1 // 1
+>
+assert
+frame_dig -3
+frame_dig -2
+intc_1 // 1
+-
+<
+assert
+frame_dig -2
+frame_dig -3
+-
+store 2
+b pcg64random_1_l3
+pcg64random_1_l10:
+intc_0 // 0
+store 5
+pcg64random_1_l11:
+load 5
+frame_dig -1
+<
+bz pcg64random_1_l13
+load 4
+frame_dig -5
+frame_dig -4
+callsub pcg64unboundedrandom_2
+itob
+concat
+store 4
+load 5
+intc_1 // 1
++
+store 5
+b pcg64random_1_l11
+pcg64random_1_l13:
+load 4
+frame_bury 0
+retsub
+
+// __pcg64_unbounded_random
+pcg64unboundedrandom_2:
+proto 2 1
+frame_dig -2
+loads
+store 7
+frame_dig -1
+loads
+store 8
+frame_dig -2
+intc 5 // 1442695040888963407
+intc_2 // 6364136223846793005
+frame_dig -2
+loads
+mulw
+bury 1
+addw
+bury 1
+stores
+frame_dig -1
+intc 6 // 1442695040888963409
+frame_dig -2
+loads
+intc_0 // 0
+==
+shl
+intc_2 // 6364136223846793005
+frame_dig -1
+loads
+mulw
+bury 1
+addw
+bury 1
+stores
+load 7
+pushint 18 // 18
+shr
+load 7
+^
+pushint 27 // 27
+shr
+intc 4 // 4294967295
+&
+store 9
+load 7
+pushint 59 // 59
+shr
+store 10
+load 9
+load 10
+shr
+load 9
+load 10
+~
+intc_1 // 1
+addw
+bury 1
+pushint 31 // 31
+&
+shl
+intc 4 // 4294967295
+&
+|
+pushint 32 // 32
+shl
+load 8
+pushint 18 // 18
+shr
+load 8
+^
+pushint 27 // 27
+shr
+intc 4 // 4294967295
+&
+store 11
+load 8
+pushint 59 // 59
+shr
+store 12
+load 11
+load 12
+shr
+load 11
+load 12
+~
+intc_1 // 1
+addw
+bury 1
+pushint 31 // 31
+&
+shl
+intc 4 // 4294967295
+&
+|
+|
+retsub
+
+// get_pcg64_sequence_arc4_uint64_return
+getpcg64sequencearc4uint64return_3:
+proto 4 1
+bytec_0 // ""
+intc_0 // 0
+intc_1 // 1
+frame_dig -4
+callsub pcg64init_0
+intc_0 // 0
+intc_1 // 1
+frame_dig -3
+frame_dig -2
+frame_dig -1
+callsub pcg64random_1
+frame_bury 0
+retsub
+
+// runtime_asserts_pcg64_stack_array
+runtimeassertspcg64stackarray_4:
+proto 0 0
+pushint 13 // 13
+pushint 14 // 14
+intc_3 // 16
+bzero
+callsub pcg64init_0
+pushint 13 // 13
+pushint 14 // 14
+intc_0 // 0
+intc_0 // 0
+pushint 511 // 511
+callsub pcg64random_1
+pop
+retsub
+
+// runtime_failure_stack_byteslice_overflow
+runtimefailurestackbytesliceoverflow_5:
+proto 0 0
+pushint 15 // 15
+intc_3 // 16
+intc_3 // 16
+bzero
+callsub pcg64init_0
+pushint 15 // 15
+intc_3 // 16
+intc_0 // 0
+intc_0 // 0
+pushint 512 // 512
+callsub pcg64random_1
+pop
+retsub
+
+// get_pcg64_sequence_arc4_uint64_return_caster
+getpcg64sequencearc4uint64returncaster_6:
+proto 0 0
+bytec_0 // ""
+dup
+intc_0 // 0
+dupn 2
+txna ApplicationArgs 1
+frame_bury 1
+txna ApplicationArgs 2
+btoi
+frame_bury 2
+txna ApplicationArgs 3
+btoi
+frame_bury 3
+txna ApplicationArgs 4
+intc_0 // 0
+extract_uint16
+frame_bury 4
+frame_dig 1
+frame_dig 2
+frame_dig 3
+frame_dig 4
+callsub getpcg64sequencearc4uint64return_3
+frame_bury 0
+pushbytes 0x151f7c75 // 0x151f7c75
+frame_dig 0
+concat
+log
+retsub
+
+// runtime_asserts_pcg64_stack_array_caster
+runtimeassertspcg64stackarraycaster_7:
+proto 0 0
+callsub runtimeassertspcg64stackarray_4
+retsub
+
+// runtime_failure_stack_byteslice_overflow_caster
+runtimefailurestackbytesliceoverflowcaster_8:
+proto 0 0
+callsub runtimefailurestackbytesliceoverflow_5
+retsub

@@ -1,12 +1,6 @@
 import pytest
 from algokit_utils import AlgoAmount, AlgorandClient, SigningAccount
 
-# Uncomment if you want to load network specific or generic .env file
-# @pytest.fixture(autouse=True, scope="session")
-# def environment_fixture() -> None:
-#     env_path = Path(__file__).parent.parent / ".env"
-#     load_dotenv(env_path)
-
 
 def pytest_addoption(parser: pytest.Parser) -> None:
     parser.addoption(

@@ -1,0 +1,4556 @@
+[
+  {
+    "teal": 1,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      0
+    ]
+  },
+  {
+    "teal": 2,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ]
+  },
+  {
+    "teal": 3,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182
+    ]
+  },
+  {
+    "teal": 15,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      183,
+      184
+    ]
+  },
+  {
+    "teal": 16,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      185
+    ]
+  },
+  {
+    "teal": 17,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      186,
+      187
+    ]
+  },
+  {
+    "teal": 18,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      188
+    ]
+  },
+  {
+    "teal": 19,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      189,
+      190
+    ]
+  },
+  {
+    "teal": 20,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      191
+    ]
+  },
+  {
+    "teal": 21,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217
+    ]
+  },
+  {
+    "teal": 25,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "errorMessage": "The requested action is not implemented in this contract. Are you using the correct OnComplete? Did you set your app ID?",
+    "pc": [
+      218
+    ]
+  },
+  {
+    "teal": 30,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      219,
+      220,
+      221,
+      222,
+      223,
+      224
+    ]
+  },
+  {
+    "teal": 33,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:10",
+    "pc": [
+      225,
+      226,
+      227
+    ]
+  },
+  {
+    "teal": 34,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:10",
+    "pc": [
+      228
+    ]
+  },
+  {
+    "teal": 35,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:10",
+    "pc": [
+      229
+    ]
+  },
+  {
+    "teal": 36,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:10",
+    "pc": [
+      230,
+      231
+    ]
+  },
+  {
+    "teal": 37,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:10",
+    "pc": [
+      232
+    ]
+  },
+  {
+    "teal": 40,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:10",
+    "errorMessage": "argument 0 (length) for get_pcg128_sequence_arc4_uint128_return must be a uint16",
+    "pc": [
+      233
+    ]
+  },
+  {
+    "teal": 41,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:10",
+    "pc": [
+      234
+    ]
+  },
+  {
+    "teal": 44,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:9",
+    "pc": [
+      235,
+      236,
+      237
+    ]
+  },
+  {
+    "teal": 45,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:9",
+    "pc": [
+      238
+    ]
+  },
+  {
+    "teal": 46,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:9",
+    "pc": [
+      239
+    ]
+  },
+  {
+    "teal": 47,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:9",
+    "pc": [
+      240
+    ]
+  },
+  {
+    "teal": 48,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:9",
+    "pc": [
+      241
+    ]
+  },
+  {
+    "teal": 51,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:9",
+    "errorMessage": "argument 1 (upperBound) for get_pcg128_sequence_arc4_uint128_return must be a uint128",
+    "pc": [
+      242
+    ]
+  },
+  {
+    "teal": 54,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:8",
+    "pc": [
+      243,
+      244,
+      245
+    ]
+  },
+  {
+    "teal": 55,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:8",
+    "pc": [
+      246
+    ]
+  },
+  {
+    "teal": 56,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:8",
+    "pc": [
+      247
+    ]
+  },
+  {
+    "teal": 57,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:8",
+    "pc": [
+      248
+    ]
+  },
+  {
+    "teal": 58,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:8",
+    "pc": [
+      249
+    ]
+  },
+  {
+    "teal": 61,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:8",
+    "errorMessage": "argument 2 (lowerBound) for get_pcg128_sequence_arc4_uint128_return must be a uint128",
+    "pc": [
+      250
+    ]
+  },
+  {
+    "teal": 64,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:7",
+    "pc": [
+      251,
+      252,
+      253
+    ]
+  },
+  {
+    "teal": 65,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:7",
+    "pc": [
+      254
+    ]
+  },
+  {
+    "teal": 66,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:7",
+    "pc": [
+      255
+    ]
+  },
+  {
+    "teal": 67,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:7",
+    "pc": [
+      256
+    ]
+  },
+  {
+    "teal": 68,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:7",
+    "pc": [
+      257
+    ]
+  },
+  {
+    "teal": 71,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:7",
+    "errorMessage": "argument 3 (seed) for get_pcg128_sequence_arc4_uint128_return must be a byte[32]",
+    "pc": [
+      258
+    ]
+  },
+  {
+    "teal": 74,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      259,
+      260,
+      261
+    ]
+  },
+  {
+    "teal": 75,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      262
+    ]
+  },
+  {
+    "teal": 76,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      263
+    ]
+  },
+  {
+    "teal": 77,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      264
+    ]
+  },
+  {
+    "teal": 78,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      265
+    ]
+  },
+  {
+    "teal": 79,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      266
+    ]
+  },
+  {
+    "teal": 80,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      267,
+      268,
+      269
+    ]
+  },
+  {
+    "teal": 81,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      270
+    ]
+  },
+  {
+    "teal": 82,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      271
+    ]
+  },
+  {
+    "teal": 83,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      272
+    ]
+  },
+  {
+    "teal": 84,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      273
+    ]
+  },
+  {
+    "teal": 85,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      274
+    ]
+  },
+  {
+    "teal": 86,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      275
+    ]
+  },
+  {
+    "teal": 90,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      276,
+      277,
+      278
+    ]
+  },
+  {
+    "teal": 93,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      279
+    ]
+  },
+  {
+    "teal": 94,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      280
+    ]
+  },
+  {
+    "teal": 98,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:12",
+    "pc": [
+      281,
+      282
+    ]
+  },
+  {
+    "teal": 99,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:12",
+    "pc": [
+      283,
+      284,
+      285
+    ]
+  },
+  {
+    "teal": 100,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:12",
+    "pc": [
+      286,
+      287
+    ]
+  },
+  {
+    "teal": 104,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:14",
+    "pc": [
+      288,
+      289
+    ]
+  },
+  {
+    "teal": 105,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:14",
+    "pc": [
+      290,
+      291
+    ]
+  },
+  {
+    "teal": 106,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:14",
+    "pc": [
+      292,
+      293
+    ]
+  },
+  {
+    "teal": 107,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:14",
+    "pc": [
+      294,
+      295
+    ]
+  },
+  {
+    "teal": 108,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:14",
+    "pc": [
+      296,
+      297,
+      298
+    ]
+  },
+  {
+    "teal": 109,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:14",
+    "pc": [
+      299,
+      300
+    ]
+  },
+  {
+    "teal": 113,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:15",
+    "pc": [
+      301,
+      302
+    ]
+  },
+  {
+    "teal": 114,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:15",
+    "pc": [
+      303,
+      304
+    ]
+  },
+  {
+    "teal": 115,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:15",
+    "pc": [
+      305,
+      306
+    ]
+  },
+  {
+    "teal": 116,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:15",
+    "pc": [
+      307,
+      308,
+      309
+    ]
+  },
+  {
+    "teal": 117,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:15",
+    "pc": [
+      310,
+      311
+    ]
+  },
+  {
+    "teal": 121,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:17",
+    "pc": [
+      312,
+      313
+    ]
+  },
+  {
+    "teal": 122,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:17",
+    "pc": [
+      314,
+      315
+    ]
+  },
+  {
+    "teal": 123,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:17",
+    "pc": [
+      316
+    ]
+  },
+  {
+    "teal": 124,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:17",
+    "pc": [
+      317,
+      318
+    ]
+  },
+  {
+    "teal": 125,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:17",
+    "pc": [
+      319,
+      320
+    ]
+  },
+  {
+    "teal": 126,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:17",
+    "pc": [
+      321,
+      322
+    ]
+  },
+  {
+    "teal": 127,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:17",
+    "pc": [
+      323
+    ]
+  },
+  {
+    "teal": 128,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:17",
+    "pc": [
+      324
+    ]
+  },
+  {
+    "teal": 129,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:17",
+    "pc": [
+      325,
+      326
+    ]
+  },
+  {
+    "teal": 130,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:17",
+    "pc": [
+      327
+    ]
+  },
+  {
+    "teal": 131,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:17",
+    "pc": [
+      328
+    ]
+  },
+  {
+    "teal": 132,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:17",
+    "pc": [
+      329
+    ]
+  },
+  {
+    "teal": 133,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:17",
+    "pc": [
+      330
+    ]
+  },
+  {
+    "teal": 134,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:17",
+    "pc": [
+      331,
+      332
+    ]
+  },
+  {
+    "teal": 135,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:17",
+    "pc": [
+      333
+    ]
+  },
+  {
+    "teal": 136,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:17",
+    "pc": [
+      334
+    ]
+  },
+  {
+    "teal": 137,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:17",
+    "pc": [
+      335,
+      336,
+      337
+    ]
+  },
+  {
+    "teal": 140,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      338,
+      339
+    ]
+  },
+  {
+    "teal": 143,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      340,
+      341
+    ]
+  },
+  {
+    "teal": 144,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:6",
+    "pc": [
+      342
+    ]
+  },
+  {
+    "teal": 149,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:20",
+    "pc": [
+      343,
+      344,
+      345
+    ]
+  },
+  {
+    "teal": 150,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:20",
+    "pc": [
+      346
+    ]
+  },
+  {
+    "teal": 151,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:20",
+    "pc": [
+      347
+    ]
+  },
+  {
+    "teal": 155,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:20",
+    "pc": [
+      348,
+      349,
+      350
+    ]
+  },
+  {
+    "teal": 158,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:20",
+    "pc": [
+      351
+    ]
+  },
+  {
+    "teal": 159,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:20",
+    "pc": [
+      352
+    ]
+  },
+  {
+    "teal": 163,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:21",
+    "pc": [
+      353
+    ]
+  },
+  {
+    "teal": 164,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:21",
+    "pc": [
+      354,
+      355,
+      356
+    ]
+  },
+  {
+    "teal": 165,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:21",
+    "pc": [
+      357,
+      358
+    ]
+  },
+  {
+    "teal": 169,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:24",
+    "pc": [
+      359,
+      360,
+      361
+    ]
+  },
+  {
+    "teal": 170,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:24",
+    "pc": [
+      362
+    ]
+  },
+  {
+    "teal": 171,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:24",
+    "pc": [
+      363
+    ]
+  },
+  {
+    "teal": 172,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:24",
+    "pc": [
+      364,
+      365
+    ]
+  },
+  {
+    "teal": 173,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:24",
+    "pc": [
+      366,
+      367,
+      368
+    ]
+  },
+  {
+    "teal": 174,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:24",
+    "pc": [
+      369,
+      370
+    ]
+  },
+  {
+    "teal": 175,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:20",
+    "pc": [
+      371
+    ]
+  },
+  {
+    "teal": 180,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:27",
+    "pc": [
+      372,
+      373,
+      374
+    ]
+  },
+  {
+    "teal": 181,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:27",
+    "pc": [
+      375
+    ]
+  },
+  {
+    "teal": 182,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:27",
+    "pc": [
+      376
+    ]
+  },
+  {
+    "teal": 186,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:27",
+    "pc": [
+      377,
+      378,
+      379
+    ]
+  },
+  {
+    "teal": 189,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:27",
+    "pc": [
+      380
+    ]
+  },
+  {
+    "teal": 190,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:27",
+    "pc": [
+      381
+    ]
+  },
+  {
+    "teal": 194,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:28",
+    "pc": [
+      382
+    ]
+  },
+  {
+    "teal": 195,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:28",
+    "pc": [
+      383,
+      384,
+      385
+    ]
+  },
+  {
+    "teal": 196,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:28",
+    "pc": [
+      386,
+      387
+    ]
+  },
+  {
+    "teal": 200,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:30",
+    "pc": [
+      388,
+      389,
+      390
+    ]
+  },
+  {
+    "teal": 201,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:30",
+    "pc": [
+      391
+    ]
+  },
+  {
+    "teal": 202,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:30",
+    "pc": [
+      392
+    ]
+  },
+  {
+    "teal": 203,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:30",
+    "pc": [
+      393,
+      394
+    ]
+  },
+  {
+    "teal": 204,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:30",
+    "pc": [
+      395,
+      396,
+      397
+    ]
+  },
+  {
+    "teal": 205,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:30",
+    "pc": [
+      398,
+      399
+    ]
+  },
+  {
+    "teal": 206,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:27",
+    "pc": [
+      400
+    ]
+  },
+  {
+    "teal": 211,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:33",
+    "pc": [
+      401,
+      402,
+      403
+    ]
+  },
+  {
+    "teal": 212,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:33",
+    "pc": [
+      404
+    ]
+  },
+  {
+    "teal": 213,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:33",
+    "pc": [
+      405
+    ]
+  },
+  {
+    "teal": 217,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:33",
+    "pc": [
+      406,
+      407,
+      408
+    ]
+  },
+  {
+    "teal": 221,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:35",
+    "pc": [
+      409,
+      410
+    ]
+  },
+  {
+    "teal": 222,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:35",
+    "pc": [
+      411,
+      412
+    ]
+  },
+  {
+    "teal": 223,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:35",
+    "pc": [
+      413
+    ]
+  },
+  {
+    "teal": 224,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:35",
+    "pc": [
+      414
+    ]
+  },
+  {
+    "teal": 225,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:33",
+    "pc": [
+      415
+    ]
+  },
+  {
+    "teal": 228,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      416,
+      417
+    ]
+  },
+  {
+    "teal": 229,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      418,
+      419,
+      420
+    ]
+  },
+  {
+    "teal": 230,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      421,
+      422,
+      423,
+      424,
+      425,
+      426
+    ]
+  },
+  {
+    "teal": 231,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      427,
+      428,
+      429
+    ]
+  },
+  {
+    "teal": 232,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      430,
+      431,
+      432,
+      433
+    ]
+  },
+  {
+    "teal": 235,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "errorMessage": "this contract does not implement the given ABI method for create NoOp",
+    "pc": [
+      434
+    ]
+  },
+  {
+    "teal": 238,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      435,
+      436,
+      437,
+      438,
+      439,
+      440
+    ]
+  },
+  {
+    "teal": 239,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      441,
+      442,
+      443,
+      444,
+      445,
+      446
+    ]
+  },
+  {
+    "teal": 240,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      447,
+      448,
+      449,
+      450,
+      451,
+      452
+    ]
+  },
+  {
+    "teal": 241,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      453,
+      454,
+      455
+    ]
+  },
+  {
+    "teal": 242,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      456,
+      457,
+      458,
+      459,
+      460,
+      461,
+      462,
+      463
+    ]
+  },
+  {
+    "teal": 245,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "errorMessage": "this contract does not implement the given ABI method for call NoOp",
+    "pc": [
+      464
+    ]
+  },
+  {
+    "teal": 249,
+    "source": "lib_pcg/pcg128.algo.ts:38",
+    "pc": [
+      465,
+      466,
+      467
+    ]
+  },
+  {
+    "teal": 252,
+    "source": "lib_pcg/pcg128.algo.ts:38",
+    "pc": [
+      468
+    ]
+  },
+  {
+    "teal": 253,
+    "source": "lib_pcg/pcg128.algo.ts:38",
+    "pc": [
+      469,
+      470
+    ]
+  },
+  {
+    "teal": 257,
+    "source": "lib_pcg/pcg128.algo.ts:44",
+    "pc": [
+      471
+    ]
+  },
+  {
+    "teal": 258,
+    "source": "lib_pcg/pcg128.algo.ts:44",
+    "pc": [
+      472,
+      473
+    ]
+  },
+  {
+    "teal": 262,
+    "source": "lib_pcg/pcg128.algo.ts:48",
+    "pc": [
+      474,
+      475
+    ]
+  },
+  {
+    "teal": 263,
+    "source": "lib_pcg/pcg128.algo.ts:48",
+    "pc": [
+      476,
+      477
+    ]
+  },
+  {
+    "teal": 268,
+    "source": "lib_pcg/pcg128.algo.ts:50",
+    "pc": [
+      478,
+      479
+    ]
+  },
+  {
+    "teal": 269,
+    "source": "lib_pcg/pcg128.algo.ts:50",
+    "pc": [
+      480
+    ]
+  },
+  {
+    "teal": 270,
+    "source": "lib_pcg/pcg128.algo.ts:50",
+    "pc": [
+      481
+    ]
+  },
+  {
+    "teal": 271,
+    "source": "lib_pcg/pcg128.algo.ts:50",
+    "pc": [
+      482
+    ]
+  },
+  {
+    "teal": 272,
+    "source": "lib_pcg/pcg128.algo.ts:50",
+    "pc": [
+      483,
+      484,
+      485
+    ]
+  },
+  {
+    "teal": 273,
+    "source": "lib_pcg/pcg128.algo.ts:50",
+    "pc": [
+      486,
+      487
+    ]
+  },
+  {
+    "teal": 274,
+    "source": "lib_pcg/pcg128.algo.ts:50",
+    "pc": [
+      488
+    ]
+  },
+  {
+    "teal": 275,
+    "source": "lib_pcg/pcg128.algo.ts:50",
+    "pc": [
+      489
+    ]
+  },
+  {
+    "teal": 276,
+    "source": "lib_pcg/pcg128.algo.ts:50",
+    "pc": [
+      490
+    ]
+  },
+  {
+    "teal": 279,
+    "source": "lib_pcg/pcg128.algo.ts:50",
+    "pc": [
+      491,
+      492,
+      493
+    ]
+  },
+  {
+    "teal": 284,
+    "source": "lib_pcg/pcg128.algo.ts:51",
+    "pc": [
+      494
+    ]
+  },
+  {
+    "teal": 285,
+    "source": "lib_pcg/pcg128.algo.ts:51",
+    "pc": [
+      495,
+      496
+    ]
+  },
+  {
+    "teal": 290,
+    "source": "lib_pcg/pcg128.algo.ts:51",
+    "pc": [
+      497,
+      498
+    ]
+  },
+  {
+    "teal": 291,
+    "source": "lib_pcg/pcg128.algo.ts:51",
+    "pc": [
+      499,
+      500
+    ]
+  },
+  {
+    "teal": 292,
+    "source": "lib_pcg/pcg128.algo.ts:51",
+    "pc": [
+      501
+    ]
+  },
+  {
+    "teal": 293,
+    "source": "lib_pcg/pcg128.algo.ts:51",
+    "pc": [
+      502,
+      503,
+      504
+    ]
+  },
+  {
+    "teal": 297,
+    "source": "lib_pcg/pcg128.algo.ts:52",
+    "pc": [
+      505,
+      506
+    ]
+  },
+  {
+    "teal": 298,
+    "source": "lib_pcg/pcg128.algo.ts:52",
+    "pc": [
+      507,
+      508,
+      509
+    ]
+  },
+  {
+    "teal": 299,
+    "source": "lib_pcg/pcg128.algo.ts:52",
+    "pc": [
+      510,
+      511
+    ]
+  },
+  {
+    "teal": 303,
+    "source": "lib_pcg/pcg128.algo.ts:53",
+    "pc": [
+      512,
+      513
+    ]
+  },
+  {
+    "teal": 304,
+    "source": "lib_pcg/pcg128.algo.ts:53",
+    "pc": [
+      514,
+      515,
+      516
+    ]
+  },
+  {
+    "teal": 305,
+    "source": "lib_pcg/pcg128.algo.ts:53",
+    "pc": [
+      517,
+      518
+    ]
+  },
+  {
+    "teal": 309,
+    "source": "lib_pcg/pcg128.algo.ts:54",
+    "pc": [
+      519,
+      520
+    ]
+  },
+  {
+    "teal": 310,
+    "source": "lib_pcg/pcg128.algo.ts:54",
+    "pc": [
+      521,
+      522
+    ]
+  },
+  {
+    "teal": 311,
+    "source": "lib_pcg/pcg128.algo.ts:54",
+    "pc": [
+      523,
+      524,
+      525
+    ]
+  },
+  {
+    "teal": 312,
+    "source": "lib_pcg/pcg128.algo.ts:54",
+    "pc": [
+      526
+    ]
+  },
+  {
+    "teal": 313,
+    "source": "lib_pcg/pcg128.algo.ts:54",
+    "pc": [
+      527,
+      528
+    ]
+  },
+  {
+    "teal": 318,
+    "source": "lib_pcg/pcg128.algo.ts:51",
+    "pc": [
+      529,
+      530
+    ]
+  },
+  {
+    "teal": 319,
+    "source": "lib_pcg/pcg128.algo.ts:51",
+    "pc": [
+      531
+    ]
+  },
+  {
+    "teal": 320,
+    "source": "lib_pcg/pcg128.algo.ts:51",
+    "pc": [
+      532
+    ]
+  },
+  {
+    "teal": 321,
+    "source": "lib_pcg/pcg128.algo.ts:51",
+    "pc": [
+      533,
+      534
+    ]
+  },
+  {
+    "teal": 322,
+    "source": "lib_pcg/pcg128.algo.ts:51",
+    "pc": [
+      535,
+      536,
+      537
+    ]
+  },
+  {
+    "teal": 325,
+    "source": "lib_pcg/pcg128.algo.ts:50",
+    "pc": [
+      538,
+      539,
+      540
+    ]
+  },
+  {
+    "teal": 331,
+    "source": "lib_pcg/pcg128.algo.ts:57",
+    "pc": [
+      541,
+      542
+    ]
+  },
+  {
+    "teal": 332,
+    "source": "lib_pcg/pcg128.algo.ts:57",
+    "pc": [
+      543
+    ]
+  },
+  {
+    "teal": 333,
+    "source": "lib_pcg/pcg128.algo.ts:57",
+    "pc": [
+      544
+    ]
+  },
+  {
+    "teal": 334,
+    "source": "lib_pcg/pcg128.algo.ts:57",
+    "pc": [
+      545,
+      546,
+      547
+    ]
+  },
+  {
+    "teal": 339,
+    "source": "lib_pcg/pcg128.algo.ts:58",
+    "pc": [
+      548,
+      549
+    ]
+  },
+  {
+    "teal": 340,
+    "source": "lib_pcg/pcg128.algo.ts:58",
+    "pc": [
+      550,
+      551
+    ]
+  },
+  {
+    "teal": 341,
+    "source": "lib_pcg/pcg128.algo.ts:58",
+    "pc": [
+      552
+    ]
+  },
+  {
+    "teal": 342,
+    "source": "lib_pcg/pcg128.algo.ts:58",
+    "pc": [
+      553
+    ]
+  },
+  {
+    "teal": 346,
+    "source": "lib_pcg/pcg128.algo.ts:60",
+    "pc": [
+      554,
+      555
+    ]
+  },
+  {
+    "teal": 347,
+    "source": "lib_pcg/pcg128.algo.ts:60",
+    "pc": [
+      556
+    ]
+  },
+  {
+    "teal": 348,
+    "source": "lib_pcg/pcg128.algo.ts:60",
+    "pc": [
+      557
+    ]
+  },
+  {
+    "teal": 349,
+    "source": "lib_pcg/pcg128.algo.ts:60",
+    "pc": [
+      558
+    ]
+  },
+  {
+    "teal": 353,
+    "source": "lib_pcg/pcg128.algo.ts:61",
+    "pc": [
+      559,
+      560
+    ]
+  },
+  {
+    "teal": 354,
+    "source": "lib_pcg/pcg128.algo.ts:61",
+    "pc": [
+      561,
+      562
+    ]
+  },
+  {
+    "teal": 355,
+    "source": "lib_pcg/pcg128.algo.ts:61",
+    "pc": [
+      563,
+      564
+    ]
+  },
+  {
+    "teal": 356,
+    "source": "lib_pcg/pcg128.algo.ts:61",
+    "pc": [
+      565
+    ]
+  },
+  {
+    "teal": 357,
+    "source": "lib_pcg/pcg128.algo.ts:61",
+    "pc": [
+      566
+    ]
+  },
+  {
+    "teal": 358,
+    "source": "lib_pcg/pcg128.algo.ts:61",
+    "pc": [
+      567
+    ]
+  },
+  {
+    "teal": 362,
+    "source": "lib_pcg/pcg128.algo.ts:63",
+    "pc": [
+      568,
+      569
+    ]
+  },
+  {
+    "teal": 363,
+    "source": "lib_pcg/pcg128.algo.ts:63",
+    "pc": [
+      570,
+      571
+    ]
+  },
+  {
+    "teal": 364,
+    "source": "lib_pcg/pcg128.algo.ts:63",
+    "pc": [
+      572
+    ]
+  },
+  {
+    "teal": 365,
+    "source": "lib_pcg/pcg128.algo.ts:63",
+    "pc": [
+      573,
+      574
+    ]
+  },
+  {
+    "teal": 366,
+    "source": "lib_pcg/pcg128.algo.ts:57",
+    "pc": [
+      575,
+      576,
+      577
+    ]
+  },
+  {
+    "teal": 371,
+    "source": "lib_pcg/pcg128.algo.ts:66",
+    "pc": [
+      578,
+      579
+    ]
+  },
+  {
+    "teal": 372,
+    "source": "lib_pcg/pcg128.algo.ts:66",
+    "pc": [
+      580,
+      581
+    ]
+  },
+  {
+    "teal": 373,
+    "source": "lib_pcg/pcg128.algo.ts:66",
+    "pc": [
+      582
+    ]
+  },
+  {
+    "teal": 374,
+    "source": "lib_pcg/pcg128.algo.ts:66",
+    "pc": [
+      583
+    ]
+  },
+  {
+    "teal": 378,
+    "source": "lib_pcg/pcg128.algo.ts:71",
+    "pc": [
+      584
+    ]
+  },
+  {
+    "teal": 379,
+    "source": "lib_pcg/pcg128.algo.ts:71",
+    "pc": [
+      585,
+      586
+    ]
+  },
+  {
+    "teal": 380,
+    "source": "lib_pcg/pcg128.algo.ts:71",
+    "pc": [
+      587
+    ]
+  },
+  {
+    "teal": 381,
+    "source": "lib_pcg/pcg128.algo.ts:71",
+    "pc": [
+      588,
+      589
+    ]
+  },
+  {
+    "teal": 386,
+    "source": "lib_pcg/pcg128.algo.ts:74",
+    "pc": [
+      590,
+      591
+    ]
+  },
+  {
+    "teal": 387,
+    "source": "lib_pcg/pcg128.algo.ts:74",
+    "pc": [
+      592,
+      593,
+      594
+    ]
+  },
+  {
+    "teal": 388,
+    "source": "lib_pcg/pcg128.algo.ts:74",
+    "pc": [
+      595,
+      596
+    ]
+  },
+  {
+    "teal": 389,
+    "source": "lib_pcg/pcg128.algo.ts:74",
+    "pc": [
+      597
+    ]
+  },
+  {
+    "teal": 390,
+    "source": "lib_pcg/pcg128.algo.ts:74",
+    "pc": [
+      598,
+      599
+    ]
+  },
+  {
+    "teal": 394,
+    "source": "lib_pcg/pcg128.algo.ts:76",
+    "pc": [
+      600
+    ]
+  },
+  {
+    "teal": 395,
+    "source": "lib_pcg/pcg128.algo.ts:76",
+    "pc": [
+      601,
+      602
+    ]
+  },
+  {
+    "teal": 400,
+    "source": "lib_pcg/pcg128.algo.ts:76",
+    "pc": [
+      603,
+      604
+    ]
+  },
+  {
+    "teal": 401,
+    "source": "lib_pcg/pcg128.algo.ts:76",
+    "pc": [
+      605,
+      606
+    ]
+  },
+  {
+    "teal": 402,
+    "source": "lib_pcg/pcg128.algo.ts:76",
+    "pc": [
+      607
+    ]
+  },
+  {
+    "teal": 403,
+    "source": "lib_pcg/pcg128.algo.ts:76",
+    "pc": [
+      608,
+      609,
+      610
+    ]
+  },
+  {
+    "teal": 410,
+    "source": "lib_pcg/pcg128.algo.ts:78",
+    "pc": [
+      611
+    ]
+  },
+  {
+    "teal": 411,
+    "source": "lib_pcg/pcg128.algo.ts:78",
+    "pc": [
+      612,
+      613,
+      614
+    ]
+  },
+  {
+    "teal": 415,
+    "source": "lib_pcg/pcg128.algo.ts:79",
+    "pc": [
+      615,
+      616
+    ]
+  },
+  {
+    "teal": 416,
+    "source": "lib_pcg/pcg128.algo.ts:79",
+    "pc": [
+      617,
+      618,
+      619
+    ]
+  },
+  {
+    "teal": 417,
+    "source": "lib_pcg/pcg128.algo.ts:79",
+    "pc": [
+      620,
+      621
+    ]
+  },
+  {
+    "teal": 421,
+    "source": "lib_pcg/pcg128.algo.ts:80",
+    "pc": [
+      622,
+      623
+    ]
+  },
+  {
+    "teal": 422,
+    "source": "lib_pcg/pcg128.algo.ts:80",
+    "pc": [
+      624,
+      625,
+      626
+    ]
+  },
+  {
+    "teal": 423,
+    "source": "lib_pcg/pcg128.algo.ts:80",
+    "pc": [
+      627,
+      628
+    ]
+  },
+  {
+    "teal": 428,
+    "source": "lib_pcg/pcg128.algo.ts:81",
+    "pc": [
+      629,
+      630
+    ]
+  },
+  {
+    "teal": 429,
+    "source": "lib_pcg/pcg128.algo.ts:81",
+    "pc": [
+      631,
+      632,
+      633
+    ]
+  },
+  {
+    "teal": 430,
+    "source": "lib_pcg/pcg128.algo.ts:81",
+    "pc": [
+      634,
+      635
+    ]
+  },
+  {
+    "teal": 431,
+    "source": "lib_pcg/pcg128.algo.ts:81",
+    "pc": [
+      636
+    ]
+  },
+  {
+    "teal": 432,
+    "source": "lib_pcg/pcg128.algo.ts:81",
+    "pc": [
+      637,
+      638,
+      639
+    ]
+  },
+  {
+    "teal": 437,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      640,
+      641
+    ]
+  },
+  {
+    "teal": 438,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      642,
+      643
+    ]
+  },
+  {
+    "teal": 439,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      644,
+      645,
+      646
+    ]
+  },
+  {
+    "teal": 440,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      647,
+      648
+    ]
+  },
+  {
+    "teal": 441,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      649
+    ]
+  },
+  {
+    "teal": 442,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      650,
+      651
+    ]
+  },
+  {
+    "teal": 443,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      652
+    ]
+  },
+  {
+    "teal": 444,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      653
+    ]
+  },
+  {
+    "teal": 445,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      654
+    ]
+  },
+  {
+    "teal": 446,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      655,
+      656
+    ]
+  },
+  {
+    "teal": 447,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      657
+    ]
+  },
+  {
+    "teal": 450,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "errorMessage": "(stepResult[1] % absoluteBound) + lowerBound overflowed 128 bits",
+    "pc": [
+      658
+    ]
+  },
+  {
+    "teal": 451,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      659,
+      660
+    ]
+  },
+  {
+    "teal": 452,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      661
+    ]
+  },
+  {
+    "teal": 453,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      662
+    ]
+  },
+  {
+    "teal": 454,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      663
+    ]
+  },
+  {
+    "teal": 455,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      664
+    ]
+  },
+  {
+    "teal": 456,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      665
+    ]
+  },
+  {
+    "teal": 457,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      666
+    ]
+  },
+  {
+    "teal": 458,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      667
+    ]
+  },
+  {
+    "teal": 459,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      668
+    ]
+  },
+  {
+    "teal": 460,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      669
+    ]
+  },
+  {
+    "teal": 461,
+    "source": "lib_pcg/pcg128.algo.ts:82",
+    "pc": [
+      670,
+      671
+    ]
+  },
+  {
+    "teal": 462,
+    "source": "lib_pcg/pcg128.algo.ts:83",
+    "pc": [
+      672,
+      673,
+      674
+    ]
+  },
+  {
+    "teal": 465,
+    "source": "lib_pcg/pcg128.algo.ts:78",
+    "pc": [
+      675,
+      676,
+      677
+    ]
+  },
+  {
+    "teal": 472,
+    "source": "lib_pcg/pcg128.algo.ts:76",
+    "pc": [
+      678,
+      679
+    ]
+  },
+  {
+    "teal": 473,
+    "source": "lib_pcg/pcg128.algo.ts:76",
+    "pc": [
+      680
+    ]
+  },
+  {
+    "teal": 474,
+    "source": "lib_pcg/pcg128.algo.ts:76",
+    "pc": [
+      681
+    ]
+  },
+  {
+    "teal": 475,
+    "source": "lib_pcg/pcg128.algo.ts:76",
+    "pc": [
+      682,
+      683
+    ]
+  },
+  {
+    "teal": 476,
+    "source": "lib_pcg/pcg128.algo.ts:76",
+    "pc": [
+      684,
+      685,
+      686
+    ]
+  },
+  {
+    "teal": 483,
+    "source": "lib_pcg/pcg128.algo.ts:89",
+    "pc": [
+      687
+    ]
+  },
+  {
+    "teal": 484,
+    "source": "lib_pcg/pcg128.algo.ts:89",
+    "pc": [
+      688
+    ]
+  },
+  {
+    "teal": 485,
+    "source": "lib_pcg/pcg128.algo.ts:89",
+    "pc": [
+      689,
+      690,
+      691,
+      692
+    ]
+  },
+  {
+    "teal": 486,
+    "source": "lib_pcg/pcg128.algo.ts:89",
+    "pc": [
+      693,
+      694
+    ]
+  },
+  {
+    "teal": 487,
+    "source": "lib_pcg/pcg128.algo.ts:89",
+    "pc": [
+      695,
+      696,
+      697
+    ]
+  },
+  {
+    "teal": 488,
+    "source": "lib_pcg/pcg128.algo.ts:89",
+    "pc": [
+      698,
+      699
+    ]
+  },
+  {
+    "teal": 489,
+    "source": "lib_pcg/pcg128.algo.ts:89",
+    "pc": [
+      700
+    ]
+  },
+  {
+    "teal": 490,
+    "source": "lib_pcg/pcg128.algo.ts:89",
+    "pc": [
+      701
+    ]
+  },
+  {
+    "teal": 491,
+    "source": "lib_pcg/pcg128.algo.ts:89",
+    "pc": [
+      702
+    ]
+  },
+  {
+    "teal": 492,
+    "source": "lib_pcg/pcg128.algo.ts:89",
+    "pc": [
+      703
+    ]
+  },
+  {
+    "teal": 493,
+    "source": "lib_pcg/pcg128.algo.ts:89",
+    "pc": [
+      704
+    ]
+  },
+  {
+    "teal": 494,
+    "source": "lib_pcg/pcg128.algo.ts:89",
+    "pc": [
+      705,
+      706,
+      707
+    ]
+  },
+  {
+    "teal": 495,
+    "source": "lib_pcg/pcg128.algo.ts:89",
+    "pc": [
+      708
+    ]
+  },
+  {
+    "teal": 496,
+    "source": "lib_pcg/pcg128.algo.ts:89",
+    "pc": [
+      709
+    ]
+  },
+  {
+    "teal": 497,
+    "source": "lib_pcg/pcg128.algo.ts:89",
+    "pc": [
+      710,
+      711,
+      712
+    ]
+  },
+  {
+    "teal": 498,
+    "source": "lib_pcg/pcg128.algo.ts:89",
+    "pc": [
+      713
+    ]
+  },
+  {
+    "teal": 499,
+    "source": "lib_pcg/pcg128.algo.ts:89",
+    "pc": [
+      714
+    ]
+  },
+  {
+    "teal": 502,
+    "source": "lib_pcg/pcg128.algo.ts:38",
+    "pc": [
+      715,
+      716
+    ]
+  },
+  {
+    "teal": 505,
+    "source": "lib_pcg/pcg128.algo.ts:38",
+    "pc": [
+      717,
+      718
+    ]
+  },
+  {
+    "teal": 506,
+    "source": "lib_pcg/pcg128.algo.ts:38",
+    "pc": [
+      719
+    ]
+  },
+  {
+    "teal": 510,
+    "source": "lib_pcg/pcg128.algo.ts:6",
+    "pc": [
+      720,
+      721,
+      722
+    ]
+  },
+  {
+    "teal": 516,
+    "source": "lib_pcg/pcg128.algo.ts:8",
+    "pc": [
+      723,
+      724
+    ]
+  },
+  {
+    "teal": 517,
+    "source": "lib_pcg/pcg128.algo.ts:8",
+    "pc": [
+      725
+    ]
+  },
+  {
+    "teal": 518,
+    "source": "lib_pcg/pcg128.algo.ts:8",
+    "pc": [
+      726,
+      727,
+      728,
+      729,
+      730,
+      731,
+      732,
+      733,
+      734,
+      735,
+      736,
+      737,
+      738,
+      739,
+      740,
+      741,
+      742,
+      743,
+      744,
+      745,
+      746,
+      747,
+      748,
+      749,
+      750,
+      751,
+      752,
+      753,
+      754,
+      755,
+      756,
+      757,
+      758,
+      759
+    ]
+  },
+  {
+    "teal": 519,
+    "source": "lib_pcg/pcg128.algo.ts:8",
+    "pc": [
+      760
+    ]
+  },
+  {
+    "teal": 520,
+    "source": "lib_pcg/pcg128.algo.ts:8",
+    "pc": [
+      761,
+      762
+    ]
+  },
+  {
+    "teal": 521,
+    "source": "lib_pcg/pcg128.algo.ts:8",
+    "pc": [
+      763
+    ]
+  },
+  {
+    "teal": 522,
+    "source": "lib_pcg/pcg128.algo.ts:6",
+    "pc": [
+      764
+    ]
+  },
+  {
+    "teal": 526,
+    "source": "lib_pcg/pcg128.algo.ts:12",
+    "pc": [
+      765,
+      766,
+      767
+    ]
+  },
+  {
+    "teal": 529,
+    "source": "lib_pcg/pcg128.algo.ts:12",
+    "pc": [
+      768
+    ]
+  },
+  {
+    "teal": 530,
+    "source": "lib_pcg/pcg128.algo.ts:12",
+    "pc": [
+      769,
+      770
+    ]
+  },
+  {
+    "teal": 536,
+    "source": "lib_pcg/consts.algo.ts:3",
+    "pc": [
+      771,
+      772
+    ]
+  },
+  {
+    "teal": 540,
+    "source": "lib_pcg/pcg128.algo.ts:13",
+    "pc": [
+      773,
+      774
+    ]
+  },
+  {
+    "teal": 541,
+    "source": "lib_pcg/pcg128.algo.ts:13",
+    "pc": [
+      775,
+      776,
+      777
+    ]
+  },
+  {
+    "teal": 542,
+    "source": "lib_pcg/pcg128.algo.ts:13",
+    "pc": [
+      778
+    ]
+  },
+  {
+    "teal": 543,
+    "source": "lib_pcg/pcg128.algo.ts:13",
+    "pc": [
+      779,
+      780,
+      781
+    ]
+  },
+  {
+    "teal": 544,
+    "source": "lib_pcg/pcg128.algo.ts:13",
+    "pc": [
+      782,
+      783
+    ]
+  },
+  {
+    "teal": 550,
+    "source": "lib_pcg/consts.algo.ts:5",
+    "pc": [
+      784,
+      785
+    ]
+  },
+  {
+    "teal": 554,
+    "source": "lib_pcg/pcg128.algo.ts:14",
+    "pc": [
+      786,
+      787
+    ]
+  },
+  {
+    "teal": 555,
+    "source": "lib_pcg/pcg128.algo.ts:14",
+    "pc": [
+      788
+    ]
+  },
+  {
+    "teal": 556,
+    "source": "lib_pcg/pcg128.algo.ts:14",
+    "pc": [
+      789
+    ]
+  },
+  {
+    "teal": 557,
+    "source": "lib_pcg/pcg128.algo.ts:14",
+    "pc": [
+      790,
+      791,
+      792
+    ]
+  },
+  {
+    "teal": 558,
+    "source": "lib_pcg/pcg128.algo.ts:14",
+    "pc": [
+      793
+    ]
+  },
+  {
+    "teal": 559,
+    "source": "lib_pcg/pcg128.algo.ts:14",
+    "pc": [
+      794,
+      795,
+      796
+    ]
+  },
+  {
+    "teal": 562,
+    "source": "lib_pcg/pcg128.algo.ts:14",
+    "pc": [
+      797
+    ]
+  },
+  {
+    "teal": 565,
+    "source": "lib_pcg/pcg128.algo.ts:14",
+    "pc": [
+      798
+    ]
+  },
+  {
+    "teal": 569,
+    "source": "lib_pcg/pcg128.algo.ts:14",
+    "pc": [
+      799,
+      800
+    ]
+  },
+  {
+    "teal": 570,
+    "source": "lib_pcg/pcg128.algo.ts:14",
+    "pc": [
+      801,
+      802,
+      803
+    ]
+  },
+  {
+    "teal": 571,
+    "source": "lib_pcg/pcg128.algo.ts:14",
+    "pc": [
+      804
+    ]
+  },
+  {
+    "teal": 572,
+    "source": "lib_pcg/pcg128.algo.ts:14",
+    "pc": [
+      805,
+      806,
+      807
+    ]
+  },
+  {
+    "teal": 573,
+    "source": "lib_pcg/pcg128.algo.ts:14",
+    "pc": [
+      808,
+      809
+    ]
+  },
+  {
+    "teal": 579,
+    "source": "lib_pcg/consts.algo.ts:7",
+    "pc": [
+      810,
+      811
+    ]
+  },
+  {
+    "teal": 583,
+    "source": "lib_pcg/pcg128.algo.ts:15",
+    "pc": [
+      812,
+      813
+    ]
+  },
+  {
+    "teal": 584,
+    "source": "lib_pcg/pcg128.algo.ts:15",
+    "pc": [
+      814
+    ]
+  },
+  {
+    "teal": 585,
+    "source": "lib_pcg/pcg128.algo.ts:15",
+    "pc": [
+      815
+    ]
+  },
+  {
+    "teal": 586,
+    "source": "lib_pcg/pcg128.algo.ts:15",
+    "pc": [
+      816,
+      817,
+      818
+    ]
+  },
+  {
+    "teal": 587,
+    "source": "lib_pcg/pcg128.algo.ts:15",
+    "pc": [
+      819
+    ]
+  },
+  {
+    "teal": 588,
+    "source": "lib_pcg/pcg128.algo.ts:15",
+    "pc": [
+      820,
+      821,
+      822
+    ]
+  },
+  {
+    "teal": 591,
+    "source": "lib_pcg/pcg128.algo.ts:15",
+    "pc": [
+      823
+    ]
+  },
+  {
+    "teal": 594,
+    "source": "lib_pcg/pcg128.algo.ts:15",
+    "pc": [
+      824
+    ]
+  },
+  {
+    "teal": 598,
+    "source": "lib_pcg/pcg128.algo.ts:15",
+    "pc": [
+      825,
+      826
+    ]
+  },
+  {
+    "teal": 599,
+    "source": "lib_pcg/pcg128.algo.ts:15",
+    "pc": [
+      827,
+      828,
+      829
+    ]
+  },
+  {
+    "teal": 600,
+    "source": "lib_pcg/pcg128.algo.ts:15",
+    "pc": [
+      830
+    ]
+  },
+  {
+    "teal": 601,
+    "source": "lib_pcg/pcg128.algo.ts:15",
+    "pc": [
+      831,
+      832,
+      833
+    ]
+  },
+  {
+    "teal": 602,
+    "source": "lib_pcg/pcg128.algo.ts:15",
+    "pc": [
+      834,
+      835
+    ]
+  },
+  {
+    "teal": 608,
+    "source": "lib_pcg/consts.algo.ts:9",
+    "pc": [
+      836,
+      837
+    ]
+  },
+  {
+    "teal": 612,
+    "source": "lib_pcg/pcg128.algo.ts:16",
+    "pc": [
+      838,
+      839
+    ]
+  },
+  {
+    "teal": 613,
+    "source": "lib_pcg/pcg128.algo.ts:16",
+    "pc": [
+      840
+    ]
+  },
+  {
+    "teal": 614,
+    "source": "lib_pcg/pcg128.algo.ts:16",
+    "pc": [
+      841
+    ]
+  },
+  {
+    "teal": 615,
+    "source": "lib_pcg/pcg128.algo.ts:16",
+    "pc": [
+      842,
+      843,
+      844
+    ]
+  },
+  {
+    "teal": 616,
+    "source": "lib_pcg/pcg128.algo.ts:16",
+    "pc": [
+      845
+    ]
+  },
+  {
+    "teal": 617,
+    "source": "lib_pcg/pcg128.algo.ts:16",
+    "pc": [
+      846,
+      847,
+      848
+    ]
+  },
+  {
+    "teal": 620,
+    "source": "lib_pcg/pcg128.algo.ts:16",
+    "pc": [
+      849
+    ]
+  },
+  {
+    "teal": 623,
+    "source": "lib_pcg/pcg128.algo.ts:16",
+    "pc": [
+      850
+    ]
+  },
+  {
+    "teal": 627,
+    "source": "lib_pcg/pcg128.algo.ts:16",
+    "pc": [
+      851,
+      852
+    ]
+  },
+  {
+    "teal": 628,
+    "source": "lib_pcg/pcg128.algo.ts:16",
+    "pc": [
+      853,
+      854,
+      855
+    ]
+  },
+  {
+    "teal": 629,
+    "source": "lib_pcg/pcg128.algo.ts:16",
+    "pc": [
+      856
+    ]
+  },
+  {
+    "teal": 630,
+    "source": "lib_pcg/pcg128.algo.ts:16",
+    "pc": [
+      857,
+      858,
+      859
+    ]
+  },
+  {
+    "teal": 631,
+    "source": "lib_pcg/pcg128.algo.ts:16",
+    "pc": [
+      860,
+      861
+    ]
+  },
+  {
+    "teal": 641,
+    "source": "lib_pcg/pcg128.algo.ts:19",
+    "pc": [
+      862,
+      863
+    ]
+  },
+  {
+    "teal": 642,
+    "source": "lib_pcg/pcg128.algo.ts:19",
+    "pc": [
+      864
+    ]
+  },
+  {
+    "teal": 643,
+    "source": "lib_pcg/pcg128.algo.ts:19",
+    "pc": [
+      865,
+      866
+    ]
+  },
+  {
+    "teal": 644,
+    "source": "lib_pcg/pcg128.algo.ts:19",
+    "pc": [
+      867
+    ]
+  },
+  {
+    "teal": 645,
+    "source": "lib_pcg/pcg128.algo.ts:19",
+    "pc": [
+      868
+    ]
+  },
+  {
+    "teal": 646,
+    "source": "lib_pcg/pcg128.algo.ts:19",
+    "pc": [
+      869,
+      870
+    ]
+  },
+  {
+    "teal": 647,
+    "source": "lib_pcg/pcg128.algo.ts:19",
+    "pc": [
+      871
+    ]
+  },
+  {
+    "teal": 648,
+    "source": "lib_pcg/pcg128.algo.ts:19",
+    "pc": [
+      872
+    ]
+  },
+  {
+    "teal": 649,
+    "source": "lib_pcg/pcg128.algo.ts:19",
+    "pc": [
+      873,
+      874
+    ]
+  },
+  {
+    "teal": 650,
+    "source": "lib_pcg/pcg128.algo.ts:19",
+    "pc": [
+      875
+    ]
+  },
+  {
+    "teal": 651,
+    "source": "lib_pcg/pcg128.algo.ts:19",
+    "pc": [
+      876
+    ]
+  },
+  {
+    "teal": 652,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      877,
+      878
+    ]
+  },
+  {
+    "teal": 653,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      879,
+      880,
+      881
+    ]
+  },
+  {
+    "teal": 654,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      882
+    ]
+  },
+  {
+    "teal": 655,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      883,
+      884,
+      885
+    ]
+  },
+  {
+    "teal": 656,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      886
+    ]
+  },
+  {
+    "teal": 657,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      887,
+      888,
+      889,
+      890,
+      891,
+      892,
+      893,
+      894,
+      895,
+      896,
+      897,
+      898,
+      899,
+      900,
+      901,
+      902,
+      903,
+      904
+    ]
+  },
+  {
+    "teal": 658,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      905
+    ]
+  },
+  {
+    "teal": 659,
+    "source": "lib_pcg/pcg128.algo.ts:21",
+    "pc": [
+      906,
+      907
+    ]
+  },
+  {
+    "teal": 660,
+    "source": "lib_pcg/pcg128.algo.ts:21",
+    "pc": [
+      908,
+      909,
+      910
+    ]
+  },
+  {
+    "teal": 661,
+    "source": "lib_pcg/pcg128.algo.ts:21",
+    "pc": [
+      911
+    ]
+  },
+  {
+    "teal": 662,
+    "source": "lib_pcg/pcg128.algo.ts:21",
+    "pc": [
+      912,
+      913,
+      914
+    ]
+  },
+  {
+    "teal": 663,
+    "source": "lib_pcg/pcg128.algo.ts:21",
+    "pc": [
+      915
+    ]
+  },
+  {
+    "teal": 664,
+    "source": "lib_pcg/pcg128.algo.ts:21",
+    "pc": [
+      916,
+      917,
+      918,
+      919,
+      920,
+      921,
+      922,
+      923,
+      924,
+      925,
+      926,
+      927,
+      928,
+      929,
+      930,
+      931,
+      932,
+      933
+    ]
+  },
+  {
+    "teal": 665,
+    "source": "lib_pcg/pcg128.algo.ts:21",
+    "pc": [
+      934
+    ]
+  },
+  {
+    "teal": 666,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      935
+    ]
+  },
+  {
+    "teal": 667,
+    "source": "lib_pcg/pcg128.algo.ts:22",
+    "pc": [
+      936,
+      937
+    ]
+  },
+  {
+    "teal": 668,
+    "source": "lib_pcg/pcg128.algo.ts:22",
+    "pc": [
+      938,
+      939,
+      940
+    ]
+  },
+  {
+    "teal": 669,
+    "source": "lib_pcg/pcg128.algo.ts:22",
+    "pc": [
+      941
+    ]
+  },
+  {
+    "teal": 670,
+    "source": "lib_pcg/pcg128.algo.ts:22",
+    "pc": [
+      942,
+      943,
+      944
+    ]
+  },
+  {
+    "teal": 671,
+    "source": "lib_pcg/pcg128.algo.ts:22",
+    "pc": [
+      945
+    ]
+  },
+  {
+    "teal": 672,
+    "source": "lib_pcg/pcg128.algo.ts:22",
+    "pc": [
+      946,
+      947,
+      948,
+      949,
+      950,
+      951,
+      952,
+      953,
+      954,
+      955,
+      956,
+      957,
+      958,
+      959,
+      960,
+      961,
+      962,
+      963
+    ]
+  },
+  {
+    "teal": 673,
+    "source": "lib_pcg/pcg128.algo.ts:22",
+    "pc": [
+      964
+    ]
+  },
+  {
+    "teal": 674,
+    "source": "lib_pcg/pcg128.algo.ts:21",
+    "pc": [
+      965
+    ]
+  },
+  {
+    "teal": 675,
+    "source": "lib_pcg/pcg128.algo.ts:23",
+    "pc": [
+      966,
+      967
+    ]
+  },
+  {
+    "teal": 676,
+    "source": "lib_pcg/pcg128.algo.ts:23",
+    "pc": [
+      968,
+      969,
+      970
+    ]
+  },
+  {
+    "teal": 677,
+    "source": "lib_pcg/pcg128.algo.ts:23",
+    "pc": [
+      971
+    ]
+  },
+  {
+    "teal": 678,
+    "source": "lib_pcg/pcg128.algo.ts:23",
+    "pc": [
+      972,
+      973,
+      974
+    ]
+  },
+  {
+    "teal": 679,
+    "source": "lib_pcg/pcg128.algo.ts:23",
+    "pc": [
+      975
+    ]
+  },
+  {
+    "teal": 680,
+    "source": "lib_pcg/pcg128.algo.ts:22",
+    "pc": [
+      976
+    ]
+  },
+  {
+    "teal": 681,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      977
+    ]
+  },
+  {
+    "teal": 682,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      978
+    ]
+  },
+  {
+    "teal": 683,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      979,
+      980
+    ]
+  },
+  {
+    "teal": 684,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      981
+    ]
+  },
+  {
+    "teal": 687,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "errorMessage": "((__pcg32Output(state[0]) as uint128) * Uint<128>('79228162514264337593543950336')) |\\n      ((__pcg32Output(state[1]) as uint128) * Uint<128>('18446744073709551616')) |\\n      ((__pcg32Output(state[2]) as uint128) * Uint<128>('4294967296')) |\\n      (__pcg32Output(state[3]) as uint128) overflowed 128 bits",
+    "pc": [
+      982
+    ]
+  },
+  {
+    "teal": 688,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      983,
+      984
+    ]
+  },
+  {
+    "teal": 689,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      985
+    ]
+  },
+  {
+    "teal": 690,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      986
+    ]
+  },
+  {
+    "teal": 691,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      987
+    ]
+  },
+  {
+    "teal": 692,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      988
+    ]
+  },
+  {
+    "teal": 693,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      989
+    ]
+  },
+  {
+    "teal": 694,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      990
+    ]
+  },
+  {
+    "teal": 695,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      991
+    ]
+  },
+  {
+    "teal": 696,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      992
+    ]
+  },
+  {
+    "teal": 697,
+    "source": "lib_pcg/pcg128.algo.ts:20",
+    "pc": [
+      993
+    ]
+  },
+  {
+    "teal": 700,
+    "source": "lib_pcg/pcg128.algo.ts:12",
+    "pc": [
+      994,
+      995
+    ]
+  },
+  {
+    "teal": 703,
+    "source": "lib_pcg/pcg128.algo.ts:12",
+    "pc": [
+      996,
+      997
+    ]
+  },
+  {
+    "teal": 704,
+    "source": "lib_pcg/pcg128.algo.ts:12",
+    "pc": [
+      998
+    ]
+  },
+  {
+    "teal": 708,
+    "source": "lib_pcg/pcg32.algo.ts:22",
+    "pc": [
+      999,
+      1000,
+      1001
+    ]
+  },
+  {
+    "teal": 711,
+    "source": "lib_pcg/pcg32.algo.ts:22",
+    "pc": [
+      1002
+    ]
+  },
+  {
+    "teal": 712,
+    "source": "lib_pcg/pcg32.algo.ts:22",
+    "pc": [
+      1003
+    ]
+  },
+  {
+    "teal": 716,
+    "source": "lib_pcg/pcg32.algo.ts:23",
+    "pc": [
+      1004,
+      1005
+    ]
+  },
+  {
+    "teal": 717,
+    "source": "lib_pcg/pcg32.algo.ts:23",
+    "pc": [
+      1006,
+      1007
+    ]
+  },
+  {
+    "teal": 718,
+    "source": "lib_pcg/pcg32.algo.ts:23",
+    "pc": [
+      1008
+    ]
+  },
+  {
+    "teal": 719,
+    "source": "lib_pcg/pcg32.algo.ts:23",
+    "pc": [
+      1009,
+      1010
+    ]
+  },
+  {
+    "teal": 720,
+    "source": "lib_pcg/pcg32.algo.ts:23",
+    "pc": [
+      1011
+    ]
+  },
+  {
+    "teal": 721,
+    "source": "lib_pcg/pcg32.algo.ts:23",
+    "pc": [
+      1012,
+      1013
+    ]
+  },
+  {
+    "teal": 722,
+    "source": "lib_pcg/pcg32.algo.ts:23",
+    "pc": [
+      1014
+    ]
+  },
+  {
+    "teal": 723,
+    "source": "lib_pcg/pcg32.algo.ts:23",
+    "pc": [
+      1015,
+      1016,
+      1017
+    ]
+  },
+  {
+    "teal": 724,
+    "source": "lib_pcg/pcg32.algo.ts:23",
+    "pc": [
+      1018,
+      1019
+    ]
+  },
+  {
+    "teal": 728,
+    "source": "lib_pcg/pcg32.algo.ts:24",
+    "pc": [
+      1020,
+      1021
+    ]
+  },
+  {
+    "teal": 729,
+    "source": "lib_pcg/pcg32.algo.ts:24",
+    "pc": [
+      1022,
+      1023
+    ]
+  },
+  {
+    "teal": 730,
+    "source": "lib_pcg/pcg32.algo.ts:24",
+    "pc": [
+      1024
+    ]
+  },
+  {
+    "teal": 731,
+    "source": "lib_pcg/pcg32.algo.ts:24",
+    "pc": [
+      1025,
+      1026
+    ]
+  },
+  {
+    "teal": 735,
+    "source": "lib_pcg/pcg32.algo.ts:25",
+    "pc": [
+      1027,
+      1028
+    ]
+  },
+  {
+    "teal": 736,
+    "source": "lib_pcg/pcg32.algo.ts:25",
+    "pc": [
+      1029,
+      1030
+    ]
+  },
+  {
+    "teal": 737,
+    "source": "lib_pcg/pcg32.algo.ts:25",
+    "pc": [
+      1031
+    ]
+  },
+  {
+    "teal": 738,
+    "source": "lib_pcg/pcg32.algo.ts:25",
+    "pc": [
+      1032,
+      1033
+    ]
+  },
+  {
+    "teal": 739,
+    "source": "lib_pcg/pcg32.algo.ts:25",
+    "pc": [
+      1034,
+      1035
+    ]
+  },
+  {
+    "teal": 740,
+    "source": "lib_pcg/pcg32.algo.ts:25",
+    "pc": [
+      1036,
+      1037,
+      1038
+    ]
+  },
+  {
+    "teal": 741,
+    "source": "lib_pcg/pcg32.algo.ts:25",
+    "pc": [
+      1039,
+      1040
+    ]
+  },
+  {
+    "teal": 742,
+    "source": "lib_pcg/pcg32.algo.ts:25",
+    "pc": [
+      1041
+    ]
+  },
+  {
+    "teal": 743,
+    "source": "lib_pcg/pcg32.algo.ts:25",
+    "pc": [
+      1042
+    ]
+  },
+  {
+    "teal": 744,
+    "source": "lib_pcg/pcg32.algo.ts:25",
+    "pc": [
+      1043,
+      1044,
+      1045
+    ]
+  },
+  {
+    "teal": 745,
+    "source": "lib_pcg/pcg32.algo.ts:25",
+    "pc": [
+      1046
+    ]
+  },
+  {
+    "teal": 748,
+    "source": "lib_pcg/pcg32.algo.ts:22",
+    "pc": [
+      1047,
+      1048
+    ]
+  },
+  {
+    "teal": 751,
+    "source": "lib_pcg/pcg32.algo.ts:22",
+    "pc": [
+      1049,
+      1050
+    ]
+  },
+  {
+    "teal": 752,
+    "source": "lib_pcg/pcg32.algo.ts:22",
+    "pc": [
+      1051
+    ]
+  },
+  {
+    "teal": 756,
+    "source": "lib_pcg/pcg32.algo.ts:5",
+    "pc": [
+      1052,
+      1053,
+      1054
+    ]
+  },
+  {
+    "teal": 759,
+    "source": "lib_pcg/pcg32.algo.ts:5",
+    "pc": [
+      1055
+    ]
+  },
+  {
+    "teal": 760,
+    "source": "lib_pcg/pcg32.algo.ts:5",
+    "pc": [
+      1056
+    ]
+  },
+  {
+    "teal": 764,
+    "source": "lib_pcg/pcg32.algo.ts:6",
+    "pc": [
+      1057,
+      1058
+    ]
+  },
+  {
+    "teal": 765,
+    "source": "lib_pcg/pcg32.algo.ts:6",
+    "pc": [
+      1059
+    ]
+  },
+  {
+    "teal": 766,
+    "source": "lib_pcg/pcg32.algo.ts:6",
+    "pc": [
+      1060
+    ]
+  },
+  {
+    "teal": 767,
+    "source": "lib_pcg/pcg32.algo.ts:6",
+    "pc": [
+      1061
+    ]
+  },
+  {
+    "teal": 768,
+    "source": "lib_pcg/pcg32.algo.ts:6",
+    "pc": [
+      1062,
+      1063
+    ]
+  },
+  {
+    "teal": 769,
+    "source": "lib_pcg/pcg32.algo.ts:6",
+    "pc": [
+      1064,
+      1065
+    ]
+  },
+  {
+    "teal": 773,
+    "source": "lib_pcg/pcg32.algo.ts:7",
+    "pc": [
+      1066,
+      1067
+    ]
+  },
+  {
+    "teal": 776,
+    "source": "lib_pcg/pcg32.algo.ts:5",
+    "pc": [
+      1068,
+      1069
+    ]
+  },
+  {
+    "teal": 779,
+    "source": "lib_pcg/pcg32.algo.ts:5",
+    "pc": [
+      1070,
+      1071
+    ]
+  },
+  {
+    "teal": 780,
+    "source": "lib_pcg/pcg32.algo.ts:5",
+    "pc": [
+      1072
+    ]
+  },
+  {
+    "teal": 784,
+    "source": "lib_pcg/pcg32.algo.ts:10",
+    "pc": [
+      1073,
+      1074,
+      1075
+    ]
+  },
+  {
+    "teal": 788,
+    "source": "lib_pcg/pcg32.algo.ts:12",
+    "pc": [
+      1076,
+      1077
+    ]
+  },
+  {
+    "teal": 789,
+    "source": "lib_pcg/pcg32.algo.ts:12",
+    "pc": [
+      1078,
+      1079,
+      1080,
+      1081,
+      1082,
+      1083
+    ]
+  },
+  {
+    "teal": 790,
+    "source": "lib_pcg/pcg32.algo.ts:12",
+    "pc": [
+      1084
+    ]
+  },
+  {
+    "teal": 791,
+    "source": "lib_pcg/pcg32.algo.ts:10",
+    "pc": [
+      1085
+    ]
+  },
+  {
+    "teal": 795,
+    "source": "lib_pcg/pcg32.algo.ts:15",
+    "pc": [
+      1086,
+      1087,
+      1088
+    ]
+  },
+  {
+    "teal": 798,
+    "source": "lib_pcg/pcg32.algo.ts:15",
+    "pc": [
+      1089
+    ]
+  },
+  {
+    "teal": 799,
+    "source": "lib_pcg/pcg32.algo.ts:15",
+    "pc": [
+      1090,
+      1091
+    ]
+  },
+  {
+    "teal": 803,
+    "source": "lib_pcg/pcg32.algo.ts:16",
+    "pc": [
+      1092,
+      1093
+    ]
+  },
+  {
+    "teal": 807,
+    "source": "lib_pcg/consts.algo.ts:1",
+    "pc": [
+      1094,
+      1095,
+      1096,
+      1097,
+      1098,
+      1099,
+      1100,
+      1101,
+      1102,
+      1103
+    ]
+  },
+  {
+    "teal": 808,
+    "source": "lib_pcg/pcg32.algo.ts:16",
+    "pc": [
+      1104
+    ]
+  },
+  {
+    "teal": 809,
+    "source": "lib_pcg/pcg32.algo.ts:16",
+    "pc": [
+      1105,
+      1106
+    ]
+  },
+  {
+    "teal": 810,
+    "source": "lib_pcg/pcg32.algo.ts:16",
+    "pc": [
+      1107,
+      1108
+    ]
+  },
+  {
+    "teal": 814,
+    "source": "lib_pcg/pcg32.algo.ts:17",
+    "pc": [
+      1109,
+      1110
+    ]
+  },
+  {
+    "teal": 815,
+    "source": "lib_pcg/pcg32.algo.ts:17",
+    "pc": [
+      1111,
+      1112
+    ]
+  },
+  {
+    "teal": 816,
+    "source": "lib_pcg/pcg32.algo.ts:17",
+    "pc": [
+      1113
+    ]
+  },
+  {
+    "teal": 817,
+    "source": "lib_pcg/pcg32.algo.ts:17",
+    "pc": [
+      1114,
+      1115
+    ]
+  },
+  {
+    "teal": 818,
+    "source": "lib_pcg/pcg32.algo.ts:17",
+    "pc": [
+      1116,
+      1117
+    ]
+  },
+  {
+    "teal": 822,
+    "source": "lib_pcg/pcg32.algo.ts:19",
+    "pc": [
+      1118,
+      1119
+    ]
+  },
+  {
+    "teal": 825,
+    "source": "lib_pcg/pcg32.algo.ts:15",
+    "pc": [
+      1120,
+      1121
+    ]
+  },
+  {
+    "teal": 828,
+    "source": "lib_pcg/pcg32.algo.ts:15",
+    "pc": [
+      1122,
+      1123
+    ]
+  },
+  {
+    "teal": 829,
+    "source": "lib_pcg/pcg32.algo.ts:15",
+    "pc": [
+      1124
+    ]
+  },
+  {
+    "teal": 833,
+    "source": "lib_pcg/pcg128.algo.ts:27",
+    "pc": [
+      1125,
+      1126,
+      1127
+    ]
+  },
+  {
+    "teal": 837,
+    "source": "lib_pcg/pcg128.algo.ts:28",
+    "pc": [
+      1128
+    ]
+  },
+  {
+    "teal": 838,
+    "source": "lib_pcg/pcg128.algo.ts:28",
+    "pc": [
+      1129
+    ]
+  },
+  {
+    "teal": 839,
+    "source": "lib_pcg/pcg128.algo.ts:28",
+    "pc": [
+      1130
+    ]
+  },
+  {
+    "teal": 840,
+    "source": "lib_pcg/pcg128.algo.ts:28",
+    "pc": [
+      1131
+    ]
+  },
+  {
+    "teal": 851,
+    "source": "lib_pcg/consts.algo.ts:3",
+    "pc": [
+      1132,
+      1133
+    ]
+  },
+  {
+    "teal": 855,
+    "source": "lib_pcg/pcg128.algo.ts:31",
+    "pc": [
+      1134,
+      1135
+    ]
+  },
+  {
+    "teal": 856,
+    "source": "lib_pcg/pcg128.algo.ts:31",
+    "pc": [
+      1136
+    ]
+  },
+  {
+    "teal": 857,
+    "source": "lib_pcg/pcg128.algo.ts:31",
+    "pc": [
+      1137
+    ]
+  },
+  {
+    "teal": 858,
+    "source": "lib_pcg/pcg128.algo.ts:31",
+    "pc": [
+      1138,
+      1139,
+      1140
+    ]
+  },
+  {
+    "teal": 859,
+    "source": "lib_pcg/pcg128.algo.ts:31",
+    "pc": [
+      1141
+    ]
+  },
+  {
+    "teal": 865,
+    "source": "lib_pcg/consts.algo.ts:5",
+    "pc": [
+      1142,
+      1143
+    ]
+  },
+  {
+    "teal": 869,
+    "source": "lib_pcg/pcg128.algo.ts:32",
+    "pc": [
+      1144,
+      1145
+    ]
+  },
+  {
+    "teal": 870,
+    "source": "lib_pcg/pcg128.algo.ts:32",
+    "pc": [
+      1146,
+      1147
+    ]
+  },
+  {
+    "teal": 871,
+    "source": "lib_pcg/pcg128.algo.ts:32",
+    "pc": [
+      1148
+    ]
+  },
+  {
+    "teal": 872,
+    "source": "lib_pcg/pcg128.algo.ts:32",
+    "pc": [
+      1149,
+      1150,
+      1151
+    ]
+  },
+  {
+    "teal": 873,
+    "source": "lib_pcg/pcg128.algo.ts:32",
+    "pc": [
+      1152
+    ]
+  },
+  {
+    "teal": 874,
+    "source": "lib_pcg/pcg128.algo.ts:32",
+    "pc": [
+      1153
+    ]
+  },
+  {
+    "teal": 880,
+    "source": "lib_pcg/consts.algo.ts:7",
+    "pc": [
+      1154,
+      1155
+    ]
+  },
+  {
+    "teal": 884,
+    "source": "lib_pcg/pcg128.algo.ts:33",
+    "pc": [
+      1156,
+      1157
+    ]
+  },
+  {
+    "teal": 885,
+    "source": "lib_pcg/pcg128.algo.ts:33",
+    "pc": [
+      1158
+    ]
+  },
+  {
+    "teal": 886,
+    "source": "lib_pcg/pcg128.algo.ts:33",
+    "pc": [
+      1159
+    ]
+  },
+  {
+    "teal": 887,
+    "source": "lib_pcg/pcg128.algo.ts:33",
+    "pc": [
+      1160,
+      1161,
+      1162
+    ]
+  },
+  {
+    "teal": 888,
+    "source": "lib_pcg/pcg128.algo.ts:33",
+    "pc": [
+      1163
+    ]
+  },
+  {
+    "teal": 889,
+    "source": "lib_pcg/pcg128.algo.ts:33",
+    "pc": [
+      1164
+    ]
+  },
+  {
+    "teal": 895,
+    "source": "lib_pcg/consts.algo.ts:9",
+    "pc": [
+      1165,
+      1166
+    ]
+  },
+  {
+    "teal": 899,
+    "source": "lib_pcg/pcg128.algo.ts:34",
+    "pc": [
+      1167,
+      1168
+    ]
+  },
+  {
+    "teal": 900,
+    "source": "lib_pcg/pcg128.algo.ts:34",
+    "pc": [
+      1169,
+      1170
+    ]
+  },
+  {
+    "teal": 901,
+    "source": "lib_pcg/pcg128.algo.ts:34",
+    "pc": [
+      1171
+    ]
+  },
+  {
+    "teal": 902,
+    "source": "lib_pcg/pcg128.algo.ts:34",
+    "pc": [
+      1172,
+      1173,
+      1174
+    ]
+  },
+  {
+    "teal": 903,
+    "source": "lib_pcg/pcg128.algo.ts:34",
+    "pc": [
+      1175
+    ]
+  },
+  {
+    "teal": 904,
+    "source": "lib_pcg/pcg128.algo.ts:34",
+    "pc": [
+      1176
+    ]
+  },
+  {
+    "teal": 905,
+    "source": "lib_pcg/pcg128.algo.ts:27",
+    "pc": [
+      1177
+    ]
+  },
+  {
+    "teal": 909,
+    "source": "lib_pcg/pcg32.algo.ts:89",
+    "pc": [
+      1178,
+      1179,
+      1180
+    ]
+  },
+  {
+    "teal": 912,
+    "source": "lib_pcg/pcg32.algo.ts:89",
+    "pc": [
+      1181
+    ]
+  },
+  {
+    "teal": 913,
+    "source": "lib_pcg/pcg32.algo.ts:89",
+    "pc": [
+      1182,
+      1183
+    ]
+  },
+  {
+    "teal": 917,
+    "source": "lib_pcg/pcg32.algo.ts:90",
+    "pc": [
+      1184,
+      1185
+    ]
+  },
+  {
+    "teal": 918,
+    "source": "lib_pcg/pcg32.algo.ts:90",
+    "pc": [
+      1186
+    ]
+  },
+  {
+    "teal": 919,
+    "source": "lib_pcg/pcg32.algo.ts:90",
+    "pc": [
+      1187,
+      1188,
+      1189
+    ]
+  },
+  {
+    "teal": 920,
+    "source": "lib_pcg/pcg32.algo.ts:90",
+    "pc": [
+      1190,
+      1191
+    ]
+  },
+  {
+    "teal": 924,
+    "source": "lib_pcg/pcg32.algo.ts:91",
+    "pc": [
+      1192,
+      1193
+    ]
+  },
+  {
+    "teal": 925,
+    "source": "lib_pcg/pcg32.algo.ts:91",
+    "pc": [
+      1194,
+      1195
+    ]
+  },
+  {
+    "teal": 926,
+    "source": "lib_pcg/pcg32.algo.ts:91",
+    "pc": [
+      1196
+    ]
+  },
+  {
+    "teal": 927,
+    "source": "lib_pcg/pcg32.algo.ts:91",
+    "pc": [
+      1197,
+      1198
+    ]
+  },
+  {
+    "teal": 928,
+    "source": "lib_pcg/pcg32.algo.ts:91",
+    "pc": [
+      1199,
+      1200
+    ]
+  },
+  {
+    "teal": 932,
+    "source": "lib_pcg/pcg32.algo.ts:93",
+    "pc": [
+      1201,
+      1202
+    ]
+  },
+  {
+    "teal": 933,
+    "source": "lib_pcg/pcg32.algo.ts:93",
+    "pc": [
+      1203,
+      1204
+    ]
+  },
+  {
+    "teal": 934,
+    "source": "lib_pcg/pcg32.algo.ts:93",
+    "pc": [
+      1205,
+      1206,
+      1207
+    ]
+  },
+  {
+    "teal": 937,
+    "source": "lib_pcg/pcg32.algo.ts:89",
+    "pc": [
+      1208,
+      1209
+    ]
+  },
+  {
+    "teal": 940,
+    "source": "lib_pcg/pcg32.algo.ts:89",
+    "pc": [
+      1210,
+      1211
+    ]
+  },
+  {
+    "teal": 941,
+    "source": "lib_pcg/pcg32.algo.ts:89",
+    "pc": [
+      1212
+    ]
+  },
+  {
+    "teal": 944,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1213,
+      1214,
+      1215
+    ]
+  },
+  {
+    "teal": 945,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1216,
+      1217
+    ]
+  },
+  {
+    "teal": 946,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1218,
+      1219
+    ]
+  },
+  {
+    "teal": 947,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1220
+    ]
+  },
+  {
+    "teal": 948,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1221,
+      1222
+    ]
+  },
+  {
+    "teal": 949,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1223,
+      1224
+    ]
+  },
+  {
+    "teal": 950,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1225
+    ]
+  },
+  {
+    "teal": 953,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1226,
+      1227,
+      1228
+    ]
+  },
+  {
+    "teal": 954,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1229,
+      1230
+    ]
+  },
+  {
+    "teal": 955,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1231,
+      1232
+    ]
+  },
+  {
+    "teal": 956,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1233
+    ]
+  },
+  {
+    "teal": 957,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1234,
+      1235
+    ]
+  },
+  {
+    "teal": 958,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1236,
+      1237
+    ]
+  },
+  {
+    "teal": 959,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1238
+    ]
+  },
+  {
+    "teal": 960,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1239
+    ]
+  },
+  {
+    "teal": 961,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1240,
+      1241
+    ]
+  },
+  {
+    "teal": 962,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1242
+    ]
+  },
+  {
+    "teal": 963,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1243
+    ]
+  },
+  {
+    "teal": 964,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1244
+    ]
+  },
+  {
+    "teal": 965,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1245,
+      1246,
+      1247
+    ]
+  },
+  {
+    "teal": 966,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1248,
+      1249
+    ]
+  },
+  {
+    "teal": 967,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1250,
+      1251
+    ]
+  },
+  {
+    "teal": 968,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1252
+    ]
+  },
+  {
+    "teal": 969,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1253
+    ]
+  },
+  {
+    "teal": 970,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1254,
+      1255
+    ]
+  },
+  {
+    "teal": 971,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1256,
+      1257
+    ]
+  },
+  {
+    "teal": 972,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1258,
+      1259
+    ]
+  },
+  {
+    "teal": 973,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1260,
+      1261
+    ]
+  },
+  {
+    "teal": 974,
+    "source": "contracts/lib-pcg128-test-harness-ts.algo.ts:5",
+    "pc": [
+      1262
+    ]
+  }
+]

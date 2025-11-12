@@ -35,6 +35,9 @@ lint.unfixable = ["B", "RUF"]
 allow-star-arg-any = true
 suppress-none-returning = true
 
+[tool.ruff.lint.per-file-ignores]
+"smart_contracts/**" = ["RUF059"]
+
 [tool.mypy]
 files = ["lib_pcg/", "smart_contracts/"]
 python_version = "3.12"

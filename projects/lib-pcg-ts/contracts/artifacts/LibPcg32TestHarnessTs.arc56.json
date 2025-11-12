@@ -1,0 +1,6496 @@
+{
+  "name": "LibPcg32TestHarnessTs",
+  "desc": "",
+  "methods": [
+    {
+      "name": "get_pcg32_sequence_arc4_uint32_return",
+      "args": [
+        {
+          "name": "seed",
+          "type": "byte[8]"
+        },
+        {
+          "name": "lowerBound",
+          "type": "uint32"
+        },
+        {
+          "name": "upperBound",
+          "type": "uint32"
+        },
+        {
+          "name": "length",
+          "type": "uint16"
+        }
+      ],
+      "returns": {
+        "type": "uint32[]"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "get_pcg32_sequence_arc4_uint16_return",
+      "args": [
+        {
+          "name": "seed",
+          "type": "byte[8]"
+        },
+        {
+          "name": "lowerBound",
+          "type": "uint16"
+        },
+        {
+          "name": "upperBound",
+          "type": "uint16"
+        },
+        {
+          "name": "length",
+          "type": "uint16"
+        }
+      ],
+      "returns": {
+        "type": "uint16[]"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "get_pcg32_sequence_arc4_uint8_return",
+      "args": [
+        {
+          "name": "seed",
+          "type": "byte[8]"
+        },
+        {
+          "name": "lowerBound",
+          "type": "uint8"
+        },
+        {
+          "name": "upperBound",
+          "type": "uint8"
+        },
+        {
+          "name": "length",
+          "type": "uint16"
+        }
+      ],
+      "returns": {
+        "type": "uint8[]"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "runtime_asserts_pcg32_stack_array",
+      "args": [],
+      "returns": {
+        "type": "void"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "runtime_asserts_pcg16_stack_array",
+      "args": [],
+      "returns": {
+        "type": "void"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "runtime_asserts_pcg8_stack_array",
+      "args": [],
+      "returns": {
+        "type": "void"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "runtime_failure_stack_byteslice_overflow",
+      "args": [],
+      "returns": {
+        "type": "void"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
+      "name": "createApplication",
+      "args": [],
+      "returns": {
+        "type": "void"
+      },
+      "actions": {
+        "create": [
+          "NoOp"
+        ],
+        "call": []
+      }
+    }
+  ],
+  "arcs": [
+    4,
+    56
+  ],
+  "structs": {},
+  "state": {
+    "schema": {
+      "global": {
+        "bytes": 0,
+        "ints": 0
+      },
+      "local": {
+        "bytes": 0,
+        "ints": 0
+      }
+    },
+    "keys": {
+      "global": {},
+      "local": {},
+      "box": {}
+    },
+    "maps": {
+      "global": {},
+      "local": {},
+      "box": {}
+    }
+  },
+  "bareActions": {
+    "create": [],
+    "call": []
+  },
+  "sourceInfo": {
+    "approval": {
+      "sourceInfo": [
+        {
+          "teal": 1,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            0
+          ]
+        },
+        {
+          "teal": 2,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ]
+        },
+        {
+          "teal": 3,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        },
+        {
+          "teal": 15,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            39,
+            40
+          ]
+        },
+        {
+          "teal": 16,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            41
+          ]
+        },
+        {
+          "teal": 17,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            42,
+            43
+          ]
+        },
+        {
+          "teal": 18,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            44
+          ]
+        },
+        {
+          "teal": 19,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            45,
+            46
+          ]
+        },
+        {
+          "teal": 20,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            47
+          ]
+        },
+        {
+          "teal": 21,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73
+          ]
+        },
+        {
+          "teal": 25,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "errorMessage": "The requested action is not implemented in this contract. Are you using the correct OnComplete? Did you set your app ID?",
+          "pc": [
+            74
+          ]
+        },
+        {
+          "teal": 30,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            75
+          ]
+        },
+        {
+          "teal": 33,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:10",
+          "pc": [
+            76,
+            77,
+            78
+          ]
+        },
+        {
+          "teal": 34,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:10",
+          "pc": [
+            79
+          ]
+        },
+        {
+          "teal": 35,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:10",
+          "pc": [
+            80
+          ]
+        },
+        {
+          "teal": 36,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:10",
+          "pc": [
+            81
+          ]
+        },
+        {
+          "teal": 37,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:10",
+          "pc": [
+            82
+          ]
+        },
+        {
+          "teal": 40,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:10",
+          "errorMessage": "argument 0 (length) for get_pcg32_sequence_arc4_uint32_return must be a uint16",
+          "pc": [
+            83
+          ]
+        },
+        {
+          "teal": 41,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:10",
+          "pc": [
+            84
+          ]
+        },
+        {
+          "teal": 44,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:9",
+          "pc": [
+            85,
+            86,
+            87
+          ]
+        },
+        {
+          "teal": 45,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:9",
+          "pc": [
+            88
+          ]
+        },
+        {
+          "teal": 46,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:9",
+          "pc": [
+            89
+          ]
+        },
+        {
+          "teal": 47,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:9",
+          "pc": [
+            90,
+            91
+          ]
+        },
+        {
+          "teal": 48,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:9",
+          "pc": [
+            92
+          ]
+        },
+        {
+          "teal": 51,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:9",
+          "errorMessage": "argument 1 (upperBound) for get_pcg32_sequence_arc4_uint32_return must be a uint32",
+          "pc": [
+            93
+          ]
+        },
+        {
+          "teal": 52,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:9",
+          "pc": [
+            94
+          ]
+        },
+        {
+          "teal": 55,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:8",
+          "pc": [
+            95,
+            96,
+            97
+          ]
+        },
+        {
+          "teal": 56,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:8",
+          "pc": [
+            98
+          ]
+        },
+        {
+          "teal": 57,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:8",
+          "pc": [
+            99
+          ]
+        },
+        {
+          "teal": 58,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:8",
+          "pc": [
+            100,
+            101
+          ]
+        },
+        {
+          "teal": 59,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:8",
+          "pc": [
+            102
+          ]
+        },
+        {
+          "teal": 62,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:8",
+          "errorMessage": "argument 2 (lowerBound) for get_pcg32_sequence_arc4_uint32_return must be a uint32",
+          "pc": [
+            103
+          ]
+        },
+        {
+          "teal": 63,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:8",
+          "pc": [
+            104
+          ]
+        },
+        {
+          "teal": 66,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:7",
+          "pc": [
+            105,
+            106,
+            107
+          ]
+        },
+        {
+          "teal": 67,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:7",
+          "pc": [
+            108
+          ]
+        },
+        {
+          "teal": 68,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:7",
+          "pc": [
+            109
+          ]
+        },
+        {
+          "teal": 69,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:7",
+          "pc": [
+            110
+          ]
+        },
+        {
+          "teal": 70,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:7",
+          "pc": [
+            111
+          ]
+        },
+        {
+          "teal": 73,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:7",
+          "errorMessage": "argument 3 (seed) for get_pcg32_sequence_arc4_uint32_return must be a byte[8]",
+          "pc": [
+            112
+          ]
+        },
+        {
+          "teal": 76,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            113,
+            114,
+            115
+          ]
+        },
+        {
+          "teal": 77,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            116
+          ]
+        },
+        {
+          "teal": 78,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            117
+          ]
+        },
+        {
+          "teal": 79,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            118,
+            119
+          ]
+        },
+        {
+          "teal": 80,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            120
+          ]
+        },
+        {
+          "teal": 81,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            121
+          ]
+        },
+        {
+          "teal": 82,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            122,
+            123,
+            124
+          ]
+        },
+        {
+          "teal": 83,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            125
+          ]
+        },
+        {
+          "teal": 84,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            126
+          ]
+        },
+        {
+          "teal": 85,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            127
+          ]
+        },
+        {
+          "teal": 86,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            128
+          ]
+        },
+        {
+          "teal": 87,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            129
+          ]
+        },
+        {
+          "teal": 88,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            130
+          ]
+        },
+        {
+          "teal": 92,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            131,
+            132,
+            133
+          ]
+        },
+        {
+          "teal": 95,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            134
+          ]
+        },
+        {
+          "teal": 96,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            135
+          ]
+        },
+        {
+          "teal": 100,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:12",
+          "pc": [
+            136,
+            137
+          ]
+        },
+        {
+          "teal": 101,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:12",
+          "pc": [
+            138,
+            139,
+            140
+          ]
+        },
+        {
+          "teal": 102,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:12",
+          "pc": [
+            141,
+            142
+          ]
+        },
+        {
+          "teal": 106,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:14",
+          "pc": [
+            143,
+            144
+          ]
+        },
+        {
+          "teal": 107,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:14",
+          "pc": [
+            145,
+            146
+          ]
+        },
+        {
+          "teal": 108,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:14",
+          "pc": [
+            147,
+            148
+          ]
+        },
+        {
+          "teal": 109,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:14",
+          "pc": [
+            149,
+            150
+          ]
+        },
+        {
+          "teal": 110,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:14",
+          "pc": [
+            151,
+            152,
+            153
+          ]
+        },
+        {
+          "teal": 111,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:14",
+          "pc": [
+            154,
+            155
+          ]
+        },
+        {
+          "teal": 115,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:15",
+          "pc": [
+            156,
+            157
+          ]
+        },
+        {
+          "teal": 116,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:15",
+          "pc": [
+            158,
+            159
+          ]
+        },
+        {
+          "teal": 117,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:15",
+          "pc": [
+            160,
+            161
+          ]
+        },
+        {
+          "teal": 118,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:15",
+          "pc": [
+            162,
+            163,
+            164
+          ]
+        },
+        {
+          "teal": 119,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:15",
+          "pc": [
+            165
+          ]
+        },
+        {
+          "teal": 120,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:15",
+          "pc": [
+            166,
+            167
+          ]
+        },
+        {
+          "teal": 124,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:17",
+          "pc": [
+            168,
+            169
+          ]
+        },
+        {
+          "teal": 125,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:17",
+          "pc": [
+            170,
+            171
+          ]
+        },
+        {
+          "teal": 126,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:17",
+          "pc": [
+            172
+          ]
+        },
+        {
+          "teal": 127,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:17",
+          "pc": [
+            173,
+            174
+          ]
+        },
+        {
+          "teal": 128,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:17",
+          "pc": [
+            175,
+            176
+          ]
+        },
+        {
+          "teal": 129,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:17",
+          "pc": [
+            177,
+            178
+          ]
+        },
+        {
+          "teal": 130,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:17",
+          "pc": [
+            179
+          ]
+        },
+        {
+          "teal": 131,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:17",
+          "pc": [
+            180
+          ]
+        },
+        {
+          "teal": 132,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:17",
+          "pc": [
+            181,
+            182
+          ]
+        },
+        {
+          "teal": 133,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:17",
+          "pc": [
+            183
+          ]
+        },
+        {
+          "teal": 134,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:17",
+          "pc": [
+            184
+          ]
+        },
+        {
+          "teal": 135,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:17",
+          "pc": [
+            185,
+            186
+          ]
+        },
+        {
+          "teal": 136,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:17",
+          "pc": [
+            187
+          ]
+        },
+        {
+          "teal": 137,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:17",
+          "pc": [
+            188
+          ]
+        },
+        {
+          "teal": 138,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:17",
+          "pc": [
+            189
+          ]
+        },
+        {
+          "teal": 139,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:17",
+          "pc": [
+            190
+          ]
+        },
+        {
+          "teal": 140,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:17",
+          "pc": [
+            191,
+            192,
+            193
+          ]
+        },
+        {
+          "teal": 143,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            194,
+            195
+          ]
+        },
+        {
+          "teal": 146,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            196,
+            197
+          ]
+        },
+        {
+          "teal": 147,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:6",
+          "pc": [
+            198
+          ]
+        },
+        {
+          "teal": 152,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            199
+          ]
+        },
+        {
+          "teal": 155,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:24",
+          "pc": [
+            200,
+            201,
+            202
+          ]
+        },
+        {
+          "teal": 156,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:24",
+          "pc": [
+            203
+          ]
+        },
+        {
+          "teal": 157,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:24",
+          "pc": [
+            204
+          ]
+        },
+        {
+          "teal": 158,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:24",
+          "pc": [
+            205
+          ]
+        },
+        {
+          "teal": 159,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:24",
+          "pc": [
+            206
+          ]
+        },
+        {
+          "teal": 162,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:24",
+          "errorMessage": "argument 0 (length) for get_pcg32_sequence_arc4_uint16_return must be a uint16",
+          "pc": [
+            207
+          ]
+        },
+        {
+          "teal": 163,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:24",
+          "pc": [
+            208
+          ]
+        },
+        {
+          "teal": 166,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:23",
+          "pc": [
+            209,
+            210,
+            211
+          ]
+        },
+        {
+          "teal": 167,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:23",
+          "pc": [
+            212
+          ]
+        },
+        {
+          "teal": 168,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:23",
+          "pc": [
+            213
+          ]
+        },
+        {
+          "teal": 169,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:23",
+          "pc": [
+            214
+          ]
+        },
+        {
+          "teal": 170,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:23",
+          "pc": [
+            215
+          ]
+        },
+        {
+          "teal": 173,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:23",
+          "errorMessage": "argument 1 (upperBound) for get_pcg32_sequence_arc4_uint16_return must be a uint16",
+          "pc": [
+            216
+          ]
+        },
+        {
+          "teal": 174,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:23",
+          "pc": [
+            217
+          ]
+        },
+        {
+          "teal": 177,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:22",
+          "pc": [
+            218,
+            219,
+            220
+          ]
+        },
+        {
+          "teal": 178,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:22",
+          "pc": [
+            221
+          ]
+        },
+        {
+          "teal": 179,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:22",
+          "pc": [
+            222
+          ]
+        },
+        {
+          "teal": 180,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:22",
+          "pc": [
+            223
+          ]
+        },
+        {
+          "teal": 181,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:22",
+          "pc": [
+            224
+          ]
+        },
+        {
+          "teal": 184,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:22",
+          "errorMessage": "argument 2 (lowerBound) for get_pcg32_sequence_arc4_uint16_return must be a uint16",
+          "pc": [
+            225
+          ]
+        },
+        {
+          "teal": 185,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:22",
+          "pc": [
+            226
+          ]
+        },
+        {
+          "teal": 188,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:21",
+          "pc": [
+            227,
+            228,
+            229
+          ]
+        },
+        {
+          "teal": 189,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:21",
+          "pc": [
+            230
+          ]
+        },
+        {
+          "teal": 190,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:21",
+          "pc": [
+            231
+          ]
+        },
+        {
+          "teal": 191,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:21",
+          "pc": [
+            232
+          ]
+        },
+        {
+          "teal": 192,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:21",
+          "pc": [
+            233
+          ]
+        },
+        {
+          "teal": 195,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:21",
+          "errorMessage": "argument 3 (seed) for get_pcg32_sequence_arc4_uint16_return must be a byte[8]",
+          "pc": [
+            234
+          ]
+        },
+        {
+          "teal": 198,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            235,
+            236,
+            237
+          ]
+        },
+        {
+          "teal": 199,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            238
+          ]
+        },
+        {
+          "teal": 200,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            239
+          ]
+        },
+        {
+          "teal": 201,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            240
+          ]
+        },
+        {
+          "teal": 202,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            241
+          ]
+        },
+        {
+          "teal": 203,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            242
+          ]
+        },
+        {
+          "teal": 204,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            243,
+            244,
+            245
+          ]
+        },
+        {
+          "teal": 205,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            246
+          ]
+        },
+        {
+          "teal": 206,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            247
+          ]
+        },
+        {
+          "teal": 207,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            248
+          ]
+        },
+        {
+          "teal": 208,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            249
+          ]
+        },
+        {
+          "teal": 209,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            250
+          ]
+        },
+        {
+          "teal": 210,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            251
+          ]
+        },
+        {
+          "teal": 214,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            252,
+            253,
+            254
+          ]
+        },
+        {
+          "teal": 217,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            255
+          ]
+        },
+        {
+          "teal": 218,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            256
+          ]
+        },
+        {
+          "teal": 222,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:26",
+          "pc": [
+            257,
+            258
+          ]
+        },
+        {
+          "teal": 223,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:26",
+          "pc": [
+            259,
+            260,
+            261
+          ]
+        },
+        {
+          "teal": 224,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:26",
+          "pc": [
+            262,
+            263
+          ]
+        },
+        {
+          "teal": 228,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:28",
+          "pc": [
+            264,
+            265
+          ]
+        },
+        {
+          "teal": 229,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:28",
+          "pc": [
+            266,
+            267
+          ]
+        },
+        {
+          "teal": 230,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:28",
+          "pc": [
+            268,
+            269
+          ]
+        },
+        {
+          "teal": 231,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:28",
+          "pc": [
+            270,
+            271
+          ]
+        },
+        {
+          "teal": 232,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:28",
+          "pc": [
+            272,
+            273,
+            274
+          ]
+        },
+        {
+          "teal": 233,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:28",
+          "pc": [
+            275,
+            276
+          ]
+        },
+        {
+          "teal": 237,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:29",
+          "pc": [
+            277,
+            278
+          ]
+        },
+        {
+          "teal": 238,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:29",
+          "pc": [
+            279,
+            280
+          ]
+        },
+        {
+          "teal": 239,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:29",
+          "pc": [
+            281,
+            282
+          ]
+        },
+        {
+          "teal": 240,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:29",
+          "pc": [
+            283,
+            284,
+            285
+          ]
+        },
+        {
+          "teal": 241,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:29",
+          "pc": [
+            286
+          ]
+        },
+        {
+          "teal": 242,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:29",
+          "pc": [
+            287,
+            288
+          ]
+        },
+        {
+          "teal": 246,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:31",
+          "pc": [
+            289,
+            290
+          ]
+        },
+        {
+          "teal": 247,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:31",
+          "pc": [
+            291,
+            292
+          ]
+        },
+        {
+          "teal": 248,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:31",
+          "pc": [
+            293
+          ]
+        },
+        {
+          "teal": 249,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:31",
+          "pc": [
+            294,
+            295
+          ]
+        },
+        {
+          "teal": 250,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:31",
+          "pc": [
+            296,
+            297
+          ]
+        },
+        {
+          "teal": 251,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:31",
+          "pc": [
+            298,
+            299
+          ]
+        },
+        {
+          "teal": 252,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:31",
+          "pc": [
+            300
+          ]
+        },
+        {
+          "teal": 253,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:31",
+          "pc": [
+            301
+          ]
+        },
+        {
+          "teal": 254,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:31",
+          "pc": [
+            302,
+            303
+          ]
+        },
+        {
+          "teal": 255,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:31",
+          "pc": [
+            304
+          ]
+        },
+        {
+          "teal": 256,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:31",
+          "pc": [
+            305
+          ]
+        },
+        {
+          "teal": 257,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:31",
+          "pc": [
+            306
+          ]
+        },
+        {
+          "teal": 258,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:31",
+          "pc": [
+            307
+          ]
+        },
+        {
+          "teal": 259,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:31",
+          "pc": [
+            308
+          ]
+        },
+        {
+          "teal": 260,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:31",
+          "pc": [
+            309
+          ]
+        },
+        {
+          "teal": 261,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:31",
+          "pc": [
+            310
+          ]
+        },
+        {
+          "teal": 262,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:31",
+          "pc": [
+            311,
+            312,
+            313
+          ]
+        },
+        {
+          "teal": 265,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            314,
+            315
+          ]
+        },
+        {
+          "teal": 268,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            316,
+            317
+          ]
+        },
+        {
+          "teal": 269,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:20",
+          "pc": [
+            318
+          ]
+        },
+        {
+          "teal": 274,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            319
+          ]
+        },
+        {
+          "teal": 277,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            320,
+            321,
+            322
+          ]
+        },
+        {
+          "teal": 278,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            323
+          ]
+        },
+        {
+          "teal": 279,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            324
+          ]
+        },
+        {
+          "teal": 280,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            325
+          ]
+        },
+        {
+          "teal": 281,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            326
+          ]
+        },
+        {
+          "teal": 284,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "errorMessage": "argument 0 (length) for get_pcg32_sequence_arc4_uint8_return must be a uint16",
+          "pc": [
+            327
+          ]
+        },
+        {
+          "teal": 285,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            328
+          ]
+        },
+        {
+          "teal": 288,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            329,
+            330,
+            331
+          ]
+        },
+        {
+          "teal": 289,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            332
+          ]
+        },
+        {
+          "teal": 290,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            333
+          ]
+        },
+        {
+          "teal": 291,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            334
+          ]
+        },
+        {
+          "teal": 292,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            335
+          ]
+        },
+        {
+          "teal": 295,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "errorMessage": "argument 1 (upperBound) for get_pcg32_sequence_arc4_uint8_return must be a uint8",
+          "pc": [
+            336
+          ]
+        },
+        {
+          "teal": 296,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            337
+          ]
+        },
+        {
+          "teal": 299,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            338,
+            339,
+            340
+          ]
+        },
+        {
+          "teal": 300,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            341
+          ]
+        },
+        {
+          "teal": 301,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            342
+          ]
+        },
+        {
+          "teal": 302,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            343
+          ]
+        },
+        {
+          "teal": 303,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            344
+          ]
+        },
+        {
+          "teal": 306,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "errorMessage": "argument 2 (lowerBound) for get_pcg32_sequence_arc4_uint8_return must be a uint8",
+          "pc": [
+            345
+          ]
+        },
+        {
+          "teal": 307,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            346
+          ]
+        },
+        {
+          "teal": 310,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            347,
+            348,
+            349
+          ]
+        },
+        {
+          "teal": 311,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            350
+          ]
+        },
+        {
+          "teal": 312,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            351
+          ]
+        },
+        {
+          "teal": 313,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            352
+          ]
+        },
+        {
+          "teal": 314,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            353
+          ]
+        },
+        {
+          "teal": 317,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "errorMessage": "argument 3 (seed) for get_pcg32_sequence_arc4_uint8_return must be a byte[8]",
+          "pc": [
+            354
+          ]
+        },
+        {
+          "teal": 320,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            355,
+            356,
+            357
+          ]
+        },
+        {
+          "teal": 321,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            358
+          ]
+        },
+        {
+          "teal": 322,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            359
+          ]
+        },
+        {
+          "teal": 323,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            360
+          ]
+        },
+        {
+          "teal": 324,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            361,
+            362,
+            363
+          ]
+        },
+        {
+          "teal": 325,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            364
+          ]
+        },
+        {
+          "teal": 326,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            365
+          ]
+        },
+        {
+          "teal": 327,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            366
+          ]
+        },
+        {
+          "teal": 328,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            367
+          ]
+        },
+        {
+          "teal": 329,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            368
+          ]
+        },
+        {
+          "teal": 330,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            369
+          ]
+        },
+        {
+          "teal": 334,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            370,
+            371,
+            372
+          ]
+        },
+        {
+          "teal": 337,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            373
+          ]
+        },
+        {
+          "teal": 338,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            374
+          ]
+        },
+        {
+          "teal": 342,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:35",
+          "pc": [
+            375,
+            376
+          ]
+        },
+        {
+          "teal": 343,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:35",
+          "pc": [
+            377,
+            378,
+            379
+          ]
+        },
+        {
+          "teal": 344,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:35",
+          "pc": [
+            380,
+            381
+          ]
+        },
+        {
+          "teal": 348,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:37",
+          "pc": [
+            382,
+            383
+          ]
+        },
+        {
+          "teal": 349,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:37",
+          "pc": [
+            384,
+            385
+          ]
+        },
+        {
+          "teal": 350,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:37",
+          "pc": [
+            386,
+            387
+          ]
+        },
+        {
+          "teal": 351,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:37",
+          "pc": [
+            388,
+            389
+          ]
+        },
+        {
+          "teal": 352,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:37",
+          "pc": [
+            390,
+            391,
+            392
+          ]
+        },
+        {
+          "teal": 353,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:37",
+          "pc": [
+            393,
+            394
+          ]
+        },
+        {
+          "teal": 357,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:38",
+          "pc": [
+            395,
+            396
+          ]
+        },
+        {
+          "teal": 358,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:38",
+          "pc": [
+            397,
+            398
+          ]
+        },
+        {
+          "teal": 359,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:38",
+          "pc": [
+            399,
+            400
+          ]
+        },
+        {
+          "teal": 360,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:38",
+          "pc": [
+            401,
+            402,
+            403
+          ]
+        },
+        {
+          "teal": 361,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:38",
+          "pc": [
+            404
+          ]
+        },
+        {
+          "teal": 362,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:38",
+          "pc": [
+            405,
+            406
+          ]
+        },
+        {
+          "teal": 366,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:40",
+          "pc": [
+            407,
+            408
+          ]
+        },
+        {
+          "teal": 367,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:40",
+          "pc": [
+            409,
+            410
+          ]
+        },
+        {
+          "teal": 368,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:40",
+          "pc": [
+            411
+          ]
+        },
+        {
+          "teal": 369,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:40",
+          "pc": [
+            412,
+            413
+          ]
+        },
+        {
+          "teal": 370,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:40",
+          "pc": [
+            414,
+            415
+          ]
+        },
+        {
+          "teal": 371,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:40",
+          "pc": [
+            416,
+            417
+          ]
+        },
+        {
+          "teal": 372,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:40",
+          "pc": [
+            418
+          ]
+        },
+        {
+          "teal": 373,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:40",
+          "pc": [
+            419
+          ]
+        },
+        {
+          "teal": 374,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:40",
+          "pc": [
+            420,
+            421
+          ]
+        },
+        {
+          "teal": 375,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:40",
+          "pc": [
+            422
+          ]
+        },
+        {
+          "teal": 376,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:40",
+          "pc": [
+            423
+          ]
+        },
+        {
+          "teal": 377,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:40",
+          "pc": [
+            424
+          ]
+        },
+        {
+          "teal": 378,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:40",
+          "pc": [
+            425
+          ]
+        },
+        {
+          "teal": 379,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:40",
+          "pc": [
+            426
+          ]
+        },
+        {
+          "teal": 380,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:40",
+          "pc": [
+            427
+          ]
+        },
+        {
+          "teal": 381,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:40",
+          "pc": [
+            428
+          ]
+        },
+        {
+          "teal": 382,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:40",
+          "pc": [
+            429,
+            430,
+            431
+          ]
+        },
+        {
+          "teal": 385,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            432,
+            433
+          ]
+        },
+        {
+          "teal": 388,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            434,
+            435
+          ]
+        },
+        {
+          "teal": 389,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:34",
+          "pc": [
+            436
+          ]
+        },
+        {
+          "teal": 394,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:43",
+          "pc": [
+            437,
+            438,
+            439
+          ]
+        },
+        {
+          "teal": 395,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:43",
+          "pc": [
+            440
+          ]
+        },
+        {
+          "teal": 396,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:43",
+          "pc": [
+            441
+          ]
+        },
+        {
+          "teal": 400,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:43",
+          "pc": [
+            442,
+            443,
+            444
+          ]
+        },
+        {
+          "teal": 403,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:43",
+          "pc": [
+            445
+          ]
+        },
+        {
+          "teal": 404,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:43",
+          "pc": [
+            446
+          ]
+        },
+        {
+          "teal": 408,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:44",
+          "pc": [
+            447
+          ]
+        },
+        {
+          "teal": 409,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:44",
+          "pc": [
+            448,
+            449,
+            450
+          ]
+        },
+        {
+          "teal": 410,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:44",
+          "pc": [
+            451,
+            452
+          ]
+        },
+        {
+          "teal": 414,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:47",
+          "pc": [
+            453,
+            454,
+            455
+          ]
+        },
+        {
+          "teal": 415,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:47",
+          "pc": [
+            456
+          ]
+        },
+        {
+          "teal": 416,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:47",
+          "pc": [
+            457
+          ]
+        },
+        {
+          "teal": 417,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:47",
+          "pc": [
+            458,
+            459
+          ]
+        },
+        {
+          "teal": 418,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:47",
+          "pc": [
+            460,
+            461,
+            462
+          ]
+        },
+        {
+          "teal": 419,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:47",
+          "pc": [
+            463,
+            464
+          ]
+        },
+        {
+          "teal": 420,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:43",
+          "pc": [
+            465
+          ]
+        },
+        {
+          "teal": 425,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:50",
+          "pc": [
+            466,
+            467,
+            468
+          ]
+        },
+        {
+          "teal": 426,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:50",
+          "pc": [
+            469
+          ]
+        },
+        {
+          "teal": 427,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:50",
+          "pc": [
+            470
+          ]
+        },
+        {
+          "teal": 431,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:50",
+          "pc": [
+            471,
+            472,
+            473
+          ]
+        },
+        {
+          "teal": 434,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:50",
+          "pc": [
+            474
+          ]
+        },
+        {
+          "teal": 435,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:50",
+          "pc": [
+            475
+          ]
+        },
+        {
+          "teal": 439,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:51",
+          "pc": [
+            476
+          ]
+        },
+        {
+          "teal": 440,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:51",
+          "pc": [
+            477,
+            478,
+            479
+          ]
+        },
+        {
+          "teal": 441,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:51",
+          "pc": [
+            480,
+            481
+          ]
+        },
+        {
+          "teal": 445,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:54",
+          "pc": [
+            482,
+            483,
+            484
+          ]
+        },
+        {
+          "teal": 446,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:54",
+          "pc": [
+            485
+          ]
+        },
+        {
+          "teal": 447,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:54",
+          "pc": [
+            486
+          ]
+        },
+        {
+          "teal": 448,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:54",
+          "pc": [
+            487,
+            488
+          ]
+        },
+        {
+          "teal": 449,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:54",
+          "pc": [
+            489,
+            490,
+            491
+          ]
+        },
+        {
+          "teal": 450,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:54",
+          "pc": [
+            492,
+            493
+          ]
+        },
+        {
+          "teal": 451,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:50",
+          "pc": [
+            494
+          ]
+        },
+        {
+          "teal": 456,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:57",
+          "pc": [
+            495,
+            496,
+            497
+          ]
+        },
+        {
+          "teal": 457,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:57",
+          "pc": [
+            498
+          ]
+        },
+        {
+          "teal": 458,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:57",
+          "pc": [
+            499
+          ]
+        },
+        {
+          "teal": 462,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:57",
+          "pc": [
+            500,
+            501,
+            502
+          ]
+        },
+        {
+          "teal": 465,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:57",
+          "pc": [
+            503
+          ]
+        },
+        {
+          "teal": 466,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:57",
+          "pc": [
+            504
+          ]
+        },
+        {
+          "teal": 470,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:58",
+          "pc": [
+            505
+          ]
+        },
+        {
+          "teal": 471,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:58",
+          "pc": [
+            506,
+            507,
+            508
+          ]
+        },
+        {
+          "teal": 472,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:58",
+          "pc": [
+            509,
+            510
+          ]
+        },
+        {
+          "teal": 476,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:61",
+          "pc": [
+            511,
+            512,
+            513
+          ]
+        },
+        {
+          "teal": 477,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:61",
+          "pc": [
+            514
+          ]
+        },
+        {
+          "teal": 478,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:61",
+          "pc": [
+            515
+          ]
+        },
+        {
+          "teal": 479,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:61",
+          "pc": [
+            516,
+            517
+          ]
+        },
+        {
+          "teal": 480,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:61",
+          "pc": [
+            518,
+            519,
+            520
+          ]
+        },
+        {
+          "teal": 481,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:61",
+          "pc": [
+            521,
+            522
+          ]
+        },
+        {
+          "teal": 482,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:57",
+          "pc": [
+            523
+          ]
+        },
+        {
+          "teal": 487,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:64",
+          "pc": [
+            524,
+            525,
+            526
+          ]
+        },
+        {
+          "teal": 488,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:64",
+          "pc": [
+            527
+          ]
+        },
+        {
+          "teal": 489,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:64",
+          "pc": [
+            528
+          ]
+        },
+        {
+          "teal": 493,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:64",
+          "pc": [
+            529,
+            530,
+            531
+          ]
+        },
+        {
+          "teal": 496,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:64",
+          "pc": [
+            532
+          ]
+        },
+        {
+          "teal": 497,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:64",
+          "pc": [
+            533
+          ]
+        },
+        {
+          "teal": 501,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:65",
+          "pc": [
+            534
+          ]
+        },
+        {
+          "teal": 502,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:65",
+          "pc": [
+            535,
+            536,
+            537
+          ]
+        },
+        {
+          "teal": 503,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:65",
+          "pc": [
+            538,
+            539
+          ]
+        },
+        {
+          "teal": 507,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:67",
+          "pc": [
+            540,
+            541,
+            542
+          ]
+        },
+        {
+          "teal": 508,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:67",
+          "pc": [
+            543
+          ]
+        },
+        {
+          "teal": 509,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:67",
+          "pc": [
+            544
+          ]
+        },
+        {
+          "teal": 510,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:67",
+          "pc": [
+            545,
+            546
+          ]
+        },
+        {
+          "teal": 511,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:67",
+          "pc": [
+            547,
+            548,
+            549
+          ]
+        },
+        {
+          "teal": 512,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:67",
+          "pc": [
+            550,
+            551
+          ]
+        },
+        {
+          "teal": 513,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:64",
+          "pc": [
+            552
+          ]
+        },
+        {
+          "teal": 518,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:70",
+          "pc": [
+            553,
+            554,
+            555
+          ]
+        },
+        {
+          "teal": 519,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:70",
+          "pc": [
+            556
+          ]
+        },
+        {
+          "teal": 520,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:70",
+          "pc": [
+            557
+          ]
+        },
+        {
+          "teal": 524,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:70",
+          "pc": [
+            558,
+            559,
+            560
+          ]
+        },
+        {
+          "teal": 528,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:72",
+          "pc": [
+            561,
+            562
+          ]
+        },
+        {
+          "teal": 529,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:72",
+          "pc": [
+            563,
+            564
+          ]
+        },
+        {
+          "teal": 530,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:72",
+          "pc": [
+            565
+          ]
+        },
+        {
+          "teal": 531,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:72",
+          "pc": [
+            566
+          ]
+        },
+        {
+          "teal": 532,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:70",
+          "pc": [
+            567
+          ]
+        },
+        {
+          "teal": 535,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            568,
+            569
+          ]
+        },
+        {
+          "teal": 536,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            570,
+            571,
+            572
+          ]
+        },
+        {
+          "teal": 537,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            573,
+            574,
+            575,
+            576,
+            577,
+            578
+          ]
+        },
+        {
+          "teal": 538,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            579,
+            580,
+            581
+          ]
+        },
+        {
+          "teal": 539,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            582,
+            583,
+            584,
+            585
+          ]
+        },
+        {
+          "teal": 542,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "errorMessage": "this contract does not implement the given ABI method for create NoOp",
+          "pc": [
+            586
+          ]
+        },
+        {
+          "teal": 545,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            587,
+            588,
+            589,
+            590,
+            591,
+            592
+          ]
+        },
+        {
+          "teal": 546,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            593,
+            594,
+            595,
+            596,
+            597,
+            598
+          ]
+        },
+        {
+          "teal": 547,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            599,
+            600,
+            601,
+            602,
+            603,
+            604
+          ]
+        },
+        {
+          "teal": 548,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            605,
+            606,
+            607,
+            608,
+            609,
+            610
+          ]
+        },
+        {
+          "teal": 549,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            611,
+            612,
+            613,
+            614,
+            615,
+            616
+          ]
+        },
+        {
+          "teal": 550,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            617,
+            618,
+            619,
+            620,
+            621,
+            622
+          ]
+        },
+        {
+          "teal": 551,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            623,
+            624,
+            625,
+            626,
+            627,
+            628
+          ]
+        },
+        {
+          "teal": 552,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            629,
+            630,
+            631
+          ]
+        },
+        {
+          "teal": 553,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            632,
+            633,
+            634,
+            635,
+            636,
+            637,
+            638,
+            639,
+            640,
+            641,
+            642,
+            643,
+            644,
+            645,
+            646,
+            647
+          ]
+        },
+        {
+          "teal": 556,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "errorMessage": "this contract does not implement the given ABI method for call NoOp",
+          "pc": [
+            648
+          ]
+        },
+        {
+          "teal": 560,
+          "source": "lib_pcg/pcg32.algo.ts:130",
+          "pc": [
+            649,
+            650,
+            651
+          ]
+        },
+        {
+          "teal": 563,
+          "source": "lib_pcg/pcg32.algo.ts:130",
+          "pc": [
+            652
+          ]
+        },
+        {
+          "teal": 567,
+          "source": "lib_pcg/pcg32.algo.ts:136",
+          "pc": [
+            653,
+            654
+          ]
+        },
+        {
+          "teal": 568,
+          "source": "lib_pcg/pcg32.algo.ts:136",
+          "pc": [
+            655,
+            656
+          ]
+        },
+        {
+          "teal": 569,
+          "source": "lib_pcg/pcg32.algo.ts:136",
+          "pc": [
+            657,
+            658
+          ]
+        },
+        {
+          "teal": 570,
+          "source": "lib_pcg/pcg32.algo.ts:136",
+          "pc": [
+            659
+          ]
+        },
+        {
+          "teal": 571,
+          "source": "lib_pcg/pcg32.algo.ts:136",
+          "pc": [
+            660,
+            661
+          ]
+        },
+        {
+          "teal": 572,
+          "source": "lib_pcg/pcg32.algo.ts:136",
+          "pc": [
+            662,
+            663,
+            664
+          ]
+        },
+        {
+          "teal": 573,
+          "source": "lib_pcg/pcg32.algo.ts:136",
+          "pc": [
+            665,
+            666
+          ]
+        },
+        {
+          "teal": 577,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            667
+          ]
+        },
+        {
+          "teal": 578,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            668
+          ]
+        },
+        {
+          "teal": 579,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            669
+          ]
+        },
+        {
+          "teal": 580,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            670,
+            671
+          ]
+        },
+        {
+          "teal": 581,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            672,
+            673
+          ]
+        },
+        {
+          "teal": 582,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            674,
+            675
+          ]
+        },
+        {
+          "teal": 583,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            676,
+            677,
+            678
+          ]
+        },
+        {
+          "teal": 584,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            679
+          ]
+        },
+        {
+          "teal": 585,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            680
+          ]
+        },
+        {
+          "teal": 586,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            681,
+            682,
+            683
+          ]
+        },
+        {
+          "teal": 587,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            684,
+            685
+          ]
+        },
+        {
+          "teal": 588,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            686,
+            687
+          ]
+        },
+        {
+          "teal": 589,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            688
+          ]
+        },
+        {
+          "teal": 590,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            689,
+            690
+          ]
+        },
+        {
+          "teal": 591,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            691,
+            692
+          ]
+        },
+        {
+          "teal": 592,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            693,
+            694
+          ]
+        },
+        {
+          "teal": 593,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            695
+          ]
+        },
+        {
+          "teal": 594,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            696
+          ]
+        },
+        {
+          "teal": 595,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            697,
+            698
+          ]
+        },
+        {
+          "teal": 596,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            699
+          ]
+        },
+        {
+          "teal": 597,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            700
+          ]
+        },
+        {
+          "teal": 598,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            701
+          ]
+        },
+        {
+          "teal": 599,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            702
+          ]
+        },
+        {
+          "teal": 600,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            703
+          ]
+        },
+        {
+          "teal": 601,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            704
+          ]
+        },
+        {
+          "teal": 602,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            705
+          ]
+        },
+        {
+          "teal": 603,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            706,
+            707,
+            708
+          ]
+        },
+        {
+          "teal": 604,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            709
+          ]
+        },
+        {
+          "teal": 605,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            710
+          ]
+        },
+        {
+          "teal": 606,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            711
+          ]
+        },
+        {
+          "teal": 607,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            712,
+            713,
+            714
+          ]
+        },
+        {
+          "teal": 608,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            715
+          ]
+        },
+        {
+          "teal": 609,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            716
+          ]
+        },
+        {
+          "teal": 610,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            717,
+            718,
+            719
+          ]
+        },
+        {
+          "teal": 611,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            720
+          ]
+        },
+        {
+          "teal": 612,
+          "source": "lib_pcg/pcg32.algo.ts:137",
+          "pc": [
+            721
+          ]
+        },
+        {
+          "teal": 615,
+          "source": "lib_pcg/pcg32.algo.ts:130",
+          "pc": [
+            722,
+            723
+          ]
+        },
+        {
+          "teal": 616,
+          "source": "lib_pcg/pcg32.algo.ts:130",
+          "pc": [
+            724
+          ]
+        },
+        {
+          "teal": 620,
+          "source": "lib_pcg/pcg32.algo.ts:32",
+          "pc": [
+            725,
+            726,
+            727
+          ]
+        },
+        {
+          "teal": 623,
+          "source": "lib_pcg/pcg32.algo.ts:32",
+          "pc": [
+            728
+          ]
+        },
+        {
+          "teal": 624,
+          "source": "lib_pcg/pcg32.algo.ts:32",
+          "pc": [
+            729,
+            730
+          ]
+        },
+        {
+          "teal": 628,
+          "source": "lib_pcg/pcg32.algo.ts:39",
+          "pc": [
+            731
+          ]
+        },
+        {
+          "teal": 629,
+          "source": "lib_pcg/pcg32.algo.ts:39",
+          "pc": [
+            732,
+            733
+          ]
+        },
+        {
+          "teal": 633,
+          "source": "lib_pcg/pcg32.algo.ts:41",
+          "pc": [
+            734,
+            735
+          ]
+        },
+        {
+          "teal": 634,
+          "source": "lib_pcg/pcg32.algo.ts:41",
+          "pc": [
+            736
+          ]
+        },
+        {
+          "teal": 635,
+          "source": "lib_pcg/pcg32.algo.ts:41",
+          "pc": [
+            737,
+            738
+          ]
+        },
+        {
+          "teal": 636,
+          "source": "lib_pcg/pcg32.algo.ts:41",
+          "pc": [
+            739
+          ]
+        },
+        {
+          "teal": 637,
+          "source": "lib_pcg/pcg32.algo.ts:41",
+          "pc": [
+            740
+          ]
+        },
+        {
+          "teal": 638,
+          "source": "lib_pcg/pcg32.algo.ts:41",
+          "pc": [
+            741
+          ]
+        },
+        {
+          "teal": 642,
+          "source": "lib_pcg/pcg32.algo.ts:45",
+          "pc": [
+            742,
+            743
+          ]
+        },
+        {
+          "teal": 643,
+          "source": "lib_pcg/pcg32.algo.ts:45",
+          "pc": [
+            744
+          ]
+        },
+        {
+          "teal": 644,
+          "source": "lib_pcg/pcg32.algo.ts:45",
+          "pc": [
+            745
+          ]
+        },
+        {
+          "teal": 645,
+          "source": "lib_pcg/pcg32.algo.ts:45",
+          "pc": [
+            746
+          ]
+        },
+        {
+          "teal": 646,
+          "source": "lib_pcg/pcg32.algo.ts:45",
+          "pc": [
+            747,
+            748,
+            749
+          ]
+        },
+        {
+          "teal": 647,
+          "source": "lib_pcg/pcg32.algo.ts:45",
+          "pc": [
+            750,
+            751
+          ]
+        },
+        {
+          "teal": 648,
+          "source": "lib_pcg/pcg32.algo.ts:45",
+          "pc": [
+            752,
+            753
+          ]
+        },
+        {
+          "teal": 649,
+          "source": "lib_pcg/pcg32.algo.ts:45",
+          "pc": [
+            754
+          ]
+        },
+        {
+          "teal": 650,
+          "source": "lib_pcg/pcg32.algo.ts:45",
+          "pc": [
+            755
+          ]
+        },
+        {
+          "teal": 653,
+          "source": "lib_pcg/pcg32.algo.ts:45",
+          "pc": [
+            756
+          ]
+        },
+        {
+          "teal": 654,
+          "source": "lib_pcg/pcg32.algo.ts:45",
+          "pc": [
+            757,
+            758,
+            759
+          ]
+        },
+        {
+          "teal": 655,
+          "source": "lib_pcg/pcg32.algo.ts:45",
+          "pc": [
+            760,
+            761
+          ]
+        },
+        {
+          "teal": 656,
+          "source": "lib_pcg/pcg32.algo.ts:45",
+          "pc": [
+            762,
+            763
+          ]
+        },
+        {
+          "teal": 657,
+          "source": "lib_pcg/pcg32.algo.ts:45",
+          "pc": [
+            764
+          ]
+        },
+        {
+          "teal": 658,
+          "source": "lib_pcg/pcg32.algo.ts:45",
+          "pc": [
+            765
+          ]
+        },
+        {
+          "teal": 661,
+          "source": "lib_pcg/pcg32.algo.ts:45",
+          "pc": [
+            766
+          ]
+        },
+        {
+          "teal": 665,
+          "source": "lib_pcg/pcg32.algo.ts:46",
+          "pc": [
+            767,
+            768
+          ]
+        },
+        {
+          "teal": 666,
+          "source": "lib_pcg/pcg32.algo.ts:46",
+          "pc": [
+            769,
+            770
+          ]
+        },
+        {
+          "teal": 667,
+          "source": "lib_pcg/pcg32.algo.ts:46",
+          "pc": [
+            771
+          ]
+        },
+        {
+          "teal": 668,
+          "source": "lib_pcg/pcg32.algo.ts:46",
+          "pc": [
+            772,
+            773
+          ]
+        },
+        {
+          "teal": 672,
+          "source": "lib_pcg/pcg32.algo.ts:47",
+          "pc": [
+            774
+          ]
+        },
+        {
+          "teal": 673,
+          "source": "lib_pcg/pcg32.algo.ts:47",
+          "pc": [
+            775,
+            776
+          ]
+        },
+        {
+          "teal": 674,
+          "source": "lib_pcg/pcg32.algo.ts:47",
+          "pc": [
+            777
+          ]
+        },
+        {
+          "teal": 675,
+          "source": "lib_pcg/pcg32.algo.ts:47",
+          "pc": [
+            778,
+            779
+          ]
+        },
+        {
+          "teal": 680,
+          "source": "lib_pcg/pcg32.algo.ts:51",
+          "pc": [
+            780,
+            781
+          ]
+        },
+        {
+          "teal": 681,
+          "source": "lib_pcg/pcg32.algo.ts:51",
+          "pc": [
+            782
+          ]
+        },
+        {
+          "teal": 682,
+          "source": "lib_pcg/pcg32.algo.ts:51",
+          "pc": [
+            783
+          ]
+        },
+        {
+          "teal": 683,
+          "source": "lib_pcg/pcg32.algo.ts:51",
+          "pc": [
+            784
+          ]
+        },
+        {
+          "teal": 684,
+          "source": "lib_pcg/pcg32.algo.ts:51",
+          "pc": [
+            785,
+            786,
+            787
+          ]
+        },
+        {
+          "teal": 685,
+          "source": "lib_pcg/pcg32.algo.ts:51",
+          "pc": [
+            788,
+            789
+          ]
+        },
+        {
+          "teal": 686,
+          "source": "lib_pcg/pcg32.algo.ts:51",
+          "pc": [
+            790
+          ]
+        },
+        {
+          "teal": 687,
+          "source": "lib_pcg/pcg32.algo.ts:51",
+          "pc": [
+            791
+          ]
+        },
+        {
+          "teal": 688,
+          "source": "lib_pcg/pcg32.algo.ts:51",
+          "pc": [
+            792
+          ]
+        },
+        {
+          "teal": 691,
+          "source": "lib_pcg/pcg32.algo.ts:51",
+          "pc": [
+            793,
+            794,
+            795
+          ]
+        },
+        {
+          "teal": 696,
+          "source": "lib_pcg/pcg32.algo.ts:52",
+          "pc": [
+            796
+          ]
+        },
+        {
+          "teal": 697,
+          "source": "lib_pcg/pcg32.algo.ts:52",
+          "pc": [
+            797,
+            798
+          ]
+        },
+        {
+          "teal": 702,
+          "source": "lib_pcg/pcg32.algo.ts:52",
+          "pc": [
+            799,
+            800
+          ]
+        },
+        {
+          "teal": 703,
+          "source": "lib_pcg/pcg32.algo.ts:52",
+          "pc": [
+            801,
+            802
+          ]
+        },
+        {
+          "teal": 704,
+          "source": "lib_pcg/pcg32.algo.ts:52",
+          "pc": [
+            803
+          ]
+        },
+        {
+          "teal": 705,
+          "source": "lib_pcg/pcg32.algo.ts:52",
+          "pc": [
+            804,
+            805,
+            806
+          ]
+        },
+        {
+          "teal": 709,
+          "source": "lib_pcg/pcg32.algo.ts:53",
+          "pc": [
+            807,
+            808
+          ]
+        },
+        {
+          "teal": 710,
+          "source": "lib_pcg/pcg32.algo.ts:53",
+          "pc": [
+            809,
+            810,
+            811
+          ]
+        },
+        {
+          "teal": 711,
+          "source": "lib_pcg/pcg32.algo.ts:53",
+          "pc": [
+            812,
+            813
+          ]
+        },
+        {
+          "teal": 715,
+          "source": "lib_pcg/pcg32.algo.ts:54",
+          "pc": [
+            814,
+            815
+          ]
+        },
+        {
+          "teal": 716,
+          "source": "lib_pcg/pcg32.algo.ts:54",
+          "pc": [
+            816,
+            817,
+            818
+          ]
+        },
+        {
+          "teal": 717,
+          "source": "lib_pcg/pcg32.algo.ts:54",
+          "pc": [
+            819
+          ]
+        },
+        {
+          "teal": 718,
+          "source": "lib_pcg/pcg32.algo.ts:54",
+          "pc": [
+            820,
+            821
+          ]
+        },
+        {
+          "teal": 722,
+          "source": "lib_pcg/pcg32.algo.ts:56",
+          "pc": [
+            822,
+            823
+          ]
+        },
+        {
+          "teal": 723,
+          "source": "lib_pcg/pcg32.algo.ts:56",
+          "pc": [
+            824,
+            825
+          ]
+        },
+        {
+          "teal": 724,
+          "source": "lib_pcg/pcg32.algo.ts:56",
+          "pc": [
+            826,
+            827,
+            828
+          ]
+        },
+        {
+          "teal": 725,
+          "source": "lib_pcg/pcg32.algo.ts:56",
+          "pc": [
+            829
+          ]
+        },
+        {
+          "teal": 726,
+          "source": "lib_pcg/pcg32.algo.ts:56",
+          "pc": [
+            830
+          ]
+        },
+        {
+          "teal": 727,
+          "source": "lib_pcg/pcg32.algo.ts:56",
+          "pc": [
+            831,
+            832
+          ]
+        },
+        {
+          "teal": 728,
+          "source": "lib_pcg/pcg32.algo.ts:56",
+          "pc": [
+            833,
+            834
+          ]
+        },
+        {
+          "teal": 729,
+          "source": "lib_pcg/pcg32.algo.ts:56",
+          "pc": [
+            835
+          ]
+        },
+        {
+          "teal": 730,
+          "source": "lib_pcg/pcg32.algo.ts:56",
+          "pc": [
+            836
+          ]
+        },
+        {
+          "teal": 731,
+          "source": "lib_pcg/pcg32.algo.ts:56",
+          "pc": [
+            837,
+            838
+          ]
+        },
+        {
+          "teal": 736,
+          "source": "lib_pcg/pcg32.algo.ts:52",
+          "pc": [
+            839,
+            840
+          ]
+        },
+        {
+          "teal": 737,
+          "source": "lib_pcg/pcg32.algo.ts:52",
+          "pc": [
+            841
+          ]
+        },
+        {
+          "teal": 738,
+          "source": "lib_pcg/pcg32.algo.ts:52",
+          "pc": [
+            842
+          ]
+        },
+        {
+          "teal": 739,
+          "source": "lib_pcg/pcg32.algo.ts:52",
+          "pc": [
+            843,
+            844
+          ]
+        },
+        {
+          "teal": 740,
+          "source": "lib_pcg/pcg32.algo.ts:52",
+          "pc": [
+            845,
+            846,
+            847
+          ]
+        },
+        {
+          "teal": 743,
+          "source": "lib_pcg/pcg32.algo.ts:51",
+          "pc": [
+            848,
+            849,
+            850
+          ]
+        },
+        {
+          "teal": 749,
+          "source": "lib_pcg/pcg32.algo.ts:59",
+          "pc": [
+            851,
+            852
+          ]
+        },
+        {
+          "teal": 750,
+          "source": "lib_pcg/pcg32.algo.ts:59",
+          "pc": [
+            853
+          ]
+        },
+        {
+          "teal": 751,
+          "source": "lib_pcg/pcg32.algo.ts:59",
+          "pc": [
+            854
+          ]
+        },
+        {
+          "teal": 752,
+          "source": "lib_pcg/pcg32.algo.ts:59",
+          "pc": [
+            855,
+            856,
+            857
+          ]
+        },
+        {
+          "teal": 757,
+          "source": "lib_pcg/pcg32.algo.ts:60",
+          "pc": [
+            858,
+            859
+          ]
+        },
+        {
+          "teal": 758,
+          "source": "lib_pcg/pcg32.algo.ts:60",
+          "pc": [
+            860
+          ]
+        },
+        {
+          "teal": 759,
+          "source": "lib_pcg/pcg32.algo.ts:60",
+          "pc": [
+            861
+          ]
+        },
+        {
+          "teal": 760,
+          "source": "lib_pcg/pcg32.algo.ts:60",
+          "pc": [
+            862
+          ]
+        },
+        {
+          "teal": 764,
+          "source": "lib_pcg/pcg32.algo.ts:61",
+          "pc": [
+            863,
+            864
+          ]
+        },
+        {
+          "teal": 765,
+          "source": "lib_pcg/pcg32.algo.ts:61",
+          "pc": [
+            865
+          ]
+        },
+        {
+          "teal": 766,
+          "source": "lib_pcg/pcg32.algo.ts:61",
+          "pc": [
+            866,
+            867
+          ]
+        },
+        {
+          "teal": 767,
+          "source": "lib_pcg/pcg32.algo.ts:61",
+          "pc": [
+            868
+          ]
+        },
+        {
+          "teal": 768,
+          "source": "lib_pcg/pcg32.algo.ts:61",
+          "pc": [
+            869
+          ]
+        },
+        {
+          "teal": 769,
+          "source": "lib_pcg/pcg32.algo.ts:61",
+          "pc": [
+            870
+          ]
+        },
+        {
+          "teal": 773,
+          "source": "lib_pcg/pcg32.algo.ts:62",
+          "pc": [
+            871,
+            872
+          ]
+        },
+        {
+          "teal": 774,
+          "source": "lib_pcg/pcg32.algo.ts:62",
+          "pc": [
+            873,
+            874
+          ]
+        },
+        {
+          "teal": 775,
+          "source": "lib_pcg/pcg32.algo.ts:62",
+          "pc": [
+            875
+          ]
+        },
+        {
+          "teal": 776,
+          "source": "lib_pcg/pcg32.algo.ts:62",
+          "pc": [
+            876
+          ]
+        },
+        {
+          "teal": 777,
+          "source": "lib_pcg/pcg32.algo.ts:62",
+          "pc": [
+            877
+          ]
+        },
+        {
+          "teal": 778,
+          "source": "lib_pcg/pcg32.algo.ts:62",
+          "pc": [
+            878
+          ]
+        },
+        {
+          "teal": 782,
+          "source": "lib_pcg/pcg32.algo.ts:64",
+          "pc": [
+            879,
+            880
+          ]
+        },
+        {
+          "teal": 783,
+          "source": "lib_pcg/pcg32.algo.ts:64",
+          "pc": [
+            881,
+            882
+          ]
+        },
+        {
+          "teal": 784,
+          "source": "lib_pcg/pcg32.algo.ts:64",
+          "pc": [
+            883
+          ]
+        },
+        {
+          "teal": 785,
+          "source": "lib_pcg/pcg32.algo.ts:64",
+          "pc": [
+            884,
+            885
+          ]
+        },
+        {
+          "teal": 786,
+          "source": "lib_pcg/pcg32.algo.ts:59",
+          "pc": [
+            886,
+            887,
+            888
+          ]
+        },
+        {
+          "teal": 791,
+          "source": "lib_pcg/pcg32.algo.ts:66",
+          "pc": [
+            889,
+            890
+          ]
+        },
+        {
+          "teal": 792,
+          "source": "lib_pcg/pcg32.algo.ts:66",
+          "pc": [
+            891
+          ]
+        },
+        {
+          "teal": 793,
+          "source": "lib_pcg/pcg32.algo.ts:66",
+          "pc": [
+            892,
+            893
+          ]
+        },
+        {
+          "teal": 794,
+          "source": "lib_pcg/pcg32.algo.ts:66",
+          "pc": [
+            894
+          ]
+        },
+        {
+          "teal": 795,
+          "source": "lib_pcg/pcg32.algo.ts:66",
+          "pc": [
+            895
+          ]
+        },
+        {
+          "teal": 796,
+          "source": "lib_pcg/pcg32.algo.ts:66",
+          "pc": [
+            896
+          ]
+        },
+        {
+          "teal": 797,
+          "source": "lib_pcg/pcg32.algo.ts:66",
+          "pc": [
+            897
+          ]
+        },
+        {
+          "teal": 798,
+          "source": "lib_pcg/pcg32.algo.ts:66",
+          "pc": [
+            898
+          ]
+        },
+        {
+          "teal": 802,
+          "source": "lib_pcg/pcg32.algo.ts:68",
+          "pc": [
+            899
+          ]
+        },
+        {
+          "teal": 803,
+          "source": "lib_pcg/pcg32.algo.ts:68",
+          "pc": [
+            900,
+            901
+          ]
+        },
+        {
+          "teal": 804,
+          "source": "lib_pcg/pcg32.algo.ts:68",
+          "pc": [
+            902
+          ]
+        },
+        {
+          "teal": 805,
+          "source": "lib_pcg/pcg32.algo.ts:68",
+          "pc": [
+            903,
+            904
+          ]
+        },
+        {
+          "teal": 806,
+          "source": "lib_pcg/pcg32.algo.ts:68",
+          "pc": [
+            905
+          ]
+        },
+        {
+          "teal": 807,
+          "source": "lib_pcg/pcg32.algo.ts:68",
+          "pc": [
+            906,
+            907
+          ]
+        },
+        {
+          "teal": 812,
+          "source": "lib_pcg/pcg32.algo.ts:71",
+          "pc": [
+            908,
+            909
+          ]
+        },
+        {
+          "teal": 813,
+          "source": "lib_pcg/pcg32.algo.ts:71",
+          "pc": [
+            910,
+            911,
+            912
+          ]
+        },
+        {
+          "teal": 814,
+          "source": "lib_pcg/pcg32.algo.ts:71",
+          "pc": [
+            913,
+            914,
+            915
+          ]
+        },
+        {
+          "teal": 815,
+          "source": "lib_pcg/pcg32.algo.ts:71",
+          "pc": [
+            916,
+            917
+          ]
+        },
+        {
+          "teal": 816,
+          "source": "lib_pcg/pcg32.algo.ts:71",
+          "pc": [
+            918
+          ]
+        },
+        {
+          "teal": 817,
+          "source": "lib_pcg/pcg32.algo.ts:71",
+          "pc": [
+            919,
+            920
+          ]
+        },
+        {
+          "teal": 821,
+          "source": "lib_pcg/pcg32.algo.ts:73",
+          "pc": [
+            921
+          ]
+        },
+        {
+          "teal": 822,
+          "source": "lib_pcg/pcg32.algo.ts:73",
+          "pc": [
+            922,
+            923
+          ]
+        },
+        {
+          "teal": 827,
+          "source": "lib_pcg/pcg32.algo.ts:73",
+          "pc": [
+            924,
+            925
+          ]
+        },
+        {
+          "teal": 828,
+          "source": "lib_pcg/pcg32.algo.ts:73",
+          "pc": [
+            926,
+            927
+          ]
+        },
+        {
+          "teal": 829,
+          "source": "lib_pcg/pcg32.algo.ts:73",
+          "pc": [
+            928
+          ]
+        },
+        {
+          "teal": 830,
+          "source": "lib_pcg/pcg32.algo.ts:73",
+          "pc": [
+            929,
+            930,
+            931
+          ]
+        },
+        {
+          "teal": 837,
+          "source": "lib_pcg/pcg32.algo.ts:75",
+          "pc": [
+            932
+          ]
+        },
+        {
+          "teal": 838,
+          "source": "lib_pcg/pcg32.algo.ts:75",
+          "pc": [
+            933,
+            934,
+            935
+          ]
+        },
+        {
+          "teal": 842,
+          "source": "lib_pcg/pcg32.algo.ts:76",
+          "pc": [
+            936,
+            937
+          ]
+        },
+        {
+          "teal": 843,
+          "source": "lib_pcg/pcg32.algo.ts:76",
+          "pc": [
+            938,
+            939,
+            940
+          ]
+        },
+        {
+          "teal": 844,
+          "source": "lib_pcg/pcg32.algo.ts:76",
+          "pc": [
+            941,
+            942
+          ]
+        },
+        {
+          "teal": 848,
+          "source": "lib_pcg/pcg32.algo.ts:77",
+          "pc": [
+            943,
+            944
+          ]
+        },
+        {
+          "teal": 849,
+          "source": "lib_pcg/pcg32.algo.ts:77",
+          "pc": [
+            945,
+            946,
+            947
+          ]
+        },
+        {
+          "teal": 850,
+          "source": "lib_pcg/pcg32.algo.ts:77",
+          "pc": [
+            948
+          ]
+        },
+        {
+          "teal": 851,
+          "source": "lib_pcg/pcg32.algo.ts:77",
+          "pc": [
+            949,
+            950
+          ]
+        },
+        {
+          "teal": 856,
+          "source": "lib_pcg/pcg32.algo.ts:78",
+          "pc": [
+            951,
+            952
+          ]
+        },
+        {
+          "teal": 857,
+          "source": "lib_pcg/pcg32.algo.ts:78",
+          "pc": [
+            953,
+            954,
+            955
+          ]
+        },
+        {
+          "teal": 858,
+          "source": "lib_pcg/pcg32.algo.ts:78",
+          "pc": [
+            956
+          ]
+        },
+        {
+          "teal": 859,
+          "source": "lib_pcg/pcg32.algo.ts:78",
+          "pc": [
+            957,
+            958
+          ]
+        },
+        {
+          "teal": 860,
+          "source": "lib_pcg/pcg32.algo.ts:78",
+          "pc": [
+            959
+          ]
+        },
+        {
+          "teal": 861,
+          "source": "lib_pcg/pcg32.algo.ts:78",
+          "pc": [
+            960,
+            961,
+            962
+          ]
+        },
+        {
+          "teal": 866,
+          "source": "lib_pcg/pcg32.algo.ts:79",
+          "pc": [
+            963,
+            964
+          ]
+        },
+        {
+          "teal": 867,
+          "source": "lib_pcg/pcg32.algo.ts:79",
+          "pc": [
+            965,
+            966
+          ]
+        },
+        {
+          "teal": 868,
+          "source": "lib_pcg/pcg32.algo.ts:79",
+          "pc": [
+            967,
+            968,
+            969
+          ]
+        },
+        {
+          "teal": 869,
+          "source": "lib_pcg/pcg32.algo.ts:79",
+          "pc": [
+            970
+          ]
+        },
+        {
+          "teal": 870,
+          "source": "lib_pcg/pcg32.algo.ts:79",
+          "pc": [
+            971,
+            972
+          ]
+        },
+        {
+          "teal": 871,
+          "source": "lib_pcg/pcg32.algo.ts:79",
+          "pc": [
+            973
+          ]
+        },
+        {
+          "teal": 872,
+          "source": "lib_pcg/pcg32.algo.ts:79",
+          "pc": [
+            974,
+            975
+          ]
+        },
+        {
+          "teal": 873,
+          "source": "lib_pcg/pcg32.algo.ts:79",
+          "pc": [
+            976
+          ]
+        },
+        {
+          "teal": 874,
+          "source": "lib_pcg/pcg32.algo.ts:79",
+          "pc": [
+            977
+          ]
+        },
+        {
+          "teal": 875,
+          "source": "lib_pcg/pcg32.algo.ts:79",
+          "pc": [
+            978,
+            979
+          ]
+        },
+        {
+          "teal": 876,
+          "source": "lib_pcg/pcg32.algo.ts:79",
+          "pc": [
+            980,
+            981
+          ]
+        },
+        {
+          "teal": 877,
+          "source": "lib_pcg/pcg32.algo.ts:79",
+          "pc": [
+            982
+          ]
+        },
+        {
+          "teal": 878,
+          "source": "lib_pcg/pcg32.algo.ts:79",
+          "pc": [
+            983
+          ]
+        },
+        {
+          "teal": 879,
+          "source": "lib_pcg/pcg32.algo.ts:79",
+          "pc": [
+            984,
+            985
+          ]
+        },
+        {
+          "teal": 880,
+          "source": "lib_pcg/pcg32.algo.ts:80",
+          "pc": [
+            986,
+            987,
+            988
+          ]
+        },
+        {
+          "teal": 883,
+          "source": "lib_pcg/pcg32.algo.ts:75",
+          "pc": [
+            989,
+            990,
+            991
+          ]
+        },
+        {
+          "teal": 890,
+          "source": "lib_pcg/pcg32.algo.ts:73",
+          "pc": [
+            992,
+            993
+          ]
+        },
+        {
+          "teal": 891,
+          "source": "lib_pcg/pcg32.algo.ts:73",
+          "pc": [
+            994
+          ]
+        },
+        {
+          "teal": 892,
+          "source": "lib_pcg/pcg32.algo.ts:73",
+          "pc": [
+            995
+          ]
+        },
+        {
+          "teal": 893,
+          "source": "lib_pcg/pcg32.algo.ts:73",
+          "pc": [
+            996,
+            997
+          ]
+        },
+        {
+          "teal": 894,
+          "source": "lib_pcg/pcg32.algo.ts:73",
+          "pc": [
+            998,
+            999,
+            1000
+          ]
+        },
+        {
+          "teal": 901,
+          "source": "lib_pcg/pcg32.algo.ts:86",
+          "pc": [
+            1001
+          ]
+        },
+        {
+          "teal": 902,
+          "source": "lib_pcg/pcg32.algo.ts:86",
+          "pc": [
+            1002
+          ]
+        },
+        {
+          "teal": 903,
+          "source": "lib_pcg/pcg32.algo.ts:86",
+          "pc": [
+            1003
+          ]
+        },
+        {
+          "teal": 904,
+          "source": "lib_pcg/pcg32.algo.ts:86",
+          "pc": [
+            1004,
+            1005
+          ]
+        },
+        {
+          "teal": 905,
+          "source": "lib_pcg/pcg32.algo.ts:86",
+          "pc": [
+            1006
+          ]
+        },
+        {
+          "teal": 906,
+          "source": "lib_pcg/pcg32.algo.ts:86",
+          "pc": [
+            1007,
+            1008,
+            1009
+          ]
+        },
+        {
+          "teal": 907,
+          "source": "lib_pcg/pcg32.algo.ts:86",
+          "pc": [
+            1010,
+            1011
+          ]
+        },
+        {
+          "teal": 908,
+          "source": "lib_pcg/pcg32.algo.ts:86",
+          "pc": [
+            1012
+          ]
+        },
+        {
+          "teal": 909,
+          "source": "lib_pcg/pcg32.algo.ts:86",
+          "pc": [
+            1013
+          ]
+        },
+        {
+          "teal": 910,
+          "source": "lib_pcg/pcg32.algo.ts:86",
+          "pc": [
+            1014
+          ]
+        },
+        {
+          "teal": 911,
+          "source": "lib_pcg/pcg32.algo.ts:86",
+          "pc": [
+            1015,
+            1016,
+            1017
+          ]
+        },
+        {
+          "teal": 912,
+          "source": "lib_pcg/pcg32.algo.ts:86",
+          "pc": [
+            1018
+          ]
+        },
+        {
+          "teal": 913,
+          "source": "lib_pcg/pcg32.algo.ts:86",
+          "pc": [
+            1019
+          ]
+        },
+        {
+          "teal": 914,
+          "source": "lib_pcg/pcg32.algo.ts:86",
+          "pc": [
+            1020,
+            1021,
+            1022
+          ]
+        },
+        {
+          "teal": 915,
+          "source": "lib_pcg/pcg32.algo.ts:86",
+          "pc": [
+            1023
+          ]
+        },
+        {
+          "teal": 916,
+          "source": "lib_pcg/pcg32.algo.ts:86",
+          "pc": [
+            1024
+          ]
+        },
+        {
+          "teal": 919,
+          "source": "lib_pcg/pcg32.algo.ts:32",
+          "pc": [
+            1025,
+            1026
+          ]
+        },
+        {
+          "teal": 922,
+          "source": "lib_pcg/pcg32.algo.ts:32",
+          "pc": [
+            1027,
+            1028
+          ]
+        },
+        {
+          "teal": 923,
+          "source": "lib_pcg/pcg32.algo.ts:32",
+          "pc": [
+            1029
+          ]
+        },
+        {
+          "teal": 927,
+          "source": "lib_pcg/pcg32.algo.ts:5",
+          "pc": [
+            1030,
+            1031,
+            1032
+          ]
+        },
+        {
+          "teal": 930,
+          "source": "lib_pcg/pcg32.algo.ts:5",
+          "pc": [
+            1033
+          ]
+        },
+        {
+          "teal": 931,
+          "source": "lib_pcg/pcg32.algo.ts:5",
+          "pc": [
+            1034
+          ]
+        },
+        {
+          "teal": 935,
+          "source": "lib_pcg/pcg32.algo.ts:6",
+          "pc": [
+            1035,
+            1036
+          ]
+        },
+        {
+          "teal": 936,
+          "source": "lib_pcg/pcg32.algo.ts:6",
+          "pc": [
+            1037
+          ]
+        },
+        {
+          "teal": 937,
+          "source": "lib_pcg/pcg32.algo.ts:6",
+          "pc": [
+            1038
+          ]
+        },
+        {
+          "teal": 938,
+          "source": "lib_pcg/pcg32.algo.ts:6",
+          "pc": [
+            1039
+          ]
+        },
+        {
+          "teal": 939,
+          "source": "lib_pcg/pcg32.algo.ts:6",
+          "pc": [
+            1040,
+            1041
+          ]
+        },
+        {
+          "teal": 940,
+          "source": "lib_pcg/pcg32.algo.ts:6",
+          "pc": [
+            1042,
+            1043
+          ]
+        },
+        {
+          "teal": 944,
+          "source": "lib_pcg/pcg32.algo.ts:7",
+          "pc": [
+            1044,
+            1045
+          ]
+        },
+        {
+          "teal": 947,
+          "source": "lib_pcg/pcg32.algo.ts:5",
+          "pc": [
+            1046,
+            1047
+          ]
+        },
+        {
+          "teal": 950,
+          "source": "lib_pcg/pcg32.algo.ts:5",
+          "pc": [
+            1048,
+            1049
+          ]
+        },
+        {
+          "teal": 951,
+          "source": "lib_pcg/pcg32.algo.ts:5",
+          "pc": [
+            1050
+          ]
+        },
+        {
+          "teal": 955,
+          "source": "lib_pcg/pcg32.algo.ts:10",
+          "pc": [
+            1051,
+            1052,
+            1053
+          ]
+        },
+        {
+          "teal": 959,
+          "source": "lib_pcg/pcg32.algo.ts:12",
+          "pc": [
+            1054,
+            1055
+          ]
+        },
+        {
+          "teal": 960,
+          "source": "lib_pcg/pcg32.algo.ts:12",
+          "pc": [
+            1056,
+            1057,
+            1058,
+            1059,
+            1060,
+            1061
+          ]
+        },
+        {
+          "teal": 961,
+          "source": "lib_pcg/pcg32.algo.ts:12",
+          "pc": [
+            1062
+          ]
+        },
+        {
+          "teal": 962,
+          "source": "lib_pcg/pcg32.algo.ts:10",
+          "pc": [
+            1063
+          ]
+        },
+        {
+          "teal": 966,
+          "source": "lib_pcg/pcg32.algo.ts:28",
+          "pc": [
+            1064,
+            1065,
+            1066
+          ]
+        },
+        {
+          "teal": 972,
+          "source": "lib_pcg/consts.algo.ts:3",
+          "pc": [
+            1067,
+            1068
+          ]
+        },
+        {
+          "teal": 973,
+          "source": "lib_pcg/pcg32.algo.ts:29",
+          "pc": [
+            1069,
+            1070
+          ]
+        },
+        {
+          "teal": 974,
+          "source": "lib_pcg/pcg32.algo.ts:29",
+          "pc": [
+            1071,
+            1072,
+            1073
+          ]
+        },
+        {
+          "teal": 975,
+          "source": "lib_pcg/pcg32.algo.ts:29",
+          "pc": [
+            1074
+          ]
+        },
+        {
+          "teal": 979,
+          "source": "lib_pcg/pcg32.algo.ts:29",
+          "pc": [
+            1075,
+            1076
+          ]
+        },
+        {
+          "teal": 980,
+          "source": "lib_pcg/pcg32.algo.ts:29",
+          "pc": [
+            1077,
+            1078,
+            1079
+          ]
+        },
+        {
+          "teal": 981,
+          "source": "lib_pcg/pcg32.algo.ts:29",
+          "pc": [
+            1080
+          ]
+        },
+        {
+          "teal": 982,
+          "source": "lib_pcg/pcg32.algo.ts:29",
+          "pc": [
+            1081
+          ]
+        },
+        {
+          "teal": 983,
+          "source": "lib_pcg/pcg32.algo.ts:28",
+          "pc": [
+            1082
+          ]
+        },
+        {
+          "teal": 987,
+          "source": "lib_pcg/pcg32.algo.ts:22",
+          "pc": [
+            1083,
+            1084,
+            1085
+          ]
+        },
+        {
+          "teal": 990,
+          "source": "lib_pcg/pcg32.algo.ts:22",
+          "pc": [
+            1086
+          ]
+        },
+        {
+          "teal": 991,
+          "source": "lib_pcg/pcg32.algo.ts:22",
+          "pc": [
+            1087
+          ]
+        },
+        {
+          "teal": 995,
+          "source": "lib_pcg/pcg32.algo.ts:23",
+          "pc": [
+            1088,
+            1089
+          ]
+        },
+        {
+          "teal": 996,
+          "source": "lib_pcg/pcg32.algo.ts:23",
+          "pc": [
+            1090,
+            1091
+          ]
+        },
+        {
+          "teal": 997,
+          "source": "lib_pcg/pcg32.algo.ts:23",
+          "pc": [
+            1092
+          ]
+        },
+        {
+          "teal": 998,
+          "source": "lib_pcg/pcg32.algo.ts:23",
+          "pc": [
+            1093,
+            1094
+          ]
+        },
+        {
+          "teal": 999,
+          "source": "lib_pcg/pcg32.algo.ts:23",
+          "pc": [
+            1095
+          ]
+        },
+        {
+          "teal": 1000,
+          "source": "lib_pcg/pcg32.algo.ts:23",
+          "pc": [
+            1096,
+            1097
+          ]
+        },
+        {
+          "teal": 1001,
+          "source": "lib_pcg/pcg32.algo.ts:23",
+          "pc": [
+            1098
+          ]
+        },
+        {
+          "teal": 1002,
+          "source": "lib_pcg/pcg32.algo.ts:23",
+          "pc": [
+            1099,
+            1100,
+            1101
+          ]
+        },
+        {
+          "teal": 1003,
+          "source": "lib_pcg/pcg32.algo.ts:23",
+          "pc": [
+            1102,
+            1103
+          ]
+        },
+        {
+          "teal": 1007,
+          "source": "lib_pcg/pcg32.algo.ts:24",
+          "pc": [
+            1104,
+            1105
+          ]
+        },
+        {
+          "teal": 1008,
+          "source": "lib_pcg/pcg32.algo.ts:24",
+          "pc": [
+            1106,
+            1107
+          ]
+        },
+        {
+          "teal": 1009,
+          "source": "lib_pcg/pcg32.algo.ts:24",
+          "pc": [
+            1108
+          ]
+        },
+        {
+          "teal": 1010,
+          "source": "lib_pcg/pcg32.algo.ts:24",
+          "pc": [
+            1109,
+            1110
+          ]
+        },
+        {
+          "teal": 1014,
+          "source": "lib_pcg/pcg32.algo.ts:25",
+          "pc": [
+            1111,
+            1112
+          ]
+        },
+        {
+          "teal": 1015,
+          "source": "lib_pcg/pcg32.algo.ts:25",
+          "pc": [
+            1113,
+            1114
+          ]
+        },
+        {
+          "teal": 1016,
+          "source": "lib_pcg/pcg32.algo.ts:25",
+          "pc": [
+            1115
+          ]
+        },
+        {
+          "teal": 1017,
+          "source": "lib_pcg/pcg32.algo.ts:25",
+          "pc": [
+            1116,
+            1117
+          ]
+        },
+        {
+          "teal": 1018,
+          "source": "lib_pcg/pcg32.algo.ts:25",
+          "pc": [
+            1118,
+            1119
+          ]
+        },
+        {
+          "teal": 1019,
+          "source": "lib_pcg/pcg32.algo.ts:25",
+          "pc": [
+            1120,
+            1121,
+            1122
+          ]
+        },
+        {
+          "teal": 1020,
+          "source": "lib_pcg/pcg32.algo.ts:25",
+          "pc": [
+            1123,
+            1124
+          ]
+        },
+        {
+          "teal": 1021,
+          "source": "lib_pcg/pcg32.algo.ts:25",
+          "pc": [
+            1125
+          ]
+        },
+        {
+          "teal": 1022,
+          "source": "lib_pcg/pcg32.algo.ts:25",
+          "pc": [
+            1126
+          ]
+        },
+        {
+          "teal": 1023,
+          "source": "lib_pcg/pcg32.algo.ts:25",
+          "pc": [
+            1127,
+            1128,
+            1129
+          ]
+        },
+        {
+          "teal": 1024,
+          "source": "lib_pcg/pcg32.algo.ts:25",
+          "pc": [
+            1130
+          ]
+        },
+        {
+          "teal": 1027,
+          "source": "lib_pcg/pcg32.algo.ts:22",
+          "pc": [
+            1131,
+            1132
+          ]
+        },
+        {
+          "teal": 1030,
+          "source": "lib_pcg/pcg32.algo.ts:22",
+          "pc": [
+            1133,
+            1134
+          ]
+        },
+        {
+          "teal": 1031,
+          "source": "lib_pcg/pcg32.algo.ts:22",
+          "pc": [
+            1135
+          ]
+        },
+        {
+          "teal": 1035,
+          "source": "lib_pcg/pcg32.algo.ts:15",
+          "pc": [
+            1136,
+            1137,
+            1138
+          ]
+        },
+        {
+          "teal": 1038,
+          "source": "lib_pcg/pcg32.algo.ts:15",
+          "pc": [
+            1139
+          ]
+        },
+        {
+          "teal": 1039,
+          "source": "lib_pcg/pcg32.algo.ts:15",
+          "pc": [
+            1140,
+            1141
+          ]
+        },
+        {
+          "teal": 1043,
+          "source": "lib_pcg/pcg32.algo.ts:16",
+          "pc": [
+            1142,
+            1143
+          ]
+        },
+        {
+          "teal": 1047,
+          "source": "lib_pcg/consts.algo.ts:1",
+          "pc": [
+            1144,
+            1145,
+            1146,
+            1147,
+            1148,
+            1149,
+            1150,
+            1151,
+            1152,
+            1153
+          ]
+        },
+        {
+          "teal": 1048,
+          "source": "lib_pcg/pcg32.algo.ts:16",
+          "pc": [
+            1154
+          ]
+        },
+        {
+          "teal": 1049,
+          "source": "lib_pcg/pcg32.algo.ts:16",
+          "pc": [
+            1155,
+            1156
+          ]
+        },
+        {
+          "teal": 1050,
+          "source": "lib_pcg/pcg32.algo.ts:16",
+          "pc": [
+            1157,
+            1158
+          ]
+        },
+        {
+          "teal": 1054,
+          "source": "lib_pcg/pcg32.algo.ts:17",
+          "pc": [
+            1159,
+            1160
+          ]
+        },
+        {
+          "teal": 1055,
+          "source": "lib_pcg/pcg32.algo.ts:17",
+          "pc": [
+            1161,
+            1162
+          ]
+        },
+        {
+          "teal": 1056,
+          "source": "lib_pcg/pcg32.algo.ts:17",
+          "pc": [
+            1163
+          ]
+        },
+        {
+          "teal": 1057,
+          "source": "lib_pcg/pcg32.algo.ts:17",
+          "pc": [
+            1164,
+            1165
+          ]
+        },
+        {
+          "teal": 1058,
+          "source": "lib_pcg/pcg32.algo.ts:17",
+          "pc": [
+            1166,
+            1167
+          ]
+        },
+        {
+          "teal": 1062,
+          "source": "lib_pcg/pcg32.algo.ts:19",
+          "pc": [
+            1168,
+            1169
+          ]
+        },
+        {
+          "teal": 1065,
+          "source": "lib_pcg/pcg32.algo.ts:15",
+          "pc": [
+            1170,
+            1171
+          ]
+        },
+        {
+          "teal": 1068,
+          "source": "lib_pcg/pcg32.algo.ts:15",
+          "pc": [
+            1172,
+            1173
+          ]
+        },
+        {
+          "teal": 1069,
+          "source": "lib_pcg/pcg32.algo.ts:15",
+          "pc": [
+            1174
+          ]
+        },
+        {
+          "teal": 1073,
+          "source": "lib_pcg/pcg32.algo.ts:106",
+          "pc": [
+            1175,
+            1176,
+            1177
+          ]
+        },
+        {
+          "teal": 1077,
+          "source": "lib_pcg/pcg32.algo.ts:107",
+          "pc": [
+            1178,
+            1179
+          ]
+        },
+        {
+          "teal": 1078,
+          "source": "lib_pcg/pcg32.algo.ts:107",
+          "pc": [
+            1180,
+            1181,
+            1182
+          ]
+        },
+        {
+          "teal": 1079,
+          "source": "lib_pcg/pcg32.algo.ts:106",
+          "pc": [
+            1183
+          ]
+        },
+        {
+          "teal": 1083,
+          "source": "lib_pcg/pcg32.algo.ts:120",
+          "pc": [
+            1184,
+            1185,
+            1186
+          ]
+        },
+        {
+          "teal": 1086,
+          "source": "lib_pcg/pcg32.algo.ts:120",
+          "pc": [
+            1187
+          ]
+        },
+        {
+          "teal": 1090,
+          "source": "lib_pcg/pcg32.algo.ts:126",
+          "pc": [
+            1188,
+            1189
+          ]
+        },
+        {
+          "teal": 1091,
+          "source": "lib_pcg/pcg32.algo.ts:126",
+          "pc": [
+            1190,
+            1191
+          ]
+        },
+        {
+          "teal": 1092,
+          "source": "lib_pcg/pcg32.algo.ts:126",
+          "pc": [
+            1192,
+            1193
+          ]
+        },
+        {
+          "teal": 1093,
+          "source": "lib_pcg/pcg32.algo.ts:126",
+          "pc": [
+            1194,
+            1195
+          ]
+        },
+        {
+          "teal": 1094,
+          "source": "lib_pcg/pcg32.algo.ts:126",
+          "pc": [
+            1196,
+            1197
+          ]
+        },
+        {
+          "teal": 1095,
+          "source": "lib_pcg/pcg32.algo.ts:126",
+          "pc": [
+            1198,
+            1199,
+            1200
+          ]
+        },
+        {
+          "teal": 1096,
+          "source": "lib_pcg/pcg32.algo.ts:126",
+          "pc": [
+            1201,
+            1202
+          ]
+        },
+        {
+          "teal": 1100,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1203
+          ]
+        },
+        {
+          "teal": 1101,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1204
+          ]
+        },
+        {
+          "teal": 1102,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1205
+          ]
+        },
+        {
+          "teal": 1103,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1206,
+            1207
+          ]
+        },
+        {
+          "teal": 1104,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1208,
+            1209
+          ]
+        },
+        {
+          "teal": 1105,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1210,
+            1211
+          ]
+        },
+        {
+          "teal": 1106,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1212,
+            1213,
+            1214
+          ]
+        },
+        {
+          "teal": 1107,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1215
+          ]
+        },
+        {
+          "teal": 1108,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1216
+          ]
+        },
+        {
+          "teal": 1109,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1217,
+            1218,
+            1219
+          ]
+        },
+        {
+          "teal": 1110,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1220,
+            1221
+          ]
+        },
+        {
+          "teal": 1111,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1222,
+            1223
+          ]
+        },
+        {
+          "teal": 1112,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1224
+          ]
+        },
+        {
+          "teal": 1113,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1225,
+            1226
+          ]
+        },
+        {
+          "teal": 1114,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1227,
+            1228
+          ]
+        },
+        {
+          "teal": 1115,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1229,
+            1230
+          ]
+        },
+        {
+          "teal": 1116,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1231
+          ]
+        },
+        {
+          "teal": 1117,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1232
+          ]
+        },
+        {
+          "teal": 1118,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1233,
+            1234
+          ]
+        },
+        {
+          "teal": 1119,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1235
+          ]
+        },
+        {
+          "teal": 1120,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1236
+          ]
+        },
+        {
+          "teal": 1121,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1237
+          ]
+        },
+        {
+          "teal": 1122,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1238
+          ]
+        },
+        {
+          "teal": 1123,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1239
+          ]
+        },
+        {
+          "teal": 1124,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1240
+          ]
+        },
+        {
+          "teal": 1125,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1241
+          ]
+        },
+        {
+          "teal": 1126,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1242,
+            1243,
+            1244
+          ]
+        },
+        {
+          "teal": 1127,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1245
+          ]
+        },
+        {
+          "teal": 1128,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1246
+          ]
+        },
+        {
+          "teal": 1129,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1247
+          ]
+        },
+        {
+          "teal": 1130,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1248
+          ]
+        },
+        {
+          "teal": 1131,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1249
+          ]
+        },
+        {
+          "teal": 1132,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1250,
+            1251,
+            1252
+          ]
+        },
+        {
+          "teal": 1133,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1253
+          ]
+        },
+        {
+          "teal": 1134,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1254
+          ]
+        },
+        {
+          "teal": 1135,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1255,
+            1256,
+            1257
+          ]
+        },
+        {
+          "teal": 1136,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1258
+          ]
+        },
+        {
+          "teal": 1137,
+          "source": "lib_pcg/pcg32.algo.ts:127",
+          "pc": [
+            1259
+          ]
+        },
+        {
+          "teal": 1140,
+          "source": "lib_pcg/pcg32.algo.ts:120",
+          "pc": [
+            1260,
+            1261
+          ]
+        },
+        {
+          "teal": 1141,
+          "source": "lib_pcg/pcg32.algo.ts:120",
+          "pc": [
+            1262
+          ]
+        },
+        {
+          "teal": 1145,
+          "source": "lib_pcg/pcg32.algo.ts:102",
+          "pc": [
+            1263,
+            1264,
+            1265
+          ]
+        },
+        {
+          "teal": 1149,
+          "source": "lib_pcg/pcg32.algo.ts:103",
+          "pc": [
+            1266,
+            1267
+          ]
+        },
+        {
+          "teal": 1150,
+          "source": "lib_pcg/pcg32.algo.ts:103",
+          "pc": [
+            1268,
+            1269,
+            1270
+          ]
+        },
+        {
+          "teal": 1151,
+          "source": "lib_pcg/pcg32.algo.ts:102",
+          "pc": [
+            1271
+          ]
+        },
+        {
+          "teal": 1155,
+          "source": "lib_pcg/pcg32.algo.ts:110",
+          "pc": [
+            1272,
+            1273,
+            1274
+          ]
+        },
+        {
+          "teal": 1158,
+          "source": "lib_pcg/pcg32.algo.ts:110",
+          "pc": [
+            1275
+          ]
+        },
+        {
+          "teal": 1162,
+          "source": "lib_pcg/pcg32.algo.ts:116",
+          "pc": [
+            1276,
+            1277
+          ]
+        },
+        {
+          "teal": 1163,
+          "source": "lib_pcg/pcg32.algo.ts:116",
+          "pc": [
+            1278,
+            1279
+          ]
+        },
+        {
+          "teal": 1164,
+          "source": "lib_pcg/pcg32.algo.ts:116",
+          "pc": [
+            1280,
+            1281
+          ]
+        },
+        {
+          "teal": 1165,
+          "source": "lib_pcg/pcg32.algo.ts:116",
+          "pc": [
+            1282,
+            1283
+          ]
+        },
+        {
+          "teal": 1166,
+          "source": "lib_pcg/pcg32.algo.ts:116",
+          "pc": [
+            1284,
+            1285
+          ]
+        },
+        {
+          "teal": 1167,
+          "source": "lib_pcg/pcg32.algo.ts:116",
+          "pc": [
+            1286,
+            1287,
+            1288
+          ]
+        },
+        {
+          "teal": 1168,
+          "source": "lib_pcg/pcg32.algo.ts:116",
+          "pc": [
+            1289,
+            1290
+          ]
+        },
+        {
+          "teal": 1172,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1291
+          ]
+        },
+        {
+          "teal": 1173,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1292
+          ]
+        },
+        {
+          "teal": 1174,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1293
+          ]
+        },
+        {
+          "teal": 1175,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1294,
+            1295
+          ]
+        },
+        {
+          "teal": 1176,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1296,
+            1297
+          ]
+        },
+        {
+          "teal": 1177,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1298,
+            1299
+          ]
+        },
+        {
+          "teal": 1178,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1300,
+            1301,
+            1302
+          ]
+        },
+        {
+          "teal": 1179,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1303
+          ]
+        },
+        {
+          "teal": 1180,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1304
+          ]
+        },
+        {
+          "teal": 1181,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1305,
+            1306,
+            1307
+          ]
+        },
+        {
+          "teal": 1182,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1308,
+            1309
+          ]
+        },
+        {
+          "teal": 1183,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1310,
+            1311
+          ]
+        },
+        {
+          "teal": 1184,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1312
+          ]
+        },
+        {
+          "teal": 1185,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1313,
+            1314
+          ]
+        },
+        {
+          "teal": 1186,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1315,
+            1316
+          ]
+        },
+        {
+          "teal": 1187,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1317,
+            1318
+          ]
+        },
+        {
+          "teal": 1188,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1319
+          ]
+        },
+        {
+          "teal": 1189,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1320
+          ]
+        },
+        {
+          "teal": 1190,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1321,
+            1322
+          ]
+        },
+        {
+          "teal": 1191,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1323
+          ]
+        },
+        {
+          "teal": 1192,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1324
+          ]
+        },
+        {
+          "teal": 1193,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1325
+          ]
+        },
+        {
+          "teal": 1194,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1326
+          ]
+        },
+        {
+          "teal": 1195,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1327
+          ]
+        },
+        {
+          "teal": 1196,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1328
+          ]
+        },
+        {
+          "teal": 1197,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1329
+          ]
+        },
+        {
+          "teal": 1198,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1330,
+            1331,
+            1332
+          ]
+        },
+        {
+          "teal": 1199,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1333
+          ]
+        },
+        {
+          "teal": 1200,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1334
+          ]
+        },
+        {
+          "teal": 1201,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1335,
+            1336
+          ]
+        },
+        {
+          "teal": 1202,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1337
+          ]
+        },
+        {
+          "teal": 1203,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1338
+          ]
+        },
+        {
+          "teal": 1204,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1339,
+            1340,
+            1341
+          ]
+        },
+        {
+          "teal": 1205,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1342
+          ]
+        },
+        {
+          "teal": 1206,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1343
+          ]
+        },
+        {
+          "teal": 1207,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1344,
+            1345,
+            1346
+          ]
+        },
+        {
+          "teal": 1208,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1347
+          ]
+        },
+        {
+          "teal": 1209,
+          "source": "lib_pcg/pcg32.algo.ts:117",
+          "pc": [
+            1348
+          ]
+        },
+        {
+          "teal": 1212,
+          "source": "lib_pcg/pcg32.algo.ts:110",
+          "pc": [
+            1349,
+            1350
+          ]
+        },
+        {
+          "teal": 1213,
+          "source": "lib_pcg/pcg32.algo.ts:110",
+          "pc": [
+            1351
+          ]
+        },
+        {
+          "teal": 1217,
+          "source": "lib_pcg/pcg32.algo.ts:96",
+          "pc": [
+            1352,
+            1353,
+            1354
+          ]
+        },
+        {
+          "teal": 1221,
+          "source": "lib_pcg/pcg32.algo.ts:97",
+          "pc": [
+            1355,
+            1356
+          ]
+        },
+        {
+          "teal": 1222,
+          "source": "lib_pcg/pcg32.algo.ts:97",
+          "pc": [
+            1357
+          ]
+        },
+        {
+          "teal": 1223,
+          "source": "lib_pcg/pcg32.algo.ts:97",
+          "pc": [
+            1358
+          ]
+        },
+        {
+          "teal": 1224,
+          "source": "lib_pcg/pcg32.algo.ts:97",
+          "pc": [
+            1359
+          ]
+        },
+        {
+          "teal": 1225,
+          "source": "lib_pcg/pcg32.algo.ts:97",
+          "pc": [
+            1360
+          ]
+        },
+        {
+          "teal": 1231,
+          "source": "lib_pcg/consts.algo.ts:3",
+          "pc": [
+            1361,
+            1362
+          ]
+        },
+        {
+          "teal": 1235,
+          "source": "lib_pcg/pcg32.algo.ts:99",
+          "pc": [
+            1363,
+            1364
+          ]
+        },
+        {
+          "teal": 1236,
+          "source": "lib_pcg/pcg32.algo.ts:99",
+          "pc": [
+            1365
+          ]
+        },
+        {
+          "teal": 1237,
+          "source": "lib_pcg/pcg32.algo.ts:99",
+          "pc": [
+            1366,
+            1367,
+            1368
+          ]
+        },
+        {
+          "teal": 1238,
+          "source": "lib_pcg/pcg32.algo.ts:96",
+          "pc": [
+            1369
+          ]
+        },
+        {
+          "teal": 1242,
+          "source": "lib_pcg/pcg32.algo.ts:89",
+          "pc": [
+            1370,
+            1371,
+            1372
+          ]
+        },
+        {
+          "teal": 1245,
+          "source": "lib_pcg/pcg32.algo.ts:89",
+          "pc": [
+            1373
+          ]
+        },
+        {
+          "teal": 1246,
+          "source": "lib_pcg/pcg32.algo.ts:89",
+          "pc": [
+            1374,
+            1375
+          ]
+        },
+        {
+          "teal": 1250,
+          "source": "lib_pcg/pcg32.algo.ts:90",
+          "pc": [
+            1376,
+            1377
+          ]
+        },
+        {
+          "teal": 1251,
+          "source": "lib_pcg/pcg32.algo.ts:90",
+          "pc": [
+            1378
+          ]
+        },
+        {
+          "teal": 1252,
+          "source": "lib_pcg/pcg32.algo.ts:90",
+          "pc": [
+            1379,
+            1380,
+            1381
+          ]
+        },
+        {
+          "teal": 1253,
+          "source": "lib_pcg/pcg32.algo.ts:90",
+          "pc": [
+            1382,
+            1383
+          ]
+        },
+        {
+          "teal": 1257,
+          "source": "lib_pcg/pcg32.algo.ts:91",
+          "pc": [
+            1384,
+            1385
+          ]
+        },
+        {
+          "teal": 1258,
+          "source": "lib_pcg/pcg32.algo.ts:91",
+          "pc": [
+            1386,
+            1387
+          ]
+        },
+        {
+          "teal": 1259,
+          "source": "lib_pcg/pcg32.algo.ts:91",
+          "pc": [
+            1388
+          ]
+        },
+        {
+          "teal": 1260,
+          "source": "lib_pcg/pcg32.algo.ts:91",
+          "pc": [
+            1389,
+            1390
+          ]
+        },
+        {
+          "teal": 1261,
+          "source": "lib_pcg/pcg32.algo.ts:91",
+          "pc": [
+            1391,
+            1392
+          ]
+        },
+        {
+          "teal": 1265,
+          "source": "lib_pcg/pcg32.algo.ts:93",
+          "pc": [
+            1393,
+            1394
+          ]
+        },
+        {
+          "teal": 1266,
+          "source": "lib_pcg/pcg32.algo.ts:93",
+          "pc": [
+            1395,
+            1396
+          ]
+        },
+        {
+          "teal": 1267,
+          "source": "lib_pcg/pcg32.algo.ts:93",
+          "pc": [
+            1397,
+            1398,
+            1399
+          ]
+        },
+        {
+          "teal": 1270,
+          "source": "lib_pcg/pcg32.algo.ts:89",
+          "pc": [
+            1400,
+            1401
+          ]
+        },
+        {
+          "teal": 1273,
+          "source": "lib_pcg/pcg32.algo.ts:89",
+          "pc": [
+            1402,
+            1403
+          ]
+        },
+        {
+          "teal": 1274,
+          "source": "lib_pcg/pcg32.algo.ts:89",
+          "pc": [
+            1404
+          ]
+        },
+        {
+          "teal": 1277,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1405,
+            1406,
+            1407
+          ]
+        },
+        {
+          "teal": 1278,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1408,
+            1409
+          ]
+        },
+        {
+          "teal": 1279,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1410,
+            1411
+          ]
+        },
+        {
+          "teal": 1280,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1412
+          ]
+        },
+        {
+          "teal": 1281,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1413,
+            1414
+          ]
+        },
+        {
+          "teal": 1282,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1415,
+            1416
+          ]
+        },
+        {
+          "teal": 1283,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1417
+          ]
+        },
+        {
+          "teal": 1286,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1418,
+            1419,
+            1420
+          ]
+        },
+        {
+          "teal": 1287,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1421,
+            1422
+          ]
+        },
+        {
+          "teal": 1288,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1423,
+            1424
+          ]
+        },
+        {
+          "teal": 1289,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1425
+          ]
+        },
+        {
+          "teal": 1290,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1426,
+            1427
+          ]
+        },
+        {
+          "teal": 1291,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1428,
+            1429
+          ]
+        },
+        {
+          "teal": 1292,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1430
+          ]
+        },
+        {
+          "teal": 1293,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1431
+          ]
+        },
+        {
+          "teal": 1294,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1432,
+            1433
+          ]
+        },
+        {
+          "teal": 1295,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1434
+          ]
+        },
+        {
+          "teal": 1296,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1435
+          ]
+        },
+        {
+          "teal": 1297,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1436
+          ]
+        },
+        {
+          "teal": 1298,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1437,
+            1438,
+            1439
+          ]
+        },
+        {
+          "teal": 1299,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1440,
+            1441
+          ]
+        },
+        {
+          "teal": 1300,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1442,
+            1443
+          ]
+        },
+        {
+          "teal": 1301,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1444
+          ]
+        },
+        {
+          "teal": 1302,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1445
+          ]
+        },
+        {
+          "teal": 1303,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1446,
+            1447
+          ]
+        },
+        {
+          "teal": 1304,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1448,
+            1449
+          ]
+        },
+        {
+          "teal": 1305,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1450,
+            1451
+          ]
+        },
+        {
+          "teal": 1306,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1452,
+            1453
+          ]
+        },
+        {
+          "teal": 1307,
+          "source": "contracts/lib-pcg32-test-harness-ts.algo.ts:5",
+          "pc": [
+            1454
+          ]
+        }
+      ],
+      "pcOffsetMethod": "none"
+    },
+    "clear": {
+      "sourceInfo": [],
+      "pcOffsetMethod": "none"
+    }
+  },
+  "source": {
+    "approval": "I3ByYWdtYSB2ZXJzaW9uIDEwCmludGNibG9jayAxIDIgMCA4IDQgMTYgMTQ0MjY5NTA0MDg4ODk2MzQwNyAzMgpieXRlY2Jsb2NrIDB4IDB4MDAwMDAwMDAwMDAwMDAwMCAweDAwMGEgMHgxNTFmN2M3NQoKLy8gVGhpcyBURUFMIHdhcyBnZW5lcmF0ZWQgYnkgVEVBTFNjcmlwdCB2MC4xMDYuMgovLyBodHRwczovL2dpdGh1Yi5jb20vYWxnb3JhbmRmb3VuZGF0aW9uL1RFQUxTY3JpcHQKCi8vIFRoaXMgY29udHJhY3QgaXMgY29tcGxpYW50IHdpdGggYW5kL29yIGltcGxlbWVudHMgdGhlIGZvbGxvd2luZyBBUkNzOiBbIEFSQzQgXQoKLy8gVGhlIGZvbGxvd2luZyB0ZW4gbGluZXMgb2YgVEVBTCBoYW5kbGUgaW5pdGlhbCBwcm9ncmFtIGZsb3cKLy8gVGhpcyBwYXR0ZXJuIGlzIHVzZWQgdG8gbWFrZSBpdCBlYXN5IGZvciBhbnlvbmUgdG8gcGFyc2UgdGhlIHN0YXJ0IG9mIHRoZSBwcm9ncmFtIGFuZCBkZXRlcm1pbmUgaWYgYSBzcGVjaWZpYyBhY3Rpb24gaXMgYWxsb3dlZAovLyBIZXJlLCBhY3Rpb24gcmVmZXJzIHRvIHRoZSBPbkNvbXBsZXRlIGluIGNvbWJpbmF0aW9uIHdpdGggd2hldGhlciB0aGUgYXBwIGlzIGJlaW5nIGNyZWF0ZWQgb3IgY2FsbGVkCi8vIEV2ZXJ5IHBvc3NpYmxlIGFjdGlvbiBmb3IgdGhpcyBjb250cmFjdCBpcyByZXByZXNlbnRlZCBpbiB0aGUgc3dpdGNoIHN0YXRlbWVudAovLyBJZiB0aGUgYWN0aW9uIGlzIG5vdCBpbXBsZW1lbnRlZCBpbiB0aGUgY29udHJhY3QsIGl0cyByZXNwZWN0aXZlIGJyYW5jaCB3aWxsIGJlICIqTk9UX0lNUExFTUVOVEVEIiB3aGljaCBqdXN0IGNvbnRhaW5zICJlcnIiCnR4biBBcHBsaWNhdGlvbklECiEKcHVzaGludCA2CioKdHhuIE9uQ29tcGxldGlvbgorCnN3aXRjaCAqY2FsbF9Ob09wICpOT1RfSU1QTEVNRU5URUQgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVEICpOT1RfSU1QTEVNRU5URUQgKk5PVF9JTVBMRU1FTlRFRCAqY3JlYXRlX05vT3AgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVEICpOT1RfSU1QTEVNRU5URUQgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVECgoqTk9UX0lNUExFTUVOVEVEOgoJLy8gVGhlIHJlcXVlc3RlZCBhY3Rpb24gaXMgbm90IGltcGxlbWVudGVkIGluIHRoaXMgY29udHJhY3QuIEFyZSB5b3UgdXNpbmcgdGhlIGNvcnJlY3QgT25Db21wbGV0ZT8gRGlkIHlvdSBzZXQgeW91ciBhcHAgSUQ/CgllcnIKCi8vIGdldF9wY2czMl9zZXF1ZW5jZV9hcmM0X3VpbnQzMl9yZXR1cm4oYnl0ZVs4XSx1aW50MzIsdWludDMyLHVpbnQxNil1aW50MzJbXQoqYWJpX3JvdXRlX2dldF9wY2czMl9zZXF1ZW5jZV9hcmM0X3VpbnQzMl9yZXR1cm46CgkvLyBUaGUgQUJJIHJldHVybiBwcmVmaXgKCWJ5dGVjIDMgLy8gMHgxNTFmN2M3NQoKCS8vIGxlbmd0aDogdWludDE2Cgl0eG5hIEFwcGxpY2F0aW9uQXJncyA0CglkdXAKCWxlbgoJaW50YyAxIC8vIDIKCT09CgoJLy8gYXJndW1lbnQgMCAobGVuZ3RoKSBmb3IgZ2V0X3BjZzMyX3NlcXVlbmNlX2FyYzRfdWludDMyX3JldHVybiBtdXN0IGJlIGEgdWludDE2Cglhc3NlcnQKCWJ0b2kKCgkvLyB1cHBlckJvdW5kOiB1aW50MzIKCXR4bmEgQXBwbGljYXRpb25BcmdzIDMKCWR1cAoJbGVuCglpbnRjIDQgLy8gNAoJPT0KCgkvLyBhcmd1bWVudCAxICh1cHBlckJvdW5kKSBmb3IgZ2V0X3BjZzMyX3NlcXVlbmNlX2FyYzRfdWludDMyX3JldHVybiBtdXN0IGJlIGEgdWludDMyCglhc3NlcnQKCWJ0b2kKCgkvLyBsb3dlckJvdW5kOiB1aW50MzIKCXR4bmEgQXBwbGljYXRpb25BcmdzIDIKCWR1cAoJbGVuCglpbnRjIDQgLy8gNAoJPT0KCgkvLyBhcmd1bWVudCAyIChsb3dlckJvdW5kKSBmb3IgZ2V0X3BjZzMyX3NlcXVlbmNlX2FyYzRfdWludDMyX3JldHVybiBtdXN0IGJlIGEgdWludDMyCglhc3NlcnQKCWJ0b2kKCgkvLyBzZWVkOiBieXRlWzhdCgl0eG5hIEFwcGxpY2F0aW9uQXJncyAxCglkdXAKCWxlbgoJaW50YyAzIC8vIDgKCT09CgoJLy8gYXJndW1lbnQgMyAoc2VlZCkgZm9yIGdldF9wY2czMl9zZXF1ZW5jZV9hcmM0X3VpbnQzMl9yZXR1cm4gbXVzdCBiZSBhIGJ5dGVbOF0KCWFzc2VydAoKCS8vIGV4ZWN1dGUgZ2V0X3BjZzMyX3NlcXVlbmNlX2FyYzRfdWludDMyX3JldHVybihieXRlWzhdLHVpbnQzMix1aW50MzIsdWludDE2KXVpbnQzMltdCgljYWxsc3ViIGdldF9wY2czMl9zZXF1ZW5jZV9hcmM0X3VpbnQzMl9yZXR1cm4KCWR1cAoJbGVuCglpbnRjIDQgLy8gNAoJLwoJaXRvYgoJZXh0cmFjdCA2IDIKCXN3YXAKCWNvbmNhdAoJY29uY2F0Cglsb2cKCWludGMgMCAvLyAxCglyZXR1cm4KCi8vIGdldF9wY2czMl9zZXF1ZW5jZV9hcmM0X3VpbnQzMl9yZXR1cm4oc2VlZDogYnl0ZXM8OD4sIGxvd2VyQm91bmQ6IHVpbnQzMiwgdXBwZXJCb3VuZDogdWludDMyLCBsZW5ndGg6IHVpbnQxNik6IHVpbnQzMltdCmdldF9wY2czMl9zZXF1ZW5jZV9hcmM0X3VpbnQzMl9yZXR1cm46Cglwcm90byA0IDEKCgkvLyBQdXNoIGVtcHR5IGJ5dGVzIGFmdGVyIHRoZSBmcmFtZSBwb2ludGVyIHRvIHJlc2VydmUgc3BhY2UgZm9yIGxvY2FsIHZhcmlhYmxlcwoJYnl0ZWMgMCAvLyAweAoJZHVwCgoJLy8gY29udHJhY3RzL2xpYi1wY2czMi10ZXN0LWhhcm5lc3MtdHMuYWxnby50czoxMgoJLy8gc3RhdGUgPSBwY2czMkluaXQoY2FzdEJ5dGVzPGJ5dGVzPihzZWVkKSkKCWZyYW1lX2RpZyAtMSAvLyBzZWVkOiBieXRlczw4PgoJY2FsbHN1YiBwY2czMkluaXQKCWZyYW1lX2J1cnkgMCAvLyBzdGF0ZTogdWludDY0CgoJLy8gY29udHJhY3RzL2xpYi1wY2czMi10ZXN0LWhhcm5lc3MtdHMuYWxnby50czoxNAoJLy8gcmVzdWx0ID0gcGNnMzJSYW5kb20oc3RhdGUsIGxvd2VyQm91bmQgYXMgdWludDY0LCB1cHBlckJvdW5kIGFzIHVpbnQ2NCwgbGVuZ3RoIGFzIHVpbnQ2NCkKCWZyYW1lX2RpZyAtNCAvLyBsZW5ndGg6IHVpbnQxNgoJZnJhbWVfZGlnIC0zIC8vIHVwcGVyQm91bmQ6IHVpbnQzMgoJZnJhbWVfZGlnIC0yIC8vIGxvd2VyQm91bmQ6IHVpbnQzMgoJZnJhbWVfZGlnIDAgLy8gc3RhdGU6IHVpbnQ2NAoJY2FsbHN1YiBwY2czMlJhbmRvbQoJZnJhbWVfYnVyeSAxIC8vIHJlc3VsdDogKHVpbnQ2NCx1aW50MzJbXSkKCgkvLyBjb250cmFjdHMvbGliLXBjZzMyLXRlc3QtaGFybmVzcy10cy5hbGdvLnRzOjE1CgkvLyBzdGF0ZSA9IHJlc3VsdFswXQoJZnJhbWVfZGlnIDEgLy8gcmVzdWx0OiAodWludDY0LHVpbnQzMltdKQoJc3RvcmUgMjU1IC8vIGZ1bGwgYXJyYXkKCWxvYWQgMjU1IC8vIGZ1bGwgYXJyYXkKCWV4dHJhY3QgMCA4CglidG9pCglmcmFtZV9idXJ5IDAgLy8gc3RhdGU6IHVpbnQ2NAoKCS8vIGNvbnRyYWN0cy9saWItcGNnMzItdGVzdC1oYXJuZXNzLXRzLmFsZ28udHM6MTcKCS8vIHJldHVybiByZXN1bHRbMV07CglmcmFtZV9kaWcgMSAvLyByZXN1bHQ6ICh1aW50NjQsdWludDMyW10pCglzdG9yZSAyNTUgLy8gZnVsbCBhcnJheQoJaW50YyAzIC8vIDgKCWxvYWQgMjU1IC8vIGZ1bGwgYXJyYXkKCWxvYWQgMjU1IC8vIGZ1bGwgYXJyYXkKCXVuY292ZXIgMgoJZXh0cmFjdF91aW50MTYKCWR1cCAvLyBkdXBsaWNhdGUgc3RhcnQgb2YgZWxlbWVudAoJbG9hZCAyNTUgLy8gZnVsbCBhcnJheQoJc3dhcAoJZXh0cmFjdF91aW50MTYgLy8gZ2V0IG51bWJlciBvZiBlbGVtZW50cwoJaW50YyA0IC8vICBnZXQgdHlwZSBsZW5ndGgKCSogLy8gbXVsdGlwbHkgYnkgdHlwZSBsZW5ndGgKCWludGMgMSAvLyAyCgkrIC8vIGFkZCB0d28gZm9yIGxlbmd0aAoJZXh0cmFjdDMKCWV4dHJhY3QgMiAwCgoJLy8gc2V0IHRoZSBzdWJyb3V0aW5lIHJldHVybiB2YWx1ZQoJZnJhbWVfYnVyeSAwCgoJLy8gcG9wIGFsbCBsb2NhbCB2YXJpYWJsZXMgZnJvbSB0aGUgc3RhY2sKCXBvcG4gMQoJcmV0c3ViCgovLyBnZXRfcGNnMzJfc2VxdWVuY2VfYXJjNF91aW50MTZfcmV0dXJuKGJ5dGVbOF0sdWludDE2LHVpbnQxNix1aW50MTYpdWludDE2W10KKmFiaV9yb3V0ZV9nZXRfcGNnMzJfc2VxdWVuY2VfYXJjNF91aW50MTZfcmV0dXJuOgoJLy8gVGhlIEFCSSByZXR1cm4gcHJlZml4CglieXRlYyAzIC8vIDB4MTUxZjdjNzUKCgkvLyBsZW5ndGg6IHVpbnQxNgoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgNAoJZHVwCglsZW4KCWludGMgMSAvLyAyCgk9PQoKCS8vIGFyZ3VtZW50IDAgKGxlbmd0aCkgZm9yIGdldF9wY2czMl9zZXF1ZW5jZV9hcmM0X3VpbnQxNl9yZXR1cm4gbXVzdCBiZSBhIHVpbnQxNgoJYXNzZXJ0CglidG9pCgoJLy8gdXBwZXJCb3VuZDogdWludDE2Cgl0eG5hIEFwcGxpY2F0aW9uQXJncyAzCglkdXAKCWxlbgoJaW50YyAxIC8vIDIKCT09CgoJLy8gYXJndW1lbnQgMSAodXBwZXJCb3VuZCkgZm9yIGdldF9wY2czMl9zZXF1ZW5jZV9hcmM0X3VpbnQxNl9yZXR1cm4gbXVzdCBiZSBhIHVpbnQxNgoJYXNzZXJ0CglidG9pCgoJLy8gbG93ZXJCb3VuZDogdWludDE2Cgl0eG5hIEFwcGxpY2F0aW9uQXJncyAyCglkdXAKCWxlbgoJaW50YyAxIC8vIDIKCT09CgoJLy8gYXJndW1lbnQgMiAobG93ZXJCb3VuZCkgZm9yIGdldF9wY2czMl9zZXF1ZW5jZV9hcmM0X3VpbnQxNl9yZXR1cm4gbXVzdCBiZSBhIHVpbnQxNgoJYXNzZXJ0CglidG9pCgoJLy8gc2VlZDogYnl0ZVs4XQoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQoJZHVwCglsZW4KCWludGMgMyAvLyA4Cgk9PQoKCS8vIGFyZ3VtZW50IDMgKHNlZWQpIGZvciBnZXRfcGNnMzJfc2VxdWVuY2VfYXJjNF91aW50MTZfcmV0dXJuIG11c3QgYmUgYSBieXRlWzhdCglhc3NlcnQKCgkvLyBleGVjdXRlIGdldF9wY2czMl9zZXF1ZW5jZV9hcmM0X3VpbnQxNl9yZXR1cm4oYnl0ZVs4XSx1aW50MTYsdWludDE2LHVpbnQxNil1aW50MTZbXQoJY2FsbHN1YiBnZXRfcGNnMzJfc2VxdWVuY2VfYXJjNF91aW50MTZfcmV0dXJuCglkdXAKCWxlbgoJaW50YyAxIC8vIDIKCS8KCWl0b2IKCWV4dHJhY3QgNiAyCglzd2FwCgljb25jYXQKCWNvbmNhdAoJbG9nCglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyBnZXRfcGNnMzJfc2VxdWVuY2VfYXJjNF91aW50MTZfcmV0dXJuKHNlZWQ6IGJ5dGVzPDg+LCBsb3dlckJvdW5kOiB1aW50MTYsIHVwcGVyQm91bmQ6IHVpbnQxNiwgbGVuZ3RoOiB1aW50MTYpOiB1aW50MTZbXQpnZXRfcGNnMzJfc2VxdWVuY2VfYXJjNF91aW50MTZfcmV0dXJuOgoJcHJvdG8gNCAxCgoJLy8gUHVzaCBlbXB0eSBieXRlcyBhZnRlciB0aGUgZnJhbWUgcG9pbnRlciB0byByZXNlcnZlIHNwYWNlIGZvciBsb2NhbCB2YXJpYWJsZXMKCWJ5dGVjIDAgLy8gMHgKCWR1cAoKCS8vIGNvbnRyYWN0cy9saWItcGNnMzItdGVzdC1oYXJuZXNzLXRzLmFsZ28udHM6MjYKCS8vIHN0YXRlID0gcGNnMTZJbml0KGNhc3RCeXRlczxieXRlcz4oc2VlZCkpCglmcmFtZV9kaWcgLTEgLy8gc2VlZDogYnl0ZXM8OD4KCWNhbGxzdWIgcGNnMTZJbml0CglmcmFtZV9idXJ5IDAgLy8gc3RhdGU6IHVpbnQ2NAoKCS8vIGNvbnRyYWN0cy9saWItcGNnMzItdGVzdC1oYXJuZXNzLXRzLmFsZ28udHM6MjgKCS8vIHJlc3VsdCA9IHBjZzE2UmFuZG9tKHN0YXRlLCBsb3dlckJvdW5kIGFzIHVpbnQ2NCwgdXBwZXJCb3VuZCBhcyB1aW50NjQsIGxlbmd0aCBhcyB1aW50NjQpCglmcmFtZV9kaWcgLTQgLy8gbGVuZ3RoOiB1aW50MTYKCWZyYW1lX2RpZyAtMyAvLyB1cHBlckJvdW5kOiB1aW50MTYKCWZyYW1lX2RpZyAtMiAvLyBsb3dlckJvdW5kOiB1aW50MTYKCWZyYW1lX2RpZyAwIC8vIHN0YXRlOiB1aW50NjQKCWNhbGxzdWIgcGNnMTZSYW5kb20KCWZyYW1lX2J1cnkgMSAvLyByZXN1bHQ6ICh1aW50NjQsdWludDE2W10pCgoJLy8gY29udHJhY3RzL2xpYi1wY2czMi10ZXN0LWhhcm5lc3MtdHMuYWxnby50czoyOQoJLy8gc3RhdGUgPSByZXN1bHRbMF0KCWZyYW1lX2RpZyAxIC8vIHJlc3VsdDogKHVpbnQ2NCx1aW50MTZbXSkKCXN0b3JlIDI1NSAvLyBmdWxsIGFycmF5Cglsb2FkIDI1NSAvLyBmdWxsIGFycmF5CglleHRyYWN0IDAgOAoJYnRvaQoJZnJhbWVfYnVyeSAwIC8vIHN0YXRlOiB1aW50NjQKCgkvLyBjb250cmFjdHMvbGliLXBjZzMyLXRlc3QtaGFybmVzcy10cy5hbGdvLnRzOjMxCgkvLyByZXR1cm4gcmVzdWx0WzFdOwoJZnJhbWVfZGlnIDEgLy8gcmVzdWx0OiAodWludDY0LHVpbnQxNltdKQoJc3RvcmUgMjU1IC8vIGZ1bGwgYXJyYXkKCWludGMgMyAvLyA4Cglsb2FkIDI1NSAvLyBmdWxsIGFycmF5Cglsb2FkIDI1NSAvLyBmdWxsIGFycmF5Cgl1bmNvdmVyIDIKCWV4dHJhY3RfdWludDE2CglkdXAgLy8gZHVwbGljYXRlIHN0YXJ0IG9mIGVsZW1lbnQKCWxvYWQgMjU1IC8vIGZ1bGwgYXJyYXkKCXN3YXAKCWV4dHJhY3RfdWludDE2IC8vIGdldCBudW1iZXIgb2YgZWxlbWVudHMKCWludGMgMSAvLyAgZ2V0IHR5cGUgbGVuZ3RoCgkqIC8vIG11bHRpcGx5IGJ5IHR5cGUgbGVuZ3RoCglpbnRjIDEgLy8gMgoJKyAvLyBhZGQgdHdvIGZvciBsZW5ndGgKCWV4dHJhY3QzCglleHRyYWN0IDIgMAoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDEKCXJldHN1YgoKLy8gZ2V0X3BjZzMyX3NlcXVlbmNlX2FyYzRfdWludDhfcmV0dXJuKGJ5dGVbOF0sdWludDgsdWludDgsdWludDE2KXVpbnQ4W10KKmFiaV9yb3V0ZV9nZXRfcGNnMzJfc2VxdWVuY2VfYXJjNF91aW50OF9yZXR1cm46CgkvLyBUaGUgQUJJIHJldHVybiBwcmVmaXgKCWJ5dGVjIDMgLy8gMHgxNTFmN2M3NQoKCS8vIGxlbmd0aDogdWludDE2Cgl0eG5hIEFwcGxpY2F0aW9uQXJncyA0CglkdXAKCWxlbgoJaW50YyAxIC8vIDIKCT09CgoJLy8gYXJndW1lbnQgMCAobGVuZ3RoKSBmb3IgZ2V0X3BjZzMyX3NlcXVlbmNlX2FyYzRfdWludDhfcmV0dXJuIG11c3QgYmUgYSB1aW50MTYKCWFzc2VydAoJYnRvaQoKCS8vIHVwcGVyQm91bmQ6IHVpbnQ4Cgl0eG5hIEFwcGxpY2F0aW9uQXJncyAzCglkdXAKCWxlbgoJaW50YyAwIC8vIDEKCT09CgoJLy8gYXJndW1lbnQgMSAodXBwZXJCb3VuZCkgZm9yIGdldF9wY2czMl9zZXF1ZW5jZV9hcmM0X3VpbnQ4X3JldHVybiBtdXN0IGJlIGEgdWludDgKCWFzc2VydAoJYnRvaQoKCS8vIGxvd2VyQm91bmQ6IHVpbnQ4Cgl0eG5hIEFwcGxpY2F0aW9uQXJncyAyCglkdXAKCWxlbgoJaW50YyAwIC8vIDEKCT09CgoJLy8gYXJndW1lbnQgMiAobG93ZXJCb3VuZCkgZm9yIGdldF9wY2czMl9zZXF1ZW5jZV9hcmM0X3VpbnQ4X3JldHVybiBtdXN0IGJlIGEgdWludDgKCWFzc2VydAoJYnRvaQoKCS8vIHNlZWQ6IGJ5dGVbOF0KCXR4bmEgQXBwbGljYXRpb25BcmdzIDEKCWR1cAoJbGVuCglpbnRjIDMgLy8gOAoJPT0KCgkvLyBhcmd1bWVudCAzIChzZWVkKSBmb3IgZ2V0X3BjZzMyX3NlcXVlbmNlX2FyYzRfdWludDhfcmV0dXJuIG11c3QgYmUgYSBieXRlWzhdCglhc3NlcnQKCgkvLyBleGVjdXRlIGdldF9wY2czMl9zZXF1ZW5jZV9hcmM0X3VpbnQ4X3JldHVybihieXRlWzhdLHVpbnQ4LHVpbnQ4LHVpbnQxNil1aW50OFtdCgljYWxsc3ViIGdldF9wY2czMl9zZXF1ZW5jZV9hcmM0X3VpbnQ4X3JldHVybgoJZHVwCglsZW4KCWl0b2IKCWV4dHJhY3QgNiAyCglzd2FwCgljb25jYXQKCWNvbmNhdAoJbG9nCglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyBnZXRfcGNnMzJfc2VxdWVuY2VfYXJjNF91aW50OF9yZXR1cm4oc2VlZDogYnl0ZXM8OD4sIGxvd2VyQm91bmQ6IHVpbnQ4LCB1cHBlckJvdW5kOiB1aW50OCwgbGVuZ3RoOiB1aW50MTYpOiB1aW50OFtdCmdldF9wY2czMl9zZXF1ZW5jZV9hcmM0X3VpbnQ4X3JldHVybjoKCXByb3RvIDQgMQoKCS8vIFB1c2ggZW1wdHkgYnl0ZXMgYWZ0ZXIgdGhlIGZyYW1lIHBvaW50ZXIgdG8gcmVzZXJ2ZSBzcGFjZSBmb3IgbG9jYWwgdmFyaWFibGVzCglieXRlYyAwIC8vIDB4CglkdXAKCgkvLyBjb250cmFjdHMvbGliLXBjZzMyLXRlc3QtaGFybmVzcy10cy5hbGdvLnRzOjM1CgkvLyBzdGF0ZSA9IHBjZzhJbml0KGNhc3RCeXRlczxieXRlcz4oc2VlZCkpCglmcmFtZV9kaWcgLTEgLy8gc2VlZDogYnl0ZXM8OD4KCWNhbGxzdWIgcGNnOEluaXQKCWZyYW1lX2J1cnkgMCAvLyBzdGF0ZTogdWludDY0CgoJLy8gY29udHJhY3RzL2xpYi1wY2czMi10ZXN0LWhhcm5lc3MtdHMuYWxnby50czozNwoJLy8gcmVzdWx0ID0gcGNnOFJhbmRvbShzdGF0ZSwgbG93ZXJCb3VuZCBhcyB1aW50NjQsIHVwcGVyQm91bmQgYXMgdWludDY0LCBsZW5ndGggYXMgdWludDY0KQoJZnJhbWVfZGlnIC00IC8vIGxlbmd0aDogdWludDE2CglmcmFtZV9kaWcgLTMgLy8gdXBwZXJCb3VuZDogdWludDgKCWZyYW1lX2RpZyAtMiAvLyBsb3dlckJvdW5kOiB1aW50OAoJZnJhbWVfZGlnIDAgLy8gc3RhdGU6IHVpbnQ2NAoJY2FsbHN1YiBwY2c4UmFuZG9tCglmcmFtZV9idXJ5IDEgLy8gcmVzdWx0OiAodWludDY0LHVpbnQ4W10pCgoJLy8gY29udHJhY3RzL2xpYi1wY2czMi10ZXN0LWhhcm5lc3MtdHMuYWxnby50czozOAoJLy8gc3RhdGUgPSByZXN1bHRbMF0KCWZyYW1lX2RpZyAxIC8vIHJlc3VsdDogKHVpbnQ2NCx1aW50OFtdKQoJc3RvcmUgMjU1IC8vIGZ1bGwgYXJyYXkKCWxvYWQgMjU1IC8vIGZ1bGwgYXJyYXkKCWV4dHJhY3QgMCA4CglidG9pCglmcmFtZV9idXJ5IDAgLy8gc3RhdGU6IHVpbnQ2NAoKCS8vIGNvbnRyYWN0cy9saWItcGNnMzItdGVzdC1oYXJuZXNzLXRzLmFsZ28udHM6NDAKCS8vIHJldHVybiByZXN1bHRbMV07CglmcmFtZV9kaWcgMSAvLyByZXN1bHQ6ICh1aW50NjQsdWludDhbXSkKCXN0b3JlIDI1NSAvLyBmdWxsIGFycmF5CglpbnRjIDMgLy8gOAoJbG9hZCAyNTUgLy8gZnVsbCBhcnJheQoJbG9hZCAyNTUgLy8gZnVsbCBhcnJheQoJdW5jb3ZlciAyCglleHRyYWN0X3VpbnQxNgoJZHVwIC8vIGR1cGxpY2F0ZSBzdGFydCBvZiBlbGVtZW50Cglsb2FkIDI1NSAvLyBmdWxsIGFycmF5Cglzd2FwCglleHRyYWN0X3VpbnQxNiAvLyBnZXQgbnVtYmVyIG9mIGVsZW1lbnRzCglpbnRjIDAgLy8gIGdldCB0eXBlIGxlbmd0aAoJKiAvLyBtdWx0aXBseSBieSB0eXBlIGxlbmd0aAoJaW50YyAxIC8vIDIKCSsgLy8gYWRkIHR3byBmb3IgbGVuZ3RoCglleHRyYWN0MwoJZXh0cmFjdCAyIDAKCgkvLyBzZXQgdGhlIHN1YnJvdXRpbmUgcmV0dXJuIHZhbHVlCglmcmFtZV9idXJ5IDAKCgkvLyBwb3AgYWxsIGxvY2FsIHZhcmlhYmxlcyBmcm9tIHRoZSBzdGFjawoJcG9wbiAxCglyZXRzdWIKCi8vIHJ1bnRpbWVfYXNzZXJ0c19wY2czMl9zdGFja19hcnJheSgpdm9pZAoqYWJpX3JvdXRlX3J1bnRpbWVfYXNzZXJ0c19wY2czMl9zdGFja19hcnJheToKCS8vIGV4ZWN1dGUgcnVudGltZV9hc3NlcnRzX3BjZzMyX3N0YWNrX2FycmF5KCl2b2lkCgljYWxsc3ViIHJ1bnRpbWVfYXNzZXJ0c19wY2czMl9zdGFja19hcnJheQoJaW50YyAwIC8vIDEKCXJldHVybgoKLy8gcnVudGltZV9hc3NlcnRzX3BjZzMyX3N0YWNrX2FycmF5KCk6IHZvaWQKcnVudGltZV9hc3NlcnRzX3BjZzMyX3N0YWNrX2FycmF5OgoJcHJvdG8gMCAwCgoJLy8gUHVzaCBlbXB0eSBieXRlcyBhZnRlciB0aGUgZnJhbWUgcG9pbnRlciB0byByZXNlcnZlIHNwYWNlIGZvciBsb2NhbCB2YXJpYWJsZXMKCWJ5dGVjIDAgLy8gMHgKCWR1cAoKCS8vIGNvbnRyYWN0cy9saWItcGNnMzItdGVzdC1oYXJuZXNzLXRzLmFsZ28udHM6NDQKCS8vIHN0YXRlID0gcGNnMzJJbml0KGJ6ZXJvKDgpKQoJYnl0ZWMgMSAvLyAweDAwMDAwMDAwMDAwMDAwMDAKCWNhbGxzdWIgcGNnMzJJbml0CglmcmFtZV9idXJ5IDAgLy8gc3RhdGU6IHVpbnQ2NAoKCS8vIGNvbnRyYWN0cy9saWItcGNnMzItdGVzdC1oYXJuZXNzLXRzLmFsZ28udHM6NDcKCS8vIHJlc3VsdCA9IHBjZzMyUmFuZG9tKHN0YXRlLCAwLCAwLCBNQVhfVUlOVDMyX0lOX1NUQUNLX0FSUkFZIC0gMikKCXB1c2hpbnQgMTAyMQoJaW50YyAyIC8vIDAKCWR1cAoJZnJhbWVfZGlnIDAgLy8gc3RhdGU6IHVpbnQ2NAoJY2FsbHN1YiBwY2czMlJhbmRvbQoJZnJhbWVfYnVyeSAxIC8vIHJlc3VsdDogKHVpbnQ2NCx1aW50MzJbXSkKCXJldHN1YgoKLy8gcnVudGltZV9hc3NlcnRzX3BjZzE2X3N0YWNrX2FycmF5KCl2b2lkCiphYmlfcm91dGVfcnVudGltZV9hc3NlcnRzX3BjZzE2X3N0YWNrX2FycmF5OgoJLy8gZXhlY3V0ZSBydW50aW1lX2Fzc2VydHNfcGNnMTZfc3RhY2tfYXJyYXkoKXZvaWQKCWNhbGxzdWIgcnVudGltZV9hc3NlcnRzX3BjZzE2X3N0YWNrX2FycmF5CglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyBydW50aW1lX2Fzc2VydHNfcGNnMTZfc3RhY2tfYXJyYXkoKTogdm9pZApydW50aW1lX2Fzc2VydHNfcGNnMTZfc3RhY2tfYXJyYXk6Cglwcm90byAwIDAKCgkvLyBQdXNoIGVtcHR5IGJ5dGVzIGFmdGVyIHRoZSBmcmFtZSBwb2ludGVyIHRvIHJlc2VydmUgc3BhY2UgZm9yIGxvY2FsIHZhcmlhYmxlcwoJYnl0ZWMgMCAvLyAweAoJZHVwCgoJLy8gY29udHJhY3RzL2xpYi1wY2czMi10ZXN0LWhhcm5lc3MtdHMuYWxnby50czo1MQoJLy8gc3RhdGUgPSBwY2cxNkluaXQoYnplcm8oOCkpCglieXRlYyAxIC8vIDB4MDAwMDAwMDAwMDAwMDAwMAoJY2FsbHN1YiBwY2cxNkluaXQKCWZyYW1lX2J1cnkgMCAvLyBzdGF0ZTogdWludDY0CgoJLy8gY29udHJhY3RzL2xpYi1wY2czMi10ZXN0LWhhcm5lc3MtdHMuYWxnby50czo1NAoJLy8gcmVzdWx0ID0gcGNnMTZSYW5kb20oc3RhdGUsIDAsIDAsIE1BWF9VSU5UMTZfSU5fU1RBQ0tfQVJSQVkgLSA1KQoJcHVzaGludCAyMDQyCglpbnRjIDIgLy8gMAoJZHVwCglmcmFtZV9kaWcgMCAvLyBzdGF0ZTogdWludDY0CgljYWxsc3ViIHBjZzE2UmFuZG9tCglmcmFtZV9idXJ5IDEgLy8gcmVzdWx0OiAodWludDY0LHVpbnQxNltdKQoJcmV0c3ViCgovLyBydW50aW1lX2Fzc2VydHNfcGNnOF9zdGFja19hcnJheSgpdm9pZAoqYWJpX3JvdXRlX3J1bnRpbWVfYXNzZXJ0c19wY2c4X3N0YWNrX2FycmF5OgoJLy8gZXhlY3V0ZSBydW50aW1lX2Fzc2VydHNfcGNnOF9zdGFja19hcnJheSgpdm9pZAoJY2FsbHN1YiBydW50aW1lX2Fzc2VydHNfcGNnOF9zdGFja19hcnJheQoJaW50YyAwIC8vIDEKCXJldHVybgoKLy8gcnVudGltZV9hc3NlcnRzX3BjZzhfc3RhY2tfYXJyYXkoKTogdm9pZApydW50aW1lX2Fzc2VydHNfcGNnOF9zdGFja19hcnJheToKCXByb3RvIDAgMAoKCS8vIFB1c2ggZW1wdHkgYnl0ZXMgYWZ0ZXIgdGhlIGZyYW1lIHBvaW50ZXIgdG8gcmVzZXJ2ZSBzcGFjZSBmb3IgbG9jYWwgdmFyaWFibGVzCglieXRlYyAwIC8vIDB4CglkdXAKCgkvLyBjb250cmFjdHMvbGliLXBjZzMyLXRlc3QtaGFybmVzcy10cy5hbGdvLnRzOjU4CgkvLyBzdGF0ZSA9IHBjZzhJbml0KGJ6ZXJvKDgpKQoJYnl0ZWMgMSAvLyAweDAwMDAwMDAwMDAwMDAwMDAKCWNhbGxzdWIgcGNnOEluaXQKCWZyYW1lX2J1cnkgMCAvLyBzdGF0ZTogdWludDY0CgoJLy8gY29udHJhY3RzL2xpYi1wY2czMi10ZXN0LWhhcm5lc3MtdHMuYWxnby50czo2MQoJLy8gcmVzdWx0ID0gcGNnOFJhbmRvbShzdGF0ZSwgMCwgMCwgTUFYX1VJTlQ4X0lOX1NUQUNLX0FSUkFZIC0gMTIpCglwdXNoaW50IDQwODIKCWludGMgMiAvLyAwCglkdXAKCWZyYW1lX2RpZyAwIC8vIHN0YXRlOiB1aW50NjQKCWNhbGxzdWIgcGNnOFJhbmRvbQoJZnJhbWVfYnVyeSAxIC8vIHJlc3VsdDogKHVpbnQ2NCx1aW50OFtdKQoJcmV0c3ViCgovLyBydW50aW1lX2ZhaWx1cmVfc3RhY2tfYnl0ZXNsaWNlX292ZXJmbG93KCl2b2lkCiphYmlfcm91dGVfcnVudGltZV9mYWlsdXJlX3N0YWNrX2J5dGVzbGljZV9vdmVyZmxvdzoKCS8vIGV4ZWN1dGUgcnVudGltZV9mYWlsdXJlX3N0YWNrX2J5dGVzbGljZV9vdmVyZmxvdygpdm9pZAoJY2FsbHN1YiBydW50aW1lX2ZhaWx1cmVfc3RhY2tfYnl0ZXNsaWNlX292ZXJmbG93CglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyBydW50aW1lX2ZhaWx1cmVfc3RhY2tfYnl0ZXNsaWNlX292ZXJmbG93KCk6IHZvaWQKcnVudGltZV9mYWlsdXJlX3N0YWNrX2J5dGVzbGljZV9vdmVyZmxvdzoKCXByb3RvIDAgMAoKCS8vIFB1c2ggZW1wdHkgYnl0ZXMgYWZ0ZXIgdGhlIGZyYW1lIHBvaW50ZXIgdG8gcmVzZXJ2ZSBzcGFjZSBmb3IgbG9jYWwgdmFyaWFibGVzCglieXRlYyAwIC8vIDB4CglkdXAKCgkvLyBjb250cmFjdHMvbGliLXBjZzMyLXRlc3QtaGFybmVzcy10cy5hbGdvLnRzOjY1CgkvLyBzdGF0ZSA9IHBjZzMySW5pdChiemVybyg4KSkKCWJ5dGVjIDEgLy8gMHgwMDAwMDAwMDAwMDAwMDAwCgljYWxsc3ViIHBjZzMySW5pdAoJZnJhbWVfYnVyeSAwIC8vIHN0YXRlOiB1aW50NjQKCgkvLyBjb250cmFjdHMvbGliLXBjZzMyLXRlc3QtaGFybmVzcy10cy5hbGdvLnRzOjY3CgkvLyByZXN1bHQgPSBwY2czMlJhbmRvbShzdGF0ZSwgMCwgMCwgTUFYX1VJTlQzMl9JTl9TVEFDS19BUlJBWSAtIDEpCglwdXNoaW50IDEwMjIKCWludGMgMiAvLyAwCglkdXAKCWZyYW1lX2RpZyAwIC8vIHN0YXRlOiB1aW50NjQKCWNhbGxzdWIgcGNnMzJSYW5kb20KCWZyYW1lX2J1cnkgMSAvLyByZXN1bHQ6ICh1aW50NjQsdWludDMyW10pCglyZXRzdWIKCi8vIGNyZWF0ZUFwcGxpY2F0aW9uKCl2b2lkCiphYmlfcm91dGVfY3JlYXRlQXBwbGljYXRpb246CgkvLyBleGVjdXRlIGNyZWF0ZUFwcGxpY2F0aW9uKCl2b2lkCgljYWxsc3ViIGNyZWF0ZUFwcGxpY2F0aW9uCglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyBjcmVhdGVBcHBsaWNhdGlvbigpOiB2b2lkCmNyZWF0ZUFwcGxpY2F0aW9uOgoJcHJvdG8gMCAwCgoJLy8gY29udHJhY3RzL2xpYi1wY2czMi10ZXN0LWhhcm5lc3MtdHMuYWxnby50czo3MgoJLy8gYXNzZXJ0KGdsb2JhbHMuY3JlYXRvckFkZHJlc3MgPT09IHRoaXMudHhuLnNlbmRlcikKCWdsb2JhbCBDcmVhdG9yQWRkcmVzcwoJdHhuIFNlbmRlcgoJPT0KCWFzc2VydAoJcmV0c3ViCgoqY3JlYXRlX05vT3A6Cgl0eG4gTnVtQXBwQXJncwoJYnogKmFiaV9yb3V0ZV9jcmVhdGVBcHBsaWNhdGlvbgoJcHVzaGJ5dGVzIDB4Yjg0NDdiMzYgLy8gbWV0aG9kICJjcmVhdGVBcHBsaWNhdGlvbigpdm9pZCIKCXR4bmEgQXBwbGljYXRpb25BcmdzIDAKCW1hdGNoICphYmlfcm91dGVfY3JlYXRlQXBwbGljYXRpb24KCgkvLyB0aGlzIGNvbnRyYWN0IGRvZXMgbm90IGltcGxlbWVudCB0aGUgZ2l2ZW4gQUJJIG1ldGhvZCBmb3IgY3JlYXRlIE5vT3AKCWVycgoKKmNhbGxfTm9PcDoKCXB1c2hieXRlcyAweDBjODQ3OGZiIC8vIG1ldGhvZCAiZ2V0X3BjZzMyX3NlcXVlbmNlX2FyYzRfdWludDMyX3JldHVybihieXRlWzhdLHVpbnQzMix1aW50MzIsdWludDE2KXVpbnQzMltdIgoJcHVzaGJ5dGVzIDB4YWU3OGU2ZTAgLy8gbWV0aG9kICJnZXRfcGNnMzJfc2VxdWVuY2VfYXJjNF91aW50MTZfcmV0dXJuKGJ5dGVbOF0sdWludDE2LHVpbnQxNix1aW50MTYpdWludDE2W10iCglwdXNoYnl0ZXMgMHg4OWQ3ZjU0YSAvLyBtZXRob2QgImdldF9wY2czMl9zZXF1ZW5jZV9hcmM0X3VpbnQ4X3JldHVybihieXRlWzhdLHVpbnQ4LHVpbnQ4LHVpbnQxNil1aW50OFtdIgoJcHVzaGJ5dGVzIDB4MTNiOTUyZDcgLy8gbWV0aG9kICJydW50aW1lX2Fzc2VydHNfcGNnMzJfc3RhY2tfYXJyYXkoKXZvaWQiCglwdXNoYnl0ZXMgMHhkMjA3MTYyMyAvLyBtZXRob2QgInJ1bnRpbWVfYXNzZXJ0c19wY2cxNl9zdGFja19hcnJheSgpdm9pZCIKCXB1c2hieXRlcyAweGMyMmQxOGRmIC8vIG1ldGhvZCAicnVudGltZV9hc3NlcnRzX3BjZzhfc3RhY2tfYXJyYXkoKXZvaWQiCglwdXNoYnl0ZXMgMHg2YzBiNDg5OCAvLyBtZXRob2QgInJ1bnRpbWVfZmFpbHVyZV9zdGFja19ieXRlc2xpY2Vfb3ZlcmZsb3coKXZvaWQiCgl0eG5hIEFwcGxpY2F0aW9uQXJncyAwCgltYXRjaCAqYWJpX3JvdXRlX2dldF9wY2czMl9zZXF1ZW5jZV9hcmM0X3VpbnQzMl9yZXR1cm4gKmFiaV9yb3V0ZV9nZXRfcGNnMzJfc2VxdWVuY2VfYXJjNF91aW50MTZfcmV0dXJuICphYmlfcm91dGVfZ2V0X3BjZzMyX3NlcXVlbmNlX2FyYzRfdWludDhfcmV0dXJuICphYmlfcm91dGVfcnVudGltZV9hc3NlcnRzX3BjZzMyX3N0YWNrX2FycmF5ICphYmlfcm91dGVfcnVudGltZV9hc3NlcnRzX3BjZzE2X3N0YWNrX2FycmF5ICphYmlfcm91dGVfcnVudGltZV9hc3NlcnRzX3BjZzhfc3RhY2tfYXJyYXkgKmFiaV9yb3V0ZV9ydW50aW1lX2ZhaWx1cmVfc3RhY2tfYnl0ZXNsaWNlX292ZXJmbG93CgoJLy8gdGhpcyBjb250cmFjdCBkb2VzIG5vdCBpbXBsZW1lbnQgdGhlIGdpdmVuIEFCSSBtZXRob2QgZm9yIGNhbGwgTm9PcAoJZXJyCgovLyBwY2c4UmFuZG9tKHN0YXRlOiBQQ0czMlNUQVRFLCBsb3dlckJvdW5kOiB1aW50NjQsIHVwcGVyQm91bmQ6IHVpbnQ2NCwgbGVuZ3RoOiB1aW50NjQpOiBbUENHMzJTVEFURSwgdWludDhbXV0KcGNnOFJhbmRvbToKCXByb3RvIDQgMQoKCS8vIFB1c2ggZW1wdHkgYnl0ZXMgYWZ0ZXIgdGhlIGZyYW1lIHBvaW50ZXIgdG8gcmVzZXJ2ZSBzcGFjZSBmb3IgbG9jYWwgdmFyaWFibGVzCglieXRlYyAwIC8vIDB4CgoJLy8gbGliX3BjZy9wY2czMi5hbGdvLnRzOjEzNgoJLy8gcmVzdWx0ID0gX19wY2czMkJvdW5kZWRTZXF1ZW5jZShzdGF0ZSwgOCwgbG93ZXJCb3VuZCwgdXBwZXJCb3VuZCwgbGVuZ3RoKQoJZnJhbWVfZGlnIC00IC8vIGxlbmd0aDogdWludDY0CglmcmFtZV9kaWcgLTMgLy8gdXBwZXJCb3VuZDogdWludDY0CglmcmFtZV9kaWcgLTIgLy8gbG93ZXJCb3VuZDogdWludDY0CglpbnRjIDMgLy8gOAoJZnJhbWVfZGlnIC0xIC8vIHN0YXRlOiBQQ0czMlNUQVRFCgljYWxsc3ViIF9fcGNnMzJCb3VuZGVkU2VxdWVuY2UKCWZyYW1lX2J1cnkgMCAvLyByZXN1bHQ6ICh1aW50NjQsYnl0ZVtdKQoKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czoxMzcKCS8vIHJldHVybiBbcmVzdWx0WzBdLCBjYXN0Qnl0ZXM8dWludDhbXT4ocmVzdWx0WzFdKV07CglieXRlYyAwIC8vICBpbml0aWFsIGhlYWQKCWJ5dGVjIDAgLy8gIGluaXRpYWwgdGFpbAoJYnl0ZWMgMiAvLyAgaW5pdGlhbCBoZWFkIG9mZnNldAoJZnJhbWVfZGlnIDAgLy8gcmVzdWx0OiAodWludDY0LGJ5dGVbXSkKCXN0b3JlIDI1NSAvLyBmdWxsIGFycmF5Cglsb2FkIDI1NSAvLyBmdWxsIGFycmF5CglleHRyYWN0IDAgOAoJYnRvaQoJaXRvYgoJY2FsbHN1YiAqcHJvY2Vzc19zdGF0aWNfdHVwbGVfZWxlbWVudAoJZnJhbWVfZGlnIDAgLy8gcmVzdWx0OiAodWludDY0LGJ5dGVbXSkKCXN0b3JlIDI1NSAvLyBmdWxsIGFycmF5CglpbnRjIDMgLy8gOAoJbG9hZCAyNTUgLy8gZnVsbCBhcnJheQoJbG9hZCAyNTUgLy8gZnVsbCBhcnJheQoJdW5jb3ZlciAyCglleHRyYWN0X3VpbnQxNgoJZHVwIC8vIGR1cGxpY2F0ZSBzdGFydCBvZiBlbGVtZW50Cglsb2FkIDI1NSAvLyBmdWxsIGFycmF5Cglzd2FwCglleHRyYWN0X3VpbnQxNiAvLyBnZXQgbnVtYmVyIG9mIGVsZW1lbnRzCglpbnRjIDAgLy8gIGdldCB0eXBlIGxlbmd0aAoJKiAvLyBtdWx0aXBseSBieSB0eXBlIGxlbmd0aAoJaW50YyAxIC8vIDIKCSsgLy8gYWRkIHR3byBmb3IgbGVuZ3RoCglleHRyYWN0MwoJZXh0cmFjdCAyIDAKCWR1cAoJbGVuCglpdG9iCglleHRyYWN0IDYgMgoJc3dhcAoJY29uY2F0CgljYWxsc3ViICpwcm9jZXNzX2R5bmFtaWNfdHVwbGVfZWxlbWVudAoJcG9wIC8vIHBvcCBoZWFkIG9mZnNldAoJY29uY2F0IC8vIGNvbmNhdCBoZWFkIGFuZCB0YWlsCgoJLy8gc2V0IHRoZSBzdWJyb3V0aW5lIHJldHVybiB2YWx1ZQoJZnJhbWVfYnVyeSAwCglyZXRzdWIKCi8vIF9fcGNnMzJCb3VuZGVkU2VxdWVuY2Uoc3RhdGU6IFBDRzMyU1RBVEUsIGJpdFNpemU6IHVpbnQ2NCwgbG93ZXJCb3VuZDogdWludDY0LCB1cHBlckJvdW5kOiB1aW50NjQsIGxlbmd0aDogdWludDY0KTogW1BDRzMyU1RBVEUsIGJ5dGVzXQpfX3BjZzMyQm91bmRlZFNlcXVlbmNlOgoJcHJvdG8gNSAxCgoJLy8gUHVzaCBlbXB0eSBieXRlcyBhZnRlciB0aGUgZnJhbWUgcG9pbnRlciB0byByZXNlcnZlIHNwYWNlIGZvciBsb2NhbCB2YXJpYWJsZXMKCWJ5dGVjIDAgLy8gMHgKCWR1cG4gOAoKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czozOQoJLy8gcmVzdWx0OiBieXRlcyA9ICcnCglieXRlYyAwIC8vICAiIgoJZnJhbWVfYnVyeSAwIC8vIHJlc3VsdDogYnl0ZXMKCgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6NDEKCS8vIGFzc2VydChsZW5ndGggPCAyICoqIDE2KQoJZnJhbWVfZGlnIC01IC8vIGxlbmd0aDogdWludDY0CglpbnRjIDEgLy8gMgoJaW50YyA1IC8vIDE2CglleHAKCTwKCWFzc2VydAoKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czo0NQoJLy8gYXNzZXJ0KGJpdFNpemUgPT09IDggfHwgYml0U2l6ZSA9PT0gMTYgfHwgYml0U2l6ZSA9PT0gMzIpCglmcmFtZV9kaWcgLTIgLy8gYml0U2l6ZTogdWludDY0CglpbnRjIDMgLy8gOAoJPT0KCWR1cAoJYm56ICpza2lwX29yMAoJZnJhbWVfZGlnIC0yIC8vIGJpdFNpemU6IHVpbnQ2NAoJaW50YyA1IC8vIDE2Cgk9PQoJfHwKCipza2lwX29yMDoKCWR1cAoJYm56ICpza2lwX29yMQoJZnJhbWVfZGlnIC0yIC8vIGJpdFNpemU6IHVpbnQ2NAoJaW50YyA3IC8vIDMyCgk9PQoJfHwKCipza2lwX29yMToKCWFzc2VydAoKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czo0NgoJLy8gYnl0ZVNpemUgPSBiaXRTaXplID4+IDMKCWZyYW1lX2RpZyAtMiAvLyBiaXRTaXplOiB1aW50NjQKCXB1c2hpbnQgMwoJc2hyCglmcmFtZV9idXJ5IDEgLy8gYnl0ZVNpemU6IHVpbnQ2NAoKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czo0NwoJLy8gdHJ1bmNhdGVkU3RhcnRDYWNoZWQgPSA4IC0gYnl0ZVNpemUKCWludGMgMyAvLyA4CglmcmFtZV9kaWcgMSAvLyBieXRlU2l6ZTogdWludDY0CgktCglmcmFtZV9idXJ5IDIgLy8gdHJ1bmNhdGVkU3RhcnRDYWNoZWQ6IHVpbnQ2NAoKCS8vICppZjBfY29uZGl0aW9uCgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6NTEKCS8vIGxvd2VyQm91bmQgPT09IDAgJiYgdXBwZXJCb3VuZCA9PT0gMAoJZnJhbWVfZGlnIC0zIC8vIGxvd2VyQm91bmQ6IHVpbnQ2NAoJaW50YyAyIC8vIDAKCT09CglkdXAKCWJ6ICpza2lwX2FuZDAKCWZyYW1lX2RpZyAtNCAvLyB1cHBlckJvdW5kOiB1aW50NjQKCWludGMgMiAvLyAwCgk9PQoJJiYKCipza2lwX2FuZDA6CglieiAqaWYwX2Vsc2UKCgkvLyAqaWYwX2NvbnNlcXVlbnQKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czo1MgoJLy8gZm9yIChsZXQgaSA9IDA7IGkgPCBsZW5ndGg7IGkgPSBpICsgMSkKCWludGMgMiAvLyAwCglmcmFtZV9idXJ5IDQgLy8gaTogdWludDY0CgoqZm9yXzA6CgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6NTIKCS8vIGkgPCBsZW5ndGgKCWZyYW1lX2RpZyA0IC8vIGk6IHVpbnQ2NAoJZnJhbWVfZGlnIC01IC8vIGxlbmd0aDogdWludDY0Cgk8CglieiAqZm9yXzBfZW5kCgoJLy8gbGliX3BjZy9wY2czMi5hbGdvLnRzOjUzCgkvLyBzdGVwUmVzdWx0ID0gX19wY2czMlVuYm91bmRlZFJhbmRvbShzdGF0ZSkKCWZyYW1lX2RpZyAtMSAvLyBzdGF0ZTogUENHMzJTVEFURQoJY2FsbHN1YiBfX3BjZzMyVW5ib3VuZGVkUmFuZG9tCglmcmFtZV9idXJ5IDUgLy8gc3RlcFJlc3VsdDogKHVpbnQ2NCx1aW50NjQpCgoJLy8gbGliX3BjZy9wY2czMi5hbGdvLnRzOjU0CgkvLyBzdGF0ZSA9IHN0ZXBSZXN1bHRbMF0KCWZyYW1lX2RpZyA1IC8vIHN0ZXBSZXN1bHQ6ICh1aW50NjQsdWludDY0KQoJZXh0cmFjdCAwIDgKCWJ0b2kKCWZyYW1lX2J1cnkgLTEgLy8gc3RhdGU6IFBDRzMyU1RBVEUKCgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6NTYKCS8vIHJlc3VsdCArPSBleHRyYWN0MyhpdG9iKHN0ZXBSZXN1bHRbMV0pLCB0cnVuY2F0ZWRTdGFydENhY2hlZCwgYnl0ZVNpemUpCglmcmFtZV9kaWcgMCAvLyByZXN1bHQ6IGJ5dGVzCglmcmFtZV9kaWcgNSAvLyBzdGVwUmVzdWx0OiAodWludDY0LHVpbnQ2NCkKCWV4dHJhY3QgOCA4CglidG9pCglpdG9iCglmcmFtZV9kaWcgMiAvLyB0cnVuY2F0ZWRTdGFydENhY2hlZDogdWludDY0CglmcmFtZV9kaWcgMSAvLyBieXRlU2l6ZTogdWludDY0CglleHRyYWN0MwoJY29uY2F0CglmcmFtZV9idXJ5IDAgLy8gcmVzdWx0OiBieXRlcwoKKmZvcl8wX2NvbnRpbnVlOgoJLy8gbGliX3BjZy9wY2czMi5hbGdvLnRzOjUyCgkvLyBpID0gaSArIDEKCWZyYW1lX2RpZyA0IC8vIGk6IHVpbnQ2NAoJaW50YyAwIC8vIDEKCSsKCWZyYW1lX2J1cnkgNCAvLyBpOiB1aW50NjQKCWIgKmZvcl8wCgoqZm9yXzBfZW5kOgoJYiAqaWYwX2VuZAoKKmlmMF9lbHNlOgoJLy8gKmlmMV9jb25kaXRpb24KCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czo1OQoJLy8gdXBwZXJCb3VuZCAhPT0gMAoJZnJhbWVfZGlnIC00IC8vIHVwcGVyQm91bmQ6IHVpbnQ2NAoJaW50YyAyIC8vIDAKCSE9CglieiAqaWYxX2Vsc2UKCgkvLyAqaWYxX2NvbnNlcXVlbnQKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czo2MAoJLy8gYXNzZXJ0KHVwcGVyQm91bmQgPiAxKQoJZnJhbWVfZGlnIC00IC8vIHVwcGVyQm91bmQ6IHVpbnQ2NAoJaW50YyAwIC8vIDEKCT4KCWFzc2VydAoKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czo2MQoJLy8gYXNzZXJ0KHVwcGVyQm91bmQgPCAxIDw8IGJpdFNpemUpCglmcmFtZV9kaWcgLTQgLy8gdXBwZXJCb3VuZDogdWludDY0CglpbnRjIDAgLy8gMQoJZnJhbWVfZGlnIC0yIC8vIGJpdFNpemU6IHVpbnQ2NAoJc2hsCgk8Cglhc3NlcnQKCgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6NjIKCS8vIGFzc2VydChsb3dlckJvdW5kIDwgdXBwZXJCb3VuZCAtIDEpCglmcmFtZV9kaWcgLTMgLy8gbG93ZXJCb3VuZDogdWludDY0CglmcmFtZV9kaWcgLTQgLy8gdXBwZXJCb3VuZDogdWludDY0CglpbnRjIDAgLy8gMQoJLQoJPAoJYXNzZXJ0CgoJLy8gbGliX3BjZy9wY2czMi5hbGdvLnRzOjY0CgkvLyBhYnNvbHV0ZUJvdW5kID0gdXBwZXJCb3VuZCAtIGxvd2VyQm91bmQKCWZyYW1lX2RpZyAtNCAvLyB1cHBlckJvdW5kOiB1aW50NjQKCWZyYW1lX2RpZyAtMyAvLyBsb3dlckJvdW5kOiB1aW50NjQKCS0KCWZyYW1lX2J1cnkgMyAvLyBhYnNvbHV0ZUJvdW5kOiB1aW50NjQKCWIgKmlmMV9lbmQKCippZjFfZWxzZToKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czo2NgoJLy8gYXNzZXJ0KGxvd2VyQm91bmQgPCAoMSA8PCBiaXRTaXplKSAtIDEpCglmcmFtZV9kaWcgLTMgLy8gbG93ZXJCb3VuZDogdWludDY0CglpbnRjIDAgLy8gMQoJZnJhbWVfZGlnIC0yIC8vIGJpdFNpemU6IHVpbnQ2NAoJc2hsCglpbnRjIDAgLy8gMQoJLQoJPAoJYXNzZXJ0CgoJLy8gbGliX3BjZy9wY2czMi5hbGdvLnRzOjY4CgkvLyBhYnNvbHV0ZUJvdW5kID0gKDEgPDwgYml0U2l6ZSkgLSBsb3dlckJvdW5kCglpbnRjIDAgLy8gMQoJZnJhbWVfZGlnIC0yIC8vIGJpdFNpemU6IHVpbnQ2NAoJc2hsCglmcmFtZV9kaWcgLTMgLy8gbG93ZXJCb3VuZDogdWludDY0CgktCglmcmFtZV9idXJ5IDMgLy8gYWJzb2x1dGVCb3VuZDogdWludDY0CgoqaWYxX2VuZDoKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czo3MQoJLy8gdGhyZXNob2xkID0gX19tYXNrVG9VaW50MzIoX191aW50NjRUd29zKGFic29sdXRlQm91bmQpKSAlIGFic29sdXRlQm91bmQKCWZyYW1lX2RpZyAzIC8vIGFic29sdXRlQm91bmQ6IHVpbnQ2NAoJY2FsbHN1YiBfX3VpbnQ2NFR3b3MKCWNhbGxzdWIgX19tYXNrVG9VaW50MzIKCWZyYW1lX2RpZyAzIC8vIGFic29sdXRlQm91bmQ6IHVpbnQ2NAoJJQoJZnJhbWVfYnVyeSA2IC8vIHRocmVzaG9sZDogdWludDY0CgoJLy8gbGliX3BjZy9wY2czMi5hbGdvLnRzOjczCgkvLyBmb3IgKGxldCBpID0gMDsgaSA8IGxlbmd0aDsgaSA9IGkgKyAxKQoJaW50YyAyIC8vIDAKCWZyYW1lX2J1cnkgNyAvLyBpOiB1aW50NjQKCipmb3JfMToKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czo3MwoJLy8gaSA8IGxlbmd0aAoJZnJhbWVfZGlnIDcgLy8gaTogdWludDY0CglmcmFtZV9kaWcgLTUgLy8gbGVuZ3RoOiB1aW50NjQKCTwKCWJ6ICpmb3JfMV9lbmQKCip3aGlsZV8wOgoKKndoaWxlXzBfY29udGludWU6CgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6NzUKCS8vIHRydWUKCWludGMgMCAvLyAxCglieiAqd2hpbGVfMF9lbmQKCgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6NzYKCS8vIHN0ZXBSZXN1bHQgPSBfX3BjZzMyVW5ib3VuZGVkUmFuZG9tKHN0YXRlKQoJZnJhbWVfZGlnIC0xIC8vIHN0YXRlOiBQQ0czMlNUQVRFCgljYWxsc3ViIF9fcGNnMzJVbmJvdW5kZWRSYW5kb20KCWZyYW1lX2J1cnkgOCAvLyBzdGVwUmVzdWx0OiAodWludDY0LHVpbnQ2NCkKCgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6NzcKCS8vIHN0YXRlID0gc3RlcFJlc3VsdFswXQoJZnJhbWVfZGlnIDggLy8gc3RlcFJlc3VsdDogKHVpbnQ2NCx1aW50NjQpCglleHRyYWN0IDAgOAoJYnRvaQoJZnJhbWVfYnVyeSAtMSAvLyBzdGF0ZTogUENHMzJTVEFURQoKCS8vICppZjJfY29uZGl0aW9uCgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6NzgKCS8vIHN0ZXBSZXN1bHRbMV0gPj0gdGhyZXNob2xkCglmcmFtZV9kaWcgOCAvLyBzdGVwUmVzdWx0OiAodWludDY0LHVpbnQ2NCkKCWV4dHJhY3QgOCA4CglidG9pCglmcmFtZV9kaWcgNiAvLyB0aHJlc2hvbGQ6IHVpbnQ2NAoJPj0KCWJ6ICppZjJfZW5kCgoJLy8gKmlmMl9jb25zZXF1ZW50CgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6NzkKCS8vIHJlc3VsdCArPSBleHRyYWN0MyhpdG9iKChzdGVwUmVzdWx0WzFdICUgYWJzb2x1dGVCb3VuZCkgKyBsb3dlckJvdW5kKSwgdHJ1bmNhdGVkU3RhcnRDYWNoZWQsIGJ5dGVTaXplKQoJZnJhbWVfZGlnIDAgLy8gcmVzdWx0OiBieXRlcwoJZnJhbWVfZGlnIDggLy8gc3RlcFJlc3VsdDogKHVpbnQ2NCx1aW50NjQpCglleHRyYWN0IDggOAoJYnRvaQoJZnJhbWVfZGlnIDMgLy8gYWJzb2x1dGVCb3VuZDogdWludDY0CgklCglmcmFtZV9kaWcgLTMgLy8gbG93ZXJCb3VuZDogdWludDY0CgkrCglpdG9iCglmcmFtZV9kaWcgMiAvLyB0cnVuY2F0ZWRTdGFydENhY2hlZDogdWludDY0CglmcmFtZV9kaWcgMSAvLyBieXRlU2l6ZTogdWludDY0CglleHRyYWN0MwoJY29uY2F0CglmcmFtZV9idXJ5IDAgLy8gcmVzdWx0OiBieXRlcwoJYiAqd2hpbGVfMF9lbmQKCippZjJfZW5kOgoJYiAqd2hpbGVfMAoKKndoaWxlXzBfZW5kOgoKKmZvcl8xX2NvbnRpbnVlOgoJLy8gbGliX3BjZy9wY2czMi5hbGdvLnRzOjczCgkvLyBpID0gaSArIDEKCWZyYW1lX2RpZyA3IC8vIGk6IHVpbnQ2NAoJaW50YyAwIC8vIDEKCSsKCWZyYW1lX2J1cnkgNyAvLyBpOiB1aW50NjQKCWIgKmZvcl8xCgoqZm9yXzFfZW5kOgoKKmlmMF9lbmQ6CgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6ODYKCS8vIHJldHVybiBbc3RhdGUsIHJlc3VsdF07CglieXRlYyAwIC8vICBpbml0aWFsIGhlYWQKCWJ5dGVjIDAgLy8gIGluaXRpYWwgdGFpbAoJYnl0ZWMgMiAvLyAgaW5pdGlhbCBoZWFkIG9mZnNldAoJZnJhbWVfZGlnIC0xIC8vIHN0YXRlOiBQQ0czMlNUQVRFCglpdG9iCgljYWxsc3ViICpwcm9jZXNzX3N0YXRpY190dXBsZV9lbGVtZW50CglmcmFtZV9kaWcgMCAvLyByZXN1bHQ6IGJ5dGVzCglkdXAKCWxlbgoJaXRvYgoJZXh0cmFjdCA2IDIKCXN3YXAKCWNvbmNhdAoJY2FsbHN1YiAqcHJvY2Vzc19keW5hbWljX3R1cGxlX2VsZW1lbnQKCXBvcCAvLyBwb3AgaGVhZCBvZmZzZXQKCWNvbmNhdCAvLyBjb25jYXQgaGVhZCBhbmQgdGFpbAoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDgKCXJldHN1YgoKLy8gX191aW50NjRUd29zKHZhbHVlOiB1aW50NjQpOiB1aW50NjQKX191aW50NjRUd29zOgoJcHJvdG8gMSAxCgoJLy8gUHVzaCBlbXB0eSBieXRlcyBhZnRlciB0aGUgZnJhbWUgcG9pbnRlciB0byByZXNlcnZlIHNwYWNlIGZvciBsb2NhbCB2YXJpYWJsZXMKCWJ5dGVjIDAgLy8gMHgKCWR1cAoKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czo2CgkvLyBhZGR3UmVzdWx0ID0gYWRkdyh+dmFsdWUsIDEpCglmcmFtZV9kaWcgLTEgLy8gdmFsdWU6IHVpbnQ2NAoJfgoJaW50YyAwIC8vIDEKCWFkZHcKCWZyYW1lX2J1cnkgMCAvLyBhZGR3UmVzdWx0IGxvdzogdWludDY0CglmcmFtZV9idXJ5IDEgLy8gYWRkd1Jlc3VsdCBoaWdoOiB1aW50NjQKCgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6NwoJLy8gcmV0dXJuIGFkZHdSZXN1bHQubG93OwoJZnJhbWVfZGlnIDAgLy8gYWRkd1Jlc3VsdCBsb3c6IHVpbnQ2NAoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDEKCXJldHN1YgoKLy8gX19tYXNrVG9VaW50MzIodmFsdWU6IHVpbnQ2NCk6IHVpbnQ2NApfX21hc2tUb1VpbnQzMjoKCXByb3RvIDEgMQoKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czoxMgoJLy8gcmV0dXJuIHZhbHVlICYgNDI5NDk2NzI5NTsKCWZyYW1lX2RpZyAtMSAvLyB2YWx1ZTogdWludDY0CglwdXNoaW50IDQyOTQ5NjcyOTUKCSYKCXJldHN1YgoKLy8gX19wY2czMlVuYm91bmRlZFJhbmRvbShzdGF0ZTogUENHMzJTVEFURSk6IFtQQ0czMlNUQVRFLCB1aW50NjRdCl9fcGNnMzJVbmJvdW5kZWRSYW5kb206Cglwcm90byAxIDEKCgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6MjkKCS8vIHJldHVybiBbX19wY2czMlN0ZXAoc3RhdGUsIHBjZ0ZpcnN0SW5jcmVtZW50KSwgX19wY2czMk91dHB1dChzdGF0ZSldOwoJLy8gbGliX3BjZy9jb25zdHMuYWxnby50czozCgkvLyBVaW50PDY0PignMTQ0MjY5NTA0MDg4ODk2MzQwNycpCglpbnRjIDYgLy8gMTQ0MjY5NTA0MDg4ODk2MzQwNwoJZnJhbWVfZGlnIC0xIC8vIHN0YXRlOiBQQ0czMlNUQVRFCgljYWxsc3ViIF9fcGNnMzJTdGVwCglpdG9iCgoJLy8gbGliX3BjZy9wY2czMi5hbGdvLnRzOjI5CgkvLyBfX3BjZzMyT3V0cHV0KHN0YXRlKQoJZnJhbWVfZGlnIC0xIC8vIHN0YXRlOiBQQ0czMlNUQVRFCgljYWxsc3ViIF9fcGNnMzJPdXRwdXQKCWl0b2IKCWNvbmNhdAoJcmV0c3ViCgovLyBfX3BjZzMyT3V0cHV0KHN0YXRlOiBQQ0czMlNUQVRFKTogdWludDY0Cl9fcGNnMzJPdXRwdXQ6Cglwcm90byAxIDEKCgkvLyBQdXNoIGVtcHR5IGJ5dGVzIGFmdGVyIHRoZSBmcmFtZSBwb2ludGVyIHRvIHJlc2VydmUgc3BhY2UgZm9yIGxvY2FsIHZhcmlhYmxlcwoJYnl0ZWMgMCAvLyAweAoJZHVwCgoJLy8gbGliX3BjZy9wY2czMi5hbGdvLnRzOjIzCgkvLyB4b3JzaGlmdGVkID0gX19tYXNrVG9VaW50MzIoKChzdGF0ZSA+PiAxOCkgXiBzdGF0ZSkgPj4gMjcpCglmcmFtZV9kaWcgLTEgLy8gc3RhdGU6IFBDRzMyU1RBVEUKCXB1c2hpbnQgMTgKCXNocgoJZnJhbWVfZGlnIC0xIC8vIHN0YXRlOiBQQ0czMlNUQVRFCgleCglwdXNoaW50IDI3CglzaHIKCWNhbGxzdWIgX19tYXNrVG9VaW50MzIKCWZyYW1lX2J1cnkgMCAvLyB4b3JzaGlmdGVkOiB1aW50NjQKCgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6MjQKCS8vIHJvdCA9IHN0YXRlID4+IDU5CglmcmFtZV9kaWcgLTEgLy8gc3RhdGU6IFBDRzMyU1RBVEUKCXB1c2hpbnQgNTkKCXNocgoJZnJhbWVfYnVyeSAxIC8vIHJvdDogdWludDY0CgoJLy8gbGliX3BjZy9wY2czMi5hbGdvLnRzOjI1CgkvLyByZXR1cm4gKHhvcnNoaWZ0ZWQgPj4gcm90KSB8IF9fbWFza1RvVWludDMyKHhvcnNoaWZ0ZWQgPDwgKF9fdWludDY0VHdvcyhyb3QpICYgMzEpKTsKCWZyYW1lX2RpZyAwIC8vIHhvcnNoaWZ0ZWQ6IHVpbnQ2NAoJZnJhbWVfZGlnIDEgLy8gcm90OiB1aW50NjQKCXNocgoJZnJhbWVfZGlnIDAgLy8geG9yc2hpZnRlZDogdWludDY0CglmcmFtZV9kaWcgMSAvLyByb3Q6IHVpbnQ2NAoJY2FsbHN1YiBfX3VpbnQ2NFR3b3MKCXB1c2hpbnQgMzEKCSYKCXNobAoJY2FsbHN1YiBfX21hc2tUb1VpbnQzMgoJfAoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDEKCXJldHN1YgoKLy8gX19wY2czMlN0ZXAoc3RhdGU6IFBDRzMyU1RBVEUsIGluY3I6IHVpbnQ2NCk6IHVpbnQ2NApfX3BjZzMyU3RlcDoKCXByb3RvIDIgMQoKCS8vIFB1c2ggZW1wdHkgYnl0ZXMgYWZ0ZXIgdGhlIGZyYW1lIHBvaW50ZXIgdG8gcmVzZXJ2ZSBzcGFjZSBmb3IgbG9jYWwgdmFyaWFibGVzCglieXRlYyAwIC8vIDB4CglkdXBuIDMKCgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6MTYKCS8vIG11bHdSZXN1bHQgPSBtdWx3KHN0YXRlLCBwY2dNdWx0aXBsaWVyKQoJZnJhbWVfZGlnIC0xIC8vIHN0YXRlOiBQQ0czMlNUQVRFCgoJLy8gbGliX3BjZy9jb25zdHMuYWxnby50czoxCgkvLyBVaW50PDY0PignNjM2NDEzNjIyMzg0Njc5MzAwNScpCglwdXNoaW50IDYzNjQxMzYyMjM4NDY3OTMwMDUKCW11bHcKCWZyYW1lX2J1cnkgMCAvLyBtdWx3UmVzdWx0IGxvdzogdWludDY0CglmcmFtZV9idXJ5IDEgLy8gbXVsd1Jlc3VsdCBoaWdoOiB1aW50NjQKCgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6MTcKCS8vIGFkZHdSZXN1bHQgPSBhZGR3KG11bHdSZXN1bHQubG93LCBpbmNyKQoJZnJhbWVfZGlnIDAgLy8gbXVsd1Jlc3VsdCBsb3c6IHVpbnQ2NAoJZnJhbWVfZGlnIC0yIC8vIGluY3I6IHVpbnQ2NAoJYWRkdwoJZnJhbWVfYnVyeSAyIC8vIGFkZHdSZXN1bHQgbG93OiB1aW50NjQKCWZyYW1lX2J1cnkgMyAvLyBhZGR3UmVzdWx0IGhpZ2g6IHVpbnQ2NAoKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czoxOQoJLy8gcmV0dXJuIGFkZHdSZXN1bHQubG93OwoJZnJhbWVfZGlnIDIgLy8gYWRkd1Jlc3VsdCBsb3c6IHVpbnQ2NAoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDMKCXJldHN1YgoKLy8gcGNnOEluaXQoc2VlZDogYnl0ZXMpOiBQQ0czMlNUQVRFCnBjZzhJbml0OgoJcHJvdG8gMSAxCgoJLy8gbGliX3BjZy9wY2czMi5hbGdvLnRzOjEwNwoJLy8gcmV0dXJuIHBjZzMySW5pdChzZWVkKTsKCWZyYW1lX2RpZyAtMSAvLyBzZWVkOiBieXRlcwoJY2FsbHN1YiBwY2czMkluaXQKCXJldHN1YgoKLy8gcGNnMTZSYW5kb20oc3RhdGU6IFBDRzMyU1RBVEUsIGxvd2VyQm91bmQ6IHVpbnQ2NCwgdXBwZXJCb3VuZDogdWludDY0LCBsZW5ndGg6IHVpbnQ2NCk6IFtQQ0czMlNUQVRFLCB1aW50MTZbXV0KcGNnMTZSYW5kb206Cglwcm90byA0IDEKCgkvLyBQdXNoIGVtcHR5IGJ5dGVzIGFmdGVyIHRoZSBmcmFtZSBwb2ludGVyIHRvIHJlc2VydmUgc3BhY2UgZm9yIGxvY2FsIHZhcmlhYmxlcwoJYnl0ZWMgMCAvLyAweAoKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czoxMjYKCS8vIHJlc3VsdCA9IF9fcGNnMzJCb3VuZGVkU2VxdWVuY2Uoc3RhdGUsIDE2LCBsb3dlckJvdW5kLCB1cHBlckJvdW5kLCBsZW5ndGgpCglmcmFtZV9kaWcgLTQgLy8gbGVuZ3RoOiB1aW50NjQKCWZyYW1lX2RpZyAtMyAvLyB1cHBlckJvdW5kOiB1aW50NjQKCWZyYW1lX2RpZyAtMiAvLyBsb3dlckJvdW5kOiB1aW50NjQKCWludGMgNSAvLyAxNgoJZnJhbWVfZGlnIC0xIC8vIHN0YXRlOiBQQ0czMlNUQVRFCgljYWxsc3ViIF9fcGNnMzJCb3VuZGVkU2VxdWVuY2UKCWZyYW1lX2J1cnkgMCAvLyByZXN1bHQ6ICh1aW50NjQsYnl0ZVtdKQoKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czoxMjcKCS8vIHJldHVybiBbcmVzdWx0WzBdLCBjYXN0Qnl0ZXM8dWludDE2W10+KHJlc3VsdFsxXSldOwoJYnl0ZWMgMCAvLyAgaW5pdGlhbCBoZWFkCglieXRlYyAwIC8vICBpbml0aWFsIHRhaWwKCWJ5dGVjIDIgLy8gIGluaXRpYWwgaGVhZCBvZmZzZXQKCWZyYW1lX2RpZyAwIC8vIHJlc3VsdDogKHVpbnQ2NCxieXRlW10pCglzdG9yZSAyNTUgLy8gZnVsbCBhcnJheQoJbG9hZCAyNTUgLy8gZnVsbCBhcnJheQoJZXh0cmFjdCAwIDgKCWJ0b2kKCWl0b2IKCWNhbGxzdWIgKnByb2Nlc3Nfc3RhdGljX3R1cGxlX2VsZW1lbnQKCWZyYW1lX2RpZyAwIC8vIHJlc3VsdDogKHVpbnQ2NCxieXRlW10pCglzdG9yZSAyNTUgLy8gZnVsbCBhcnJheQoJaW50YyAzIC8vIDgKCWxvYWQgMjU1IC8vIGZ1bGwgYXJyYXkKCWxvYWQgMjU1IC8vIGZ1bGwgYXJyYXkKCXVuY292ZXIgMgoJZXh0cmFjdF91aW50MTYKCWR1cCAvLyBkdXBsaWNhdGUgc3RhcnQgb2YgZWxlbWVudAoJbG9hZCAyNTUgLy8gZnVsbCBhcnJheQoJc3dhcAoJZXh0cmFjdF91aW50MTYgLy8gZ2V0IG51bWJlciBvZiBlbGVtZW50cwoJaW50YyAwIC8vICBnZXQgdHlwZSBsZW5ndGgKCSogLy8gbXVsdGlwbHkgYnkgdHlwZSBsZW5ndGgKCWludGMgMSAvLyAyCgkrIC8vIGFkZCB0d28gZm9yIGxlbmd0aAoJZXh0cmFjdDMKCWV4dHJhY3QgMiAwCglkdXAKCWxlbgoJaW50YyAxIC8vIDIKCS8KCWl0b2IKCWV4dHJhY3QgNiAyCglzd2FwCgljb25jYXQKCWNhbGxzdWIgKnByb2Nlc3NfZHluYW1pY190dXBsZV9lbGVtZW50Cglwb3AgLy8gcG9wIGhlYWQgb2Zmc2V0Cgljb25jYXQgLy8gY29uY2F0IGhlYWQgYW5kIHRhaWwKCgkvLyBzZXQgdGhlIHN1YnJvdXRpbmUgcmV0dXJuIHZhbHVlCglmcmFtZV9idXJ5IDAKCXJldHN1YgoKLy8gcGNnMTZJbml0KHNlZWQ6IGJ5dGVzKTogUENHMzJTVEFURQpwY2cxNkluaXQ6Cglwcm90byAxIDEKCgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6MTAzCgkvLyByZXR1cm4gcGNnMzJJbml0KHNlZWQpOwoJZnJhbWVfZGlnIC0xIC8vIHNlZWQ6IGJ5dGVzCgljYWxsc3ViIHBjZzMySW5pdAoJcmV0c3ViCgovLyBwY2czMlJhbmRvbShzdGF0ZTogUENHMzJTVEFURSwgbG93ZXJCb3VuZDogdWludDY0LCB1cHBlckJvdW5kOiB1aW50NjQsIGxlbmd0aDogdWludDY0KTogW1BDRzMyU1RBVEUsIHVpbnQzMltdXQpwY2czMlJhbmRvbToKCXByb3RvIDQgMQoKCS8vIFB1c2ggZW1wdHkgYnl0ZXMgYWZ0ZXIgdGhlIGZyYW1lIHBvaW50ZXIgdG8gcmVzZXJ2ZSBzcGFjZSBmb3IgbG9jYWwgdmFyaWFibGVzCglieXRlYyAwIC8vIDB4CgoJLy8gbGliX3BjZy9wY2czMi5hbGdvLnRzOjExNgoJLy8gcmVzdWx0ID0gX19wY2czMkJvdW5kZWRTZXF1ZW5jZShzdGF0ZSwgMzIsIGxvd2VyQm91bmQsIHVwcGVyQm91bmQsIGxlbmd0aCkKCWZyYW1lX2RpZyAtNCAvLyBsZW5ndGg6IHVpbnQ2NAoJZnJhbWVfZGlnIC0zIC8vIHVwcGVyQm91bmQ6IHVpbnQ2NAoJZnJhbWVfZGlnIC0yIC8vIGxvd2VyQm91bmQ6IHVpbnQ2NAoJaW50YyA3IC8vIDMyCglmcmFtZV9kaWcgLTEgLy8gc3RhdGU6IFBDRzMyU1RBVEUKCWNhbGxzdWIgX19wY2czMkJvdW5kZWRTZXF1ZW5jZQoJZnJhbWVfYnVyeSAwIC8vIHJlc3VsdDogKHVpbnQ2NCxieXRlW10pCgoJLy8gbGliX3BjZy9wY2czMi5hbGdvLnRzOjExNwoJLy8gcmV0dXJuIFtyZXN1bHRbMF0sIGNhc3RCeXRlczx1aW50MzJbXT4ocmVzdWx0WzFdKV07CglieXRlYyAwIC8vICBpbml0aWFsIGhlYWQKCWJ5dGVjIDAgLy8gIGluaXRpYWwgdGFpbAoJYnl0ZWMgMiAvLyAgaW5pdGlhbCBoZWFkIG9mZnNldAoJZnJhbWVfZGlnIDAgLy8gcmVzdWx0OiAodWludDY0LGJ5dGVbXSkKCXN0b3JlIDI1NSAvLyBmdWxsIGFycmF5Cglsb2FkIDI1NSAvLyBmdWxsIGFycmF5CglleHRyYWN0IDAgOAoJYnRvaQoJaXRvYgoJY2FsbHN1YiAqcHJvY2Vzc19zdGF0aWNfdHVwbGVfZWxlbWVudAoJZnJhbWVfZGlnIDAgLy8gcmVzdWx0OiAodWludDY0LGJ5dGVbXSkKCXN0b3JlIDI1NSAvLyBmdWxsIGFycmF5CglpbnRjIDMgLy8gOAoJbG9hZCAyNTUgLy8gZnVsbCBhcnJheQoJbG9hZCAyNTUgLy8gZnVsbCBhcnJheQoJdW5jb3ZlciAyCglleHRyYWN0X3VpbnQxNgoJZHVwIC8vIGR1cGxpY2F0ZSBzdGFydCBvZiBlbGVtZW50Cglsb2FkIDI1NSAvLyBmdWxsIGFycmF5Cglzd2FwCglleHRyYWN0X3VpbnQxNiAvLyBnZXQgbnVtYmVyIG9mIGVsZW1lbnRzCglpbnRjIDAgLy8gIGdldCB0eXBlIGxlbmd0aAoJKiAvLyBtdWx0aXBseSBieSB0eXBlIGxlbmd0aAoJaW50YyAxIC8vIDIKCSsgLy8gYWRkIHR3byBmb3IgbGVuZ3RoCglleHRyYWN0MwoJZXh0cmFjdCAyIDAKCWR1cAoJbGVuCglpbnRjIDQgLy8gNAoJLwoJaXRvYgoJZXh0cmFjdCA2IDIKCXN3YXAKCWNvbmNhdAoJY2FsbHN1YiAqcHJvY2Vzc19keW5hbWljX3R1cGxlX2VsZW1lbnQKCXBvcCAvLyBwb3AgaGVhZCBvZmZzZXQKCWNvbmNhdCAvLyBjb25jYXQgaGVhZCBhbmQgdGFpbAoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoJcmV0c3ViCgovLyBwY2czMkluaXQoc2VlZDogYnl0ZXMpOiBQQ0czMlNUQVRFCnBjZzMySW5pdDoKCXByb3RvIDEgMQoKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czo5NwoJLy8gYXNzZXJ0KHNlZWQubGVuZ3RoID09PSA4KQoJZnJhbWVfZGlnIC0xIC8vIHNlZWQ6IGJ5dGVzCglsZW4KCWludGMgMyAvLyA4Cgk9PQoJYXNzZXJ0CgoJLy8gbGliX3BjZy9wY2czMi5hbGdvLnRzOjk5CgkvLyByZXR1cm4gX19wY2czMkluaXQoYnRvaShzZWVkKSwgcGNnRmlyc3RJbmNyZW1lbnQpOwoJLy8gbGliX3BjZy9jb25zdHMuYWxnby50czozCgkvLyBVaW50PDY0PignMTQ0MjY5NTA0MDg4ODk2MzQwNycpCglpbnRjIDYgLy8gMTQ0MjY5NTA0MDg4ODk2MzQwNwoKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czo5OQoJLy8gYnRvaShzZWVkKQoJZnJhbWVfZGlnIC0xIC8vIHNlZWQ6IGJ5dGVzCglidG9pCgljYWxsc3ViIF9fcGNnMzJJbml0CglyZXRzdWIKCi8vIF9fcGNnMzJJbml0KGluaXRpYWxTdGF0ZTogUENHMzJTVEFURSwgaW5jcjogdWludDY0KTogUENHMzJTVEFURQpfX3BjZzMySW5pdDoKCXByb3RvIDIgMQoKCS8vIFB1c2ggZW1wdHkgYnl0ZXMgYWZ0ZXIgdGhlIGZyYW1lIHBvaW50ZXIgdG8gcmVzZXJ2ZSBzcGFjZSBmb3IgbG9jYWwgdmFyaWFibGVzCglieXRlYyAwIC8vIDB4CglkdXBuIDIKCgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6OTAKCS8vIHN0YXRlID0gX19wY2czMlN0ZXAoMCwgaW5jcikKCWZyYW1lX2RpZyAtMiAvLyBpbmNyOiB1aW50NjQKCWludGMgMiAvLyAwCgljYWxsc3ViIF9fcGNnMzJTdGVwCglmcmFtZV9idXJ5IDAgLy8gc3RhdGU6IHVpbnQ2NAoKCS8vIGxpYl9wY2cvcGNnMzIuYWxnby50czo5MQoJLy8gYWRkd1Jlc3VsdCA9IGFkZHcoc3RhdGUsIGluaXRpYWxTdGF0ZSkKCWZyYW1lX2RpZyAwIC8vIHN0YXRlOiB1aW50NjQKCWZyYW1lX2RpZyAtMSAvLyBpbml0aWFsU3RhdGU6IFBDRzMyU1RBVEUKCWFkZHcKCWZyYW1lX2J1cnkgMSAvLyBhZGR3UmVzdWx0IGxvdzogdWludDY0CglmcmFtZV9idXJ5IDIgLy8gYWRkd1Jlc3VsdCBoaWdoOiB1aW50NjQKCgkvLyBsaWJfcGNnL3BjZzMyLmFsZ28udHM6OTMKCS8vIHJldHVybiBfX3BjZzMyU3RlcChhZGR3UmVzdWx0LmxvdywgaW5jcik7CglmcmFtZV9kaWcgLTIgLy8gaW5jcjogdWludDY0CglmcmFtZV9kaWcgMSAvLyBhZGR3UmVzdWx0IGxvdzogdWludDY0CgljYWxsc3ViIF9fcGNnMzJTdGVwCgoJLy8gc2V0IHRoZSBzdWJyb3V0aW5lIHJldHVybiB2YWx1ZQoJZnJhbWVfYnVyeSAwCgoJLy8gcG9wIGFsbCBsb2NhbCB2YXJpYWJsZXMgZnJvbSB0aGUgc3RhY2sKCXBvcG4gMgoJcmV0c3ViCgoqcHJvY2Vzc19zdGF0aWNfdHVwbGVfZWxlbWVudDoKCXByb3RvIDQgMwoJZnJhbWVfZGlnIC00IC8vIHR1cGxlIGhlYWQKCWZyYW1lX2RpZyAtMSAvLyBlbGVtZW50Cgljb25jYXQKCWZyYW1lX2RpZyAtMyAvLyB0dXBsZSB0YWlsCglmcmFtZV9kaWcgLTIgLy8gaGVhZCBvZmZzZXQKCXJldHN1YgoKKnByb2Nlc3NfZHluYW1pY190dXBsZV9lbGVtZW50OgoJcHJvdG8gNCAzCglmcmFtZV9kaWcgLTQgLy8gdHVwbGUgaGVhZAoJZnJhbWVfZGlnIC0yIC8vIGhlYWQgb2Zmc2V0Cgljb25jYXQKCWZyYW1lX2J1cnkgLTQgLy8gdHVwbGUgaGVhZAoJZnJhbWVfZGlnIC0xIC8vIGVsZW1lbnQKCWR1cAoJbGVuCglmcmFtZV9kaWcgLTIgLy8gaGVhZCBvZmZzZXQKCWJ0b2kKCSsKCWl0b2IKCWV4dHJhY3QgNiAyCglmcmFtZV9idXJ5IC0yIC8vIGhlYWQgb2Zmc2V0CglmcmFtZV9kaWcgLTMgLy8gdHVwbGUgdGFpbAoJc3dhcAoJY29uY2F0CglmcmFtZV9idXJ5IC0zIC8vIHR1cGxlIHRhaWwKCWZyYW1lX2RpZyAtNCAvLyB0dXBsZSBoZWFkCglmcmFtZV9kaWcgLTMgLy8gdHVwbGUgdGFpbAoJZnJhbWVfZGlnIC0yIC8vIGhlYWQgb2Zmc2V0CglyZXRzdWI=",
+    "clear": "I3ByYWdtYSB2ZXJzaW9uIDEw"
+  },
+  "byteCode": {
+    "approval": "CiAIAQIACAQQz4Keu+/v3oIUICYEAAgAAAAAAAAAAAIACgQVH3x1MRgUgQYLMRkIjQwCAQAAAAAAAAAAAAAB7gAAAAAAAAAAAAAAKzYaBEkVIxJEFzYaA0kVIQQSRBc2GgJJFSEEEkQXNhoBSRUlEkSIAA9JFSEEChZXBgJMUFCwIkOKBAEoSYv/iAS7jACL/Iv9i/6LAIgEXowBiwE1/zT/VwAIF4wAiwE1/yU0/zT/TwJZSTT/TFkhBAsjCFhXAgCMAEYBiSs2GgRJFSMSRBc2GgNJFSMSRBc2GgJJFSMSRBc2GgFJFSUSRIgADkkVIwoWVwYCTFBQsCJDigQBKEmL/4gD6YwAi/yL/Yv+iwCIA42MAYsBNf80/1cACBeMAIsBNf8lNP80/08CWUk0/0xZIwsjCFhXAgCMAEYBiSs2GgRJFSMSRBc2GgNJFSISRBc2GgJJFSISRBc2GgFJFSUSRIgADEkVFlcGAkxQULAiQ4oEAShJi/+IAxuMAIv8i/2L/osAiAEAjAGLATX/NP9XAAgXjACLATX/JTT/NP9PAllJNP9MWSILIwhYVwIAjABGAYmIAAIiQ4oAAChJKYgDhYwAgf0HJEmLAIgDKYwBiYgAAiJDigAAKEkpiAMPjACB+g8kSYsAiAK0jAGJiAACIkOKAAAoSSmIApqMAIHyHyRJiwCIAICMAYmIAAIiQ4oAAChJKYgDLowAgf4HJEmLAIgC0owBiYgAAiJDigAAMgkxABJEiTEbQf/sgAS4RHs2NhoAjgH/3wCABAyEePuABK545uCABInX9UqABBO5UteABNIHFiOABMItGN+ABGwLSJg2GgCOB/3D/j/+t/8t/0r/Z/+EAIoEASiL/Iv9i/4li/+IADyMACgoKosANf80/1cACBcWiALRiwA1/yU0/zT/TwJZSTT/TFkiCyMIWFcCAEkVFlcGAkxQiAK6SFCMAImKBQEoRwgojACL+yMhBZQMRIv+JRJJQAAGi/4hBRIRSUAABov+IQcSEUSL/oEDkYwBJYsBCYwCi/0kEklBAAWL/CQSEEEANySMBIsEi/sMQQApi/+IAPyMBYsFVwAIF4z/iwCLBVcICBcWiwKLAVhQjACLBCIIjARC/89CAJaL/CQTQQAfi/wiDUSL/CKL/pAMRIv9i/wiCQxEi/yL/QmMA0IAE4v9Iov+kCIJDEQii/6Qi/0JjAOLA4gAdYgAh4sDGIwGJIwHiweL+wxBAEUiQQA4i/+IAHuMCIsIVwAIF4z/iwhXCAgXiwYPQQAaiwCLCFcICBeLAxiL/QgWiwKLAVhQjABCAANC/8SLByIIjAdC/7MoKCqL/xaIAYuLAEkVFlcGAkxQiAGLSFCMAEYIiYoBAShJi/8cIh6MAIwBiwCMAEYBiYoBAYv/gf////8PGomKAQEhBov/iAA+Fov/iAADFlCJigEBKEmL/4ESkYv/G4EbkYj/zYwAi/+BO5GMAYsAiwGRiwCLAYj/o4EfGpCI/7EZjABGAYmKAgEoRwOL/4Gt/tXk1IX9qFgdjACMAYsAi/4ejAKMA4sCjABGA4mKAQGL/4gAqYmKBAEoi/yL/Yv+IQWL/4j+JIwAKCgqiwA1/zT/VwAIFxaIALmLADX/JTT/NP9PAllJNP9MWSILIwhYVwIASRUjChZXBgJMUIgAoEhQjACJigEBi/+IAFGJigQBKIv8i/2L/iEHi/+I/cyMACgoKosANf80/1cACBcWiABhiwA1/yU0/zT/TwJZSTT/TFkiCyMIWFcCAEkVIQQKFlcGAkxQiABHSFCMAImKAQGL/xUlEkQhBov/F4gAAYmKAgEoRwKL/iSI/wqMAIsAi/8ejAGMAov+iwGI/viMAEYCiYoEA4v8i/9Qi/2L/omKBAOL/Iv+UIz8i/9JFYv+FwgWVwYCjP6L/UxQjP2L/Iv9i/6J",
+    "clear": "Cg=="
+  },
+  "compilerInfo": {
+    "compiler": "algod",
+    "compilerVersion": {
+      "major": 4,
+      "minor": 4,
+      "patch": 1,
+      "commitHash": "7b607ce4"
+    }
+  }
+}

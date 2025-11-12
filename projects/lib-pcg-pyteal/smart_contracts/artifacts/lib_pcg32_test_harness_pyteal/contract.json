@@ -1,0 +1,106 @@
+{
+    "name": "lib_pcg32_test_harness_pyteal",
+    "methods": [
+        {
+            "name": "get_pcg32_sequence_arc4_uint32_return",
+            "args": [
+                {
+                    "type": "byte[8]",
+                    "name": "seed"
+                },
+                {
+                    "type": "uint32",
+                    "name": "lower_bound"
+                },
+                {
+                    "type": "uint32",
+                    "name": "upper_bound"
+                },
+                {
+                    "type": "uint16",
+                    "name": "length"
+                }
+            ],
+            "returns": {
+                "type": "uint32[]"
+            }
+        },
+        {
+            "name": "get_pcg32_sequence_arc4_uint16_return",
+            "args": [
+                {
+                    "type": "byte[8]",
+                    "name": "seed"
+                },
+                {
+                    "type": "uint16",
+                    "name": "lower_bound"
+                },
+                {
+                    "type": "uint16",
+                    "name": "upper_bound"
+                },
+                {
+                    "type": "uint16",
+                    "name": "length"
+                }
+            ],
+            "returns": {
+                "type": "uint16[]"
+            }
+        },
+        {
+            "name": "get_pcg32_sequence_arc4_uint8_return",
+            "args": [
+                {
+                    "type": "byte[8]",
+                    "name": "seed"
+                },
+                {
+                    "type": "uint8",
+                    "name": "lower_bound"
+                },
+                {
+                    "type": "uint8",
+                    "name": "upper_bound"
+                },
+                {
+                    "type": "uint16",
+                    "name": "length"
+                }
+            ],
+            "returns": {
+                "type": "uint8[]"
+            }
+        },
+        {
+            "name": "runtime_asserts_pcg32_stack_array",
+            "args": [],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "runtime_asserts_pcg16_stack_array",
+            "args": [],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "runtime_asserts_pcg8_stack_array",
+            "args": [],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "runtime_failure_stack_byteslice_overflow",
+            "args": [],
+            "returns": {
+                "type": "void"
+            }
+        }
+    ],
+    "networks": {}
+}

@@ -1,0 +1,468 @@
+#pragma version 11
+#pragma typetrack false
+
+// @algorandfoundation/algorand-typescript/arc4/index.d.ts::Contract.approvalProgram() -> uint64:
+main:
+    intcblock 6364136223846793005 1 32 0 1442695040888963407 1442695040888963409 1442695040888963411 1442695040888963413 4294967295
+    bytecblock 0x 0x01 0x0100000000000000000000000000000000 0xffffffffffffffffffffffffffffffff
+    txn NumAppArgs
+    bz main___algots__.defaultCreate@10
+    txn OnCompletion
+    !
+    assert // OnCompletion must be NoOp
+    txn ApplicationID
+    assert
+    pushbytess 0xda5d5f2c 0xce37f42f 0x6c0b4898 // method "get_pcg128_sequence_arc4_uint128_return(byte[32],uint128,uint128,uint16)uint128[]", method "runtime_asserts_pcg128_stack_array()void", method "runtime_failure_stack_byteslice_overflow()void"
+    txna ApplicationArgs 0
+    match get_pcg128_sequence_arc4_uint128_return runtime_asserts_pcg128_stack_array runtime_failure_stack_byteslice_overflow
+    err
+
+main___algots__.defaultCreate@10:
+    txn OnCompletion
+    !
+    txn ApplicationID
+    !
+    &&
+    assert // OnCompletion must be NoOp && can only call when creating
+    intc_1 // 1
+    return
+
+
+// lib_pcg/pcg32.algo.ts::__pcg32Output(state: uint64) -> uint64:
+__pcg32Output:
+    proto 1 1
+    frame_dig -1
+    pushint 18 // 18
+    shr
+    frame_dig -1
+    ^
+    pushint 27 // 27
+    shr
+    intc 8 // 4294967295
+    &
+    frame_dig -1
+    pushint 59 // 59
+    shr
+    dup2
+    shr
+    swap
+    ~
+    intc_1 // 1
+    addw
+    bury 1
+    pushint 31 // 31
+    &
+    uncover 2
+    swap
+    shl
+    intc 8 // 4294967295
+    &
+    |
+    retsub
+
+
+// lib_pcg/pcg128.algo.ts::pcg128Init(seed: bytes) -> bytes:
+pcg128Init:
+    proto 1 1
+    frame_dig -1
+    len
+    intc_2 // 32
+    ==
+    assert
+    frame_dig -1
+    intc_3 // 0
+    extract_uint64
+    intc_3 // 0
+    intc_0 // 6364136223846793005
+    mulw
+    bury 1
+    dup
+    intc 4 // 1442695040888963407
+    addw
+    bury 1
+    uncover 2
+    addw
+    bury 1
+    intc_0 // 6364136223846793005
+    mulw
+    bury 1
+    intc 4 // 1442695040888963407
+    addw
+    cover 2
+    pop
+    frame_dig -1
+    pushint 8 // 8
+    extract_uint64
+    dig 1
+    intc 5 // 1442695040888963409
+    addw
+    bury 1
+    addw
+    bury 1
+    intc_0 // 6364136223846793005
+    mulw
+    bury 1
+    intc 5 // 1442695040888963409
+    addw
+    cover 2
+    pop
+    frame_dig -1
+    pushint 16 // 16
+    extract_uint64
+    dig 1
+    intc 6 // 1442695040888963411
+    addw
+    bury 1
+    addw
+    bury 1
+    intc_0 // 6364136223846793005
+    mulw
+    bury 1
+    intc 6 // 1442695040888963411
+    addw
+    cover 2
+    pop
+    frame_dig -1
+    pushint 24 // 24
+    extract_uint64
+    swap
+    intc 7 // 1442695040888963413
+    addw
+    bury 1
+    addw
+    bury 1
+    intc_0 // 6364136223846793005
+    mulw
+    bury 1
+    intc 7 // 1442695040888963413
+    addw
+    bury 1
+    uncover 3
+    itob
+    uncover 3
+    itob
+    concat
+    uncover 2
+    itob
+    concat
+    swap
+    itob
+    concat
+    retsub
+
+
+// lib_pcg/pcg128.algo.ts::pcg128Random(state: bytes, lowerBound: bytes, upperBound: bytes, length: uint64) -> bytes:
+pcg128Random:
+    proto 4 1
+    intc_3 // 0
+    dupn 3
+    bytec_0 // ""
+    dup
+    frame_dig -1
+    itob
+    dup
+    bitlen
+    pushint 16 // 16
+    <=
+    assert // overflow
+    extract 6 2
+    frame_dig -3
+    bytec_0 // 0x
+    b==
+    bz pcg128Random_else_body@6
+    frame_dig -2
+    bytec_0 // 0x
+    b==
+    bz pcg128Random_else_body@6
+    intc_3 // 0
+    frame_bury 4
+    frame_dig -4
+    frame_bury 2
+
+pcg128Random_while_top@3:
+    frame_dig 4
+    frame_dig -1
+    <
+    bz pcg128Random_after_if_else@19
+    frame_dig 2
+    callsub __pcg128UnboundedRandom
+    dup
+    extract 0 32
+    frame_bury 2
+    extract 32 64
+    extract 48 16
+    frame_dig 6
+    swap
+    concat
+    frame_bury 6
+    frame_dig 4
+    intc_1 // 1
+    +
+    frame_bury 4
+    b pcg128Random_while_top@3
+
+pcg128Random_after_if_else@19:
+    frame_dig -4
+    pushbytes 0x0022
+    concat
+    frame_dig 6
+    concat
+    frame_bury 0
+    retsub
+
+pcg128Random_else_body@6:
+    frame_dig -2
+    bytec_0 // 0x
+    b!=
+    bz pcg128Random_else_body@8
+    frame_dig -2
+    bytec_1 // 0x01
+    b>
+    assert
+    frame_dig -2
+    bytec_2 // 0x0100000000000000000000000000000000
+    b<
+    assert
+    frame_dig -2
+    bytec_1 // 0x01
+    b-
+    frame_dig -3
+    b>
+    assert
+    frame_dig -2
+    frame_dig -3
+    b-
+    frame_bury 0
+
+pcg128Random_after_if_else@9:
+    frame_dig 0
+    dup
+    b~
+    bytec_1 // 0x01
+    b+
+    bytec_3 // 0xffffffffffffffffffffffffffffffff
+    b&
+    swap
+    b%
+    frame_bury 3
+    intc_3 // 0
+    frame_bury 5
+    frame_dig -4
+    frame_bury 2
+
+pcg128Random_while_top@10:
+    frame_dig 5
+    frame_dig -1
+    <
+    bz pcg128Random_after_if_else@19
+
+pcg128Random_while_top@12:
+    frame_dig 2
+    callsub __pcg128UnboundedRandom
+    dup
+    extract 0 32
+    frame_bury 2
+    extract 32 64
+    dup
+    frame_bury 1
+    frame_dig 3
+    b>=
+    bz pcg128Random_while_top@12
+    frame_dig 1
+    frame_dig 0
+    b%
+    frame_dig -3
+    b+
+    pushint 16 // 16
+    bzero
+    b|
+    frame_dig 6
+    swap
+    concat
+    frame_bury 6
+    frame_dig 5
+    intc_1 // 1
+    +
+    frame_bury 5
+    b pcg128Random_while_top@10
+
+pcg128Random_else_body@8:
+    frame_dig -3
+    bytec_3 // 0xffffffffffffffffffffffffffffffff
+    b<
+    assert
+    bytec_2 // 0x0100000000000000000000000000000000
+    frame_dig -3
+    b-
+    frame_bury 0
+    b pcg128Random_after_if_else@9
+
+
+// lib_pcg/pcg128.algo.ts::__pcg128UnboundedRandom(state: bytes) -> bytes:
+__pcg128UnboundedRandom:
+    proto 1 1
+    frame_dig -1
+    intc_3 // 0
+    extract_uint64
+    dup
+    intc_0 // 6364136223846793005
+    mulw
+    bury 1
+    intc 4 // 1442695040888963407
+    addw
+    bury 1
+    frame_dig -1
+    pushint 8 // 8
+    extract_uint64
+    dig 1
+    !
+    intc 5 // 1442695040888963409
+    swap
+    shl
+    dig 1
+    intc_0 // 6364136223846793005
+    mulw
+    bury 1
+    addw
+    bury 1
+    frame_dig -1
+    pushint 16 // 16
+    extract_uint64
+    dig 1
+    !
+    intc 6 // 1442695040888963411
+    swap
+    shl
+    dig 1
+    intc_0 // 6364136223846793005
+    mulw
+    bury 1
+    addw
+    bury 1
+    frame_dig -1
+    pushint 24 // 24
+    extract_uint64
+    dig 1
+    !
+    intc 7 // 1442695040888963413
+    swap
+    shl
+    dig 1
+    intc_0 // 6364136223846793005
+    mulw
+    bury 1
+    addw
+    bury 1
+    uncover 6
+    itob
+    uncover 5
+    itob
+    concat
+    uncover 3
+    itob
+    concat
+    swap
+    itob
+    concat
+    uncover 4
+    callsub __pcg32Output
+    intc_2 // 32
+    shl
+    uncover 4
+    callsub __pcg32Output
+    |
+    itob
+    uncover 3
+    callsub __pcg32Output
+    intc_2 // 32
+    shl
+    uncover 3
+    callsub __pcg32Output
+    |
+    itob
+    concat
+    dup
+    len
+    pushint 64 // 64
+    <=
+    assert // overflow
+    pushint 64 // 64
+    bzero
+    b|
+    concat
+    retsub
+
+
+// smart_contracts/lib_pcg128_test_harness/contract.algo.ts::LibPcg128TestHarnessAlgoTs.get_pcg128_sequence_arc4_uint128_return[routing]() -> void:
+get_pcg128_sequence_arc4_uint128_return:
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_2 // 32
+    ==
+    assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
+    txna ApplicationArgs 2
+    dup
+    len
+    pushint 16 // 16
+    ==
+    assert // invalid number of bytes for arc4.uint128
+    txna ApplicationArgs 3
+    dup
+    len
+    pushint 16 // 16
+    ==
+    assert // invalid number of bytes for arc4.uint128
+    txna ApplicationArgs 4
+    dup
+    len
+    pushint 2 // 2
+    ==
+    assert // invalid number of bytes for arc4.uint16
+    uncover 3
+    callsub pcg128Init
+    swap
+    btoi
+    swap
+    cover 3
+    callsub pcg128Random
+    dup
+    intc_2 // 32
+    extract_uint16
+    dig 1
+    len
+    substring3
+    pushbytes 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+
+// smart_contracts/lib_pcg128_test_harness/contract.algo.ts::LibPcg128TestHarnessAlgoTs.runtime_asserts_pcg128_stack_array[routing]() -> void:
+runtime_asserts_pcg128_stack_array:
+    intc_2 // 32
+    bzero
+    callsub pcg128Init
+    bytec_0 // 0x
+    dup
+    pushint 253 // 253
+    callsub pcg128Random
+    pop
+    intc_1 // 1
+    return
+
+
+// smart_contracts/lib_pcg128_test_harness/contract.algo.ts::LibPcg128TestHarnessAlgoTs.runtime_failure_stack_byteslice_overflow[routing]() -> void:
+runtime_failure_stack_byteslice_overflow:
+    intc_2 // 32
+    bzero
+    callsub pcg128Init
+    bytec_0 // 0x
+    dup
+    pushint 254 // 254
+    callsub pcg128Random
+    pop
+    intc_1 // 1
+    return
