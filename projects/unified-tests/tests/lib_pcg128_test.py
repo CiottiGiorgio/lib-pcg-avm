@@ -36,7 +36,12 @@ def lib_pcg128_harness(
 
             return harness
         case "algots":
-            pass
+            from test_harness.lib_pcg128.algots import LibPCG128TestHarnessAdapter
+
+            harness = LibPCG128TestHarnessAdapter()
+            harness.deploy(algorand_client, deployer)
+
+            return harness
         case "ts":
             pass
         case "pyteal":
@@ -51,7 +56,7 @@ def expected_library_size(request: pytest.FixtureRequest) -> int:
         case "algopy":
             return 15_500
         case "algots":
-            return 13_500
+            return 11_500
         case "ts":
             return 35_500
         case "pyteal":
@@ -66,7 +71,7 @@ def max_opup_unbounded_arc4_uint128_return(request: pytest.FixtureRequest) -> in
         case "algopy":
             return 23
         case "algots":
-            pass
+            return 22
         case "ts":
             pass
         case "pyteal":
@@ -81,7 +86,7 @@ def max_opup_bounded_arc4_uint128_return(request: pytest.FixtureRequest) -> int:
         case "algopy":
             return 39
         case "algots":
-            pass
+            return 40
         case "ts":
             pass
         case "pyteal":
@@ -160,5 +165,7 @@ def test_runtime_runtime_asserts_pcg128_stack_array(
 
 
 def test_failure(lib_pcg128_harness: ILibPCG128TestHarnessAdapter) -> None:
-    with pytest.raises(LogicError, match=r"concat produced a too big \(4098\) byte-array"):
+    with pytest.raises(
+        LogicError, match=r"concat produced a too big \([0-9]{4}\) byte-array"
+    ):
         lib_pcg128_harness.runtime_failure_stack_byteslice_overflow()

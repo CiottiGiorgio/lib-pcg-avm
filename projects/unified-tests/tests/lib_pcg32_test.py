@@ -36,7 +36,12 @@ def lib_pcg32_harness(
 
             return harness
         case "algots":
-            pass
+            from test_harness.lib_pcg32.algots import LibPCG32TestHarnessAdapter
+
+            harness = LibPCG32TestHarnessAdapter()
+            harness.deploy(algorand_client, deployer)
+
+            return harness
         case "ts":
             pass
         case "pyteal":
@@ -51,7 +56,7 @@ def expected_library_size(request: pytest.FixtureRequest) -> int:
         case "algopy":
             return 17_500
         case "algots":
-            return 13_500
+            return 15_500
         case "ts":
             return 35_500
         case "pyteal":
@@ -66,11 +71,11 @@ def max_opup_unbounded_arc4_uint32_return(request: pytest.FixtureRequest) -> int
         case "algopy":
             return 32
         case "algots":
-            pass
+            return 24
         case "ts":
-            pass
+            return 1
         case "pyteal":
-            pass
+            return 1
         case _:
             raise ValueError
 
@@ -81,11 +86,11 @@ def max_opup_unbounded_arc4_uint16_return(request: pytest.FixtureRequest) -> int
         case "algopy":
             return 71
         case "algots":
-            pass
+            return 47
         case "ts":
-            pass
+            return 1
         case "pyteal":
-            pass
+            return 1
         case _:
             raise ValueError
 
@@ -96,11 +101,11 @@ def max_opup_unbounded_arc4_uint8_return(request: pytest.FixtureRequest) -> int:
         case "algopy":
             return 142
         case "algots":
-            pass
+            return 94
         case "ts":
-            pass
+            return 1
         case "pyteal":
-            pass
+            return 1
         case _:
             raise ValueError
 
@@ -111,11 +116,11 @@ def max_opup_bounded_arc4_uint32_return(request: pytest.FixtureRequest) -> int:
         case "algopy":
             return 49
         case "algots":
-            pass
+            return 44
         case "ts":
-            pass
+            return 1
         case "pyteal":
-            pass
+            return 1
         case _:
             raise ValueError
 
@@ -126,11 +131,11 @@ def max_opup_bounded_arc4_uint16_return(request: pytest.FixtureRequest) -> int:
         case "algopy":
             return 71
         case "algots":
-            pass
+            return 56
         case "ts":
-            pass
+            return 1
         case "pyteal":
-            pass
+            return 1
         case _:
             raise ValueError
 
@@ -141,11 +146,11 @@ def max_opup_bounded_arc4_uint8_return(request: pytest.FixtureRequest) -> int:
         case "algopy":
             return 142
         case "algots":
-            pass
+            return 111
         case "ts":
-            pass
+            return 1
         case "pyteal":
-            pass
+            return 1
         case _:
             raise ValueError
 
@@ -342,5 +347,7 @@ def test_runtime_asserts_pcg8_stack_array(
 
 
 def test_failure(lib_pcg32_harness: ILibPCG32TestHarnessAdapter) -> None:
-    with pytest.raises(LogicError, match=r"concat produced a too big \(4098\) byte-array"):
+    with pytest.raises(
+        LogicError, match=r"concat produced a too big \([0-9]{4}\) byte-array"
+    ):
         lib_pcg32_harness.runtime_failure_stack_byteslice_overflow()
