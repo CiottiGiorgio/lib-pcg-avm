@@ -33,9 +33,9 @@ class YourContract(arc4.ARC4Contract):
 ```
 You can also take a look at the exposer contracts:
 [
-  [1](https://github.com/CiottiGiorgio/lib-pcg-avm/blob/main/projects/lib-pcg-algopy/smart_contracts/lib_pcg32_exposer/contract.py),
-  [2](https://github.com/CiottiGiorgio/lib-pcg-avm/blob/main/projects/lib-pcg-algopy/smart_contracts/lib_pcg64_exposer/contract.py),
-  [3](https://github.com/CiottiGiorgio/lib-pcg-avm/blob/main/projects/lib-pcg-algopy/smart_contracts/lib_pcg128_exposer/contract.py)
+  [1](https://github.com/CiottiGiorgio/lib-pcg-avm/blob/main/projects/lib-pcg-algopy/smart_contracts/lib_pcg32_test_harness/contract.py),
+  [2](https://github.com/CiottiGiorgio/lib-pcg-avm/blob/main/projects/lib-pcg-algopy/smart_contracts/lib_pcg64_test_harness/contract.py),
+  [3](https://github.com/CiottiGiorgio/lib-pcg-avm/blob/main/projects/lib-pcg-algopy/smart_contracts/lib_pcg128_test_harness/contract.py)
 ]
 
 ## Usage
