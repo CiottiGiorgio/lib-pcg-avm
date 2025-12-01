@@ -9,7 +9,7 @@ main:
     bz main___algopy_default_create@14
     txn OnCompletion
     !
-    assert // OnCompletion must be NoOp
+    assert
     txn ApplicationID
     assert
     pushbytess 0x0c8478fb 0xae78e6e0 0x89d7f54a 0x13b952d7 0xd2071623 0xc22d18df 0x6c0b4898 // method "get_pcg32_sequence_arc4_uint32_return(byte[8],uint32,uint32,uint16)uint32[]", method "get_pcg32_sequence_arc4_uint16_return(byte[8],uint16,uint16,uint16)uint16[]", method "get_pcg32_sequence_arc4_uint8_return(byte[8],uint8,uint8,uint16)uint8[]", method "runtime_asserts_pcg32_stack_array()void", method "runtime_asserts_pcg16_stack_array()void", method "runtime_asserts_pcg8_stack_array()void", method "runtime_failure_stack_byteslice_overflow()void"
@@ -23,8 +23,6 @@ main___algopy_default_create@14:
     txn ApplicationID
     !
     &&
-    assert // OnCompletion must be NoOp && can only call when creating
-    intc_0 // 1
     return
 
 
@@ -65,7 +63,7 @@ __pcg32_bounded_sequence:
     itob
     dup
     bitlen
-    pushint 16 // 16
+    pushint 16
     <=
     assert // overflow
     extract 6 2
@@ -74,11 +72,11 @@ __pcg32_bounded_sequence:
     ==
     bnz __pcg32_bounded_sequence_bool_true@3
     frame_dig -4
-    pushint 16 // 16
+    pushint 16
     ==
     bnz __pcg32_bounded_sequence_bool_true@3
     frame_dig -4
-    pushint 32 // 32
+    pushint 32
     ==
     bz __pcg32_bounded_sequence_bool_false@4
 
@@ -88,7 +86,7 @@ __pcg32_bounded_sequence_bool_true@3:
 __pcg32_bounded_sequence_bool_merge@5:
     assert
     frame_dig -4
-    pushint 3 // 3
+    pushint 3
     shr
     dup
     frame_bury 1
@@ -116,16 +114,16 @@ __pcg32_bounded_sequence_for_header@8:
     addw
     bury 1
     frame_dig -5
-    pushint 18 // 18
+    pushint 18
     shr
     frame_dig -5
     ^
-    pushint 27 // 27
+    pushint 27
     shr
     intc_3 // 4294967295
     &
     frame_dig -5
-    pushint 59 // 59
+    pushint 59
     shr
     dup2
     shr
@@ -134,7 +132,7 @@ __pcg32_bounded_sequence_for_header@8:
     intc_0 // 1
     addw
     bury 1
-    pushint 31 // 31
+    pushint 31
     &
     uncover 2
     swap
@@ -218,16 +216,16 @@ __pcg32_bounded_sequence_while_top@18:
     addw
     bury 1
     frame_dig -5
-    pushint 18 // 18
+    pushint 18
     shr
     frame_dig -5
     ^
-    pushint 27 // 27
+    pushint 27
     shr
     intc_3 // 4294967295
     &
     frame_dig -5
-    pushint 59 // 59
+    pushint 59
     shr
     dup2
     shr
@@ -236,7 +234,7 @@ __pcg32_bounded_sequence_while_top@18:
     intc_0 // 1
     addw
     bury 1
-    pushint 31 // 31
+    pushint 31
     &
     uncover 2
     swap
@@ -304,19 +302,19 @@ get_pcg32_sequence_arc4_uint32_return:
     txna ApplicationArgs 2
     dup
     len
-    pushint 4 // 4
+    pushint 4
     ==
     assert // invalid number of bytes for arc4.uint32
     txna ApplicationArgs 3
     dup
     len
-    pushint 4 // 4
+    pushint 4
     ==
     assert // invalid number of bytes for arc4.uint32
     txna ApplicationArgs 4
     dup
     len
-    pushint 2 // 2
+    pushint 2
     ==
     assert // invalid number of bytes for arc4.uint16
     uncover 3
@@ -328,7 +326,7 @@ get_pcg32_sequence_arc4_uint32_return:
     uncover 3
     btoi
     uncover 3
-    pushint 32 // 32
+    pushint 32
     cover 4
     cover 4
     callsub __pcg32_bounded_sequence
@@ -352,19 +350,19 @@ get_pcg32_sequence_arc4_uint16_return:
     txna ApplicationArgs 2
     dup
     len
-    pushint 2 // 2
+    pushint 2
     ==
     assert // invalid number of bytes for arc4.uint16
     txna ApplicationArgs 3
     dup
     len
-    pushint 2 // 2
+    pushint 2
     ==
     assert // invalid number of bytes for arc4.uint16
     txna ApplicationArgs 4
     dup
     len
-    pushint 2 // 2
+    pushint 2
     ==
     assert // invalid number of bytes for arc4.uint16
     uncover 3
@@ -376,7 +374,7 @@ get_pcg32_sequence_arc4_uint16_return:
     uncover 3
     btoi
     uncover 3
-    pushint 16 // 16
+    pushint 16
     cover 4
     cover 4
     callsub __pcg32_bounded_sequence
@@ -412,7 +410,7 @@ get_pcg32_sequence_arc4_uint8_return:
     txna ApplicationArgs 4
     dup
     len
-    pushint 2 // 2
+    pushint 2
     ==
     assert // invalid number of bytes for arc4.uint16
     uncover 3
@@ -442,10 +440,10 @@ runtime_asserts_pcg32_stack_array:
     intc_1 // 8
     bzero
     callsub pcg32_init
-    pushint 32 // 32
+    pushint 32
     intc_2 // 0
     dup
-    pushint 1023 // 1023
+    pushint 1023
     callsub __pcg32_bounded_sequence
     popn 2
     intc_0 // 1
@@ -457,10 +455,10 @@ runtime_asserts_pcg16_stack_array:
     intc_1 // 8
     bzero
     callsub pcg32_init
-    pushint 16 // 16
+    pushint 16
     intc_2 // 0
     dup
-    pushint 2047 // 2047
+    pushint 2047
     callsub __pcg32_bounded_sequence
     popn 2
     intc_0 // 1
@@ -475,7 +473,7 @@ runtime_asserts_pcg8_stack_array:
     intc_1 // 8
     intc_2 // 0
     dup
-    pushint 4094 // 4094
+    pushint 4094
     callsub __pcg32_bounded_sequence
     popn 2
     intc_0 // 1
@@ -487,10 +485,10 @@ runtime_failure_stack_byteslice_overflow:
     intc_1 // 8
     bzero
     callsub pcg32_init
-    pushint 32 // 32
+    pushint 32
     intc_2 // 0
     dup
-    pushint 1024 // 1024
+    pushint 1024
     callsub __pcg32_bounded_sequence
     popn 2
     intc_0 // 1

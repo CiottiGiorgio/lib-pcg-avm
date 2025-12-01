@@ -8,7 +8,7 @@ main:
     bz main___algopy_default_create@10
     txn OnCompletion
     !
-    assert // OnCompletion must be NoOp
+    assert
     txn ApplicationID
     assert
     pushbytess 0x5f8ae181 0xca6f4838 0x6c0b4898 // method "get_pcg64_sequence_arc4_uint64_return(byte[16],uint64,uint64,uint16)uint64[]", method "runtime_asserts_pcg64_stack_array()void", method "runtime_failure_stack_byteslice_overflow()void"
@@ -22,8 +22,6 @@ main___algopy_default_create@10:
     txn ApplicationID
     !
     &&
-    assert // OnCompletion must be NoOp && can only call when creating
-    intc_0 // 1
     return
 
 
@@ -57,7 +55,7 @@ pcg64_init:
     cover 2
     pop
     frame_dig -1
-    pushint 8 // 8
+    pushint 8
     extract_uint64
     swap
     intc 6 // 1442695040888963409
@@ -192,7 +190,7 @@ pcg64_random_while_top@13:
 
 pcg64_random_else_body@9:
     frame_dig -3
-    pushint 18446744073709551615 // 18446744073709551615
+    pushint 18446744073709551615
     <
     assert
     frame_dig -3
@@ -227,16 +225,16 @@ __pcg64_unbounded_random:
     addw
     bury 1
     frame_dig -2
-    pushint 18 // 18
+    pushint 18
     shr
     frame_dig -2
     ^
-    pushint 27 // 27
+    pushint 27
     shr
     intc 4 // 4294967295
     &
     frame_dig -2
-    pushint 59 // 59
+    pushint 59
     shr
     dup2
     shr
@@ -245,7 +243,7 @@ __pcg64_unbounded_random:
     intc_0 // 1
     addw
     bury 1
-    pushint 31 // 31
+    pushint 31
     &
     uncover 2
     swap
@@ -253,19 +251,19 @@ __pcg64_unbounded_random:
     intc 4 // 4294967295
     &
     |
-    pushint 32 // 32
+    pushint 32
     shl
     frame_dig -1
-    pushint 18 // 18
+    pushint 18
     shr
     frame_dig -1
     ^
-    pushint 27 // 27
+    pushint 27
     shr
     intc 4 // 4294967295
     &
     frame_dig -1
-    pushint 59 // 59
+    pushint 59
     shr
     dup2
     shr
@@ -274,7 +272,7 @@ __pcg64_unbounded_random:
     intc_0 // 1
     addw
     bury 1
-    pushint 31 // 31
+    pushint 31
     &
     uncover 2
     swap
@@ -297,19 +295,19 @@ get_pcg64_sequence_arc4_uint64_return:
     txna ApplicationArgs 2
     dup
     len
-    pushint 8 // 8
+    pushint 8
     ==
     assert // invalid number of bytes for arc4.uint64
     txna ApplicationArgs 3
     dup
     len
-    pushint 8 // 8
+    pushint 8
     ==
     assert // invalid number of bytes for arc4.uint64
     txna ApplicationArgs 4
     dup
     len
-    pushint 2 // 2
+    pushint 2
     ==
     assert // invalid number of bytes for arc4.uint16
     uncover 3
@@ -338,7 +336,7 @@ runtime_asserts_pcg64_stack_array:
     callsub pcg64_init
     intc_1 // 0
     dup
-    pushint 511 // 511
+    pushint 511
     callsub pcg64_random
     popn 3
     intc_0 // 1
@@ -352,7 +350,7 @@ runtime_failure_stack_byteslice_overflow:
     callsub pcg64_init
     intc_1 // 0
     dup
-    pushint 512 // 512
+    pushint 512
     callsub pcg64_random
     popn 3
     intc_0 // 1
