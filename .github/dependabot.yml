@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: pip
     directory: /projects/lib-pcg-algopy
     schedule:
-      interval: weekly
+      interval: monthly
     groups:
       minor-and-patch:
         update-types:
@@ -12,7 +12,7 @@ updates:
   - package-ecosystem: npm
     directory: /projects/lib-pcg-algots
     schedule:
-      interval: weekly
+      interval: monthly
     groups:
       minor-and-patch:
         update-types:
@@ -21,7 +21,7 @@ updates:
   - package-ecosystem: pip
     directory: /projects/unified-tests
     schedule:
-      interval: weekly
+      interval: monthly
     groups:
       minor-and-patch:
         update-types:
