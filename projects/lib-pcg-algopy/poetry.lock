@@ -154,13 +154,13 @@ typing-extensions = ">=4.6.0"
 
 [[package]]
 name = "algorand-python"
-version = "3.2.0"
+version = "3.3.0"
 description = "API for writing Algorand Python Smart contracts"
 optional = false
 python-versions = "<4,>=3.12.0"
 groups = ["main"]
 files = [
-    {file = "algorand_python-3.2.0-py3-none-any.whl", hash = "sha256:5b1406bdcc2ba508f766d161942744bcef6395aaed1ae9e2d90c5add01f9a371"},
+    {file = "algorand_python-3.3.0-py3-none-any.whl", hash = "sha256:e665fa4a7488328598082bbd70475b81f5cc32849c3f2ade6ea340a3209c23f4"},
 ]
 
 [[package]]
@@ -1656,13 +1656,13 @@ files = [
 
 [[package]]
 name = "puyapy"
-version = "5.5.0"
+version = "5.6.0"
 description = "An optimising compiler for Algorand Python"
 optional = false
 python-versions = "<4,>=3.12.0"
 groups = ["dev"]
 files = [
-    {file = "puyapy-5.5.0-py3-none-any.whl", hash = "sha256:17b274f99c598987b66d27866c1d99f1f205b350813b7cb979eac6d7cc784e83"},
+    {file = "puyapy-5.6.0-py3-none-any.whl", hash = "sha256:c54d9cd2046bd10c49bb1a1e82d212b50fb68bf3624de5eda2e754ae6860128c"},
 ]
 
 [package.dependencies]
@@ -1672,10 +1672,9 @@ colorama = {version = ">=0.4.6,<0.5", markers = "sys_platform == \"win32\""}
 cyclopts = ">=3.23.1"
 docstring-parser = ">=0.14.1"
 immutabledict = ">=4.2.0,<5"
-mypy-extensions = ">=1.0.0,<2"
+mypy = "1.19.1"
 networkx = ">=3.6,<4"
 packaging = ">=24.0,<25.0"
-pathspec = ">=0.9"
 pycryptodomex = ">=3.6.0,<4"
 pygls = ">=2.0.0a2"
 structlog = ">=25.2.0,<26"
