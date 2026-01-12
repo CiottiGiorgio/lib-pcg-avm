@@ -149,7 +149,7 @@
         "compiler": "puya",
         "compilerVersion": {
             "major": 5,
-            "minor": 5,
+            "minor": 6,
             "patch": 0
         }
     },
