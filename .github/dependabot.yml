@@ -10,7 +10,7 @@ updates:
           # Even when this is a minor or patch bump, it still causes the artifacts to change.allow:
           # In order to keep manual intervention on PRs to a minimum (commit new artifacts),
           #  we are going to have puyapy updates through separate PRs.
-          - puyapy
+          - "puyapy"
         update-types:
           - minor
           - patch
@@ -21,7 +21,7 @@ updates:
     groups:
       minor-and-patch:
         exclude-patterns:
-          - @algorandfoundation/puya-ts
+          - "@algorandfoundation/puya-ts"
         update-types:
           - minor
           - patch
