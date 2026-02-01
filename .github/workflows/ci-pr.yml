@@ -79,32 +79,32 @@ jobs:
     uses: ./.github/workflows/validate-algopy.yml
     with:
       skip: ${{ needs.changes.outputs.algopy == 'false' }}
-      deps: ${{ needs.changes.outputs.algopy-deps }}
+      deps: ${{ needs.changes.outputs.algopy-deps == 'true' }}
 
   lib-pcg-algots-ci-validation:
     needs: changes
     uses: ./.github/workflows/validate-algots.yml
     with:
       skip: ${{ needs.changes.outputs.algots == 'false' }}
-      deps: ${{ needs.changes.outputs.algots-deps }}
+      deps: ${{ needs.changes.outputs.algots-deps == 'true' }}
 
   lib-pcg-pyteal-ci-validation:
     needs: changes
     uses: ./.github/workflows/validate-pyteal.yml
     with:
       skip: ${{ needs.changes.outputs.pyteal == 'false' }}
-      deps: ${{ needs.changes.outputs.pyteal-deps }}
+      deps: ${{ needs.changes.outputs.pyteal-deps == 'true' }}
 
   lib-pcg-ts-ci-validation:
     needs: changes
     uses: ./.github/workflows/validate-ts.yml
     with:
       skip: ${{ needs.changes.outputs.ts == 'false' }}
-      deps: ${{ needs.changes.outputs.ts-deps }}
+      deps: ${{ needs.changes.outputs.ts-deps == 'true' }}
 
   lib-pcg-tests-ci-validation:
     needs: changes
     uses: ./.github/workflows/validate-tests.yml
     with:
       skip: ${{ needs.changes.outputs.tests == 'false' }}
-      deps: ${{ needs.changes.outputs.tests-deps }}
+      deps: ${{ needs.changes.outputs.tests-deps == 'true' }}
