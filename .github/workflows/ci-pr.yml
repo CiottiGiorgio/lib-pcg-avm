@@ -13,6 +13,11 @@ jobs:
       pyteal: ${{ steps.filter.outputs.pyteal }}
       ts: ${{ steps.filter.outputs.ts }}
       tests: ${{ steps.filter.outputs.tests }}
+      algopy-deps: ${{ steps.filter.outputs.algopy-deps }}
+      algots-deps: ${{ steps.filter.outputs.algots-deps }}
+      pyteal-deps: ${{ steps.filter.outputs.pyteal-deps }}
+      ts-deps: ${{ steps.filter.outputs.ts-deps }}
+      tests-deps: ${{ steps.filter.outputs.tests-deps }}
     steps:
       - uses: dorny/paths-filter@v3
         id: filter
@@ -53,33 +58,53 @@ jobs:
               - '!projects/lib-pcg-pyteal/**'
               - '!projects/lib-pcg-ts/**'
               - '!projects/unified-tests/smart_contracts/artifacts/**'
+            algopy-deps:
+              - 'projects/lib-pcg-algopy/pyproject.toml'
+              - 'projects/lib-pcg-algopy/poetry.lock'
+            algots-deps:
+              - 'projects/lib-pcg-algots/package.json'
+              - 'projects/lib-pcg-algots/package-lock.json'
+            pyteal-deps:
+              - 'projects/lib-pcg-pyteal/pyproject.toml'
+              - 'projects/lib-pcg-pyteal/poetry.lock'
+            ts-deps:
+              - 'projects/lib-pcg-ts/package.json'
+              - 'projects/lib-pcg-ts/package-lock.json'
+            tests-deps:
+              - 'projects/unified-tests/pyproject.toml'
+              - 'projects/unified-tests/poetry.lock'
 
   lib-pcg-algopy-ci-validation:
     needs: changes
     uses: ./.github/workflows/validate-algopy.yml
     with:
       skip: ${{ needs.changes.outputs.algopy == 'false' }}
+      deps: ${{ needs.changes.outputs.algopy-deps == 'true' }}
 
   lib-pcg-algots-ci-validation:
     needs: changes
     uses: ./.github/workflows/validate-algots.yml
     with:
       skip: ${{ needs.changes.outputs.algots == 'false' }}
+      deps: ${{ needs.changes.outputs.algots-deps == 'true' }}
 
   lib-pcg-pyteal-ci-validation:
     needs: changes
     uses: ./.github/workflows/validate-pyteal.yml
     with:
       skip: ${{ needs.changes.outputs.pyteal == 'false' }}
+      deps: ${{ needs.changes.outputs.pyteal-deps == 'true' }}
 
   lib-pcg-ts-ci-validation:
     needs: changes
     uses: ./.github/workflows/validate-ts.yml
     with:
       skip: ${{ needs.changes.outputs.ts == 'false' }}
+      deps: ${{ needs.changes.outputs.ts-deps == 'true' }}
 
   lib-pcg-tests-ci-validation:
     needs: changes
     uses: ./.github/workflows/validate-tests.yml
     with:
       skip: ${{ needs.changes.outputs.tests == 'false' }}
+      deps: ${{ needs.changes.outputs.tests-deps == 'true' }}
