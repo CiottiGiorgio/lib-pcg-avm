@@ -9,7 +9,7 @@ on:
         type: boolean
       deps:
         required: false
-        default: false
+        default: true
         type: boolean
 
 
