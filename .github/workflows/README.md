@@ -28,3 +28,13 @@ More info here: [link](https://github.com/orgs/community/discussions/72708)
 The decision to skip specific steps should be at the discretion of the caller workflow.
 This is easy to do with the `if` clause when calling a reusable workflow.
 Since this would change the name that shows up in the `Checks` tab, we pass a `skip` input to the reused workflow to signal if it should actually perform work or not.
+
+## Skipped Dependency Audit
+As part of any `validate` workflow, we audit dependencies in the branch we want to merge into main.
+We want to prevent a PR from merging vulnerable dependencies.
+Unfortunately there's no distinction between newly added dependencies and old ones that are already present in the main branch.
+In fact, it's often the case that, if a PR is blocked due to vulnerable dependencies, it's a dependency from the main branch.
+The ideal solution would be to only audit dependencies added by the code change.
+I haven't found an easy way to do this.
+It's more practical to only audit dependencies in the PR if the dependency manifest changed.
+We'll still catch all added dependencies, but occasionally we'll also catch dependencies from the main branch where the PR changes the manifest file.
