@@ -7,6 +7,10 @@ on:
         required: false
         default: false
         type: boolean
+      deps:
+        required: false
+        default: false
+        type: boolean
 
 
 jobs:
@@ -33,6 +37,7 @@ jobs:
         working-directory: projects/unified-tests
 
       - name: Audit python dependencies
+        if: ${{ inputs.deps }}
         run: poetry run pip-audit
         working-directory: projects/unified-tests
 

@@ -13,6 +13,9 @@ jobs:
       pyteal: ${{ steps.filter.outputs.pyteal }}
       ts: ${{ steps.filter.outputs.ts }}
       tests: ${{ steps.filter.outputs.tests }}
+      algopy-deps: ${{ steps.filter.outputs.algopy-deps }}
+      algots-deps: ${{ steps.filter.outputs.algots-deps }}
+      tests-deps: ${{ steps.filter.outputs.tests-deps }}
     steps:
       - uses: dorny/paths-filter@v3
         id: filter
@@ -53,18 +56,29 @@ jobs:
               - '!projects/lib-pcg-pyteal/**'
               - '!projects/lib-pcg-ts/**'
               - '!projects/unified-tests/smart_contracts/artifacts/**'
+            algopy-deps:
+              - 'projects/lib-pcg-algopy/pyproject.toml'
+              - 'projects/lib-pcg-algopy/poetry.lock'
+            algots-deps:
+              - 'projects/lib-pcg-algots/package.json'
+              - 'projects/lib-pcg-algots/package-lock.json'
+            tests-deps:
+              - 'projects/unified-tests/pyproject.toml'
+              - 'projects/unified-tests/poetry.lock'
 
   lib-pcg-algopy-ci-validation:
     needs: changes
     uses: ./.github/workflows/validate-algopy.yml
     with:
       skip: ${{ needs.changes.outputs.algopy == 'false' }}
+      deps: ${{ needs.changes.outputs.algopy-deps }}
 
   lib-pcg-algots-ci-validation:
     needs: changes
     uses: ./.github/workflows/validate-algots.yml
     with:
       skip: ${{ needs.changes.outputs.algots == 'false' }}
+      deps: ${{ needs.changes.outputs.algots-deps }}
 
   lib-pcg-pyteal-ci-validation:
     needs: changes
@@ -83,3 +97,4 @@ jobs:
     uses: ./.github/workflows/validate-tests.yml
     with:
       skip: ${{ needs.changes.outputs.tests == 'false' }}
+      deps: ${{ needs.changes.outputs.tests-deps }}

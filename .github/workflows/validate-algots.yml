@@ -7,6 +7,10 @@ on:
         required: false
         default: false
         type: boolean
+      deps:
+        required: false
+        default: false
+        type: boolean
 
 
 jobs:
@@ -54,6 +58,7 @@ jobs:
           git config --global user.email "actions@github.com" && git config --global user.name "github-actions"
 
       - name: Audit dependencies
+        if: ${{ inputs.deps }}
         run: algokit project run audit --project-name lib-pcg-algots
 
       - name: Lint and format
