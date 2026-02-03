@@ -14,15 +14,15 @@ jobs:
       ts: ${{ steps.filter.outputs.ts }}
       tests: ${{ steps.filter.outputs.tests }}
       algopy-manifest: ${{ steps.filter.outputs.algopy-manifest }}
-      algots-manifest: ${{ steps.filter.outputs.algots-manifest }}
-      pyteal-manifest: ${{ steps.filter.outputs.pyteal-manifest }}
-      ts-manifest: ${{ steps.filter.outputs.ts-manifest }}
-      tests-manifest: ${{ steps.filter.outputs.tests-deps }}
       algopy-lockfile: ${{ steps.filter.outputs.algopy-lockfile }}
       algots-lockfile: ${{ steps.filter.outputs.algots-lockfile }}
+      algots-manifest: ${{ steps.filter.outputs.algots-manifest }}
+      pyteal-manifest: ${{ steps.filter.outputs.pyteal-manifest }}
       pyteal-lockfile: ${{ steps.filter.outputs.pyteal-lockfile }}
+      ts-manifest: ${{ steps.filter.outputs.ts-manifest }}
       ts-lockfile: ${{ steps.filter.outputs.ts-lockfile }}
-      tests-lockfile: ${{ steps.filter.outputs.tests-deps }}
+      tests-manifest: ${{ steps.filter.outputs.tests-manifest }}
+      tests-lockfile: ${{ steps.filter.outputs.tests-lockfile }}
     steps:
       - uses: dorny/paths-filter@v3
         id: filter
