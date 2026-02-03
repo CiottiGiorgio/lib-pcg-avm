@@ -13,11 +13,16 @@ jobs:
       pyteal: ${{ steps.filter.outputs.pyteal }}
       ts: ${{ steps.filter.outputs.ts }}
       tests: ${{ steps.filter.outputs.tests }}
-      algopy-deps: ${{ steps.filter.outputs.algopy-deps }}
-      algots-deps: ${{ steps.filter.outputs.algots-deps }}
-      pyteal-deps: ${{ steps.filter.outputs.pyteal-deps }}
-      ts-deps: ${{ steps.filter.outputs.ts-deps }}
-      tests-deps: ${{ steps.filter.outputs.tests-deps }}
+      algopy-manifest: ${{ steps.filter.outputs.algopy-manifest }}
+      algots-manifest: ${{ steps.filter.outputs.algots-manifest }}
+      pyteal-manifest: ${{ steps.filter.outputs.pyteal-manifest }}
+      ts-manifest: ${{ steps.filter.outputs.ts-manifest }}
+      tests-manifest: ${{ steps.filter.outputs.tests-deps }}
+      algopy-lockfile: ${{ steps.filter.outputs.algopy-lockfile }}
+      algots-lockfile: ${{ steps.filter.outputs.algots-lockfile }}
+      pyteal-lockfile: ${{ steps.filter.outputs.pyteal-lockfile }}
+      ts-lockfile: ${{ steps.filter.outputs.ts-lockfile }}
+      tests-lockfile: ${{ steps.filter.outputs.tests-deps }}
     steps:
       - uses: dorny/paths-filter@v3
         id: filter
@@ -58,20 +63,25 @@ jobs:
               - '!projects/lib-pcg-pyteal/**'
               - '!projects/lib-pcg-ts/**'
               - '!projects/unified-tests/smart_contracts/artifacts/**'
-            algopy-deps:
+            algopy-manifest:
               - 'projects/lib-pcg-algopy/pyproject.toml'
+            algopy-lockfile:
               - 'projects/lib-pcg-algopy/poetry.lock'
-            algots-deps:
+            algots-manifest:
               - 'projects/lib-pcg-algots/package.json'
+            algots-lockfile:
               - 'projects/lib-pcg-algots/package-lock.json'
-            pyteal-deps:
+            pyteal-manifest:
               - 'projects/lib-pcg-pyteal/pyproject.toml'
+            pyteal-lockfile:
               - 'projects/lib-pcg-pyteal/poetry.lock'
-            ts-deps:
+            ts-manifest:
               - 'projects/lib-pcg-ts/package.json'
+            ts-lockfile:
               - 'projects/lib-pcg-ts/package-lock.json'
-            tests-deps:
+            tests-manifest:
               - 'projects/unified-tests/pyproject.toml'
+            tests-lockfile:
               - 'projects/unified-tests/poetry.lock'
 
   lib-pcg-algopy-ci-validation:
@@ -79,32 +89,32 @@ jobs:
     uses: ./.github/workflows/validate-algopy.yml
     with:
       skip: ${{ needs.changes.outputs.algopy == 'false' }}
-      deps: ${{ needs.changes.outputs.algopy-deps == 'true' }}
+      deps: ${{ needs.changes.outputs.algopy-manifest == 'true' || needs.changes.outputs.algopy-lockfile == 'true' }}
 
   lib-pcg-algots-ci-validation:
     needs: changes
     uses: ./.github/workflows/validate-algots.yml
     with:
       skip: ${{ needs.changes.outputs.algots == 'false' }}
-      deps: ${{ needs.changes.outputs.algots-deps == 'true' }}
+      deps: ${{ needs.changes.outputs.algots-manifest == 'true' || needs.changes.outputs.algots-lockfile == 'true' }}
 
   lib-pcg-pyteal-ci-validation:
     needs: changes
     uses: ./.github/workflows/validate-pyteal.yml
     with:
       skip: ${{ needs.changes.outputs.pyteal == 'false' }}
-      deps: ${{ needs.changes.outputs.pyteal-deps == 'true' }}
+      deps: ${{ needs.changes.outputs.pyteal-manifest == 'true' || needs.changes.outputs.pyteal-lockfile == 'true' }}
 
   lib-pcg-ts-ci-validation:
     needs: changes
     uses: ./.github/workflows/validate-ts.yml
     with:
       skip: ${{ needs.changes.outputs.ts == 'false' }}
-      deps: ${{ needs.changes.outputs.ts-deps == 'true' }}
+      deps: ${{ needs.changes.outputs.ts-manifest == 'true' || needs.changes.outputs.ts-lockfile == 'true' }}
 
   lib-pcg-tests-ci-validation:
     needs: changes
     uses: ./.github/workflows/validate-tests.yml
     with:
       skip: ${{ needs.changes.outputs.tests == 'false' }}
-      deps: ${{ needs.changes.outputs.tests-deps == 'true' }}
+      deps: ${{ needs.changes.outputs.tests-manifest == 'true' || needs.changes.outputs.tests-lockfile == 'true' }}
