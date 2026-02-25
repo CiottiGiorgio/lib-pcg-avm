@@ -14,7 +14,7 @@ updates:
         update-types:
           - minor
           - patch
-      security:
+      security-patches:
         applies-to: security-updates
   - package-ecosystem: npm
     directory: /projects/lib-pcg-algots
@@ -27,7 +27,7 @@ updates:
         update-types:
           - minor
           - patch
-      security:
+      security-patches:
         applies-to: security-updates
   - package-ecosystem: pip
     directory: /projects/unified-tests
@@ -38,5 +38,5 @@ updates:
         update-types:
           - minor
           - patch
-      security:
+      security-patches:
         applies-to: security-updates
