@@ -13,9 +13,7 @@ from smart_contracts.helpers.deploy import deploy
 # Algorand transactions in atomic groups -> https://github.com/algorandfoundation/algokit-avm-vscode-debugger
 # from algokit_utils.config import config
 # config.configure(debug=True, trace_all=True)
-logging.basicConfig(
-    level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s"
-)
+logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s")
 logger = logging.getLogger(__name__)
 logger.info("Loading .env")
 load_dotenv()

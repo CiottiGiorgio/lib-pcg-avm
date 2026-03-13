@@ -27,7 +27,7 @@ def get_pcg32_sequence_arc4_uint32_return(
     upper_bound: pt.abi.Uint32,
     length: pt.abi.Uint16,
     *,
-    output: pt.abi.DynamicArray[pt.abi.Uint32]
+    output: pt.abi.DynamicArray[pt.abi.Uint32],
 ) -> pt.Expr:
     rng_handle = pt.ScratchVar(pt.TealType.uint64)
 
@@ -51,7 +51,7 @@ def get_pcg32_sequence_arc4_uint16_return(
     upper_bound: pt.abi.Uint16,
     length: pt.abi.Uint16,
     *,
-    output: pt.abi.DynamicArray[pt.abi.Uint16]
+    output: pt.abi.DynamicArray[pt.abi.Uint16],
 ) -> pt.Expr:
     rng_handle = pt.ScratchVar(pt.TealType.uint64)
 
@@ -75,7 +75,7 @@ def get_pcg32_sequence_arc4_uint8_return(
     upper_bound: pt.abi.Uint8,
     length: pt.abi.Uint16,
     *,
-    output: pt.abi.DynamicArray[pt.abi.Uint8]
+    output: pt.abi.DynamicArray[pt.abi.Uint8],
 ) -> pt.Expr:
     rng_handle = pt.ScratchVar(pt.TealType.uint64)
 

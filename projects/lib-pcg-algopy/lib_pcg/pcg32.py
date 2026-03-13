@@ -68,9 +68,7 @@ def pcg32_random(
         - A pseudo-random sequence of 32-bit uints.
 
     """
-    state, sequence = __pcg32_bounded_sequence(
-        state, UInt64(32), lower_bound, upper_bound, length
-    )
+    state, sequence = __pcg32_bounded_sequence(state, UInt64(32), lower_bound, upper_bound, length)
     return state, arc4.DynamicArray[arc4.UInt32].from_bytes(sequence)
 
 
@@ -99,9 +97,7 @@ def pcg16_random(
         - A pseudo-random sequence of 16-bit uints.
 
     """
-    state, sequence = __pcg32_bounded_sequence(
-        state, UInt64(16), lower_bound, upper_bound, length
-    )
+    state, sequence = __pcg32_bounded_sequence(state, UInt64(16), lower_bound, upper_bound, length)
     return state, arc4.DynamicArray[arc4.UInt16].from_bytes(sequence)
 
 
@@ -130,9 +126,7 @@ def pcg8_random(
         - A pseudo-random sequence of 8-bit uints.
 
     """
-    state, sequence = __pcg32_bounded_sequence(
-        state, UInt64(8), lower_bound, upper_bound, length
-    )
+    state, sequence = __pcg32_bounded_sequence(state, UInt64(8), lower_bound, upper_bound, length)
     return state, arc4.DynamicArray[arc4.UInt8].from_bytes(sequence)
 
 
@@ -274,9 +268,7 @@ def __pcg32_step(state: PCG32STATE, incr: UInt64) -> PCG32STATE:
 @subroutine(inline=True)
 def __pcg32_output(state: PCG32STATE) -> UInt64:
     """PCG XSH RR 64/32 output k-to-1 permutation function."""
-    return __pcg32_rotation(
-        __mask_to_uint32(((state >> 18) ^ state) >> 27), state >> 59
-    )
+    return __pcg32_rotation(__mask_to_uint32(((state >> 18) ^ state) >> 27), state >> 59)
 
 
 @subroutine(inline=True)

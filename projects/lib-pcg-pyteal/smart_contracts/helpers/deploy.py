@@ -20,9 +20,7 @@ logger = logging.getLogger(__name__)
 
 def deploy(
     app_spec_path: Path,
-    deploy_callback: Callable[
-        [AlgodClient, IndexerClient, ApplicationSpecification, Account], None
-    ],
+    deploy_callback: Callable[[AlgodClient, IndexerClient, ApplicationSpecification, Account], None],
     deployer_initial_funds: int = 2,
 ) -> None:
     # get clients

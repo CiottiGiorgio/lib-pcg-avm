@@ -29,9 +29,7 @@ class LibPCG32TestHarnessAlgoPy(ARC4Contract):
     ) -> arc4.DynamicArray[arc4.UInt32]:
         state = pcg32_init(seed.bytes)
 
-        state, sequence = pcg32_random(
-            state, lower_bound.as_uint64(), upper_bound.as_uint64(), length.as_uint64()
-        )
+        state, sequence = pcg32_random(state, lower_bound.as_uint64(), upper_bound.as_uint64(), length.as_uint64())
 
         return sequence
 
@@ -45,9 +43,7 @@ class LibPCG32TestHarnessAlgoPy(ARC4Contract):
     ) -> arc4.DynamicArray[arc4.UInt16]:
         state = pcg16_init(seed.bytes)
 
-        state, sequence = pcg16_random(
-            state, lower_bound.as_uint64(), upper_bound.as_uint64(), length.as_uint64()
-        )
+        state, sequence = pcg16_random(state, lower_bound.as_uint64(), upper_bound.as_uint64(), length.as_uint64())
 
         return sequence
 
@@ -61,9 +57,7 @@ class LibPCG32TestHarnessAlgoPy(ARC4Contract):
     ) -> arc4.DynamicArray[arc4.UInt8]:
         state = pcg8_init(seed.bytes)
 
-        state, sequence = pcg8_random(
-            state, lower_bound.as_uint64(), upper_bound.as_uint64(), length.as_uint64()
-        )
+        state, sequence = pcg8_random(state, lower_bound.as_uint64(), upper_bound.as_uint64(), length.as_uint64())
 
         return sequence
 
@@ -72,32 +66,24 @@ class LibPCG32TestHarnessAlgoPy(ARC4Contract):
         state = pcg32_init(op.bzero(8))
 
         # Can produce a maximal length stack-based array of uint32s.
-        state, sequence = pcg32_random(
-            state, UInt64(0), UInt64(0), UInt64(MAX_UINT32_IN_STACK_ARRAY)
-        )
+        state, sequence = pcg32_random(state, UInt64(0), UInt64(0), UInt64(MAX_UINT32_IN_STACK_ARRAY))
 
     @abimethod
     def runtime_asserts_pcg16_stack_array(self) -> None:
         state = pcg16_init(op.bzero(8))
 
         # Can produce a maximal length stack-based array of uint16s.
-        state, sequence = pcg16_random(
-            state, UInt64(0), UInt64(0), UInt64(MAX_UINT16_IN_STACK_ARRAY)
-        )
+        state, sequence = pcg16_random(state, UInt64(0), UInt64(0), UInt64(MAX_UINT16_IN_STACK_ARRAY))
 
     @abimethod
     def runtime_asserts_pcg8_stack_array(self) -> None:
         state = pcg8_init(op.bzero(8))
 
         # Can produce a maximal length stack-based array of uint8s.
-        state, sequence = pcg8_random(
-            state, UInt64(0), UInt64(0), UInt64(MAX_UINT8_IN_STACK_ARRAY)
-        )
+        state, sequence = pcg8_random(state, UInt64(0), UInt64(0), UInt64(MAX_UINT8_IN_STACK_ARRAY))
 
     @abimethod
     def runtime_failure_stack_byteslice_overflow(self) -> None:
         state = pcg32_init(op.bzero(8))
 
-        state, sequence = pcg32_random(
-            state, UInt64(0), UInt64(0), UInt64(MAX_UINT32_IN_STACK_ARRAY + 1)
-        )
+        state, sequence = pcg32_random(state, UInt64(0), UInt64(0), UInt64(MAX_UINT32_IN_STACK_ARRAY + 1))

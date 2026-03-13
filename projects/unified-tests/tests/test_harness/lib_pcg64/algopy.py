@@ -19,9 +19,7 @@ class LibPCG64TestHarnessAdapter(ILibPCG64TestHarnessAdapter):
     app_client: LibPcg64TestHarnessAlgoPyClient
 
     def deploy(self, algorand_client: AlgorandClient, deployer: SigningAccount) -> None:
-        self.app_client, _ = LibPcg64TestHarnessAlgoPyFactory(
-            algorand_client, default_sender=deployer.address
-        ).deploy(
+        self.app_client, _ = LibPcg64TestHarnessAlgoPyFactory(algorand_client, default_sender=deployer.address).deploy(
             on_schema_break=OnSchemaBreak.AppendApp,
             on_update=OnUpdate.AppendApp,
         )
@@ -37,9 +35,7 @@ class LibPCG64TestHarnessAdapter(ILibPCG64TestHarnessAdapter):
     ) -> SendAtomicTransactionComposerResults:
         return (
             self.app_client.new_group()
-            .get_pcg64_sequence_arc4_uint64_return(
-                (seed, lower_bound, upper_bound, length)
-            )
+            .get_pcg64_sequence_arc4_uint64_return((seed, lower_bound, upper_bound, length))
             .simulate(extra_opcode_budget=MAX_SIMULATE_OPCODE_BUDGET)
         )
 

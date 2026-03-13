@@ -105,9 +105,7 @@ def max_opup_bounded_arc4_uint64_return(request: pytest.FixtureRequest) -> int:
 
 # This simple test ensures that the code size of this library doesn't grow unexpectedly if we
 #  start taking subroutine inlining and opcode assembly opportunities.
-def test_library_size(
-    lib_pcg64_harness: ILibPCG64TestHarnessAdapter, expected_library_size: int
-) -> None:
+def test_library_size(lib_pcg64_harness: ILibPCG64TestHarnessAdapter, expected_library_size: int) -> None:
     assert lib_pcg64_harness.bytecode_size < expected_library_size
 
 
@@ -158,10 +156,7 @@ def test_arc4_uint64_return(
     )
 
     assert result.returns[0].value == expected_sequence
-    assert (
-        result.simulate_response["txn-groups"][0]["app-budget-consumed"]
-        < OPCODE_BUDGET_PER_APP_CALL * max_opup
-    )
+    assert result.simulate_response["txn-groups"][0]["app-budget-consumed"] < OPCODE_BUDGET_PER_APP_CALL * max_opup
 
 
 def test_runtime_asserts_pcg64_stack_array(
@@ -173,7 +168,5 @@ def test_runtime_asserts_pcg64_stack_array(
 
 
 def test_failure(lib_pcg64_harness: ILibPCG64TestHarnessAdapter) -> None:
-    with pytest.raises(
-        LogicError, match=r"concat produced a too big \([0-9]{4}\) byte-array"
-    ):
+    with pytest.raises(LogicError, match=r"concat produced a too big \([0-9]{4}\) byte-array"):
         lib_pcg64_harness.runtime_failure_stack_byteslice_overflow()

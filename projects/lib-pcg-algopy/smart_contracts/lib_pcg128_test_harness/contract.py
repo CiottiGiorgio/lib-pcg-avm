@@ -34,14 +34,10 @@ class LibPCG128TestHarnessAlgoPy(ARC4Contract):
         state = pcg128_init(op.bzero(32))
 
         # Can produce a maximal length stack-based array of uint64s.
-        state, sequence = pcg128_random(
-            state, BigUInt(0), BigUInt(0), UInt64(MAX_UINT128_IN_STACK_ARRAY)
-        )
+        state, sequence = pcg128_random(state, BigUInt(0), BigUInt(0), UInt64(MAX_UINT128_IN_STACK_ARRAY))
 
     @abimethod
     def runtime_failure_stack_byteslice_overflow(self) -> None:
         state = pcg128_init(op.bzero(32))
 
-        state, sequence = pcg128_random(
-            state, BigUInt(0), BigUInt(0), UInt64(MAX_UINT128_IN_STACK_ARRAY + 1)
-        )
+        state, sequence = pcg128_random(state, BigUInt(0), BigUInt(0), UInt64(MAX_UINT128_IN_STACK_ARRAY + 1))

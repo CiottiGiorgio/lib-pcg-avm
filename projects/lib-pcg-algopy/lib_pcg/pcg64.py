@@ -105,10 +105,6 @@ def __pcg64_unbounded_random(state: PCG64STATE) -> tuple[PCG64STATE, UInt64]:
 
     """
     new_state1 = __pcg32_step(state[0], UInt64(PCG_FIRST_INCREMENT))
-    new_state2 = __pcg32_step(
-        state[1], UInt64(PCG_SECOND_INCREMENT) << (new_state1 == 0)
-    )
+    new_state2 = __pcg32_step(state[1], UInt64(PCG_SECOND_INCREMENT) << (new_state1 == 0))
 
-    return (new_state1, new_state2), __pcg32_output(state[0]) << 32 | __pcg32_output(
-        state[1]
-    )
+    return (new_state1, new_state2), __pcg32_output(state[0]) << 32 | __pcg32_output(state[1])
