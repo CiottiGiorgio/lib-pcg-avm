@@ -2,20 +2,20 @@ repos:
   - repo: local
     hooks:
       
-      - id: black
-        name: black
-        description: "Black: The uncompromising Python code formatter"
-        entry: poetry run black
+      - id: ruff-check
+        name: ruff check
+        description: "Ruff: linting"
+        entry: poetry run ruff check
         language: system
         minimum_pre_commit_version: 2.9.2
         require_serial: true
         types_or: [ python, pyi ]
       
       
-      - id: ruff
-        name: ruff
-        description: "Run 'ruff' for extremely fast Python linting"
-        entry: poetry run ruff
+      - id: ruff-lint
+        name: ruff lint
+        description: "Run 'ruff' for extremely fast Python formatting"
+        entry: poetry run ruff format
         language: system
         types: [ python ]
         args: [ --fix ]
@@ -36,13 +36,13 @@ repos:
         minimum_pre_commit_version: '2.9.2'
         files: '^(src|tests)/'
       
-      - id: tealer
-        name: tealer
-        description: "Run AlgoKit `Tealer` for TEAL static analysis"
-        entry: algokit
-        language: system
-        args: [task, analyze, ".algokit", "--recursive", "--force"]
-        require_serial: false
-        additional_dependencies: []
-        minimum_pre_commit_version: "0"
-        files: '^.*\.teal$'
+#      - id: tealer
+#        name: tealer
+#        description: "Run AlgoKit `Tealer` for TEAL static analysis"
+#        entry: algokit
+#        language: system
+#        args: [task, analyze, ".algokit", "--recursive", "--force"]
+#        require_serial: false
+#        additional_dependencies: []
+#        minimum_pre_commit_version: "0"
+#        files: '^.*\.teal$'

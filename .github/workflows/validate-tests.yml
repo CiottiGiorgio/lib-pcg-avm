@@ -43,6 +43,6 @@ jobs:
 
       - name: Lint and format python dependencies
         run: |
-          poetry run black --check --diff .
+          poetry run ruff format --check --diff .
           poetry run ruff check .
         working-directory: projects/unified-tests

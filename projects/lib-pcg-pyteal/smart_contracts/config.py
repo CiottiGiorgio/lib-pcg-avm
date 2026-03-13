@@ -12,18 +12,13 @@ from beaker import Application
 @dataclasses.dataclass
 class SmartContract:
     app: Application
-    deploy: (
-        Callable[[AlgodClient, IndexerClient, ApplicationSpecification, Account], None]
-        | None
-    ) = None
+    deploy: (Callable[[AlgodClient, IndexerClient, ApplicationSpecification, Account], None] | None) = None
 
 
 def import_contract(folder: Path) -> Application:
     """Imports the contract from a folder if it exists."""
     try:
-        contract_module = importlib.import_module(
-            f"{folder.parent.name}.{folder.name}.contract"
-        )
+        contract_module = importlib.import_module(f"{folder.parent.name}.{folder.name}.contract")
         return contract_module.app
     except ImportError as e:
         raise Exception(f"Contract not found in {folder}") from e
@@ -31,15 +26,10 @@ def import_contract(folder: Path) -> Application:
 
 def import_deploy_if_exists(
     folder: Path,
-) -> (
-    Callable[[AlgodClient, IndexerClient, ApplicationSpecification, Account], None]
-    | None
-):
+) -> Callable[[AlgodClient, IndexerClient, ApplicationSpecification, Account], None] | None:
     """Imports the deploy function from a folder if it exists."""
     try:
-        deploy_module = importlib.import_module(
-            f"{folder.parent.name}.{folder.name}.deploy_config"
-        )
+        deploy_module = importlib.import_module(f"{folder.parent.name}.{folder.name}.deploy_config")
         return deploy_module.deploy
     except ImportError:
         return None

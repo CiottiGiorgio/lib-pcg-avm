@@ -20,9 +20,7 @@ class LibPCG64TestHarnessAlgoPy(ARC4Contract):
     ) -> arc4.DynamicArray[arc4.UInt64]:
         state = pcg64_init(seed.bytes)
 
-        state, sequence = pcg64_random(
-            state, lower_bound.as_uint64(), upper_bound.as_uint64(), length.as_uint64()
-        )
+        state, sequence = pcg64_random(state, lower_bound.as_uint64(), upper_bound.as_uint64(), length.as_uint64())
 
         return sequence
 
@@ -31,14 +29,10 @@ class LibPCG64TestHarnessAlgoPy(ARC4Contract):
         state = pcg64_init(op.bzero(16))
 
         # Can produce a maximal length stack-based array of uint64s.
-        state, sequence = pcg64_random(
-            state, UInt64(0), UInt64(0), UInt64(MAX_UINT64_IN_STACK_ARRAY)
-        )
+        state, sequence = pcg64_random(state, UInt64(0), UInt64(0), UInt64(MAX_UINT64_IN_STACK_ARRAY))
 
     @abimethod
     def runtime_failure_stack_byteslice_overflow(self) -> None:
         state = pcg64_init(op.bzero(16))
 
-        state, sequence = pcg64_random(
-            state, UInt64(0), UInt64(0), UInt64(MAX_UINT64_IN_STACK_ARRAY + 1)
-        )
+        state, sequence = pcg64_random(state, UInt64(0), UInt64(0), UInt64(MAX_UINT64_IN_STACK_ARRAY + 1))

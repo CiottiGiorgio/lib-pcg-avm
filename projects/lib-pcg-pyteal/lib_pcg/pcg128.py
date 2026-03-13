@@ -34,18 +34,10 @@ def pcg128_init(
     """
     return pt.Seq(
         pt.Assert(pt.Len(seed) == pt.Int(32)),
-        __pcg32_init(
-            state1_slot_index, pt.ExtractUint64(seed, pt.Int(0)), PCG_FIRST_INCREMENT
-        ),
-        __pcg32_init(
-            state2_slot_index, pt.ExtractUint64(seed, pt.Int(8)), PCG_SECOND_INCREMENT
-        ),
-        __pcg32_init(
-            state3_slot_index, pt.ExtractUint64(seed, pt.Int(16)), PCG_THIRD_INCREMENT
-        ),
-        __pcg32_init(
-            state4_slot_index, pt.ExtractUint64(seed, pt.Int(24)), PCG_FOURTH_INCREMENT
-        ),
+        __pcg32_init(state1_slot_index, pt.ExtractUint64(seed, pt.Int(0)), PCG_FIRST_INCREMENT),
+        __pcg32_init(state2_slot_index, pt.ExtractUint64(seed, pt.Int(8)), PCG_SECOND_INCREMENT),
+        __pcg32_init(state3_slot_index, pt.ExtractUint64(seed, pt.Int(16)), PCG_THIRD_INCREMENT),
+        __pcg32_init(state4_slot_index, pt.ExtractUint64(seed, pt.Int(24)), PCG_FOURTH_INCREMENT),
     )
 
 
@@ -82,9 +74,7 @@ def pcg128_random(
     candidate = pt.ScratchVar(pt.TealType.bytes)
 
     return pt.Seq(
-        result_length.set(
-            length
-        ),  # This is also used because it's an assert on "length" value.
+        result_length.set(length),  # This is also used because it's an assert on "length" value.
         result.store(result_length.encode()),
         pt.If(
             pt.And(
@@ -94,9 +84,7 @@ def pcg128_random(
         )
         .Then(
             pt.Seq(
-                pt.For(
-                    i.store(pt.Int(0)), i.load() < length, i.store(i.load() + pt.Int(1))
-                ).Do(
+                pt.For(i.store(pt.Int(0)), i.load() < length, i.store(i.load() + pt.Int(1))).Do(
                     pt.Seq(
                         result.store(
                             pt.Concat(
@@ -118,20 +106,12 @@ def pcg128_random(
                 pt.If(pt.BytesNeq(upper_bound, pt.Bytes((0).to_bytes(32, "big"))))
                 .Then(
                     pt.Seq(
-                        pt.Assert(
-                            pt.BytesGt(upper_bound, pt.Bytes((1).to_bytes(32, "big")))
-                        ),
-                        pt.Assert(
-                            pt.BytesLt(
-                                upper_bound, pt.Bytes((1 << 128).to_bytes(32, "big"))
-                            )
-                        ),
+                        pt.Assert(pt.BytesGt(upper_bound, pt.Bytes((1).to_bytes(32, "big")))),
+                        pt.Assert(pt.BytesLt(upper_bound, pt.Bytes((1 << 128).to_bytes(32, "big")))),
                         pt.Assert(
                             pt.BytesLt(
                                 lower_bound,
-                                pt.BytesMinus(
-                                    upper_bound, pt.Bytes((1).to_bytes(32, "big"))
-                                ),
+                                pt.BytesMinus(upper_bound, pt.Bytes((1).to_bytes(32, "big"))),
                             )
                         ),
                         absolute_bound.store(pt.BytesMinus(upper_bound, lower_bound)),
@@ -149,21 +129,11 @@ def pcg128_random(
                         #  with a single uint64.
                         # We will write this operation with bigint math and optimize it later.
                         # At this point it's guaranteed that lower_bound != 0.
-                        absolute_bound.store(
-                            pt.BytesMinus(
-                                pt.Bytes((1 << 128).to_bytes(32, "big")), lower_bound
-                            )
-                        ),
+                        absolute_bound.store(pt.BytesMinus(pt.Bytes((1 << 128).to_bytes(32, "big")), lower_bound)),
                     )
                 ),
-                threshold.store(
-                    pt.BytesMod(
-                        __uint128_twos(absolute_bound.load()), absolute_bound.load()
-                    )
-                ),
-                pt.For(
-                    i.store(pt.Int(0)), i.load() < length, i.store(i.load() + pt.Int(1))
-                ).Do(
+                threshold.store(pt.BytesMod(__uint128_twos(absolute_bound.load()), absolute_bound.load())),
+                pt.For(i.store(pt.Int(0)), i.load() < length, i.store(i.load() + pt.Int(1))).Do(
                     pt.Seq(
                         candidate.store(
                             __pcg128_unbounded_random(
@@ -189,9 +159,7 @@ def pcg128_random(
                                 pt.BytesOr(
                                     pt.BytesZero(pt.Int(16)),
                                     pt.BytesAdd(
-                                        pt.BytesMod(
-                                            candidate.load(), absolute_bound.load()
-                                        ),
+                                        pt.BytesMod(candidate.load(), absolute_bound.load()),
                                         lower_bound,
                                     ),
                                 ),
@@ -237,24 +205,21 @@ def __pcg128_unbounded_random(
             state2_slot_index,
             pt.ShiftLeft(
                 PCG_SECOND_INCREMENT,
-                pt.ScratchLoad(None, pt.TealType.uint64, state1_slot_index)
-                == pt.Int(0),
+                pt.ScratchLoad(None, pt.TealType.uint64, state1_slot_index) == pt.Int(0),
             ),
         ),
         __pcg32_step(
             state3_slot_index,
             pt.ShiftLeft(
                 PCG_THIRD_INCREMENT,
-                pt.ScratchLoad(None, pt.TealType.uint64, state2_slot_index)
-                == pt.Int(0),
+                pt.ScratchLoad(None, pt.TealType.uint64, state2_slot_index) == pt.Int(0),
             ),
         ),
         __pcg32_step(
             state4_slot_index,
             pt.ShiftLeft(
                 PCG_FOURTH_INCREMENT,
-                pt.ScratchLoad(None, pt.TealType.uint64, state3_slot_index)
-                == pt.Int(0),
+                pt.ScratchLoad(None, pt.TealType.uint64, state3_slot_index) == pt.Int(0),
             ),
         ),
         pt.Return(

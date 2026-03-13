@@ -35,7 +35,7 @@ audit-teal = { commands = [
   'algokit task analyze smart_contracts/artifacts --recursive --force --exclude rekey-to --exclude is-updatable --exclude missing-fee-check --exclude is-deletable --exclude can-close-asset --exclude can-close-account --exclude unprotected-deletable --exclude unprotected-updatable',
 ], description = 'Audit TEAL files' }
 lint = { commands = [
-  'poetry run black .',
+  'poetry run ruff format .',
   'poetry run ruff check . --fix',
 ], description = 'Perform linting' }
 
@@ -45,7 +45,7 @@ ci-teal-diff = { commands = [
   'git diff --exit-code --minimal ./smart_contracts/artifacts',
 ], description = 'Check TEAL files for differences' }
 ci-lint = { commands = [
-  'poetry run black --check --diff .',
+  'poetry run ruff format . --check',
   'poetry run ruff check .',
   'poetry run mypy',
 ], description = 'Perform linting' }

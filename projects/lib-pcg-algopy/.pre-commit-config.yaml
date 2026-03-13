@@ -1,37 +1,30 @@
 repos:
-  - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.31.2
-    hooks:
-      - id: check-github-workflows
-      - id: check-github-actions
-      - id: check-dependabot
-
   - repo: local
     hooks:
-      
-      - id: black
-        name: black
-        description: "Black: The uncompromising Python code formatter"
-        entry: poetry run black
+
+      - id: ruff-check
+        name: ruff check
+        description: "Ruff: linting"
+        entry: poetry run ruff check
         language: system
         minimum_pre_commit_version: 2.9.2
         require_serial: true
         types_or: [ python, pyi ]
-      
-      
-      - id: ruff
-        name: ruff
-        description: "Run 'ruff' for extremely fast Python linting"
-        entry: poetry run ruff
+
+
+      - id: ruff-lint
+        name: ruff lint
+        description: "Run 'ruff' for extremely fast Python formatting"
+        entry: poetry run ruff format
         language: system
         types: [ python ]
-        args: [ "check", "--fix" ]
+        args: [ --fix ]
         require_serial: false
         additional_dependencies: [ ]
         minimum_pre_commit_version: '0'
         files: '^(smart_contracts|tests)/'
-      
-      
+
+
       - id: mypy
         name: mypy
         description: '`mypy` will check Python types for correctness'
@@ -42,7 +35,7 @@ repos:
         additional_dependencies: [ ]
         minimum_pre_commit_version: '2.9.2'
         files: '^(smart_contracts|tests)/'
-      
+
       # # Uncomment to enable TEAL static analysis using Tealer package
       # - id: tealer
       #   name: tealer

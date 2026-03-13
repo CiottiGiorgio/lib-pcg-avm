@@ -19,9 +19,7 @@ class LibPCG128TestHarnessAdapter(ILibPCG128TestHarnessAdapter):
     app_client: LibPcg128TestHarnessPytealClient
 
     def deploy(self, algorand_client: AlgorandClient, deployer: SigningAccount) -> None:
-        self.app_client, _ = LibPcg128TestHarnessPytealFactory(
-            algorand_client, default_sender=deployer.address
-        ).deploy(
+        self.app_client, _ = LibPcg128TestHarnessPytealFactory(algorand_client, default_sender=deployer.address).deploy(
             on_schema_break=OnSchemaBreak.AppendApp,
             on_update=OnUpdate.AppendApp,
         )
@@ -48,9 +46,7 @@ class LibPCG128TestHarnessAdapter(ILibPCG128TestHarnessAdapter):
             .simulate(extra_opcode_budget=MAX_SIMULATE_OPCODE_BUDGET)
         )
 
-        result.returns[0].value = [
-            int.from_bytes(x, "big") for x in result.returns[0].value
-        ]
+        result.returns[0].value = [int.from_bytes(x, "big") for x in result.returns[0].value]
         return result
 
     def runtime_asserts_pcg128_stack_array(

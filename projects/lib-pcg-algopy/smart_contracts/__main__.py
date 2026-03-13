@@ -16,9 +16,7 @@ from dotenv import load_dotenv
 config.configure(debug=True, trace_all=False)
 
 # Set up logging and load environment variables.
-logging.basicConfig(
-    level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s"
-)
+logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s")
 logger = logging.getLogger(__name__)
 logger.info("Loading .env")
 load_dotenv()
@@ -80,9 +78,7 @@ deployment_extension = "py"
 def _get_output_path(output_dir: Path, deployment_extension: str) -> Path:
     """Constructs the output path for the generated client file."""
     return output_dir / Path(
-        "{contract_name}"
-        + ("_client" if deployment_extension == "py" else "Client")
-        + f".{deployment_extension}"
+        "{contract_name}" + ("_client" if deployment_extension == "py" else "Client") + f".{deployment_extension}"
     )
 
 
@@ -165,11 +161,7 @@ def main(action: str, contract_name: str | None = None) -> None:
     """Main entry point to build and/or deploy smart contracts."""
     artifact_path = root_path / "artifacts"
     # Filter contracts based on an optional specific contract name.
-    filtered_contracts = [
-        contract
-        for contract in contracts
-        if contract_name is None or contract.name == contract_name
-    ]
+    filtered_contracts = [contract for contract in contracts if contract_name is None or contract.name == contract_name]
 
     match action:
         case "build":

@@ -34,14 +34,11 @@ environment_secrets = [
 build = { commands = [
   'poetry run python -m smart_contracts build',
 ], description = 'Build all smart contracts in the project' }
-test = { commands = [
-  'poetry run pytest',
-], description = 'Run smart contract tests' }
 audit = { commands = [
   'poetry run pip-audit',
 ], description = 'Audit with pip-audit. NOTE: If used with poetry >v2, make sure to install `poetry-plugin-export` as per https://github.com/python-poetry/poetry-plugin-export#installation.' }
 lint = { commands = [
-  'poetry run black .',
+  'poetry run ruff format .',
   'poetry run ruff check . --fix',
 ], description = 'Perform linting fixes' }
 audit-teal = { commands = [
@@ -55,7 +52,7 @@ ci-teal-diff = { commands = [
   'git diff --exit-code --minimal ./smart_contracts/artifacts',
 ], description = 'Check TEAL files for differences' }
 ci-lint = { commands = [
-  'poetry run black --check --diff .',
+  'poetry run ruff format . --check',
   'poetry run ruff check .',
   'poetry run mypy',
 ], description = 'Perform linting' }

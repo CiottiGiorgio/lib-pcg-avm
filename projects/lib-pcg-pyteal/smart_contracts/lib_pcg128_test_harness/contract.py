@@ -21,7 +21,7 @@ def get_pcg128_sequence_arc4_uint128_return(
     upper_bound: pt.abi.StaticBytes[Literal[16]],
     length: pt.abi.Uint16,
     *,
-    output: pt.abi.DynamicArray[pt.abi.StaticBytes[Literal[16]]]
+    output: pt.abi.DynamicArray[pt.abi.StaticBytes[Literal[16]]],
 ) -> pt.Expr:
     rng_handle_state1 = pt.ScratchVar(pt.TealType.uint64)
     rng_handle_state2 = pt.ScratchVar(pt.TealType.uint64)

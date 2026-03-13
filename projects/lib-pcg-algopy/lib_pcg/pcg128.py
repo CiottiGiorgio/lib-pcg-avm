@@ -90,9 +90,7 @@ def pcg128_random(
             while True:
                 state, candidate = __pcg128_unbounded_random(state)
                 if candidate >= threshold:
-                    result += (
-                        (candidate % absolute_bound) + lower_bound
-                    ).bytes | op.bzero(16)
+                    result += ((candidate % absolute_bound) + lower_bound).bytes | op.bzero(16)
                     break
 
     return state, arc4.DynamicArray[arc4.UInt128].from_bytes(result)
@@ -115,17 +113,11 @@ def __pcg128_unbounded_random(state: PCG128STATE) -> tuple[PCG128STATE, BigUInt]
     """
     new_state1 = __pcg32_step(state[0], UInt64(PCG_FIRST_INCREMENT))
 
-    new_state2 = __pcg32_step(
-        state[1], UInt64(PCG_SECOND_INCREMENT) << (new_state1 == 0)
-    )
+    new_state2 = __pcg32_step(state[1], UInt64(PCG_SECOND_INCREMENT) << (new_state1 == 0))
 
-    new_state3 = __pcg32_step(
-        state[2], UInt64(PCG_THIRD_INCREMENT) << (new_state2 == 0)
-    )
+    new_state3 = __pcg32_step(state[2], UInt64(PCG_THIRD_INCREMENT) << (new_state2 == 0))
 
-    new_state4 = __pcg32_step(
-        state[3], UInt64(PCG_FOURTH_INCREMENT) << (new_state3 == 0)
-    )
+    new_state4 = __pcg32_step(state[3], UInt64(PCG_FOURTH_INCREMENT) << (new_state3 == 0))
 
     return (
         (new_state1, new_state2, new_state3, new_state4),

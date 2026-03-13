@@ -1,4 +1,4 @@
-import { assert, bytes, Bytes, op, Uint64, uint64, arc4, clone } from '@algorandfoundation/algorand-typescript'
+import { assert, bytes, op, Uint64, uint64, arc4, clone } from '@algorandfoundation/algorand-typescript'
 import { pcgFirstIncrement, pcgMultiplier } from './consts.algo'
 
 type PCG32STATE = uint64
@@ -64,11 +64,10 @@ function __pcg32BoundedSequence(
   upperBound: uint64,
   length: uint64,
 ): [PCG32STATE, bytes] {
-  let result: bytes = Bytes('')
   let helperState = clone(state)
 
   assert(length < op.shl(1, 16))
-  result = new arc4.Uint<16>(length).bytes
+  let result: bytes = new arc4.Uint<16>(length).bytes
 
   assert(bitSize === 8 || bitSize === 16 || bitSize === 32)
   const byteSize = op.shr(bitSize, 3)

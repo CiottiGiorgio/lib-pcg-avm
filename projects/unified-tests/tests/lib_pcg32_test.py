@@ -167,9 +167,7 @@ def max_opup_bounded_arc4_uint8_return(request: pytest.FixtureRequest) -> int:
 
 # This simple test ensures that the code size of this library doesn't grow unexpectedly if we
 #  start taking subroutine inlining and opcode assembly opportunities.
-def test_library_size(
-    lib_pcg32_harness: ILibPCG32TestHarnessAdapter, expected_library_size: int
-) -> None:
+def test_library_size(lib_pcg32_harness: ILibPCG32TestHarnessAdapter, expected_library_size: int) -> None:
     assert lib_pcg32_harness.bytecode_size < expected_library_size
 
 
@@ -220,10 +218,7 @@ def test_arc4_uint32_return(
     )
 
     assert result.returns[0].value == expected_sequence
-    assert (
-        result.simulate_response["txn-groups"][0]["app-budget-consumed"]
-        < OPCODE_BUDGET_PER_APP_CALL * max_opup
-    )
+    assert result.simulate_response["txn-groups"][0]["app-budget-consumed"] < OPCODE_BUDGET_PER_APP_CALL * max_opup
 
 
 @pytest.mark.parametrize(
@@ -273,10 +268,7 @@ def test_arc4_uint16_return(
     )
 
     assert result.returns[0].value == expected_sequence
-    assert (
-        result.simulate_response["txn-groups"][0]["app-budget-consumed"]
-        < OPCODE_BUDGET_PER_APP_CALL * max_opup
-    )
+    assert result.simulate_response["txn-groups"][0]["app-budget-consumed"] < OPCODE_BUDGET_PER_APP_CALL * max_opup
 
 
 @pytest.mark.parametrize(
@@ -323,10 +315,7 @@ def test_arc4_uint8_return(
     )
 
     assert result.returns[0].value == expected_sequence
-    assert (
-        result.simulate_response["txn-groups"][0]["app-budget-consumed"]
-        < OPCODE_BUDGET_PER_APP_CALL * max_opup
-    )
+    assert result.simulate_response["txn-groups"][0]["app-budget-consumed"] < OPCODE_BUDGET_PER_APP_CALL * max_opup
 
 
 def test_runtime_asserts_pcg32_stack_array(
@@ -345,9 +334,7 @@ def test_runtime_asserts_pcg16_stack_array(
     assert result.returns[0]
 
 
-@pytest.mark.skip(
-    reason="This test takes more opcode budget than simulate can provide."
-)
+@pytest.mark.skip(reason="This test takes more opcode budget than simulate can provide.")
 def test_runtime_asserts_pcg8_stack_array(
     lib_pcg32_harness: ILibPCG32TestHarnessAdapter,
 ) -> None:
@@ -357,7 +344,5 @@ def test_runtime_asserts_pcg8_stack_array(
 
 
 def test_failure(lib_pcg32_harness: ILibPCG32TestHarnessAdapter) -> None:
-    with pytest.raises(
-        LogicError, match=r"concat produced a too big \([0-9]{4}\) byte-array"
-    ):
+    with pytest.raises(LogicError, match=r"concat produced a too big \([0-9]{4}\) byte-array"):
         lib_pcg32_harness.runtime_failure_stack_byteslice_overflow()

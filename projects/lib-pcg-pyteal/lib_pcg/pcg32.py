@@ -63,9 +63,7 @@ def pcg32_random(
     Returns:
         pt.Bytes
     """
-    return __pcg32_bounded_sequence(
-        state_slot_index, pt.Int(32), lower_bound, upper_bound, length
-    )
+    return __pcg32_bounded_sequence(state_slot_index, pt.Int(32), lower_bound, upper_bound, length)
 
 
 @pt.Subroutine(pt.TealType.bytes)
@@ -85,9 +83,7 @@ def pcg16_random(
     Returns:
         pt.Bytes
     """
-    return __pcg32_bounded_sequence(
-        state_slot_index, pt.Int(16), lower_bound, upper_bound, length
-    )
+    return __pcg32_bounded_sequence(state_slot_index, pt.Int(16), lower_bound, upper_bound, length)
 
 
 @pt.Subroutine(pt.TealType.bytes)
@@ -107,14 +103,10 @@ def pcg8_random(
     Returns:
         pt.Bytes
     """
-    return __pcg32_bounded_sequence(
-        state_slot_index, pt.Int(8), lower_bound, upper_bound, length
-    )
+    return __pcg32_bounded_sequence(state_slot_index, pt.Int(8), lower_bound, upper_bound, length)
 
 
-def __pcg32_init(
-    state_slot_index: pt.Expr, initial_state: pt.Expr, incr: pt.Expr
-) -> pt.Expr:
+def __pcg32_init(state_slot_index: pt.Expr, initial_state: pt.Expr, incr: pt.Expr) -> pt.Expr:
     """
     Args:
         state_slot_index: pt.Int
@@ -179,19 +171,13 @@ def __pcg32_bounded_sequence(
     i = pt.ScratchVar(pt.TealType.uint64)
     candidate = pt.ScratchVar(pt.TealType.uint64)
 
-    def __truncate_to_size(
-        _n: pt.Expr, _start: pt.Expr, _byte_size: pt.Expr
-    ) -> pt.Expr:
+    def __truncate_to_size(_n: pt.Expr, _start: pt.Expr, _byte_size: pt.Expr) -> pt.Expr:
         return pt.Extract(pt.Itob(_n), _start, _byte_size)
 
     return pt.Seq(
-        result_length.set(
-            length
-        ),  # This is also used because it's an assert on "length" value.
+        result_length.set(length),  # This is also used because it's an assert on "length" value.
         result.store(result_length.encode()),
-        pt.Assert(
-            pt.Or(bit_size == pt.Int(8), bit_size == pt.Int(16), bit_size == pt.Int(32))
-        ),
+        pt.Assert(pt.Or(bit_size == pt.Int(8), bit_size == pt.Int(16), bit_size == pt.Int(32))),
         # num_bits -> num_bytes == num_bits / 8 == num_bits / 2^3 == num_bits >> 3
         byte_size.store(pt.ShiftRight(bit_size, pt.Int(3))),
         # 32bit == Extract(..., 8-4, 4); 16bit == Extract(..., 8-2, 2); 8bit == Extract(..., 8-1, 1)
@@ -199,9 +185,7 @@ def __pcg32_bounded_sequence(
         pt.If(pt.And(lower_bound == pt.Int(0), upper_bound == pt.Int(0)))
         .Then(
             pt.Seq(
-                pt.For(
-                    i.store(pt.Int(0)), i.load() < length, i.store(i.load() + pt.Int(1))
-                ).Do(
+                pt.For(i.store(pt.Int(0)), i.load() < length, i.store(i.load() + pt.Int(1))).Do(
                     pt.Seq(
                         result.store(
                             pt.Concat(
@@ -236,20 +220,12 @@ def __pcg32_bounded_sequence(
                         # Must include 2^bit_size-1 which means that lower_bound must be less than that.
                         # Otherwise, we would be in the nonsensical situation where the user is asking for a list
                         #  of "2^bit_size-1".
-                        pt.Assert(
-                            lower_bound < pt.ShiftLeft(pt.Int(1), bit_size) - pt.Int(1)
-                        ),
-                        absolute_bound.store(
-                            pt.ShiftLeft(pt.Int(1), bit_size) - lower_bound
-                        ),
+                        pt.Assert(lower_bound < pt.ShiftLeft(pt.Int(1), bit_size) - pt.Int(1)),
+                        absolute_bound.store(pt.ShiftLeft(pt.Int(1), bit_size) - lower_bound),
                     )
                 ),
-                threshold.store(
-                    __uint32_twos(absolute_bound.load()) % absolute_bound.load()
-                ),
-                pt.For(
-                    i.store(pt.Int(0)), i.load() < length, i.store(i.load() + pt.Int(1))
-                ).Do(
+                threshold.store(__uint32_twos(absolute_bound.load()) % absolute_bound.load()),
+                pt.For(i.store(pt.Int(0)), i.load() < length, i.store(i.load() + pt.Int(1))).Do(
                     pt.Seq(
                         candidate.store(__pcg32_unbounded_random(state_slot_index)),
                         pt.While(candidate.load() < threshold.load()).Do(
@@ -259,8 +235,7 @@ def __pcg32_bounded_sequence(
                             pt.Concat(
                                 result.load(),
                                 __truncate_to_size(
-                                    (candidate.load() % absolute_bound.load())
-                                    + lower_bound,
+                                    (candidate.load() % absolute_bound.load()) + lower_bound,
                                     truncate_cached_start.load(),
                                     byte_size.load(),
                                 ),
@@ -335,9 +310,7 @@ def __pcg32_output(state: pt.Expr) -> pt.Expr:
         # This needs to be uint32. We can't guarantee that at this point, so we cast it explicitly.
         arg1.store(
             __mask_to_uint32(
-                pt.ShiftRight(
-                    pt.BitwiseXor(pt.ShiftRight(state, pt.Int(18)), state), pt.Int(27)
-                ),
+                pt.ShiftRight(pt.BitwiseXor(pt.ShiftRight(state, pt.Int(18)), state), pt.Int(27)),
             )
         ),
         arg2.store(pt.ShiftRight(state, pt.Int(59))),
