@@ -14,7 +14,6 @@ python-dotenv = "^1.0.0"
 
 [tool.poetry.group.dev.dependencies]
 setuptools = "^78.1.1"
-black = {extras = ["d"], version = "*"}
 ruff = "^0.1.6"
 mypy = "*"
 pip-audit = "*"
