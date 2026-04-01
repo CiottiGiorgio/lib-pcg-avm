@@ -4,6 +4,16 @@ updates:
     directory: /projects/lib-pcg-algopy
     schedule:
       interval: monthly
+    ignore:
+      # puyapy can only work with a specific version of mypy since moving off of the vendored version of mypy.
+      # However, the template ships with a lax version requirement for mypy (^1).
+      # If mypy is ever updated by dependabot to a version beyond what puyapy wants, it will downgrade puyapy
+      #  back to when it used to have a mypy vendored dependency.
+      # We could choose to: fix puyapy's version to an exact requirement;
+      #  fix mypy's version to the exact requirement that puyapy wants;
+      #  or ignore mypy updates from dependabot and always have the version puyapy wants.
+      # We choose to do the latter since I feel less inclined to change the project manifest than to change dependabot configs.
+      - "mypy"
     groups:
       minor-and-patch:
         exclude-patterns:
