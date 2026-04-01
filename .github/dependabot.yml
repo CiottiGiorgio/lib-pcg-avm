@@ -13,7 +13,7 @@ updates:
       #  fix mypy's version to the exact requirement that puyapy wants;
       #  or ignore mypy updates from dependabot and always have the version puyapy wants.
       # We choose to do the latter since I feel less inclined to change the project manifest than to change dependabot configs.
-      - "mypy"
+      - dependency-name: "mypy"
     groups:
       minor-and-patch:
         exclude-patterns:
