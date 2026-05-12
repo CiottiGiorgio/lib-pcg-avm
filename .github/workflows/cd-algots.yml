@@ -56,12 +56,12 @@ jobs:
           private-key: ${{ secrets.LIB_PCG_RELEASE_APP_SK }}
 
       - name: Checkout source code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           token: ${{ steps.generate-token.outputs.token }}
 
       - name: Use Node.js 22.x
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22.x
           cache: npm
