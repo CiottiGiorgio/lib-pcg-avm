@@ -6489,8 +6489,8 @@
     "compilerVersion": {
       "major": 4,
       "minor": 7,
-      "patch": 0,
-      "commitHash": "6927d906"
+      "patch": 3,
+      "commitHash": "4d11e2e9"
     }
   }
 }
