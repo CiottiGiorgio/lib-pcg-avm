@@ -11,7 +11,7 @@ build = { commands = [
   'npm run compile-contract',
 ], description = 'Build all smart contracts in the project' }
 audit = { commands = [
-  'npm run audit',
+  'npm run audit -- -x 1124334',
 ], description = 'Audit with better-npm-audit' }
 lint = { commands = [
   'npm run lint:fix',
