@@ -9,7 +9,7 @@ main:
     bz main___algots__.defaultCreate@14
     txn OnCompletion
     !
-    assert // OnCompletion must be NoOp
+    assert
     txn ApplicationID
     assert
     pushbytess 0x0c8478fb 0xae78e6e0 0x89d7f54a 0x13b952d7 0xd2071623 0xc22d18df 0x6c0b4898 // method "get_pcg32_sequence_arc4_uint32_return(byte[8],uint32,uint32,uint16)uint32[]", method "get_pcg32_sequence_arc4_uint16_return(byte[8],uint16,uint16,uint16)uint16[]", method "get_pcg32_sequence_arc4_uint8_return(byte[8],uint8,uint8,uint16)uint8[]", method "runtime_asserts_pcg32_stack_array()void", method "runtime_asserts_pcg16_stack_array()void", method "runtime_asserts_pcg8_stack_array()void", method "runtime_failure_stack_byteslice_overflow()void"
@@ -23,8 +23,6 @@ main___algots__.defaultCreate@14:
     txn ApplicationID
     !
     &&
-    assert // OnCompletion must be NoOp && can only call when creating
-    intc_0 // 1
     return
 
 
@@ -60,7 +58,7 @@ pcg32Init:
 pcg32Random:
     proto 4 1
     frame_dig -4
-    pushint 32 // 32
+    pushint 32
     frame_dig -3
     frame_dig -2
     frame_dig -1
@@ -88,7 +86,7 @@ pcg32Random:
 pcg16Random:
     proto 4 1
     frame_dig -4
-    pushint 16 // 16
+    pushint 16
     frame_dig -3
     frame_dig -2
     frame_dig -1
@@ -144,16 +142,16 @@ pcg8Random:
 __pcg32BoundedSequence:
     proto 5 1
     pushbytes ""
-    dupn 7
+    dupn 4
     frame_dig -1
-    pushint 65536 // 65536
+    pushint 65536
     <
     assert
     frame_dig -1
     itob
     dup
     bitlen
-    pushint 16 // 16
+    pushint 16
     <=
     assert // overflow
     extract 6 2
@@ -162,11 +160,11 @@ __pcg32BoundedSequence:
     ==
     bnz __pcg32BoundedSequence_bool_true@3
     frame_dig -4
-    pushint 16 // 16
+    pushint 16
     ==
     bnz __pcg32BoundedSequence_bool_true@3
     frame_dig -4
-    pushint 32 // 32
+    pushint 32
     ==
     bz __pcg32BoundedSequence_bool_false@4
 
@@ -176,52 +174,50 @@ __pcg32BoundedSequence_bool_true@3:
 __pcg32BoundedSequence_bool_merge@5:
     assert
     frame_dig -4
-    pushint 3 // 3
+    pushint 3
     shr
     dup
-    frame_bury 1
+    cover 2
     intc_1 // 8
     swap
     -
-    frame_bury 7
     frame_dig -3
     bnz __pcg32BoundedSequence_else_body@11
     frame_dig -2
     bnz __pcg32BoundedSequence_else_body@11
     intc_2 // 0
-    frame_bury 4
+    frame_bury 2
     frame_dig -5
-    frame_bury 3
 
 __pcg32BoundedSequence_while_top@8:
-    frame_dig 4
+    frame_dig 2
     frame_dig -1
     <
     bz __pcg32BoundedSequence_after_if_else@24
-    frame_dig 3
     callsub __pcg32UnboundedRandom
     dup
     intc_2 // 0
     extract_uint64
-    frame_bury 3
+    swap
     extract 8 8
-    frame_dig 7
-    frame_dig 1
+    dig 2
+    dig 5
     extract3
-    frame_dig 8
+    uncover 3
     swap
     concat
-    frame_bury 8
-    frame_dig 4
+    cover 2
+    frame_dig 2
     intc_0 // 1
     +
-    frame_bury 4
+    frame_bury 2
     b __pcg32BoundedSequence_while_top@8
 
 __pcg32BoundedSequence_after_if_else@24:
+    popn 2
     frame_dig -5
     itob
-    frame_dig 8
+    swap
     dup
     len
     itob
@@ -271,49 +267,47 @@ __pcg32BoundedSequence_after_if_else@14:
     &
     swap
     %
-    frame_bury 6
+    frame_bury 4
     intc_2 // 0
-    frame_bury 5
-    frame_dig -5
     frame_bury 3
+    frame_dig -5
 
 __pcg32BoundedSequence_while_top@15:
-    frame_dig 5
+    frame_dig 3
     frame_dig -1
     <
     bz __pcg32BoundedSequence_after_if_else@24
 
 __pcg32BoundedSequence_while_top@17:
-    frame_dig 3
     callsub __pcg32UnboundedRandom
     dup
     intc_2 // 0
     extract_uint64
-    frame_bury 3
+    swap
     intc_1 // 8
     extract_uint64
     dup
-    frame_bury 2
-    frame_dig 6
+    frame_bury 1
+    frame_dig 4
     >=
     bz __pcg32BoundedSequence_while_top@17
-    frame_dig 2
+    frame_dig 1
     frame_dig 0
     %
     frame_dig -3
     +
     itob
-    frame_dig 7
-    frame_dig 1
+    dig 2
+    dig 5
     extract3
-    frame_dig 8
+    uncover 3
     swap
     concat
-    frame_bury 8
-    frame_dig 5
+    cover 2
+    frame_dig 3
     intc_0 // 1
     +
-    frame_bury 5
+    frame_bury 3
     b __pcg32BoundedSequence_while_top@15
 
 __pcg32BoundedSequence_else_body@13:
@@ -347,16 +341,16 @@ __pcg32UnboundedRandom:
     addw
     bury 1
     frame_dig -1
-    pushint 18 // 18
+    pushint 18
     shr
     frame_dig -1
     ^
-    pushint 27 // 27
+    pushint 27
     shr
     intc 6 // 4294967295
     &
     frame_dig -1
-    pushint 59 // 59
+    pushint 59
     shr
     dup2
     shr
@@ -365,7 +359,7 @@ __pcg32UnboundedRandom:
     intc_0 // 1
     addw
     bury 1
-    pushint 31 // 31
+    pushint 31
     &
     uncover 2
     swap
@@ -392,13 +386,13 @@ get_pcg32_sequence_arc4_uint32_return:
     txna ApplicationArgs 2
     dup
     len
-    pushint 4 // 4
+    pushint 4
     ==
     assert // invalid number of bytes for arc4.uint32
     txna ApplicationArgs 3
     dup
     len
-    pushint 4 // 4
+    pushint 4
     ==
     assert // invalid number of bytes for arc4.uint32
     txna ApplicationArgs 4
@@ -535,7 +529,7 @@ runtime_asserts_pcg32_stack_array:
     callsub pcg32Init
     intc_2 // 0
     dup
-    pushint 1020 // 1020
+    pushint 1020
     callsub pcg32Random
     pop
     intc_0 // 1
@@ -549,7 +543,7 @@ runtime_asserts_pcg16_stack_array:
     callsub pcg32Init
     intc_2 // 0
     dup
-    pushint 2041 // 2041
+    pushint 2041
     callsub pcg16Random
     pop
     intc_0 // 1
@@ -563,7 +557,7 @@ runtime_asserts_pcg8_stack_array:
     callsub pcg32Init
     intc_2 // 0
     dup
-    pushint 4082 // 4082
+    pushint 4082
     callsub pcg8Random
     pop
     intc_0 // 1
@@ -577,7 +571,7 @@ runtime_failure_stack_byteslice_overflow:
     callsub pcg32Init
     intc_2 // 0
     dup
-    pushint 1022 // 1022
+    pushint 1022
     callsub pcg32Random
     pop
     intc_0 // 1
