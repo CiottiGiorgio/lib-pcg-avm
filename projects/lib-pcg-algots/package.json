@@ -10,8 +10,8 @@
   ],
   "scripts": {
     "compile-contracts": "algokit compile ts smart_contracts --no-output-arc32 --no-output-source-map --debug-level=0 --out-dir artifacts",
-    "lint": "eslint lib_pcg smart_contracts",
-    "lint:fix": "eslint lib_pcg smart_contracts --fix",
+    "lint": "oxlint lib_pcg smart_contracts",
+    "lint:fix": "oxlint --fix lib_pcg smart_contracts",
     "audit": "better-npm-audit audit",
     "format": "prettier --write .",
     "check-types": "tsc --noEmit"
@@ -27,16 +27,14 @@
     "@algorandfoundation/algokit-utils": "^9.0.0",
     "@algorandfoundation/algokit-utils-debug": "^1.0.4",
     "@algorandfoundation/puya-ts": "^1.0.1",
-    "@eslint/js": "^10.0.1",
     "@rollup/plugin-typescript": "^12.1.2",
     "@tsconfig/node22": "^22.0.0",
+    "@types/node": "^22.0.0",
     "better-npm-audit": "^3.11.0",
     "dotenv": "^17.2.3",
-    "eslint": "^10.0.2",
-    "globals": "^17.4.0",
+    "oxlint": "^0.15.15",
     "prettier": "^3.4.2",
-    "typescript": "^6.0.2",
-    "typescript-eslint": "^8.46.0"
+    "typescript": "^7.0.2"
   },
   "overrides": {
     "esbuild": "0.25.0"
