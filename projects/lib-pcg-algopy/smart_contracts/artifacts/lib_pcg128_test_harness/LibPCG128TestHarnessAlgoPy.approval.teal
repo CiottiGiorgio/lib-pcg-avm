@@ -3,7 +3,7 @@
 
 // algopy.arc4.ARC4Contract.approval_program() -> uint64:
 main:
-    intcblock 6364136223846793005 1 4294967295 32 1442695040888963407 1442695040888963409 1442695040888963411 1442695040888963413
+    intcblock 1 6364136223846793005 4294967295 0 1442695040888963407 1442695040888963409 1442695040888963411 1442695040888963413
     bytecblock 0x 0x01 0x0100000000000000000000000000000000
     txn NumAppArgs
     bz main___algopy_default_create@10
@@ -31,14 +31,14 @@ pcg128_init:
     proto 1 4
     frame_dig -1
     len
-    intc_3 // 32
+    pushint 32
     ==
     assert
     frame_dig -1
-    pushint 0
+    intc_3 // 0
     extract_uint64
-    pushint 0
-    intc_0 // 6364136223846793005
+    intc_3 // 0
+    intc_1 // 6364136223846793005
     mulw
     bury 1
     dup
@@ -48,7 +48,7 @@ pcg128_init:
     uncover 2
     addw
     bury 1
-    intc_0 // 6364136223846793005
+    intc_1 // 6364136223846793005
     mulw
     bury 1
     intc 4 // 1442695040888963407
@@ -64,7 +64,7 @@ pcg128_init:
     bury 1
     addw
     bury 1
-    intc_0 // 6364136223846793005
+    intc_1 // 6364136223846793005
     mulw
     bury 1
     intc 5 // 1442695040888963409
@@ -80,7 +80,7 @@ pcg128_init:
     bury 1
     addw
     bury 1
-    intc_0 // 6364136223846793005
+    intc_1 // 6364136223846793005
     mulw
     bury 1
     intc 6 // 1442695040888963411
@@ -96,7 +96,7 @@ pcg128_init:
     bury 1
     addw
     bury 1
-    intc_0 // 6364136223846793005
+    intc_1 // 6364136223846793005
     mulw
     bury 1
     intc 7 // 1442695040888963413
@@ -108,7 +108,7 @@ pcg128_init:
 // lib_pcg.pcg128.pcg128_random(state.0: uint64, state.1: uint64, state.2: uint64, state.3: uint64, lower_bound: bytes, upper_bound: bytes, length: uint64) -> uint64, uint64, uint64, uint64, bytes:
 pcg128_random:
     proto 7 5
-    pushint 0
+    intc_3 // 0
     dupn 2
     bytec_0 // ""
     frame_dig -1
@@ -127,7 +127,7 @@ pcg128_random:
     bytec_0 // 0x
     b==
     bz pcg128_random_else_body@7
-    pushint 0
+    intc_3 // 0
     frame_bury 3
 
 pcg128_random_for_header@3:
@@ -150,7 +150,7 @@ pcg128_random_for_header@3:
     concat
     frame_bury 4
     frame_dig 3
-    intc_1 // 1
+    intc_0 // 1
     +
     frame_bury 3
     b pcg128_random_for_header@3
@@ -203,7 +203,7 @@ pcg128_random_after_if_else@10:
     swap
     b%
     frame_bury 2
-    pushint 0
+    intc_3 // 0
     frame_bury 3
 
 pcg128_random_for_header@11:
@@ -241,7 +241,7 @@ pcg128_random_while_top@13:
     concat
     frame_bury 4
     frame_dig 3
-    intc_1 // 1
+    intc_0 // 1
     +
     frame_bury 3
     b pcg128_random_for_header@11
@@ -261,42 +261,58 @@ pcg128_random_else_body@9:
 // lib_pcg.pcg128.__pcg128_unbounded_random(state.0: uint64, state.1: uint64, state.2: uint64, state.3: uint64) -> uint64, uint64, uint64, uint64, bytes:
 __pcg128_unbounded_random:
     proto 4 5
+    bytec_0 // ""
     frame_dig -4
-    intc_0 // 6364136223846793005
+    intc_1 // 6364136223846793005
     mulw
     bury 1
     intc 4 // 1442695040888963407
     addw
-    bury 1
+    dup
+    uncover 2
+    pop
     dup
     !
     intc 5 // 1442695040888963409
     swap
     shl
     frame_dig -3
-    intc_0 // 6364136223846793005
+    intc_1 // 6364136223846793005
     mulw
     bury 1
     addw
-    bury 1
-    dup
-    !
+    cover 2
+    pop
+    bnz __pcg128_unbounded_random_bool_false@3
+    frame_dig 2
+    bnz __pcg128_unbounded_random_bool_false@3
+    intc_0 // 1
+
+__pcg128_unbounded_random_bool_merge@4:
     intc 6 // 1442695040888963411
     swap
     shl
     frame_dig -2
-    intc_0 // 6364136223846793005
+    intc_1 // 6364136223846793005
     mulw
     bury 1
     addw
-    bury 1
-    dup
-    !
+    frame_bury 0
+    pop
+    frame_dig 1
+    bnz __pcg128_unbounded_random_bool_false@8
+    frame_dig 2
+    bnz __pcg128_unbounded_random_bool_false@8
+    frame_dig 0
+    bnz __pcg128_unbounded_random_bool_false@8
+    intc_0 // 1
+
+__pcg128_unbounded_random_bool_merge@9:
     intc 7 // 1442695040888963413
     swap
     shl
     frame_dig -1
-    intc_0 // 6364136223846793005
+    intc_1 // 6364136223846793005
     mulw
     bury 1
     addw
@@ -317,7 +333,7 @@ __pcg128_unbounded_random:
     shr
     swap
     ~
-    intc_1 // 1
+    intc_0 // 1
     addw
     bury 1
     pushint 31
@@ -328,7 +344,7 @@ __pcg128_unbounded_random:
     intc_2 // 4294967295
     &
     |
-    intc_3 // 32
+    pushint 32
     shl
     frame_dig -3
     pushint 18
@@ -346,7 +362,7 @@ __pcg128_unbounded_random:
     shr
     swap
     ~
-    intc_1 // 1
+    intc_0 // 1
     addw
     bury 1
     pushint 31
@@ -375,7 +391,7 @@ __pcg128_unbounded_random:
     shr
     swap
     ~
-    intc_1 // 1
+    intc_0 // 1
     addw
     bury 1
     pushint 31
@@ -386,7 +402,7 @@ __pcg128_unbounded_random:
     intc_2 // 4294967295
     &
     |
-    intc_3 // 32
+    pushint 32
     shl
     frame_dig -1
     pushint 18
@@ -404,7 +420,7 @@ __pcg128_unbounded_random:
     shr
     swap
     ~
-    intc_1 // 1
+    intc_0 // 1
     addw
     bury 1
     pushint 31
@@ -418,7 +434,23 @@ __pcg128_unbounded_random:
     |
     itob
     concat
+    frame_dig 1
+    frame_dig 2
+    frame_dig 0
+    uncover 4
+    uncover 4
+    uncover 7
+    uncover 7
+    uncover 7
     retsub
+
+__pcg128_unbounded_random_bool_false@8:
+    intc_3 // 0
+    b __pcg128_unbounded_random_bool_merge@9
+
+__pcg128_unbounded_random_bool_false@3:
+    intc_3 // 0
+    b __pcg128_unbounded_random_bool_merge@4
 
 
 // smart_contracts.lib_pcg128_test_harness.contract.LibPCG128TestHarnessAlgoPy.get_pcg128_sequence_arc4_uint128_return[routing]() -> void:
@@ -426,7 +458,7 @@ get_pcg128_sequence_arc4_uint128_return:
     txna ApplicationArgs 1
     dup
     len
-    intc_3 // 32
+    pushint 32
     ==
     assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
     txna ApplicationArgs 2
@@ -462,13 +494,13 @@ get_pcg128_sequence_arc4_uint128_return:
     swap
     concat
     log
-    intc_1 // 1
+    intc_0 // 1
     return
 
 
 // smart_contracts.lib_pcg128_test_harness.contract.LibPCG128TestHarnessAlgoPy.runtime_asserts_pcg128_stack_array[routing]() -> void:
 runtime_asserts_pcg128_stack_array:
-    intc_3 // 32
+    pushint 32
     bzero
     callsub pcg128_init
     bytec_0 // 0x
@@ -476,13 +508,13 @@ runtime_asserts_pcg128_stack_array:
     pushint 255
     callsub pcg128_random
     popn 5
-    intc_1 // 1
+    intc_0 // 1
     return
 
 
 // smart_contracts.lib_pcg128_test_harness.contract.LibPCG128TestHarnessAlgoPy.runtime_failure_stack_byteslice_overflow[routing]() -> void:
 runtime_failure_stack_byteslice_overflow:
-    intc_3 // 32
+    pushint 32
     bzero
     callsub pcg128_init
     bytec_0 // 0x
@@ -490,5 +522,5 @@ runtime_failure_stack_byteslice_overflow:
     pushint 256
     callsub pcg128_random
     popn 5
-    intc_1 // 1
+    intc_0 // 1
     return
