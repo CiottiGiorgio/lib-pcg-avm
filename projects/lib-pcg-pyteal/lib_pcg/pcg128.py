@@ -215,7 +215,7 @@ def __pcg128_unbounded_random(
                 pt.And(
                     pt.ScratchLoad(None, pt.TealType.uint64, state1_slot_index) == pt.Int(0),
                     pt.ScratchLoad(None, pt.TealType.uint64, state2_slot_index) == pt.Int(0),
-                )
+                ),
             ),
         ),
         __pcg32_step(
@@ -226,7 +226,7 @@ def __pcg128_unbounded_random(
                     pt.ScratchLoad(None, pt.TealType.uint64, state1_slot_index) == pt.Int(0),
                     pt.ScratchLoad(None, pt.TealType.uint64, state2_slot_index) == pt.Int(0),
                     pt.ScratchLoad(None, pt.TealType.uint64, state3_slot_index) == pt.Int(0),
-                )
+                ),
             ),
         ),
         pt.Return(

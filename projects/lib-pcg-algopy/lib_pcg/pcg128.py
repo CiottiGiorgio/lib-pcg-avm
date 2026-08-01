@@ -117,7 +117,9 @@ def __pcg128_unbounded_random(state: PCG128STATE) -> tuple[PCG128STATE, BigUInt]
 
     new_state3 = __pcg32_step(state[2], UInt64(PCG_THIRD_INCREMENT) << (new_state1 == 0 and new_state2 == 0))
 
-    new_state4 = __pcg32_step(state[3], UInt64(PCG_FOURTH_INCREMENT) << (new_state1 == 0 and new_state2 == 0 and new_state3 == 0))
+    new_state4 = __pcg32_step(
+        state[3], UInt64(PCG_FOURTH_INCREMENT) << (new_state1 == 0 and new_state2 == 0 and new_state3 == 0)
+    )
 
     return (
         (new_state1, new_state2, new_state3, new_state4),
