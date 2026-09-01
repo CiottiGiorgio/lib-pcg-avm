@@ -12,8 +12,8 @@ function __uint128Twos(value: uint128): uint128 {
 function __pcg128Random(state: PCG128STATE): [PCG128STATE, uint128] {
   const state1 = __pcg32Step(state[0], pcgFirstIncrement);
   const state2 = __pcg32Step(state[1], pcgSecondIncrement << (state1 === 0 ? 1 : 0));
-  const state3 = __pcg32Step(state[2], pcgThirdIncrement << (state2 === 0 ? 1 : 0));
-  const state4 = __pcg32Step(state[3], pcgFourthIncrement << (state3 === 0 ? 1 : 0));
+  const state3 = __pcg32Step(state[2], pcgThirdIncrement << (state1 === 0 && state2 === 0 ? 1 : 0));
+  const state4 = __pcg32Step(state[3], pcgFourthIncrement << (state1 === 0 && state2 === 0 && state3 === 0 ? 1 : 0));
 
   return [
     [state1, state2, state3, state4],
