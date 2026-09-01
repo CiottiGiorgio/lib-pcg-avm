@@ -29,7 +29,7 @@
     "@algorandfoundation/puya-ts": "^1.0.1",
     "@rollup/plugin-typescript": "^12.1.2",
     "@tsconfig/node22": "^22.0.0",
-    "@types/node": "^22.0.0",
+    "@types/node": "^26.4.0",
     "better-npm-audit": "^3.11.0",
     "dotenv": "^17.2.3",
     "oxlint": "^1.76.0",
