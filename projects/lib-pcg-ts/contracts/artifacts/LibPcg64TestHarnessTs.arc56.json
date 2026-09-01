@@ -3884,10 +3884,10 @@
   "compilerInfo": {
     "compiler": "algod",
     "compilerVersion": {
-      "major": 4,
-      "minor": 7,
-      "patch": 4,
-      "commitHash": "91cbddcd"
+      "major": 5,
+      "minor": 0,
+      "patch": 1,
+      "commitHash": "e763fb0d"
     }
   }
 }
