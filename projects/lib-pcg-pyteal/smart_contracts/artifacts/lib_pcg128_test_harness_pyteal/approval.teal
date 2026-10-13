@@ -380,10 +380,15 @@ bury 1
 stores
 frame_dig -2
 intc 6 // 1442695040888963411
+frame_dig -4
+loads
+intc_0 // 0
+==
 frame_dig -3
 loads
 intc_0 // 0
 ==
+&&
 shl
 intc_2 // 6364136223846793005
 frame_dig -2
@@ -395,10 +400,20 @@ bury 1
 stores
 frame_dig -1
 intc 7 // 1442695040888963413
+frame_dig -4
+loads
+intc_0 // 0
+==
+frame_dig -3
+loads
+intc_0 // 0
+==
+&&
 frame_dig -2
 loads
 intc_0 // 0
 ==
+&&
 shl
 intc_2 // 6364136223846793005
 frame_dig -1

@@ -66,9 +66,9 @@ def expected_library_size(request: pytest.FixtureRequest) -> int:
         case "algopy":
             return 15_500
         case "algots":
-            return 11_500
+            return 12_000
         case "ts":
-            return 32_000
+            return 32_500
         case "pyteal":
             return 12_000
         case _:
@@ -81,11 +81,11 @@ def max_opup_unbounded_arc4_uint128_return(request: pytest.FixtureRequest) -> in
         case "algopy":
             return 23
         case "algots":
-            return 22
+            return 23
         case "ts":
-            return 44
+            return 45
         case "pyteal":
-            return 20
+            return 21
         case _:
             raise ValueError
 
@@ -96,11 +96,11 @@ def max_opup_bounded_arc4_uint128_return(request: pytest.FixtureRequest) -> int:
         case "algopy":
             return 39
         case "algots":
-            return 40
+            return 42
         case "ts":
-            return 81
+            return 82
         case "pyteal":
-            return 38
+            return 40
         case _:
             raise ValueError
 

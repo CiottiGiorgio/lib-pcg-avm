@@ -212,14 +212,21 @@ def __pcg128_unbounded_random(
             state3_slot_index,
             pt.ShiftLeft(
                 PCG_THIRD_INCREMENT,
-                pt.ScratchLoad(None, pt.TealType.uint64, state2_slot_index) == pt.Int(0),
+                pt.And(
+                    pt.ScratchLoad(None, pt.TealType.uint64, state1_slot_index) == pt.Int(0),
+                    pt.ScratchLoad(None, pt.TealType.uint64, state2_slot_index) == pt.Int(0),
+                ),
             ),
         ),
         __pcg32_step(
             state4_slot_index,
             pt.ShiftLeft(
                 PCG_FOURTH_INCREMENT,
-                pt.ScratchLoad(None, pt.TealType.uint64, state3_slot_index) == pt.Int(0),
+                pt.And(
+                    pt.ScratchLoad(None, pt.TealType.uint64, state1_slot_index) == pt.Int(0),
+                    pt.ScratchLoad(None, pt.TealType.uint64, state2_slot_index) == pt.Int(0),
+                    pt.ScratchLoad(None, pt.TealType.uint64, state3_slot_index) == pt.Int(0),
+                ),
             ),
         ),
         pt.Return(
